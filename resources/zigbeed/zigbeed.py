@@ -122,7 +122,7 @@ def read_zigbee(name):
 def zigbee_init():
 	globals.JEEDOM_SERIAL.write(b'\x1A\xC0\x38\xBC\x7E')
     # Wait for RSTACK FRAME (Reset ACK)
-	time.sleep(0.5)
+	time.sleep(1)
 	resp = globals.JEEDOM_SERIAL.readbytes(7)
 	logging.debug('Read : '+str(resp))
     # If we get an invalid RSTACK FRAME, fail detection
@@ -136,7 +136,7 @@ def zigbee_init():
 	globals.JEEDOM_SERIAL.write(b'\x00\x42\x21\xA8\x5C\x2C\xA0\x7E')
     # Wait for Data Response { protocolVersion, stackType, stackVersion }
     # this must be ACK'd
-	time.sleep(0.5)
+	time.sleep(1)
 	resp = globals.JEEDOM_SERIAL.readbytes(11)
 	logging.debug('Read : '+str(resp))
     # DATA ACK response frame
@@ -149,7 +149,7 @@ def zigbee_init():
 
 def zigbee_version():
 	globals.JEEDOM_SERIAL.write(b'\x7D\x31\x43\x21\x02\x45\x85\xB2\x7E')
-	time.sleep(0.5)
+	time.sleep(1)
 	resp = globals.JEEDOM_SERIAL.readbytes(16)
 	logging.debug('Read : '+str(resp))
 	versioninfo = trans(resp[1:])[5:]
