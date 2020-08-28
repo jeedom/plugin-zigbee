@@ -1,0 +1,16 @@
+{
+	"id" : "zigbee",
+	"name" : "Zigbee",
+	"description" : "Plugin template pour la création de plugin",
+	"licence" : "AGPL",
+	"author" : "Jeedom SAS",
+	"require" : "4.0",
+	"category" : "automation protocol",
+	"hasDependency" : false,
+	"hasOwnDeamon" : false,
+	"maxDependancyInstallTime" : 0,
+	"changelog" : "https://jeedom.github.io/plugin-template/#language#/changelog",
+	"documentation" : "https://jeedom.github.io/plugin-template/#language#/",
+	"language" : ["fr_FR","en_US","de_DE","sp_SP"],
+	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile","v4"]
+}
