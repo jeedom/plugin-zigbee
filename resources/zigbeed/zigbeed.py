@@ -125,42 +125,6 @@ def read_zigbee(name):
 
 # ----------------------------------------------------------------------------
 
-def zigbee_init():
-	globals.JEEDOM_SERIAL.write(b'\x1A\xC0\x38\xBC\x7E')
-    # Wait for RSTACK FRAME (Reset ACK)
-	time.sleep(1)
-	resp = globals.JEEDOM_SERIAL.readbytes(7)
-	logging.debug('Read : '+str(resp.hex()))
-    # If we get an invalid RSTACK FRAME, fail detection
-	if resp != b'\x1A\xC1\x02\x0B\x0A\x52\x7E':
-		logging.error("Invalid ack")
-		shutdown()
-	globals.JEEDOM_SERIAL.write(b'\x80\x70\x78\x7E') #ack
-    # EZSP Configuration Frame: version ID: 0x00
-    # Note: Must be sent before any other EZSP commands
-    # { FRAME CTR + EZSP [0x00 0x00 0x00 0x07] + CRC + FRAME END }
-	globals.JEEDOM_SERIAL.write(b'\x00\x42\x21\xA8\x5C\x2C\xA0\x7E')
-    # Wait for Data Response { protocolVersion, stackType, stackVersion }
-    # this must be ACK'd
-	time.sleep(1)
-	resp = globals.JEEDOM_SERIAL.readbytes(11)
-	logging.debug('Read : '+str(resp.hex()))
-    # DATA ACK response frame
-	globals.JEEDOM_SERIAL.write(b'\x81\x60\x59\x7E')
-    # Check ncp data response:
-    # 7.0.0 ncp example: { 01 42 a1 a8 5c 28 75 d5 3e 39 7e  }
-	if resp[1:5] != b'\x42\xA1\xA8\x5C':
-		logging.error("Invalid EZSP version")
-		shutdown()
-
-def zigbee_version():
-	globals.JEEDOM_SERIAL.write(b'\x7D\x31\x43\x21\x02\x45\x85\xB2\x7E')
-	time.sleep(1)
-	resp = globals.JEEDOM_SERIAL.readbytes(16)
-	logging.debug('Read : '+str(resp.hex()))
-	versioninfo = trans(resp[1:])[5:]
-	logging.debug('StackVersion : '+str(versioninfo[2]) + '.' + str(versioninfo[3]) + '.' + str(versioninfo[4]) + '-' + str(versioninfo[0]))
-
 def listen():
 	logging.debug("Start listening...")
 	jeedom_socket.open()
@@ -174,9 +138,9 @@ def listen():
 		logging.error("KeyboardInterrupt, shutdown")
 		shutdown()
 
-	zigbee_init()
+	ezsp.init()
 	globals.JEEDOM_SERIAL.flushInput()
-	zigbee_version()
+	ezsp.version_info()
 
 	try:
 		threading.Thread(target=read_zigbee,args=('read',)).start()
@@ -287,7 +251,7 @@ if _device == 'auto':
 
 if _device is None:
 	logging.error('No device found')
-	#shutdown()
+	shutdown()
 
 logging.info('Find device : '+str(_device))
 
@@ -295,6 +259,7 @@ signal.signal(signal.SIGINT, handler)
 signal.signal(signal.SIGTERM, handler)
 
 from ezsp.uart import *
+from ezsp.ezsp import *
 
 try:
 	jeedom_utils.write_pid(str(_pidfile))
@@ -304,8 +269,7 @@ try:
 		shutdown()
 	globals.JEEDOM_SERIAL = jeedom_serial(device=_device,rate=_serial_rate,timeout=_serial_timeout)
 	jeedom_socket = jeedom_socket(port=_socket_port,address=_socket_host)
-	#listen()
-	uart.make_data_frame(b'\x00\x00\x00\x02');
+	listen()
 except Exception as e:
 	logging.error('Fatal error : '+str(e))
 	logging.debug(traceback.format_exc())
