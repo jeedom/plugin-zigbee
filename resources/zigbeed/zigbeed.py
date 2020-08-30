@@ -98,30 +98,22 @@ def send_zigbee(message):
 	if test_zigbee(message):
 		globals.JEEDOM_SERIAL.flushOutput()
 		globals.JEEDOM_SERIAL.flushInput()
-
 	else:
 		logging.error("Invalid message from socket.")
 
 # ----------------------------------------------------------------------------
 
 def read_zigbee(name):
+	message = b''
 	while 1:
-		time.sleep(0.02)
-		message = None
 		try:
-			byte = globals.JEEDOM_SERIAL.read()
+			resp = ezsp.decode(ezsp.read())
 		except Exception as e:
 			logging.error("Error in read_zigbee: " + str(e))
+			logging.debug(traceback.format_exc())
 			if str(e) == '[Errno 5] Input/output error':
 				logging.error("Exit 1 because this exeption is fatal")
 				shutdown()
-		try:
-			if byte != 0 and  byte != None :
-				message = byte + globals.JEEDOM_SERIAL.readbytes(int.from_bytes(byte,'big'))
-				logging.debug("Message: " + str(jeedom_utils.ByteToHex(message)))
-
-		except OSError as e:
-			logging.error("Error in read_zigbee on decode message : " + str(jeedom_utils.ByteToHex(message))+" => "+str(e))
 
 # ----------------------------------------------------------------------------
 
@@ -148,24 +140,8 @@ def listen():
 	except KeyboardInterrupt:
 		logging.error("KeyboardInterrupt, shutdown")
 		shutdown()
+	ezsp.permitJoining(60)
 
-def trans(s):
-    seq = randSeqUpTo(len(s))
-    out = []
-    for i in range(len(s)):
-        out.append(s[i] ^ seq[i])
-    return out
-
-def randSeqUpTo(n):
-    curr = 0x42
-    out = []
-    while len(out) < n:
-        out.append(curr)
-        if bin(curr)[-1] == '0':
-            curr = curr >> 1
-        else:
-            curr = (curr >> 1) ^ 0xB8
-    return out
 # ----------------------------------------------------------------------------
 
 def handler(signum=None, frame=None):
