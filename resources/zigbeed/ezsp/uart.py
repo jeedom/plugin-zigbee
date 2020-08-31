@@ -26,6 +26,8 @@ except ImportError:
 class uart():
 
 	def decode_frame(frame):
+		if frame == None :
+			return None
 		if shared.CANCEL in frame:
 			frame = frame[frame.rfind(shared.CANCEL) + 1 :]
 		if shared.SUBSTITUTE in frame:

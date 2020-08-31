@@ -107,7 +107,7 @@ def read_zigbee(name):
 	message = b''
 	while 1:
 		try:
-			resp = ezsp.decode(ezsp.read())
+			resp = ezsp.decode(ezsp.read(None))
 		except Exception as e:
 			logging.error("Error in read_zigbee: " + str(e))
 			logging.debug(traceback.format_exc())

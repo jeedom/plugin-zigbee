@@ -59,7 +59,7 @@ EZSP_COMMANDS = {
     "setPowerDescriptor": { 'value' : 0x16},
     "networkInitExtended": { 'value' : 0x70},
     "networkState": { 'value' : 0x18},
-    "stackStatusHandler": { 'value' : 0x19,'resultClass':'EmberStatus'},
+    "stackStatusHandler": { 'value' : 0x19,'resultClass':'EmberStatus','noExeption' : True},
     "startScan": { 'value' :  0x1A},
     "energyScanResultHandler": { 'value' : 0x48},
     "networkFoundHandler": { 'value' : 0x1B},
