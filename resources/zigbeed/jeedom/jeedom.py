@@ -219,6 +219,10 @@ class jeedom_utils():
 		nkfd_form = unicodedata.normalize('NFKD', unicode(input_str))
 		return u"".join([c for c in nkfd_form if not unicodedata.combining(c)])
 
+	@staticmethod
+	def printHex(hex):
+		return ' '.join([hex[i:i + 2] for i in range(0, len(hex), 2)])
+
 # ------------------------------------------------------------------------------
 
 class jeedom_serial():

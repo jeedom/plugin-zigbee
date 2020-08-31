@@ -1,1 +1,1 @@
-__all__ = ["uart","command"]
+__all__ = ["uart","command","value"]

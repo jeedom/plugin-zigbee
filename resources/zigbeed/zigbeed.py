@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 
-import globals
+import shared
 import logging
 import string
 import sys
@@ -64,19 +64,19 @@ def read_socket(name):
 				if message['cmd'] == 'add':
 					logging.debug('Add device : '+str(message['device']))
 					if 'id' in message['device'] :
-						globals.KNOWN_DEVICES[message['device']['id']] = message['device']['id']
+						shared.KNOWN_DEVICES[message['device']['id']] = message['device']['id']
 				elif message['cmd'] == 'remove':
 					logging.debug('Remove device : '+str(message['device']))
-					if 'id' in message['device'] and message['device']['id'] in globals.KNOWN_DEVICES :
-						del globals.KNOWN_DEVICES[message['device']['id']]
+					if 'id' in message['device'] and message['device']['id'] in shared.KNOWN_DEVICES :
+						del shared.KNOWN_DEVICES[message['device']['id']]
 				elif message['cmd'] == 'include_mode':
 					if int(message['state']) == 1:
 						logging.debug('Enter in include mode')
-						globals.INCLUDE_MODE = True
+						shared.INCLUDE_MODE = True
 					else :
 						logging.debug('Leave in include mode')
-						globals.INCLUDE_MODE = False
-					globals.JEEDOM_COM.send_change_immediate({'include_mode' : message['state']});
+						shared.INCLUDE_MODE = False
+					shared.JEEDOM_COM.send_change_immediate({'include_mode' : message['state']});
 				elif message['cmd'] == 'send':
 					if isinstance(message['data'], list):
 						for data in message['data']:
@@ -96,8 +96,8 @@ def read_socket(name):
 
 def send_zigbee(message):
 	if test_zigbee(message):
-		globals.JEEDOM_SERIAL.flushOutput()
-		globals.JEEDOM_SERIAL.flushInput()
+		shared.JEEDOM_SERIAL.flushOutput()
+		shared.JEEDOM_SERIAL.flushInput()
 	else:
 		logging.error("Invalid message from socket.")
 
@@ -120,9 +120,9 @@ def read_zigbee(name):
 def listen():
 	logging.debug("Start listening...")
 	jeedom_socket.open()
-	globals.JEEDOM_SERIAL.open()
-	globals.JEEDOM_SERIAL.flushOutput()
-	globals.JEEDOM_SERIAL.flushInput()
+	shared.JEEDOM_SERIAL.open()
+	shared.JEEDOM_SERIAL.flushOutput()
+	shared.JEEDOM_SERIAL.flushInput()
 	try:
 		threading.Thread(target=read_socket,args=('socket',)).start()
 		logging.debug('Read Socket Thread Launched')
@@ -131,7 +131,7 @@ def listen():
 		shutdown()
 
 	ezsp.init()
-	globals.JEEDOM_SERIAL.flushInput()
+	shared.JEEDOM_SERIAL.flushInput()
 	ezsp.version_info()
 
 	try:
@@ -160,7 +160,7 @@ def shutdown():
 	except:
 		pass
 	try:
-		globals.JEEDOM_SERIAL.close()
+		shared.JEEDOM_SERIAL.close()
 	except:
 		pass
 	logging.debug("Exit 0")
@@ -179,6 +179,7 @@ _callback = ''
 _serial_rate = 115200
 _serial_timeout = 9
 _cycle = 0.3
+_config_file_path = '/var/www/html/plugins/zigbee/data/config.json'
 
 parser = argparse.ArgumentParser(description='Zigbee Daemon for Jeedom plugin')
 parser.add_argument("--device", help="Device", type=str)
@@ -237,13 +238,18 @@ signal.signal(signal.SIGTERM, handler)
 from ezsp.uart import *
 from ezsp.ezsp import *
 
+
+logging.info('Load config file path : '+str(_config_file_path))
+with open(_config_file_path) as f:
+	shared.CONFIG = json.load(f)
+
 try:
 	jeedom_utils.write_pid(str(_pidfile))
-	globals.JEEDOM_COM = jeedom_com(apikey = _apikey,url = _callback,cycle=_cycle)
-	if not globals.JEEDOM_COM.test():
+	shared.JEEDOM_COM = jeedom_com(apikey = _apikey,url = _callback,cycle=_cycle)
+	if not shared.JEEDOM_COM.test():
 		logging.error('Network communication issues. Please fixe your Jeedom network configuration.')
 		shutdown()
-	globals.JEEDOM_SERIAL = jeedom_serial(device=_device,rate=_serial_rate,timeout=_serial_timeout)
+	shared.JEEDOM_SERIAL = jeedom_serial(device=_device,rate=_serial_rate,timeout=_serial_timeout)
 	jeedom_socket = jeedom_socket(port=_socket_port,address=_socket_host)
 	listen()
 except Exception as e:

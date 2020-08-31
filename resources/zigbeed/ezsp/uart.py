@@ -14,7 +14,7 @@
 # along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import globals
+import shared
 import binascii
 
 try:
@@ -26,27 +26,27 @@ except ImportError:
 class uart():
 
 	def decode_frame(frame):
-		if globals.CANCEL in frame:
-			frame = frame[frame.rfind(globals.CANCEL) + 1 :]
-		if globals.SUBSTITUTE in frame:
-			frame = frame[frame.find(globals.FLAG) + 1 :]
-		if globals.FLAG not in frame:
+		if shared.CANCEL in frame:
+			frame = frame[frame.rfind(shared.CANCEL) + 1 :]
+		if shared.SUBSTITUTE in frame:
+			frame = frame[frame.find(shared.FLAG) + 1 :]
+		if shared.FLAG not in frame:
 			raise Exception("No end flag")
-		place = frame.find(globals.FLAG)
+		place = frame.find(shared.FLAG)
 		if place+1 < len(frame):
 			frame = frame[place+1:]
 		logging.debug('Received frame : '+str(frame.hex()))
 		result  = {}
-		#crc = uart.make_crc(frame[:-3])
-		#if crc != frame[-3:-1]:
-			#raise Exception("Invalid CRC, found : "+str(frame[-3:-1].hex())+' attemp : '+str(crc.hex()))
+		crc = uart.make_crc(frame[:-3])
+		if crc != frame[-3:-1]:
+			raise Exception("Invalid CRC, found : "+str(frame[-3:-1].hex())+' attemp : '+str(crc.hex()))
 		frame = uart.unescape(frame);
 		if (frame[0] & 0b10000000) == 0:
 			logging.debug('Received data frame, send ack')
 			result['type'] = 'DATA'
 			result['seq'] = (frame[0] & 0b01110000) >> 4
-			globals.ACK_NUMBER = result['seq']+1
-			globals.JEEDOM_SERIAL.write(uart.make_ack_frame())
+			shared.ACK_NUMBER = result['seq']+1
+			shared.JEEDOM_SERIAL.write(uart.make_ack_frame())
 			result['frame_ezsp'] = uart.randomize(frame[1:-3])
 		elif (frame[0] & 0b11100000) == 0b10000000:
 			logging.debug('Received ack frame')
@@ -67,21 +67,21 @@ class uart():
 
 	def make_frame_control(_type):
 		result = None
-		if globals.FRAME_NUMBER > 7 :
-			globals.FRAME_NUMBER = 0
-		if globals.ACK_NUMBER < globals.FRAME_NUMBER :
-			globals.FRAME_NUMBER = globals.ACK_NUMBER + 1
-		if globals.ACK_NUMBER > 7 :
-			globals.ACK_NUMBER = 0
-		logging.debug('Ack number : '+str(globals.ACK_NUMBER))
+		if shared.FRAME_NUMBER > 7 :
+			shared.FRAME_NUMBER = 0
+		if shared.ACK_NUMBER < shared.FRAME_NUMBER :
+			shared.FRAME_NUMBER = shared.ACK_NUMBER + 1
+		if shared.ACK_NUMBER > 7 :
+			shared.ACK_NUMBER = 0
+		logging.debug('Ack number : '+str(shared.ACK_NUMBER))
 		if _type == 'DATA' :
-			logging.debug('Frame number : '+str(globals.FRAME_NUMBER))
-			result = '0'+bin(globals.FRAME_NUMBER)[2:].zfill(3)+'0'+bin(globals.ACK_NUMBER)[2:].zfill(3)
-			globals.FRAME_NUMBER += 1
+			logging.debug('Frame number : '+str(shared.FRAME_NUMBER))
+			result = '0'+bin(shared.FRAME_NUMBER)[2:].zfill(3)+'0'+bin(shared.ACK_NUMBER)[2:].zfill(3)
+			shared.FRAME_NUMBER += 1
 		if _type == 'ACK' :
-			result = '10000'+bin(globals.ACK_NUMBER)[2:].zfill(3)
+			result = '10000'+bin(shared.ACK_NUMBER)[2:].zfill(3)
 		if _type == 'NACK' :
-			result = '10100'+bin(globals.ACK_NUMBER)[2:].zfill(3)
+			result = '10100'+bin(shared.ACK_NUMBER)[2:].zfill(3)
 		if _type == 'RST' :
 			result = '11000000'
 		return bytes(int(result[i : i + 8], 2) for i in range(0, len(result), 8))
@@ -93,37 +93,37 @@ class uart():
 	def make_data_frame(_data):
 		logging.debug('Encode data frame : '+str(_data))
 		frame = uart.make_frame_control('DATA')+uart.randomize(_data)
-		frame = uart.escape(frame+uart.make_crc(frame))+globals.FLAG
-		logging.debug('Result frame : '+str(frame.hex()))
+		frame = uart.escape(frame+uart.make_crc(frame))+shared.FLAG
+		logging.debug('Result frame : '+jeedom_utils.printHex(str(frame.hex())))
 		return frame
 
 	def make_ack_frame():
 		frame = uart.make_frame_control('ACK')
-		frame = uart.escape(frame+uart.make_crc(frame))+globals.FLAG
+		frame = uart.escape(frame+uart.make_crc(frame))+shared.FLAG
 		logging.debug('ACK frame : '+str(frame.hex()))
 		return frame
 
 	def make_nack_frame():
 		frame = uart.make_frame_control('NACK')
-		frame = uart.escape(frame+uart.make_crc(frame))+globals.FLAG
+		frame = uart.escape(frame+uart.make_crc(frame))+shared.FLAG
 		logging.debug('NACK frame : '+str(frame.hex()))
 		return frame
 
 	def make_rst_frame():
 		frame = uart.make_frame_control('RST')
-		frame = bytes([0x1A])+uart.escape(frame+uart.make_crc(frame))+globals.FLAG
+		frame = bytes([0x1A])+uart.escape(frame+uart.make_crc(frame))+shared.FLAG
 		logging.debug('RST : '+str(frame.hex()))
-		globals.ACK_NUMBER = 0
-		globals.FRAME_NUMBER = 0
+		shared.ACK_NUMBER = 0
+		shared.FRAME_NUMBER = 0
 		return frame
 
 	def randomize(_data):
-		rand = globals.RANDOMIZE_START
+		rand = shared.RANDOMIZE_START
 		out = b""
 		for c in _data:
 			out += bytes([c ^ rand])
 			if rand % 2:
-				rand = (rand >> 1) ^ globals.RANDOMIZE_SEQ
+				rand = (rand >> 1) ^ shared.RANDOMIZE_SEQ
 			else:
 				rand = rand >> 1
 		return out
@@ -131,8 +131,8 @@ class uart():
 	def escape(s):
 		out = b""
 		for c in s:
-			if c in globals.RESERVED:
-				out += globals.ESCAPE + bytes([c ^ globals.STUFF])
+			if c in shared.RESERVED:
+				out += shared.ESCAPE + bytes([c ^ shared.STUFF])
 			else:
 				out += bytes([c])
 		return out
@@ -142,9 +142,9 @@ class uart():
 		escaped = False
 		for c in s:
 			if escaped:
-				out += bytes([c ^ globals.STUFF])
+				out += bytes([c ^ shared.STUFF])
 				escaped = False
-			elif c in globals.ESCAPE:
+			elif c in shared.ESCAPE:
 				escaped = True
 			else:
 				out += bytes([c])
