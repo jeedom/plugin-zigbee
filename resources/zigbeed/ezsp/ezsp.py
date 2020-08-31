@@ -28,16 +28,34 @@ from ezsp.uart import *
 
 class ezsp():
 
-	def convertTovalue(_value):
-		values = _value.split('.')
+	def validateReturn(_data,raiseExeption=True):
+		command = _data['command']
+		if command in EZSP_COMMANDS and 'resultClass' in EZSP_COMMANDS[command]:
+			result = ezsp.convertFromValue(EZSP_COMMANDS[command]['resultClass'],_data['data'][0])
+			if raiseExeption and _data['data'][0] != 0 :
+				raise Exception('Error on return '+str(command)+ ' code '+str(_data['data'][0])+' => '+str(result))
+		return True
+
+	def convertFromValue(_class,_value):
+
+		if _class in globals():
+			obj = globals()[_class];
+			attrs = dir(obj)
+			for i in attrs:
+				if getattr(obj,i) == _value:
+					return i
+		return _value
+
+	def convertTovalue(_str):
+		values = _str.split('.')
 		if values[0] in globals():
 			if hasattr(globals()[values[0]], values[1]):
 				return getattr(globals()[values[0]],values[1])
-		return _value
+		return _str
 
 	def getCommandFromId(_id):
 		for i in EZSP_COMMANDS:
-			if EZSP_COMMANDS[i] == _id :
+			if EZSP_COMMANDS[i]['value'] == _id :
 				return i
 		return 'unknown'
 
@@ -77,11 +95,11 @@ class ezsp():
 	def make(cmd,data):
 		if shared.EZSP_VERSION >= 8:
 			result = bytes([shared.SEQUENCE])+bytes([0x00])+bytes([0x01])
-			result += bytes([EZSP_COMMANDS[cmd] & 0x00FF])
-			result += bytes([(EZSP_COMMANDS[cmd] & 0xFF00) >> 8])
+			result += bytes([EZSP_COMMANDS[cmd]['value'] & 0x00FF])
+			result += bytes([(EZSP_COMMANDS[cmd]['value'] & 0xFF00) >> 8])
 			result += bytes(data)
 		else :
-			result = bytes([shared.SEQUENCE])+bytes([0x00])+bytes([EZSP_COMMANDS[cmd]])+bytes(data)
+			result = bytes([shared.SEQUENCE])+bytes([0x00])+bytes([EZSP_COMMANDS[cmd]['value']])+bytes(data)
 		shared.SEQUENCE += 1
 		if shared.SEQUENCE > 256 :
 			shared.SEQUENCE = 0
@@ -97,7 +115,7 @@ class ezsp():
 		shared.JEEDOM_SERIAL.write(uart.make_data_frame(ezsp.make('version',[0x08])))
 		time.sleep(1)
 		resp = ezsp.decode(ezsp.read())
-		if resp['type'] != 'DATA' or resp['frame_id'] != EZSP_COMMANDS['version']:
+		if resp['type'] != 'DATA' or resp['frame_id'] != EZSP_COMMANDS['version']['value']:
 			raise Exception("Invalid EZSP version")
 		shared.EZSP_VERSION=resp['data'][0]
 		logging.info('EZSP version : '+str(resp['data'][0])+'.'+str(resp['data'][1])+'.'+str(resp['data'][2]+resp['data'][3]))
@@ -113,7 +131,7 @@ class ezsp():
 		parameters += shared.CONFIG['network']['parameters']['channels'] #Channels Mask
 		logging.info('Configure network : '+str(parameters))
 		shared.JEEDOM_SERIAL.write(uart.make_data_frame(ezsp.make('formNetwork',parameters)))
-		resp = ezsp.decode(ezsp.read())
+		ezsp.validateReturn(ezsp.decode(ezsp.read()))
 		logging.info('End init ezsp successfull')
 
 	def version_info():
