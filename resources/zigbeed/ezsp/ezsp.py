@@ -96,7 +96,7 @@ class ezsp():
 			for i in data :
 				result['data'].append(i)
 		if 'handle_'+result['command'] in dir(globals()['ezsp']):
-			result['handler_result'] = getattr(globals()['ezsp'],'handle_'+result['command'])(result)
+			result['handle_result'] = getattr(globals()['ezsp'],'handle_'+result['command'])(result)
 		logging.debug('Decode result : '+str(result))
 		return result
 
@@ -147,20 +147,20 @@ class ezsp():
 		if resp['data'][1] != EmberNodeType.COORDINATOR:
 			logging.debug('Node not coordinator, need reforming network')
 			needReformNetwork = True
-		if resp['handler_result']['extendedPanId'] != shared.CONFIG['network']['parameters']['extendedPanId']:
-			logging.debug('extendedPanId nok : '+str(resp['handler_result']['extendedPanId'])+' != '+str(shared.CONFIG['network']['parameters']['extendedPanId']))
+		if resp['handle_result']['extendedPanId'] != shared.CONFIG['network']['parameters']['extendedPanId']:
+			logging.debug('extendedPanId nok : '+str(resp['handle_result']['extendedPanId'])+' != '+str(shared.CONFIG['network']['parameters']['extendedPanId']))
 			needReformNetwork = True
-		if resp['handler_result']['panId'] != shared.CONFIG['network']['parameters']['panId']:
-			logging.debug('panId nok : '+str(resp['handler_result']['panId'])+' != '+str(shared.CONFIG['network']['parameters']['panId']))
+		if resp['handle_result']['panId'] != shared.CONFIG['network']['parameters']['panId']:
+			logging.debug('panId nok : '+str(resp['handle_result']['panId'])+' != '+str(shared.CONFIG['network']['parameters']['panId']))
 			needReformNetwork = True
-		if resp['handler_result']['radioTxPower'] != shared.CONFIG['network']['parameters']['radioTxPower']:
-			logging.debug('radioTxPower nok : '+str(resp['handler_result']['radioTxPower'])+' != '+str(shared.CONFIG['network']['parameters']['radioTxPower']))
+		if resp['handle_result']['radioTxPower'] != shared.CONFIG['network']['parameters']['radioTxPower']:
+			logging.debug('radioTxPower nok : '+str(resp['handle_result']['radioTxPower'])+' != '+str(shared.CONFIG['network']['parameters']['radioTxPower']))
 			needReformNetwork = True
-		if resp['handler_result']['nwkManagerId'] != shared.CONFIG['network']['parameters']['nwkManagerId']:
-			logging.debug('nwkManagerId nok : '+str(resp['handler_result']['nwkManagerId'])+' != '+str(shared.CONFIG['network']['parameters']['nwkManagerId']))
+		if resp['handle_result']['nwkManagerId'] != shared.CONFIG['network']['parameters']['nwkManagerId']:
+			logging.debug('nwkManagerId nok : '+str(resp['handle_result']['nwkManagerId'])+' != '+str(shared.CONFIG['network']['parameters']['nwkManagerId']))
 			needReformNetwork = True
-		if resp['handler_result']['nwkUpdateId'] != shared.CONFIG['network']['parameters']['nwkUpdateId']:
-			logging.debug('nwkUpdateId nok : '+str(resp['handler_result']['nwkUpdateId'])+' != '+str(shared.CONFIG['network']['parameters']['nwkUpdateId']))
+		if resp['handle_result']['nwkUpdateId'] != shared.CONFIG['network']['parameters']['nwkUpdateId']:
+			logging.debug('nwkUpdateId nok : '+str(resp['handle_result']['nwkUpdateId'])+' != '+str(shared.CONFIG['network']['parameters']['nwkUpdateId']))
 			needReformNetwork = True
 
 		if needReformNetwork:
