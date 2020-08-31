@@ -37,9 +37,9 @@ class uart():
 			frame = frame[place+1:]
 		logging.debug('Received frame : '+str(frame.hex()))
 		result  = {}
-		crc = uart.make_crc(frame[:-3])
-		if crc != frame[-3:-1]:
-			raise Exception("Invalid CRC, found : "+str(frame[-3:-1].hex())+' attemp : '+str(crc.hex()))
+		#crc = uart.make_crc(frame[:-3])
+		#if crc != frame[-3:-1]:
+		#	raise Exception("Invalid CRC, found : "+str(frame[-3:-1].hex())+' attemp : '+str(crc.hex()))
 		frame = uart.unescape(frame);
 		if (frame[0] & 0b10000000) == 0:
 			logging.debug('Received data frame, send ack')

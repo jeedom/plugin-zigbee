@@ -28,13 +28,14 @@ from ezsp.uart import *
 
 class ezsp():
 
-	def validateReturn(_data,raiseExeption=True):
+	def validateReturn(_data,raiseExeption=True,_success=[0]):
 		command = _data['command']
 		if command in EZSP_COMMANDS and 'resultClass' in EZSP_COMMANDS[command]:
 			result = ezsp.convertFromValue(EZSP_COMMANDS[command]['resultClass'],_data['data'][0])
-			if raiseExeption and _data['data'][0] != 0 :
+			if raiseExeption and _data['data'][0] not in _success :
 				raise Exception('Error on return '+str(command)+ ' code '+str(_data['data'][0])+' => '+str(result))
-		return True
+			logging.debug('Return for '+str(command)+ ' code '+str(_data['data'][0])+' => '+str(result))
+		return _data
 
 	def convertFromValue(_class,_value):
 
@@ -92,12 +93,14 @@ class ezsp():
 		logging.debug('Decode result : '+str(result))
 		return result
 
-	def make(cmd,data):
+	def make(cmd,data=None):
+		logging.debug('**********************MAKE : '+str(cmd)+' ***********************')
 		if shared.EZSP_VERSION >= 8:
 			result = bytes([shared.SEQUENCE])+bytes([0x00])+bytes([0x01])
 			result += bytes([EZSP_COMMANDS[cmd]['value'] & 0x00FF])
 			result += bytes([(EZSP_COMMANDS[cmd]['value'] & 0xFF00) >> 8])
-			result += bytes(data)
+			if data != None:
+				result += bytes(data)
 		else :
 			result = bytes([shared.SEQUENCE])+bytes([0x00])+bytes([EZSP_COMMANDS[cmd]['value']])+bytes(data)
 		shared.SEQUENCE += 1
@@ -120,18 +123,37 @@ class ezsp():
 		shared.EZSP_VERSION=resp['data'][0]
 		logging.info('EZSP version : '+str(resp['data'][0])+'.'+str(resp['data'][1])+'.'+str(resp['data'][2]+resp['data'][3]))
 
-		parameters = []
-		parameters += shared.CONFIG['network']['parameters']['extendedPanId']
-		parameters += shared.CONFIG['network']['parameters']['panId']
-		parameters.append(shared.CONFIG['network']['parameters']['radioTxPower']) #Power setting
-		parameters.append(shared.CONFIG['network']['parameters']['radioChannel']) #Channel
-		parameters.append(ezsp.convertTovalue(shared.CONFIG['network']['parameters']['joinMethod'])) #Join method
-		parameters.append(shared.CONFIG['network']['parameters']['nwkManagerId']) #NWK Manager ID
-		parameters.append(shared.CONFIG['network']['parameters']['nwkUpdateId']) #NWP Update ID
-		parameters += shared.CONFIG['network']['parameters']['channels'] #Channels Mask
-		logging.info('Configure network : '+str(parameters))
-		shared.JEEDOM_SERIAL.write(uart.make_data_frame(ezsp.make('formNetwork',parameters)))
+		logging.info('Init network')
+		shared.JEEDOM_SERIAL.write(uart.make_data_frame(ezsp.make('networkInit',[0,0])))
 		ezsp.validateReturn(ezsp.decode(ezsp.read()))
+		time.sleep(1)
+		resp = ezsp.decode(ezsp.read())
+
+		shared.JEEDOM_SERIAL.write(uart.make_data_frame(ezsp.make('getNetworkParameters')))
+		resp = ezsp.validateReturn(ezsp.decode(ezsp.read()))
+		logging.info('Note type : '+str(ezsp.convertFromValue('EmberNodeType',resp['data'][1])))
+
+		if resp['data'][1] != EmberNodeType.COORDINATOR:
+			parameters = []
+			parameters +=  (EmberInitialSecurityBitmask.HAVE_PRECONFIGURED_KEY| EmberInitialSecurityBitmask.REQUIRE_ENCRYPTED_KEY).to_bytes(2, 'little')
+			parameters += shared.CONFIG['network']['security']['preconfiguredKey']
+			parameters += shared.CONFIG['network']['security']['networkKey']
+			parameters.append(shared.CONFIG['network']['security']['networkKeySequenceNumber'])
+			parameters += shared.CONFIG['network']['security']['preconfiguredTrustCenterEui64']
+			shared.JEEDOM_SERIAL.write(uart.make_data_frame(ezsp.make('setInitialSecurityState',parameters)))
+			resp = ezsp.validateReturn(ezsp.decode(ezsp.read()),_success=[144])
+
+			parameters = []
+			parameters += shared.CONFIG['network']['parameters']['extendedPanId']
+			parameters += shared.CONFIG['network']['parameters']['panId']
+			parameters.append(shared.CONFIG['network']['parameters']['radioTxPower'])
+			parameters.append(shared.CONFIG['network']['parameters']['radioChannel'])
+			parameters.append(ezsp.convertTovalue(shared.CONFIG['network']['parameters']['joinMethod']))
+			parameters.append(shared.CONFIG['network']['parameters']['nwkManagerId'])
+			parameters.append(shared.CONFIG['network']['parameters']['nwkUpdateId'])
+			parameters += shared.CONFIG['network']['parameters']['channels']
+			shared.JEEDOM_SERIAL.write(uart.make_data_frame(ezsp.make('formNetwork',parameters)))
+			ezsp.validateReturn(ezsp.decode(ezsp.read()))
 		logging.info('End init ezsp successfull')
 
 	def version_info():
@@ -139,7 +161,8 @@ class ezsp():
 		shared.JEEDOM_SERIAL.write(uart.make_data_frame(ezsp.make('getValue',[0x11])))
 		time.sleep(1)
 		resp = ezsp.decode(ezsp.read())
-		logging.info('Stack version : '+str(resp['data'][6])+'.'+str(resp['data'][5])+'.'+str(resp['data'][4]))
+		ezsp.validateReturn(resp);
+		logging.info('_____Stack version : '+str(resp['data'][6])+'.'+str(resp['data'][5])+'.'+str(resp['data'][4]))
 
 	def permitJoining(_second):
 		logging.info('Permit joining for '+str(_second))
