@@ -168,21 +168,7 @@ class ezsp():
 			ezsp.validateReturn(ezsp.decode(ezsp.read()))
 			time.sleep(2)
 			ezsp.formNetwork()
-
 		logging.info('End init ezsp successfull')
-
-	def handle_getNetworkParameters(_data):
-		result = {}
-		result['nodeType'] = _data['data'][1]
-		result['nodeType_str'] = ezsp.convertFromValue('EmberNodeType',_data['data'][1])
-		result['extendedPanId'] = _data['data'][2:10]
-		result['panId'] = _data['data'][10:12]
-		result['radioTxPower'] = _data['data'][12]
-		result['joinMethod'] = _data['data'][13]
-		result['nwkManagerId'] = _data['data'][14]
-		result['nwkUpdateId'] = _data['data'][15]
-		result['channels'] = _data['data'][16:]
-		return result
 
 	def formNetwork():
 		logging.info('FORMING NETWORK')
@@ -224,3 +210,22 @@ class ezsp():
 	def permitJoining(_second):
 		logging.info('Permit joining for '+str(_second))
 		shared.JEEDOM_SERIAL.write(uart.make_data_frame(ezsp.make('permitJoining',[_second])))
+
+	#******************** HANDLER **********************
+
+	def handle_permitJoining(_data):
+		ezsp.validateReturn(_data)
+		return 'OK'
+
+	def handle_getNetworkParameters(_data):
+		result = {}
+		result['nodeType'] = _data['data'][1]
+		result['nodeType_str'] = ezsp.convertFromValue('EmberNodeType',_data['data'][1])
+		result['extendedPanId'] = _data['data'][2:10]
+		result['panId'] = _data['data'][10:12]
+		result['radioTxPower'] = _data['data'][12]
+		result['joinMethod'] = _data['data'][13]
+		result['nwkManagerId'] = _data['data'][14]
+		result['nwkUpdateId'] = _data['data'][15]
+		result['channels'] = _data['data'][16:]
+		return result
