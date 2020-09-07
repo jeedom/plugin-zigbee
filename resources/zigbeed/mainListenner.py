@@ -19,33 +19,27 @@ LOGGER = logging.getLogger(__name__)
 
 class MainListener:
 	"""
-	Contains callbacks that zigpy will call whenever something happens.
-	Look for `listener_event` in the Zigpy source or just look at the logged warnings.
+	Contains callbacks that zigpy will call whenever something happens.	Look for `listener_event` in the Zigpy source or just look at the logged warnings.
 	"""
 
 	def __init__(self, application):
 		self.application = application
 
 	def device_joined(self, device):
-		print("************************* Device joined: {device}")
+		LOGGER.info("************************* Device joined: {device}")
+		shared.JEEDOM_COM.send_change_immediate({'new_device' : device.__dict__});
 
 	def device_initialized(self, device, *, new=True):
 		"""
-		Called at runtime after a device's information has been queried.
-		I also call it on startup to load existing devices from the DB.
+		Called at runtime after a device's information has been queried.I also call it on startup to load existing devices from the DB.
 		"""
 		LOGGER.info("******************** Device is ready: new=%s, device=%s", new, device._ieee)
 		for ep_id, endpoint in device.endpoints.items():
-			# Ignore ZDO
-			if ep_id == 0:
+			if ep_id == 0: # Ignore ZDO
 				continue
-			# You need to attach a listener to every cluster to receive events
-			for cluster in endpoint.in_clusters.values():
-				# The context listener passes its own object as the first argument
-				# to the callback
-				cluster.add_context_listener(self)
+			for cluster in endpoint.in_clusters.values(): # You need to attach a listener to every cluster to receive events
+				cluster.add_context_listener(self) # The context listener passes its own object as the first argument to the callback
 
 	def attribute_updated(self, cluster, attribute_id, value):
-		# Each object is linked to its parent (i.e. app > device > endpoint > cluster)
-		device = cluster.endpoint.device
-		LOGGER.info("****************** Received an attribute update %s=%s on cluster %s from device %s",attribute_id, value, cluster.cluster_id, device._ieee)
+		LOGGER.info("****************** Received an attribute update %s=%s on cluster %s from device %s",attribute_id, value, cluster.cluster_id, cluster.endpoint.device._ieee)
+		shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+cluster.endpoint._endpoint_id+'::'+str(cluster.cluster_id)+'::'+attribute_id,value)

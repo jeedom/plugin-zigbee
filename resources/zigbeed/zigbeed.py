@@ -31,7 +31,7 @@ import json
 import asyncio
 import logging
 import zhaquirks
-from bellows.zigbee.application import ControllerApplication
+
 import zigpy.types
 from zigpy.zdo import types as zdo_t
 
@@ -44,15 +44,21 @@ except ImportError:
 from jsonPersisting import *
 from mainListenner import *
 
-#import coloredlogs
-#coloredlogs.install(milliseconds=True, level=logging.DEBUG)
+try:
+	from tornado.httpserver import HTTPServer
+	from tornado.ioloop import IOLoop
+except Exception as e:
+	print("Error: %s" % str(e), 'error')
+	sys.exit(1)
+
+from rest_server import *
 
 # ----------------------------------------------------------------------------
 
 async def start():
-	app = await JSONControllerApplication.new(
+	shared.ZIGPY = await JSONControllerApplication.new(
 		config=JSONControllerApplication.SCHEMA({
-			"json_database_path": "/tmp/zigbee.json",
+			"json_database_path": _data_folder+"/network.json",
 			"device": {
 				"path": _device,
 			}
@@ -60,14 +66,11 @@ async def start():
 		auto_form=True,
 		start_radio=True,
 	)
-	listener = MainListener(app)
-	app.add_listener(listener)
+	listener = MainListener(shared.ZIGPY)
+	shared.ZIGPY.add_listener(listener)
 	# Have every device in the database fire the same event so you can attach listeners
-	for device in app.devices.values():
+	for device in shared.ZIGPY.devices.values():
 		listener.device_initialized(device, new=False)
-	# Permit joins for a minute
-	await app.permit(60)
-	await asyncio.sleep(60)
 	# Run forever
 	await asyncio.get_running_loop().create_future()
 
@@ -77,6 +80,8 @@ def handler(signum=None, frame=None):
 
 def shutdown():
 	logging.debug("Shutdown")
+	if shared.ZIGPY != None:
+		shared.ZIGPY.shutdown()
 	logging.debug("Removing PID file " + str(_pidfile))
 	try:
 		os.remove(_pidfile)
@@ -89,13 +94,15 @@ def shutdown():
 # ----------------------------------------------------------------------------
 
 _log_level = "error"
-_socket_port = 55009
-_socket_host = '127.0.0.1'
+_port_server = 8089
 _device = 'auto'
 _pidfile = '/tmp/zigbeed.pid'
 _apikey = ''
 _callback = ''
 _cycle = 0.3
+_controler = 'ezsp'
+_data_folder = '/tmp'
+_socket_host='127.0.0.1'
 
 parser = argparse.ArgumentParser(description='Zigbee Daemon for Jeedom plugin')
 parser.add_argument("--device", help="Device", type=str)
@@ -104,6 +111,9 @@ parser.add_argument("--callback", help="Callback", type=str)
 parser.add_argument("--apikey", help="Apikey", type=str)
 parser.add_argument("--cycle", help="Cycle to send event", type=str)
 parser.add_argument("--pid", help="Pid file", type=str)
+parser.add_argument("--controler", help="Controler type (ezsp,deconz,zigate,cc...)", type=str)
+parser.add_argument("--data_folder", help="Data folder", type=str)
+parser.add_argument("--port", help="Port for Zigbee server", type=str)
 args = parser.parse_args()
 
 if args.device:
@@ -118,6 +128,12 @@ if args.pid:
 	_pidfile = args.pid
 if args.cycle:
 	_cycle = float(args.cycle)
+if args.controler:
+	_controler = args.controler
+if args.cycle:
+	_data_folder = args.data_folder
+if args.port:
+	_port_server = args.port
 
 jeedom_utils.set_log_level(_log_level)
 
@@ -128,9 +144,28 @@ logging.info('Device : '+str(_device))
 logging.info('Apikey : '+str(_apikey))
 logging.info('Callback : '+str(_callback))
 logging.info('Cycle : '+str(_cycle))
+logging.info('Controler : '+str(_controler))
+logging.info('Data folder : '+str(_data_folder))
+
+shared.APIKEY = _apikey
+
+if _controler == 'ezsp' :
+	from bellows.zigbee.application import ControllerApplication
+elif _controler == 'deconz' :
+	from zigpydeconz.zigbee.application import ControllerApplication
+elif _controler == 'zigate' :
+	from zigpyzigate.zigbee.application import ControllerApplication
+elif _controler == 'cc' :
+	from zigpycc.zigbee.application import ControllerApplication
+elif _controler == 'xbee' :
+	from zigpyxbee.zigbee.application import ControllerApplication
+
 
 if _device == 'auto':
-	_device = jeedom_utils.find_tty_usb('1366','0105')
+	if _controler == 'ezsp' :
+		_device = jeedom_utils.find_tty_usb('1366','0105')
+	if _controler == 'deconz' :
+		_device = jeedom_utils.find_tty_usb('1cf1','0030')
 
 if _device is None:
 	logging.error('No device found')
@@ -147,6 +182,9 @@ try:
 	if not shared.JEEDOM_COM.test():
 		logging.error('Network communication issues. Please fixe your Jeedom network configuration.')
 		shutdown()
+	http_server = HTTPServer(shared.REST_SERVER)
+	http_server.listen(_port_server, address=_socket_host)
+	IOLoop.instance().start()
 	asyncio.run(start())
 except Exception as e:
 	logging.error('Fatal error : '+str(e))
