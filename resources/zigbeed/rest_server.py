@@ -28,56 +28,59 @@ except Exception as e:
 
 class ControllerHandler(RequestHandler):
 	def prepare(self):
-		utils.check_apikey(self.get_argument('apikey',''))
+		utils.check_apikey(self.request.headers.get("autorization", ""))
 		if self.request.headers.get("Content-Type", "").startswith("application/json"):
 			self.json_args = json.loads(self.request.body)
 		else:
 			self.json_args = None
 	
-	def get(self,action):
+	def get(self,arg1):
 		try:
-			if action == 'info':
-				self.write(utils.format_json_result())
+			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
-			self.write(utils.format_json_result(success="error",data=str(e)))
+			return self.write(utils.format_json_result(success="error",data=str(e)))
 			
-	def put(self,action):
+	def put(self,arg1):
 		try:
-			if action == 'include':
+			if arg1 == 'include':
 				shared.ZIGPY.permit(self.json_args.duration)
+				return self.write(utils.format_json_result(success=True))
+			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
-			self.write(utils.format_json_result(success="error",data=str(e)))
+			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 class NetworkHandler(RequestHandler):
 	def prepare(self):
-		utils.check_apikey(self.get_argument('apikey',''))
+		utils.check_apikey(self.request.headers.get("autorization", ""))
 		if self.request.headers.get("Content-Type", "").startswith("application/json"):
 			self.json_args = json.loads(self.request.body)
 		else:
 			self.json_args = None
 	
-	def get(self):
+	def get(self,arg1):
 		try:
-			self.write(utils.format_json_result())
+			if arg1 == 'info':
+				return self.write(utils.format_json_result(success=True))
+			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
-			self.write(utils.format_json_result(success="error",data=str(e)))
+			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 class NodeHandler(RequestHandler):
 	def prepare(self):
-		utils.check_apikey(self.get_argument('apikey',''))
+		utils.check_apikey(self.request.headers.get("autorization", ""))
 		if self.request.headers.get("Content-Type", "").startswith("application/json"):
 			self.json_args = json.loads(self.request.body)
 		else:
 			self.json_args = None
 	
-	def get(self):
+	def get(self,arg1):
 		try:
-			utils.check_apikey(self.get_argument('apikey',''))
+			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
-			self.write(utils.format_json_result(success="error",data=str(e)))
+			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 shared.REST_SERVER = Application([
 		(r"/controller/([^/]+)?", ControllerHandler),
-		(r"/network", NetworkHandler),
-		(r"/node", NodeHandler),
+		(r"/network/([^/]+)?", NetworkHandler),
+		(r"/node/([^/]+)?", NodeHandler),
 	])
