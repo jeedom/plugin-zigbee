@@ -27,34 +27,57 @@ except Exception as e:
 	sys.exit(1)
 
 class ControllerHandler(RequestHandler):
-	def get(self):
+	def prepare(self):
+		utils.check_apikey(self.get_argument('apikey',''))
+		if self.request.headers.get("Content-Type", "").startswith("application/json"):
+			self.json_args = json.loads(self.request.body)
+		else:
+			self.json_args = None
+	
+	def get(self,action):
 		try:
-			utils.check_apikey(self.get_argument('apikey',''))
-			self.write(utils.format_json_result())
-			type = self.get_argument('type','')
-			if type == 'include':
-				shared.ZIGPY.permit(self.get_argument('duration',60))
+			if action == 'info':
+				self.write(utils.format_json_result())
+		except Exception as e:
+			self.write(utils.format_json_result(success="error",data=str(e)))
+			
+	def put(self,action):
+		try:
+			if action == 'include':
+				shared.ZIGPY.permit(self.json_args.duration)
 		except Exception as e:
 			self.write(utils.format_json_result(success="error",data=str(e)))
 
 class NetworkHandler(RequestHandler):
+	def prepare(self):
+		utils.check_apikey(self.get_argument('apikey',''))
+		if self.request.headers.get("Content-Type", "").startswith("application/json"):
+			self.json_args = json.loads(self.request.body)
+		else:
+			self.json_args = None
+	
 	def get(self):
 		try:
-			utils.check_apikey(self.get_argument('apikey',''))
 			self.write(utils.format_json_result())
 		except Exception as e:
 			self.write(utils.format_json_result(success="error",data=str(e)))
 
 class NodeHandler(RequestHandler):
+	def prepare(self):
+		utils.check_apikey(self.get_argument('apikey',''))
+		if self.request.headers.get("Content-Type", "").startswith("application/json"):
+			self.json_args = json.loads(self.request.body)
+		else:
+			self.json_args = None
+	
 	def get(self):
 		try:
 			utils.check_apikey(self.get_argument('apikey',''))
-			self.write(utils.format_json_result())
 		except Exception as e:
 			self.write(utils.format_json_result(success="error",data=str(e)))
 
 shared.REST_SERVER = Application([
-		(r"/controller", ControllerHandler),
+		(r"/controller/([^/]+)?", ControllerHandler),
 		(r"/network", NetworkHandler),
 		(r"/node", NodeHandler),
 	])
