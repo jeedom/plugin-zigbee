@@ -56,13 +56,24 @@ from rest_server import *
 # ----------------------------------------------------------------------------
 
 async def start():
+	zigpy_config={
+		"json_database_path": _data_folder+"/network.json",
+		"device": {
+			"path": _device,
+		},
+		"network" : {
+			"channel" : 15
+		}
+	}
+	if shared.ZIGBEE_CONFIG != None:
+		zigpy_config.network.channel = shared.ZIGBEE_CONFIG.channel
+		if not _controler == 'zigate':
+			zigpy_config.network.pan_id = shared.ZIGBEE_CONFIG.pan_id
+			zigpy_config.network.extended_pan_id = shared.ZIGBEE_CONFIG.extended_pan_id
+			zigpy_config.network.key = shared.ZIGBEE_CONFIG.key
+		
 	shared.ZIGPY = await JSONControllerApplication.new(
-		config=JSONControllerApplication.SCHEMA({
-			"json_database_path": _data_folder+"/network.json",
-			"device": {
-				"path": _device,
-			}
-		}),
+		config=JSONControllerApplication.SCHEMA(zigpy_config),
 		auto_form=True,
 		start_radio=True,
 	)
@@ -148,6 +159,9 @@ logging.info('Controler : '+str(_controler))
 logging.info('Data folder : '+str(_data_folder))
 
 shared.APIKEY = _apikey
+if path.exists(_data_folder+'/config.json'):
+	with open(_data_folder+'/config.json') as config_file:
+		shared.ZIGBEE_CONFIG = json.load(config_file)
 
 if _controler == 'ezsp' :
 	from bellows.zigbee.application import ControllerApplication
