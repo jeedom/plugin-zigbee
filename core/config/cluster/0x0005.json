@@ -1,0 +1,12 @@
+  
+{
+  "name" : "Scenes",
+  "attributes" : {
+        "0x0000": {"name" : "count"},
+        "0x0001": {"name" : "current_scene"},
+        "0x0002": {"name" : "current_group"},
+        "0x0003": {"name" : "scene_valid"},
+        "0x0004": {"name" : "name_support"},
+        "0x0005": {"name" : "last_configured_by"}
+    }
+}
