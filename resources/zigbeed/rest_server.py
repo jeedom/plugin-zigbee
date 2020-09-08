@@ -26,7 +26,7 @@ except Exception as e:
 	print("Error: %s" % str(e), 'error')
 	sys.exit(1)
 
-class ControllerHandler(RequestHandler):
+class ApplicationHandler(RequestHandler):
 	def prepare(self):
 		utils.check_apikey(self.request.headers.get("autorization", ""))
 		if self.request.headers.get("Content-Type", "").startswith("application/json"):
@@ -36,6 +36,8 @@ class ControllerHandler(RequestHandler):
 	
 	def get(self,arg1):
 		try:
+			if arg1 == 'info':
+				return self.write(utils.format_json_result(success=True,data=shared.ZIGPY.__dict__))
 			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
 			return self.write(utils.format_json_result(success="error",data=str(e)))
@@ -49,38 +51,7 @@ class ControllerHandler(RequestHandler):
 		except Exception as e:
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
-class NetworkHandler(RequestHandler):
-	def prepare(self):
-		utils.check_apikey(self.request.headers.get("autorization", ""))
-		if self.request.headers.get("Content-Type", "").startswith("application/json"):
-			self.json_args = json.loads(self.request.body)
-		else:
-			self.json_args = None
-	
-	def get(self,arg1):
-		try:
-			if arg1 == 'info':
-				return self.write(utils.format_json_result(success=True))
-			return self.write(utils.format_json_result(success="error",data="No method found"))
-		except Exception as e:
-			return self.write(utils.format_json_result(success="error",data=str(e)))
-
-class NodeHandler(RequestHandler):
-	def prepare(self):
-		utils.check_apikey(self.request.headers.get("autorization", ""))
-		if self.request.headers.get("Content-Type", "").startswith("application/json"):
-			self.json_args = json.loads(self.request.body)
-		else:
-			self.json_args = None
-	
-	def get(self,arg1):
-		try:
-			return self.write(utils.format_json_result(success="error",data="No method found"))
-		except Exception as e:
-			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 shared.REST_SERVER = Application([
-		(r"/controller/([^/]+)?", ControllerHandler),
-		(r"/network/([^/]+)?", NetworkHandler),
-		(r"/node/([^/]+)?", NodeHandler),
+		(r"/application/([^/]+)?", ApplicationHandler)
 	])
