@@ -137,7 +137,7 @@ parser.add_argument("--cycle", help="Cycle to send event", type=str)
 parser.add_argument("--pid", help="Pid file", type=str)
 parser.add_argument("--controler", help="Controler type (ezsp,deconz,zigate,cc...)", type=str)
 parser.add_argument("--data_folder", help="Data folder", type=str)
-parser.add_argument("--port", help="Port for Zigbee server", type=str)
+parser.add_argument("--socketport", help="Port for Zigbee server", type=str)
 args = parser.parse_args()
 
 if args.device:
@@ -156,8 +156,8 @@ if args.controler:
 	_controler = args.controler
 if args.cycle:
 	_data_folder = args.data_folder
-if args.port:
-	_port_server = args.port
+if args.socketport:
+	_socketport = args.socketport
 
 jeedom_utils.set_log_level(_log_level)
 
@@ -210,7 +210,7 @@ try:
 		logging.error('Network communication issues. Please fixe your Jeedom network configuration.')
 		shutdown()
 	http_server = HTTPServer(shared.REST_SERVER)
-	http_server.listen(_port_server, address=_socket_host)
+	http_server.listen(_socketport, address=_socket_host)
 	IOLoop.instance().start()
 	asyncio.run(start())
 except Exception as e:
