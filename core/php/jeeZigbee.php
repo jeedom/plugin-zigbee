@@ -31,8 +31,34 @@ if (!is_array($result)) {
 	die();
 }
 
-if (isset($result['include_mode'])) {
-	config::save('include_mode', $result['include_mode'], 'zigbee');
-	event::add('zigbee::include_mode', array('state' => $result['include_mode']));
-	die();
+if (isset($result['devices'])) {
+	foreach ($result['devices'] as $ieee => $endpoints) {
+		$zigbee = zigbee::byLogicalId($ieee, 'zigbee');
+		if (!is_object($zigbee)) {
+			$zigbee = zigbee::createFromDef($datas);
+			if (!is_object($zigbee)) {
+				log::add('zigbee', 'debug', __('Aucun équipement trouvé pour : ', __FILE__) . secureXSS($ieee));
+				continue;
+			}
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'page' => 'zigbee',
+				'message' => '',
+			));
+			event::add('zigbee::includeDevice', $zigbee->getId());
+		}
+		if (!$zigbee->getIsEnable()) {
+			continue;
+		}
+		foreach($endpoints as $endpoint_id => $clusters){
+			foreach($clusters as $cluster_id => $attributs){
+				foreach($attributs as $attribut_id => $value){
+					$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id);
+					if(is_object($cmd)){
+						$cmd->event($value);
+					}
+				}
+			}	
+		}
+	}
 }
