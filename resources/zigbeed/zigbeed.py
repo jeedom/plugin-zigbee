@@ -55,6 +55,15 @@ from rest_server import *
 
 # ----------------------------------------------------------------------------
 
+def persistNetworkConfig():
+	if shared.ZIGBEE_CONFIG == None:
+		shared.ZIGBEE_CONFIG={}
+	shared.ZIGBEE_CONFIG.channel = shared.ZIGPY._channel,
+	shared.ZIGBEE_CONFIG.pan_id = shared.ZIGPY._pan_id,
+	shared.ZIGBEE_CONFIG.extended_pan_id = shared.ZIGPY._ext_pan_id
+	with open(_data_folder+'/config.json', 'w') as f:
+    		json.dump(shared.ZIGBEE_CONFIG, f)
+
 async def start():
 	zigpy_config={
 		"json_database_path": _data_folder+"/network.json",
@@ -68,9 +77,12 @@ async def start():
 	if shared.ZIGBEE_CONFIG != None:
 		zigpy_config.network.channel = shared.ZIGBEE_CONFIG.channel
 		if not _controler == 'zigate':
-			zigpy_config.network.pan_id = shared.ZIGBEE_CONFIG.pan_id
-			zigpy_config.network.extended_pan_id = shared.ZIGBEE_CONFIG.extended_pan_id
-			zigpy_config.network.key = shared.ZIGBEE_CONFIG.key
+			if zigpy_config.network.pan_id:
+				zigpy_config.network.pan_id = shared.ZIGBEE_CONFIG.pan_id
+			if zigpy_config.network.extended_pan_id:
+				zigpy_config.network.extended_pan_id = shared.ZIGBEE_CONFIG.extended_pan_id
+			if zigpy_config.network.key:
+				zigpy_config.network.key = shared.ZIGBEE_CONFIG.key
 		
 	shared.ZIGPY = await JSONControllerApplication.new(
 		config=JSONControllerApplication.SCHEMA(zigpy_config),
@@ -83,6 +95,7 @@ async def start():
 	for device in shared.ZIGPY.devices.values():
 		listener.device_initialized(device, new=False)
 	# Run forever
+	persistNetworkConfig()
 	await asyncio.get_running_loop().create_future()
 
 def handler(signum=None, frame=None):
