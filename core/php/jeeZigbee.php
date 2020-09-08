@@ -55,7 +55,7 @@ if (isset($result['devices'])) {
 				foreach($attributs as $attribut_id => $value){
 					$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id);
 					if(is_object($cmd)){
-						$cmd->event($value);
+						$cmd->event($value['value']);
 					}
 				}
 			}	
