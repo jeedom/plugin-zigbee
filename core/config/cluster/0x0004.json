@@ -1,0 +1,7 @@
+  
+{
+  "name" : "Groups",
+  "attributes" : {
+        "0x0000": {"name" : "name_support"}
+    }
+}
