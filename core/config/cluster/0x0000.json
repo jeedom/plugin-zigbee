@@ -1,0 +1,20 @@
+{
+  "name" : "Basic",
+  "attributes" : {
+        "0x0000": {"name" : "zcl_version"},
+        "0x0001": {"name" : "app_version"},
+        "0x0002": {"name" : "stack_version"},
+        "0x0003": {"name" : "hw_version"},
+        "0x0004": {"name" : "manufacturer"},
+        "0x0005": {"name" : "model"},
+        "0x0006": {"name" : "date_code"},
+        "0x0007": {"name" : "power_source"},
+        "0x0008": {"name" : "app_profile_version"},
+        "0x0010": {"name" : "location_desc"},
+        "0x0011": {"name" : "physical_env"},
+        "0x0012": {"name" : "device_enabled"},
+        "0x0013": {"name" : "alarm_mask"},
+        "0x0014": {"name" : "disable_local_config"},
+        "0x4000": {"name" : "sw_build_id"}
+    }
+}
