@@ -30,137 +30,112 @@ class zigbee extends eqLogic {
   
   /*     * ***********************Methode static*************************** */
   
-  /*
-  * Fonction exécutée automatiquement toutes les minutes par Jeedom
-  public static function cron() {
-}
-*/
-
-/*
-* Fonction exécutée automatiquement toutes les 5 minutes par Jeedom
-public static function cron5() {
-}
-*/
-
-/*
-* Fonction exécutée automatiquement toutes les 10 minutes par Jeedom
-public static function cron10() {
-}
-*/
-
-/*
-* Fonction exécutée automatiquement toutes les 15 minutes par Jeedom
-public static function cron15() {
-}
-*/
-
-/*
-* Fonction exécutée automatiquement toutes les 30 minutes par Jeedom
-public static function cron30() {
-}
-*/
-
-/*
-* Fonction exécutée automatiquement toutes les heures par Jeedom
-public static function cronHourly() {
-}
-*/
-
-/*
-* Fonction exécutée automatiquement tous les jours par Jeedom
-public static function cronDaily() {
-}
-*/
-
-
+  public static function dependancy_info() {
+		$return = array();
+		$return['progress_file'] = jeedom::getTmpFolder('zigbee') . '/dependance';
+    $return['state'] = 'ok';
+		if (exec(system::getCmdSudo() . system::get('cmd_check') . '-E "python3\-serial|python3\-requests|python3\-pyudev" | wc -l') < 3) {
+			$return['state'] = 'nok';
+		}
+    if (exec(system::getCmdSudo() . 'pip list | grep -E "zigpy|bellows|zha-quirks|zigpy_znp|zigpy-xbee|zigpy-deconz|zigpy-zigate|zigpy-cc|tornado" | wc -l') < 9) {
+			$return['state'] = 'nok';
+		}
+		return $return;
+	}
+	
+	public static function dependancy_install() {
+		log::remove(__CLASS__ . '_update');
+		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('zigbee') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+	}
+  
+  public static function deamon_info() {
+		$return = array();
+		$return['log'] = 'zigbee';
+		$return['state'] = 'nok';
+		$pid_file = jeedom::getTmpFolder('zigbee') . '/deamon.pid';
+		if (file_exists($pid_file)) {
+			$pid = trim(file_get_contents($pid_file));
+			if (is_numeric($pid) && posix_getsid($pid)) {
+				$return['state'] = 'ok';
+			} else {
+				shell_exec(system::getCmdSudo() . 'rm -rf ' . $pid_file . ' 2>&1 > /dev/null;rm -rf ' . $pid_file . ' 2>&1 > /dev/null;');
+			}
+		}
+		$return['launchable'] = 'ok';
+		$port = config::byKey('port', 'zigbee');
+		if ($port != 'auto') {
+			$port = jeedom::getUsbMapping($port);
+			if (is_string($port)) {
+				if (@!file_exists($port)) {
+					$return['launchable'] = 'nok';
+					$return['launchable_message'] = __('Le port n\'est pas configuré', __FILE__);
+				}
+				exec(system::getCmdSudo() . 'chmod 777 ' . $port . ' > /dev/null 2>&1');
+			}
+		}
+		return $return;
+	}
+  
+  public static function deamon_start() {
+		self::deamon_stop();
+		$deamon_info = self::deamon_info();
+		if ($deamon_info['launchable'] != 'ok') {
+			throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
+		}
+		$port = config::byKey('port', 'zigbee');
+		if ($port != 'auto') {
+			$port = jeedom::getUsbMapping($port);
+		}
+		$zigbee_path = realpath(dirname(__FILE__) . '/../../resources/zigbeed');
+		$cmd = '/usr/bin/python3 ' . $rfxcom_path . '/zigbeed.py';
+		$cmd .= ' --device ' . $port;
+		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('zigbee'));
+		$cmd .= ' --socketport ' . config::byKey('socketport', 'zigbee');
+		$cmd .= ' --callback ' . network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/rfxcom/core/php/jeeZigbee.php';
+		$cmd .= ' --apikey ' . jeedom::getApiKey('zigbee');
+		$cmd .= ' --cycle ' . config::byKey('cycle', 'zigbee');
+		$cmd .= ' --pid ' . jeedom::getTmpFolder('zigbee') . '/deamon.pid';
+    $cmd .= ' --data_folder '. realpath(dirname(__FILE__) . '/../../data');
+    $cmd .= ' --controller '. config::byKey('controller', 'zigbee');;
+		log::add('zigbee', 'info', 'Lancement démon zigbeed : ' . $cmd);
+		exec($cmd . ' >> ' . log::getPathToLog('zigbee') . ' 2>&1 &');
+		return true;
+	}
+  
+  public static function deamon_stop() {
+		$pid_file = jeedom::getTmpFolder('zigbee') . '/deamon.pid';
+		if (file_exists($pid_file)) {
+			$pid = intval(trim(file_get_contents($pid_file)));
+			system::kill($pid);
+		}
+		system::kill('zigbeed.py');
+		system::fuserk(config::byKey('socketport', 'zigbee'));
+		$port = config::byKey('port', 'zigbee');
+		if ($port != 'auto') {
+			system::fuserk(jeedom::getUsbMapping($port));
+		}
+		sleep(1);
+	}
+  
 
 /*     * *********************Méthodes d'instance************************* */
 
-// Fonction exécutée automatiquement avant la création de l'équipement
-public function preInsert() {
-  
-}
-
-// Fonction exécutée automatiquement après la création de l'équipement
-public function postInsert() {
-  
-}
-
-// Fonction exécutée automatiquement avant la mise à jour de l'équipement
-public function preUpdate() {
-  
-}
-
-// Fonction exécutée automatiquement après la mise à jour de l'équipement
-public function postUpdate() {
-  
-}
-
-// Fonction exécutée automatiquement avant la sauvegarde (création ou mise à jour) de l'équipement
-public function preSave() {
-  
-}
-
-// Fonction exécutée automatiquement après la sauvegarde (création ou mise à jour) de l'équipement
-public function postSave() {
-  
-}
-
-// Fonction exécutée automatiquement avant la suppression de l'équipement
-public function preRemove() {
-  
-}
-
-// Fonction exécutée automatiquement après la suppression de l'équipement
-public function postRemove() {
-  
-}
-
-/*
-* Non obligatoire : permet de modifier l'affichage du widget (également utilisable par les commandes)
-public function toHtml($_version = 'dashboard') {
-
-}
-*/
-
-/*
-* Non obligatoire : permet de déclencher une action après modification de variable de configuration
-public static function postConfig_<Variable>() {
-}
-*/
-
-/*
-* Non obligatoire : permet de déclencher une action avant modification de variable de configuration
-public static function preConfig_<Variable>() {
-}
-*/
 
 /*     * **********************Getteur Setteur*************************** */
 }
 
 class zigbeeCmd extends cmd {
   /*     * *************************Attributs****************************** */
-  
-  /*
-  public static $_widgetPossibility = array();
-  */
+
   
   /*     * ***********************Methode static*************************** */
   
   
   /*     * *********************Methode d'instance************************* */
   
-  /*
-  * Non obligatoire permet de demander de ne pas supprimer les commandes même si elles ne sont pas dans la nouvelle configuration de l'équipement envoyé en JS
-  public function dontRemoveCmd() {
-  return true;
-}
-*/
+  public function execute($_options = array()) {
 
-// Exécution d'une commande
-public function execute($_options = array()) {
-  
-}
+  }
 
 /*     * **********************Getteur Setteur*************************** */
 }
