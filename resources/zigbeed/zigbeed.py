@@ -76,7 +76,7 @@ async def start():
 	}
 	if shared.ZIGBEE_CONFIG != None:
 		zigpy_config.network.channel = shared.ZIGBEE_CONFIG.channel
-		if not _controler == 'zigate':
+		if not _controller == 'zigate':
 			if zigpy_config.network.pan_id:
 				zigpy_config.network.pan_id = shared.ZIGBEE_CONFIG.pan_id
 			if zigpy_config.network.extended_pan_id:
@@ -124,7 +124,7 @@ _pidfile = '/tmp/zigbeed.pid'
 _apikey = ''
 _callback = ''
 _cycle = 0.3
-_controler = 'ezsp'
+_controller = 'ezsp'
 _data_folder = '/tmp'
 _socket_host='127.0.0.1'
 
@@ -135,7 +135,7 @@ parser.add_argument("--callback", help="Callback", type=str)
 parser.add_argument("--apikey", help="Apikey", type=str)
 parser.add_argument("--cycle", help="Cycle to send event", type=str)
 parser.add_argument("--pid", help="Pid file", type=str)
-parser.add_argument("--controler", help="Controler type (ezsp,deconz,zigate,cc...)", type=str)
+parser.add_argument("--controller", help="Controller type (ezsp,deconz,zigate,cc...)", type=str)
 parser.add_argument("--data_folder", help="Data folder", type=str)
 parser.add_argument("--socketport", help="Port for Zigbee server", type=str)
 args = parser.parse_args()
@@ -152,8 +152,8 @@ if args.pid:
 	_pidfile = args.pid
 if args.cycle:
 	_cycle = float(args.cycle)
-if args.controler:
-	_controler = args.controler
+if args.controller:
+	_controller = args.controller
 if args.cycle:
 	_data_folder = args.data_folder
 if args.socketport:
@@ -176,22 +176,22 @@ if path.exists(_data_folder+'/config.json'):
 	with open(_data_folder+'/config.json') as config_file:
 		shared.ZIGBEE_CONFIG = json.load(config_file)
 
-if _controler == 'ezsp' :
+if _controller == 'ezsp' :
 	from bellows.zigbee.application import ControllerApplication
-elif _controler == 'deconz' :
+elif _controller == 'deconz' :
 	from zigpydeconz.zigbee.application import ControllerApplication
-elif _controler == 'zigate' :
+elif _controller == 'zigate' :
 	from zigpyzigate.zigbee.application import ControllerApplication
-elif _controler == 'cc' :
+elif _controller == 'cc' :
 	from zigpycc.zigbee.application import ControllerApplication
-elif _controler == 'xbee' :
+elif _controller == 'xbee' :
 	from zigpyxbee.zigbee.application import ControllerApplication
 
 
 if _device == 'auto':
-	if _controler == 'ezsp' :
+	if _controller == 'ezsp' :
 		_device = jeedom_utils.find_tty_usb('1366','0105')
-	if _controler == 'deconz' :
+	if _controller == 'deconz' :
 		_device = jeedom_utils.find_tty_usb('1cf1','0030')
 
 if _device is None:
