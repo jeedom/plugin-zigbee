@@ -1,0 +1,15 @@
+  
+{
+  "name" : "Device Temperature",
+  "attributes" : {
+        "0x0000": {"name" : "current_temperature"},
+        "0x0001": {"name" : "min_temp_experienced"},
+        "0x0002": {"name" : "max_temp_experienced"},
+        "0x0003": {"name" : "over_temp_total_dwell"},
+        "0x0010": {"name" : "dev_temp_alarm_mask"},
+        "0x0011": {"name" : "low_temp_thres"},
+        "0x0012": {"name" : "high_temp_thres"},
+        "0x0013": {"name" : "low_temp_dwell_trip_point"},
+        "0x0014": {"name" : "high_temp_dwell_trip_point"}
+    }
+}
