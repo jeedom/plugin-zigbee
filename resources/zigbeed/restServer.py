@@ -90,8 +90,20 @@ class DeviceHandler(RequestHandler):
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
+	async def delete(self):
+		try:
+			for device in shared.ZIGPY.devices.values():
+				if str(device.ieee) == self.get_argument('ieee',''):
+					await shared.ZIGPY.remove(device.ieee)
+					return self.write(utils.format_json_result(success=True))
+			return self.write(utils.format_json_result(success="error",data="Device not found"))
+		except Exception as e:
+			logging.debug(traceback.format_exc())
+			return self.write(utils.format_json_result(success="error",data=str(e)))
+
 
 shared.REST_SERVER = Application([
 		(r"/application/([^/]+)?", ApplicationHandler),
-		(r"/device/([^/]+)?", DeviceHandler)
+		(r"/device/([^/]+)?", DeviceHandler),
+		(r"/device", DeviceHandler)
 	])

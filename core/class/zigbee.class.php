@@ -48,7 +48,7 @@ class zigbee extends eqLogic {
         $request_http->setDelete(json_encode($_data));
       }
     }
-    $result = $request_http->exec();
+    $result = $request_http->exec(30,1);
     $result = is_json($result, $result);
     if(!isset($result['state']) || $result['state'] != 'ok'){
       throw new \Exception(__('Erreur lors de la requete : ',__FILE__).$url.'('.$_type.'), data : '.json_encode($_data).' erreur : '.json_encode($result));

@@ -125,6 +125,23 @@ $('#table_networkDevice').off('click','.bt_infoZigbeeDevice').on('click','.bt_in
   });
 });
 
+$('#table_networkDevice').off('click','.bt_removeZigbeeDevice').on('click','.bt_removeZigbeeDevice',function(){
+  var tr = $(this).closest('tr');
+  bootbox.confirm("Etês vous sur de vouloir supprimer ce noeud ?", function(result){
+    if(result){
+      jeedom.zigbee.device.delete({
+        ieee : tr.attr('data-ieee'),
+        error: function (error) {
+          $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+          tr.remove();
+        }
+      });
+    }
+  });
+});
+
 refreshNetworkData();
 refreshDevicekData();
 </script>
