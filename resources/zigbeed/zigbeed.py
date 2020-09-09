@@ -83,7 +83,7 @@ async def start():
 				zigpy_config.network.extended_pan_id = shared.ZIGBEE_CONFIG.extended_pan_id
 			if zigpy_config.network.key:
 				zigpy_config.network.key = shared.ZIGBEE_CONFIG.key
-		
+
 	shared.ZIGPY = await JSONControllerApplication.new(
 		config=JSONControllerApplication.SCHEMA(zigpy_config),
 		auto_form=True,
@@ -168,11 +168,11 @@ logging.info('Device : '+str(_device))
 logging.info('Apikey : '+str(_apikey))
 logging.info('Callback : '+str(_callback))
 logging.info('Cycle : '+str(_cycle))
-logging.info('Controler : '+str(_controler))
+logging.info('Controller : '+str(_controller))
 logging.info('Data folder : '+str(_data_folder))
 
 shared.APIKEY = _apikey
-if path.exists(_data_folder+'/config.json'):
+if os.path.exists(_data_folder+'/config.json'):
 	with open(_data_folder+'/config.json') as config_file:
 		shared.ZIGBEE_CONFIG = json.load(config_file)
 

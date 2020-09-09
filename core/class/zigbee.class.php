@@ -85,7 +85,7 @@ class zigbee extends eqLogic {
     $cmd .= ' --device ' . $port;
     $cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('zigbee'));
     $cmd .= ' --socketport ' . config::byKey('socketport', 'zigbee');
-    $cmd .= ' --callback ' . network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/rfxcom/core/php/jeeZigbee.php';
+    $cmd .= ' --callback ' . network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/zigbee/core/php/jeeZigbee.php';
     $cmd .= ' --apikey ' . jeedom::getApiKey('zigbee');
     $cmd .= ' --cycle ' . config::byKey('cycle', 'zigbee');
     $cmd .= ' --pid ' . jeedom::getTmpFolder('zigbee') . '/deamon.pid';
