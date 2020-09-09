@@ -31,6 +31,9 @@ class MainListener:
 		LOGGER.info("************************* Device joined: {device}")
 		shared.JEEDOM_COM.send_change_immediate({'new_device' : device.__dict__});
 
+	def device_announce(self, device):
+		LOGGER.info("****************** device_announce Zigpy Device: %s" %(device))
+
 	def device_initialized(self, device, *, new=True):
 		"""
 		Called at runtime after a device's information has been queried.I also call it on startup to load existing devices from the DB.
@@ -41,6 +44,10 @@ class MainListener:
 				continue
 			for cluster in endpoint.in_clusters.values(): # You need to attach a listener to every cluster to receive events
 				cluster.add_context_listener(self) # The context listener passes its own object as the first argument to the callback
+
+	def cluster_command(self, cluster, command_id, *args):
+		device = cluster.endpoint.device
+		LOGGER.info("****************** cluster_command - Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
 
 	def attribute_updated(self, cluster, attribute_id, value):
 		try:
