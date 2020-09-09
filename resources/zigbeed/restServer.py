@@ -75,9 +75,17 @@ class DeviceHandler(RequestHandler):
 			if arg1 == 'all':
 				result = []
 				for device in shared.ZIGPY.devices.values():
-					result.append(utils.serialize_device(device))
-				print(result)
+					values = await utils.serialize_device(device)
+					result.append(values)
 				return self.write(utils.format_json_result(success=True,data=result))
+			if arg1 == 'info':
+				result = []
+				for device in shared.ZIGPY.devices.values():
+					print(str(device.ieee)+'=='+self.get_argument('ieee',''))
+					if str(device.ieee) == self.get_argument('ieee',''):
+						values = await utils.serialize_device(device)
+						return self.write(utils.format_json_result(success=True,data=values))
+				return self.write(utils.format_json_result(success="error",data="Device not found"))
 			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
 			logging.debug(traceback.format_exc())

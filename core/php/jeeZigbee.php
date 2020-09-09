@@ -34,20 +34,7 @@ if (!is_array($result)) {
 if (isset($result['devices'])) {
 	foreach ($result['devices'] as $ieee => $endpoints) {
 		$zigbee = zigbee::byLogicalId($ieee, 'zigbee');
-		if (!is_object($zigbee)) {
-			$zigbee = zigbee::createFromDef($datas);
-			if (!is_object($zigbee)) {
-				log::add('zigbee', 'debug', __('Aucun équipement trouvé pour : ', __FILE__) . secureXSS($ieee));
-				continue;
-			}
-			event::add('jeedom::alert', array(
-				'level' => 'warning',
-				'page' => 'zigbee',
-				'message' => '',
-			));
-			event::add('zigbee::includeDevice', $zigbee->getId());
-		}
-		if (!$zigbee->getIsEnable()) {
+		if (!is_object($zigbee) || !$zigbee->getIsEnable()) {
 			continue;
 		}
 		foreach($endpoints as $endpoint_id => $clusters){
@@ -58,7 +45,7 @@ if (isset($result['devices'])) {
 						$cmd->event($value['value']);
 					}
 				}
-			}	
+			}
 		}
 	}
 }

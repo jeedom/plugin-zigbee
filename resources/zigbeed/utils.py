@@ -28,7 +28,7 @@ def check_apikey(apikey):
 	if shared.APIKEY != apikey:
 		raise Exception('Invalid apikey provided')
 
-def serialize_device(device):
+async def serialize_device(device):
 	obj = {
 		'ieee': str(device.ieee),
 		'nwk': device.nwk,
@@ -44,8 +44,14 @@ def serialize_device(device):
 		endpoint_obj['status'] = endpoint.status
 		endpoint_obj['device_type'] = getattr(endpoint, 'device_type', None)
 		endpoint_obj['profile_id'] = getattr(endpoint, 'profile_id', None)
-		endpoint_obj['output_clusters'] = [cluster.cluster_id for cluster in endpoint.out_clusters.values()]
-		endpoint_obj['input_clusters'] = [cluster.cluster_id for cluster in endpoint.in_clusters.values()]
+		endpoint_obj['output_clusters'] = []
+		endpoint_obj['input_clusters'] = []
+		#for cluster in endpoint.out_clusters.values():
+			#endpoint_obj['output_clusters'].append(serialize_cluster(cluster))
+		endpoint_obj['output_clusters'] = []
+		for cluster in endpoint.in_clusters.values():
+			values = await serialize_cluster(cluster);
+			endpoint_obj['input_clusters'].append(values)
 		obj['endpoints'].append(endpoint_obj)
 	return obj
 
@@ -55,4 +61,19 @@ def serialize_application(application):
 		'nwk': application.nwk,
 		'config': application._config
 	}
+	return obj
+
+async def serialize_cluster(cluster):
+	obj = {
+		'cluster_id' : cluster.cluster_id,
+		'name' : cluster.name,
+		'attributes' : []
+	}
+	for attribute in cluster.attributes:
+		value = await cluster.read_attributes([attribute],True,True)
+		if attribute in value[0]:
+			value = value[0][attribute]
+		else:
+			continue
+		obj['attributes'].append({'attribute_id' : attribute,'name' : cluster.attributes[attribute][0],'value':value})
 	return obj

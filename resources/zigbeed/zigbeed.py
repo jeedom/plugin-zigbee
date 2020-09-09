@@ -41,7 +41,6 @@ except ImportError:
 	print("Error: importing module jeedom.jeedom")
 	sys.exit(1)
 
-from jsonPersisting import *
 from mainListenner import *
 
 try:
@@ -69,7 +68,7 @@ def persistNetworkConfig():
 
 async def start_zigbee():
 	zigpy_config={
-		"json_database_path": _data_folder+"/network.json",
+		"database_path": _data_folder+"/network.db",
 		"device": {
 			"path": _device,
 		},
@@ -87,8 +86,8 @@ async def start_zigbee():
 			if zigpy_config.network.key:
 				zigpy_config.network.key = shared.ZIGBEE_CONFIG.key
 	logging.debug('Init zigbee network with config : '+str(zigpy_config))
-	shared.ZIGPY = await JSONControllerApplication.new(
-		config=JSONControllerApplication.SCHEMA(zigpy_config),
+	shared.ZIGPY = await ControllerApplication.new(
+		config=ControllerApplication.SCHEMA(zigpy_config),
 		auto_form=True,
 		start_radio=True,
 	)

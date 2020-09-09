@@ -136,6 +136,20 @@ class zigbee extends eqLogic {
     sleep(1);
   }
   
+  public static function sync(){
+    $devices = self::request('/device/all');
+    foreach ($devices as $device) {
+      $eqLogic = self::byLogicalId($device['ieee']);
+      if(!is_object($eqLogic)){
+        $eqLogic = new self();
+        $eqLogic->setLogicalId($device['ieee']);
+        $eqLogic->setName($device['ieee']);
+        $eqLogic->setIsEnable(1);
+        $eqLogic->save();
+      }
+    }
+  }
+  
   
   /*     * *********************Méthodes d'instance************************* */
   
