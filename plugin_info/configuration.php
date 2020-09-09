@@ -54,7 +54,7 @@ if (!isConnect('admin')) {
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-4 control-label">{{Port socket interne}}</label>
+      <label class="col-sm-4 control-label">{{Port interne}}</label>
       <div class="col-sm-2">
         <input class="configKey form-control" data-l1key="socketport" />
       </div>
