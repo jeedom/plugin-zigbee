@@ -2,4 +2,4 @@ JEEDOM_COM = ''
 ZIGPY = None
 APIKEY=''
 ZIGBEE_CONFIG=None
-LOOP=None
+CONTROLLER='ezsp'

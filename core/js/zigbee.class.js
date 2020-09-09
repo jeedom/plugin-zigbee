@@ -17,6 +17,7 @@
 
 jeedom.zigbee = function() {};
 jeedom.zigbee.application = function() {};
+jeedom.zigbee.util = function() {};
 
 jeedom.zigbee.application.include = function(_params){
   var paramsRequired = ['duration'];
@@ -36,4 +37,52 @@ jeedom.zigbee.application.include = function(_params){
     type : 'PUT'
   };
   $.ajax(paramsAJAX);
+}
+
+
+jeedom.zigbee.application.info = function(_params){
+  var paramsRequired = [];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    request: '/application/info',
+    type : 'GET'
+  };
+  $.ajax(paramsAJAX);
+}
+
+
+jeedom.zigbee.util.displayAsTable = function(_data){
+  console.log(_data);
+  var table = '<table class="table table-condensed">';
+  table+= '<tbody>';
+  for(var i in _data){
+    table+= '<tr>';
+    table+= '<td><strong>';
+    table+= i;
+    table+= '</strong></td>';
+    table+= '<td>';
+    if (typeof _data[i] == 'object'){
+      if(Array.isArray(_data[i])){
+        table+= JSON.stringify(_data[i])
+      }else{
+        table+= jeedom.zigbee.util.displayAsTable(_data[i]);
+      }
+    }else{
+      table+= _data[i];
+    }
+    table+= '</td>';
+    table+= '</tr>';
+  }
+  table+= '</tbody>';
+  table+= '</table>';
+  return table;
 }

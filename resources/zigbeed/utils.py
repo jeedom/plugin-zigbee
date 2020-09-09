@@ -27,3 +27,32 @@ def format_json_result(success='ok', data='', log_level=None, code=0):
 def check_apikey(apikey):
 	if shared.APIKEY != apikey:
 		raise Exception('Invalid apikey provided')
+
+def serialize_device(device):
+	obj = {
+		'ieee': str(device.ieee),
+		'nwk': device.nwk,
+		'status': device.status,
+		'node_descriptor': None if not device.node_desc.is_valid else list(device.node_desc.serialize()),
+		'endpoints': [],
+	}
+	for endpoint_id, endpoint in device.endpoints.items():
+		if endpoint_id == 0:
+			continue
+		endpoint_obj = {}
+		endpoint_obj['id'] = endpoint_id
+		endpoint_obj['status'] = endpoint.status
+		endpoint_obj['device_type'] = getattr(endpoint, 'device_type', None)
+		endpoint_obj['profile_id'] = getattr(endpoint, 'profile_id', None)
+		endpoint_obj['output_clusters'] = [cluster.cluster_id for cluster in endpoint.out_clusters.values()]
+		endpoint_obj['input_clusters'] = [cluster.cluster_id for cluster in endpoint.in_clusters.values()]
+		obj['endpoints'].append(endpoint_obj)
+	return obj
+
+def serialize_application(application):
+	obj = {
+		'ieee': str(application.ieee),
+		'nwk': application.nwk,
+		'config': application._config
+	}
+	return obj

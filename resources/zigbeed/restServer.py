@@ -22,6 +22,7 @@ import os
 import shared,utils
 import json
 import traceback
+from jsonPersisting import *
 try:
 	from tornado.web import RequestHandler,Application,HTTPError
 except Exception as e:
@@ -31,16 +32,18 @@ except Exception as e:
 class ApplicationHandler(RequestHandler):
 	def prepare(self):
 		utils.check_apikey(self.request.headers.get("autorization", ""))
-		if self.request.headers.get("Content-Type", "").startswith("application/json"):
-			self.json_args = json.loads(self.request.body)
-		else:
+		self.json_args = None
+		try:
+			if self.request.headers.get("Content-Type", "").startswith("application/json"):
+				self.json_args = json.loads(self.request.body)
+		except Exception as e:
 			self.json_args = None
 		logging.debug('Json arg : '+str(self.json_args))
 
-	def get(self,arg1):
+	async def get(self,arg1):
 		try:
 			if arg1 == 'info':
-				return self.write(utils.format_json_result(success=True,data=shared.ZIGPY.__dict__))
+				return self.write(utils.format_json_result(success=True,data=utils.serialize_application(shared.ZIGPY)))
 			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
@@ -56,7 +59,32 @@ class ApplicationHandler(RequestHandler):
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
+class DeviceHandler(RequestHandler):
+	def prepare(self):
+		utils.check_apikey(self.request.headers.get("autorization", ""))
+		self.json_args = None
+		try:
+			if self.request.headers.get("Content-Type", "").startswith("application/json"):
+				self.json_args = json.loads(self.request.body)
+		except Exception as e:
+			self.json_args = None
+		logging.debug('Json arg : '+str(self.json_args))
+
+	async def get(self,arg1):
+		try:
+			if arg1 == 'all':
+				result = []
+				for device in shared.ZIGPY.devices.values():
+					result.append(utils.serialize_device(device))
+				print(result)
+				return self.write(utils.format_json_result(success=True,data=result))
+			return self.write(utils.format_json_result(success="error",data="No method found"))
+		except Exception as e:
+			logging.debug(traceback.format_exc())
+			return self.write(utils.format_json_result(success="error",data=str(e)))
+
 
 shared.REST_SERVER = Application([
-		(r"/application/([^/]+)?", ApplicationHandler)
+		(r"/application/([^/]+)?", ApplicationHandler),
+		(r"/device/([^/]+)?", DeviceHandler)
 	])

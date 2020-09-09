@@ -112,6 +112,7 @@ def shutdown():
 	logging.debug("Shutdown")
 	if shared.ZIGPY != None:
 		shared.ZIGPY.shutdown()
+		time.sleep(2)
 	IOLoop.instance().stop()
 	logging.debug("Removing PID file " + str(_pidfile))
 	try:
@@ -194,6 +195,7 @@ elif _controller == 'cc' :
 elif _controller == 'xbee' :
 	from zigpyxbee.zigbee.application import ControllerApplication
 
+shared.CONTROLLER = _controller
 
 if _device == 'auto':
 	if _controller == 'ezsp' :

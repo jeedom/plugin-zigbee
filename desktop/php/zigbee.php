@@ -26,10 +26,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
 				<br>
 				<span>{{Configuration}}</span>
 			</div>
-			<div class="cursor logoSecondary" id="bt_deconzNetwork" >
+			<div class="cursor logoSecondary" id="bt_zigbeeNetwork" >
 				<i class="fas fa-sitemap"></i>
 				<br>
-				<span>{{Réseau Deconz}}</span>
+				<span>{{Réseau Zigbee}}</span>
 			</div>
 			<div class="cursor eqLogicAction logoSecondary" id="bt_syncEqLogic" >
 				<i class="fas fa-sync-alt"></i>
@@ -41,7 +41,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
 		<div class="eqLogicThumbnailContainer">
 			<?php
-			// Affiche la liste des équipements
 			foreach ($eqLogics as $eqLogic) {
 				$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
 				echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '">';
