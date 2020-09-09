@@ -20,6 +20,8 @@ import binascii
 import logging
 import os
 import shared,utils
+import json
+import traceback
 try:
 	from tornado.web import RequestHandler,Application,HTTPError
 except Exception as e:
@@ -33,22 +35,25 @@ class ApplicationHandler(RequestHandler):
 			self.json_args = json.loads(self.request.body)
 		else:
 			self.json_args = None
-	
+		logging.debug('Json arg : '+str(self.json_args))
+
 	def get(self,arg1):
 		try:
 			if arg1 == 'info':
 				return self.write(utils.format_json_result(success=True,data=shared.ZIGPY.__dict__))
 			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
+			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
-			
-	def put(self,arg1):
+
+	async def put(self,arg1):
 		try:
 			if arg1 == 'include':
-				shared.ZIGPY.permit(self.json_args.duration)
+				await shared.ZIGPY.permit(self.json_args['duration'])
 				return self.write(utils.format_json_result(success=True))
 			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
+			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 

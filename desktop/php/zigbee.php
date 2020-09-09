@@ -16,13 +16,28 @@ $eqLogics = eqLogic::byType($plugin->getId());
 				<br>
 				<span>{{Ajouter}}</span>
 			</div>
+			<div class="cursor changeIncludeState include card logoSecondary" data-state="1"  >
+				<i class="fas fa-sign-in-alt fa-rotate-90"></i>
+				<br/>
+				<span >{{Mode inclusion}}</span>
+			</div>
 			<div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
 				<i class="fas fa-wrench"></i>
 				<br>
 				<span>{{Configuration}}</span>
 			</div>
+			<div class="cursor logoSecondary" id="bt_deconzNetwork" >
+				<i class="fas fa-sitemap"></i>
+				<br>
+				<span>{{Réseau Deconz}}</span>
+			</div>
+			<div class="cursor eqLogicAction logoSecondary" id="bt_syncEqLogic" >
+				<i class="fas fa-sync-alt"></i>
+				<br>
+				<span>{{Synchronisation}}</span>
+			</div>
 		</div>
-		<legend><i class="fas fa-table"></i> {{Mes zigbee}}</legend>
+		<legend><i class="fas fa-table"></i> {{Mes zigbees}}</legend>
 		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
 		<div class="eqLogicThumbnailContainer">
 			<?php
@@ -114,7 +129,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 	</div>
 </div>
 
-<!-- Inclusion du fichier javascript du plugin (dossier, nom_du_fichier, extension_du_fichier, nom_du_plugin) -->
+<?php include_file('core', 'zigbee', 'class.js', 'zigbee');?>
 <?php include_file('desktop', 'zigbee', 'js', 'zigbee');?>
-<!-- Inclusion du fichier javascript du core - NE PAS MODIFIER NI SUPPRIMER -->
 <?php include_file('core', 'plugin.template', 'js');?>

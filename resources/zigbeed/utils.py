@@ -25,5 +25,5 @@ def format_json_result(success='ok', data='', log_level=None, code=0):
 		return json.dumps({'state': 'error', 'result': data, 'code': code})
 
 def check_apikey(apikey):
-	if shared.apikey != apikey:
+	if shared.APIKEY != apikey:
 		raise Exception('Invalid apikey provided')

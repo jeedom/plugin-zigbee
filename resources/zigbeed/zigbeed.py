@@ -51,20 +51,23 @@ except Exception as e:
 	print("Error: %s" % str(e), 'error')
 	sys.exit(1)
 
-from rest_server import *
+from restServer import *
 
 # ----------------------------------------------------------------------------
 
 def persistNetworkConfig():
 	if shared.ZIGBEE_CONFIG == None:
 		shared.ZIGBEE_CONFIG={}
-	shared.ZIGBEE_CONFIG.channel = shared.ZIGPY._channel,
-	shared.ZIGBEE_CONFIG.pan_id = shared.ZIGPY._pan_id,
-	shared.ZIGBEE_CONFIG.extended_pan_id = shared.ZIGPY._ext_pan_id
+	if not shared.ZIGPY.channel() == None:
+		shared.ZIGBEE_CONFIG.channel = shared.ZIGPY.channel()
+	if not shared.ZIGPY.pan_id() == None:
+		shared.ZIGBEE_CONFIG.pan_id = shared.ZIGPY.pan_id()
+	if not shared.ZIGPY.extended_pan_id() == None:
+		shared.ZIGBEE_CONFIG.extended_pan_id = shared.ZIGPY.extended_pan_id()
 	with open(_data_folder+'/config.json', 'w') as f:
     		json.dump(shared.ZIGBEE_CONFIG, f)
 
-async def start():
+async def start_zigbee():
 	zigpy_config={
 		"json_database_path": _data_folder+"/network.json",
 		"device": {
@@ -83,7 +86,7 @@ async def start():
 				zigpy_config.network.extended_pan_id = shared.ZIGBEE_CONFIG.extended_pan_id
 			if zigpy_config.network.key:
 				zigpy_config.network.key = shared.ZIGBEE_CONFIG.key
-
+	logging.debug('Init zigbee network with config : '+str(zigpy_config))
 	shared.ZIGPY = await JSONControllerApplication.new(
 		config=JSONControllerApplication.SCHEMA(zigpy_config),
 		auto_form=True,
@@ -94,8 +97,11 @@ async def start():
 	# Have every device in the database fire the same event so you can attach listeners
 	for device in shared.ZIGPY.devices.values():
 		listener.device_initialized(device, new=False)
-	# Run forever
-	persistNetworkConfig()
+
+	logging.debug('Init and start http server : '+str(zigpy_config))
+	http_server = HTTPServer(shared.REST_SERVER)
+	http_server.listen(_socketport, address=_socket_host)
+	logging.debug('Start zigbee network')
 	await asyncio.get_running_loop().create_future()
 
 def handler(signum=None, frame=None):
@@ -106,6 +112,7 @@ def shutdown():
 	logging.debug("Shutdown")
 	if shared.ZIGPY != None:
 		shared.ZIGPY.shutdown()
+	IOLoop.instance().stop()
 	logging.debug("Removing PID file " + str(_pidfile))
 	try:
 		os.remove(_pidfile)
@@ -209,10 +216,7 @@ try:
 	if not shared.JEEDOM_COM.test():
 		logging.error('Network communication issues. Please fixe your Jeedom network configuration.')
 		shutdown()
-	http_server = HTTPServer(shared.REST_SERVER)
-	http_server.listen(_socketport, address=_socket_host)
-	IOLoop.instance().start()
-	asyncio.run(start())
+	asyncio.run(start_zigbee())
 except Exception as e:
 	logging.error('Fatal error : '+str(e))
 	logging.debug(traceback.format_exc())

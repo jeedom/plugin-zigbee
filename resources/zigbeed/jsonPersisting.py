@@ -138,7 +138,6 @@ class JSONPersistingListener:
 class JSONControllerApplication(ControllerApplication):
     def __init__(self, config):
         super().__init__(self.SCHEMA(config))
-
         # Replace the internal SQLite DB listener with our own
         self._dblistener = JSONPersistingListener(self.config['json_database_path'], self)
         self.add_listener(self._dblistener)

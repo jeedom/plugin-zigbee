@@ -24,6 +24,31 @@ class zigbee extends eqLogic {
   
   /*     * ***********************Methode static*************************** */
   
+  public static function request($_request = '',$_data = null,$_type='POST'){
+    $url = 'http://127.0.0.1:'.config::byKey('socketport', 'zigbee').$_request;
+    log::add('deconz','debug',$url.' type : '.$_type);
+    $request_http = new com_http($url);
+    $request_http->setHeader(array(
+      'Autorization: '.jeedom::getApiKey('zigbee'),
+      'Content-Type: application/json'
+    ));
+    if($_data !== null){
+      if($_type == 'POST'){
+        $request_http->setPost(json_encode($_data));
+      }elseif($_type == 'PUT'){
+        $request_http->setPut(json_encode($_data));
+      }elseif($_type == 'DELETE'){
+        $request_http->setDelete(json_encode($_data));
+      }
+    }
+    $result = $request_http->exec();
+    $result = is_json($result, $result);
+    if(!isset($result['state']) || $result['state'] != 'ok'){
+      throw new \Exception(__('Erreur lors de la requete : ',__FILE__).$url.'('.$_type.'), data : '.json_encode($_data).' erreur : '.json_encode($result));
+    }
+    return isset($result['result']) ? $result['result'] : $result;
+  }
+  
   public static function dependancy_info() {
     $return = array();
     $return['progress_file'] = jeedom::getTmpFolder('zigbee') . '/dependance';
