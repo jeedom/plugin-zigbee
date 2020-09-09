@@ -31,7 +31,7 @@ class zigbee extends eqLogic {
       foreach ($_data as $key => $value) {
         $url .= $key.'='.urlencode($value).'&';
       }
-      $url = trim($url);
+      $url = trim($url,'&');
     }
     log::add('deconz','debug',$url.' type : '.$_type);
     $request_http = new com_http($url);
