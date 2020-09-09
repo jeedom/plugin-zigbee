@@ -18,6 +18,7 @@
 jeedom.zigbee = function() {};
 jeedom.zigbee.application = function() {};
 jeedom.zigbee.util = function() {};
+jeedom.zigbee.device = function() {};
 
 jeedom.zigbee.application.include = function(_params){
   var paramsRequired = ['duration'];
@@ -39,7 +40,6 @@ jeedom.zigbee.application.include = function(_params){
   $.ajax(paramsAJAX);
 }
 
-
 jeedom.zigbee.application.info = function(_params){
   var paramsRequired = [];
   var paramsSpecifics = {};
@@ -59,10 +59,47 @@ jeedom.zigbee.application.info = function(_params){
   $.ajax(paramsAJAX);
 }
 
+jeedom.zigbee.device.all = function(_params){
+  var paramsRequired = [];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    request: '/device/all',
+    type : 'GET'
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.zigbee.device.info = function(_params){
+  var paramsRequired = ['ieee'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    request: '/device/info',
+    data : json_encode({ieee : _params.ieee}),
+    type : 'GET'
+  };
+  $.ajax(paramsAJAX);
+}
 
 jeedom.zigbee.util.displayAsTable = function(_data){
-  console.log(_data);
-  var table = '<table class="table table-condensed">';
+  var table = '<table class="table table-condensed table-bordered">';
   table+= '<tbody>';
   for(var i in _data){
     table+= '<tr>';
@@ -71,7 +108,7 @@ jeedom.zigbee.util.displayAsTable = function(_data){
     table+= '</strong></td>';
     table+= '<td>';
     if (typeof _data[i] == 'object'){
-      if(Array.isArray(_data[i])){
+      if(Array.isArray(_data[i]) && typeof _data[i][0] != 'object'){
         table+= JSON.stringify(_data[i])
       }else{
         table+= jeedom.zigbee.util.displayAsTable(_data[i]);

@@ -43,7 +43,17 @@ if (!isConnect('admin')) {
     </div>
     
     <div class="tab-pane" id="devices_network">
-      
+      <table id="table_networkDevice" class="table table-condensed">
+        <thead>
+          <tr>
+            <th>{{IEEE}}</th>
+            <th>{{ID}}</th>
+            <th>{{Status}}</th>
+            <th>{{Action}}</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -59,14 +69,62 @@ function refreshNetworkData(){
       $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-      console.log(data);
       $('#application_network').empty().html(jeedom.zigbee.util.displayAsTable(data));
     }
   });
-  if($('#div_templateNetworkZigbee').html() != undefined && $('#div_templateNetworkZigbee').is(':visible')){
-    //setTimeout(function(){ refreshNetworkData(); }, 1000);
-  }
 }
 
+function refreshDevicekData(){
+  jeedom.zigbee.device.all({
+    global:false,
+    type : 'GET',
+    error: function (error) {
+      $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      tr = '';
+      for(var i in data){
+        tr += '<tr data-ieee="'+data[i].ieee+'">';
+        tr += '<td style="font-size:0.8em !important;">';
+        tr += data[i].ieee;
+        tr += '</td>';
+        //tr += '<td>';
+        //tr += findEqLogic(data[i].uniqueid);
+        //tr += '</td>';
+        tr += '<td>';
+        tr += data[i].nwk;
+        tr += '</td>';
+        tr += '<td>';
+        tr += data[i].status;
+        tr += '<td>';
+        tr += '<a class="btn btn-default btn-xs bt_infoZigbeeDevice"><i class="fa fa-info"></i> {{Info}}</a> ';
+        tr += '<a class="btn btn-danger btn-xs bt_removeZigbeeDevice"><i class="fa fa-trash"></i> {{Supprimer}}</a> ';
+        tr += '</td>';
+        tr += '</tr>';
+      }
+      $('#table_networkDevice tbody').empty().append(tr)
+    }
+  });
+}
+
+$('#table_networkDevice').off('click','.bt_infoZigbeeDevice').on('click','.bt_infoZigbeeDevice',function(){
+  var ieee = $(this).closest('tr').attr('data-ieee');
+  jeedom.zigbee.device.info({
+    ieee : ieee,
+    error: function (error) {
+      $('#div_networZigbeeAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      var dialog = bootbox.dialog({
+        size : 'large',
+        title: '{{Information noeud}}',
+        message: jeedom.zigbee.util.displayAsTable(data)
+      });
+      dialog.init(function(){});
+    }
+  });
+});
+
 refreshNetworkData();
+refreshDevicekData();
 </script>

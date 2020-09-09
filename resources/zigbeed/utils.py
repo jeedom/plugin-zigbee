@@ -46,8 +46,9 @@ async def serialize_device(device):
 		endpoint_obj['profile_id'] = getattr(endpoint, 'profile_id', None)
 		endpoint_obj['output_clusters'] = []
 		endpoint_obj['input_clusters'] = []
-		#for cluster in endpoint.out_clusters.values():
-			#endpoint_obj['output_clusters'].append(serialize_cluster(cluster))
+		for cluster in endpoint.out_clusters.values():
+			values = await serialize_cluster(cluster);
+			endpoint_obj['output_clusters'].append(values)
 		endpoint_obj['output_clusters'] = []
 		for cluster in endpoint.in_clusters.values():
 			values = await serialize_cluster(cluster);

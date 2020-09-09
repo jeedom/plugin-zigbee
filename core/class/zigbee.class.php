@@ -26,6 +26,13 @@ class zigbee extends eqLogic {
   
   public static function request($_request = '',$_data = null,$_type='POST'){
     $url = 'http://127.0.0.1:'.config::byKey('socketport', 'zigbee').$_request;
+    if($type='GET'){
+      $url .= '?';
+      foreach ($_data as $key => $value) {
+        $url .= $key.'='.urlencode($value).'&';
+      }
+      $url = trim($url);
+    }
     log::add('deconz','debug',$url.' type : '.$_type);
     $request_http = new com_http($url);
     $request_http->setHeader(array(
