@@ -81,7 +81,6 @@ class DeviceHandler(RequestHandler):
 			if arg1 == 'info':
 				result = []
 				for device in shared.ZIGPY.devices.values():
-					print(str(device.ieee)+'=='+self.get_argument('ieee',''))
 					if str(device.ieee) == self.get_argument('ieee',''):
 						values = await utils.serialize_device(device)
 						return self.write(utils.format_json_result(success=True,data=values))
