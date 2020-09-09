@@ -81,7 +81,7 @@ class zigbee extends eqLogic {
       $port = jeedom::getUsbMapping($port);
     }
     $zigbee_path = realpath(dirname(__FILE__) . '/../../resources/zigbeed');
-    $cmd = '/usr/bin/python3 ' . $rfxcom_path . '/zigbeed.py';
+    $cmd = '/usr/bin/python3 ' . $zigbee_path . '/zigbeed.py';
     $cmd .= ' --device ' . $port;
     $cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('zigbee'));
     $cmd .= ' --socketport ' . config::byKey('socketport', 'zigbee');
