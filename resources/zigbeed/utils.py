@@ -66,7 +66,7 @@ def serialize_application(application):
 
 async def serialize_cluster(cluster):
 	obj = {
-		'cluster_id' : cluster.cluster_id,
+		'id' : cluster.cluster_id,
 		'name' : cluster.name,
 		'attributes' : []
 	}
@@ -76,5 +76,5 @@ async def serialize_cluster(cluster):
 			value = value[0][attribute]
 		else:
 			continue
-		obj['attributes'].append({'attribute_id' : attribute,'name' : cluster.attributes[attribute][0],'value':value})
+		obj['attributes'].append({'id' : attribute,'name' : cluster.attributes[attribute][0],'value':value})
 	return obj

@@ -153,9 +153,30 @@ class zigbee extends eqLogic {
         $eqLogic->setName($device['ieee']);
         $eqLogic->setIsEnable(1);
         $eqLogic->setEqType_name('zigbee');
-        $eqLogic->save();
+      }
+      $eqLogic->setConfiguration('model',self::getAttribute(1,0,5,$device));
+      $eqLogic->save();
+    }
+  }
+  
+  public static function getAttribute($_endpoint_id,$_cluster_id,$_attribut_id,$_device){
+    if(!isset($_device['endpoints'])){
+      return null;
+    }
+    foreach ($_device['endpoints'] as $endpoint) {
+      if($endpoint['id'] == $_endpoint_id){
+        foreach ($endpoint['input_clusters'] as $cluster) {
+          if($cluster['id'] == $_cluster_id){
+            foreach ($cluster['attributes'] as $attribute) {
+              if($attribute['id'] == $_attribut_id){
+                return $attribute['value'];
+              }
+            }
+          }
+        }
       }
     }
+    return null;
   }
   
   
