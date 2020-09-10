@@ -22,7 +22,7 @@ import os
 import shared,utils
 import json
 import traceback
-from jsonPersisting import *
+from map import *
 try:
 	from tornado.web import RequestHandler,Application,HTTPError
 except Exception as e:
@@ -54,6 +54,31 @@ class ApplicationHandler(RequestHandler):
 			if arg1 == 'include':
 				await shared.ZIGPY.permit(self.json_args['duration'])
 				return self.write(utils.format_json_result(success=True))
+			return self.write(utils.format_json_result(success="error",data="No method found"))
+		except Exception as e:
+			logging.debug(traceback.format_exc())
+			return self.write(utils.format_json_result(success="error",data=str(e)))
+
+class NetworkHandler(RequestHandler):
+	def prepare(self):
+		utils.check_apikey(self.request.headers.get("autorization", ""))
+		self.json_args = None
+		try:
+			if self.request.headers.get("Content-Type", "").startswith("application/json"):
+				self.json_args = json.loads(self.request.body)
+		except Exception as e:
+			self.json_args = None
+		logging.debug('Json arg : '+str(self.json_args))
+
+	async def get(self,arg1):
+		try:
+			if arg1 == 'map':
+				tb = TopologyBuilder(shared.ZIGPY)
+				map = await tb.build()
+				result = [];
+				for i in map:
+					result.append(map[i].json())
+				return self.write(utils.format_json_result(success=True,data=result))
 			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
@@ -104,6 +129,7 @@ class DeviceHandler(RequestHandler):
 
 shared.REST_SERVER = Application([
 		(r"/application/([^/]+)?", ApplicationHandler),
+		(r"/network/([^/]+)?", NetworkHandler),
 		(r"/device/([^/]+)?", DeviceHandler),
 		(r"/device", DeviceHandler)
 	])
