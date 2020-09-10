@@ -154,7 +154,7 @@ class zigbee extends eqLogic {
         $eqLogic->setIsEnable(1);
         $eqLogic->setEqType_name('zigbee');
       }
-      $eqLogic->setConfiguration('model',self::getAttribute(1,0,5,$device));
+      $eqLogic->setConfiguration('device',self::getAttribute(1,0,5,$device));
       $eqLogic->save();
     }
   }
@@ -180,7 +180,78 @@ class zigbee extends eqLogic {
   }
   
   
+  public static function devicesParameters($_device = '') {
+    $return = array();
+    foreach (ls(dirname(__FILE__) . '/../config/devices', '*') as $dir) {
+      $path = dirname(__FILE__) . '/../config/devices/' . $dir;
+      if (!is_dir($path)) {
+        continue;
+      }
+      $files = ls($path, '*.json', false, array('files', 'quiet'));
+      foreach ($files as $file) {
+        try {
+          $content = is_json(file_get_contents($path . '/' . $file),false);
+          if ($content != false) {
+            $return[str_replace('.json','',$file)] = $content;
+          }
+        } catch (Exception $e) {
+          
+        }
+      }
+    }
+    if (isset($_device) && $_device != '') {
+      if (isset($return[$_device])) {
+        return $return[$_device];
+      }
+      return array();
+    }
+    return $return;
+  }
+  
+  public static function getImgFilePath($_device) {
+    $files = ls(dirname(__FILE__) . '/../config/devices', $_device . '_*.{jpg,png}', false, array('files', 'quiet'));
+    foreach (ls(dirname(__FILE__) . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
+      foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $_device . '.{jpg,png}', false, array('files', 'quiet')) as $file) {
+        $files[] = $folder . $file;
+      }
+    }
+    if (count($files) > 0) {
+      return $files[0];
+    }
+    return false;
+  }
+  
+  
   /*     * *********************Méthodes d'instance************************* */
+  
+  public function getImage() {
+    return 'plugins/zigbee/core/config/devices/' . self::getImgFilePath($this->getConfiguration('device')) . '.jpg';
+  }
+  
+  public function postSave() {
+    if ($this->getConfiguration('applyDevice') != $this->getConfiguration('device')) {
+      $this->applyModuleConfiguration();
+    }
+  }
+  
+  public function applyModuleConfiguration() {
+    $this->setConfiguration('applyDevice', $this->getConfiguration('device'));
+    $this->save();
+    if ($this->getConfiguration('device') == '') {
+      return true;
+    }
+    if (isset($device['id_size']) && is_numeric($device['id_size']) && strlen($this->getLogicalId()) > $device['id_size']) {
+      $this->setLogicalId(substr($this->getLogicalId(), 0, $device['id_size']));
+    }
+    $device_type = explode('::', $this->getConfiguration('device'));
+    $packettype = $device_type[0];
+    $subtype = $device_type[1];
+    $device = self::devicesParameters($packettype);
+    if (!is_array($device)) {
+      return true;
+    }
+    $this->import($device,true);
+  }
   
   
   /*     * **********************Getteur Setteur*************************** */

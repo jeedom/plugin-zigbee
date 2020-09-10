@@ -1,0 +1,13 @@
+{
+  "name": "Xioami Aquara Vibration",
+  "commands": [
+    {
+      "name": "Vibration",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::257::0"
+    }
+  ]
+}
