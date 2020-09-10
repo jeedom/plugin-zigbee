@@ -46,11 +46,10 @@ $('body').off('zigbee::includeDevice').on('zigbee::includeDevice', function (_ev
       message: '{{Un périphérique vient d\'être inclu/exclu. Veuillez réactualiser la page}}',
       level: 'warning'
     });
-  } else {
-    if (_options != '') {
-      window.location.href = 'index.php?v=d&p=zigbee&m=zigbee&id=' + _options;
-    }
+  } else if (_options != '') {
+    window.location.href = 'index.php?v=d&p=zigbee&m=zigbee&id=' + _options;
   }
+}
 });
 
 $('.eqLogicAttr[data-l1key=configuration][data-l2key=device]').off('change').on('change', function () {
