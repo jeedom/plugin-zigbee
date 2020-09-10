@@ -49,7 +49,6 @@ $('body').off('zigbee::includeDevice').on('zigbee::includeDevice', function (_ev
   } else if (_options != '') {
     window.location.href = 'index.php?v=d&p=zigbee&m=zigbee&id=' + _options;
   }
-}
 });
 
 $('.eqLogicAttr[data-l1key=configuration][data-l2key=device]').off('change').on('change', function () {
