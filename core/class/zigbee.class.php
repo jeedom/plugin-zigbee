@@ -122,7 +122,8 @@ class zigbee extends eqLogic {
     $cmd .= ' --cycle ' . config::byKey('cycle', 'zigbee');
     $cmd .= ' --pid ' . jeedom::getTmpFolder('zigbee') . '/deamon.pid';
     $cmd .= ' --data_folder '. realpath(dirname(__FILE__) . '/../../data');
-    $cmd .= ' --controller '. config::byKey('controller', 'zigbee');;
+    $cmd .= ' --controller '. config::byKey('controller', 'zigbee');
+    $cmd .= ' --channel '. config::byKey('channel', 'zigbee');
     log::add('zigbee', 'info', 'Lancement démon zigbeed : ' . $cmd);
     exec($cmd . ' >> ' . log::getPathToLog('zigbee') . ' 2>&1 &');
     return true;

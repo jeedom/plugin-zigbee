@@ -54,18 +54,6 @@ from restServer import *
 
 # ----------------------------------------------------------------------------
 
-def persistNetworkConfig():
-	if shared.ZIGBEE_CONFIG == None:
-		shared.ZIGBEE_CONFIG={}
-	if not shared.ZIGPY.channel() == None:
-		shared.ZIGBEE_CONFIG.channel = shared.ZIGPY.channel()
-	if not shared.ZIGPY.pan_id() == None:
-		shared.ZIGBEE_CONFIG.pan_id = shared.ZIGPY.pan_id()
-	if not shared.ZIGPY.extended_pan_id() == None:
-		shared.ZIGBEE_CONFIG.extended_pan_id = shared.ZIGPY.extended_pan_id()
-	with open(_data_folder+'/config.json', 'w') as f:
-    		json.dump(shared.ZIGBEE_CONFIG, f)
-
 async def start_zigbee():
 	zigpy_config={
 		"database_path": _data_folder+"/network.db",
@@ -73,18 +61,9 @@ async def start_zigbee():
 			"path": _device,
 		},
 		"network" : {
-			"channel" : 15
+			"channel" : _channel
 		}
 	}
-	if shared.ZIGBEE_CONFIG != None:
-		zigpy_config.network.channel = shared.ZIGBEE_CONFIG.channel
-		if not _controller == 'zigate':
-			if zigpy_config.network.pan_id:
-				zigpy_config.network.pan_id = shared.ZIGBEE_CONFIG.pan_id
-			if zigpy_config.network.extended_pan_id:
-				zigpy_config.network.extended_pan_id = shared.ZIGBEE_CONFIG.extended_pan_id
-			if zigpy_config.network.key:
-				zigpy_config.network.key = shared.ZIGBEE_CONFIG.key
 	logging.debug('Init zigbee network with config : '+str(zigpy_config))
 	shared.ZIGPY = await ControllerApplication.new(
 		config=ControllerApplication.SCHEMA(zigpy_config),
@@ -134,6 +113,7 @@ _cycle = 0.3
 _controller = 'ezsp'
 _data_folder = '/tmp'
 _socket_host='127.0.0.1'
+_channel=10
 
 parser = argparse.ArgumentParser(description='Zigbee Daemon for Jeedom plugin')
 parser.add_argument("--device", help="Device", type=str)
@@ -145,6 +125,7 @@ parser.add_argument("--pid", help="Pid file", type=str)
 parser.add_argument("--controller", help="Controller type (ezsp,deconz,zigate,cc...)", type=str)
 parser.add_argument("--data_folder", help="Data folder", type=str)
 parser.add_argument("--socketport", help="Port for Zigbee server", type=str)
+parser.add_argument("--channel", help="Channel for Zigbee network", type=str)
 args = parser.parse_args()
 
 if args.device:
@@ -159,6 +140,8 @@ if args.pid:
 	_pidfile = args.pid
 if args.cycle:
 	_cycle = float(args.cycle)
+if args.channel:
+	_channel = float(args.channel)
 if args.controller:
 	_controller = args.controller
 if args.cycle:
@@ -176,6 +159,7 @@ logging.info('Apikey : '+str(_apikey))
 logging.info('Callback : '+str(_callback))
 logging.info('Cycle : '+str(_cycle))
 logging.info('Controller : '+str(_controller))
+logging.info('Channel : '+str(_channel))
 logging.info('Data folder : '+str(_data_folder))
 
 shared.APIKEY = _apikey
