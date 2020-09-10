@@ -14,7 +14,7 @@
 # along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import shared
+import shared,utils
 import traceback
 
 LOGGER = logging.getLogger(__name__)
@@ -29,10 +29,18 @@ class MainListener:
 
 	def device_joined(self, device):
 		LOGGER.info("************************* Device joined: {device}")
-		shared.JEEDOM_COM.send_change_immediate({'new_device' : device.__dict__});
+		shared.JEEDOM_COM.send_change_immediate({'device_joined' : str(device._ieee)});
 
 	def device_announce(self, device):
 		LOGGER.info("****************** device_announce Zigpy Device: %s" %(device))
+
+	def device_removed(self, device):
+		LOGGER.info("****************** device_removed Zigpy Device: %s" %(device))
+		shared.JEEDOM_COM.send_change_immediate({'device_removed' : str(device._ieee)});
+
+	def device_left(self, device):
+		LOGGER.info("****************** device_left Zigpy Device: %s" %(device))
+		shared.JEEDOM_COM.send_change_immediate({'device_left' : str(device._ieee)});
 
 	def device_initialized(self, device, *, new=True):
 		"""
@@ -44,6 +52,8 @@ class MainListener:
 				continue
 			for cluster in endpoint.in_clusters.values(): # You need to attach a listener to every cluster to receive events
 				cluster.add_context_listener(self) # The context listener passes its own object as the first argument to the callback
+		if new:
+			shared.JEEDOM_COM.send_change_immediate({'device_initialized' : str(device._ieee)});
 
 	def cluster_command(self, cluster, command_id, *args):
 		device = cluster.endpoint.device

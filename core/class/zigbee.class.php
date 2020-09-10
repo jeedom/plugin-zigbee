@@ -144,6 +144,7 @@ class zigbee extends eqLogic {
   }
   
   public static function sync(){
+    $new = null;
     $devices = self::request('/device/all');
     foreach ($devices as $device) {
       $eqLogic = self::byLogicalId($device['ieee'],'zigbee');
@@ -153,10 +154,15 @@ class zigbee extends eqLogic {
         $eqLogic->setName($device['ieee']);
         $eqLogic->setIsEnable(1);
         $eqLogic->setEqType_name('zigbee');
+        $new = true;
       }
       $eqLogic->setConfiguration('device',self::getAttribute(1,0,5,$device));
       $eqLogic->save();
+      if($new === true){
+        $new = $eqLogic->getId();
+      }
     }
+    return $new;
   }
   
   public static function getAttribute($_endpoint_id,$_cluster_id,$_attribut_id,$_device){

@@ -39,6 +39,19 @@ $('.changeIncludeState').off('click').on('click', function () {
   });
 });
 
+$('body').off('zigbee::includeDevice').on('zigbee::includeDevice', function (_event, _options) {
+  if (modifyWithoutSave) {
+    $('#div_inclusionAlert').showAlert({
+      message: '{{Un périphérique vient d\'être inclu/exclu. Veuillez réactualiser la page}}',
+      level: 'warning'
+    });
+  } else {
+    if (_options != '') {
+      window.location.href = 'index.php?v=d&p=zigbee&m=zigbee&id=' + _options;
+    }
+  }
+});
+
 $('.eqLogicAttr[data-l1key=configuration][data-l2key=device]').off('change').on('change', function () {
   var instruction = $('.eqLogicAttr[data-l1key=configuration][data-l2key=device] option:selected').attr('data-instruction');
   $('#div_instruction').empty();

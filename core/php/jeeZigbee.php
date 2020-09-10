@@ -31,6 +31,55 @@ if (!is_array($result)) {
 	die();
 }
 
+if (isset($result['device_left'])){
+	event::add('jeedom::alert', array(
+		'level' => 'warning',
+		'page' => 'zigbee',
+		'message' => __('Un périphérique Zigbee a quitté le réseaux', __FILE__),
+	));
+	$zigbee = zigbee::byLogicalId($result['device_left'], 'zigbee');
+	if (is_object($zigbee) && config::byKey('autoRemoveExcludeDevice', 'zigbee') == 1) {
+		$zigbee->remove();
+		event::add('zigbee::includeDevice', '');
+	}
+	die();
+}
+
+if (isset($result['device_removed'])){
+	event::add('jeedom::alert', array(
+		'level' => 'warning',
+		'page' => 'zigbee',
+		'message' => __('Un périphérique Zigbee a été supprimé du réseaux', __FILE__),
+	));
+	$zigbee = zigbee::byLogicalId($result['device_removed'], 'zigbee');
+	if (is_object($zigbee) && config::byKey('autoRemoveExcludeDevice', 'zigbee') == 1) {
+		$zigbee->remove();
+		event::add('zigbee::includeDevice', '');
+	}
+	die();
+}
+
+if (isset($result['device_joined'])){
+	event::add('jeedom::alert', array(
+		'level' => 'warning',
+		'page' => 'zigbee',
+		'message' => __('Un périphérique Zigbee est en cours d\'inclusion : ', __FILE__).$result['device_joined'],
+	));
+	die();
+}
+
+if (isset($result['device_initialized'])){
+	event::add('jeedom::alert', array(
+		'level' => 'warning',
+		'page' => 'zigbee',
+		'message' => __('Un périphérique Zigbee a été inclus : ', __FILE__).$result['device_initialized'].'.'.__('Pause de 30s avant synchronisation', __FILE__),
+	));
+	sleep(30);
+	$id = zigbee::sync();
+	event::add('zigbee::includeDevice', $id);
+	die();
+}
+
 if (isset($result['devices'])) {
 	foreach ($result['devices'] as $ieee => $endpoints) {
 		$zigbee = zigbee::byLogicalId($ieee, 'zigbee');

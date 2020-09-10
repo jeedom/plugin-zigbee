@@ -192,6 +192,6 @@ if (config::byKey('include_mode', 'zigbee', 0) == 1) {
 		
 	</div>
 </div>
-
+<?php include_file('core', 'zigbee', 'class.js', 'zigbee');?>
 <?php include_file('desktop', 'zigbee', 'js', 'zigbee');?>
 <?php include_file('core', 'plugin.template', 'js');?>

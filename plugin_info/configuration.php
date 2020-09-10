@@ -65,6 +65,23 @@ if (!isConnect('admin')) {
         <input class="configKey form-control" data-l1key="cycle" />
       </div>
     </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">{{Supprimer automatiquement les périphériques exclus}}</label>
+      <div class="col-lg-2">
+        <input type="checkbox" class="configKey" data-l1key="autoRemoveExcludeDevice" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">{{Channel}}</label>
+      <div class="col-lg-2">
+        <select class="configKey form-control" data-l1key="channel">
+          <option value="10">{{10}}</option>
+          <option value="15">{{15}}</option>
+          <option value="20">{{20}}</option>
+          <option value="25">{{25}}</option>
+        </select>
+      </div>
+    </div>
   </fieldset>
 </form>
 
