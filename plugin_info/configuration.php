@@ -75,7 +75,7 @@ if (!isConnect('admin')) {
       <label class="col-lg-4 control-label">{{Channel}}</label>
       <div class="col-lg-2">
         <select class="configKey form-control" data-l1key="channel">
-          <option value="10">{{10}}</option>
+          <option value="11">{{11}}</option>
           <option value="15">{{15}}</option>
           <option value="20">{{20}}</option>
           <option value="25">{{25}}</option>
