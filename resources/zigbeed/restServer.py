@@ -43,7 +43,8 @@ class ApplicationHandler(RequestHandler):
 	async def get(self,arg1):
 		try:
 			if arg1 == 'info':
-				return self.write(utils.format_json_result(success=True,data=utils.serialize_application(shared.ZIGPY)))
+				info = await utils.serialize_application(shared.ZIGPY)
+				return self.write(utils.format_json_result(success=True,data=info))
 			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
 			logging.debug(traceback.format_exc())

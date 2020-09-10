@@ -37,7 +37,7 @@ if (config::byKey('include_mode', 'zigbee', 0) == 1) {
 			<div class="cursor logoSecondary" id="bt_zigbeeNetwork" >
 				<i class="fas fa-sitemap"></i>
 				<br>
-				<span>{{Réseau Deconz}}</span>
+				<span>{{Réseau Zigbee}}</span>
 			</div>
 			<div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
 				<i class="fas fa-wrench"></i>

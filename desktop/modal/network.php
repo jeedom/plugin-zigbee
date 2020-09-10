@@ -20,14 +20,6 @@ if (!isConnect('admin')) {
 ?>
 <div id='div_networkZigbeeAlert' style="display: none;"></div>
 <div id="div_templateNetworkZigbee">
-  <select class="pull-right form-control" id="sel_networkZigbeeGateway" style="width:250px;">
-    <?php
-    $gateways = config::byKey('gateway','zigbee',array());
-    foreach ($gateways as $gateway) {
-      echo '<option value="'.$gateway['id'].'">'.$gateway['name'].'</option>';
-    }
-    ?>
-  </select>
   <ul id="tabs_network" class="nav nav-tabs" data-tabs="tabs">
     <li class="active"><a href="#application_network" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Application}}</a></li>
     <li><a href="#actions_network" data-toggle="tab"><i class="fas fa-sliders-h"></i> {{Actions}}</a></li>

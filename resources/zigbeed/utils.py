@@ -56,12 +56,23 @@ async def serialize_device(device):
 		obj['endpoints'].append(endpoint_obj)
 	return obj
 
-def serialize_application(application):
+async def serialize_application(application):
 	obj = {
 		'ieee': str(application.ieee),
 		'nwk': application.nwk,
 		'config': application._config
 	}
+	if shared.CONTROLLER == 'ezsp':
+		obj['ezsp'] = {}
+		status, node_type, network_params = await application._ezsp.getNetworkParameters()
+		version = await application._ezsp.getValue(0x11)
+		obj['ezsp']['extendedPanId'] = network_params.extendedPanId
+		obj['ezsp']['panId'] = network_params.panId
+		obj['ezsp']['radioTxPower'] = network_params.radioTxPower
+		obj['ezsp']['radioChannel'] = network_params.radioChannel
+		obj['ezsp']['nwkManagerId'] = network_params.nwkManagerId
+		obj['ezsp']['nwkUpdateId'] = network_params.nwkUpdateId
+		obj['ezsp']['version'] = str(version[1][2])+'.'+str(version[1][3])+'.'+str(version[1][4])+'-'+str(version[1][6])
 	return obj
 
 async def serialize_cluster(cluster):
