@@ -65,14 +65,14 @@ async def serialize_application(application):
 	if shared.CONTROLLER == 'ezsp':
 		obj['ezsp'] = {}
 		status, node_type, network_params = await application._ezsp.getNetworkParameters()
-		version = await application._ezsp.getValue(0x11)
+		version = await application._ezsp.get_board_info()
 		obj['ezsp']['extendedPanId'] = network_params.extendedPanId
 		obj['ezsp']['panId'] = network_params.panId
 		obj['ezsp']['radioTxPower'] = network_params.radioTxPower
 		obj['ezsp']['radioChannel'] = network_params.radioChannel
 		obj['ezsp']['nwkManagerId'] = network_params.nwkManagerId
 		obj['ezsp']['nwkUpdateId'] = network_params.nwkUpdateId
-		obj['ezsp']['version'] = str(version[1][2])+'.'+str(version[1][3])+'.'+str(version[1][4])+'-'+str(version[1][6])
+		obj['ezsp']['version'] = str(version[2])
 	return obj
 
 async def serialize_cluster(cluster):

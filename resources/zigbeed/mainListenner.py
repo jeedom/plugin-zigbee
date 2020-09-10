@@ -28,7 +28,7 @@ class MainListener:
 		self.application = application
 
 	def device_joined(self, device):
-		LOGGER.info("************************* Device joined: {device}")
+		LOGGER.info("************************* Device joined : %s" %(device))
 		shared.JEEDOM_COM.send_change_immediate({'device_joined' : str(device._ieee)});
 
 	def device_announce(self, device):
