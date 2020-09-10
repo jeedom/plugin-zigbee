@@ -35,6 +35,7 @@ $('.changeIncludeState').off('click').on('click', function () {
     },
     success: function () {
       $('#div_alert').showAlert({message: '{{Mode inclusion actif pendant 1min}}', level: 'success'});
+      setTimeout(function(){ $('#div_alert').hideAlert() }, 1000);
     }
   });
 });
