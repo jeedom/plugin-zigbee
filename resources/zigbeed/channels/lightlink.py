@@ -13,8 +13,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 
-JEEDOM_COM = ''
-ZIGPY = None
-APIKEY=''
-ZIGBEE_CONFIG=None
-CONTROLLER='ezsp'
+"""Lightlink channels module for Zigbee Home Automation."""
+import logging
+
+import zigpy.zcl.clusters.lightlink as lightlink
+
+import registries
+
+@registries.CHANNEL_ONLY_CLUSTERS.register(lightlink.LightLink.cluster_id)
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(lightlink.LightLink.cluster_id)
+class LightLink():
+    """Lightlink channel."""

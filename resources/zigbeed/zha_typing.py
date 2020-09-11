@@ -13,8 +13,25 @@
 # You should have received a copy of the GNU General Public License
 # along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 
-JEEDOM_COM = ''
-ZIGPY = None
-APIKEY=''
-ZIGBEE_CONFIG=None
-CONTROLLER='ezsp'
+from typing import TYPE_CHECKING, Callable, TypeVar
+
+import zigpy.device
+import zigpy.endpoint
+import zigpy.group
+import zigpy.zcl
+import zigpy.zdo
+
+ChannelType = "ZigbeeChannel"
+ChannelsType = "Channels"
+ChannelPoolType = "ChannelPool"
+ClientChannelType = "ClientChannel"
+ZDOChannelType = "ZDOChannel"
+ZhaDeviceType = "ZHADevice"
+ZhaEntityType = "ZHAEntity"
+ZhaGatewayType = "ZHAGateway"
+ZhaGroupType = "ZHAGroupType"
+ZigpyClusterType = zigpy.zcl.Cluster
+ZigpyDeviceType = zigpy.device.Device
+ZigpyEndpointType = zigpy.endpoint.Endpoint
+ZigpyGroupType = zigpy.group.Group
+ZigpyZdoType = zigpy.zdo.ZDO

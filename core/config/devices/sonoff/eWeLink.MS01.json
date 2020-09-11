@@ -1,0 +1,17 @@
+{
+  "name": "Sonoff mouvement",
+  "commands": [
+    {
+      "name": "Péésence",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd",
+      "configuration" : {
+        "returnStateValue" : 1,
+        "returnStateTime" : 1
+      }
+    }
+  ]
+}

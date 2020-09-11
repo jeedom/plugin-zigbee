@@ -1,8 +1,0 @@
-  
-{
-  "name" : "Identify",
-  "attributes" : {
-        "0x0000": {"name" : "identify_time"},
-        "0x0001": {"name" : "identify_commission_state"}
-    }
-}

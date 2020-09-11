@@ -148,16 +148,21 @@ class zigbee extends eqLogic {
     $new = null;
     $devices = self::request('/device/all');
     foreach ($devices as $device) {
+      if($device['nwk'] == 0){
+        continue;
+      }
       $eqLogic = self::byLogicalId($device['ieee'],'zigbee');
+      
+      $device_type = self::getAttribute(1,0,4,$device).'.'.self::getAttribute(1,0,5,$device);
       if(!is_object($eqLogic)){
         $eqLogic = new self();
         $eqLogic->setLogicalId($device['ieee']);
-        $eqLogic->setName($device['ieee']);
+        $eqLogic->setName($device_type.' '.$device['ieee']);
         $eqLogic->setIsEnable(1);
         $eqLogic->setEqType_name('zigbee');
         $new = true;
       }
-      $eqLogic->setConfiguration('device',self::getAttribute(1,0,5,$device));
+      $eqLogic->setConfiguration('device',$device_type);
       $eqLogic->save();
       if($new === true){
         $new = $eqLogic->getId();

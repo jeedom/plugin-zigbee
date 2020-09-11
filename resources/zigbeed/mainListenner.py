@@ -16,8 +16,8 @@
 import logging
 import shared,utils
 import traceback
-
-LOGGER = logging.getLogger(__name__)
+import registries
+import asyncio
 
 class MainListener:
 	"""
@@ -28,40 +28,57 @@ class MainListener:
 		self.application = application
 
 	def device_joined(self, device):
-		LOGGER.info("************************* Device joined : %s" %(device))
+		logging.info("************************* Device joined : %s" %(device))
 		shared.JEEDOM_COM.send_change_immediate({'device_joined' : str(device._ieee)});
 
 	def device_announce(self, device):
-		LOGGER.info("****************** device_announce Zigpy Device: %s" %(device))
+		logging.info("****************** device_announce Zigpy Device: %s" %(device))
 
 	def device_removed(self, device):
-		LOGGER.info("****************** device_removed Zigpy Device: %s" %(device))
+		logging.info("****************** device_removed Zigpy Device: %s" %(device))
 		shared.JEEDOM_COM.send_change_immediate({'device_removed' : str(device._ieee)});
 
 	def device_left(self, device):
-		LOGGER.info("****************** device_left Zigpy Device: %s" %(device))
+		logging.info("****************** device_left Zigpy Device: %s" %(device))
 		shared.JEEDOM_COM.send_change_immediate({'device_left' : str(device._ieee)});
 
 	def device_initialized(self, device, *, new=True):
 		"""
 		Called at runtime after a device's information has been queried.I also call it on startup to load existing devices from the DB.
 		"""
-		LOGGER.info("******************** Device is ready: new=%s, device=%s", new, device._ieee)
+		logging.info("******************** Device is ready: new=%s, device=%s", new, device._ieee)
 		for ep_id, endpoint in device.endpoints.items():
 			if ep_id == 0: # Ignore ZDO
 				continue
 			for cluster in endpoint.in_clusters.values(): # You need to attach a listener to every cluster to receive events
 				cluster.add_context_listener(self) # The context listener passes its own object as the first argument to the callback
+			for cluster in endpoint.out_clusters.values(): # You need to attach a listener to every cluster to receive events
+				cluster.add_context_listener(self) # The context listener passes its own object as the first argument to the callback
 		if new:
+			asyncio.ensure_future(utils.initialize_device_cluster(device))
 			shared.JEEDOM_COM.send_change_immediate({'device_initialized' : str(device._ieee)});
 
 	def cluster_command(self, cluster, command_id, *args):
 		device = cluster.endpoint.device
-		LOGGER.info("****************** cluster_command - Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
+		logging.info("****************** cluster_command - Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
+		infos = {
+			"value" : str(args[0]),
+			"cluster_name" : cluster.name,
+		}
+		shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd',infos)
+
+
+	def device_announce(self, cluster, command_id, *args):
+		device = cluster.endpoint.device
+		logging.info("****************** device_announce - Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
+
+	def general_command(self, cluster, command_id, *args):
+		device = cluster.endpoint.device
+		logging.info("****************** general_command - Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
 
 	def attribute_updated(self, cluster, attribute_id, value):
 		try:
-			LOGGER.info("****************** Received an attribute update %s=%s on cluster %s from device %s",attribute_id, value, cluster.cluster_id, cluster.endpoint.device._ieee)
+			logging.info("****************** Received an attribute update %s=%s on cluster %s from device %s",attribute_id, value, cluster.cluster_id, cluster.endpoint.device._ieee)
 			infos = {
 				"value" : str(value),
 				"cluster_name" : cluster.name,

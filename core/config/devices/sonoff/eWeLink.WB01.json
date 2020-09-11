@@ -1,0 +1,13 @@
+{
+  "name": "Sonoff bouton",
+  "commands": [
+    {
+      "name": "Bouton",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::cmd"
+    }
+  ]
+}
