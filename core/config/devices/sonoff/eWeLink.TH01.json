@@ -1,5 +1,6 @@
 {
   "name": "Sonoff Température/humidité",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5260-sonoff-capteur-de-temperature-et-d-humidite-zigbee-30.html",
   "commands": [
     {
       "name": "Humidité",
