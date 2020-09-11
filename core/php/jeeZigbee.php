@@ -80,6 +80,19 @@ if (isset($result['device_initialized'])){
 	die();
 }
 
+$CONVERT_VALUE=array(
+	'ZoneStatus.Alarm_1' => 1,
+	'ZoneStatus.0' => 0,
+);
+
+function convertValue($_value){
+	global $CONVERT_VALUE;
+	if(isset($CONVERT_VALUE[$_value])){
+		return $CONVERT_VALUE[$_value];
+	}
+	return $_value;
+}
+
 if (isset($result['devices'])) {
 	foreach ($result['devices'] as $ieee => $endpoints) {
 		$zigbee = zigbee::byLogicalId($ieee, 'zigbee');
@@ -89,10 +102,20 @@ if (isset($result['devices'])) {
 		foreach($endpoints as $endpoint_id => $clusters){
 			foreach($clusters as $cluster_id => $attributs){
 				foreach($attributs as $attribut_id => $value){
-					$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id);
-					if(is_object($cmd)){
-						$cmd->event($value['value']);
+					if($attribut_id !== 'cmd'){
+						$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id);
+						if(is_object($cmd)){
+							$cmd->event(convertValue($value['value']));
+						}
+					}else{
+						foreach ($value as $cmd_id => $cmd_value) {
+							$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
+							if(is_object($cmd)){
+								$cmd->event(convertValue($cmd_value['value']));
+							}
+						}
 					}
+					
 				}
 			}
 		}

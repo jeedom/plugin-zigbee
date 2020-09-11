@@ -1,0 +1,14 @@
+{
+  "name": "Sonoff porte",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5261-sonoff-detecteur-de-mouvement-zigbee-30.htm",
+  "commands": [
+    {
+      "name": "Porte",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd::1"      
+    }
+  ]
+}

@@ -59,10 +59,20 @@ class MainListener:
 			shared.JEEDOM_COM.send_change_immediate({'device_initialized' : str(device._ieee)});
 
 	def cluster_command(self, cluster, command_id, *args):
-		device = cluster.endpoint.device
-		logging.info("****************** cluster_command - Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
-		infos = {"value" : str(args[0]),"cluster_name" : cluster.name}
-		shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd',infos)
+		try:
+			device = cluster.endpoint.device
+			logging.info("****************** cluster_command - Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
+			nb = 0
+			for i in args :
+				if hasattr(i, "__len__"):
+					if len(i) == 0:
+						continue
+					i = i[0]
+				infos = {"value" : str(i),"cluster_name" : cluster.name}
+				shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::'+str(nb),infos)
+				nb += 1
+		except Exception as e:
+			logging.error(traceback.format_exc())
 
 
 	def device_announce(self, cluster, command_id, *args):

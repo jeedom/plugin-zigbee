@@ -160,9 +160,9 @@ class zigbee extends eqLogic {
         $eqLogic->setName($device_type.' '.$device['ieee']);
         $eqLogic->setIsEnable(1);
         $eqLogic->setEqType_name('zigbee');
+        $eqLogic->setConfiguration('device',$device_type);
         $new = true;
       }
-      $eqLogic->setConfiguration('device',$device_type);
       $eqLogic->save();
       if($new === true){
         $new = $eqLogic->getId();

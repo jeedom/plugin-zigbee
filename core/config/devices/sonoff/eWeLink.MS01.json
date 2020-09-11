@@ -3,16 +3,12 @@
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5261-sonoff-detecteur-de-mouvement-zigbee-30.html",
   "commands": [
     {
-      "name": "Péésence",
+      "name": "Présence",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::1280::cmd",
-      "configuration" : {
-        "returnStateValue" : 1,
-        "returnStateTime" : 1
-      }
+      "logicalId": "1::1280::cmd::1"
     }
   ]
 }
