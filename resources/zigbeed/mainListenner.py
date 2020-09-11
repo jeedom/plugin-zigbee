@@ -79,10 +79,7 @@ class MainListener:
 	def attribute_updated(self, cluster, attribute_id, value):
 		try:
 			logging.info("****************** Received an attribute update %s=%s on cluster %s from device %s",attribute_id, value, cluster.cluster_id, cluster.endpoint.device._ieee)
-			infos = {
-				"value" : str(value),
-				"cluster_name" : cluster.name,
-			}
+			infos = {"value" : str(value),"cluster_name" : cluster.name}
 			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::'+str(attribute_id),infos)
 		except Exception as e:
 			logging.error(traceback.format_exc())
