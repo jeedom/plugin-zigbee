@@ -13,6 +13,11 @@ if (config::byKey('include_mode', 'zigbee', 0) == 1) {
 } else {
 	echo '<div id="div_inclusionAlert"></div>';
 }
+$logicalIds = array();
+foreach ($eqLogics as $eqLogic) {
+	$logicalIds[$eqLogic->getLogicalId()] = $eqLogic->getHumanName(true);
+}
+sendVarToJS('zigbee_logicalIds',$logicalIds);
 ?>
 
 <div class="row row-overflow">

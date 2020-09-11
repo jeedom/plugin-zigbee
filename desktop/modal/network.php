@@ -80,9 +80,11 @@ function refreshDevicekData(){
         tr += '<td style="font-size:0.8em !important;">';
         tr += data[i].ieee;
         tr += '</td>';
-        //tr += '<td>';
-        //tr += findEqLogic(data[i].uniqueid);
-        //tr += '</td>';
+        tr += '<td>';
+        if (zigbee_logicalIds[data[i].ieee]){
+          tr += zigbee_logicalIds[data[i].ieee];
+        }
+        tr += '</td>';
         tr += '<td>';
         tr += data[i].nwk;
         tr += '</td>';
