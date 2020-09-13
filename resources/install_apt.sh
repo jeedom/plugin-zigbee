@@ -13,7 +13,7 @@ sudo apt-get install -y python3 python3-pip
 echo 60 > ${PROGRESS_FILE}
 sudo pip3 install zigpy
 echo 65 > ${PROGRESS_FILE}
-sudo pip3 install bellows==0.20.1
+sudo pip3 install bellows>=0.20.1
 echo 70 > ${PROGRESS_FILE}
 sudo pip3 install zha-quirks
 echo 75 > ${PROGRESS_FILE}
