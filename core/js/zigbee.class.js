@@ -17,6 +17,7 @@
 
 jeedom.zigbee = function() {};
 jeedom.zigbee.application = function() {};
+jeedom.zigbee.network = function() {};
 jeedom.zigbee.util = function() {};
 jeedom.zigbee.device = function() {};
 
@@ -54,6 +55,25 @@ jeedom.zigbee.application.info = function(_params){
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
     request: '/application/info',
+    type : 'GET'
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.zigbee.network.map = function(_params){
+  var paramsRequired = [];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    request: '/network/map',
     type : 'GET'
   };
   $.ajax(paramsAJAX);
