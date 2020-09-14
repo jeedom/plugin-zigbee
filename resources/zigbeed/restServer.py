@@ -118,16 +118,16 @@ class DeviceHandler(RequestHandler):
 	async def put(self,arg1):
 		try:
 			if arg1 == 'initialize':
-				device = utils.findDevice(self.get_argument('ieee',''))
+				device = utils.findDevice(self.json_args['ieee'])
 				if device == None :
 					raise Exception("Device not found")
 				await utils.initialize_device_cluster(device)
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'action':
-				device = utils.findDevice(self.get_argument('ieee',''))
+				device = utils.findDevice(self.json_args['ieee'])
 				if device == None :
 					raise Exception("Device not found")
-				for cmd in self.json_args:
+				for cmd in self.json_args['cmd']:
 					if not cmd['endpoint'] in device.endpoints:
 						raise Exception("Endpoint not found : "+str(cmd['endpoint']))
 					endpoint = device.endpoints[cmd['endpoint']]
@@ -150,7 +150,7 @@ class DeviceHandler(RequestHandler):
 
 	async def delete(self):
 		try:
-			device = utils.findDevice(self.get_argument('ieee',''))
+			device = utils.findDevice(self.json_args['ieee'])
 			if device == None :
 				raise Exception("Device not found")
 			await shared.ZIGPY.remove(device.ieee)

@@ -92,7 +92,7 @@ function refreshDevicekData(){
         tr += data[i].status;
         tr += '<td>';
         tr += '<a class="btn btn-default btn-xs bt_infoZigbeeDevice"><i class="fa fa-info"></i> {{Info}}</a> ';
-        tr += '<a class="btn btn-danger btn-xs bt_initializeZigbeeDevice"><i class="fa fa-trash"></i> {{Reinitialiser}}</a> ';
+        tr += '<a class="btn btn-warning btn-xs bt_initializeZigbeeDevice"><i class="fas fa-sync"></i> {{Reinitialiser}}</a> ';
         tr += '<a class="btn btn-danger btn-xs bt_removeZigbeeDevice"><i class="fa fa-trash"></i> {{Supprimer}}</a> ';
         tr += '</td>';
         tr += '</tr>';
@@ -139,17 +139,15 @@ $('#table_networkDevice').off('click','.bt_removeZigbeeDevice').on('click','.bt_
 
 $('#table_networkDevice').off('click','.bt_initializeZigbeeDevice').on('click','.bt_initializeZigbeeDevice',function(){
   var tr = $(this).closest('tr');
-  if(result){
-    jeedom.zigbee.device.initialize({
-      ieee : tr.attr('data-ieee'),
-      error: function (error) {
-        $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
-      },
-      success: function (data) {
-        $('#div_networkZigbeeAlert').showAlert({message: '{{Module reinitialisé}}', level: 'success'});
-      }
-    });
-  }
+  jeedom.zigbee.device.initialize({
+    ieee : tr.attr('data-ieee'),
+    error: function (error) {
+      $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#div_networkZigbeeAlert').showAlert({message: '{{Module reinitialisé}}', level: 'success'});
+    }
+  });
 });
 
 refreshNetworkData();

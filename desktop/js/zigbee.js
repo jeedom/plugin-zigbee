@@ -29,13 +29,13 @@ $('#bt_syncEqLogic').off('click').on('click', function () {
 
 $('.changeIncludeState').off('click').on('click', function () {
   jeedom.zigbee.application.include({
-    duration : 60,
+    duration : 180,
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      $('#div_alert').showAlert({message: '{{Mode inclusion actif pendant 1min}}', level: 'success'});
-      setTimeout(function(){ $('#div_alert').hideAlert() }, 60000);
+      $('#div_alert').showAlert({message: '{{Mode inclusion actif pendant 3 minutes}}', level: 'success'});
+      setTimeout(function(){ $('#div_alert').hideAlert() }, 3*60000);
     }
   });
 });
