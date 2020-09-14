@@ -102,6 +102,10 @@ if (isset($result['devices'])) {
 		foreach($endpoints as $endpoint_id => $clusters){
 			foreach($clusters as $cluster_id => $attributs){
 				foreach($attributs as $attribut_id => $value){
+					if($endpoint_id == 1 && $cluster_id == 1 && $attribut_id == 33){
+						$zigbee->batteryStatus($value);
+						continue;
+					}
 					if($attribut_id !== 'cmd'){
 						$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id);
 						if(is_object($cmd)){

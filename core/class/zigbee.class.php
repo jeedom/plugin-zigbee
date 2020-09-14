@@ -167,6 +167,10 @@ class zigbee extends eqLogic {
       if($new === true){
         $new = $eqLogic->getId();
       }
+      $battery = self::getAttribute(1,0,4,$device).'.'.self::getAttribute(1,1,33,$device);
+      if($battery != null){
+        $eqLogic->batteryStatus($battery);
+      }
     }
     return $new;
   }
