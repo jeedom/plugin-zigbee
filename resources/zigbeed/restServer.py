@@ -135,7 +135,7 @@ class DeviceHandler(RequestHandler):
 						raise Exception("Cluster not found : "+str(cmd['cluster']))
 					cluster = getattr(endpoint, cmd['cluster'])
 					if not hasattr(cluster,cmd['command']):
-						raise Exception("Command not found : "+str(cmd['command'])")
+						raise Exception("Command not found : "+str(cmd['command']))
 					command = getattr(cluster, cmd['command'])
 					if 'args' in cmd:
 						args = cmd['args']
