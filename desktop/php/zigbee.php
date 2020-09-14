@@ -145,6 +145,12 @@ sendVarToJS('zigbee_logicalIds',$logicalIds);
 						<form class="form-horizontal">
 							<fieldset>
 								<div class="form-group">
+									<label class="col-sm-3 control-label"></label>
+									<div class="col-sm-2">
+										<a id="bt_showZigbeeDevice" class="btn btn-default"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+									</div>
+								</div>
+								<div class="form-group">
 									<label class="col-sm-3 control-label">{{Equipement}}</label>
 									<div class="col-sm-6">
 										<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="device">

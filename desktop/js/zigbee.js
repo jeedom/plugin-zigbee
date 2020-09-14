@@ -19,7 +19,7 @@ $('#bt_zigbeeNetwork').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Réseaux zigbee}}"}).load('index.php?v=d&plugin=zigbee&modal=network').dialog('open');
 });
 
-$('#bt_showzigbeeModuleConfiguration').off('click').on('click', function () {
+$('#bt_showZigbeeDevice').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Configuration du noeud}}"}).load('index.php?v=d&plugin=zigbee&modal=node&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
 });
 
