@@ -207,6 +207,7 @@ class zigbee extends eqLogic {
         try {
           $content = is_json(file_get_contents($path . '/' . $file),false);
           if ($content != false) {
+            $content['manufacturer'] = ucfirst(trim($dir,'/'));
             $return[str_replace('.json','',$file)] = $content;
           }
         } catch (Exception $e) {

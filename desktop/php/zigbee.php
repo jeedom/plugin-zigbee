@@ -154,17 +154,31 @@ sendVarToJS('zigbee_logicalIds',$logicalIds);
 									<label class="col-sm-3 control-label">{{Equipement}}</label>
 									<div class="col-sm-6">
 										<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="device">
-											<option value="">{{Aucun}}</option>
+											<option value="">{{Inconnu}}</option>
 											<?php
-											foreach (zigbee::devicesParameters() as $id => $info) {
-												if(!isset($info['name'])){
-													continue;
+											$manufacturers = array();
+											foreach (zigbee::devicesParameters() as $id => &$info) {
+												if(!isset($info['manufacturer'])){
+													$info['manufacturer'] = __('Aucun',__FILE__);
 												}
-												if(isset($info['instruction'])){
-													echo '<option value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'" data-instruction="'.$info['instruction'].'">' . $info['name'] . '</option>';
-												}else{
-													echo '<option value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'">' . $info['name'] . '</option>';
+												if(!isset($manufacturers[$info['manufacturer']])){
+													$manufacturers[$info['manufacturer']] = array();
 												}
+												$manufacturers[$info['manufacturer']][$id] = $info;
+											}
+											foreach ($manufacturers as $manufacturer => $devices) {
+												echo '<optgroup label="'.$manufacturer.'">';
+												foreach ($devices as $id => $info) {
+													if(!isset($info['name'])){
+														continue;
+													}
+													if(isset($info['instruction'])){
+														echo '<option value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'" data-instruction="'.$info['instruction'].'">' . $info['name'] . '</option>';
+													}else{
+														echo '<option value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'">' . $info['name'] . '</option>';
+													}
+												}
+												echo '</optgroup>';
 											}
 											?>
 										</select>
