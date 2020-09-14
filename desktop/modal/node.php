@@ -26,7 +26,6 @@ sendVarToJS('zigbeeNodeIeee',$eqLogic->getLogicalId());
 $node_data = zigbee::request('/device/info',array('ieee'=>$eqLogic->getLogicalId()))
 ?>
 <div id='div_nodeDeconzAlert' style="display: none;"></div>
-<a class="btn btn-success pull-right" id="bt_saveNodeConfiguration"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 <ul class="nav nav-tabs" role="tablist">
   <li role="presentation" class="active"><a href="#configNodeTab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Action}}</a></li>
   <li role="presentation"><a href="#rowNodeTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Informations brutes}}</a></li>
@@ -66,7 +65,7 @@ $('#configNodeTab').off('click','.bt_removeZigbeeDevice').on('click','.bt_remove
           $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-          pageLoad('index.php?v=d&p=zigbee&m=zigbee');
+          loadPage('index.php?v=d&p=zigbee&m=zigbee');
         }
       });
     }
