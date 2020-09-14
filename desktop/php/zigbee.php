@@ -23,6 +23,11 @@ foreach ($eqLogics as $eqLogic) {
 	$logicalIds[$eqLogic->getLogicalId()] = $eqLogic->getHumanName();
 }
 sendVarToJS('zigbee_logicalIds_name',$logicalIds);
+$ids = array();
+foreach ($eqLogics as $eqLogic) {
+	$ids[$eqLogic->getLogicalId()] = $eqLogic->getId();
+}
+sendVarToJS('zigbee_ids',$ids);
 ?>
 
 <div class="row row-overflow">
