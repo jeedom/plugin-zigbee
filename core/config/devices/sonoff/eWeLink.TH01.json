@@ -10,6 +10,7 @@
       "isHistorized": 0,
       "logicalId": "1::1029::0",
       "unite" : "%",
+      "generic_type": "HUMIDITY",
       "configuration" : {
         "calculValueOffset":"#value# / 100"
       }
@@ -22,6 +23,7 @@
       "isHistorized": 0,
       "logicalId": "1::1026::0",
       "unite" : "°C",
+      "generic_type": "TEMPERATURE",
       "configuration" : {
         "calculValueOffset":"#value# / 100"
       }

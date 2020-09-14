@@ -43,7 +43,7 @@ class ApplicationHandler(RequestHandler):
 	async def get(self,arg1):
 		try:
 			if arg1 == 'info':
-				info = await utils.serialize_application(shared.ZIGPY)
+				info = await utils.serialize_application()
 				return self.write(utils.format_json_result(success=True,data=info))
 			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
@@ -105,12 +105,38 @@ class DeviceHandler(RequestHandler):
 					result.append(values)
 				return self.write(utils.format_json_result(success=True,data=result))
 			if arg1 == 'info':
-				result = []
-				for device in shared.ZIGPY.devices.values():
-					if str(device.ieee) == self.get_argument('ieee',''):
-						values = await utils.serialize_device(device)
-						return self.write(utils.format_json_result(success=True,data=values))
-				return self.write(utils.format_json_result(success="error",data="Device not found"))
+				device = utils.findDevice(self.get_argument('ieee',''))
+				if device == None:
+					return self.write(utils.format_json_result(success="error",data="Device not found"))
+				values = await utils.serialize_device(device)
+				return self.write(utils.format_json_result(success=True,data=values))
+			return self.write(utils.format_json_result(success="error",data="No method found"))
+		except Exception as e:
+			logging.debug(traceback.format_exc())
+			return self.write(utils.format_json_result(success="error",data=str(e)))
+
+	async def put(self,arg1):
+		try:
+			if arg1 == 'action':
+				device = utils.findDevice(self.get_argument('ieee',''))
+				if device == None :
+					self.write(utils.format_json_result(success="error",data="Device not found"))
+				for cmd in self.json_args:
+					if not cmd['endpoint'] in device.endpoints:
+						return self.write(utils.format_json_result(success="error",data="Endpoint not found : "+str(cmd['endpoint'])))
+					endpoint = device.endpoints[cmd['endpoint']]
+					if not hasattr(endpoint,cmd['cluster']):
+						return self.write(utils.format_json_result(success="error",data="Cluster not found : "+str(cmd['cluster'])))
+					cluster = getattr(endpoint, cmd['cluster'])
+					if not hasattr(cluster,cmd['command']):
+						return self.write(utils.format_json_result(success="error",data="Command not found : "+str(cmd['command'])))
+					command = getattr(cluster, cmd['command'])
+					if 'args' in cmd:
+						args = cmd['args']
+						await command(*args)
+					else:
+						await command()
+				return self.write(utils.format_json_result(success=True))
 			return self.write(utils.format_json_result(success="error",data="No method found"))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
@@ -118,11 +144,11 @@ class DeviceHandler(RequestHandler):
 
 	async def delete(self):
 		try:
-			for device in shared.ZIGPY.devices.values():
-				if str(device.ieee) == self.get_argument('ieee',''):
-					await shared.ZIGPY.remove(device.ieee)
-					return self.write(utils.format_json_result(success=True))
-			return self.write(utils.format_json_result(success="error",data="Device not found"))
+			device = utils.findDevice(self.get_argument('ieee',''))
+			if device == None :
+				return self.write(utils.format_json_result(success="error",data="Device not found"))
+			await shared.ZIGPY.remove(device.ieee)
+			return self.write(utils.format_json_result(success=True))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))

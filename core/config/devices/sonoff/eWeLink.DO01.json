@@ -9,7 +9,8 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::1280::cmd::1"
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "OPENING",
     }
   ]
 }

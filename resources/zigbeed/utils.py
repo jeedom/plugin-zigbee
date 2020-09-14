@@ -59,16 +59,16 @@ async def serialize_device(device):
 		obj['endpoints'].append(endpoint_obj)
 	return obj
 
-async def serialize_application(application):
+async def serialize_application():
 	obj = {
-		'ieee': str(application.ieee),
-		'nwk': application.nwk,
-		'config': application._config
+		'ieee': str(shared.ZIGPY.ieee),
+		'nwk': shared.ZIGPY.nwk,
+		'config': shared.ZIGPY._config
 	}
 	if shared.CONTROLLER == 'ezsp':
 		obj['ezsp'] = {}
-		status, node_type, network_params = await application._ezsp.getNetworkParameters()
-		version = await application._ezsp.get_board_info()
+		status, node_type, network_params = await shared.ZIGPY._ezsp.getNetworkParameters()
+		version = await shared.ZIGPY._ezsp.get_board_info()
 		obj['ezsp']['extendedPanId'] = network_params.extendedPanId
 		obj['ezsp']['panId'] = network_params.panId
 		obj['ezsp']['radioTxPower'] = network_params.radioTxPower
@@ -129,3 +129,9 @@ async def initialize_device_cluster(device):
 						logging.debug("reporting '%s' attr on '%s' cluster: %d/%d/%d: For: '%s'",attr_name,cluster.ep_attribute,min_report_int,max_report_int,reportable_change,device.ieee)
 					except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 						logging.debug("failed to set reporting for '%s' attr on '%s' cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
+
+def findDevice(ieee):
+	for device in shared.ZIGPY.devices.values():
+		if str(device.ieee) == ieee:
+			return device
+	return None

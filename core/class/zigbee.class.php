@@ -24,9 +24,9 @@ class zigbee extends eqLogic {
   
   /*     * ***********************Methode static*************************** */
   
-  public static function request($_request = '',$_data = null,$_type='POST'){
+  public static function request($_request = '',$_data = null,$_type='GET'){
     $url = 'http://127.0.0.1:'.config::byKey('socketport', 'zigbee').$_request;
-    if($type='GET' && is_array($_data) && count($_data) > 0){
+    if($_type=='GET' && is_array($_data) && count($_data) > 0){
       $url .= '?';
       foreach ($_data as $key => $value) {
         $url .= $key.'='.urlencode($value).'&';
@@ -279,11 +279,105 @@ class zigbeeCmd extends cmd {
   
   /*     * ***********************Methode static*************************** */
   
+  public static function convertRGBToXY($red, $green, $blue) {
+    $normalizedToOne['red'] = $red / 255;
+    $normalizedToOne['green'] = $green / 255;
+    $normalizedToOne['blue'] = $blue / 255;
+    foreach ($normalizedToOne as $key => $normalized) {
+      if ($normalized > 0.04045) {
+        $color[$key] = pow(($normalized + 0.055) / (1.0 + 0.055), 2.4);
+      } else {
+        $color[$key] = $normalized / 12.92;
+      }
+    }
+    $xyz['x'] = $color['red'] * 0.664511 + $color['green'] * 0.154324 + $color['blue'] * 0.162028;
+    $xyz['y'] = $color['red'] * 0.283881 + $color['green'] * 0.668433 + $color['blue'] * 0.047685;
+    $xyz['z'] = $color['red'] * 0.000000 + $color['green'] * 0.072310 + $color['blue'] * 0.986039;
+    if (array_sum($xyz) == 0) {
+      $x = 0;
+      $y = 0;
+    } else {
+      $x = $xyz['x'] / array_sum($xyz);
+      $y = $xyz['y'] / array_sum($xyz);
+    }
+    return array(
+      'x' => $x,
+      'y' => $y,
+      'bri' => round($xyz['y'] * 255),
+    );
+  }
+  
+  public static function convertXYToRGB($x, $y, $bri = 255) {
+    $z = 1.0 - $x - $y;
+    $xyz['y'] = $bri / 255;
+    $xyz['x'] = ($xyz['y'] / $y) * $x;
+    $xyz['z'] = ($xyz['y'] / $y) * $z;
+    $color['red'] = $xyz['x'] * 1.656492 - $xyz['y'] * 0.354851 - $xyz['z'] * 0.255038;
+    $color['green'] = -$xyz['x'] * 0.707196 + $xyz['y'] * 1.655397 + $xyz['z'] * 0.036152;
+    $color['blue'] = $xyz['x'] * 0.051713 - $xyz['y'] * 0.121364 + $xyz['z'] * 1.011530;
+    $maxValue = 0;
+    foreach ($color as $key => $normalized) {
+      if ($normalized <= 0.0031308) {
+        $color[$key] = 12.92 * $normalized;
+      } else {
+        $color[$key] = (1.0 + 0.055) * pow($normalized, 1.0 / 2.4) - 0.055;
+      }
+      $color[$key] = max(0, $color[$key]);
+      if ($maxValue < $color[$key]) {
+        $maxValue = $color[$key];
+      }
+    }
+    foreach ($color as $key => $normalized) {
+      if ($maxValue > 1) {
+        $color[$key] /= $maxValue;
+      }
+      $color[$key] = round($color[$key] * 255);
+    }
+    return $color;
+  }
+  
+  
   
   /*     * *********************Methode d'instance************************* */
   
   public function execute($_options = array()) {
-    
+    if($this->getType() == 'info'){
+      return;
+    }
+    $datas = array();
+    $eqLogic = $this->getEqLogic();
+    $informations = explode('|',$this->getLogicalId());
+    foreach ($informations as $information) {
+      $replace = array();
+      switch ($this->getSubType()) {
+        case 'slider':
+        $replace['#slider#'] = floatval($_options['slider']);
+        break;
+        case 'color':
+        list($r, $g, $b) = str_split(str_replace('#', '', $_options['color']), 2);
+        $info = self::convertRGBToXY(hexdec($r), hexdec($g), hexdec($b));
+        $replace['#color#'] = round($info['x']*65535).'::'.round($info['y']*65535);
+        $datas[] = array('endpoint' => intval(explode('::',$information)[0]),'cluster'=>'level','command'=>'move_to_level','args'=>array(round($info['bri']),0));
+        break;
+        case 'select':
+        $replace['#select#'] = $_options['select'];
+        break;
+        case 'message':
+        $replace['#title#'] = $_options['title'];
+        $replace['#message#'] = $_options['message'];
+        if ($_options['message'] == '' && $_options['title'] == '') {
+          throw new Exception(__('Le message et le sujet ne peuvent pas être vide', __FILE__));
+        }
+        break;
+      }
+      $info = explode('::',str_replace(array_keys($replace),$replace,$information));
+      $data = array('endpoint' => intval($info[0]),'cluster'=>$info[1],'command'=>$info[2]);
+      if (count($info) > 3){
+        $data['args'] = array_slice($info,3);
+      }
+      $datas[] = $data;
+    }
+    zigbee::request('/device/action?ieee='.$eqLogic->getLogicalId(),$datas,'PUT');
   }
   
   /*     * **********************Getteur Setteur*************************** */
