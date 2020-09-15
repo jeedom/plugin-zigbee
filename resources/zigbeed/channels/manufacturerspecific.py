@@ -64,11 +64,3 @@ class SmartThingsAcceleration():
         {"attr": "y_axis", "config": REPORT_CONFIG_ASAP},
         {"attr": "z_axis", "config": REPORT_CONFIG_ASAP},
     ]
-
-    def attribute_updated(self, attrid, value):
-        """Handle attribute updates on this cluster."""
-        if attrid == self.value_attribute:
-            self.async_send_signal(f"{self.unique_id}_{SIGNAL_ATTR_UPDATED}",attrid,self._cluster.attributes.get(attrid, [UNKNOWN])[0],value,)
-            return
-
-        self.zha_send_event(SIGNAL_ATTR_UPDATED,{ATTR_ATTRIBUTE_ID: attrid,ATTR_ATTRIBUTE_NAME: self._cluster.attributes.get(attrid, [UNKNOWN])[0],ATTR_VALUE: value,},)
