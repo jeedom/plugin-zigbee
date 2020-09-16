@@ -64,6 +64,7 @@ class MainListener:
 			utils.initSharedDeviceData(cluster,'cmd')
 			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['cmd'] = args
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'cluster_command'):
+				logging.info("Use specific decode funtion")
 				if registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].cluster_command(cluster, command_id, *args) is not None:
 					return
 			nb = 0
@@ -86,6 +87,17 @@ class MainListener:
 	def general_command(self, cluster, command_id, *args):
 		device = cluster.endpoint.device
 		logging.info("****************** general_command - Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
+		nb1=0
+		nb2=0
+		for i in args[0]:
+			for j in i:
+				if j.attrid == 0:
+					continue;
+				infos = {"value" : str(j.value.value),"cluster_name" : cluster.name}
+				shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::gcmd::'+str(j.attrid)+'-'+str(nb1)+'-'+str(nb2),infos)
+				nb2+=1
+			nb1+=1
+
 
 	def attribute_updated(self, cluster, attribute_id, value):
 		try:

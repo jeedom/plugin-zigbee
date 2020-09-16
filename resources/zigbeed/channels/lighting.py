@@ -69,3 +69,10 @@ class ColorChannel():
 			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::color',{"value" : str('#%02x%02x%02x' % (r, g, b)),"cluster_name" : cluster.name})
 			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id] = {}
 		return True
+
+	def cluster_command(cluster, command_id, *args):
+		if args[0] == 7 :
+			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::color',{"value" : str('#%02x%02x%02x' % (int(args[1][0]/65535*255), int(args[1][1]/65535*255), int(args[1][2]/65535*255))),"cluster_name" : cluster.name})
+		if args[0] == 10 :
+			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::colorTemperature',{"value" : args[1][0],"cluster_name" : cluster.name})
+		return True

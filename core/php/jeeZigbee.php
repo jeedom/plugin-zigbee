@@ -108,20 +108,28 @@ if (isset($result['devices'])) {
 						$zigbee->batteryStatus($value);
 						continue;
 					}
-					if($attribut_id !== 'cmd'){
-						$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id);
-						if(is_object($cmd)){
-							$cmd->event(convertValue($value['value']));
-						}
-					}else{
+					if($attribut_id == 'cmd'){
 						foreach ($value as $cmd_id => $cmd_value) {
 							$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
 							if(is_object($cmd)){
 								$cmd->event(convertValue($cmd_value['value']));
 							}
 						}
+						continue;
 					}
-					
+					if($attribut_id == 'gcmd'){
+						foreach ($value as $cmd_id => $cmd_value) {
+							$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
+							if(is_object($cmd)){
+								$cmd->event(convertValue($cmd_value['value']));
+							}
+						}
+						continue;
+					}
+					$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id);
+					if(is_object($cmd)){
+						$cmd->event(convertValue($value['value']));
+					}
 				}
 			}
 		}

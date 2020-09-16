@@ -205,13 +205,13 @@ class PowerProfile():
 class RSSILocation():
 	"""RSSI Location channel."""
 
-@registries.CLIENT_CHANNELS_REGISTRY.register(general.Scenes.cluster_id)
-class Scenes():
-	"""Scenes channel."""
-
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(general.Scenes.cluster_id)
 class Scenes():
 	"""Scenes channel."""
+
+	def cluster_command(cluster, command_id, *args):
+		shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::'+str(args[0]),{"value" : args[1][0]*10+args[1][1],"cluster_name" : cluster.name})
+		return True
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(general.Time.cluster_id)
 class Time():
