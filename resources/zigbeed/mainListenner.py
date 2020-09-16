@@ -86,6 +86,8 @@ class MainListener:
 	def attribute_updated(self, cluster, attribute_id, value):
 		try:
 			logging.info("****************** Received an attribute update %s=%s on cluster %s from device %s",attribute_id, value, cluster.cluster_id, cluster.endpoint.device._ieee)
+			utils.initSharedDeviceData(cluster,attribute_id)
+			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id][attribute_id] = value
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'attribute_updated'):
 				if registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].attribute_updated(cluster, attribute_id, value) is not None:
 					return

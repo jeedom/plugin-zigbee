@@ -49,8 +49,6 @@ class ColorChannel():
 	def attribute_updated(cluster, attribute_id, value):
 		if attribute_id != 3 and attribute_id != 4:
 			return None
-		utils.initSharedDeviceData(cluster,attribute_id)
-		shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id][attribute_id] = value
 		if 3 in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id] and 4 in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]:
 			x_point = shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id][3]
 			y_point = shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id][4]
