@@ -169,6 +169,11 @@ class OnOffConfiguration():
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(general.Ota.cluster_id)
 class Ota():
 	"""OTA Channel."""
+	def attribute_updated(cluster, attribute_id, value):
+		return False
+
+	def cluster_command(cluster, command_id, *args):
+		return False
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(general.Partition.cluster_id)
