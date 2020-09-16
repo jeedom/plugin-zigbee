@@ -256,13 +256,7 @@ class zigbee extends eqLogic {
     if ($this->getConfiguration('device') == '') {
       return true;
     }
-    if (isset($device['id_size']) && is_numeric($device['id_size']) && strlen($this->getLogicalId()) > $device['id_size']) {
-      $this->setLogicalId(substr($this->getLogicalId(), 0, $device['id_size']));
-    }
-    $device_type = explode('::', $this->getConfiguration('device'));
-    $packettype = $device_type[0];
-    $subtype = $device_type[1];
-    $device = self::devicesParameters($packettype);
+    $device = self::devicesParameters($this->getConfiguration('device'));
     if (!is_array($device)) {
       return true;
     }
