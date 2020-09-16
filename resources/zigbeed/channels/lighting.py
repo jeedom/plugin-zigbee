@@ -50,8 +50,8 @@ class ColorChannel():
 		if attribute_id != 3 and attribute_id != 4:
 			return None
 		if 3 in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id] and 4 in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]:
-			x_point = shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id][3]
-			y_point = shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id][4]
+			x_point = shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id][3]/65535
+			y_point = shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id][4]/65535
 			Y = 255
 			if 8 in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id] and 0 in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][8]:
 				Y = shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][8][0]
