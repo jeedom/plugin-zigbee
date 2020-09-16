@@ -59,7 +59,7 @@ class IASZoneChannel():
 					if len(i) == 0:
 						continue
 					i = i[0]
-				changes['cmd'][nb] = {"value" : str(i),"cluster_name" : cluster.name}
+				changes['devices'][str(cluster.endpoint.device._ieee)][str(cluster.endpoint._endpoint_id)][str(cluster.cluster_id)]['cmd'][nb] = {"value" : str(i),"cluster_name" : cluster.name}
 				nb += 1
 			shared.JEEDOM_COM.send_change_immediate(changes);
 			return True
