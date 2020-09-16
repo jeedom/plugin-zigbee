@@ -34,6 +34,7 @@ from const import (
 )
 import shared
 import utils
+import traceback
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(security.IasAce.cluster_id)
 class IasAce():
@@ -48,3 +49,19 @@ class IasWd():
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(security.IasZone.cluster_id)
 class IASZoneChannel():
 	"""Channel for the IASZone Zigbee cluster."""
+
+	def cluster_command(cluster, command_id, *args):
+		try:
+			changes = {'devices' : {str(cluster.endpoint.device._ieee) : {str(cluster.endpoint._endpoint_id) : {str(cluster.cluster_id) : {}}}}}
+			nb = 0
+			for i in args :
+				if hasattr(i, "__len__"):
+					if len(i) == 0:
+						continue
+					i = i[0]
+				changes[nb] = {"value" : str(i),"cluster_name" : cluster.name}
+				nb += 1
+			shared.JEEDOM_COM.send_change_immediate(changes);
+			return True
+		except Exception as e:
+			logging.error(traceback.format_exc())

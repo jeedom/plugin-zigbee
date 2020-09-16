@@ -60,12 +60,11 @@ class MainListener:
 
 	def cluster_command(self, cluster, command_id, *args):
 		try:
-			device = cluster.endpoint.device
 			logging.info("****************** cluster_command - Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
 			utils.initSharedDeviceData(cluster,'cmd')
 			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['cmd'] = args
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'cluster_command'):
-				if registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].cluster_command(cluster, command_id, args) is not None:
+				if registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].cluster_command(cluster, command_id, *args) is not None:
 					return
 			nb = 0
 			for i in args :
