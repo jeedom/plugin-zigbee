@@ -27,12 +27,14 @@ from zigpy.zcl.foundation import Status
 
 import registries, zha_typing as zha_typing
 from const import (
-    REPORT_CONFIG_MAX_INT,
-    REPORT_CONFIG_MIN_INT,
-    REPORT_CONFIG_OP,
-    SIGNAL_ATTR_UPDATED,
+	REPORT_CONFIG_MAX_INT,
+	REPORT_CONFIG_MIN_INT,
+	REPORT_CONFIG_OP,
+	SIGNAL_ATTR_UPDATED,
 )
 from helpers import retryable_req
+import shared
+import utils
 
 AttributeUpdateRecord = namedtuple("AttributeUpdateRecord", "attr_id, attr_name, value")
 REPORT_CONFIG_CLIMATE = (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 25)
@@ -41,39 +43,39 @@ REPORT_CONFIG_CLIMATE_DISCRETE = (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(hvac.Dehumidification.cluster_id)
 class Dehumidification():
-    """Dehumidification channel."""
+	"""Dehumidification channel."""
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(hvac.Fan.cluster_id)
 class FanChannel():
-    """Fan channel."""
+	"""Fan channel."""
 
-    _value_attribute = 0
+	_value_attribute = 0
 
-    REPORT_CONFIG = ({"attr": "fan_mode", "config": REPORT_CONFIG_OP},)
+	REPORT_CONFIG = ({"attr": "fan_mode", "config": REPORT_CONFIG_OP},)
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(hvac.Pump.cluster_id)
 class Pump():
-    """Pump channel."""
+	"""Pump channel."""
 
 @registries.CLIMATE_CLUSTERS.register(hvac.Thermostat.cluster_id)
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(hvac.Thermostat.cluster_id)
 class ThermostatChannel():
-    """Thermostat channel."""
+	"""Thermostat channel."""
 
-    REPORT_CONFIG = (
-    {"attr": "local_temp", "config": REPORT_CONFIG_CLIMATE},
-    {"attr": "occupied_cooling_setpoint", "config": REPORT_CONFIG_CLIMATE},
-    {"attr": "occupied_heating_setpoint", "config": REPORT_CONFIG_CLIMATE},
-    {"attr": "unoccupied_cooling_setpoint", "config": REPORT_CONFIG_CLIMATE},
-    {"attr": "unoccupied_heating_setpoint", "config": REPORT_CONFIG_CLIMATE},
-    {"attr": "running_mode", "config": REPORT_CONFIG_CLIMATE},
-    {"attr": "running_state", "config": REPORT_CONFIG_CLIMATE_DEMAND},
-    {"attr": "system_mode", "config": REPORT_CONFIG_CLIMATE},
-    {"attr": "occupancy", "config": REPORT_CONFIG_CLIMATE_DISCRETE},
-    {"attr": "pi_cooling_demand", "config": REPORT_CONFIG_CLIMATE_DEMAND},
-    {"attr": "pi_heating_demand", "config": REPORT_CONFIG_CLIMATE_DEMAND},
-    )
+	REPORT_CONFIG = (
+	{"attr": "local_temp", "config": REPORT_CONFIG_CLIMATE},
+	{"attr": "occupied_cooling_setpoint", "config": REPORT_CONFIG_CLIMATE},
+	{"attr": "occupied_heating_setpoint", "config": REPORT_CONFIG_CLIMATE},
+	{"attr": "unoccupied_cooling_setpoint", "config": REPORT_CONFIG_CLIMATE},
+	{"attr": "unoccupied_heating_setpoint", "config": REPORT_CONFIG_CLIMATE},
+	{"attr": "running_mode", "config": REPORT_CONFIG_CLIMATE},
+	{"attr": "running_state", "config": REPORT_CONFIG_CLIMATE_DEMAND},
+	{"attr": "system_mode", "config": REPORT_CONFIG_CLIMATE},
+	{"attr": "occupancy", "config": REPORT_CONFIG_CLIMATE_DISCRETE},
+	{"attr": "pi_cooling_demand", "config": REPORT_CONFIG_CLIMATE_DEMAND},
+	{"attr": "pi_heating_demand", "config": REPORT_CONFIG_CLIMATE_DEMAND},
+	)
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(hvac.UserInterface.cluster_id)
 class UserInterface():
-    """User interface (thermostat) channel."""
+	"""User interface (thermostat) channel."""

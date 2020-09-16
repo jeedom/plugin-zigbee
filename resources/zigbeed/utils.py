@@ -135,3 +135,13 @@ def findDevice(ieee):
 		if str(device.ieee) == ieee:
 			return device
 	return None
+
+def initSharedDeviceData(cluster,attribute_id):
+	if not cluster.endpoint.device._ieee in shared.DEVICES_DATA :
+		shared.DEVICES_DATA[cluster.endpoint.device._ieee] = {}
+	if not cluster.endpoint._endpoint_id in shared.DEVICES_DATA[cluster.endpoint.device._ieee] :
+		shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id] = {}
+	if not cluster.cluster_id in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id] :
+		shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id] = {}
+	if not attribute_id in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id] :
+		shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id][attribute_id] = {}

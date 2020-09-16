@@ -29,73 +29,75 @@ TIME_HOURS,
 TIME_DAYS,
 TIME_WEEKS
 )
+import shared
+import utils
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(smartenergy.Calendar.cluster_id)
 class Calendar():
-    """Calendar channel."""
-    pass
+	"""Calendar channel."""
+	pass
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(smartenergy.DeviceManagement.cluster_id)
 class DeviceManagement():
-    """Device Management channel."""
-    pass
+	"""Device Management channel."""
+	pass
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(smartenergy.Drlc.cluster_id)
 class Drlc():
-    """Demand Response and Load Control channel."""
-    pass
+	"""Demand Response and Load Control channel."""
+	pass
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(smartenergy.EnergyManagement.cluster_id)
 class EnergyManagement():
-    """Energy Management channel."""
-    pass
+	"""Energy Management channel."""
+	pass
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(smartenergy.Events.cluster_id)
 class Events():
-    """Event channel."""
-    pass
+	"""Event channel."""
+	pass
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(smartenergy.KeyEstablishment.cluster_id)
 class KeyEstablishment():
-    """Key Establishment channel."""
-    pass
+	"""Key Establishment channel."""
+	pass
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(smartenergy.MduPairing.cluster_id)
 class MduPairing():
-    """Pairing channel."""
-    pass
+	"""Pairing channel."""
+	pass
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(smartenergy.Messaging.cluster_id)
 class Messaging():
-    """Messaging channel."""
-    pass
+	"""Messaging channel."""
+	pass
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(smartenergy.Metering.cluster_id)
 class Metering():
-    """Metering channel."""
-    REPORT_CONFIG = [{"attr": "instantaneous_demand", "config": REPORT_CONFIG_DEFAULT}]
+	"""Metering channel."""
+	REPORT_CONFIG = [{"attr": "instantaneous_demand", "config": REPORT_CONFIG_DEFAULT}]
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(smartenergy.Prepayment.cluster_id)
 class Prepayment():
-    """Prepayment channel."""
-    pass
+	"""Prepayment channel."""
+	pass
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(smartenergy.Price.cluster_id)
 class Price():
-    """Price channel."""
-    pass
+	"""Price channel."""
+	pass
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(smartenergy.Tunneling.cluster_id)
 class Tunneling():
-    """Tunneling channel."""
-    pass
+	"""Tunneling channel."""
+	pass

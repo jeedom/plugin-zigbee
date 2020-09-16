@@ -95,29 +95,6 @@ function convertValue($_value){
 	return $_value;
 }
 
-function getXY($clusters){
-	$return = array('x' => 1,'y' => 1,'bri' => 255);
-	foreach($clusters as $cluster_id => $attributs){
-		if($cluster_id == 8){
-			foreach($attributs as $attribut_id => $value){
-				if($attribut_id == 0){
-					$return['bri'] = $value['value'];
-				}
-			}
-		}else if($cluster_id == 768){
-			foreach($attributs as $attribut_id => $value){
-				if($attribut_id == 3){
-					$return['x'] = $value['value']/65535;
-				}
-				if($attribut_id == 4){
-					$return['y'] = $value['value']/65535;
-				}
-			}
-		}
-	}
-	return $return;
-}
-
 if (isset($result['devices'])) {
 	foreach ($result['devices'] as $ieee => $endpoints) {
 		$zigbee = zigbee::byLogicalId($ieee, 'zigbee');
@@ -130,11 +107,6 @@ if (isset($result['devices'])) {
 					if($endpoint_id == 1 && $cluster_id == 1 && $attribut_id == 33){
 						$zigbee->batteryStatus($value);
 						continue;
-					}
-					if($cluster_id == 768 && ($attribut_id == 3 || $attribut_id == 4)){ #Color cluster, need to convert value to RGB
-						$xy = getXY($clusters);
-						$rgb = zigbeeCmd::convertXYToRGB($xy['x'],$xy['y'],$xy['bri']);
-						$value['value'] = '#' . sprintf('%02x', $rgb['red']) . sprintf('%02x', $rgb['green']) . sprintf('%02x', $rgb['blue']);
 					}
 					if($attribut_id !== 'cmd'){
 						$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id);

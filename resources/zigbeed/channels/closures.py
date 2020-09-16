@@ -20,27 +20,29 @@ import zigpy.zcl.clusters.closures as closures
 
 import registries
 from const import REPORT_CONFIG_IMMEDIATE, SIGNAL_ATTR_UPDATED
+import shared
+import utils
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(closures.DoorLock.cluster_id)
 class DoorLockChannel():
-    """Door lock channel."""
+	"""Door lock channel."""
 
-    _value_attribute = 0
-    REPORT_CONFIG = ({"attr": "lock_state", "config": REPORT_CONFIG_IMMEDIATE},)
+	_value_attribute = 0
+	REPORT_CONFIG = ({"attr": "lock_state", "config": REPORT_CONFIG_IMMEDIATE},)
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(closures.Shade.cluster_id)
 class Shade():
-    """Shade channel."""
+	"""Shade channel."""
 
 
 @registries.CLIENT_CHANNELS_REGISTRY.register(closures.WindowCovering.cluster_id)
 class WindowCoveringClient():
-    """Window client channel."""
+	"""Window client channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(closures.WindowCovering.cluster_id)
 class WindowCovering():
-    """Window channel."""
+	"""Window channel."""
 
-    _value_attribute = 8
-    REPORT_CONFIG = ({"attr": "current_position_lift_percentage", "config": REPORT_CONFIG_IMMEDIATE},)
+	_value_attribute = 8
+	REPORT_CONFIG = ({"attr": "current_position_lift_percentage", "config": REPORT_CONFIG_IMMEDIATE},)

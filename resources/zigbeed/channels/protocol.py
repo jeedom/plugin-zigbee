@@ -19,102 +19,104 @@ import logging
 import zigpy.zcl.clusters.protocol as protocol
 
 import registries
+import shared
+import utils
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.AnalogInputExtended.cluster_id)
 class AnalogInputExtended():
-    """Analog Input Extended channel."""
+	"""Analog Input Extended channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.AnalogInputRegular.cluster_id)
 class AnalogInputRegular():
-    """Analog Input Regular channel."""
+	"""Analog Input Regular channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.AnalogOutputExtended.cluster_id)
 class AnalogOutputExtended():
-    """Analog Output Regular channel."""
+	"""Analog Output Regular channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.AnalogOutputRegular.cluster_id)
 class AnalogOutputRegular():
-    """Analog Output Regular channel."""
+	"""Analog Output Regular channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.AnalogValueExtended.cluster_id)
 class AnalogValueExtended():
-    """Analog Value Extended edition channel."""
+	"""Analog Value Extended edition channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.AnalogValueRegular.cluster_id)
 class AnalogValueRegular():
-    """Analog Value Regular channel."""
+	"""Analog Value Regular channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.BacnetProtocolTunnel.cluster_id)
 class BacnetProtocolTunnel():
-    """Bacnet Protocol Tunnel channel."""
+	"""Bacnet Protocol Tunnel channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.BinaryInputExtended.cluster_id)
 class BinaryInputExtended():
-    """Binary Input Extended channel."""
+	"""Binary Input Extended channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.BinaryInputRegular.cluster_id)
 class BinaryInputRegular():
-    """Binary Input Regular channel."""
+	"""Binary Input Regular channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.BinaryOutputExtended.cluster_id)
 class BinaryOutputExtended():
-    """Binary Output Extended channel."""
+	"""Binary Output Extended channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.BinaryOutputRegular.cluster_id)
 class BinaryOutputRegular():
-    """Binary Output Regular channel."""
+	"""Binary Output Regular channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.BinaryValueExtended.cluster_id)
 class BinaryValueExtended():
-    """Binary Value Extended channel."""
+	"""Binary Value Extended channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.BinaryValueRegular.cluster_id)
 class BinaryValueRegular():
-    """Binary Value Regular channel."""
+	"""Binary Value Regular channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.GenericTunnel.cluster_id)
 class GenericTunnel():
-    """Generic Tunnel channel."""
+	"""Generic Tunnel channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.MultistateInputExtended.cluster_id)
 class MultiStateInputExtended():
-    """Multistate Input Extended channel."""
+	"""Multistate Input Extended channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.MultistateInputRegular.cluster_id)
 class MultiStateInputRegular():
-    """Multistate Input Regular channel."""
+	"""Multistate Input Regular channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.MultistateOutputExtended.cluster_id)
 class MultiStateOutputExtended():
-    """Multistate Output Extended channel."""
+	"""Multistate Output Extended channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.MultistateOutputRegular.cluster_id)
 class MultiStateOutputRegular():
-    """Multistate Output Regular channel."""
+	"""Multistate Output Regular channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.MultistateValueExtended.cluster_id)
 class MultiStateValueExtended():
-    """Multistate Value Extended channel."""
+	"""Multistate Value Extended channel."""
 
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(protocol.MultistateValueRegular.cluster_id)
 class MultiStateValueRegular():
-    """Multistate Value Regular channel."""
+	"""Multistate Value Regular channel."""
