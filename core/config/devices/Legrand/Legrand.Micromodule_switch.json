@@ -1,5 +1,5 @@
 {
-  "name": "Legrand prise mobile Céliane",
+  "name": "Legrand micro module",
   "buylink" : "",
   "commands": [
     {
@@ -30,16 +30,6 @@
       "isHistorized": 0,
       "value" : "Etat",
       "logicalId": "1::on_off::off"
-    },
-    {
-      "name": "Puissance",
-      "generic_type": "POWER",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 1,
-      "isHistorized": 1,
-      "unite":"W",
-      "logicalId": "1::2820::1291"
     }
   ]
 }
