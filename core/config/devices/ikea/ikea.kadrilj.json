@@ -8,7 +8,8 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::258::8"
+      "logicalId": "1::258::8",
+      "generic_type": "FLAP_STATE"
     },
     {
       "name": "Position",
@@ -17,7 +18,8 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::window_covering::go_to_lift_percentage::#slider#"
+      "logicalId": "1::window_covering::go_to_lift_percentage::#slider#",
+      "generic_type": "FLAP_SLIDER"
     }
   ]
 }

@@ -125,7 +125,7 @@ class zigbee extends eqLogic {
     $cmd .= ' --controller '. config::byKey('controller', 'zigbee');
     $cmd .= ' --channel '. config::byKey('channel', 'zigbee');
     log::add('zigbee', 'info', 'Lancement démon zigbeed : ' . $cmd);
-    exec($cmd . ' >> ' . log::getPathToLog('zigbee') . ' 2>&1 &');
+    exec($cmd . ' >> ' . log::getPathToLog('zigbeed') . ' 2>&1 &');
     return true;
   }
   
