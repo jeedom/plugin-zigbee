@@ -242,6 +242,7 @@ if (!isConnect('admin')) {
         'nwk': devices_neighbours[z].nwk,
         'model': devices_neighbours[z].model,
         'manufacturer': devices_neighbours[z].manufacturer,
+        'offline': devices_neighbours[z].offline,
       }
       if (isset(zigbee_logicalIds_name[devices_neighbours[z].ieee])) {
         data_node.name = zigbee_logicalIds_name[devices_neighbours[z].ieee]
@@ -270,17 +271,21 @@ if (!isConnect('admin')) {
         graph.removeNode(node.id);
         return;
       }
-      nodecolor = '#d20606';
+      nodecolor = '#5F6A6A';
       var nodesize = 10;
       const nodeshape = 'rect';
       if (node.data.nwk == '0x0000') {
         nodecolor = '#a65ba6';
-        nodesize = 16;
+        nodesize = 24;
+      } else if (node.data.offline) {
+        nodecolor = '#d20606';
       } else if (node.data.type == 'Coordinator') {
+        nodesize = 16;
         nodecolor = '#00a2e8';
       }  else if (node.data.type == 'End_Device') {
         nodecolor = '#7BCC7B';
       }  else if (node.data.type == 'Router') {
+        nodesize = 16;
         nodecolor = '#E5E500';
       }
       var ui = Viva.Graph.svg('g'),
@@ -308,10 +313,7 @@ if (!isConnect('admin')) {
       });
       return ui;
     }).placeNode(function (nodeUI, pos) {
-      nodeUI.attr('transform',
-      'translate(' +
-      (pos.x - nodeSize / 3) + ',' + (pos.y - nodeSize / 2.5) +
-      ')');
+      nodeUI.attr('transform','translate(' +(pos.x - nodeSize / 3) + ',' + (pos.y - nodeSize / 2.5) +')');
     });
     var idealLength = 200;
     var layout = Viva.Graph.Layout.forceDirected(graph, {
