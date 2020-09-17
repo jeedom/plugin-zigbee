@@ -141,7 +141,7 @@ if args.pid:
 if args.cycle:
 	_cycle = float(args.cycle)
 if args.channel:
-	_channel = float(args.channel)
+	_channel = int(args.channel)
 if args.controller:
 	_controller = args.controller
 if args.cycle:
