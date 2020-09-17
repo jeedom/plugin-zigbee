@@ -55,32 +55,36 @@ from restServer import *
 # ----------------------------------------------------------------------------
 
 async def start_zigbee():
-	zigpy_config={
-		"database_path": _data_folder+"/network.db",
-		"device": {
-			"path": _device,
-		},
-		"network" : {
-			"channel" : _channel
+	try:
+		zigpy_config={
+			"database_path": _data_folder+"/network.db",
+			"device": {
+				"path": _device,
+			},
+			"network" : {
+				"channel" : _channel
+			}
 		}
-	}
-	logging.debug('Init zigbee network with config : '+str(zigpy_config))
-	shared.ZIGPY = await ControllerApplication.new(
-		config=ControllerApplication.SCHEMA(zigpy_config),
-		auto_form=True,
-		start_radio=True,
-	)
-	listener = MainListener(shared.ZIGPY)
-	shared.ZIGPY.add_listener(listener)
-	# Have every device in the database fire the same event so you can attach listeners
-	for device in shared.ZIGPY.devices.values():
-		listener.device_initialized(device, new=False)
+		logging.debug('Init zigbee network with config : '+str(zigpy_config))
+		shared.ZIGPY = await ControllerApplication.new(
+			config=ControllerApplication.SCHEMA(zigpy_config),
+			auto_form=True,
+			start_radio=True,
+		)
+		listener = MainListener(shared.ZIGPY)
+		shared.ZIGPY.add_listener(listener)
+		for device in shared.ZIGPY.devices.values():
+			listener.device_initialized(device, new=False)
 
-	logging.debug('Init and start http server : '+str(zigpy_config))
-	http_server = HTTPServer(shared.REST_SERVER)
-	http_server.listen(_socketport, address=_socket_host)
-	logging.debug('Start zigbee network')
-	await asyncio.get_running_loop().create_future()
+		logging.debug('Init and start http server : '+str(zigpy_config))
+		http_server = HTTPServer(shared.REST_SERVER)
+		http_server.listen(_socketport, address=_socket_host)
+		logging.debug('Start zigbee network')
+		await asyncio.get_running_loop().create_future()
+	except Exception as e:
+		logging.error('Fatal error : '+str(e))
+		logging.debug(traceback.format_exc())
+		shutdown()
 
 def handler(signum=None, frame=None):
 	logging.debug("Signal %i caught, exiting..." % int(signum))
