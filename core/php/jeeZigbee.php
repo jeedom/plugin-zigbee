@@ -108,7 +108,7 @@ if (isset($result['devices'])) {
 						$zigbee->batteryStatus($value);
 					}else if(strcmp($attribut_id, 'cmd') === 0){
 						foreach ($value as $cmd_id => $cmd_value) {
-							log::add('zigbee','debug','Search command logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
+							log::add('zigbee','debug','Search command logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.' => '.$cmd_value['value']);
 							$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
 							if(is_object($cmd)){
 								$cmd->event(convertValue($cmd_value['value']));
@@ -116,14 +116,14 @@ if (isset($result['devices'])) {
 						}
 					}else if(strcmp($attribut_id, 'gcmd') === 0){
 						foreach ($value as $cmd_id => $cmd_value) {
-							log::add('zigbee','debug','Search general command logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
+							log::add('zigbee','debug','Search general command logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.' => '.$cmd_value['value']);
 							$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
 							if(is_object($cmd)){
 								$cmd->event(convertValue($cmd_value['value']));
 							}
 						}
 					}else {
-						log::add('zigbee','debug','Search attribut logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id);
+						log::add('zigbee','debug','Search attribut logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.' => '.$value['value']);
 						$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id);
 						if(is_object($cmd)){
 							$cmd->event(convertValue($value['value']));

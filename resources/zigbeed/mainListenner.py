@@ -27,6 +27,9 @@ class MainListener:
 	def __init__(self, application):
 		self.application = application
 
+	def unknown_cluster_message(self, cmd_id,*args):
+		logging.info("************************* Unknown cluster message : %s" %(cmd_id))
+
 	def device_joined(self, device):
 		logging.info("************************* Device joined : %s" %(device))
 		shared.JEEDOM_COM.send_change_immediate({'device_joined' : str(device._ieee)});

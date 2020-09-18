@@ -1,0 +1,15 @@
+{
+  "name": "Xiaomi Aquara inondation",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4519-xiaomi-capteur-d-eau-zigbee-aqara-6970504210257.html",
+  "commands": [
+    {
+      "name": "Inondation",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "FLOOD"
+    }
+  ]
+}
