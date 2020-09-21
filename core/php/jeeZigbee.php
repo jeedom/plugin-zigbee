@@ -84,7 +84,16 @@ $CONVERT_VALUE=array(
 	'ZoneStatus.Alarm_1' => 1,
 	'ZoneStatus.0' => 0,
 	'Bool.true' => 1,
-	'Bool.false' => 0
+	'Bool.false' => 0,
+	'SystemMode.Off' => __('Arrêt',__FILE__),
+	'SystemMode.Auto' => __('Automatique',__FILE__),
+	'SystemMode.Cool' => __('Climatisation',__FILE__),
+	'SystemMode.Heat' => __('Chauffage',__FILE__),
+	'SystemMode.Emergency_Heating' => __('Chauffage d\'urgence',__FILE__),
+	'SystemMode.Pre_cooling' => __('Pré-Climatisation',__FILE__),
+	'SystemMode.Fan_only' => __('Ventilation',__FILE__),
+	'SystemMode.Dry' => __('Séchage',__FILE__),
+	'SystemMode.Sleep' => __('En veille',__FILE__),
 );
 
 function convertValue($_value){

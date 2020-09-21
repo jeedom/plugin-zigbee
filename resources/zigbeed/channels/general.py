@@ -188,6 +188,12 @@ class PollControl():
 	CHECKIN_FAST_POLL_TIMEOUT = 2 * 4  # 2s
 	LONG_POLL = 6 * 4  # 6s
 
+	def attribute_updated(cluster, attribute_id, value):
+		return False
+
+	def cluster_command(cluster, command_id, *args):
+		return False
+
 @registries.DEVICE_TRACKER_CLUSTERS.register(general.PowerConfiguration.cluster_id)
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(general.PowerConfiguration.cluster_id)
 class PowerConfigurationChannel():
