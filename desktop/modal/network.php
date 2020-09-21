@@ -218,6 +218,12 @@ if (!isConnect('admin')) {
   });
   
   function network_graph(devices_neighbours){
+    controler_ieee = null
+    for (z in devices_neighbours) {
+      if(devices_neighbours[z].nwk == 0){
+        controler_ieee = devices_neighbours[z].ieee
+      }
+    }
     max_lqi = 1;
     for (z in devices_neighbours) {
       if(devices_neighbours[z].lqi > max_lqi){
@@ -247,10 +253,14 @@ if (!isConnect('admin')) {
         data_node.name = '{{Controlleur}}'
       }
       graph.addNode(devices_neighbours[z].ieee, data_node);
-      
-      for(i in devices_neighbours[z].neighbours){
-        graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {isdash: 0, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
+      if(devices_neighbours[z].neighbours.length == 0 && controler_ieee != null){
+        graph.addLink(devices_neighbours[z].ieee, controler_ieee, {isdash: 0, lengthfactor: 10});
+      }else{
+        for(i in devices_neighbours[z].neighbours){
+          graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {isdash: 0, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
+        }
       }
+      
     }
     var graphics = Viva.Graph.View.svgGraphics()
     var nodeSize = 24
