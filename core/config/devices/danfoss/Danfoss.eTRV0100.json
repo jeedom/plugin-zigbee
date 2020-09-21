@@ -1,6 +1,7 @@
 {
   "name": "Danfoss eTRV0100",
   "buylink" : "",
+  "remark": "Pour réinitialiser la vanne, enlever les piles et les remettre en appuyant sur le bouton jusqu'au second rallumage de l'écran.",
   "commands": [
     {
       "name": "Température",
