@@ -104,10 +104,6 @@ if (!isConnect('admin')) {
             <td class="zigbee-yellow"><i class="fas fa-square fa-2x"></i></td>
             <td>{{Routeur}}</td>
           </tr>
-          <tr>
-            <td class="zigbee-red"><i class="fas fa-square fa-2x"></i></td>
-            <td>{{Présumé mort ou Pas de voisin}}</td>
-          </tr>
         </tbody>
       </table>
       <div id="graph-node-name"></div>
@@ -277,14 +273,12 @@ if (!isConnect('admin')) {
       if (node.data.nwk == '0x0000') {
         nodecolor = '#a65ba6';
         nodesize = 24;
-      } else if (node.data.offline) {
-        nodecolor = '#d20606';
       } else if (node.data.type == 'Coordinator') {
         nodesize = 16;
         nodecolor = '#00a2e8';
-      }  else if (node.data.type == 'End_Device') {
+      }  else if (node.data.type == 'EndDevice' || node.data.type == 'End_Device') {
         nodecolor = '#7BCC7B';
-      }  else if (node.data.type == 'Router') {
+      } else if (node.data.type == 'Router') {
         nodesize = 16;
         nodecolor = '#E5E500';
       }
