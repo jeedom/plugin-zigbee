@@ -369,6 +369,9 @@ class zigbeeCmd extends cmd {
       }
       $info = explode('::',str_replace(array_keys($replace),$replace,$information));
       $data = array('endpoint' => intval($info[0]),'cluster'=>$info[1],'command'=>$info[2]);
+      if(config::byKey('awaitCmd','zigbee') == 0){
+        $data['await'] = 1;
+      }
       if (count($info) > 3){
         $data['args'] = array_slice($info,3);
         if($data['cluster'] == 'thermostat' && $data['command'] == 'setpoint_raise_lower'){

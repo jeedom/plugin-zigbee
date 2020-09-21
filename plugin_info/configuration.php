@@ -72,6 +72,12 @@ if (!isConnect('admin')) {
       </div>
     </div>
     <div class="form-group">
+      <label class="col-lg-4 control-label">{{Attendre le retour des commandes (plus lent mais plus sur)}}</label>
+      <div class="col-lg-2">
+        <input type="checkbox" class="configKey" data-l1key="awaitCmd" />
+      </div>
+    </div>
+    <div class="form-group">
       <label class="col-lg-4 control-label">{{Channel}}</label>
       <div class="col-lg-2">
         <select class="configKey form-control" data-l1key="channel">

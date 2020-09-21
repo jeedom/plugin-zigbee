@@ -22,6 +22,7 @@ import os
 import shared,utils
 import json
 import traceback
+import asyncio
 from map import *
 try:
 	from tornado.web import RequestHandler,Application,HTTPError
@@ -139,9 +140,15 @@ class DeviceHandler(RequestHandler):
 					command = getattr(cluster, cmd['command'])
 					if 'args' in cmd:
 						args = cmd['args']
-						await command(*args)
+						if 'await' in cmd:
+							await command(*args)
+						else:
+							asyncio.ensure_future(command(*args))
 					else:
-						await command()
+						if 'await' in cmd:
+							await command()
+						else:
+							asyncio.ensure_future(command())
 				return self.write(utils.format_json_result(success=True))
 			raise Exception("No method found")
 		except Exception as e:
