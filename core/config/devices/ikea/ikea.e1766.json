@@ -1,0 +1,14 @@
+{
+  "name": "Ikea télécommande 2 boutons store",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Bouton 1",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::258::cmd::0"
+    }
+  ]
+}
