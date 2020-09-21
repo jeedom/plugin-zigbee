@@ -368,6 +368,10 @@ class zigbeeCmd extends cmd {
       $data = array('endpoint' => intval($info[0]),'cluster'=>$info[1],'command'=>$info[2]);
       if (count($info) > 3){
         $data['args'] = array_slice($info,3);
+        if($data['cluster'] == 'thermostat' && $data['command'] == 'setpoint_raise_lower'){
+          $current_value = $this->getCmdValue()->execCmd();
+          $data['args'][1] =  ($data['args'][1] - $current_value)*10;
+        }
       }
       $datas[] = $data;
     }
