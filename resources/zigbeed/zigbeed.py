@@ -57,7 +57,7 @@ from restServer import *
 async def start_zigbee():
 	try:
 		zigpy_config={
-			"database_path": _data_folder+"/network.db",
+			"database_path": _data_folder+"/network_"+_controller+".db",
 			"device": {
 				"path": _device,
 			},
@@ -174,13 +174,13 @@ if os.path.exists(_data_folder+'/config.json'):
 if _controller == 'ezsp' :
 	from bellows.zigbee.application import ControllerApplication
 elif _controller == 'deconz' :
-	from zigpydeconz.zigbee.application import ControllerApplication
+	from zigpy_deconz.zigbee.application import ControllerApplication
 elif _controller == 'zigate' :
-	from zigpyzigate.zigbee.application import ControllerApplication
+	from zigpy_zigate.zigbee.application import ControllerApplication
 elif _controller == 'cc' :
-	from zigpycc.zigbee.application import ControllerApplication
+	from zigpy_cc.zigbee.application import ControllerApplication
 elif _controller == 'xbee' :
-	from zigpyxbee.zigbee.application import ControllerApplication
+	from zigpy_xbee.zigbee.application import ControllerApplication
 
 shared.CONTROLLER = _controller
 
