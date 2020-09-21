@@ -5,7 +5,7 @@
     {
       "name": "Bouton 1",
       "type": "info",
-      "subtype": "string",
+      "subtype": "binary",
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::6::cmd::0"
