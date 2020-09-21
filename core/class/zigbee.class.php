@@ -153,6 +153,9 @@ class zigbee extends eqLogic {
       }
       $eqLogic = self::byLogicalId($device['ieee'],'zigbee');
       $device_type = trim(str_replace(' ','_',trim(trim(self::getAttribute(1,0,4,$device).'.'.trim(self::getAttribute(1,0,5,$device)),'_'))),'.');
+      if($device_type == ''){
+        $device_type = trim(str_replace(' ','_',trim(trim(self::getAttribute(2,0,4,$device).'.'.trim(self::getAttribute(2,0,5,$device)),'_'))),'.');
+      }
       if(!is_object($eqLogic)){
         $eqLogic = new self();
         $eqLogic->setLogicalId($device['ieee']);

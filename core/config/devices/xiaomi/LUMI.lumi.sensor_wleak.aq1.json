@@ -5,7 +5,7 @@
     {
       "name": "Inondation",
       "type": "info",
-      "subtype": "numeric",
+      "subtype": "binary",
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::1280::cmd::1",
