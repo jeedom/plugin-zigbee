@@ -145,7 +145,12 @@ sendVarToJS('zigbee_ids',$ids);
 											echo '</label>';
 										}
 										?>
-										
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">{{Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)}}</label>
+									<div class="col-sm-9">
+										<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="dontAwaitCmd"/>
 									</div>
 								</div>
 							</fieldset>

@@ -23,6 +23,7 @@ import shared,utils
 import json
 import traceback
 import asyncio
+import registries
 from map import *
 try:
 	from tornado.web import RequestHandler,Application,HTTPError
@@ -135,6 +136,14 @@ class DeviceHandler(RequestHandler):
 					if not hasattr(endpoint,cmd['cluster']):
 						raise Exception("Cluster not found : "+str(cmd['cluster']))
 					cluster = getattr(endpoint, cmd['cluster'])
+					if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],cmd['command']):
+						logging.info("Use specific command action")
+						command = getattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], cmd['command'])
+						if 'await' in cmd:
+							await command(cluster,cmd)
+						else:
+							asyncio.ensure_future(command(cluster,cmd))
+						continue
 					if not hasattr(cluster,cmd['command']):
 						raise Exception("Command not found : "+str(cmd['command']))
 					command = getattr(cluster, cmd['command'])

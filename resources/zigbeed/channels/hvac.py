@@ -76,6 +76,17 @@ class ThermostatChannel():
 	{"attr": "pi_heating_demand", "config": REPORT_CONFIG_CLIMATE_DEMAND},
 	)
 
+	async def setpoint_raise_lower(_cluster,_cmd):
+		if not hasattr(_cluster,_cmd['command']):
+			raise Exception("Command not found : "+str(_cmd['command']))
+		command = getattr(_cluster, _cmd['command'])
+		current_setpoint = await _cluster.read_attributes([18])
+		if 18 not in current_setpoint[0]:
+			raise Exception("Can not read current thermostat setpoint")
+		_cmd['args'][1] = (float(_cmd['args'][1]) - (current_setpoint[0][18]/100))*10
+		args = _cmd['args']
+		await command(*args)
+
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(hvac.UserInterface.cluster_id)
 class UserInterface():
 	"""User interface (thermostat) channel."""
