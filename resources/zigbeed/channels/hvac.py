@@ -83,6 +83,8 @@ class ThermostatChannel():
 		current_setpoint = await _cluster.read_attributes([18])
 		if 18 not in current_setpoint[0]:
 			raise Exception("Can not read current thermostat setpoint")
+		if float(_cmd['args'][1])*10 == current_setpoint[0][18]:
+			return
 		_cmd['args'][1] = (float(_cmd['args'][1]) - (current_setpoint[0][18]/100))*10
 		args = _cmd['args']
 		await command(*args)
