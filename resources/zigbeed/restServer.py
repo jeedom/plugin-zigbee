@@ -160,7 +160,10 @@ class DeviceHandler(RequestHandler):
 					if not self.json_args['cluster'] in endpoint.out_clusters:
 						raise Exception("Cluster not found : "+str(self.json_args['cluster']))
 					cluster = endpoint.out_clusters[self.json_args['cluster']]
-				await cluster.write_attributes(self.json_args['attributes'])
+				attributes = {}
+				for i in self.json_args['attributes']:
+					attributes[int(i)] = self.json_args['attributes'][i]
+				await cluster.write_attributes(attributes)
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'initialize':
 				device = utils.findDevice(self.json_args['ieee'])

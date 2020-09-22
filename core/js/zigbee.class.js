@@ -186,7 +186,7 @@ jeedom.zigbee.device.getAttributes = function(_params){
 }
 
 jeedom.zigbee.device.setAttributes = function(_params){
-  var paramsRequired = ['ieee','cluster','endpoints','attributes'];
+  var paramsRequired = ['ieee','cluster','endpoint','attributes'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -199,7 +199,13 @@ jeedom.zigbee.device.setAttributes = function(_params){
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
     request: '/device/attributes',
-    data : json_encode({ieee : _params.ieee,endpoints : _params.endpoints,cluster : _params.cluster,attributes : _params.attributes}),
+    data : json_encode({
+      ieee : _params.ieee,
+      endpoint : _params.endpoint,
+      cluster : _params.cluster,
+      cluster_type : _params.cluster_type || 'in',
+      attributes : _params.attributes
+    }),
     type : 'PUT'
   };
   $.ajax(paramsAJAX);

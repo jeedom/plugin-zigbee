@@ -46,6 +46,16 @@ $node_data = zigbee::request('/device/info',array('ieee'=>$eqLogic->getLogicalId
             <span id="span_nodeGetAttrResult" style="margin-left:10px;"></span>
           </div>
         </div>
+        <legend>{{Ecriture d'un attribut}}</legend>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <input class="setNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}"/>
+            <input class="setNodeAttr from-control" data-l1key="cluster" placeholder="{{Cluster}}"/>
+            <input class="setNodeAttr from-control" data-l1key="attributes" placeholder="{{Attribut}}"/>
+            <input class="setNodeAttr from-control" data-l1key="value" placeholder="{{Valeur}}"/>
+            <a class="btn btn-success btn-sm" id="bt_nodeSetAttr">{{Valider}}</a>
+          </div>
+        </div>
       </fieldset>
     </form>
   </div>
@@ -93,6 +103,26 @@ $('#configNodeTab').off('click','#bt_nodeGetAttr').on('click','#bt_nodeGetAttr',
       }else{
         $('#span_nodeGetAttrResult').empty().html('{{Résulat attribut}} '+parseInt(infos.attributes)+' : '+data[0][parseInt(infos.attributes)])
       }
+    }
+  })
+});
+
+$('#configNodeTab').off('click','#bt_nodeSetAttr').on('click','#bt_nodeSetAttr',function(){
+  var infos = $('#configNodeTab').getValues('.setNodeAttr')[0]
+  var attributes = {}
+  attributes[parseInt(infos.attributes)] = parseInt(infos.value)
+  infos.ieee = zigbeeNodeIeee
+  jeedom.zigbee.device.setAttributes({
+    ieee : infos.ieee,
+    cluster_type : 'in',
+    endpoint : parseInt(infos.endpoint),
+    cluster : parseInt(infos.cluster),
+    attributes : attributes,
+    error: function (error) {
+      $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success : function(data){
+      $('#div_nodeDeconzAlert').showAlert({message: '{{Valeur ecrite avec succès}}', level: 'success'});
     }
   })
 });
