@@ -158,6 +158,53 @@ jeedom.zigbee.device.initialize = function(_params){
   $.ajax(paramsAJAX);
 }
 
+jeedom.zigbee.device.getAttributes = function(_params){
+  var paramsRequired = ['ieee','cluster','endpoint','attributes','allowCache'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    request: '/device/attributes',
+    data : json_encode({
+      ieee : _params.ieee,
+      endpoint : _params.endpoint,
+      cluster : _params.cluster,
+      cluster_type : _params.cluster_type || 'in',
+      attributes : _params.attributes,
+      allowCache : _params.allowCache,
+    }),
+    type : 'POST'
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.zigbee.device.setAttributes = function(_params){
+  var paramsRequired = ['ieee','cluster','endpoints','attributes'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    request: '/device/attributes',
+    data : json_encode({ieee : _params.ieee,endpoints : _params.endpoints,cluster : _params.cluster,attributes : _params.attributes}),
+    type : 'PUT'
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.zigbee.util.displayAsTable = function(_data){
   var table = '<table class="table table-condensed table-bordered">';
   table+= '<tbody>';

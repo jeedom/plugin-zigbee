@@ -117,8 +117,51 @@ class DeviceHandler(RequestHandler):
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
+	async def post(self,arg1):
+		try:
+			if arg1 == 'attributes':
+				device = utils.findDevice(self.json_args['ieee'])
+				if device == None:
+					raise Exception("Device not found")
+				if not self.json_args['endpoint'] in device.endpoints:
+					raise Exception("Endpoint not found : "+str(self.json_args['endpoint']))
+				endpoint = device.endpoints[self.json_args['endpoint']]
+				if self.json_args['cluster_type'] == 'in':
+					if not self.json_args['cluster'] in endpoint.in_clusters:
+						raise Exception("Cluster not found : "+str(self.json_args['cluster']))
+					cluster = endpoint.in_clusters[self.json_args['cluster']]
+				else:
+					if not self.json_args['cluster'] in endpoint.out_clusters:
+						raise Exception("Cluster not found : "+str(self.json_args['cluster']))
+					cluster = endpoint.out_clusters[self.json_args['cluster']]
+				if self.json_args['allowCache'] == 1:
+					values = await cluster.read_attributes(self.json_args['attributes'],True)
+				else:
+					values = await cluster.read_attributes(self.json_args['attributes'])
+				return self.write(utils.format_json_result(success=True,data=values))
+		except Exception as e:
+			logging.debug(traceback.format_exc())
+			return self.write(utils.format_json_result(success="error",data=str(e)))
+
 	async def put(self,arg1):
 		try:
+			if arg1 == 'attributes':
+				device = utils.findDevice(self.json_args['ieee'])
+				if device == None:
+					raise Exception("Device not found")
+				if not self.json_args['endpoint'] in device.endpoints:
+					raise Exception("Endpoint not found : "+str(self.json_args['endpoint']))
+				endpoint = device.endpoints[self.json_args['endpoint']]
+				if self.json_args['cluster_type'] == 'in':
+					if not self.json_args['cluster'] in endpoint.in_clusters:
+						raise Exception("Cluster not found : "+str(self.json_args['cluster']))
+					cluster = endpoint.in_clusters[self.json_args['cluster']]
+				else:
+					if not self.json_args['cluster'] in endpoint.out_clusters:
+						raise Exception("Cluster not found : "+str(self.json_args['cluster']))
+					cluster = endpoint.out_clusters[self.json_args['cluster']]
+				await cluster.write_attributes(self.json_args['attributes'])
+				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'initialize':
 				device = utils.findDevice(self.json_args['ieee'])
 				if device == None :

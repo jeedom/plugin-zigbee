@@ -30,6 +30,5 @@ try {
   log::add('zigbee','debug',json_encode($result,true));
   echo json_encode(array('state' => 'ok','result' => $result));
 } catch (Exception $e) {
-  http_response_code(500);
-  die($e->getMessage());
+  echo json_encode(array('state' => 'error','result' => $e->getMessage()));
 }
