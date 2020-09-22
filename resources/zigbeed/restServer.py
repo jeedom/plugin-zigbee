@@ -125,7 +125,7 @@ class DeviceHandler(RequestHandler):
 					raise Exception("Device not found")
 				await utils.initialize_device_cluster(device)
 				return self.write(utils.format_json_result(success=True))
-			if arg1 == 'action':
+			if arg1 == 'command':
 				device = utils.findDevice(self.json_args['ieee'])
 				if device == None :
 					raise Exception("Device not found")

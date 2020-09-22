@@ -377,7 +377,7 @@ class zigbeeCmd extends cmd {
       }
       $datas[] = $data;
     }
-    zigbee::request('/device/action',array('ieee'=>$eqLogic->getLogicalId(),'cmd' => $datas),'PUT');
+    zigbee::request('/device/command',array('ieee'=>$eqLogic->getLogicalId(),'cmd' => $datas),'PUT');
   }
   
   /*     * **********************Getteur Setteur*************************** */
