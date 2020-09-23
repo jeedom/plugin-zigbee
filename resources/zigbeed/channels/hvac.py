@@ -91,7 +91,7 @@ class ThermostatChannel():
 		if not hasattr(_cluster,_cmd['command']):
 			raise Exception("Command not found : "+str(_cmd['command']))
 		command = getattr(_cluster, _cmd['command'])
-		if not lastOrderTime == None and (time.time() - lastOrderTime) < 10:
+		if not lastOrderTime == None and (time.time() - lastOrderTime) < 10 and not lastOrder == None:
 			if float(_cmd['args'][1]) == lastOrder:
 				return
 			_cmd['args'][1] = (float(_cmd['args'][1]) - lastOrder)*10
