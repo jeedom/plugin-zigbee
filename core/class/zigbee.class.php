@@ -33,7 +33,7 @@ class zigbee extends eqLogic {
       }
       $url = trim($url,'&');
     }
-    log::add('deconz','debug',$url.' type : '.$_type);
+    log::add('zigbee','debug',$url.' type : '.$_type);
     $request_http = new com_http($url);
     $request_http->setHeader(array(
       'Autorization: '.jeedom::getApiKey('zigbee'),
