@@ -1,7 +1,7 @@
 {
   "name": "Sonoff Basic ZBR3",
   "buylink" : "",
-  "remark" : "Equipement générique pour une prise ou tout module On/Off",
+  "remark" : "",
   "commands": [
     {
       "name": "Etat",
