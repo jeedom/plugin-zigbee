@@ -69,19 +69,20 @@ async def serialize_application():
 		obj['ezsp'] = {}
 		status, node_type, network_params = await shared.ZIGPY._ezsp.getNetworkParameters()
 		version = await shared.ZIGPY._ezsp.get_board_info()
-		obj['ezsp']['extendedPanId'] = network_params.extendedPanId
-		obj['ezsp']['panId'] = network_params.panId
+		obj['ezsp']['extendedPanId'] = ":".join("{:02x}".format(x) for x in network_params.extendedPanId)
+		obj['ezsp']['panId'] = hex(network_params.panId)
 		obj['ezsp']['radioTxPower'] = network_params.radioTxPower
 		obj['ezsp']['radioChannel'] = network_params.radioChannel
-		obj['ezsp']['nwkManagerId'] = network_params.nwkManagerId
-		obj['ezsp']['nwkUpdateId'] = network_params.nwkUpdateId
+		obj['ezsp']['nwkManagerId'] = hex(network_params.nwkManagerId)
+		obj['ezsp']['nwkUpdateId'] = hex(network_params.nwkUpdateId)
 		obj['ezsp']['version'] = str(version[2])
 	if shared.CONTROLLER == 'deconz':
 		obj['deconz'] = {}
-		obj['deconz']['extendedPanId'] = shared.ZIGPY._ext_pan_id
-		obj['deconz']['panId'] = shared.ZIGPY._pan_id
+		obj['deconz']['version'] = hex(shared.ZIGPY.version)
+		obj['deconz']['extendedPanId'] = ":".join("{:02x}".format(x) for x in shared.ZIGPY._ext_pan_id)
+		obj['deconz']['panId'] = hex(shared.ZIGPY._pan_id)
 		obj['deconz']['radioChannel'] = shared.ZIGPY._channel
-		obj['deconz']['nwkUpdateId'] = shared.ZIGPY._nwk_update_id
+		obj['deconz']['nwkUpdateId'] = hex(shared.ZIGPY._nwk_update_id)
 	return obj
 
 async def serialize_cluster(cluster):
