@@ -18,7 +18,7 @@ if (!isConnect('admin')) {
   throw new Exception('401 Unauthorized');
 }
 ?>
-<script type="text/javascript" src="plugins/openzwave/3rdparty/vivagraph/vivagraph.min.js"></script>
+<script type="text/javascript" src="plugins/zigbee/3rdparty/vivagraph/vivagraph.min.js"></script>
 <style>
 #graph_network {
   height: 80%;
@@ -55,6 +55,10 @@ if (!isConnect('admin')) {
 }
 .node-na-color {
   color: white;
+}
+
+#graph_network svg g text{
+  fill: var(--txt-color) !important;
 }
 </style>
 <div id='div_networkZigbeeAlert' style="display: none;"></div>
