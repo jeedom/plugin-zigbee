@@ -11,22 +11,22 @@ sudo apt-get update
 echo 50 > ${PROGRESS_FILE}
 sudo apt-get install -y python3 python3-pip
 echo 60 > ${PROGRESS_FILE}
-sudo pip3 install zigpy
+sudo pip3 install --upgrade zigpy
 echo 65 > ${PROGRESS_FILE}
-sudo pip3 install bellows==0.20.1
+sudo pip3 install --upgrade bellows
 echo 70 > ${PROGRESS_FILE}
-sudo pip3 install zha-quirks
+sudo pip3 install --upgrade zha-quirks
 echo 75 > ${PROGRESS_FILE}
-sudo pip3 install zigpy_znp
+sudo pip3 install --upgrade zigpy_znp
 echo 80 > ${PROGRESS_FILE}
-sudo pip3 install zigpy-xbee
+sudo pip3 install --upgrade zigpy-xbee
 echo 85 > ${PROGRESS_FILE}
-sudo pip3 install zigpy-deconz==0.10
+sudo pip3 install --upgrade zigpy-deconz
 echo 90 > ${PROGRESS_FILE}
-sudo pip3 install zigpy-zigate
+sudo pip3 install --upgrade zigpy-zigate
 echo 95 > ${PROGRESS_FILE}
-sudo pip3 install zigpy-cc
+sudo pip3 install --upgrade zigpy-cc
 echo 96 > ${PROGRESS_FILE}
-sudo pip3 install tornado
+sudo pip3 install --upgrade tornado
 echo "Everything is successfully installed!"
 rm ${PROGRESS_FILE}
