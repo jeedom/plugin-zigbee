@@ -76,6 +76,12 @@ async def serialize_application():
 		obj['ezsp']['nwkManagerId'] = network_params.nwkManagerId
 		obj['ezsp']['nwkUpdateId'] = network_params.nwkUpdateId
 		obj['ezsp']['version'] = str(version[2])
+	if shared.CONTROLLER == 'deconz':
+		obj['deconz'] = {}
+		obj['deconz']['extendedPanId'] = shared.ZIGPY._ext_pan_id
+		obj['deconz']['panId'] = shared.ZIGPY._pan_id
+		obj['deconz']['radioChannel'] = shared.ZIGPY._channel
+		obj['deconz']['nwkUpdateId'] = shared.ZIGPY._nwk_update_id
 	return obj
 
 async def serialize_cluster(cluster):
