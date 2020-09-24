@@ -217,6 +217,9 @@ jeedom.zigbee.util.displayAsTable = function(_data){
   var table = '<table class="table table-condensed table-bordered">';
   table+= '<tbody>';
   for(var i in _data){
+    if(_data[i] == null){
+      continue;
+    }
     table+= '<tr>';
     table+= '<td><strong>';
     table+= i;

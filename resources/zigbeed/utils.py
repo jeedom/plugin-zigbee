@@ -65,6 +65,11 @@ async def serialize_application():
 		'nwk': shared.ZIGPY.nwk,
 		'config': shared.ZIGPY._config
 	}
+	try:
+		obj['config']['network']['tc_link_key'] = ":".join("{:02x}".format(x) for x in obj['config']['network']['tc_link_key'])
+	except Exception as e:
+		pass
+
 	if shared.CONTROLLER == 'ezsp':
 		obj['ezsp'] = {}
 		status, node_type, network_params = await shared.ZIGPY._ezsp.getNetworkParameters()
