@@ -244,7 +244,11 @@ class zigbee extends eqLogic {
   /*     * *********************Méthodes d'instance************************* */
   
   public function getImage() {
-    return 'plugins/zigbee/core/config/devices/' . self::getImgFilePath($this->getConfiguration('device'));
+    $file = 'plugins/zigbee/core/config/devices/' . self::getImgFilePath($this->getConfiguration('device'));
+    if(!file_exists(__DIR__.'/../../../../'.$file)){
+      return 'plugins/zigbee/plugin_info/zigbee_icon.png';
+    }
+    return $file;
   }
   
   public function postSave() {
