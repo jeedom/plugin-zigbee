@@ -181,6 +181,8 @@ elif _controller == 'cc' :
 	from zigpy_cc.zigbee.application import ControllerApplication
 elif _controller == 'xbee' :
 	from zigpy_xbee.zigbee.application import ControllerApplication
+elif _controller == 'znp' :
+	from zigpy_znp.zigbee.application import ControllerApplication
 
 shared.CONTROLLER = _controller
 

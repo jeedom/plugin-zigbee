@@ -33,6 +33,7 @@ if (!isConnect('admin')) {
           <option value="zigate">{{Zigate}}</option>
           <option value="cc">{{CC}}</option>
           <option value="xbee">{{Xbee}}</option>
+          <option value="znp">{{ZNP}}</option>
         </select>
       </div>
     </div>
@@ -69,12 +70,6 @@ if (!isConnect('admin')) {
       <label class="col-lg-4 control-label">{{Supprimer automatiquement les périphériques exclus}}</label>
       <div class="col-lg-2">
         <input type="checkbox" class="configKey" data-l1key="autoRemoveExcludeDevice" />
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-lg-4 control-label">{{Attendre le retour des commandes (plus lent mais plus sur)}}</label>
-      <div class="col-lg-2">
-        <input type="checkbox" class="configKey" data-l1key="awaitCmd" />
       </div>
     </div>
     <div class="form-group">
