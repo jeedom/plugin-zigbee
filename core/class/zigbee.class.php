@@ -341,7 +341,8 @@ class zigbeeCmd extends cmd {
     if($this->getType() == 'info'){
       return;
     }
-    $datas = array();
+    $commands = array();
+    $attributes = array();
     $eqLogic = $this->getEqLogic();
     $informations = explode('|',$this->getLogicalId());
     foreach ($informations as $information) {
@@ -354,7 +355,7 @@ class zigbeeCmd extends cmd {
         list($r, $g, $b) = str_split(str_replace('#', '', $_options['color']), 2);
         $info = self::convertRGBToXY(hexdec($r), hexdec($g), hexdec($b));
         $replace['#color#'] = round($info['x']*65535).'::'.round($info['y']*65535);
-        $datas[] = array('endpoint' => intval(explode('::',$information)[0]),'cluster'=>'level','command'=>'move_to_level','args'=>array(round($info['bri']),0));
+        $commands[] = array('endpoint' => intval(explode('::',$information)[0]),'cluster'=>'level','command'=>'move_to_level','args'=>array(round($info['bri']),0));
         break;
         case 'select':
         $replace['#select#'] = $_options['select'];
@@ -368,16 +369,25 @@ class zigbeeCmd extends cmd {
         break;
       }
       $info = explode('::',str_replace(array_keys($replace),$replace,$information));
-      $data = array('endpoint' => intval($info[0]),'cluster'=>$info[1],'command'=>$info[2]);
-      if($this->getEqLogic()->getConfiguration('dontAwaitCmd',0) == 0){
-        $data['await'] = 1;
+      if($info[0] == 'attributes'){
+        $attributes[] = array('endpoint' => intval($info[1]),'cluster_type'=> $info[2],'cluster'=>intval($info[3]),'attributes'=>array(intval($info[4])=>evaluate($info[5])));
+      }else{
+        $command = array('endpoint' => intval($info[0]),'cluster'=>$info[1],'command'=>$info[2]);
+        if($this->getEqLogic()->getConfiguration('dontAwaitCmd',0) == 0){
+          $command['await'] = 1;
+        }
+        if (count($info) > 3){
+          $command['args'] = array_slice($info,3);
+        }
+        $commands[] = $command;
       }
-      if (count($info) > 3){
-        $data['args'] = array_slice($info,3);
-      }
-      $datas[] = $data;
     }
-    zigbee::request('/device/command',array('ieee'=>$eqLogic->getLogicalId(),'cmd' => $datas),'PUT');
+    if(count($commands) > 0){
+      zigbee::request('/device/command',array('ieee'=>$eqLogic->getLogicalId(),'cmd' => $commands),'PUT');
+    }
+    if(count($attributes) > 0){
+      zigbee::request('/device/attributes',array('ieee'=>$eqLogic->getLogicalId(),'attributes' => $attributes),'PUT');
+    }
   }
   
   /*     * **********************Getteur Setteur*************************** */

@@ -37,7 +37,7 @@
       "isHistorized": 1,
       "unite" : "°C",
       "value": "Consigne",
-      "logicalId": "1::thermostat::setpoint_raise_lower::2::#slider#",
+      "logicalId": "attributes::1::in::513::18::#slider#*100",
       "generic_type" : "THERMOSTAT_SET_SETPOINT",
       "configuration" : {
         "minValue":"6",

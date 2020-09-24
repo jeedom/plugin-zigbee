@@ -201,10 +201,12 @@ jeedom.zigbee.device.setAttributes = function(_params){
     request: '/device/attributes',
     data : json_encode({
       ieee : _params.ieee,
-      endpoint : _params.endpoint,
-      cluster : _params.cluster,
-      cluster_type : _params.cluster_type || 'in',
-      attributes : _params.attributes
+      attributes : [{
+        endpoint : _params.endpoint,
+        cluster : _params.cluster,
+        cluster_type : _params.cluster_type || 'in',
+        attributes : _params.attributes
+      }]
     }),
     type : 'PUT'
   };

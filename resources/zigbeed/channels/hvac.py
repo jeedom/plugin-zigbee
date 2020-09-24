@@ -77,34 +77,6 @@ class ThermostatChannel():
 	{"attr": "pi_heating_demand", "config": REPORT_CONFIG_CLIMATE_DEMAND},
 	)
 
-	async def setpoint_raise_lower(_cluster,_cmd):
-		utils.initSharedDeviceData(_cluster,18)
-		if not 'lastOrderTime' in shared.DEVICES_DATA[_cluster.endpoint.device._ieee][_cluster.endpoint._endpoint_id][_cluster.cluster_id]:
-			shared.DEVICES_DATA[_cluster.endpoint.device._ieee][_cluster.endpoint._endpoint_id][_cluster.cluster_id]['lastOrderTime'] = None
-		if not 'lastOrder' in shared.DEVICES_DATA[_cluster.endpoint.device._ieee][_cluster.endpoint._endpoint_id][_cluster.cluster_id]:
-			shared.DEVICES_DATA[_cluster.endpoint.device._ieee][_cluster.endpoint._endpoint_id][_cluster.cluster_id]['lastOrder'] = None
-
-		lastOrderTime = shared.DEVICES_DATA[_cluster.endpoint.device._ieee][_cluster.endpoint._endpoint_id][_cluster.cluster_id]['lastOrderTime']
-		lastOrder = shared.DEVICES_DATA[_cluster.endpoint.device._ieee][_cluster.endpoint._endpoint_id][_cluster.cluster_id]['lastOrder']
-		shared.DEVICES_DATA[_cluster.endpoint.device._ieee][_cluster.endpoint._endpoint_id][_cluster.cluster_id]['lastOrderTime'] = time.time()
-		shared.DEVICES_DATA[_cluster.endpoint.device._ieee][_cluster.endpoint._endpoint_id][_cluster.cluster_id]['lastOrder'] = float(_cmd['args'][1])
-		if not hasattr(_cluster,_cmd['command']):
-			raise Exception("Command not found : "+str(_cmd['command']))
-		command = getattr(_cluster, _cmd['command'])
-		if not lastOrderTime == None and (time.time() - lastOrderTime) < 10 and not lastOrder == None:
-			if float(_cmd['args'][1]) == lastOrder:
-				return
-			_cmd['args'][1] = (float(_cmd['args'][1]) - lastOrder)*10
-		else:
-			current_setpoint = await _cluster.read_attributes([18])
-			if 18 not in current_setpoint[0]:
-				raise Exception("Can not read current thermostat setpoint")
-			if float(_cmd['args'][1])*10 == current_setpoint[0][18]:
-				return
-			_cmd['args'][1] = (float(_cmd['args'][1]) - (current_setpoint[0][18]/100))*10
-		args = _cmd['args']
-		await command(*args)
-
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(hvac.UserInterface.cluster_id)
 class UserInterface():
 	"""User interface (thermostat) channel."""
