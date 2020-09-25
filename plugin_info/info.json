@@ -1,7 +1,7 @@
 {
 	"id" : "zigbee",
 	"name" : "Zigbee",
-	"description" : "Plugin zigbee",
+	"description" : "Plugin zigbee pouvant etre utilisé avec les Zigbee  : deconz, ezsp (Silicon labs) et en support beta avec Zigate, Texas Instrument. IMPORTANT : bien lire la documentation avant tout achat",
 	"licence" : "AGPL",
 	"author" : "Jeedom SAS",
 	"require" : "4.0",
