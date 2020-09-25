@@ -9,8 +9,8 @@
 	"hasDependency" : true,
 	"hasOwnDeamon" : true,
 	"maxDependancyInstallTime" : 0,
-	"changelog" : "https://jeedom.github.io/plugin-template/#language#/changelog",
-	"documentation" : "https://jeedom.github.io/plugin-template/#language#/",
+	"changelog": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/zigbee\/changelog",
+	"documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/zigbee\/",
 	"language" : ["fr_FR","en_US","de_DE","sp_SP"],
 	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile","v4"]
 }
