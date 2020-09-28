@@ -413,7 +413,7 @@ if (!isConnect('admin')) {
         }
         let td = $('.td_lqi[data-ieee1="'+device.ieee+'"][data-ieee2="'+ndevice.ieee+'"]')
         if(td){
-          td.empty().html('<strong>'+ndevice.lqi+'<strong>');
+          td.empty().html('<strong>'+device.neighbours[j].lqi+'<strong>');
           td.removeClass('zigbee-red');
           if(ndevice.lqi < 200){
             td.addClass('zigbee-green');
@@ -423,7 +423,7 @@ if (!isConnect('admin')) {
         }
         td = $('.td_lqi[data-ieee1="'+ndevice.ieee+'"][data-ieee2="'+device.ieee+'"]')
         if(td){
-          td.empty().html('<strong>'+ndevice.lqi+'<strong>');
+          td.empty().html('<strong>'+device.neighbours[j].lqi+'<strong>');
           td.removeClass('zigbee-red');
           if(ndevice.lqi < 200){
             td.addClass('zigbee-green');
