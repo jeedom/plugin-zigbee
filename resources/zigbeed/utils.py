@@ -141,6 +141,9 @@ async def initialize_device_cluster(device):
 						logging.debug("reporting '%s' attr on '%s' cluster: %d/%d/%d: For: '%s'",attr_name,cluster.ep_attribute,min_report_int,max_report_int,reportable_change,device.ieee)
 					except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 						logging.debug("failed to set reporting for '%s' attr on '%s' cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
+	if shared.CONTROLLER == 'deconz': # Force save neightbors on deconz after inclusion
+		coord = shared.ZIGPY.get_device(ieee=self.ieee)
+		coord.neighbors.scan()
 
 def findDevice(ieee):
 	for device in shared.ZIGPY.devices.values():

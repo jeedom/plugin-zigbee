@@ -60,9 +60,6 @@ class MainListener:
 		if new:
 			asyncio.ensure_future(utils.initialize_device_cluster(device))
 			shared.JEEDOM_COM.send_change_immediate({'device_initialized' : str(device._ieee)});
-			if shared.CONTROLLER == 'deconz': # Force save neightbors on deconz after inclusion
-				coord = shared.ZIGPY.get_device(ieee=self.ieee)
-				await coord.neighbors.scan()
 
 	def cluster_command(self, cluster, command_id, *args):
 		try:
