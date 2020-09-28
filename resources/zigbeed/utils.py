@@ -143,7 +143,7 @@ async def initialize_device_cluster(device):
 						logging.debug("failed to set reporting for '%s' attr on '%s' cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
 	if shared.CONTROLLER == 'deconz': # Force save neightbors on deconz after inclusion
 		coord = shared.ZIGPY.get_device(ieee=self.ieee)
-		coord.neighbors.scan()
+		await coord.neighbors.scan()
 
 def findDevice(ieee):
 	for device in shared.ZIGPY.devices.values():
