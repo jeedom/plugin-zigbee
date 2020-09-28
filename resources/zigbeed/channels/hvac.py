@@ -26,7 +26,7 @@ from zigpy.exceptions import ZigbeeException
 import zigpy.zcl.clusters.hvac as hvac
 from zigpy.zcl.foundation import Status
 
-import registries, zha_typing as zha_typing
+import registries
 from const import (
 	REPORT_CONFIG_MAX_INT,
 	REPORT_CONFIG_MIN_INT,

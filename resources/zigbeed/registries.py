@@ -28,26 +28,26 @@ SMARTTHINGS_HUMIDITY_CLUSTER = 0xFC45
 
 
 REMOTE_DEVICE_TYPES = {
-    zigpy.profiles.zha.PROFILE_ID: [
-        zigpy.profiles.zha.DeviceType.COLOR_CONTROLLER,
-        zigpy.profiles.zha.DeviceType.COLOR_DIMMER_SWITCH,
-        zigpy.profiles.zha.DeviceType.COLOR_SCENE_CONTROLLER,
-        zigpy.profiles.zha.DeviceType.DIMMER_SWITCH,
-        zigpy.profiles.zha.DeviceType.LEVEL_CONTROL_SWITCH,
-        zigpy.profiles.zha.DeviceType.NON_COLOR_CONTROLLER,
-        zigpy.profiles.zha.DeviceType.NON_COLOR_SCENE_CONTROLLER,
-        zigpy.profiles.zha.DeviceType.ON_OFF_SWITCH,
-        zigpy.profiles.zha.DeviceType.ON_OFF_LIGHT_SWITCH,
-        zigpy.profiles.zha.DeviceType.REMOTE_CONTROL,
-        zigpy.profiles.zha.DeviceType.SCENE_SELECTOR,
-    ],
-    zigpy.profiles.zll.PROFILE_ID: [
-        zigpy.profiles.zll.DeviceType.COLOR_CONTROLLER,
-        zigpy.profiles.zll.DeviceType.COLOR_SCENE_CONTROLLER,
-        zigpy.profiles.zll.DeviceType.CONTROL_BRIDGE,
-        zigpy.profiles.zll.DeviceType.CONTROLLER,
-        zigpy.profiles.zll.DeviceType.SCENE_CONTROLLER,
-    ],
+	zigpy.profiles.zha.PROFILE_ID: [
+		zigpy.profiles.zha.DeviceType.COLOR_CONTROLLER,
+		zigpy.profiles.zha.DeviceType.COLOR_DIMMER_SWITCH,
+		zigpy.profiles.zha.DeviceType.COLOR_SCENE_CONTROLLER,
+		zigpy.profiles.zha.DeviceType.DIMMER_SWITCH,
+		zigpy.profiles.zha.DeviceType.LEVEL_CONTROL_SWITCH,
+		zigpy.profiles.zha.DeviceType.NON_COLOR_CONTROLLER,
+		zigpy.profiles.zha.DeviceType.NON_COLOR_SCENE_CONTROLLER,
+		zigpy.profiles.zha.DeviceType.ON_OFF_SWITCH,
+		zigpy.profiles.zha.DeviceType.ON_OFF_LIGHT_SWITCH,
+		zigpy.profiles.zha.DeviceType.REMOTE_CONTROL,
+		zigpy.profiles.zha.DeviceType.SCENE_SELECTOR,
+	],
+	zigpy.profiles.zll.PROFILE_ID: [
+		zigpy.profiles.zll.DeviceType.COLOR_CONTROLLER,
+		zigpy.profiles.zll.DeviceType.COLOR_SCENE_CONTROLLER,
+		zigpy.profiles.zll.DeviceType.CONTROL_BRIDGE,
+		zigpy.profiles.zll.DeviceType.CONTROLLER,
+		zigpy.profiles.zll.DeviceType.SCENE_CONTROLLER,
+	],
 }
 
 

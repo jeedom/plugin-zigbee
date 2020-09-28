@@ -21,7 +21,7 @@ from typing import Any, List, Optional
 import zigpy.exceptions
 import zigpy.zcl.clusters.general as general
 
-import registries, zha_typing as zha_typing
+import registries
 from const import (
 	REPORT_CONFIG_ASAP,
 	REPORT_CONFIG_BATTERY_SAVE,

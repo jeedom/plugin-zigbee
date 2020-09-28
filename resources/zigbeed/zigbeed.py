@@ -31,6 +31,7 @@ import json
 import asyncio
 import logging
 import zhaquirks
+import zqueue
 
 import zigpy.types
 from zigpy.zdo import types as zdo_t
@@ -79,6 +80,7 @@ async def start_zigbee():
 		logging.debug('Init and start http server : '+str(zigpy_config))
 		http_server = HTTPServer(shared.REST_SERVER)
 		http_server.listen(_socketport, address=_socket_host)
+		asyncio.create_task(zqueue.handle())
 		logging.debug('Start zigbee network')
 		await asyncio.get_running_loop().create_future()
 	except Exception as e:

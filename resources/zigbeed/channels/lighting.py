@@ -18,7 +18,7 @@ import logging
 
 import zigpy.zcl.clusters.lighting as lighting
 
-import registries, zha_typing as zha_typing
+import registries
 from const import REPORT_CONFIG_DEFAULT
 import shared
 import utils

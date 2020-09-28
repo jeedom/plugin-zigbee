@@ -16,7 +16,7 @@
 """Smart energy channels module for Zigbee Home Automation."""
 import logging
 
-import registries, zha_typing as zha_typing
+import registries
 
 import zigpy.zcl.clusters.smartenergy as smartenergy
 

@@ -18,6 +18,7 @@ import shared,utils
 import traceback
 import registries
 import asyncio
+import zdevices
 
 class MainListener:
 	"""
@@ -58,7 +59,7 @@ class MainListener:
 			for cluster in endpoint.out_clusters.values(): # You need to attach a listener to every cluster to receive events
 				cluster.add_context_listener(self) # The context listener passes its own object as the first argument to the callback
 		if new:
-			asyncio.ensure_future(utils.initialize_device_cluster(device))
+			asyncio.ensure_future(zdevices.initialize(device))
 			shared.JEEDOM_COM.send_change_immediate({'device_initialized' : str(device._ieee)});
 
 	def cluster_command(self, cluster, command_id, *args):

@@ -16,7 +16,6 @@
 # along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 
 import sys
-import binascii
 import logging
 import os
 import shared,utils
@@ -25,6 +24,7 @@ import time
 import traceback
 import asyncio
 import registries
+import zdevices
 from map import *
 try:
 	from tornado.web import RequestHandler,Application,HTTPError
@@ -147,70 +147,32 @@ class DeviceHandler(RequestHandler):
 	async def put(self,arg1):
 		try:
 			if arg1 == 'attributes':
-				device = utils.findDevice(self.json_args['ieee'])
-				if device == None:
-					raise Exception("Device not found")
-				for attribute in self.json_args['attributes']:
-					if not attribute['endpoint'] in device.endpoints:
-						raise Exception("Endpoint not found : "+str(attribute['endpoint']))
-					endpoint = device.endpoints[attribute['endpoint']]
-					if attribute['cluster_type'] == 'in':
-						if not attribute['cluster'] in endpoint.in_clusters:
-							raise Exception("Cluster not found : "+str(attribute['cluster']))
-						cluster = endpoint.in_clusters[attribute['cluster']]
+				try:
+					await zdevices.write_attributes(self.json_args)
+				except Exception as e:
+					if 'allowQueue' in self.json_args:
+						logging.debug('Failed on write attribute'+str(self.json_args)+' => '+str(e))
+						logging.debug('Replan write attribut later')
+						zqueue.add('write_attributes',15,self.json_args,6)
 					else:
-						if not attribute['cluster'] in endpoint.out_clusters:
-							raise Exception("Cluster not found : "+str(attribute['cluster']))
-						cluster = endpoint.out_clusters[attribute['cluster']]
-					attributes = {}
-					for i in attribute['attributes']:
-						attributes[int(i)] = attribute['attributes'][i]
-					try:
-						await cluster.write_attributes(attributes)
-					except Exception as e:
-						logging.info("Error on write attributes, wait 10s and retry")
-						time.sleep(10)
-						await cluster.write_attributes(attributes)
+						raise
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'initialize':
 				device = utils.findDevice(self.json_args['ieee'])
 				if device == None :
 					raise Exception("Device not found")
-				await utils.initialize_device_cluster(device)
+				await zdevices.initialize(device)
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'command':
-				device = utils.findDevice(self.json_args['ieee'])
-				if device == None :
-					raise Exception("Device not found")
-				for cmd in self.json_args['cmd']:
-					if not cmd['endpoint'] in device.endpoints:
-						raise Exception("Endpoint not found : "+str(cmd['endpoint']))
-					endpoint = device.endpoints[cmd['endpoint']]
-					if not hasattr(endpoint,cmd['cluster']):
-						raise Exception("Cluster not found : "+str(cmd['cluster']))
-					cluster = getattr(endpoint, cmd['cluster'])
-					if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],cmd['command']):
-						logging.info("Use specific command action")
-						command = getattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], cmd['command'])
-						if 'await' in cmd:
-							await command(cluster,cmd)
-						else:
-							asyncio.ensure_future(command(cluster,cmd))
-						continue
-					if not hasattr(cluster,cmd['command']):
-						raise Exception("Command not found : "+str(cmd['command']))
-					command = getattr(cluster, cmd['command'])
-					if 'args' in cmd:
-						args = cmd['args']
-						if 'await' in cmd:
-							await command(*args)
-						else:
-							asyncio.ensure_future(command(*args))
+				try:
+					await zdevices.command(self.json_args)
+				except Exception as e:
+					if 'allowQueue' in self.json_args:
+						logging.debug('Failed on command'+str(self.json_args)+' => '+str(e))
+						logging.debug('Replan command later')
+						zqueue.add('command',15,self.json_args,6)
 					else:
-						if 'await' in cmd:
-							await command()
-						else:
-							asyncio.ensure_future(command())
+						raise
 				return self.write(utils.format_json_result(success=True))
 			raise Exception("No method found")
 		except Exception as e:
