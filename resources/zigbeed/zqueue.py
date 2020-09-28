@@ -23,8 +23,7 @@ import threading
 import zdevices
 
 def add(_type,_interval,_data,_repeat = 1):
-	data = {'data' : _data, 'timestamp' : time.time(),'type' : _type,'interval' : _interval,'repeat' :  _repeat}
-	shared.ZQUEUE.append(_data)
+	shared.ZQUEUE.append({'data' : _data, 'timestamp' : time.time(),'type' : _type,'interval' : _interval,'repeat' :  _repeat})
 
 async def handle():
 	while True:
@@ -40,13 +39,15 @@ async def handle():
 			logging.debug('Handle queue item : '+str(shared.ZQUEUE[i]))
 			try:
 				if shared.ZQUEUE[i]['type'] == 'write_attributes':
-					await zdevices.write_attributes(_data)
-				if shared.ZQUEUE[i]['type'] == 'command':
-					await zdevices.command(_data)
+					await zdevices.write_attributes(shared.ZQUEUE[i]['data'])
+				elif shared.ZQUEUE[i]['type'] == 'command':
+					await zdevices.command(shared.ZQUEUE[i]['data'])
 				shared.ZQUEUE.pop(i)
 			except Exception as e:
+				logging.debug('Error on queue for '+str(shared.ZQUEUE[i])+' => '+str(e))
 				if shared.ZQUEUE[i]['repeat'] < 1:
 					shared.ZQUEUE.pop(i)
+					continue
 				shared.ZQUEUE[i]['repeat'] = shared.ZQUEUE[i]['repeat'] - 1
 				pass
 		await asyncio.sleep(10)
