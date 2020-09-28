@@ -25,6 +25,7 @@ import traceback
 import asyncio
 import registries
 import zdevices
+import zqueue
 from map import *
 try:
 	from tornado.web import RequestHandler,Application,HTTPError

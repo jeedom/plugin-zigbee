@@ -28,7 +28,7 @@ def add(_type,_interval,_data,_repeat = 1):
 
 async def handle():
 	while True:
-		for i in shared.ZQUEUE:
+		for i in range(len(shared.ZQUEUE)):
 			if not 'type' in shared.ZQUEUE[i] or not 'timestamp' in shared.ZQUEUE[i] or not 'data' in shared.ZQUEUE[i] or not 'repeat' in shared.ZQUEUE[i] or not 'interval' in shared.ZQUEUE[i] :
 				shared.ZQUEUE.pop(i)
 				continue
@@ -37,6 +37,7 @@ async def handle():
 				continue
 			if (shared.ZQUEUE[i]['timestamp'] + shared.ZQUEUE[i]['interval']) > time.time():
 				continue
+			logging.debug('Handle queue item : '+str(shared.ZQUEUE[i]))
 			try:
 				if shared.ZQUEUE[i]['type'] == 'write_attributes':
 					await zdevices.write_attributes(_data)
