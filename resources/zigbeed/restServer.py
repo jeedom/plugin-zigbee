@@ -21,6 +21,7 @@ import logging
 import os
 import shared,utils
 import json
+import time
 import traceback
 import asyncio
 import registries
@@ -150,7 +151,6 @@ class DeviceHandler(RequestHandler):
 				if device == None:
 					raise Exception("Device not found")
 				for attribute in self.json_args['attributes']:
-					print(attribute)
 					if not attribute['endpoint'] in device.endpoints:
 						raise Exception("Endpoint not found : "+str(attribute['endpoint']))
 					endpoint = device.endpoints[attribute['endpoint']]
@@ -165,7 +165,12 @@ class DeviceHandler(RequestHandler):
 					attributes = {}
 					for i in attribute['attributes']:
 						attributes[int(i)] = attribute['attributes'][i]
-					await cluster.write_attributes(attributes)
+					try:
+						await cluster.write_attributes(attributes)
+					except Exception as e:
+						logging.info("Error on write attributes, wait 10s and retry")
+						time.sleep(10)
+						await cluster.write_attributes(attributes)
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'initialize':
 				device = utils.findDevice(self.json_args['ieee'])
