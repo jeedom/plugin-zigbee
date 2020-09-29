@@ -20,7 +20,7 @@ import registries
 import asyncio
 import zdevices
 
-class MainListener:
+class Listener:
 	"""
 	Contains callbacks that zigpy will call whenever something happens.	Look for `listener_event` in the Zigpy source or just look at the logged warnings.
 	"""

@@ -42,7 +42,7 @@ except ImportError:
 	print("Error: importing module jeedom.jeedom")
 	sys.exit(1)
 
-from mainListenner import *
+from listener import *
 
 try:
 	from tornado.httpserver import HTTPServer
@@ -72,7 +72,7 @@ async def start_zigbee():
 			auto_form=True,
 			start_radio=True,
 		)
-		listener = MainListener(shared.ZIGPY)
+		listener = Listener(shared.ZIGPY)
 		shared.ZIGPY.add_listener(listener)
 		for device in shared.ZIGPY.devices.values():
 			listener.device_initialized(device, new=False)
