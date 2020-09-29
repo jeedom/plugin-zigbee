@@ -193,6 +193,8 @@ if _device == 'auto':
 		_device = jeedom_utils.find_tty_usb('1366','0105')
 	if _controller == 'deconz' :
 		_device = jeedom_utils.find_tty_usb('1cf1','0030')
+	if _controller == 'zigate' :
+		_device = jeedom_utils.find_tty_usb('067b','2303')
 
 if _device is None:
 	logging.error('No device found')
