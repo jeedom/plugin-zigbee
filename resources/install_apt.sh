@@ -9,7 +9,7 @@ sudo apt-get clean
 echo 30 > ${PROGRESS_FILE}
 sudo apt-get update
 echo 50 > ${PROGRESS_FILE}
-sudo apt-get install -y python3 python3-pip python3-pyudev python3-serial
+sudo apt-get install -y python3 python3-pip python3-pyudev python3-serial python3-requests
 echo 60 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade zigpy
 echo 65 > ${PROGRESS_FILE}
