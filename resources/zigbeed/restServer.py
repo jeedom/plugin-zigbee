@@ -136,10 +136,12 @@ class DeviceHandler(RequestHandler):
 					if not self.json_args['cluster'] in endpoint.out_clusters:
 						raise Exception("Cluster not found : "+str(self.json_args['cluster']))
 					cluster = endpoint.out_clusters[self.json_args['cluster']]
+				if 'manufacturer' in self.json_args:
+					manufacturer = self.json_args['manufacturer']
 				if self.json_args['allowCache'] == 1:
-					values = await cluster.read_attributes(self.json_args['attributes'],True)
+					values = await cluster.read_attributes(self.json_args['attributes'],True,manufacturer=manufacturer)
 				else:
-					values = await cluster.read_attributes(self.json_args['attributes'])
+					values = await cluster.read_attributes(self.json_args['attributes'],manufacturer=manufacturer)
 				logging.debug('Attribute Value received : '+str(values))
 				return self.write(utils.format_json_result(success=True,data=values))
 		except Exception as e:

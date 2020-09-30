@@ -53,7 +53,7 @@ $device = zigbee::devicesParameters($eqLogic->getConfiguration('device'));
           echo '</thead>';
           echo '<tbody>';
           foreach ($device['config'] as $config) {
-            echo '<tr class="deviceConfig" data-endpoint="'.$config['endpoint'].'" data-cluster="'.$config['cluster'].' "data-attribute="'.$config['attribute'].'">';
+            echo '<tr class="deviceConfig" data-manufacturer="'.$config['manufacturer'].'" data-endpoint="'.$config['endpoint'].'" data-cluster="'.$config['cluster'].' "data-attribute="'.$config['attribute'].'">';
             echo '<td>'.$config['name'].'</td>';
             echo '<td>'.$config['endpoint'].'</td>';
             echo '<td>'.$config['cluster'].'</td>';
@@ -111,7 +111,7 @@ $device = zigbee::devicesParameters($eqLogic->getConfiguration('device'));
     <hr/>
     <form class="form-horizontal">
       <fieldset>
-        <legend>{{Lecture d'un attribut}} <label class="checkbox-inline" style="margin-left:15px;"><input type="checkbox" class="getNodeAttr" data-l1key="allowCache" checked/>{{Autoriser le cache}}</label></legend>
+        <legend>{{Lecture d'un attribut}} <label class="checkbox-inline" style="margin-left:15px;"><input type="checkbox" class="getNodeAttr" data-l1key="manufacturer"/>{{Manufacturer specific}}</label><label class="checkbox-inline" style="margin-left:15px;"><input type="checkbox" class="getNodeAttr" data-l1key="allowCache" checked/>{{Autoriser le cache}}</label></legend>
         <div class="form-group">
           <div class="col-sm-12">
             <input class="getNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}"/>
@@ -121,7 +121,7 @@ $device = zigbee::devicesParameters($eqLogic->getConfiguration('device'));
             <span id="span_nodeGetAttrResult" style="margin-left:10px;"></span>
           </div>
         </div>
-        <legend>{{Ecriture d'un attribut}}</legend>
+        <legend>{{Ecriture d'un attribut}} <label class="checkbox-inline" style="margin-left:15px;"><input type="checkbox" class="setNodeAttr" data-l1key="manufacturer"/>{{Manufacturer specific}}</label></legend>
         <div class="form-group">
           <div class="col-sm-12">
             <input class="setNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}"/>
@@ -150,6 +150,7 @@ if($('#configNodeTab .deviceConfig').length > 0){
       endpoint : parseInt(tr.attr('data-endpoint')),
       cluster : parseInt(tr.attr('data-cluster')),
       attributes : [parseInt(tr.attr('data-attribute'))],
+      manufacturer:parseInt(tr.attr('data-manufacturer')),
       allowCache : 1,
       global:false,
       error: function (error) {
@@ -177,6 +178,7 @@ $('#configNodeTab').off('click','.bt_refreshConfigAttribute').on('click','.bt_re
     endpoint : parseInt(tr.attr('data-endpoint')),
     cluster : parseInt(tr.attr('data-cluster')),
     attributes : [parseInt(tr.attr('data-attribute'))],
+    manufacturer:parseInt(tr.attr('data-manufacturer')),
     allowCache : 1,
     global:false,
     error: function (error) {
@@ -205,6 +207,7 @@ $('#configNodeTab').off('click','.bt_sendConfigAttribute').on('click','.bt_sendC
     cluster_type : 'in',
     endpoint : parseInt(tr.attr('data-endpoint')),
     cluster : parseInt(tr.attr('data-cluster')),
+    manufacturer:parseInt(tr.attr('data-manufacturer')),
     attributes : attributes,
     global:false,
     error: function (error) {
@@ -227,6 +230,7 @@ $('#actionNodeTab').off('click','#bt_nodeGetAttr').on('click','#bt_nodeGetAttr',
     cluster : parseInt(infos.cluster),
     attributes : [parseInt(infos.attributes)],
     allowCache : parseInt(infos.allowCache),
+    manufacturer : parseInt(infos.manufacturer),
     error: function (error) {
       $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
     },
@@ -249,6 +253,7 @@ $('#actionNodeTab').off('click','#bt_nodeSetAttr').on('click','#bt_nodeSetAttr',
     cluster_type : 'in',
     endpoint : parseInt(infos.endpoint),
     cluster : parseInt(infos.cluster),
+    manufacturer : parseInt(infos.manufacturer),
     attributes : attributes,
     error: function (error) {
       $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});

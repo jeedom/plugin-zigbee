@@ -79,7 +79,10 @@ async def write_attributes(_data):
 		attributes = {}
 		for i in attribute['attributes']:
 			attributes[int(i)] = attribute['attributes'][i]
-		await cluster.write_attributes(attributes)
+		manufacturer = None
+		if 'manufacturer' in attribute:
+			manufacturer = attribute['manufacturer']
+		await cluster.write_attributes(attributes,manufacturer=manufacturer)
 
 async def initialize(device):
 	for ep_id, endpoint in device.endpoints.items():

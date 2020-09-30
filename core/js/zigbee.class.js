@@ -179,6 +179,7 @@ jeedom.zigbee.device.getAttributes = function(_params){
       cluster_type : _params.cluster_type || 'in',
       attributes : _params.attributes,
       allowCache : _params.allowCache,
+      manufacturer: _params.manufacturer
     }),
     type : 'POST'
   };
@@ -205,7 +206,8 @@ jeedom.zigbee.device.setAttributes = function(_params){
         endpoint : _params.endpoint,
         cluster : _params.cluster,
         cluster_type : _params.cluster_type || 'in',
-        attributes : _params.attributes
+        attributes : _params.attributes,
+        manufacturer: _params.manufacturer
       }]
     }),
     type : 'PUT'
