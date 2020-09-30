@@ -1,3 +1,5 @@
+# Changelog Zigbee
+
 # Changelog plugin template
 
 >**IMPORTANT**
