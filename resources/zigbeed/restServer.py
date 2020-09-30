@@ -140,6 +140,7 @@ class DeviceHandler(RequestHandler):
 					values = await cluster.read_attributes(self.json_args['attributes'],True)
 				else:
 					values = await cluster.read_attributes(self.json_args['attributes'])
+				logging.debug('Attribute Value received : '+str(values))
 				return self.write(utils.format_json_result(success=True,data=values))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
