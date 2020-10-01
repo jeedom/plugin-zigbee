@@ -52,7 +52,10 @@ $device = zigbee::devicesParameters($eqLogic->getConfiguration('device'));
           echo '</tr>';
           echo '</thead>';
           echo '<tbody>';
-          foreach ($device['config'] as $config) {
+          foreach ($device['config'] as &$config) {
+            if(!isset($config['manufacturer'])){
+              $config['manufacturer'] = 0;
+            }
             echo '<tr class="deviceConfig" data-manufacturer="'.$config['manufacturer'].'" data-endpoint="'.$config['endpoint'].'" data-cluster="'.$config['cluster'].' "data-attribute="'.$config['attribute'].'">';
             echo '<td>'.$config['name'].'</td>';
             echo '<td>'.$config['endpoint'].'</td>';
