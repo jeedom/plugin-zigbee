@@ -390,7 +390,7 @@ class zigbeeCmd extends cmd {
       zigbee::request('/device/command',array('ieee'=>$eqLogic->getLogicalId(),'cmd' => $commands,'allowQueue' => ($this->getEqLogic()->getConfiguration('dontAllowQueue',0) == 0)),'PUT');
     }
     if(count($attributes) > 0){
-      zigbee::request('/device/attributes',array('ieee'=>$eqLogic->getLogicalId(),'attributes' => $attributes,'allowQueue' => ($this->getEqLogic()->getConfiguration('dontAllowQueue',0) == 0))),'PUT');
+      zigbee::request('/device/attributes',array('ieee'=>$eqLogic->getLogicalId(),'attributes' => $attributes,'allowQueue' => ($this->getEqLogic()->getConfiguration('dontAllowQueue',0) == 0)),'PUT');
     }
   }
   
