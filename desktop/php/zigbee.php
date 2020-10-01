@@ -153,6 +153,12 @@ sendVarToJS('zigbee_ids',$ids);
 										<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="dontAwaitCmd"/>
 									</div>
 								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">{{Ne pas autoriser la mise en fil d'attente pour réessayer en cas d'erreur)}}</label>
+									<div class="col-sm-9">
+										<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="dontAllowQueue"/>
+									</div>
+								</div>
 							</fieldset>
 						</form>
 					</div>
