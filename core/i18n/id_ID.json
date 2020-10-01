@@ -100,6 +100,7 @@
         "Objet parent": "Objek induk",
         "Catégorie": "Kategori",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
+        "Ne pas autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
         "Inconnu": "Tidak diketahui",
         "Ajouter une commande": "Tambahan pesanan",
         "Nom": "Nama",

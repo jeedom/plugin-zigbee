@@ -100,6 +100,7 @@
         "Objet parent": "Üst nesne",
         "Catégorie": "Kategori",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
+        "Ne pas autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
         "Inconnu": "Bilinmeyen",
         "Ajouter une commande": "Komuta ekle",
         "Nom": "İsim",
