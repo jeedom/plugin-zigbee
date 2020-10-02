@@ -100,6 +100,7 @@
         "Objet parent": "Objeto pai",
         "Catégorie": "Categoria",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
+        "Ne pas autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
         "Inconnu": "Desconhecido",
         "Ajouter une commande": "Adicionar comando",
         "Nom": "Nome",

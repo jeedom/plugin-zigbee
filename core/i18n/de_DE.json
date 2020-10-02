@@ -100,6 +100,7 @@
         "Objet parent": "Übergeordnetes Objekt",
         "Catégorie": "Kategorie",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
+        "Ne pas autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
         "Inconnu": "Unbekannt",
         "Ajouter une commande": "Kommando hinzufügen",
         "Nom": "Name",
