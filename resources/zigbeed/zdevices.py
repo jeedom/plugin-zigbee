@@ -24,6 +24,7 @@ import shared,utils
 import traceback
 import registries
 import zqueue
+import zigpy
 from map import *
 
 async def command(_data):
@@ -90,9 +91,12 @@ async def initialize(device):
 			continue
 		for cluster in endpoint.in_clusters.values(): # You need to attach a listener to every cluster to receive events
 			try:
-				await cluster.bind()
+				if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
+					await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
+				else:
+					await cluster.bind()
 			except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
-				logging.debug("Failed to bind '%s' cluster: %s", cluster.ep_attribute, str(ex))
+				logging.debug("Failed to bind/initialize '%s' cluster: %s", cluster.ep_attribute, str(ex))
 			if cluster.is_server and cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG'):
 				kwargs = {}
 				for report in registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].REPORT_CONFIG:
@@ -106,9 +110,12 @@ async def initialize(device):
 						logging.debug("failed to set reporting for '%s' attr on '%s' cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
 		for cluster in endpoint.out_clusters.values(): # You need to attach a listener to every cluster to receive events
 			try:
-				await cluster.bind()
+				if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
+					await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
+				else:
+					await cluster.bind()
 			except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
-				logging.debug("Failed to bind '%s' cluster: %s", cluster.ep_attribute, str(ex))
+				logging.debug("Failed to bind/initialize '%s' cluster: %s", cluster.ep_attribute, str(ex))
 			if cluster.is_server and cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG'):
 				kwargs = {}
 				for report in registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].REPORT_CONFIG:

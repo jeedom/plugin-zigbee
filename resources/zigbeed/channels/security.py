@@ -50,6 +50,17 @@ class IasWd():
 class IASZoneChannel():
 	"""Channel for the IASZone Zigbee cluster."""
 
+	async def initialize(cluster):
+		logging.debug("started IASZoneChannel configuration")
+		await cluster.bind()
+		ieee = cluster.endpoint.device.application.ieee
+		try:
+			res = await cluster.write_attributes({"cie_addr": ieee})
+			logging.debug("wrote cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,res[0],)
+		except ZigbeeException as ex:
+			logging.debug("Failed to write cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,str(ex),)
+		logging.debug("finished IASZoneChannel configuration")
+
 	def cluster_command(cluster, command_id, *args):
 		try:
 			changes = {'devices' : {str(cluster.endpoint.device._ieee) : {str(cluster.endpoint._endpoint_id) : {str(cluster.cluster_id) : {'cmd' : {}}}}}}
