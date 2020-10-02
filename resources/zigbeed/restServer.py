@@ -167,6 +167,12 @@ class DeviceHandler(RequestHandler):
 					raise Exception("Device not found")
 				await zdevices.initialize(device)
 				return self.write(utils.format_json_result(success=True))
+			if arg1 == 'get_basic_info':
+				device = utils.findDevice(self.json_args['ieee'])
+				if device == None :
+					raise Exception("Device not found")
+				await zdevices.get_basic_info(device)
+				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'command':
 				try:
 					await zdevices.command(self.json_args)
