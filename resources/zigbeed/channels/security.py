@@ -63,16 +63,20 @@ class IASZoneChannel():
 
 	def cluster_command(cluster, command_id, *args):
 		try:
-			changes = {'devices' : {str(cluster.endpoint.device._ieee) : {str(cluster.endpoint._endpoint_id) : {str(cluster.cluster_id) : {'cmd' : {}}}}}}
-			nb = 0
-			for i in args :
-				if hasattr(i, "__len__"):
-					if len(i) == 0:
-						continue
-					i = i[0]
-				changes['devices'][str(cluster.endpoint.device._ieee)][str(cluster.endpoint._endpoint_id)][str(cluster.cluster_id)]['cmd'][nb] = {"value" : str(i),"cluster_name" : cluster.name}
-				nb += 1
-			shared.JEEDOM_COM.send_change_immediate(changes);
-			return True
+			if command_id == 1:
+				logging.debug("Enroll requested from "+str(cluster.endpoint.device._ieee))
+				asyncio.ensure_future(cluster.enroll_response(0, 0))
+			else:
+				changes = {'devices' : {str(cluster.endpoint.device._ieee) : {str(cluster.endpoint._endpoint_id) : {str(cluster.cluster_id) : {'cmd' : {}}}}}}
+				nb = 0
+				for i in args :
+					if hasattr(i, "__len__"):
+						if len(i) == 0:
+							continue
+						i = i[0]
+					changes['devices'][str(cluster.endpoint.device._ieee)][str(cluster.endpoint._endpoint_id)][str(cluster.cluster_id)]['cmd'][nb] = {"value" : str(i),"cluster_name" : cluster.name}
+					nb += 1
+				shared.JEEDOM_COM.send_change_immediate(changes);
+				return True
 		except Exception as e:
 			logging.error(traceback.format_exc())
