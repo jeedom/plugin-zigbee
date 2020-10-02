@@ -226,6 +226,7 @@ $('#configNodeTab').off('click','.bt_sendConfigAttribute').on('click','.bt_sendC
 
 $('#actionNodeTab').off('click','#bt_nodeGetAttr').on('click','#bt_nodeGetAttr',function(){
   let infos = $('#actionNodeTab').getValues('.getNodeAttr')[0]
+  $('#span_nodeGetAttrResult').empty()
   jeedom.zigbee.device.getAttributes({
     ieee : zigbeeNodeIeee,
     cluster_type : 'in',
@@ -239,9 +240,9 @@ $('#actionNodeTab').off('click','#bt_nodeGetAttr').on('click','#bt_nodeGetAttr',
     },
     success : function(data){
       if(data[1][parseInt(infos.attributes)]){
-        $('#span_nodeGetAttrResult').empty().html('{{Erreur attribut}} '+parseInt(infos.attributes)+' : '+data[1][parseInt(infos.attributes)])
+        $('#span_nodeGetAttrResult').html('{{Erreur attribut}} '+parseInt(infos.attributes)+' : '+data[1][parseInt(infos.attributes)])
       }else{
-        $('#span_nodeGetAttrResult').empty().html('{{Résulat attribut}} '+parseInt(infos.attributes)+' : '+data[0][parseInt(infos.attributes)])
+        $('#span_nodeGetAttrResult').html('{{Résulat attribut}} '+parseInt(infos.attributes)+' : '+data[0][parseInt(infos.attributes)])
       }
     }
   })
