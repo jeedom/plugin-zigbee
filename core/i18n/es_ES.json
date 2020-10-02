@@ -24,6 +24,7 @@
     },
     "plugins\/zigbee\/desktop\/modal\/node.php": {
         "Equipement introuvable : ": "Equipo no encontrado:",
+        "Information": "Información",
         "Configuration": "Configuración",
         "Action": "Acción",
         "Informations brutes": "Información bruta",
