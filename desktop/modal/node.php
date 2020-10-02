@@ -27,11 +27,20 @@ $device = zigbee::devicesParameters($eqLogic->getConfiguration('device'));
 ?>
 <div id='div_nodeDeconzAlert' style="display: none;"></div>
 <ul class="nav nav-tabs" role="tablist">
-  <li role="presentation" class="active"><a href="#configNodeTab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-cog"></i> {{Configuration}}</a></li>
+  <li role="presentation" class="active"><a href="#infoNodeTab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info"></i> {{Information}}</a></li>
+  <li role="presentation"><a href="#configNodeTab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-cog"></i> {{Configuration}}</a></li>
   <li role="presentation"><a href="#actionNodeTab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Action}}</a></li>
   <li role="presentation"><a href="#rawNodeTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Informations brutes}}</a></li>
 </ul>
 <div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="infoNodeTab">
+    <br/>
+    <form class="form-horizontal">
+      <fieldset>
+        
+      </fieldset>
+    </form>
+  </div>
   <div role="tabpanel" class="tab-pane active" id="configNodeTab">
     <br/>
     <form class="form-horizontal">
