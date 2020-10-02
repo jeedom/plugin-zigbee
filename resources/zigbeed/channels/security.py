@@ -19,6 +19,7 @@ Security channels module for Zigbee Home Automation.
 """
 import asyncio
 import logging
+import zigpy
 
 from zigpy.exceptions import ZigbeeException
 import zigpy.zcl.clusters.security as security
@@ -52,7 +53,10 @@ class IASZoneChannel():
 
 	async def initialize(cluster):
 		logging.debug("started IASZoneChannel configuration")
-		await cluster.bind()
+		try:
+			await cluster.bind()
+		except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
+			logging.debug("Failed to bind/initialize '%s' cluster: %s", cluster.ep_attribute, str(ex))
 		ieee = cluster.endpoint.device.application.ieee
 		try:
 			res = await cluster.write_attributes({"cie_addr": ieee})
