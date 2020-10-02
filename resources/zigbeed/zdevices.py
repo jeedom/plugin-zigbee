@@ -92,6 +92,7 @@ async def initialize(device):
 		for cluster in endpoint.in_clusters.values(): # You need to attach a listener to every cluster to receive events
 			try:
 				if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
+					logging.debug(str(cluster.cluster_id)+ ' has specific function to initialize, I used it')
 					await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
 				else:
 					await cluster.bind()
@@ -111,6 +112,7 @@ async def initialize(device):
 		for cluster in endpoint.out_clusters.values(): # You need to attach a listener to every cluster to receive events
 			try:
 				if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
+					logging.debug(str(cluster.cluster_id)+ ' has specific function to initialize, I used it')
 					await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
 				else:
 					await cluster.bind()
