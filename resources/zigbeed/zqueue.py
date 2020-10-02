@@ -27,27 +27,27 @@ def add(_type,_interval,_data,_repeat = 1):
 
 async def handle():
 	while True:
-		for i in range(len(shared.ZQUEUE)):
-			if not 'type' in shared.ZQUEUE[i] or not 'timestamp' in shared.ZQUEUE[i] or not 'data' in shared.ZQUEUE[i] or not 'repeat' in shared.ZQUEUE[i] or not 'interval' in shared.ZQUEUE[i] :
-				shared.ZQUEUE.pop(i)
+		for zqueue in shared.ZQUEUE:
+			if not 'type' in zqueue or not 'timestamp' in zqueue or not 'data' in zqueue or not 'repeat' in zqueue or not 'interval' in zqueue :
+				shared.ZQUEUE.remove(zqueue)
 				continue
-			if shared.ZQUEUE[i]['repeat'] < 1:
-				shared.ZQUEUE.pop(i)
+			if zqueue['repeat'] < 1:
+				shared.ZQUEUE.remove(zqueue)
 				continue
-			if (shared.ZQUEUE[i]['timestamp'] + shared.ZQUEUE[i]['interval']) > time.time():
+			if (zqueue['timestamp'] + zqueue['interval']) > time.time():
 				continue
-			logging.debug('Handle queue item : '+str(shared.ZQUEUE[i]))
+			logging.debug('Handle queue item : '+str(zqueue))
 			try:
-				if shared.ZQUEUE[i]['type'] == 'write_attributes':
-					await zdevices.write_attributes(shared.ZQUEUE[i]['data'])
-				elif shared.ZQUEUE[i]['type'] == 'command':
-					await zdevices.command(shared.ZQUEUE[i]['data'])
-				shared.ZQUEUE.pop(i)
+				if zqueue['type'] == 'write_attributes':
+					await zdevices.write_attributes(zqueue['data'])
+				elif zqueue['type'] == 'command':
+					await zdevices.command(zqueue['data'])
+				shared.ZQUEUE.remove(zqueue)
 			except Exception as e:
-				logging.debug('Error on queue for '+str(shared.ZQUEUE[i])+' => '+str(e))
-				if shared.ZQUEUE[i]['repeat'] < 1:
-					shared.ZQUEUE.pop(i)
+				logging.debug('Error on queue for '+str(zqueue)+' => '+str(e))
+				if zqueue['repeat'] < 1:
+					shared.ZQUEUE.remove(zqueue)
 					continue
-				shared.ZQUEUE[i]['repeat'] = shared.ZQUEUE[i]['repeat'] - 1
+				zqueue['repeat'] = zqueue['repeat'] - 1
 				pass
 		await asyncio.sleep(10)
