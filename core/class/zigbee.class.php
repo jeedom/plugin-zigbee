@@ -197,6 +197,16 @@ class zigbee extends eqLogic {
     return null;
   }
   
+  public function getDeviceInformations($_data = null){
+    if($_data == null){
+      $_data = zigbee::request('/device/info',array('ieee'=>$this->getLogicalId()));
+    }
+    $return = array();
+    $return['zcl_version'] = self::getAttribute(1,0,0,$_data);
+    
+    return $return;
+  }
+  
   
   public static function devicesParameters($_device = '') {
     $return = array();
