@@ -41,7 +41,7 @@ $device = zigbee::devicesParameters($eqLogic->getConfiguration('device'));
       </fieldset>
     </form>
   </div>
-  <div role="tabpanel" class="tab-pane active" id="configNodeTab">
+  <div role="tabpanel" class="tab-pane" id="configNodeTab">
     <br/>
     <form class="form-horizontal">
       <fieldset>

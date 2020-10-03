@@ -52,11 +52,7 @@ class IASZoneChannel():
 	"""Channel for the IASZone Zigbee cluster."""
 
 	async def initialize(cluster):
-		logging.debug("started IASZoneChannel configuration")
-		try:
-			await cluster.bind()
-		except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
-			logging.debug("Failed to bind/initialize '%s' cluster: %s", cluster.ep_attribute, str(ex))
+		logging.debug("started IASZoneChannel specific configuration")
 		ieee = cluster.endpoint.device.application.ieee
 		try:
 			res = await cluster.write_attributes({"cie_addr": ieee})
