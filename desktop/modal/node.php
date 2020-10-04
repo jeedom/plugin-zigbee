@@ -191,13 +191,19 @@ $infos = $eqLogic->getDeviceInformations($node_data);
       <form class="form-horizontal">
         <fieldset>
           <div class="form-group">
-            <label class="col-sm-2 control-label">{{Réinitialiser le module}}</label>
+            <label class="col-sm-3 control-label">{{Rafraichir les informations}}</label>
+            <div class="col-sm-2">
+              <a class="btn btn-success bt_refreshZigbeeDeviceInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">{{Réinitialiser le module}}</label>
             <div class="col-sm-2">
               <a class="btn btn-warning bt_initializeZigbeeDevice"><i class="fas fa-sync"></i> {{Réinitialiser}}</a>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">{{Supprimer le module de la base zigbee}}</label>
+            <label class="col-sm-3 control-label">{{Supprimer le module de la base zigbee}}</label>
             <div class="col-sm-2">
               <a class="btn btn-danger bt_removeZigbeeDevice"><i class="fa fa-trash"></i> {{Supprimer}}</a>
             </div>
@@ -361,8 +367,19 @@ $infos = $eqLogic->getDeviceInformations($node_data);
     })
   });
   
+  $('#actionNodeTab').off('click','.bt_refreshZigbeeDeviceInfo').on('click','.bt_refreshZigbeeDeviceInfo',function(){
+    jeedom.zigbee.device.get_basic_info({
+      ieee : zigbeeNodeIeee,
+      error: function (error) {
+        $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (data) {
+        $('#div_nodeDeconzAlert').showAlert({message: '{{Informations récuperées avec succès}}', level: 'success'});
+      }
+    });
+  });
+  
   $('#actionNodeTab').off('click','.bt_removeZigbeeDevice').on('click','.bt_removeZigbeeDevice',function(){
-    var tr = $(this).closest('tr');
     bootbox.confirm("Etês vous sur de vouloir supprimer ce noeud ?", function(result){
       if(result){
         jeedom.zigbee.device.delete({
