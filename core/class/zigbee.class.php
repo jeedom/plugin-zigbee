@@ -263,6 +263,7 @@ class zigbee extends eqLogic {
       $return['battery_percent'] = 100;
     }
     $return['endpoints'] = array();
+    $profile_convertion = json_decode(file_get_contents(__DIR__.'/../config/profiles.json'),true);
     foreach ($_data['endpoints'] as $endpoint) {
       $return['endpoints'][$endpoint['id']] = array(
         'status' => $endpoint['status'],
@@ -271,6 +272,37 @@ class zigbee extends eqLogic {
         'in_cluster' => array(),
         'out_cluster' => array(),
       );
+      switch ($return['endpoints'][$endpoint['id']]['status']) {
+        case 0:
+        $return['endpoints'][$endpoint['id']]['status'] = __('Non initialisé',__FILE__);
+        break;
+        case 1:
+        $return['endpoints'][$endpoint['id']]['status'] = __('Ok',__FILE__);
+        break;
+        case 3:
+        $return['endpoints'][$endpoint['id']]['status'] = __('Inactive',__FILE__);
+        break;
+        default:
+        $return['endpoints'][$endpoint['id']]['status'] = __('Inconnue',__FILE__).' ('.$return['endpoints'][$endpoint['id']]['status'].')';
+        break;
+      }
+      switch ($return['endpoints'][$endpoint['id']]['profile_id']) {
+        case 260:
+        $return['endpoints'][$endpoint['id']]['profile_id'] = __('ZHA',__FILE__);
+        if(isset($profile_convertion['zha'][$endpoint['device_type']])){
+          $return['endpoints'][$endpoint['id']]['device_type'] = $profile_convertion['zha'][$endpoint['device_type']];
+        }
+        break;
+        case 49246:
+        $return['endpoints'][$endpoint['id']]['profile_id'] = __('ZLL',__FILE__);
+        if(isset($profile_convertion['zll'][$endpoint['device_type']])){
+          $return['endpoints'][$endpoint['id']]['device_type'] = $profile_convertion['zll'][$endpoint['device_type']];
+        }
+        break;
+        default:
+        $return['endpoints'][$endpoint['id']]['profile_id'] = __('Inconnue',__FILE__).' ('.$return['endpoints'][$endpoint['id']]['profile_id'].')';
+        break;
+      }
       foreach ($endpoint['output_clusters'] as $cluster) {
         $return['endpoints'][$endpoint['id']]['out_cluster'][] = array('id'=>$cluster['id'],'name'=>$cluster['name']);
       }
