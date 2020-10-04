@@ -202,8 +202,82 @@ class zigbee extends eqLogic {
       $_data = zigbee::request('/device/info',array('ieee'=>$this->getLogicalId()));
     }
     $return = array();
-    $return['zcl_version'] = self::getAttribute(1,0,0,$_data);
+    $return['ieee'] = $_data['ieee'];
+    $return['nwk'] = $_data['nwk'];
+    $return['node_descriptor'] = $_data['node_descriptor'];
+    switch ($_data['status']) {
+      case 0:
+      $return['status'] = __('Non initialisé',__FILE__);
+      break;
+      case 1:
+      $return['status'] = __('Découverte des endpoint OK',__FILE__);
+      break;
+      case 2:
+      $return['status'] = __('OK',__FILE__);
+      break;
+      default:
+      $return['status'] = __('Inconnue',__FILE__).' ('.$_data['status'].')';
+      break;
+    }
+    if(count($_data['endpoints']) == 0){
+      $return['alert_message'] = __('Aucun endpoints sur le module. Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\'inclusion)',__FILE__);
+      return $return;
+    }
     
+    $return['zcl_version'] = self::getAttribute(1,0,0,$_data);
+    $return['app_version'] = self::getAttribute(1,0,1,$_data);
+    $return['stack_version'] = self::getAttribute(1,0,2,$_data);
+    $return['hw_version'] = self::getAttribute(1,0,3,$_data);
+    $return['manufacturer'] = self::getAttribute(1,0,4,$_data);
+    $return['model'] = self::getAttribute(1,0,5,$_data);
+    $return['date_code'] = self::getAttribute(1,0,6,$_data);
+    $return['power_source'] = self::getAttribute(1,0,7,$_data);
+    switch ($return['power_source']) {
+      case 1:
+      $return['power_source'] = __('Secteur monophasée',__FILE__);
+      break;
+      case 2:
+      $return['power_source'] = __('Secteur triphasée',__FILE__);
+      break;
+      case 3:
+      $return['power_source'] = __('Batterie',__FILE__);
+      break;
+      case 4:
+      $return['power_source'] = __('Courant continue',__FILE__);
+      break;
+      case 5:
+      $return['power_source'] = __('Secteur d\'urgence toujours activée',__FILE__);
+      break;
+      case 6:
+      $return['power_source'] = __('Commutateur de transfert secteur d\'urgence',__FILE__);
+      break;
+      default:
+      $return['power_source'] = __('Inconnue',__FILE__).' ('.$return['power_source'].')';
+      break;
+    }
+    $return['sw_build_id'] = self::getAttribute(1,0,16384,$_data);
+    
+    $return['battery_voltage'] = self::getAttribute(1,1,32,$_data)/10;
+    $return['battery_percent'] = self::getAttribute(1,1,33,$_data);
+    if($return['battery_percent'] > 100){
+      $return['battery_percent'] = 100;
+    }
+    $return['endpoints'] = array();
+    foreach ($_data['endpoints'] as $endpoint) {
+      $return['endpoints'][$endpoint['id']] = array(
+        'status' => $endpoint['status'],
+        'device_type' => $endpoint['device_type'],
+        'profile_id' => $endpoint['profile_id'],
+        'in_cluster' => array(),
+        'out_cluster' => array(),
+      );
+      foreach ($endpoint['output_clusters'] as $cluster) {
+        $return['endpoints'][$endpoint['id']]['out_cluster'][] = array('id'=>$cluster['id'],'name'=>$cluster['name']);
+      }
+      foreach ($endpoint['input_clusters'] as $cluster) {
+        $return['endpoints'][$endpoint['id']]['in_cluster'][] = array('id'=>$cluster['id'],'name'=>$cluster['name']);
+      }
+    }
     return $return;
   }
   

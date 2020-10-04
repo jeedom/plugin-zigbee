@@ -39,6 +39,8 @@ async def serialize_device(device):
 		'node_descriptor': None if not device.node_desc.is_valid else list(device.node_desc.serialize()),
 		'endpoints': [],
 	}
+	if obj['node_descriptor'] is not None:
+		obj['node_descriptor'] = ":".join("{:02x}".format(x) for x in obj['node_descriptor'])
 	for endpoint_id, endpoint in device.endpoints.items():
 		if endpoint_id == 0:
 			continue
