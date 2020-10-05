@@ -86,6 +86,8 @@ async def write_attributes(_data):
 		await cluster.write_attributes(attributes,manufacturer=manufacturer)
 
 async def initialize(device):
+	if shared.CONTROLLER == 'zigate':
+		await shared.ZIGPY.permit(30) #Temp fix for zigate
 	for ep_id, endpoint in device.endpoints.items():
 		if ep_id == 0: # Ignore ZDO
 			continue
