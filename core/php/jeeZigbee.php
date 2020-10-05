@@ -72,9 +72,9 @@ if (isset($result['device_initialized'])){
 	event::add('jeedom::alert', array(
 		'level' => 'warning',
 		'page' => 'zigbee',
-		'message' => __('Un périphérique Zigbee a été inclus : ', __FILE__).$result['device_initialized'].'.'.__('Pause de 30s avant synchronisation', __FILE__),
+		'message' => __('Un périphérique Zigbee a été inclus : ', __FILE__).$result['device_initialized'].'.'.__('Pause de 10s avant synchronisation', __FILE__),
 	));
-	sleep(30);
+	sleep(10);
 	$id = zigbee::sync();
 	event::add('zigbee::includeDevice', $id);
 	die();
