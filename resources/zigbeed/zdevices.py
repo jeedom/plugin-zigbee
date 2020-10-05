@@ -138,14 +138,17 @@ async def get_basic_info(device):
 		if 1 in device.endpoints and 0 in device.endpoints[1].in_clusters:
 			try:
 				await device.endpoints[1].in_clusters[0].read_attributes([4,5],True)
+				await asyncio.sleep(1)
 			except Exception as e:
 				pass
 			try:
 				await device.endpoints[1].in_clusters[0].read_attributes([0,1,2,3],True)
+				await asyncio.sleep(1)
 			except Exception as e:
 				pass
 			try:
 				await device.endpoints[1].in_clusters[0].read_attributes([7],True)
+				await asyncio.sleep(1)
 			except Exception as e:
 				pass
 			try:
