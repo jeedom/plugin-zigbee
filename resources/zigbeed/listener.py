@@ -97,7 +97,7 @@ class Listener:
 		nb2=0
 		for i in args[0]:
 			for j in i:
-				if j.attrid == 0:
+				if not hasattr(j,'attrid') or j.attrid == 0:
 					continue;
 				infos = {"value" : str(j.value.value),"cluster_name" : cluster.name}
 				shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::gcmd::'+str(j.attrid)+'-'+str(nb1)+'-'+str(nb2),infos)
