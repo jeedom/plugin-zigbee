@@ -24,7 +24,7 @@ if(!is_object($eqLogic)){
 sendVarToJS('zigbeeNodeIeee',$eqLogic->getLogicalId());
 $node_data = zigbee::request('/device/info',array('ieee'=>$eqLogic->getLogicalId()));
 $device = zigbee::devicesParameters($eqLogic->getConfiguration('device'));
-$infos = $eqLogic->getDeviceInformations($node_data);
+$infos = zigbee::parseDeviceInformation($node_data);
 ?>
 <div id='div_nodeDeconzAlert' style="display: none;"></div>
 <ul class="nav nav-tabs" role="tablist">

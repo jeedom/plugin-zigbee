@@ -197,10 +197,7 @@ class zigbee extends eqLogic {
     return null;
   }
   
-  public function getDeviceInformations($_data = null){
-    if($_data == null){
-      $_data = zigbee::request('/device/info',array('ieee'=>$this->getLogicalId()));
-    }
+  public static function parseDeviceInformation($_data){
     $return = array();
     $return['ieee'] = $_data['ieee'];
     $return['nwk'] = $_data['nwk'];
@@ -210,7 +207,7 @@ class zigbee extends eqLogic {
       $return['status'] = __('Non initialisé',__FILE__);
       break;
       case 1:
-      $return['status'] = __('Découverte des endpoint OK',__FILE__);
+      $return['status'] = __('Découverte des endpoints OK',__FILE__);
       break;
       case 2:
       $return['status'] = __('OK',__FILE__);

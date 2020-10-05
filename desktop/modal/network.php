@@ -83,6 +83,7 @@ if (!isConnect('admin')) {
         <thead>
           <tr>
             <th>{{IEEE}}</th>
+            <th>{{Nom}}</th>
             <th>{{ID}}</th>
             <th>{{Status}}</th>
             <th>{{Action}}</th>
@@ -160,7 +161,20 @@ if (!isConnect('admin')) {
           tr += data[i].nwk;
           tr += '</td>';
           tr += '<td>';
-          tr += data[i].status;
+          switch (data[i].status) {
+            case 0:
+            tr += '{{Non initialisé}}';
+            break;
+            case 1:
+            tr += '{{Découverte des endpoints OK}}';
+            break;
+            case 2:
+            tr += '{{OK}}';
+            break;
+            default:
+            tr += '{{Inconnue}} ('+data[i].status+')';
+            break;
+          }
           tr += '<td>';
           tr += '<a class="btn btn-default btn-xs bt_infoZigbeeDevice"><i class="fa fa-info"></i> {{Info}}</a> ';
           tr += '<a class="btn btn-success btn-xs bt_refreshZigbeeDeviceInfo"><i class="fas fa-sync"></i> {{Rafraichir informations}}</a> ';
