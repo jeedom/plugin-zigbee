@@ -87,7 +87,9 @@ async def write_attributes(_data):
 
 async def initialize(device):
 	if shared.CONTROLLER == 'zigate':
+		logging.debug('Temp fix for zigate, reenable include mode for 30s to prevent send failure')
 		await shared.ZIGPY.permit(30) #Temp fix for zigate
+		await asyncio.sleep(5)
 	for ep_id, endpoint in device.endpoints.items():
 		if ep_id == 0: # Ignore ZDO
 			continue
