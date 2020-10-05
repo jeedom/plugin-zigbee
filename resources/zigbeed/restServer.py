@@ -157,7 +157,7 @@ class DeviceHandler(RequestHandler):
 					if 'allowQueue' in self.json_args:
 						logging.debug('Failed on write attribute'+str(self.json_args)+' => '+str(e))
 						logging.debug('Replan write attribut later')
-						zqueue.add('write_attributes',15,self.json_args,6)
+						zqueue.add('write_attributes',10,self.json_args,3)
 					else:
 						raise
 				return self.write(utils.format_json_result(success=True))
@@ -180,7 +180,7 @@ class DeviceHandler(RequestHandler):
 					if 'allowQueue' in self.json_args:
 						logging.debug('Failed on command'+str(self.json_args)+' => '+str(e))
 						logging.debug('Replan command later')
-						zqueue.add('command',15,self.json_args,6)
+						zqueue.add('command',5,self.json_args,1)
 					else:
 						raise
 				return self.write(utils.format_json_result(success=True))
