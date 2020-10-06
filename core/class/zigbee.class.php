@@ -264,6 +264,7 @@ class zigbee extends eqLogic {
     }
     $return['endpoints'] = array();
     $profile_convertion = json_decode(file_get_contents(__DIR__.'/../config/profiles.json'),true);
+    $found_basic_cluster = false;
     foreach ($_data['endpoints'] as $endpoint) {
       $return['endpoints'][$endpoint['id']] = array(
         'status' => $endpoint['status'],
@@ -307,8 +308,14 @@ class zigbee extends eqLogic {
         $return['endpoints'][$endpoint['id']]['out_cluster'][] = array('id'=>$cluster['id'],'name'=>$cluster['name']);
       }
       foreach ($endpoint['input_clusters'] as $cluster) {
+        if($cluster['id'] == 0){
+          $found_basic_cluster = true;
+        }
         $return['endpoints'][$endpoint['id']]['in_cluster'][] = array('id'=>$cluster['id'],'name'=>$cluster['name']);
       }
+    }
+    if(!$found_basic_cluster){
+      $return['alert_message'] = __('Aucun cluster basic trouvé sur le module.Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\'inclusion)',__FILE__);
     }
     return $return;
   }

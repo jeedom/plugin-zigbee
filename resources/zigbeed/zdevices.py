@@ -157,7 +157,6 @@ async def get_basic_info(device):
 				pass
 
 async def serialize(device):
-	print(device.neighbors)
 	obj = {
 		'ieee': str(device.ieee),
 		'nwk': device.nwk,
@@ -165,8 +164,6 @@ async def serialize(device):
 		'lqi': str(device.lqi),
 		'rssi':str(device.rssi),
 		'last_seen':str(device.last_seen),
-		'initializing' : str(device.initializing),
-		'neighbors' : str(device.neighbors),
 		'node_descriptor': None if not device.node_desc.is_valid else list(device.node_desc.serialize()),
 		'endpoints': [],
 	}

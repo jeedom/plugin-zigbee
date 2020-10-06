@@ -108,6 +108,9 @@ $infos = zigbee::parseDeviceInformation($node_data);
                 }else  if($infos['rssi'] < -60){
                   $rssi_labal = 'label label-warning';
                 }
+                if($infos['rssi'] == 'None'){
+                  $rssi_labal = 'label label-default';
+                }
                 ?>
                 {{RSSI :}} <b><span class="<?php echo $rssi_labal; ?>"><?php echo $infos['rssi'] ?> dB</span></b>
               </p>
