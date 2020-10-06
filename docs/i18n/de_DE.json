@@ -71,6 +71,8 @@
         "Donner le modele exacte de votre module (avec un lien vers la page de vente": "Geben Sie das genaue Modell Ihres Moduls an (mit einem Link zur Verkaufsseite",
         "Sur la page de l'équipement cliquer sur configuration puis onglet \"Informations brutes\" et envoyer le contenu à l'équipe Jeedom": "Klicken Sie auf der Ausrüstungsseite auf Konfiguration, dann auf die Registerkarte \"Rohdaten\" und senden Sie den Inhalt an das Jeedom-Team",
         "Mettre le démon en debug (et le redemarrer), faire des actions sur l'équipement (si c'est un capteur de température faire varier la température par exemple, si c'est une vanne faire varier la consigne...) et envoyer le log en debug zigbee (attention a bien prendre le zigbee et pas le zigbeed": "Setzen Sie den Daemon in das Debug (und starten Sie ihn neu), führen Sie Aktionen am Gerät durch (wenn es sich um einen Temperatursensor handelt, variieren Sie die Temperatur, z. B. wenn es sich um ein Ventil handelt, ändern Sie den Sollwert ...) und senden Sie das ZigBee-Debug-Protokoll (achten Sie darauf, dass Sie den Zigbee und nicht den Zigbeed nehmen",
+        "Le LQI ou le RSSI est à N\/A": "LQI oder RSSI ist N \/ A",
+        "C'est normalement suite à un redemarrage du réseaux Zigbee les valeurs sont vidées, il faut attendre que le module recomunique pour que les valeurs reviennent": "Normalerweise werden nach einem Neustart der ZigBee-Netzwerke die Werte geleert. Es muss gewartet werden, bis das Modul erneut angezeigt wird, damit die Werte zurückkehren",
         " Deconz.": " Deconz.",
         " Deconz?": " Deconz?",
         "Deconz ": "Deconz ",
@@ -147,6 +149,13 @@
         " et]": " und]",
         "[et]": "[und]",
         "*et*": "*und*",
-        " et*": " und*"
+        " et*": " und*",
+        " FAQ.": " Faq.",
+        " FAQ?": " Faq?",
+        "FAQ ": "Faq ",
+        " FAQ]": " Faq]",
+        "[FAQ]": "[Faq]",
+        "*FAQ*": "*Faq*",
+        " FAQ*": " Faq*"
     }
 }

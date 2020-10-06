@@ -77,3 +77,9 @@ Para ello, debe proporcionar los siguientes elementos (cualquier solicitud incom
 - Proporcione el modelo exacto de su módulo (con un enlace a la página de ventas)
 - En la página del equipo, haga clic en configuración, luego en la pestaña "Información sin procesar" y envíe el contenido al equipo de Jeedom
 - Ponga el daemon en debug (y reinícielo), realice acciones en el equipo (si es un sensor de temperatura, varíe la temperatura por ejemplo, si es una válvula, varíe el setpoint ...) y envíe el registro de depuración de zigbee (tenga cuidado de tomar el zigbee y no el zigbeed)
+
+# FAQ
+
+>**LQI o RSSI es N / A
+>
+>Normalmente es luego de un reinicio de las redes Zigbee los valores se vacían, es necesario esperar a que el módulo se vuelva a unir para que los valores regresen
