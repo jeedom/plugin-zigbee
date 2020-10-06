@@ -105,14 +105,14 @@ class DeviceHandler(RequestHandler):
 			if arg1 == 'all':
 				result = []
 				for device in shared.ZIGPY.devices.values():
-					values = await utils.serialize_device(device)
+					values = await zdevices.serialize(device)
 					result.append(values)
 				return self.write(utils.format_json_result(success=True,data=result))
 			if arg1 == 'info':
-				device = utils.findDevice(self.get_argument('ieee',''))
+				device = zdevices.find(self.get_argument('ieee',''))
 				if device == None:
 					raise Exception("Device not found")
-				values = await utils.serialize_device(device)
+				values = await zdevices.serialize(device)
 				return self.write(utils.format_json_result(success=True,data=values))
 			raise Exception("No method found")
 		except Exception as e:
@@ -122,7 +122,7 @@ class DeviceHandler(RequestHandler):
 	async def post(self,arg1):
 		try:
 			if arg1 == 'attributes':
-				device = utils.findDevice(self.json_args['ieee'])
+				device = zdevices.find(self.json_args['ieee'])
 				if device == None:
 					raise Exception("Device not found")
 				if not self.json_args['endpoint'] in device.endpoints:
@@ -162,13 +162,13 @@ class DeviceHandler(RequestHandler):
 						raise
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'initialize':
-				device = utils.findDevice(self.json_args['ieee'])
+				device = zdevices.find(self.json_args['ieee'])
 				if device == None :
 					raise Exception("Device not found")
 				await zdevices.initialize(device)
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'get_basic_info':
-				device = utils.findDevice(self.json_args['ieee'])
+				device = zdevices.find(self.json_args['ieee'])
 				if device == None :
 					raise Exception("Device not found")
 				await zdevices.get_basic_info(device)
@@ -191,7 +191,7 @@ class DeviceHandler(RequestHandler):
 
 	async def delete(self):
 		try:
-			device = utils.findDevice(self.json_args['ieee'])
+			device = zdevices.find(self.json_args['ieee'])
 			if device == None :
 				raise Exception("Device not found")
 			await shared.ZIGPY.remove(device.ieee)

@@ -31,36 +31,6 @@ def check_apikey(apikey):
 	if shared.APIKEY != apikey:
 		raise Exception('Invalid apikey provided')
 
-async def serialize_device(device):
-	obj = {
-		'ieee': str(device.ieee),
-		'nwk': device.nwk,
-		'status': device.status,
-		'node_descriptor': None if not device.node_desc.is_valid else list(device.node_desc.serialize()),
-		'endpoints': [],
-	}
-	if obj['node_descriptor'] is not None:
-		obj['node_descriptor'] = ":".join("{:02x}".format(x) for x in obj['node_descriptor'])
-	for endpoint_id, endpoint in device.endpoints.items():
-		if endpoint_id == 0:
-			continue
-		endpoint_obj = {}
-		endpoint_obj['id'] = endpoint_id
-		endpoint_obj['status'] = endpoint.status
-		endpoint_obj['device_type'] = getattr(endpoint, 'device_type', None)
-		endpoint_obj['profile_id'] = getattr(endpoint, 'profile_id', None)
-		endpoint_obj['output_clusters'] = []
-		endpoint_obj['input_clusters'] = []
-		endpoint_obj['output_clusters'] = []
-		for cluster in endpoint.out_clusters.values():
-			values = await serialize_cluster(cluster);
-			endpoint_obj['output_clusters'].append(values)
-		for cluster in endpoint.in_clusters.values():
-			values = await serialize_cluster(cluster);
-			endpoint_obj['input_clusters'].append(values)
-		obj['endpoints'].append(endpoint_obj)
-	return obj
-
 async def serialize_application():
 	obj = {
 		'ieee': str(shared.ZIGPY.ieee),
@@ -94,27 +64,6 @@ async def serialize_application():
 		obj['zigate'] = {}
 		obj['zigate']['version'] = str(shared.ZIGPY.version)
 	return obj
-
-async def serialize_cluster(cluster):
-	obj = {
-		'id' : cluster.cluster_id,
-		'name' : cluster.name,
-		'attributes' : []
-	}
-	for attribute in cluster.attributes:
-		value = await cluster.read_attributes([attribute],True,True)
-		if attribute in value[0]:
-			value = value[0][attribute]
-		else:
-			continue
-		obj['attributes'].append({'id' : attribute,'name' : cluster.attributes[attribute][0],'value':value})
-	return obj
-
-def findDevice(ieee):
-	for device in shared.ZIGPY.devices.values():
-		if str(device.ieee) == ieee:
-			return device
-	return None
 
 def initSharedDeviceData(cluster,attribute_id):
 	if not cluster.endpoint.device._ieee in shared.DEVICES_DATA :
