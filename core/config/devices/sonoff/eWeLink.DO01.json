@@ -4,7 +4,7 @@
   "remark" : "Attetion il y a un bug dans le firmware qui le fait remonter comme un module de température et d'humidité il faut donc suite à l'inclusion remettre le bon model et supprimer les commandes de température et d'humidité",
   "commands": [
     {
-      "name": "Porte",
+      "name": "Ouverture",
       "type": "info",
       "subtype": "binary",
       "isVisible": 1,
