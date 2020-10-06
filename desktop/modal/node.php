@@ -66,22 +66,22 @@ $infos = zigbee::parseDeviceInformation($node_data);
               <span class=""></span></p>
               <p>
                 <?php
-                $status_labal = 'label label-success';
+                $status_label = 'label label-success';
                 if($infos['status'] != __('OK',__FILE__)){
-                  $status_labal = 'label label-danger';
+                  $status_label = 'label label-danger';
                 }
                 ?>
-                {{Etat :}} <b><span class="<?php echo $status_labal; ?>" style="font-size : 1em;"><?php echo $infos['status'] ?></span></b>
+                {{Etat :}} <b><span class="<?php echo $status_label; ?>" style="font-size : 1em;"><?php echo $infos['status'] ?></span></b>
                 {{Alimentation :}} <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['power_source'] ?></span></b>
                 <?php if($infos['power_source'] == __('Batterie',__FILE__)){
-                  $battery_labal = 'label label-success';
+                  $battery_label = 'label label-success';
                   if($infos['battery_percent'] < 30){
-                    $battery_labal = 'label label-danger';
+                    $battery_label = 'label label-danger';
                   }else if($infos['battery_percent'] < 60){
-                    $battery_labal = 'label label-danger';
+                    $battery_label = 'label label-danger';
                   }
                   ?>
-                  <span class="node-battery-span">{{Batterie : }} <b><span class="<?php echo $battery_labal; ?>" style="font-size : 1em;"><?php echo $infos['battery_percent']?>%</span></b> (<?php echo $infos['battery_voltage'] ?>v)</span>
+                  <span class="node-battery-span">{{Batterie : }} <b><span class="<?php echo $battery_label; ?>" style="font-size : 1em;"><?php echo $infos['battery_percent']?>%</span></b> (<?php echo $infos['battery_voltage'] ?>v)</span>
                 <?php } ?>
               </p>
               <p>
@@ -100,19 +100,30 @@ $infos = zigbee::parseDeviceInformation($node_data);
                 {{Description :}} <b><span class="label label-default"><?php echo $infos['node_descriptor'] ?></span></b>
               </p>
               <p>
-                {{LQI :}} <b><span class="label label-default"><?php echo $infos['lqi'] ?></span></b>
                 <?php
-                $rssi_labal = 'label label-success';
-                if($infos['rssi'] < -80){
-                  $rssi_labal = 'label label-danger';
-                }else  if($infos['rssi'] < -60){
-                  $rssi_labal = 'label label-warning';
+                $lqi_label = 'label label-success';
+                if($infos['lqi'] < 85){
+                  $lqi_label = 'label label-danger';
+                }else  if($infos['lqi'] < 170){
+                  $lqi_label = 'label label-warning';
                 }
-                if($infos['rssi'] == 'None'){
-                  $rssi_labal = 'label label-default';
+                if($infos['lqi'] == 'None'){
+                  $lqi_label = 'label label-default';
                 }
                 ?>
-                {{RSSI :}} <b><span class="<?php echo $rssi_labal; ?>"><?php echo $infos['rssi'] ?> dB</span></b>
+                {{LQI :}} <b><span class="<?php echo $lqi_label; ?>"><?php echo $infos['lqi'] ?></span></b>
+                <?php
+                $rssi_label = 'label label-success';
+                if($infos['rssi'] < -80){
+                  $rssi_label = 'label label-danger';
+                }else  if($infos['rssi'] < -60){
+                  $rssi_label = 'label label-warning';
+                }
+                if($infos['rssi'] == 'None'){
+                  $rssi_label = 'label label-default';
+                }
+                ?>
+                {{RSSI :}} <b><span class="<?php echo $rssi_label; ?>"><?php echo $infos['rssi'] ?> dB</span></b>
               </p>
             </div>
           </div>
