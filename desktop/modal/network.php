@@ -67,7 +67,6 @@ if (!isConnect('admin')) {
     <li class="active"><a href="#application_network" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Application}}</a></li>
     <li><a href="#devices_network" data-toggle="tab"><i class="fab fa-codepen"></i> {{Noeuds}}</a></li>
     <li id="tab_graph"><a href="#graph_network" data-toggle="tab"><i class="far fa-image"></i> {{Graphique du réseau}}</a></li>
-    <li id="tab_route"><a href="#route_network" data-toggle="tab"><i class="fas fa-table"></i> {{Table de routage}}</a></li>
   </ul>
   
   <div id="network-tab-content" class="tab-content">
@@ -86,6 +85,8 @@ if (!isConnect('admin')) {
             <th>{{Nom}}</th>
             <th>{{ID}}</th>
             <th>{{Status}}</th>
+            <th>{{LQI}}</th>
+            <th>{{RSSI (dB)}}</th>
             <th>{{Action}}</th>
           </tr>
         </thead>
@@ -94,6 +95,7 @@ if (!isConnect('admin')) {
     </div>
     
     <div id="graph_network" class="tab-pane">
+      <br/>
       <table class="table table-bordered table-condensed" style="width: 350px;position:fixed;margin-top : 25px;">
         <thead><tr><th colspan="2">{{Légende}}</th></tr></thead>
         <tbody>
@@ -113,13 +115,6 @@ if (!isConnect('admin')) {
       </table>
       <div id="graph-node-name"></div>
     </div>
-    
-    <div id="route_network" class="tab-pane">
-      <br/>
-      <div id="div_routingTable"></div>
-      
-    </div>
-    
   </div>
   
   <script>
@@ -175,6 +170,28 @@ if (!isConnect('admin')) {
             tr += '{{Inconnue}} ('+data[i].status+')';
             break;
           }
+          tr += '<td>';
+          if(!data[i].lqi || data[i].lqi == 'None'){
+            tr += '<span class="label label-default">{{N/A}}</span>';
+          }else if(data[i].lqi > 170){
+            tr += '<span class="label label-success">'+data[i].lqi+'</span>';
+          }else if(data[i].lqi > 85){
+            tr += '<span class="label label-warning">'+data[i].lqi+'</span>';
+          }else{
+            tr += '<span class="label label-danger">'+data[i].lqi+'</span>';
+          }
+          tr += '</td>';
+          tr += '<td>';
+          if(!data[i].rssi || data[i].rssi == 'None'){
+            tr += '<span class="label label-default">{{N/A}}</span>';
+          }else if(data[i].rssi >= -60){
+            tr += '<span class="label label-success">'+data[i].rssi+'</span>';
+          }else if(data[i].rssi > -80){
+            tr += '<span class="label label-warning">'+data[i].rssi+'</span>';
+          }else{
+            tr += '<span class="label label-danger">'+data[i].rssi+'</span>';
+          }
+          tr += '</td>';
           tr += '<td>';
           tr += '<a class="btn btn-default btn-xs bt_infoZigbeeDevice"><i class="fa fa-info"></i> {{Info}}</a> ';
           tr += '<a class="btn btn-success btn-xs bt_refreshZigbeeDeviceInfo"><i class="fas fa-sync"></i> {{Rafraichir informations}}</a> ';
@@ -272,6 +289,7 @@ if (!isConnect('admin')) {
         'ieee': devices_neighbours[z].ieee,
         'name': devices_neighbours[z].ieee,
         'lqi': devices_neighbours[z].lqi,
+        'rssi': devices_neighbours[z].rssi,
         'type': devices_neighbours[z].device_type,
         'nwk': devices_neighbours[z].nwk,
         'model': devices_neighbours[z].model,
@@ -338,7 +356,24 @@ if (!isConnect('admin')) {
         } else {
           linkname = node.data.name
         }
-        linkname += ' <span class="label label-primary" title="{{LQI}}">'+node.data.lqi+'</span>'
+        if(!node.data.lqi || node.data.lqi == 'None' || node.data.lqi == null){
+          linkname += ' <span class="label label-default" title="{{LQI}}">{{N/A}}</span>';
+        }else if(node.data.lqi > 170){
+          linkname += ' <span class="label label-success" title="{{LQI}}">'+node.data.lqi+'</span>';
+        }else if(node.data.lqi > 85){
+          linkname += ' <span class="label label-warning" title="{{LQI}}">'+node.data.lqi+'</span>';
+        }else{
+          linkname += ' <span class="label label-danger" title="{{LQI}}">'+node.data.lqi+'</span>';
+        }
+        if(!node.data.rssi || node.data.rssi == 'None' || node.data.rssi == null){
+          linkname += ' <span class="label label-default" title="{{RSSI}}">{{N/A}}</span>';
+        }else if(node.data.rssi >= -60){
+          linkname += ' <span class="label label-success" title="{{RSSI}}">'+node.data.rssi+' dB</span>';
+        }else if(node.data.rssi > -80){
+          linkname += ' <span class="label label-warning" title="{{RSSI}}">'+node.data.rssi+' dB</span>';
+        }else{
+          linkname += ' <span class="label label-danger" title="{{RSSI}}">'+node.data.rssi+' dB</span>';
+        }
         linkname += ' <span class="label label-primary" title="{{Type}}">'+node.data.type+'</span>'
         linkname += ' <span class="label label-primary" title="{{Modèle}}">'+node.data.manufacturer+' '+node.data.model+'</span>'
         linkname += ' <span class="label label-primary" title="{{NWK}}">'+node.data.nwk+'</span>'
@@ -384,85 +419,6 @@ if (!isConnect('admin')) {
     }, 200);
   }
   
-  function network_routing_table(devices){
-    var routingTable = '';
-    var routingTableHeader = '';
-    $.each(devices, function (i) {
-      let device = devices[i]
-      if (!device.ieee || device.ieee == '' || device.nwk == null) {
-        return;
-      }
-      let name = device.ieee
-      let name_html = device.ieee
-      if (isset(zigbee_logicalIds_name[device.ieee])) {
-        name = zigbee_logicalIds_name[device.ieee]
-      }
-      if (isset(zigbee_logicalIds[device.ieee])) {
-        name_html = zigbee_logicalIds[device.ieee]
-      }
-      if(device.nwk=='0x0000'){
-        name_html = '{{Controleur}}'
-        name = '{{Controleur}}'
-      }
-      routingTableHeader += '<th title="' + name + '" >' + device.nwk + '</th>';
-      if (isset(zigbee_ids[device.ieee])) {
-        name = '<span class="deviceConfigure cursor" data-id="'+zigbee_ids[device.ieee]+'" data-node-id="' + device.ieee + '">' + name_html + '</span>';
-      }else{
-        name = '<span class="" data-id="'+zigbee_ids['']+'" data-node-id="' + device.ieee + '">' + name_html + '</span>';
-      }
-      routingTable += '<tr><td style="min-width: 300px">' + name;
-      if (device.offline) {
-        routingTable += '  <i class="fas fa-exclamation-triangle fa-lg" style="color:red; text-align:right"  title="{{Présumé mort}}"></i>';
-      }
-      routingTable += '</td><td style="width: 35px">' + device.nwk + '</td>';
-      $.each(devices, function (j) {
-        let ndevice = devices[j]
-        if (!ndevice.ieee || ndevice.ieee == '' || ndevice.nwk == null) {
-          return;
-        }
-        if( ndevice.ieee ==  device.ieee){
-          routingTable += '<td style="width: 35px"><i class="fas fa-square fa-2x"></i></td>';
-        }else{
-          routingTable += '<td class="td_lqi zigbee-red" data-ieee1="'+device.ieee+'" data-ieee2="'+ndevice.ieee+'" style="width: 35px"><i class="fas fa-square fa-2x"></i></td>';
-        }
-      });
-      routingTable += '</td></tr>';
-    });
-    $('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '</tr></thead><tbody>' + routingTable + '</tbody></table>');
-    $.each(devices, function (i) {
-      let device = devices[i]
-      if (!device.ieee || device.ieee == '' || device.nwk == null) {
-        return;
-      }
-      $.each(device.neighbours, function (j) {
-        let ndevice = devices[j]
-        if (!ndevice.ieee || ndevice.ieee == '' || ndevice.nwk == null) {
-          return;
-        }
-        let td = $('.td_lqi[data-ieee1="'+device.ieee+'"][data-ieee2="'+ndevice.ieee+'"]')
-        if(td){
-          td.empty().html('<strong>'+device.neighbours[j].lqi+'<strong>');
-          td.removeClass('zigbee-red');
-          if(ndevice.lqi < 200){
-            td.addClass('zigbee-green');
-          }else{
-            td.addClass('zigbee-red');
-          }
-        }
-        td = $('.td_lqi[data-ieee1="'+ndevice.ieee+'"][data-ieee2="'+device.ieee+'"]')
-        if(td){
-          td.empty().html('<strong>'+device.neighbours[j].lqi+'<strong>');
-          td.removeClass('zigbee-red');
-          if(ndevice.lqi < 200){
-            td.addClass('zigbee-green');
-          }else{
-            td.addClass('zigbee-red');
-          }
-        }
-      });
-    });
-  }
-  
   refreshNetworkData();
   refreshDevicekData();
   
@@ -479,22 +435,6 @@ if (!isConnect('admin')) {
       });
     }else{
       network_graph(devices_neighbours);
-    }
-  });
-  
-  $("#tab_route").off("click").one("click", function () {
-    if(devices_neighbours == null){
-      jeedom.zigbee.network.map({
-        error: function (error) {
-          $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
-        },
-        success:function(devices){
-          devices_neighbours = devices
-          network_routing_table(devices_neighbours);
-        }
-      });
-    }else{
-      network_routing_table(devices_neighbours);
     }
   });
   

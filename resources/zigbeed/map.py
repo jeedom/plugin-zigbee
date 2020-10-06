@@ -91,6 +91,7 @@ class Neighbour():
 	ieee = attr.ib(default=None)
 	nwk = attr.ib(default=None)
 	lqi = attr.ib(default=None)
+	rssi = attr.ib(default=None)
 	pan_id = attr.ib(default=None)
 	device_type = attr.ib(default="unk")
 	rx_on_when_idle = attr.ib(default=None)
@@ -128,11 +129,14 @@ class Neighbour():
 			return
 		self.nwk = "0x{:04x}".format(self.device.nwk)
 		self.model = self.device.model
+		self.rssi = self.device.rssi
 		self.manufacturer = self.device.manufacturer
 		if self.device.node_desc.is_valid:
 			self.device_type = self.device.node_desc.logical_type.name
 		else:
 			self.device_type = "unknown"
+		if self.lqi is None :
+			self.lqi = self.device.lqi
 
 	async def scan_device(device):
 		"""New neighbour from a scan."""
@@ -173,6 +177,7 @@ class Neighbour():
 			"ieee": str(self.ieee),
 			"nwk": self.nwk,
 			"lqi": self.lqi,
+			"rssi": self.rssi,
 			"device_type": self.device_type,
 			"manufacturer": self.manufacturer,
 			"model": self.model,
