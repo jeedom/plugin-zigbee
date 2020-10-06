@@ -54,21 +54,38 @@ $infos = zigbee::parseDeviceInformation($node_data);
             <h4 class="panel-title"><i class="fas fa-info-circle"></i> {{Informations Noeud}}</h4>
           </div>
           <div class="panel-body">
-            <p>{{Nom :}}
+            <p>
+              {{Nom :}}
               <b><span class="label label-default" style="font-size : 1em;"><?php echo $eqLogic->getHumanName() ?></span></b>
-            </p>
-            <p>{{Modèle :}}
+              {{Modèle :}}
               <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['model'] ?></span></b>
               {{Fabricant :}}
               <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['manufacturer'] ?></span></b>
             </p>
             <p>
               <span class=""></span></p>
-              <p>{{Etat :}} <b><span class="node-sleep label label-default" style="font-size : 1em;"><?php echo $infos['status'] ?></span></b>
-                <span class="node-battery-span">{{Batterie : }} <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['battery_percent']?></span>%</b> (<?php echo $infos['battery_voltage'] ?>v)</span>
+              <p>
+                <?php
+                $status_labal = 'label label-success';
+                if($infos['status'] != __('OK',__FILE__)){
+                  $status_labal = 'label label-danger';
+                }
+                ?>
+                {{Etat :}} <b><span class="<?php echo $status_labal; ?>" style="font-size : 1em;"><?php echo $infos['status'] ?></span></b>
+                {{Alimentation :}} <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['power_source'] ?></span></b>
+                <?php if($infos['power_source'] == __('Batterie',__FILE__)){
+                  $battery_labal = 'label label-success';
+                  if($infos['battery_percent'] < 30){
+                    $battery_labal = 'label label-danger';
+                  }else if($infos['battery_percent'] < 60){
+                    $battery_labal = 'label label-danger';
+                  }
+                  ?>
+                  <span class="node-battery-span">{{Batterie : }} <b><span class="<?php echo $battery_labal; ?>" style="font-size : 1em;"><?php echo $infos['battery_percent']?>%</span></b> (<?php echo $infos['battery_voltage'] ?>v)</span>
+                <?php } ?>
               </p>
-              <p>{{Dernier message :}}
-                <b><span class="label label-default" style="font-size : 1em;"><?php echo $eqLogic->getStatus('lastCommunication') ?></span></b>
+              <p>
+                {{Dernier message :}} <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['last_seen'] ?></span></b>
               </p>
             </div>
           </div>
@@ -77,9 +94,23 @@ $infos = zigbee::parseDeviceInformation($node_data);
               <h4 class="panel-title"><i class="fas fa-network-wired"></i> {{Réseaux}}</h4>
             </div>
             <div class="panel-body">
-              {{IEEE :}} <b><span class="label label-default"><?php echo $infos['ieee'] ?></span></b>
-              {{NWK :}} <b><span class="label label-default"><?php echo $infos['nwk'] ?></span></b>
-              {{Description :}} <b><span class="label label-default"><?php echo $infos['node_descriptor'] ?></span></b></p>
+              <p>
+                {{IEEE :}} <b><span class="label label-default"><?php echo $infos['ieee'] ?></span></b>
+                {{NWK :}} <b><span class="label label-default"><?php echo $infos['nwk'] ?></span></b>
+                {{Description :}} <b><span class="label label-default"><?php echo $infos['node_descriptor'] ?></span></b>
+              </p>
+              <p>
+                {{LQI :}} <b><span class="label label-default"><?php echo $infos['lqi'] ?></span></b>
+                <?php
+                $rssi_labal = 'label label-success';
+                if($infos['rssi'] < -80){
+                  $rssi_labal = 'label label-danger';
+                }else  if($infos['rssi'] < -60){
+                  $rssi_labal = 'label label-warning';
+                }
+                ?>
+                {{RSSI :}} <b><span class="<?php echo $rssi_labal; ?>"><?php echo $infos['rssi'] ?> dB</span></b>
+              </p>
             </div>
           </div>
           <div class="panel panel-primary">
@@ -406,4 +437,5 @@ $infos = zigbee::parseDeviceInformation($node_data);
       }
     });
   });
-</script>
+  </script>
+  

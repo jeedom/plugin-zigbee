@@ -201,6 +201,9 @@ class zigbee extends eqLogic {
     $return = array();
     $return['ieee'] = $_data['ieee'];
     $return['nwk'] = $_data['nwk'];
+    $return['lqi'] = $_data['lqi'];
+    $return['rssi'] = $_data['rssi'];
+    $return['last_seen'] = date('Y-m-d H:i:s',$_data['last_seen']);
     $return['node_descriptor'] = $_data['node_descriptor'];
     switch ($_data['status']) {
       case 0:

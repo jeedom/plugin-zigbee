@@ -85,7 +85,7 @@
       "type": "info",
       "subtype": "numeric",
       "generic_type": "POWER",
-      "unite" : "W",
+      "unite" : "kWh",
       "isVisible": 0,
       "isHistorized": 0,
       "logicalId": "1::2820::772"
