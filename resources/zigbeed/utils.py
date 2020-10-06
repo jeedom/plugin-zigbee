@@ -90,6 +90,9 @@ async def serialize_application():
 		obj['deconz']['panId'] = hex(shared.ZIGPY._pan_id)
 		obj['deconz']['radioChannel'] = shared.ZIGPY._channel
 		obj['deconz']['nwkUpdateId'] = hex(shared.ZIGPY._nwk_update_id)
+	if shared.CONTROLLER == 'zigate':
+		obj['zigate'] = {}
+		obj['zigate']['version'] = str(shared.ZIGPY.version)
 	return obj
 
 async def serialize_cluster(cluster):
