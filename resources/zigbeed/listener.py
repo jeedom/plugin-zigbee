@@ -60,7 +60,7 @@ class Listener:
 			for cluster in endpoint.out_clusters.values(): # You need to attach a listener to every cluster to receive events
 				cluster.add_context_listener(self) # The context listener passes its own object as the first argument to the callback
 		if new:
-			time.sleep(2)
+			time.sleep(5)
 			asyncio.ensure_future(zdevices.initialize(device))
 			shared.JEEDOM_COM.send_change_immediate({'device_initialized' : str(device._ieee)});
 
