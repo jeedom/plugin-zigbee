@@ -77,3 +77,9 @@ Pour cela il faut fournir les éléments suivant (toute demande incomplete sera 
 - Donner le modele exacte de votre module (avec un lien vers la page de vente)
 - Sur la page de l'équipement cliquer sur configuration puis onglet "Informations brutes" et envoyer le contenu à l'équipe Jeedom
 - Mettre le démon en debug (et le redemarrer), faire des actions sur l'équipement (si c'est un capteur de température faire varier la température par exemple, si c'est une vanne faire varier la consigne...) et envoyer le log en debug zigbee (attention a bien prendre le zigbee et pas le zigbeed)
+
+# FAQ
+
+>**Le LQI ou le RSSI est à N/A
+>
+>C'est normalement suite à un redemarrage du réseaux Zigbee les valeurs sont vidées, il faut attendre que le module recomunique pour que les valeurs reviennent
