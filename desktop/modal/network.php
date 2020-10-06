@@ -303,25 +303,25 @@ if (!isConnect('admin')) {
         data_node.name = '{{Controlleur}}'
       }
       graph.addNode(devices_neighbours[z].ieee, data_node);
+      linkcolor = '#B7B7B7';
+      if(devices_neighbours[z].lqi > 170){
+        linkcolor = 'var(--al-success-color)';
+      }else if(devices_neighbours[z].lqi > 85){
+        linkcolor = 'var(--al-warning-color)';
+      }else if(devices_neighbours[z].lqi > 0){
+        linkcolor = 'var(--al-danger-color)';
+      }
       if(devices_neighbours[z].neighbours.length == 0 && controler_ieee != null){
-        graph.addLink(devices_neighbours[z].ieee, controler_ieee, {isdash: 0, lengthfactor: 10});
+        graph.addLink(devices_neighbours[z].ieee, controler_ieee, {color: linkcolor, lengthfactor: 20});
       }else{
         for(i in devices_neighbours[z].neighbours){
-          graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {isdash: 0, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
+          graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {color: linkcolor, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
         }
       }
       
     }
     var graphics = Viva.Graph.View.svgGraphics()
     var nodeSize = 24
-    var highlightRelatedNodes = function (nodeId, isOn) {
-      graph.forEachLinkedNode(nodeId, function (node, link) {
-        var linkUI = graphics.getLinkUI(link.id);
-        if (linkUI) {
-          linkUI.attr('stroke', isOn ? '#FF0000' : '#B7B7B7');
-        }
-      });
-    };
     graphics.node(function (node) {
       if (typeof node.data == 'undefined') {
         graph.removeNode(node.id);
@@ -378,15 +378,12 @@ if (!isConnect('admin')) {
         linkname += ' <span class="label label-primary" title="{{Modèle}}">'+node.data.manufacturer+' '+node.data.model+'</span>'
         linkname += ' <span class="label label-primary" title="{{NWK}}">'+node.data.nwk+'</span>'
         $('#graph-node-name').html(linkname);
-        highlightRelatedNodes(node.id, true);
-      }, function () {
-        highlightRelatedNodes(node.id, false);
       });
       return ui;
     }).placeNode(function (nodeUI, pos) {
       nodeUI.attr('transform','translate(' +(pos.x - nodeSize / 3) + ',' + (pos.y - nodeSize / 2.5) +')');
     });
-    var idealLength = 200;
+    var idealLength = 400;
     var layout = Viva.Graph.Layout.forceDirected(graph, {
       springLength: idealLength,
       stableThreshold: 0.9,
@@ -398,11 +395,7 @@ if (!isConnect('admin')) {
       }
     });
     graphics.link(function (link) {
-      dashvalue = '5, 0';
-      if (link.data.isdash == 1) {
-        dashvalue = '5, 2';
-      }
-      return Viva.Graph.svg('line').attr('stroke', '#B7B7B7').attr('stroke-dasharray', dashvalue).attr('stroke-width', '0.4px');
+      return Viva.Graph.svg('line').attr('stroke', link.data.color).attr('stroke-dasharray', '5,0').attr('stroke-width', '2px');
     });
     $('#graph_network svg').remove();
     var renderer = Viva.Graph.View.renderer(graph, {
