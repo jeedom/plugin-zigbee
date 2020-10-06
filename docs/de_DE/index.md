@@ -77,3 +77,9 @@ Dazu müssen Sie die folgenden Elemente angeben (unvollständige Anfragen werden
 - Geben Sie das genaue Modell Ihres Moduls an (mit einem Link zur Verkaufsseite)
 - Klicken Sie auf der Ausrüstungsseite auf Konfiguration, dann auf die Registerkarte "Rohdaten" und senden Sie den Inhalt an das Jeedom-Team
 - Setzen Sie den Daemon in das Debug (und starten Sie ihn neu), führen Sie Aktionen am Gerät durch (wenn es sich um einen Temperatursensor handelt, variieren Sie die Temperatur, z. B. wenn es sich um ein Ventil handelt, ändern Sie den Sollwert ...) und senden Sie das ZigBee-Debug-Protokoll (achten Sie darauf, dass Sie den Zigbee und nicht den Zigbeed nehmen)
+
+# FAQ
+
+>**LQI oder RSSI ist N / A
+>
+>Normalerweise werden nach einem Neustart der ZigBee-Netzwerke die Werte geleert. Es muss gewartet werden, bis das Modul erneut angezeigt wird, damit die Werte zurückkehren

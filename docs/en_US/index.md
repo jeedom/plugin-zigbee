@@ -77,3 +77,9 @@ For this, you must provide the following elements (any incomplete request will b
 - Give the exact model of your module (with a link to the sales page)
 - On the equipment page, click on configuration then tab "Raw information" and send the content to the Jeedom team
 - Put the daemon in debug (and restart it), make actions on the equipment (if it is a temperature sensor, vary the temperature for example, if it is a valve, vary the setpoint ...) and send the zigbee debug log (be careful to take the zigbee and not the zigbeed)
+
+# FAQ
+
+>**LQI or RSSI is N / A
+>
+>It is normally following a restart of the Zigbee networks the values are emptied, it is necessary to wait for the module to recomunique so that the values return
