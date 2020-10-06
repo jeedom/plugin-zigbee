@@ -59,6 +59,36 @@
       "isHistorized": 0,
       "value" : "Etat 2",
       "logicalId": "2::on_off::off"
+    },
+    {
+      "name": "Voltage",
+      "type": "info",
+      "subtype": "numeric",
+      "generic_type": "VOLTAGE",
+      "unite" : "V",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::2820::1280"
+    },
+    {
+      "name": "Puissance",
+      "type": "info",
+      "subtype": "numeric",
+      "generic_type": "POWER",
+      "unite" : "W",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::2820::1291"
+    },
+    {
+      "name": "Puissance total",
+      "type": "info",
+      "subtype": "numeric",
+      "generic_type": "POWER",
+      "unite" : "W",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::2820::772"
     }
   ]
 }
