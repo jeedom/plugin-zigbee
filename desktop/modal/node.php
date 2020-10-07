@@ -301,7 +301,8 @@ $infos = zigbee::parseDeviceInformation($node_data);
         allowCache : 1,
         global:false,
         error: function (error) {
-          $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+          tr.find('.configLoadIcon').hide();
+          tr.find('.configErrorIcon').show().attr('title', error.message);
         },
         success : function(data){
           tr.find('.configLoadIcon').hide();
@@ -329,7 +330,8 @@ $infos = zigbee::parseDeviceInformation($node_data);
       allowCache : 1,
       global:false,
       error: function (error) {
-        $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+        tr.find('.configLoadIcon').hide();
+        tr.find('.configErrorIcon').show().attr('title', error.message);
       },
       success : function(data){
         tr.find('.configLoadIcon').hide();

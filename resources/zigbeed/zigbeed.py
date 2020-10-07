@@ -33,9 +33,6 @@ import logging
 import zhaquirks
 import zqueue
 
-import zigpy.types
-from zigpy.zdo import types as zdo_t
-
 try:
 	from jeedom.jeedom import *
 except ImportError:
