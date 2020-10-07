@@ -51,7 +51,27 @@ if (!isConnect('admin')) {
             echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
           }
           ?>
+          <option value="pizigate">{{Pizigate}}</option>
+          <option value="wifizigate">{{Wifi Zigate}}</option>
         </select>
+      </div>
+    </div>
+    <div class="form-group zigbee_portConf pizigate" style="display:none;">
+      <label class="col-sm-4 control-label">{{Pizigate}}</label>
+      <div class="col-sm-2">
+        <input type="number" class="configKey form-control" data-l1key="pizigate" />
+      </div>
+    </div>
+    <div class="form-group zigbee_portConf wifizigate" style="display:none;">
+      <label class="col-sm-4 control-label">{{Wifi Zigate IP:PORT}}</label>
+      <div class="col-sm-2">
+        <input type="number" class="configKey form-control" data-l1key="wifizigate" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-4 control-label">{{Port interne}}</label>
+      <div class="col-sm-2">
+        <input class="configKey form-control" data-l1key="socketport" />
       </div>
     </div>
     <div class="form-group">
@@ -87,6 +107,10 @@ if (!isConnect('admin')) {
 </form>
 
 <script>
+$('.configKey[data-l1key="port"]').off('change').on('change',function(){
+  $('.zigbee_portConf').hide();
+  $('.zigbee_portConf.'+$(this).value()).show();
+});
 $('#bt_manageRfxComProtocole').on('click', function () {
   $('#md_modal2').dialog({title: "{{Gestion des protocoles RFXCOM}}"});
   $('#md_modal2').load('index.php?v=d&plugin=rfxcom&modal=manage.protocole').dialog('open');

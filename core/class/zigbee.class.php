@@ -109,7 +109,11 @@ class zigbee extends eqLogic {
       throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
     }
     $port = config::byKey('port', 'zigbee');
-    if ($port != 'auto') {
+    if ($port == 'pizigate') {
+      $port = 'pizigate:/dev/serial'.configKey('pizigate', 'zigbee');
+    }else if ($port == 'wifizigate') {
+      $port = 'socket://'.configKey('wifizigate', 'zigbee');
+    }else if ($port != 'auto') {
       $port = jeedom::getUsbMapping($port);
     }
     $zigbee_path = realpath(dirname(__FILE__) . '/../../resources/zigbeed');
