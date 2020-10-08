@@ -89,15 +89,9 @@ class zigbee extends eqLogic {
     }
     $return['launchable'] = 'ok';
     $port = config::byKey('port', 'zigbee');
-    if ($port != 'auto') {
-      $port = jeedom::getUsbMapping($port);
-      if (is_string($port)) {
-        if (@!file_exists($port)) {
-          $return['launchable'] = 'nok';
-          $return['launchable_message'] = __('Le port n\'est pas configuré', __FILE__);
-        }
-        exec(system::getCmdSudo() . 'chmod 777 ' . $port . ' > /dev/null 2>&1');
-      }
+    if ($port == 'none') {
+      $return['launchable'] = 'nok';
+      $return['launchable_message'] = __('Le port n\'est pas configuré', __FILE__);
     }
     return $return;
   }
@@ -110,9 +104,9 @@ class zigbee extends eqLogic {
     }
     $port = config::byKey('port', 'zigbee');
     if ($port == 'pizigate') {
-      $port = 'pizigate:/dev/serial'.configKey('pizigate', 'zigbee');
+      $port = 'pizigate:/dev/serial'.config::byKey('pizigate', 'zigbee');
     }else if ($port == 'wifizigate') {
-      $port = 'socket://'.configKey('wifizigate', 'zigbee');
+      $port = 'socket://'.config::byKey('wifizigate', 'zigbee');
     }else if ($port != 'auto') {
       $port = jeedom::getUsbMapping($port);
     }
