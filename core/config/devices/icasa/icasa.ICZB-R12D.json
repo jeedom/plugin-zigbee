@@ -1,5 +1,5 @@
 {
-  "name": "[RGBCTT] Sunricher RGB",
+  "name": "[R12D] Rotary Dimmer",
   "buylink" : "",
   "commands": [
     {
@@ -66,23 +66,33 @@
       }
     },
     {
-      "name": "Etat couleur",
+      "name": "Voltage",
       "type": "info",
-      "subtype": "string",
+      "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::768::color",
-      "generic_type": "LIGHT_COLOR"
+      "unite" :"V",
+      "logicalId": "1::2820::1285",
+      "generic_type": "VOLTAGE"
     },
     {
-      "name": "Couleur",
-      "type": "action",
-      "subtype": "color",
-      "isVisible": 1,
+      "name": "Courant",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
       "isHistorized": 0,
-      "value" : "Etat couleur",
-      "logicalId": "1::light_color::move_to_color::#color#::0",
-      "generic_type": "LIGHT_SET_COLOR"
+      "unite" :"A",
+      "logicalId": "1::2820::1288"
+    },
+    {
+      "name": "Puissance",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" :"W",
+      "logicalId": "1::2820::1291",
+      "generic_type": "VOLTAGE"
     }
   ]
 }
