@@ -73,7 +73,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
                 ?>
                 {{Etat :}} <b><span class="<?php echo $status_label; ?>" style="font-size : 1em;"><?php echo $infos['status'] ?></span></b>
                 {{Alimentation :}} <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['power_source'] ?></span></b>
-                <?php if($infos['power_source'] == __('Batterie',__FILE__)){
+                <?php if($infos['power_source'] == __('Batterie',__FILE__) || $infos['power_source'] == __('Inconnue ()',__FILE__)){
                   $battery_label = 'label label-success';
                   if($infos['battery_percent'] < 30){
                     $battery_label = 'label label-danger';
