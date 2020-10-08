@@ -39,7 +39,10 @@
       "isVisible": 1,
       "isHistorized": 1,
       "unite":"W",
-      "logicalId": "1::2820::1291"
+      "logicalId": "1::2820::1291",
+      "configuration":{
+        "historizeRound" : 2
+      }
     }
   ]
 }

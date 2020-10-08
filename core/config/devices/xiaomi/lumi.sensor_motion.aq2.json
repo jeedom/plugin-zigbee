@@ -24,6 +24,9 @@
       "generic_type": "BRIGHTNESS",
       "display": {
         "invertBinary" : 1
+      },
+      "configuration":{
+        "historizeRound" : 2
       }
     }
   ]
