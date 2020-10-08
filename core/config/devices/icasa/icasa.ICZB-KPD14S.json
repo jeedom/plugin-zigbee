@@ -1,0 +1,22 @@
+{
+  "name": "[ICZB-KPD14S] Pulse 4S Wall Controller",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Bouton",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::cmd::0"
+    },
+    {
+      "name": "Scene",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::5::cmd::5"
+    }
+  ]
+}
