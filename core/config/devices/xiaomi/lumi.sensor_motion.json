@@ -1,6 +1,6 @@
 {
   "name": "[motion] Xiaomi capteur de mouvement",
-  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4518-xiaomi-detecteur-de-mouvement-zigbee-aqara-192784000090.html",
+  "buylink" : "",
   "commands": [
     {
       "name": "Présence",

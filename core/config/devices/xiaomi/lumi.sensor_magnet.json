@@ -1,6 +1,6 @@
 {
   "name": "[magnet] Xiaomi capteur ouverture",
-  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4514-xiaomi-detecteur-d-ouverture-portefenetre-zigbee-aqara.html",
+  "buylink" : "",
   "commands": [
     {
       "name": "Ouverture",
