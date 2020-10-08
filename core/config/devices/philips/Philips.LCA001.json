@@ -9,7 +9,7 @@
       "generic_type": "LIGHT_STATE",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::6::0"
+      "logicalId": "11::6::0"
     },
     {
       "name": "On",
@@ -19,7 +19,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::on",
+      "logicalId": "11::on_off::on",
       "template":{
         "dashboard" : "light",
         "mobile" : "light"
@@ -33,7 +33,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::off",
+      "logicalId": "11::on_off::off",
       "template":{
         "dashboard" : "light",
         "mobile" : "light"
@@ -45,7 +45,7 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::8::0",
+      "logicalId": "11::8::0",
       "configuration" : {
         "minValue" : 0,
         "maxValue" : 254
@@ -58,7 +58,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat Luminosité",
-      "logicalId": "1::level::move_to_level::#slider#::0",
+      "logicalId": "11::level::move_to_level::#slider#::0",
       "generic_type": "LIGHT_SLIDER",
       "configuration" : {
         "minValue" : 0,
@@ -72,7 +72,7 @@
       "isVisible": 0,
       "isHistorized": 0,
       "value" : "Etat couleur",
-      "logicalId": "1::768::color",
+      "logicalId": "11::768::color",
       "generic_type": "LIGHT_COLOR"
     },
     {
@@ -82,7 +82,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat couleur",
-      "logicalId": "1::light_color::move_to_color::#color#::0",
+      "logicalId": "11::light_color::move_to_color::#color#::0",
       "generic_type": "LIGHT_SET_COLOR"
     }
   ]
