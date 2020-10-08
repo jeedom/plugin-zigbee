@@ -1,0 +1,14 @@
+{
+  "name": "[Cube] Cube",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::18::85",
+    }
+  ]
+}
