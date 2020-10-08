@@ -130,7 +130,7 @@ async def initialize(device):
 	try:
 		get_basic_info(device)
 	except Exception as e:
-		logging.debug("[initialize] Error on get_basic_info : "+str(e))
+		logging.warning("[initialize] Error on get_basic_info : "+str(e))
 	if shared.CONTROLLER == 'deconz': # Force save neightbors on deconz after inclusion
 		await shared.ZIGPY.get_device(ieee=shared.ZIGPY.ieee).neighbors.scan()
 
@@ -140,21 +140,21 @@ async def get_basic_info(device):
 				await device.endpoints[1].in_clusters[0].read_attributes([4,5],True)
 				await asyncio.sleep(1)
 			except Exception as e:
-				logging.debug("[get_basic_info] Error on read attribute level 1 : "+str(e))
+				logging.warning("[get_basic_info] Error on read attribute level 1 : "+str(e))
 			try:
 				await device.endpoints[1].in_clusters[0].read_attributes([0,1,2,3],True)
 				await asyncio.sleep(1)
 			except Exception as e:
-				logging.debug("[get_basic_info] Error on read attribute level 2 : "+str(e))
+				logging.warning("[get_basic_info] Error on read attribute level 2 : "+str(e))
 			try:
 				await device.endpoints[1].in_clusters[0].read_attributes([7],True)
 				await asyncio.sleep(1)
 			except Exception as e:
-				logging.debug("[get_basic_info] Error on read attribute level 3 : "+str(e))
+				logging.warning("[get_basic_info] Error on read attribute level 3 : "+str(e))
 			try:
 				await device.endpoints[1].in_clusters[0].read_attributes([6,16384],True)
 			except Exception as e:
-				logging.debug("[get_basic_info] Error on read attribute level 4 : "+str(e))
+				logging.warning("[get_basic_info] Error on read attribute level 4 : "+str(e))
 
 async def serialize(device):
 	obj = {
