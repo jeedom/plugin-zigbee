@@ -154,7 +154,7 @@ class DeviceHandler(RequestHandler):
 				try:
 					await zdevices.write_attributes(self.json_args)
 				except Exception as e:
-					if 'allowQueue' in self.json_args:
+					if 'allowQueue' in self.json_args and self.json_args['allowQueue'] :
 						logging.debug('Failed on write attribute'+str(self.json_args)+' => '+str(e))
 						logging.debug('Replan write attribut later')
 						zqueue.add('write_attributes',10,self.json_args,3)
@@ -177,7 +177,7 @@ class DeviceHandler(RequestHandler):
 				try:
 					await zdevices.command(self.json_args)
 				except Exception as e:
-					if 'allowQueue' in self.json_args:
+					if 'allowQueue' in self.json_args and self.json_args['allowQueue']:
 						logging.debug('Failed on command'+str(self.json_args)+' => '+str(e))
 						logging.debug('Replan command later')
 						zqueue.add('command',5,self.json_args,1)
