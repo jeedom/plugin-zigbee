@@ -103,7 +103,9 @@ if (!isConnect('admin')) {
 <script>
 $('.configKey[data-l1key="port"]').off('change').on('change',function(){
   $('.zigbee_portConf').hide();
-  $('.zigbee_portConf.'+$(this).value()).show();
+  if($(this).value() == 'pizigate' || $(this).value() == 'wifizigate'){
+    $('.zigbee_portConf.'+$(this).value()).show();
+  }
 });
 $('#bt_manageRfxComProtocole').on('click', function () {
   $('#md_modal2').dialog({title: "{{Gestion des protocoles RFXCOM}}"});
