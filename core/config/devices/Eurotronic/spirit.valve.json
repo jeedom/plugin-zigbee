@@ -1,7 +1,7 @@
 {
   "name": "Vanne Spirit",
   "buylink" : "",
-  "remark": "La vanne n'envoi aucun information pour l'identifier il faut donc absolument mettre manuelle le type de module dans Jeedom après inclusion",
+  "remark": "Vanne qui a tendance à ne plus accepter d'ordre à moins de la reinclure.",
   "commands": [
     {
       "name": "Température",
