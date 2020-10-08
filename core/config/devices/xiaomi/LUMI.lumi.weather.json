@@ -1,0 +1,45 @@
+{
+  "name": "[Weather] Capteur de température/pression/humidité",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Humidité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1029::0",
+      "unite" : "%",
+      "generic_type": "HUMIDITY",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1026::0",
+      "unite" : "°C",
+      "generic_type": "TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Pression",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1027::0",
+      "unite" : "hPA",
+      "generic_type": "PRESSURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    }
+  ]
+}
