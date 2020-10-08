@@ -65,7 +65,7 @@ if (!isConnect('admin')) {
     <div class="form-group zigbee_portConf wifizigate" style="display:none;">
       <label class="col-sm-4 control-label">{{Wifi Zigate IP:PORT}}</label>
       <div class="col-sm-2">
-        <input type="number" class="configKey form-control" data-l1key="wifizigate" />
+        <input class="configKey form-control" data-l1key="wifizigate" />
       </div>
     </div>
     <div class="form-group">
