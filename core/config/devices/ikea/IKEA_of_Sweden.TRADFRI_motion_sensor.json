@@ -12,6 +12,10 @@
       "configuration" : {
         "returnStateValue" : 1,
         "returnStateTime" : 1
+      },
+      "template":{
+        "dashboard" : "presence",
+        "mobile" : "presence"
       }
     }
   ]
