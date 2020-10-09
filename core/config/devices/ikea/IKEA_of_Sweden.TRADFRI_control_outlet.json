@@ -1,0 +1,14 @@
+{
+  "name": "[XXXX] Ikea télécommande 2 boutons pour prise",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Bouton 1",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::cmd::0"
+    }
+  ]
+}
