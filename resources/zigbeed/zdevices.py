@@ -84,6 +84,37 @@ async def write_attributes(_data):
 		if 'manufacturer' in attribute:
 			manufacturer = attribute['manufacturer']
 		await cluster.write_attributes(attributes,manufacturer=manufacturer)
+		asyncio.ensure_future(check_write_attributes(_data))
+
+async def check_write_attributes(_data):
+	await asyncio.sleep(45)
+	logging.debug('Check write attribute for : '+str(_data))
+	device = find(_data['ieee'])
+	for attribute in _data['attributes']:
+		if not attribute['endpoint'] in device.endpoints:
+			return
+		endpoint = device.endpoints[attribute['endpoint']]
+		if attribute['cluster_type'] == 'in':
+			if not attribute['cluster'] in endpoint.in_clusters:
+				raise Exception("Cluster not found : "+str(attribute['cluster']))
+			cluster = endpoint.in_clusters[attribute['cluster']]
+		else:
+			if not attribute['cluster'] in endpoint.out_clusters:
+				return
+			cluster = endpoint.out_clusters[attribute['cluster']]
+		attributes = {}
+		manufacturer = None
+		if 'manufacturer' in attribute:
+			manufacturer = attribute['manufacturer']
+		for i in attribute['attributes']:
+			values = await cluster.read_attributes([int(i)],True,manufacturer=manufacturer)
+			if values[0][int(i)] != attribute['attributes'][i]:
+				logging.debug('Attribute value issue for device : '+str(_data['ieee'])+' '+str(attribute['endpoint'])+'/'+str(attribute['cluster'])+'/'+str(int(i))+' expected value : '+str(attribute['attributes'][i])+' current value : '+str(values[0][int(i)]))
+				attributes[int(i)] = attribute['attributes'][i]
+		if len(attributes) == 0:
+			logging.debug('All attribute write succefull do nothing')
+			return;
+		await cluster.write_attributes(attributes,manufacturer=manufacturer)
 
 async def initialize(device):
 	for ep_id, endpoint in device.endpoints.items():
