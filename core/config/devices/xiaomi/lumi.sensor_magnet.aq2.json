@@ -12,9 +12,6 @@
       "generic_type": "OPENING",
       "display": {
         "invertBinary" : 1
-      },
-      "configuration":{
-        "historizeRound" : 2
       }
     }
   ]
