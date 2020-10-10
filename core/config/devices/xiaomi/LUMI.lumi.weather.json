@@ -36,10 +36,7 @@
       "isHistorized": 0,
       "logicalId": "1::1027::0",
       "unite" : "hPA",
-      "generic_type": "PRESSURE",
-      "configuration" : {
-        "calculValueOffset":"#value# / 100"
-      }
+      "generic_type": "PRESSURE"
     }
   ]
 }
