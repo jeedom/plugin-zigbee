@@ -156,7 +156,7 @@ class Neighbour():
 				new.device = self.device.application.get_device(new.ieee)
 				new._update_info()
 			except KeyError:
-				self.warning("neighbour %s is not in 'zigbee.db'", new.ieee)
+				logging.warning("neighbour %s is not in 'zigbee.db'", new.ieee)
 			self.neighbours.append(new)
 		logging.debug("Done scanning. Total %s neighbours", len(self.neighbours))
 
