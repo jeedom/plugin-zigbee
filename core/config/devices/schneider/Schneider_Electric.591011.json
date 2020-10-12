@@ -1,0 +1,20 @@
+{
+  "name": "[591011] Capteur d'ouverture",
+  "buylink" : "",
+  "remark" : "Attetion il faut faire l'inclusion très pres de la clef sinon le module boucle sur l'inclusion",
+  "commands": [
+    {
+      "name": "Ouverture",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "OPENING",
+      "template" : {
+        "dashboard" : "door",
+        "mobile" : "door"
+      }
+    }
+  ]
+}

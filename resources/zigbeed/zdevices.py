@@ -149,7 +149,7 @@ async def initialize(device):
 			if cluster.is_server and cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY :
 				await cluster.bind()
 				kwargs = {}
-				for report in registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].REPORT_CONFIG:
+				for report in registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].REPORT_CONFIG and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG'):
 					attr = report["attr"]
 					attr_name = cluster.attributes.get(attr, [attr])[0]
 					min_report_int, max_report_int, reportable_change = report["config"]

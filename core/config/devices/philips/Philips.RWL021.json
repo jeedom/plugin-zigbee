@@ -1,0 +1,27 @@
+{
+  "name": "[RWL021] Télécommande 4 boutons",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "LIGHT_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::6::0"
+    },
+    {
+      "name": "Etat Luminosité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::8::0",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    }
+  ]
+}

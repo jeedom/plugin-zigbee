@@ -1,0 +1,16 @@
+{
+  "name": "[592011] Capteur d'innondation",
+  "buylink" : "",
+  "remark" : "Attetion il faut faire l'inclusion très pres de la clef sinon le module boucle sur l'inclusion",
+  "commands": [
+    {
+      "name": "Ouverture",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "FLOOD"
+    }
+  ]
+}
