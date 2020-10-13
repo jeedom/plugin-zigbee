@@ -1,7 +1,6 @@
 {
-  "name": "Light RGB",
+  "name": "Bulb GU10 WS 400lm",
   "buylink" : "",
-  "remark" : "Equipement générique pour une lumiere RGB",
   "commands": [
     {
       "name": "Etat",
