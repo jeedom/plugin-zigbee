@@ -71,7 +71,7 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "value" : "Etat couleur",
+      "value" : "Etat température couleur",
       "logicalId": "1::768::7",
       "generic_type": "LIGHT_COLOR_TEMP"
     },
