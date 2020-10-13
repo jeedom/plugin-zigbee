@@ -66,26 +66,6 @@
       }
     },
     {
-      "name": "Etat couleur",
-      "type": "info",
-      "subtype": "string",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "value" : "Etat couleur",
-      "logicalId": "1::768::color",
-      "generic_type": "LIGHT_COLOR"
-    },
-    {
-      "name": "Couleur",
-      "type": "action",
-      "subtype": "color",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "value" : "Etat couleur",
-      "logicalId": "1::light_color::move_to_color::#color#::0",
-      "generic_type": "LIGHT_SET_COLOR"
-    },
-    {
       "name": "Etat température couleur",
       "type": "info",
       "subtype": "numeric",
