@@ -261,7 +261,7 @@ if (!isConnect('admin')) {
         $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
       },
       success: function (data) {
-        $('#div_networkZigbeeAlert').showAlert({message: '{{Module reinitialisé}}', level: 'success'});
+        $('#div_networkZigbeeAlert').showAlert({message: '{{Informations récuperées avec succès}}', level: 'success'});
       }
     });
   });
