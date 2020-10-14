@@ -9,7 +9,7 @@
 			"generic_type": "LIGHT_STATE",
 			"isVisible": 0,
 			"isHistorized": 0,
-			"logicalId": "1::6::0"
+			"logicalId": "1::64512::cmd::1"
 		},
 		{
 			"name": "Etat Luminosité",
