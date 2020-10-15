@@ -11,9 +11,17 @@
       "logicalId": "1::257::0"
     },
     {
-      "name": "Porte",
+      "name": "Inclinaison",
       "type": "info",
       "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::257::1283"
+    },
+    {
+      "name": "Porte",
+      "type": "info",
+      "subtype": "binary",
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::1280::cmd::1",
