@@ -1,5 +1,6 @@
 {
-  "name": "[CC10ZW] RGB controller",
+  "name": "RGB controller",
+  "ref" : "CC10ZW",
   "buylink" : "",
   "commands": [
     {

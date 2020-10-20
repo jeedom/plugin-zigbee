@@ -1,5 +1,6 @@
 {
-  "name": "[R12D] Rotary Dimmer",
+  "name": "Rotary Dimmer",
+  "ref" : "R12D",
   "buylink" : "",
   "commands": [
     {

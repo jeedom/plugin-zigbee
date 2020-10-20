@@ -1,5 +1,6 @@
 {
-  "name": "[ctrl_neutral1] Xiaomi interrupteur simple sans neutre",
+  "name": "Xiaomi interrupteur simple sans neutre",
+  "ref" : "ctrl_neutral1",
   "buylink" : "",
   "commands": [
     {

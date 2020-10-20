@@ -1,5 +1,6 @@
 {
-  "name": "[SR-ZG9080A] Sunricher motor controller",
+  "name": "Sunricher motor controller",
+  "ref" : "SR-ZG9080A",
   "buylink" : "",
   "commands": [
     {

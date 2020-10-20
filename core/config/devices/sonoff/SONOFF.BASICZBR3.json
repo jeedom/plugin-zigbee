@@ -1,5 +1,6 @@
 {
-  "name": "[BASICZBR3] Sonoff Basic ZBR3",
+  "name": "Sonoff Basic ZBR3",
+  "ref" : "BASICZBR3",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5258-sonoff-module-commutateur-10a-zigbee-30.html",
   "remark" : "",
   "commands": [

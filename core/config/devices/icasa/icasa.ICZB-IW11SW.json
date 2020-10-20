@@ -1,5 +1,6 @@
 {
-  "name": "[IW11SW] AC switch",
+  "name": "AC switch",
+  "ref" : "IW11SW",
   "buylink" : "",
   "commands": [
     {

@@ -1,5 +1,6 @@
 {
-  "name": "[vibration.aq1] Xioami Aquara Vibration",
+  "name": "Xioami Aquara Vibration",
+  "ref" : "vibration.aq1",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/4667-xiaomi-capteur-de-vibration-zigbee-aqara-192784000113.html",
   "commands": [
     {

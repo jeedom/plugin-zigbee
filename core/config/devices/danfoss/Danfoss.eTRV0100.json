@@ -1,5 +1,6 @@
 {
-  "name": "[eTRV0100] Danfoss Ally",
+  "name": "Danfoss Ally",
+  "ref" : "eTRV0100",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5156-danfoss-tete-electronique-ally-zigbee-30-5702425245008.html",
   "remark": "Pour réinitialiser la vanne, enlever les piles et les remettre en appuyant sur le bouton jusqu'au second rallumage de l'écran.",
   "config" : [

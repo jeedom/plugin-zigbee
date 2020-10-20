@@ -1,5 +1,6 @@
 {
-	"name": "[ROM001] Variateur",
+	"name": "Variateur",
+	"ref" : "ROM001",
 	"buylink" : "",
 	"commands": [
 		{

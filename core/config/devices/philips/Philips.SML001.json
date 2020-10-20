@@ -1,5 +1,6 @@
 {
-  "name": "[SML001] Philips mouvement",
+  "name": "Philips mouvement",
+  "ref" : "SML001",
   "buylink" : "",
   "commands": [
     {

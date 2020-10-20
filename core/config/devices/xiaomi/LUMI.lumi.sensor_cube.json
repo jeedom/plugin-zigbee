@@ -1,5 +1,6 @@
 {
-  "name": "[Cube] Cube",
+  "name": "Cube",
+  "ref" : "Cube",
   "buylink" : "",
   "commands": [
     {

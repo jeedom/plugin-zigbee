@@ -1,5 +1,6 @@
 {
-  "name": "[mgl01] Capteur de luminosité",
+  "name": "Capteur de luminosité",
+  "ref" : "mgl01",
   "buylink" : "",
   "commands": [
     {

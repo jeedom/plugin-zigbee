@@ -1,5 +1,6 @@
 {
-  "name": "[N-3.0] Smoke sensor",
+  "name": "Smoke sensor",
+  "ref" : "N-3.0",
   "buylink" : "",
   "commands": [
     {

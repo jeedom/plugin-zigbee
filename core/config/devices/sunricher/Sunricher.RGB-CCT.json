@@ -1,5 +1,6 @@
 {
-  "name": "[RGBCTT] Sunricher RGB",
+  "name": "Sunricher RGB",
+  "ref" : "RGBCTT",
   "buylink" : "",
   "commands": [
     {

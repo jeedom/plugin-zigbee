@@ -1,5 +1,6 @@
 {
-  "name": "[CD10ZW] Sensor connector",
+  "name": "Sensor connector",
+  "ref" : "CD10ZW",
   "buylink" : "",
   "commands": [
     {

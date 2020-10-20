@@ -1,5 +1,6 @@
 {
-  "name": "[IW11D] AC dimmer",
+  "name": "AC dimmer",
+  "ref" : "IW11D",
   "buylink" : "",
   "commands": [
     {

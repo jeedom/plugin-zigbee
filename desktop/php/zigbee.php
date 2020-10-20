@@ -193,10 +193,15 @@ sendVarToJS('zigbee_ids',$ids);
 													if(!isset($info['name'])){
 														continue;
 													}
-													if(isset($info['instruction'])){
-														echo '<option value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'" data-instruction="'.$info['instruction'].'">' . $info['name'] . '</option>';
+													if(isset($info['ref')){
+														$name = '['.$info['ref').'] '.$info['name'];
 													}else{
-														echo '<option value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'">' . $info['name'] . '</option>';
+														$name = $info['name'];
+													}
+													if(isset($info['instruction'])){
+														echo '<option value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'" data-instruction="'.$info['instruction'].'">' . $name . '</option>';
+													}else{
+														echo '<option value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'">' . $name . '</option>';
 													}
 												}
 												echo '</optgroup>';

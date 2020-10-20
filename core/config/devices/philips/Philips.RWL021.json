@@ -1,5 +1,6 @@
 {
-  "name": "[RWL021] Télécommande 4 boutons",
+  "name": "Télécommande 4 boutons",
+  "ref" : "RWL021",
   "buylink" : "",
   "commands": [
     {

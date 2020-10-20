@@ -1,1 +1,0 @@
-Suite à l'inclusion, message "Un périphérique Zigbee est en cours d\'inclusion", il faut pendant environ 2-3min presser le bouton d'inclusion toute les 10s pour forcer le module a communiquer avec le controller et à remonter toute les informations

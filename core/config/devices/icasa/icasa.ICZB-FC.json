@@ -1,5 +1,6 @@
 {
-  "name": "[FC] Filamant Bulb",
+  "name": "Filamant Bulb",
+  "ref" : "FC",
   "buylink" : "",
   "commands": [
     {

@@ -1,5 +1,6 @@
 {
-  "name": "[Plug] Xiaomi prise",
+  "name": "Xiaomi prise",
+  "ref" : "Plug",
   "buylink" : "",
   "commands": [
     {

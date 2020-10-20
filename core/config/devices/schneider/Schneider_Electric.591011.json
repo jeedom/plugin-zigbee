@@ -1,5 +1,6 @@
 {
-  "name": "[591011] Capteur d'ouverture",
+  "name": "Capteur d'ouverture",
+  "ref" : "591011",
   "buylink" : "",
   "remark" : "!! Attention le module ne marche pas !! Il faut faire l'inclusion très pres de la clef sinon le module boucle sur l'inclusion",
   "commands": [

@@ -1,5 +1,6 @@
 {
-  "name": "[ST30] Température/humidité",
+  "name": "Température/humidité",
+  "ref" : "ST30",
   "buylink" : "",
   "commands": [
     {

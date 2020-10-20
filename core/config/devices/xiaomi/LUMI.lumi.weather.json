@@ -1,5 +1,6 @@
 {
-  "name": "[Weather] Capteur de température/pression/humidité",
+  "name": "Capteur de température/pression/humidité",
+  "ref" : "Weather",
   "buylink" : "",
   "commands": [
     {

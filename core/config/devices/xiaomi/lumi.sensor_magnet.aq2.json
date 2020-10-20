@@ -1,5 +1,6 @@
 {
-  "name": "[magnet.aq2] Xiaomi Aquara capteur d'ouverture",
+  "name": "Xiaomi Aquara capteur d'ouverture",
+  "ref" : "magnet.aq2",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/4514-xiaomi-detecteur-d-ouverture-portefenetre-zigbee-aqara.html",
   "commands": [
     {

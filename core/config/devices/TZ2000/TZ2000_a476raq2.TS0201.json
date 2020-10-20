@@ -1,5 +1,6 @@
 {
-  "name": "[TS0201] Température/humidité",
+  "name": "Température/humidité",
+  "ref" : "TS0201",
   "buylink" : "",
   "commands": [
     {

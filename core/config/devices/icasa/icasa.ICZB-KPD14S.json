@@ -1,5 +1,6 @@
 {
-  "name": "[KPD14S] Pulse 4S Wall Controller",
+  "name": "Pulse 4S Wall Controller",
+  "ref" : "KPD14S",
   "buylink" : "",
   "commands": [
     {

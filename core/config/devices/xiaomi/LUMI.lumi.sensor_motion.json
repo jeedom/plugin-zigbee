@@ -1,5 +1,6 @@
 {
-  "name": "[motion] Xiaomi capteur de mouvement",
+  "name": "Xiaomi capteur de mouvement",
+  "ref" : "motion",
   "buylink" : "",
   "commands": [
     {

@@ -1,5 +1,6 @@
 {
-  "name": "[592011] Capteur d'innondation",
+  "name": "Capteur d'innondation",
+  "ref" : "592011",
   "buylink" : "",
   "remark" : "!! Attention le module ne marche pas !! Il faut faire l'inclusion très pres de la clef sinon le module boucle sur l'inclusion",
   "commands": [

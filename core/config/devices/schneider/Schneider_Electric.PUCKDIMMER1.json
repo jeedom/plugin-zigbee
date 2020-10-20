@@ -1,5 +1,6 @@
 {
-  "name": "[PUCK DIMMER 1] Puck dimmer",
+  "name": "Puck dimmer",
+  "ref" : "PUCK DIMMER 1",
   "buylink" : "",
   "commands": [
     {

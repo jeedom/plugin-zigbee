@@ -1,5 +1,6 @@
 {
-  "name": "[swtich] Xiaomi Aquara switch",
+  "name": "Xiaomi Aquara switch",
+  "ref" : "swtich",
   "buylink" : "",
   "commands": [
     {

@@ -1,5 +1,6 @@
 {
-  "name": "[WB01] Sonoff bouton",
+  "name": "Sonoff bouton",
+  "ref" : "WB01",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5259-sonoff-interrupteur-sans-fil-zigbee-30.html",
   "commands": [
     {
