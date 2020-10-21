@@ -1,7 +1,8 @@
 {
   "name": "Ikea Kadrilj",
   "buylink" : "",
-  "remark" : "Pour l'inclusion il est conseillé de faire une remise à zéro du store (en pressant les 2 boutons jusqu'a ce que la diode s'allume), puis mettre Jeedom en mode inclusion, retirer la betarie et remettre la batterie du store",
+  "reset" : "Presser les 2 boutons jusqu'a ce que la diode s'allume",
+  "pairing" : "Pour l'inclusion il est conseillé de faire une remise à zéro du store, puis mettre Jeedom en mode inclusion, retirer la betarie et remettre la batterie du store",
   "commands": [
     {
       "name": "Etat",
