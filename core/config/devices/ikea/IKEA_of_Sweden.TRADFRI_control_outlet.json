@@ -1,6 +1,11 @@
 {
-  "name": "Ikea prise",
+  "name": "Ikea TRADFRI prise connectée",
   "buylink" : "",
+  "ref" : "203.644.76",
+  "reset" : "",
+  "pairing" : "",
+  "remark" : "",
+  "documentation" : "https:\/\/www.ikea.com\/fr\/fr\/manuals\/tradfri-wireless-control-outlet__AA-2106602-1_pub.pdf",
   "commands": [
     {
       "name": "Etat",
