@@ -4,7 +4,7 @@
   "reset" : "Appuyer sur le bouton de couplage 4 fois en moins de 5 secondes.",
   "pairing" : "Maintenez le bouton d'appariement enfoncé pendant au moins 10 seconde",
   "remark" : "",
-  'type" : "Télécommande",
+  "type" : "Télécommande",
   "documentation" : "https:\/\/www.ikea.com\/fr\/fr\/manuals\/tradfri-remote-control__AA-2144014-1_pub.pdf",
   "buylink" : "",
   "commands": [
