@@ -193,8 +193,8 @@ sendVarToJS('zigbee_ids',$ids);
 													if(!isset($info['name'])){
 														continue;
 													}
-													if(isset($info['ref')){
-														$name = '['.$info['ref').'] '.$info['name'];
+													if(isset($info['ref'])){
+														$name = '['.$info['ref'].'] '.$info['name'];
 													}else{
 														$name = $info['name'];
 													}
