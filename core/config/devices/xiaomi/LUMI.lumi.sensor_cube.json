@@ -2,6 +2,8 @@
   "name": "Cube",
   "ref" : "Cube",
   "buylink" : "",
+  "reset" : "Il faut presser pendant 10s le bouton du module",
+  "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [
     {
       "name": "Etat",

@@ -2,6 +2,8 @@
   "name": "Capteur de température/pression/humidité",
   "ref" : "Weather",
   "buylink" : "",
+  "reset" : "Il faut presser pendant 10s le bouton du module",
+  "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [
     {
       "name": "Humidité",

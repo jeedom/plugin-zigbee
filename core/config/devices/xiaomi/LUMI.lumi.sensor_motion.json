@@ -2,6 +2,8 @@
   "name": "Xiaomi capteur de mouvement",
   "ref" : "motion",
   "buylink" : "",
+  "reset" : "Il faut presser pendant 10s le bouton du module",
+  "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [
     {
       "name": "Présence",

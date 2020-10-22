@@ -2,6 +2,8 @@
   "name": "Xioami Aquara Vibration",
   "ref" : "vibration.aq1",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/4667-xiaomi-capteur-de-vibration-zigbee-aqara-192784000113.html",
+  "reset" : "Il faut presser pendant 10s le bouton du module",
+  "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [
     {
       "name": "Vibration",
