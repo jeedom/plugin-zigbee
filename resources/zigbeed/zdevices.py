@@ -128,14 +128,14 @@ async def initialize(device):
 					await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
 			except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 				logging.debug("Failed to initialize '%s' cluster: %s", cluster.ep_attribute, str(ex))
-			if cluster.is_server and cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY :
+			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY :
 				try:
 					logging.debug("Bind '%s'", cluster.ep_attribute)
 					await cluster.bind()
 				except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 					logging.debug("Failed to bind '%s' cluster: %s", cluster.ep_attribute, str(ex))
 				kwargs = {}
-				if hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG') :
+				if cluster.is_server and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG') :
 					for report in registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].REPORT_CONFIG :
 						attr = report["attr"]
 						attr_name = cluster.attributes.get(attr, [attr])[0]
@@ -154,14 +154,14 @@ async def initialize(device):
 					await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
 			except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 				logging.debug("Failed to initialize '%s' cluster: %s", cluster.ep_attribute, str(ex))
-			if cluster.is_server and cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY :
+			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY :
 				try:
 					logging.debug("Bind '%s'", cluster.ep_attribute)
 					await cluster.bind()
 				except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 					logging.debug("Failed to bind '%s' cluster: %s", cluster.ep_attribute, str(ex))
 				kwargs = {}
-				if hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG') :
+				if cluster.is_server and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG') :
 					for report in registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].REPORT_CONFIG :
 						attr = report["attr"]
 						attr_name = cluster.attributes.get(attr, [attr])[0]
