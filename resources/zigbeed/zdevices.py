@@ -39,7 +39,7 @@ async def command(_data):
 			raise Exception("Cluster not found : "+str(cmd['cluster']))
 		cluster = getattr(endpoint, cmd['cluster'])
 		if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],cmd['command']):
-			logging.info("Use specific command action")
+			logging.info("["+str(device._ieee)+"][zdevices.command] Use specific command action")
 			command = getattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], cmd['command'])
 			if 'await' in cmd:
 				await command(cluster,cmd)
@@ -88,8 +88,8 @@ async def write_attributes(_data):
 
 async def check_write_attributes(_data):
 	await asyncio.sleep(120)
-	logging.debug('Check write attribute for : '+str(_data))
 	device = find(_data['ieee'])
+	logging.debug('['+str(device._ieee)+'][zdevices.check_write_attributes] Check write attribute for : '+str(_data))
 	for attribute in _data['attributes']:
 		if not attribute['endpoint'] in device.endpoints:
 			return
@@ -109,10 +109,10 @@ async def check_write_attributes(_data):
 		for i in attribute['attributes']:
 			values = await cluster.read_attributes([int(i)],True,manufacturer=manufacturer)
 			if values[0][int(i)] != attribute['attributes'][i]:
-				logging.debug('Attribute value issue for device : '+str(_data['ieee'])+' '+str(attribute['endpoint'])+'/'+str(attribute['cluster'])+'/'+str(int(i))+' expected value : '+str(attribute['attributes'][i])+' current value : '+str(values[0][int(i)]))
+				logging.debug('['+str(device._ieee)+'][zdevice.check_write_attributes] Attribute value issue for device : '+str(_data['ieee'])+' '+str(attribute['endpoint'])+'/'+str(attribute['cluster'])+'/'+str(int(i))+' expected value : '+str(attribute['attributes'][i])+' current value : '+str(values[0][int(i)]))
 				attributes[int(i)] = attribute['attributes'][i]
 		if len(attributes) == 0:
-			logging.debug('All attribute write succefull do nothing')
+			logging.debug('['+str(device._ieee)+'][zdevices.check_write_attributes] All attribute write succefull do nothing')
 			return;
 		await cluster.write_attributes(attributes,manufacturer=manufacturer)
 
@@ -121,19 +121,19 @@ async def initialize(device):
 		if ep_id == 0: # Ignore ZDO
 			continue
 		for cluster in endpoint.in_clusters.values(): # You need to attach a listener to every cluster to receive events
-			logging.debug("Begin configuration of input cluster '%s', is_server '%s'", cluster.ep_attribute,cluster.is_server)
+			logging.debug("["+str(device._ieee)+"][zdevices.initialize] Begin configuration of input cluster '%s', is_server '%s'", cluster.ep_attribute,cluster.is_server)
 			try:
 				if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
-					logging.debug(str(cluster.cluster_id)+ ' has specific function to initialize, I used it')
+					logging.debug('['+str(device._ieee)+'][zdevices.initialize] '+str(cluster.cluster_id)+ ' has specific function to initialize, I used it')
 					await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
 			except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
-				logging.debug("Failed to initialize '%s' cluster: %s", cluster.ep_attribute, str(ex))
+				logging.debug("["+str(device._ieee)+"][zdevices.initialize] Failed to initialize '%s' cluster: %s", cluster.ep_attribute, str(ex))
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY :
 				try:
-					logging.debug("Bind '%s'", cluster.ep_attribute)
+					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Bind '%s'", cluster.ep_attribute)
 					await cluster.bind()
 				except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
-					logging.debug("Failed to bind '%s' cluster: %s", cluster.ep_attribute, str(ex))
+					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Failed to bind '%s' cluster: %s", cluster.ep_attribute, str(ex))
 				kwargs = {}
 				if cluster.is_server and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG') :
 					for report in registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].REPORT_CONFIG :
@@ -141,25 +141,25 @@ async def initialize(device):
 						attr_name = cluster.attributes.get(attr, [attr])[0]
 						min_report_int, max_report_int, reportable_change = report["config"]
 						try:
-							logging.debug("reporting '%s' attr on '%s' cluster: %d/%d/%d: For: '%s'",attr_name,cluster.ep_attribute,min_report_int,max_report_int,reportable_change,device.ieee)
+							logging.debug("["+str(device._ieee)+"][zdevices.initialize] reporting '%s' attr on '%s' cluster: %d/%d/%d: For: '%s'",attr_name,cluster.ep_attribute,min_report_int,max_report_int,reportable_change,device.ieee)
 							await cluster.configure_reporting(attr, min_report_int, max_report_int, reportable_change, **kwargs)
 						except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
-							logging.debug("failed to set reporting for '%s' attr on '%s' cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
-			logging.debug("End configuration of cluser '%s'", cluster.ep_attribute)
+							logging.debug("["+str(device._ieee)+"][zdevices.initialize] failed to set reporting for '%s' attr on '%s' cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
+			logging.debug("["+str(device._ieee)+"][zdevices.initialize] End configuration of cluser '%s'", cluster.ep_attribute)
 		for cluster in endpoint.out_clusters.values(): # You need to attach a listener to every cluster to receive events
-			logging.debug("Begin configuration of output cluster '%s', is_server '%s'", cluster.ep_attribute,cluster.is_server)
+			logging.debug("["+str(device._ieee)+"][zdevices.initialize] Begin configuration of output cluster '%s', is_server '%s'", cluster.ep_attribute,cluster.is_server)
 			try:
 				if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
 					logging.debug(str(cluster.cluster_id)+ ' has specific function to initialize, I used it')
 					await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
 			except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
-				logging.debug("Failed to initialize '%s' cluster: %s", cluster.ep_attribute, str(ex))
+				logging.debug("["+str(device._ieee)+"][zdevices.initialize] Failed to initialize '%s' cluster: %s", cluster.ep_attribute, str(ex))
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY :
 				try:
-					logging.debug("Bind '%s'", cluster.ep_attribute)
+					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Bind '%s'", cluster.ep_attribute)
 					await cluster.bind()
 				except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
-					logging.debug("Failed to bind '%s' cluster: %s", cluster.ep_attribute, str(ex))
+					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Failed to bind '%s' cluster: %s", cluster.ep_attribute, str(ex))
 				kwargs = {}
 				if cluster.is_server and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG') :
 					for report in registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].REPORT_CONFIG :
@@ -167,15 +167,15 @@ async def initialize(device):
 						attr_name = cluster.attributes.get(attr, [attr])[0]
 						min_report_int, max_report_int, reportable_change = report["config"]
 						try:
-							logging.debug("reporting '%s' attr on '%s' cluster: %d/%d/%d: For: '%s'",attr_name,cluster.ep_attribute,min_report_int,max_report_int,reportable_change,device.ieee)
+							logging.debug("["+str(device._ieee)+"][zdevices.initialize] reporting '%s' attr on '%s' cluster: %d/%d/%d: For: '%s'",attr_name,cluster.ep_attribute,min_report_int,max_report_int,reportable_change,device.ieee)
 							await cluster.configure_reporting(attr, min_report_int, max_report_int, reportable_change, **kwargs)
 						except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
-							logging.debug("failed to set reporting for '%s' attr on '%s' cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
-			logging.debug("End configuration of cluser '%s'", cluster.ep_attribute)
+							logging.debug("["+str(device._ieee)+"][zdevices.initialize] failed to set reporting for '%s' attr on '%s' cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
+			logging.debug("["+str(device._ieee)+"][zdevices.initialize] End configuration of cluser '%s'", cluster.ep_attribute)
 	try:
 		await get_basic_info(device)
 	except Exception as e:
-		logging.warning("[initialize] Error on get_basic_info : "+str(e))
+		logging.warning("["+str(device._ieee)+"][zdevices.initialize] Error on get_basic_info : "+str(e))
 	if shared.CONTROLLER == 'deconz': # Force save neightbors on deconz after inclusion
 		await shared.ZIGPY.get_device(ieee=shared.ZIGPY.ieee).neighbors.scan()
 
@@ -185,21 +185,21 @@ async def get_basic_info(device):
 				await device.endpoints[1].in_clusters[0].read_attributes([4,5],True)
 				await asyncio.sleep(1)
 			except Exception as e:
-				logging.warning("[get_basic_info] Error on read attribute level 1 : "+str(e))
+				logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] Error on read attribute level 1 : "+str(e))
 			try:
 				await device.endpoints[1].in_clusters[0].read_attributes([0,1,2,3],True)
 				await asyncio.sleep(1)
 			except Exception as e:
-				logging.warning("[get_basic_info] Error on read attribute level 2 : "+str(e))
+				logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] Error on read attribute level 2 : "+str(e))
 			try:
 				await device.endpoints[1].in_clusters[0].read_attributes([7],True)
 				await asyncio.sleep(1)
 			except Exception as e:
-				logging.warning("[get_basic_info] Error on read attribute level 3 : "+str(e))
+				logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] Error on read attribute level 3 : "+str(e))
 			try:
 				await device.endpoints[1].in_clusters[0].read_attributes([6,16384],True)
 			except Exception as e:
-				logging.warning("[get_basic_info] Error on read attribute level 4 : "+str(e))
+				logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] Error on read attribute level 4 : "+str(e))
 
 async def serialize(device):
 	obj = {

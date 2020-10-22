@@ -52,19 +52,19 @@ class IASZoneChannel():
 	"""Channel for the IASZone Zigbee cluster."""
 
 	async def initialize(cluster):
-		logging.debug("started IASZoneChannel specific configuration")
 		ieee = cluster.endpoint.device.application.ieee
+		logging.debug("["+str(ieee)+"][chanels.security.IASZoneChannel.initialize] Started IASZoneChannel specific configuration")
 		try:
 			res = await cluster.write_attributes({"cie_addr": ieee})
-			logging.debug("wrote cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,res[0],)
+			logging.debug("["+str(ieee)+"][chanels.security.IASZoneChannel.initialize] Wrote cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,res[0],)
 		except ZigbeeException as ex:
-			logging.debug("Failed to write cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,str(ex),)
-		logging.debug("finished IASZoneChannel configuration")
+			logging.debug("["+str(ieee)+"][chanels.security.IASZoneChannel.initialize] Failed to write cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,str(ex),)
+		logging.debug("["+str(ieee)+"][chanels.security.IASZoneChannel.initialize] Finished IASZoneChannel configuration")
 
 	def cluster_command(cluster, command_id, *args):
 		try:
 			if command_id == 1:
-				logging.debug("Enroll requested from "+str(cluster.endpoint.device._ieee))
+				logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.cluster_command] Enroll requested")
 				asyncio.ensure_future(cluster.enroll_response(0, 0))
 			else:
 				changes = {'devices' : {str(cluster.endpoint.device._ieee) : {str(cluster.endpoint._endpoint_id) : {str(cluster.cluster_id) : {'cmd' : {}}}}}}

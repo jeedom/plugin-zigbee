@@ -63,7 +63,7 @@ async def start_zigbee():
 				"channel" : _channel
 			}
 		}
-		logging.debug('Init zigbee network with config : '+str(zigpy_config))
+		logging.debug('[start_zigbee] Init zigbee network with config : '+str(zigpy_config))
 		shared.ZIGPY = await ControllerApplication.new(
 			config=ControllerApplication.SCHEMA(zigpy_config),
 			auto_form=True,
@@ -74,14 +74,14 @@ async def start_zigbee():
 		for device in shared.ZIGPY.devices.values():
 			listener.device_initialized(device, new=False)
 
-		logging.debug('Init and start http server : '+str(zigpy_config))
+		logging.debug('[start_zigbee] Init and start http server : '+str(zigpy_config))
 		http_server = HTTPServer(shared.REST_SERVER)
 		http_server.listen(_socketport, address=_socket_host)
 		asyncio.create_task(zqueue.handle())
-		logging.debug('Start zigbee network')
+		logging.debug('[start_zigbee] Start zigbee network')
 		await asyncio.get_running_loop().create_future()
 	except Exception as e:
-		logging.error('Fatal error : '+str(e))
+		logging.error('[start_zigbee] Fatal error : '+str(e))
 		logging.debug(traceback.format_exc())
 		shutdown()
 

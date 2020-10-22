@@ -42,7 +42,7 @@ class ApplicationHandler(RequestHandler):
 				self.json_args = json.loads(self.request.body)
 		except Exception as e:
 			self.json_args = None
-		logging.debug('Json arg : '+str(self.json_args))
+		logging.debug('[ApplicationHandler.prepare] Json arg : '+str(self.json_args))
 
 	async def get(self,arg1):
 		try:
@@ -73,7 +73,7 @@ class NetworkHandler(RequestHandler):
 				self.json_args = json.loads(self.request.body)
 		except Exception as e:
 			self.json_args = None
-		logging.debug('Json arg : '+str(self.json_args))
+		logging.debug('[NetworkHandler.prepare] Json arg : '+str(self.json_args))
 
 	async def get(self,arg1):
 		try:
@@ -98,7 +98,7 @@ class DeviceHandler(RequestHandler):
 				self.json_args = json.loads(self.request.body)
 		except Exception as e:
 			self.json_args = None
-		logging.debug('Json arg : '+str(self.json_args))
+		logging.debug('[DeviceHandler.prepare] Json arg : '+str(self.json_args))
 
 	async def get(self,arg1):
 		try:
@@ -142,7 +142,7 @@ class DeviceHandler(RequestHandler):
 					values = await cluster.read_attributes(self.json_args['attributes'],True,manufacturer=manufacturer)
 				else:
 					values = await cluster.read_attributes(self.json_args['attributes'],manufacturer=manufacturer)
-				logging.debug('Attribute Value received : '+str(values))
+				logging.debug('[DeviceHandler.post] Attribute Value received : '+str(values))
 				return self.write(utils.format_json_result(success=True,data=values))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
@@ -155,8 +155,8 @@ class DeviceHandler(RequestHandler):
 					await zdevices.write_attributes(self.json_args)
 				except Exception as e:
 					if 'allowQueue' in self.json_args and self.json_args['allowQueue'] :
-						logging.debug('Failed on write attribute'+str(self.json_args)+' => '+str(e))
-						logging.debug('Replan write attribut later')
+						logging.debug('[DeviceHandler.put] Failed on write attribute'+str(self.json_args)+' => '+str(e))
+						logging.debug('[DeviceHandler.put] Replan write attribut later')
 						zqueue.add('write_attributes',10,self.json_args,3)
 					else:
 						raise
@@ -178,8 +178,8 @@ class DeviceHandler(RequestHandler):
 					await zdevices.command(self.json_args)
 				except Exception as e:
 					if 'allowQueue' in self.json_args and self.json_args['allowQueue']:
-						logging.debug('Failed on command'+str(self.json_args)+' => '+str(e))
-						logging.debug('Replan command later')
+						logging.debug('[DeviceHandler.put] Failed on command'+str(self.json_args)+' => '+str(e))
+						logging.debug('[DeviceHandler.put] Replan command later')
 						zqueue.add('command',5,self.json_args,1)
 					else:
 						raise

@@ -30,28 +30,28 @@ class Listener:
 		self.application = application
 
 	def unknown_cluster_message(self, cmd_id,*args):
-		logging.info("************************* Unknown cluster message : %s" %(cmd_id))
+		logging.info("[listener.unknown_cluster_message] %s" %(cmd_id))
 
 	def device_joined(self, device):
-		logging.info("************************* Device joined : %s" %(device))
+		logging.info("["+str(device._ieee)+"][listener.device_joined]")
 		shared.JEEDOM_COM.send_change_immediate({'device_joined' : str(device._ieee)});
 
 	def device_announce(self, device):
-		logging.info("****************** device_announce Zigpy Device: %s" %(device))
+		logging.info("["+str(device._ieee)+"][listener.device_announce]")
 
 	def device_removed(self, device):
-		logging.info("****************** device_removed Zigpy Device: %s" %(device))
+		logging.info("["+str(device._ieee)+"][listener.device_removed]")
 		shared.JEEDOM_COM.send_change_immediate({'device_removed' : str(device._ieee)});
 
 	def device_left(self, device):
-		logging.info("****************** device_left Zigpy Device: %s" %(device))
+		logging.info("["+str(device._ieee)+"][listener.device_left]")
 		shared.JEEDOM_COM.send_change_immediate({'device_left' : str(device._ieee)});
 
 	def device_initialized(self, device, *, new=True):
 		"""
 		Called at runtime after a device's information has been queried.I also call it on startup to load existing devices from the DB.
 		"""
-		logging.info("******************** Device is ready: new=%s, device=%s", new, device._ieee)
+		logging.info("["+str(device._ieee)+"][listener.device_initialized] new=%s", new)
 		for ep_id, endpoint in device.endpoints.items():
 			if ep_id == 0: # Ignore ZDO
 				continue
@@ -65,8 +65,8 @@ class Listener:
 			shared.JEEDOM_COM.send_change_immediate({'device_initialized' : str(device._ieee)});
 
 	def cluster_command(self, cluster, command_id, *args):
+		logging.info("["+str(cluster.endpoint.device._ieee)+"][listener.cluster_command] Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
 		try:
-			logging.info("****************** cluster_command - Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
 			utils.initSharedDeviceData(cluster,'cmd')
 			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['cmd'] = args
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'cluster_command'):
@@ -88,11 +88,11 @@ class Listener:
 
 	def device_announce(self, cluster, command_id, *args):
 		device = cluster.endpoint.device
-		logging.info("****************** device_announce - Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
+		logging.info("["+str(device._ieee)+"][listener.device_announce] Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
 
 	def general_command(self, cluster, command_id, *args):
 		device = cluster.endpoint.device
-		logging.info("****************** general_command - Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
+		logging.info("["+str(device._ieee)+"][listener.general_command] Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
 		nb1=0
 		nb2=0
 		for i in args[0]:
@@ -107,7 +107,7 @@ class Listener:
 
 	def attribute_updated(self, cluster, attribute_id, value):
 		try:
-			logging.info("****************** Received an attribute update %s=%s on cluster %s from device %s",attribute_id, value, cluster.cluster_id, cluster.endpoint.device._ieee)
+			logging.info("["+str(cluster.endpoint.device._ieee)+"][listener.attribute_updated] Received an attribute update %s=%s on cluster %s",attribute_id, value, cluster.cluster_id)
 			utils.initSharedDeviceData(cluster,attribute_id)
 			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id][attribute_id] = value
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'attribute_updated'):

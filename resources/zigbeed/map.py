@@ -71,12 +71,12 @@ class TopologyBuilder():
 		# do we have extra neighbours
 		for nei in self._seen.values():
 			if nei.ieee not in self._app.devices:
-				logging.debug("Neighbour not in 'zigbee.db': %s - %s", nei.ieee, nei.device_type)
+				logging.debug("["+str(nei.ieee)+"][map.sanity_check] Neighbour not in 'zigbee.db': %s - %s", nei.ieee, nei.device_type)
 		# are we missing neighbours
 		for dev in self._app.devices.values():
 			if dev.ieee in self._seen:
 				continue
-			logging.debug("%s (%s %s) was not found in the neighbours tables",dev.ieee,dev.manufacturer,dev.model,)
+			logging.debug("["+str(dev.ieee)+"][map.sanity_check] %s (%s %s) was not found in the neighbours tables",dev.ieee,dev.manufacturer,dev.model,)
 			nei = Neighbour(dev.ieee, f"0x{dev.nwk:04x}", "unk")
 			nei.device = dev
 			nei.model = dev.model
@@ -156,9 +156,9 @@ class Neighbour():
 				new.device = self.device.application.get_device(new.ieee)
 				new._update_info()
 			except KeyError:
-				logging.warning("neighbour %s is not in 'zigbee.db'", new.ieee)
+				logging.warning("["+str(new.ieee)+"][map.scan] neighbour %s is not in 'zigbee.db'", new.ieee)
 			self.neighbours.append(new)
-		logging.debug("Done scanning. Total %s neighbours", len(self.neighbours))
+		logging.debug("[map.scan] Done scanning. Total %s neighbours", len(self.neighbours))
 
 	def json(self):
 		"""Return JSON representation of the neighbours table."""

@@ -36,7 +36,7 @@ async def handle():
 				continue
 			if (zqueue['timestamp'] + zqueue['interval']) > time.time():
 				continue
-			logging.debug('Handle queue item : '+str(zqueue))
+			logging.debug('[zqueue.handle] Handle queue item : '+str(zqueue))
 			try:
 				if zqueue['type'] == 'write_attributes':
 					await zdevices.write_attributes(zqueue['data'])
@@ -44,7 +44,7 @@ async def handle():
 					await zdevices.command(zqueue['data'])
 				shared.ZQUEUE.remove(zqueue)
 			except Exception as e:
-				logging.debug('Error on queue for '+str(zqueue)+' => '+str(e))
+				logging.debug('[zqueue.handle] Error on queue for '+str(zqueue)+' => '+str(e))
 				if zqueue['repeat'] < 1:
 					shared.ZQUEUE.remove(zqueue)
 					continue
