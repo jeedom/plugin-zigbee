@@ -2,8 +2,8 @@
   "name": "Ikea TRADFRI prise connectée",
   "buylink" : "",
   "ref" : "203.644.76",
-  "reset" : "",
-  "pairing" : "",
+  "reset" : "Appui long avec un trombone sur le petit bouton",
+  "pairing" : "Appui long avec un trombone sur le petit bouton",
   "remark" : "",
   "documentation" : "https:\/\/www.ikea.com\/fr\/fr\/manuals\/tradfri-wireless-control-outlet__AA-2106602-1_pub.pdf",
   "commands": [
