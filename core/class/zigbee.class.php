@@ -155,12 +155,11 @@ class zigbee extends eqLogic {
         '/' => '',
         '\\' => ''
       );
-      $device_type = trim(str_replace(array_keys($replace_device_type),$replace_device_type,trim(trim(self::getAttribute(1,0,4,$device).'.'.trim(self::getAttribute(1,0,5,$device)),'_'))),'.');
-      if($device_type == ''){
-        $device_type = trim(str_replace(array_keys($replace_device_type),$replace_device_type,trim(trim(self::getAttribute(2,0,4,$device).'.'.trim(self::getAttribute(2,0,5,$device)),'_'))),'.');
-      }
-      if($device_type == ''){
-        $device_type = trim(str_replace(array_keys($replace_device_type),$replace_device_type,trim(trim(self::getAttribute(3,0,4,$device).'.'.trim(self::getAttribute(3,0,5,$device)),'_'))),'.');
+      for($i=1;$i<6;$i++){
+        $device_type = trim(str_replace(array_keys($replace_device_type),$replace_device_type,trim(trim(self::getAttribute($i,0,4,$device).'.'.trim(self::getAttribute($i,0,5,$device)),'_'))),'.');
+        if($device_type != ''){
+          break;
+        }
       }
       if(!is_object($eqLogic)){
         $eqLogic = new self();

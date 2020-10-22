@@ -1,9 +1,9 @@
 {
-  "name": "Capteur d'ouverture",
+  "name": "Wiser Door sensor",
   "ref" : "591011",
   "buylink" : "",
   "remark" : "!! Attention le module ne marche pas !!",
-  "reset" : "Presser  3 fois en moins d'une seconde le bouton puis le maintenir appuyé pendant 10s au moins. La led doit clignoter rouge",
+  "reset" : "Presser 3 fois en moins d'une seconde le bouton puis le maintenir appuyé pendant 10s au moins. La led doit clignoter rouge",
   "pairing" : "Presser 3 fois le bouton",
   "commands": [
     {

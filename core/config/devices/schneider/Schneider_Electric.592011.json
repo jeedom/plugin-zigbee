@@ -1,9 +1,9 @@
 {
-  "name": "Capteur d'innondation",
+  "name": "Wiser leak snesor",
   "ref" : "592011",
   "buylink" : "",
   "remark" : "!! Attention le module ne marche pas !!",
-  "reset" : "Presser  3 fois en moins d'une seconde le bouton puis le maintenir appuyé pendant 10s au moins. La led doit clignoter rouge",
+  "reset" : "Presser 3 fois en moins d'une seconde le bouton puis le maintenir appuyé pendant 10s au moins. La led doit clignoter rouge",
   "pairing" : "Presser 3 fois le bouton",
   "commands": [
     {
