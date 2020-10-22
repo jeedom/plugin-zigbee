@@ -1,7 +1,7 @@
 {
   "name": "Vanne Spirit",
   "buylink" : "",
-  "remark": "Vanne qui a tendance à ne plus accepter d'ordre à moins de la reinclure.",
+  "remark": "Vanne qui a tendance à ne plus accepter d'ordre (changement de consigne) à moins d'enlever les piles et de les remettres. Par contre elle remonte toujours bien les informations de température et changement de consigne manuel",
   "commands": [
     {
       "name": "Température",
