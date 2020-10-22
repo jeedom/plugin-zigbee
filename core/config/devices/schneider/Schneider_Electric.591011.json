@@ -3,7 +3,8 @@
   "ref" : "591011",
   "buylink" : "",
   "remark" : "!! Attention le module ne marche pas !!",
-  "pairing" : "Il faut faire l'inclusion très pres de la clef sinon le module boucle sur l'inclusion",
+  "reset" : "Presser  3 fois en moins d'une seconde le bouton puis le maintenir appuyé pendant 10s au moins. La led doit clignoter rouge",
+  "pairing" : "Presser 3 fois le bouton",
   "commands": [
     {
       "name": "Ouverture",
