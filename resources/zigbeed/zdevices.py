@@ -121,6 +121,7 @@ async def initialize(device):
 		if ep_id == 0: # Ignore ZDO
 			continue
 		for cluster in endpoint.in_clusters.values(): # You need to attach a listener to every cluster to receive events
+			logging.debug("Begin configuration of cluser '%s'", cluster.ep_attribute)
 			try:
 				if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
 					logging.debug(str(cluster.cluster_id)+ ' has specific function to initialize, I used it')
@@ -139,11 +140,13 @@ async def initialize(device):
 					attr_name = cluster.attributes.get(attr, [attr])[0]
 					min_report_int, max_report_int, reportable_change = report["config"]
 					try:
-						await cluster.configure_reporting(attr, min_report_int, max_report_int, reportable_change, **kwargs)
 						logging.debug("reporting '%s' attr on '%s' cluster: %d/%d/%d: For: '%s'",attr_name,cluster.ep_attribute,min_report_int,max_report_int,reportable_change,device.ieee)
+						await cluster.configure_reporting(attr, min_report_int, max_report_int, reportable_change, **kwargs)
 					except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 						logging.debug("failed to set reporting for '%s' attr on '%s' cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
+			logging.debug("End configuration of cluser '%s'", cluster.ep_attribute)
 		for cluster in endpoint.out_clusters.values(): # You need to attach a listener to every cluster to receive events
+			logging.debug("Begin configuration of cluser '%s'", cluster.ep_attribute)
 			try:
 				if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
 					logging.debug(str(cluster.cluster_id)+ ' has specific function to initialize, I used it')
@@ -162,12 +165,13 @@ async def initialize(device):
 					attr_name = cluster.attributes.get(attr, [attr])[0]
 					min_report_int, max_report_int, reportable_change = report["config"]
 					try:
-						await cluster.configure_reporting(attr, min_report_int, max_report_int, reportable_change, **kwargs)
 						logging.debug("reporting '%s' attr on '%s' cluster: %d/%d/%d: For: '%s'",attr_name,cluster.ep_attribute,min_report_int,max_report_int,reportable_change,device.ieee)
+						await cluster.configure_reporting(attr, min_report_int, max_report_int, reportable_change, **kwargs)
 					except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 						logging.debug("failed to set reporting for '%s' attr on '%s' cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
+			logging.debug("End configuration of cluser '%s'", cluster.ep_attribute)
 	try:
-		get_basic_info(device)
+		await get_basic_info(device)
 	except Exception as e:
 		logging.warning("[initialize] Error on get_basic_info : "+str(e))
 	if shared.CONTROLLER == 'deconz': # Force save neightbors on deconz after inclusion
