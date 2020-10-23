@@ -78,6 +78,22 @@ Dazu müssen Sie die folgenden Elemente angeben (unvollständige Anfragen werden
 - Klicken Sie auf der Ausrüstungsseite auf Konfiguration, dann auf die Registerkarte "Rohdaten" und senden Sie den Inhalt an das Jeedom-Team
 - Setzen Sie den Daemon in das Debug (und starten Sie ihn neu), führen Sie Aktionen am Gerät durch (wenn es sich um einen Temperatursensor handelt, variieren Sie die Temperatur, z. B. wenn es sich um ein Ventil handelt, ändern Sie den Sollwert ...) und senden Sie das ZigBee-Debug-Protokoll (achten Sie darauf, dass Sie den Zigbee und nicht den Zigbeed nehmen)
 
+# Touchlink
+
+Touchlink oder Lightlink ist ein spezieller Bestandteil des ZigBee, mit dem Sie Verwaltungsaufträge an ein Modul senden können, wenn Sie sich ganz in der Nähe befinden (50 cm)). Es wird zum Beispiel verwendet, um Lampen ohne Taste zurückzusetzen.
+
+Dies betrifft daher alles, was ZigBee-Lampen vom Typ Philips Hue, Ikea, Osram, Icasa usw. sind. Das Prinzip ist sehr einfach, um diesen Modultyp einem ZigBee-Netzwerk zuordnen zu können. Sie müssen zuerst einen Reset durchführen. Beim Neustart des Moduls wird dann automatisch versucht, eine Verknüpfung mit dem ersten geöffneten ZigBee-Netzwerk herzustellen.
+
+## In Touchlink zurücksetzen
+
+Dies ist der komplizierte Teil (wie immer in Zigbee ist das Zurücksetzen / Assoziieren am schwierigsten). Mehrere Methoden :
+
+- Führen Sie das Ein- und Ausschalten 5 oder 6 Mal schnell durch. Die Lampe blinkt normalerweise am Ende schnell, um zu signalisieren, dass sie gut ist (funktioniert selten)
+- Verwenden Sie eine ZigBee-Fernbedienung und
+  - Drücken Sie gleichzeitig die EIN- und AUS-Taste für 5 bis 10 Sekunden in der Nähe der Glühbirne (Vorsicht vor bestimmten Glühbirnen, manchmal müssen Sie die Glühbirne kurz zuvor aus- / einschalten) für Philips Farbton-Fernbedienungen
+  - Drücken Sie die Reset-Taste (neben der Batterie) für Ikea-Fernbedienungen 5 bis 10 Sekunden lang in der Nähe der Glühbirne (Vorsicht vor bestimmten Glühbirnen, manchmal müssen Sie die Glühbirne kurz zuvor aus- und wieder einschalten)
+- Für die Farbtonbirnen können Sie sie auch auf der Farbtonbrücke einfügen und dann von dieser entfernen
+
 # FAQ
 
 >**LQI oder RSSI ist N / A

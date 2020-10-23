@@ -78,6 +78,22 @@ Para ello, debe proporcionar los siguientes elementos (cualquier solicitud incom
 - En la página del equipo, haga clic en configuración, luego en la pestaña "Información sin procesar" y envíe el contenido al equipo de Jeedom
 - Ponga el daemon en debug (y reinícielo), realice acciones en el equipo (si es un sensor de temperatura, varíe la temperatura por ejemplo, si es una válvula, varíe el setpoint ...) y envíe el registro de depuración de zigbee (tenga cuidado de tomar el zigbee y no el zigbeed)
 
+# Touchlink
+
+Touchlink o Lightlink es una parte especial del Zigbee que le permite enviar órdenes de gestión a un módulo si está muy cerca de él (50cm). Se usa por ejemplo para hacer un reset en las bombillas que no tienen botón.
+
+Esto por lo tanto concierne a todo lo que sean bombillas Zigbee tipo Philips Hue, Ikea, Osram, Icasa ... etc. El principio es muy sencillo para poder asociar este tipo de módulo con una red zigbee, primero debes hacer un reset. Luego, al reiniciar, el módulo intentará asociarse automáticamente con la primera red Zigbee abierta que encuentre.
+
+## Restablecer en Touchlink
+
+Esta es la parte complicada (como siempre en Zigbee lo más difícil es el reinicio / asociación). Varios métodos :
+
+- Haga el encendido / apagado 5 o 6 veces rápidamente, la bombilla normalmente parpadea rápidamente al final para indicar que está bien (rara vez funciona)
+- Utilice un control remoto zigbee y
+  - presione al mismo tiempo el botón de ENCENDIDO y APAGADO durante 5 a 10 segundos cerca de la bombilla encendida (tenga cuidado con ciertas bombillas, a veces tiene que apagar / encender la bombilla justo antes) para los controles remotos de Philips hue
+  - presione el botón de reinicio (al lado de la batería) durante 5 a 10 segundos cerca de la bombilla encendida (tenga cuidado con ciertas bombillas, a veces tiene que apagar / encender la bombilla justo antes) para los controles remotos de Ikea
+- Para las bombillas de tono, también puede incluirlas en el puente de tono y luego quitarlas de él
+
 # FAQ
 
 >**LQI o RSSI es N / A

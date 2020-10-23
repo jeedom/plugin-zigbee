@@ -78,6 +78,22 @@ For this, you must provide the following elements (any incomplete request will b
 - On the equipment page, click on configuration then tab "Raw information" and send the content to the Jeedom team
 - Put the daemon in debug (and restart it), make actions on the equipment (if it is a temperature sensor, vary the temperature for example, if it is a valve, vary the setpoint ...) and send the zigbee debug log (be careful to take the zigbee and not the zigbeed)
 
+# Touchlink
+
+Touchlink or Lightlink is a special part of the Zigbee which allows you to send management orders to a module if you are very close to it (50cm). It is used for example to make a reset on the bulbs that do not have a button.
+
+This therefore concerns all that is Zigbee bulbs type Philips Hue, Ikea, Osram, Icasa ... and so on. The principle is very simple to be able to associate this type of module with a zigbee network, you must first do a reset. Then when restarting the module will automatically try to associate with the first open Zigbee network it finds.
+
+## Reset in Touchlink
+
+This is the complicated part (as always in Zigbee the hardest is the reset / association). Several methods :
+
+- Do the on / off 5 or 6 times quickly, the bulb normally flashes quickly at the end to signal that it is good (rarely works)
+- Use a zigbee remote control and
+  - press at the same time the ON and OFF button for 5 to 10 seconds near the powered bulb (beware of certain bulbs, you sometimes have to turn off / on the bulb just before) for Philips hue remote controls
+  - press the reset button (next to the battery) for 5 to 10 seconds near the powered bulb (beware of certain bulbs, you sometimes have to turn the bulb off / on just before) for Ikea remote controls
+- For the hue bulbs you can also include them on the hue bridge then remove them from it
+
 # FAQ
 
 >**LQI or RSSI is N / A

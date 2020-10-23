@@ -78,6 +78,22 @@ Para isso, você deve fornecer os seguintes elementos (qualquer solicitação in
 - Na página do equipamento, clique em configuração a seguir na aba "Informação bruta" e envie o conteúdo para a equipe Jeedom
 - Coloque o daemon em debug (e reinicie), faça ações no equipamento (se for um sensor de temperatura, varie a temperatura por exemplo, se for uma válvula, varie o setpoint ...) e envie o registro de depuração do zigbee (tome cuidado para pegar o zigbee e não o zigbeed)
 
+# Touchlink
+
+Touchlink ou Lightlink é uma parte especial do Zigbee que permite enviar ordens de gerenciamento para um módulo se você estiver muito perto dele (50cm). É usado, por exemplo, para fazer um reset nas lâmpadas que não têm botão.
+
+Portanto, isso diz respeito a tudo o que é lâmpadas Zigbee do tipo Philips Hue, Ikea, Osram, Icasa ... e assim por diante. O princípio é muito simples para poder associar este tipo de módulo a uma rede zigbee, você deve primeiro fazer um reset. Então, ao reiniciar, o módulo tentará automaticamente se associar à primeira rede Zigbee aberta que encontrar.
+
+## Redefinir no Touchlink
+
+Esta é a parte complicada (como sempre no Zigbee o mais difícil é o reset / associação). Vários métodos :
+
+- Ligue / desligue 5 ou 6 vezes rapidamente, a lâmpada normalmente pisca rapidamente no final para sinalizar que está boa (raramente funciona)
+- Use um controle remoto zigbee e
+  - pressione ao mesmo tempo o botão LIGAR e DESLIGAR por 5 a 10 segundos perto da lâmpada elétrica (cuidado com algumas lâmpadas, às vezes você precisa desligar / ligar a lâmpada imediatamente antes) para os controles remotos Philips hue
+  - pressione o botão de reinicialização (ao lado da bateria) por 5 a 10 segundos próximo à lâmpada elétrica (cuidado com certas lâmpadas, às vezes você precisa ligar / desligar a lâmpada um pouco antes) para os controles remotos Ikea
+- Para os bulbos de matiz, você também pode incluí-los na ponte matiz e removê-los
+
 # FAQ
 
 >**LQI ou RSSI é N / A
