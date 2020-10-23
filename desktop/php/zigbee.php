@@ -172,10 +172,10 @@ sendVarToJS('zigbee_ids',$ids);
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-3 control-label">{{Equipement}}</label>
+									<label class="col-sm-3 control-label">{{Fabricant}}</label>
 									<div class="col-sm-6">
-										<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="device">
-											<option value="">{{Inconnu}}</option>
+										<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="manufacturer">
+											<option value="">{{Aucun}}</option>
 											<?php
 											$manufacturers = array();
 											foreach (zigbee::devicesParameters() as $id => &$info) {
@@ -188,7 +188,29 @@ sendVarToJS('zigbee_ids',$ids);
 												$manufacturers[$info['manufacturer']][$id] = $info;
 											}
 											foreach ($manufacturers as $manufacturer => $devices) {
-												echo '<optgroup label="'.$manufacturer.'">';
+												echo '<option value="'.$manufacturer.'">' . $manufacturer . '</option>';
+											}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">{{Equipement}}</label>
+									<div class="col-sm-6">
+										<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="device">
+											<option value="" data-manufacturer="all">{{Inconnu}}</option>
+											<?php
+											$manufacturers = array();
+											foreach (zigbee::devicesParameters() as $id => &$info) {
+												if(!isset($info['manufacturer'])){
+													$info['manufacturer'] = __('Aucun',__FILE__);
+												}
+												if(!isset($manufacturers[$info['manufacturer']])){
+													$manufacturers[$info['manufacturer']] = array();
+												}
+												$manufacturers[$info['manufacturer']][$id] = $info;
+											}
+											foreach ($manufacturers as $manufacturer => $devices) {
 												foreach ($devices as $id => $info) {
 													if(!isset($info['name'])){
 														continue;
@@ -199,12 +221,11 @@ sendVarToJS('zigbee_ids',$ids);
 														$name = $info['name'];
 													}
 													if(isset($info['instruction'])){
-														echo '<option value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'" data-instruction="'.$info['instruction'].'">' . $name . '</option>';
+														echo '<option data-manufacturer="'.$manufacturer.'" value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'" data-instruction="'.$info['instruction'].'" style="display:none;">' . $name . '</option>';
 													}else{
-														echo '<option value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'">' . $name . '</option>';
+														echo '<option data-manufacturer="'.$manufacturer.'" value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'" style="display:none;">' . $name . '</option>';
 													}
 												}
-												echo '</optgroup>';
 											}
 											?>
 										</select>
