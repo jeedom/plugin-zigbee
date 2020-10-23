@@ -61,7 +61,6 @@ class Listener:
 				cluster.add_context_listener(self) # The context listener passes its own object as the first argument to the callback
 		if new:
 			asyncio.ensure_future(zdevices.initialize(device))
-			time.sleep(60)
 			shared.JEEDOM_COM.send_change_immediate({'device_initialized' : str(device._ieee)});
 
 	def cluster_command(self, cluster, command_id, *args):
