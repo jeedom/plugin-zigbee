@@ -92,7 +92,7 @@ C'est la partie compliqué (comme toujours en Zigbee le plus dur c'est le reset/
 - Utiliser une télécommande zigbee et
   - appuyer sur en meme temps le bouton ON et OFF pendant 5 à 10 secondes près de l'ampoule alimentée (attention sur certaine ampoule il faut parfois éteindre/allumer l'ampoule juste avant) pour les télécommandes Philips hue
   - appuyer sur le bouton reset (a coté de la batterie) pendant 5 à 10 secondes près de l'ampoule alimentée (attention sur certaine ampoule il faut parfois éteindre/allumer l'ampoule juste avant) pour les télécommandes Ikea
-
+- Pour les ampoules hue vous pouvez aussi les inclures sur le pont hue puis les supprimer de celui-ci
 
 # FAQ
 
