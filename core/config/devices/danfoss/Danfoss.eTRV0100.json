@@ -1,6 +1,7 @@
 {
   "name": "Danfoss Ally",
-  "ref" : "eTRV0100",
+  "ref" : "014G2461",
+  "manufacturer" : "Danfoss",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5156-danfoss-tete-electronique-ally-zigbee-30-5702425245008.html",
   "reset": "Pour réinitialiser la vanne, enlever les piles et les remettre en appuyant sur le bouton jusqu'au second rallumage de l'écran.",
   "config" : [
