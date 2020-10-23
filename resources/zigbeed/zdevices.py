@@ -120,7 +120,7 @@ async def initialize(device):
 	for ep_id, endpoint in device.endpoints.items():
 		if ep_id == 0: # Ignore ZDO
 			continue
-		for cluster in endpoint.in_clusters.values(): # You need to attach a listener to every cluster to receive events
+		for cluster in endpoint.in_clusters.values():
 			logging.debug("["+str(device._ieee)+"][zdevices.initialize] Begin configuration of input cluster '%s', is_server '%s'", cluster.ep_attribute,cluster.is_server)
 			try:
 				if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
@@ -148,7 +148,7 @@ async def initialize(device):
 						except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 							logging.debug("["+str(device._ieee)+"][zdevices.initialize] failed to set reporting for '%s' attr on '%s' cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
 			logging.debug("["+str(device._ieee)+"][zdevices.initialize] End configuration of cluser '%s'", cluster.ep_attribute)
-		for cluster in endpoint.out_clusters.values(): # You need to attach a listener to every cluster to receive events
+		for cluster in endpoint.out_clusters.values():
 			logging.debug("["+str(device._ieee)+"][zdevices.initialize] Begin configuration of output cluster '%s', is_server '%s'", cluster.ep_attribute,cluster.is_server)
 			try:
 				if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
