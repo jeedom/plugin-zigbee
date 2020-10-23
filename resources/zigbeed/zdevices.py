@@ -131,12 +131,13 @@ async def initialize(device):
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY :
 				try:
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Bind '%s'", cluster.ep_attribute)
-					await cluster.bind()
+					res = await cluster.bind()
+					logging.debug("["+str(device._ieee)+"][zdevices.initialize]bound '%s' cluster: %s", self.cluster.ep_attribute, res[0])
 				except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Failed to bind '%s' cluster: %s", cluster.ep_attribute, str(ex))
-				kwargs = {}
 				if cluster.is_server and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG') :
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize] This cluster have REPORT_CONFIG, we need to configure it")
+					kwargs = {}
 					for report in registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].REPORT_CONFIG :
 						attr = report["attr"]
 						attr_name = cluster.attributes.get(attr, [attr])[0]
@@ -159,11 +160,12 @@ async def initialize(device):
 				try:
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Bind '%s'", cluster.ep_attribute)
 					await cluster.bind()
+					logging.debug("["+str(device._ieee)+"][zdevices.initialize]bound '%s' cluster: %s", self.cluster.ep_attribute, res[0])
 				except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Failed to bind '%s' cluster: %s", cluster.ep_attribute, str(ex))
-				kwargs = {}
 				if cluster.is_server and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG') :
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize] This cluster have REPORT_CONFIG, we need to configure it")
+					kwargs = {}
 					for report in registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].REPORT_CONFIG :
 						attr = report["attr"]
 						attr_name = cluster.attributes.get(attr, [attr])[0]
