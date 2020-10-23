@@ -78,6 +78,22 @@ Pour cela il faut fournir les éléments suivant (toute demande incomplete sera 
 - Sur la page de l'équipement cliquer sur configuration puis onglet "Informations brutes" et envoyer le contenu à l'équipe Jeedom
 - Mettre le démon en debug (et le redemarrer), faire des actions sur l'équipement (si c'est un capteur de température faire varier la température par exemple, si c'est une vanne faire varier la consigne...) et envoyer le log en debug zigbee (attention a bien prendre le zigbee et pas le zigbeed)
 
+# Touchlink (lightlink)
+
+Touchlink ou Lightlink est une partie particuliere du Zigbee qui permet d'envoyer des ordres de gestion à un module si on est très pres de celui-ci (50cm). Ca sert par exemple a faire un reset sur les ampoules qui n'ont pas de bouton.
+
+Cela concerne donc tous ce qui est ampoules Zigbee type Philips Hue, Ikea, Osram, Icasa... et j'en passe. Le principe est très simple pour pouvoir associer ce type de module à un réseaux zigbee il faut d'abord faire un reset. Ensuite lors du redemarrage le module va automatiquement essayer de s'associer au premier réseaux Zigbee ouvert qu'il trouve.
+
+## Faire un reset en Touchlink
+
+C'est la partie compliqué (comme toujours en Zigbee le plus dur c'est le reset/association). Plusieurs methodes :
+
+- Faire 5 ou 6 fois du on/off rapidement, l'ampoule clignote normalement rapidement à la fin pour signaler que c'est bon (marche rarement)
+- Utiliser une télécommande zigbee et
+  - appuyer sur en meme temps le bouton ON et OFF pendant 5 à 10 secondes près de l'ampoule alimentée (attention sur certaine ampoule il faut parfois éteindre/allumer l'ampoule juste avant) pour les télécommandes Philips hue
+  - appuyer sur le bouton reset (a coté de la batterie) pendant 5 à 10 secondes près de l'ampoule alimentée (attention sur certaine ampoule il faut parfois éteindre/allumer l'ampoule juste avant) pour les télécommandes Ikea
+
+
 # FAQ
 
 >**Le LQI ou le RSSI est à N/A
