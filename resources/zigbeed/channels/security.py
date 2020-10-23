@@ -53,13 +53,13 @@ class IASZoneChannel():
 
 	async def initialize(cluster):
 		ieee = cluster.endpoint.device.application.ieee
-		logging.debug("["+str(ieee)+"][chanels.security.IASZoneChannel.initialize] Started IASZoneChannel specific configuration")
+		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Started IASZoneChannel specific configuration")
 		try:
 			res = await cluster.write_attributes({"cie_addr": ieee})
-			logging.debug("["+str(ieee)+"][chanels.security.IASZoneChannel.initialize] Wrote cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,res[0],)
+			logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Wrote cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,res[0],)
 		except ZigbeeException as ex:
-			logging.debug("["+str(ieee)+"][chanels.security.IASZoneChannel.initialize] Failed to write cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,str(ex),)
-		logging.debug("["+str(ieee)+"][chanels.security.IASZoneChannel.initialize] Finished IASZoneChannel configuration")
+			logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Failed to write cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,str(ex),)
+		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Finished IASZoneChannel configuration")
 
 	def cluster_command(cluster, command_id, *args):
 		try:
