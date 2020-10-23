@@ -44,6 +44,7 @@
     },
     {
       "name": "Etat Luminosité",
+      "generic_type": "LIGHT_BRIGHTNESS",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 0,
