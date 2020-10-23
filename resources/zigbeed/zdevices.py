@@ -136,6 +136,7 @@ async def initialize(device):
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Failed to bind '%s' cluster: %s", cluster.ep_attribute, str(ex))
 				kwargs = {}
 				if cluster.is_server and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG') :
+					logging.debug("["+str(device._ieee)+"][zdevices.initialize] This cluster have REPORT_CONFIG, we need to configure it")
 					for report in registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].REPORT_CONFIG :
 						attr = report["attr"]
 						attr_name = cluster.attributes.get(attr, [attr])[0]
@@ -162,6 +163,7 @@ async def initialize(device):
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Failed to bind '%s' cluster: %s", cluster.ep_attribute, str(ex))
 				kwargs = {}
 				if cluster.is_server and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'REPORT_CONFIG') :
+					logging.debug("["+str(device._ieee)+"][zdevices.initialize] This cluster have REPORT_CONFIG, we need to configure it")
 					for report in registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].REPORT_CONFIG :
 						attr = report["attr"]
 						attr_name = cluster.attributes.get(attr, [attr])[0]
