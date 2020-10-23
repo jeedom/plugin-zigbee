@@ -78,7 +78,7 @@ Pour cela il faut fournir les éléments suivant (toute demande incomplete sera 
 - Sur la page de l'équipement cliquer sur configuration puis onglet "Informations brutes" et envoyer le contenu à l'équipe Jeedom
 - Mettre le démon en debug (et le redemarrer), faire des actions sur l'équipement (si c'est un capteur de température faire varier la température par exemple, si c'est une vanne faire varier la consigne...) et envoyer le log en debug zigbee (attention a bien prendre le zigbee et pas le zigbeed)
 
-# Touchlink (lightlink)
+# Touchlink
 
 Touchlink ou Lightlink est une partie particuliere du Zigbee qui permet d'envoyer des ordres de gestion à un module si on est très pres de celui-ci (50cm). Ca sert par exemple a faire un reset sur les ampoules qui n'ont pas de bouton.
 
