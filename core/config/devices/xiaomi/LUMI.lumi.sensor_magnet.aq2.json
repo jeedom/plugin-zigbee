@@ -1,0 +1,21 @@
+{
+  "name": "Xiaomi Aquara capteur d'ouverture",
+  "ref" : "magnet.aq2",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4514-xiaomi-detecteur-d-ouverture-portefenetre-zigbee-aqara.html",
+  "reset" : "Il faut presser pendant 10s le bouton du module",
+  "pairing":"Il faut presser pendant 5s le bouton du module",
+  "commands": [
+    {
+      "name": "Ouverture",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::0",
+      "generic_type": "OPENING",
+      "display": {
+        "invertBinary" : 1
+      }
+    }
+  ]
+}
