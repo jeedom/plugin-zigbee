@@ -145,6 +145,7 @@
         "Catégorie": "Category",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
         "Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
+        "Fabricant": "Maker",
         "Inconnu": "Unknown",
         "Ajouter une commande": "Add a command",
         "Nom": "Name",
