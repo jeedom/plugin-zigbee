@@ -69,7 +69,7 @@ class Listener:
 			utils.initSharedDeviceData(cluster,'cmd')
 			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['cmd'] = args
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'cluster_command'):
-				logging.info("Use specific decode funtion")
+				logging.info("["+str(cluster.endpoint.device._ieee)+"][listener.cluster_command] Use specific decode funtion")
 				if registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].cluster_command(cluster, command_id, *args) is not None:
 					return
 			nb = 0
