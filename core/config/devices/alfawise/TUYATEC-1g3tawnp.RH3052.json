@@ -2,6 +2,9 @@
   "name": "Alfawise Température/humidité",
   "ref" : "RH3052",
   "buylink" : "",
+  "configuration" : {
+	"battery_type" : "1x3V CR2"
+	},
   "commands": [
     {
       "name": "Température",

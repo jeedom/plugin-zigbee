@@ -1,9 +1,10 @@
 {
-  "name": "Sonoff mouvement",
-  "ref" : "MS01",
-  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5261-sonoff-detecteur-de-mouvement-zigbee-30.html",
+  "name": "Alfawise porte",
+  "ref" : "RH3040",
+  "buylink" : "",
+  "remark" : "",
   "configuration" : {
-	"battery_type" : "1x3V CR2450"
+	"battery_type" : "1x3V CR2"
 	},
   "commands": [
     {
