@@ -121,6 +121,8 @@ async def initialize(device):
 		if ep_id == 0: # Ignore ZDO
 			continue
 		for cluster in endpoint.in_clusters.values():
+			if cluster.ep_attribute == 'lightlink' or cluster.ep_attribute == 'ota' or cluster.ep_attribute == 'identify' or cluster.ep_attribute == 'groups':
+				continue
 			logging.debug("["+str(device._ieee)+"][zdevices.initialize] Begin configuration of input cluster '%s', is_server '%s'", cluster.ep_attribute,cluster.is_server)
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY :
 				try:
@@ -149,10 +151,12 @@ async def initialize(device):
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Failed to initialize '%s' input cluster: %s", cluster.ep_attribute, str(ex))
 			logging.debug("["+str(device._ieee)+"][zdevices.initialize] End configuration of input cluster '%s'", cluster.ep_attribute)
 		for cluster in endpoint.out_clusters.values():
+			if cluster.ep_attribute == 'lightlink' or cluster.ep_attribute == 'ota' or cluster.ep_attribute == 'identify' or cluster.ep_attribute == 'groups':
+				continue
 			logging.debug("["+str(device._ieee)+"][zdevices.initialize] Begin configuration of output cluster '%s', is_server '%s'", cluster.ep_attribute,cluster.is_server)
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY :
 				try:
-					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Bind '%s' output cluste", cluster.ep_attribute)
+					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Bind '%s' output cluster", cluster.ep_attribute)
 					await cluster.bind()
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Bound '%s' output cluster", cluster.ep_attribute)
 				except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
