@@ -1,0 +1,27 @@
+{
+  "name": "Alfawise porte",
+  "ref" : "RH3001",
+  "buylink" : "",
+  "remark" : "",
+  "configuration" : {
+	"battery_type" : "1x3V CR2"
+	},
+  "commands": [
+    {
+      "name": "Ouverture",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "OPENING",
+      "display": {
+        "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "door",
+        "mobile" : "door"
+      }
+    }
+  ]
+}
