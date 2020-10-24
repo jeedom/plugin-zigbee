@@ -2,6 +2,9 @@
   "name": "Xiaomi capteur ouverture",
   "ref" : "magnet",
   "buylink" : "",
+  "configuration" : {
+	"battery_type" : "1x3V CR1632"
+	},
   "commands": [
     {
       "name": "Ouverture",
