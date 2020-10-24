@@ -145,6 +145,7 @@
         "Catégorie": "Kategorie",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
         "Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
+        "Recréer les commandes": "Befehle neu erstellen",
         "Fabricant": "Hersteller",
         "Inconnu": "Unbekannt",
         "Ajouter une commande": "Kommando hinzufügen",
@@ -172,7 +173,17 @@
         "Inverser": "Umgekehrt",
         "Tester": "Test",
         "Synchronisation en cours": "Synchronisation läuft",
-        "Operation realisee avec succes": "Vorgang erfolgreich abgeschlossen"
+        "Operation realisee avec succes": "Vorgang erfolgreich abgeschlossen",
+        "Recharge configuration": "Konfiguration aufladen",
+        "Recharger la configuration": "Konfiguration neu laden",
+        "Sélectionner le mode de rechargement de la configuration ?": "Wählen Sie den Konfigurations-Reload-Modus?",
+        "Sans supprimer les commandes": "Ohne Bestellungen zu löschen",
+        "En supprimant et recréant les commandes": "Durch Löschen und Neuerstellen von Bestellungen",
+        "Attention, \"En supprimant et recréant\" va supprimer les commandes existantes.": "Bitte beachten Sie, dass durch \"Löschen und Neuerstellen\" vorhandene Befehle gelöscht werden",
+        "Annuler": "Abbrechen",
+        "Démarrer": "Start",
+        "Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes": "Möchten Sie wirklich alle Befehle neu erstellen? Dadurch werden vorhandene Bestellungen gelöscht",
+        "Opération réalisée avec succès": "Vorgang erfolgreich abgeschlossen"
     },
     "plugins\/zigbee\/core\/php\/jeeZigbee.php": {
         "Vous n\\'etes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion auszuführen",
@@ -193,6 +204,7 @@
     },
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Zigbee eqLogic non trouvé : ": "",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {

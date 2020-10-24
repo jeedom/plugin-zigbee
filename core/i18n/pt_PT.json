@@ -145,6 +145,7 @@
         "Catégorie": "Categoria",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
         "Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
+        "Recréer les commandes": "Recriar comandos",
         "Fabricant": "Fabricante",
         "Inconnu": "Desconhecido",
         "Ajouter une commande": "Adicionar comando",
@@ -172,7 +173,17 @@
         "Inverser": "Inverter",
         "Tester": "Teste",
         "Synchronisation en cours": "Sincronização em andamento",
-        "Operation realisee avec succes": "Operação concluída com êxito"
+        "Operation realisee avec succes": "Operação concluída com êxito",
+        "Recharge configuration": "Recarregar configuração",
+        "Recharger la configuration": "Recarregar configuração",
+        "Sélectionner le mode de rechargement de la configuration ?": "Selecione o modo de recarregamento da configuração?",
+        "Sans supprimer les commandes": "Sem excluir pedidos",
+        "En supprimant et recréant les commandes": "Ao excluir e recriar pedidos",
+        "Attention, \"En supprimant et recréant\" va supprimer les commandes existantes.": "Observe que \"Ao excluir e recriar\" excluirá os comandos existentes",
+        "Annuler": "Cancelar",
+        "Démarrer": "Começo",
+        "Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes": "Tem certeza de que deseja recriar todos os controles? Isto irá remover ordens existentes",
+        "Opération réalisée avec succès": "Operação concluída com êxito"
     },
     "plugins\/zigbee\/core\/php\/jeeZigbee.php": {
         "Vous n\\'etes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",
@@ -193,6 +204,7 @@
     },
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Zigbee eqLogic non trouvé : ": "",
         "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {

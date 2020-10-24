@@ -145,6 +145,7 @@
         "Catégorie": "категория",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
         "Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
+        "Recréer les commandes": "",
         "Fabricant": "",
         "Inconnu": "неизвестный",
         "Ajouter une commande": "Добавить команду",
@@ -172,7 +173,17 @@
         "Inverser": "Обратный",
         "Tester": "Тест",
         "Synchronisation en cours": "",
-        "Operation realisee avec succes": ""
+        "Operation realisee avec succes": "",
+        "Recharge configuration": "",
+        "Recharger la configuration": "",
+        "Sélectionner le mode de rechargement de la configuration ?": "",
+        "Sans supprimer les commandes": "",
+        "En supprimant et recréant les commandes": "",
+        "Attention, \"En supprimant et recréant\" va supprimer les commandes existantes.": "",
+        "Annuler": "Отменить",
+        "Démarrer": "",
+        "Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes": "",
+        "Opération réalisée avec succès": ""
     },
     "plugins\/zigbee\/core\/php\/jeeZigbee.php": {
         "Vous n\\'etes pas autorisé à effectuer cette action": "",
@@ -193,6 +204,7 @@
     },
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "Zigbee eqLogic non trouvé : ": "",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
