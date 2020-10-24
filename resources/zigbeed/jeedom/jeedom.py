@@ -89,12 +89,12 @@ class jeedom_com():
 				tmp_changes[k] = changes
 				changes = tmp_changes
 				tmp_changes = {}
-			if self.cycle <= 0 and allowImmediate:
+			if self.cycle <= 0:
 				self.send_change_immediate(changes)
 			else:
 				self.merge_dict(self.changes,changes)
 		else:
-			if self.cycle <= 0 and allowImmediate:
+			if self.cycle <= 0:
 				self.send_change_immediate({key:value})
 			else:
 				self.changes[key] = value
