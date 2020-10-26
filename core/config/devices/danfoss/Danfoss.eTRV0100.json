@@ -2,8 +2,10 @@
   "name": "Danfoss Ally",
   "ref" : "014G2461",
   "manufacturer" : "Danfoss",
+  "type": "Tête thermostatique",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5156-danfoss-tete-electronique-ally-zigbee-30-5702425245008.html",
   "documentation" : "https://assets.danfoss.com/documents/DOC353849556547/DOC353849556547.pdf",
+  "pairing": "",
   "reset": "Pour réinitialiser la vanne, enlever les piles et les remettre en appuyant sur le bouton jusqu'au second rallumage de l'écran.",
   "config" : [
     {"endpoint" : 1,"cluster":516,"attribute":16384,"manufacturer":1,"name":"Direction de l'écran","type":"select","values":[{"value":0,"name":"Direction 1 (default)"},{"value":1,"name":"Direction 2"}]},

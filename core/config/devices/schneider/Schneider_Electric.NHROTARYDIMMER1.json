@@ -1,6 +1,8 @@
 {
-  "name": "Wiser Exxact Dimmer",
+  "name": "Wiser Exxact dimmer rotary",
   "ref" : "WDE002334",
+  "manufacturer" : "Schneider",
+  "type": "Variateur",
   "buylink" : "",
   "remark" : "",
   "reset" : "Presser 3 fois en moins d'une seconde le bouton du haut puis le maintenir appuyé pendant 10s au moins (attention à ne pas dépasser 20s). La led doit clignoter rouge",
