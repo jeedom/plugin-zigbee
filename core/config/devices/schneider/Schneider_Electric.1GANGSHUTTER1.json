@@ -1,10 +1,13 @@
 {
-  "name": "Shutter",
-  "ref" : "MEG5165",
+  "name": "PlusLink shutter insert",
+  "ref" : "MEG5165-0000",
+  "manufacturer": "Schneider",
+  "type": "Volets",
   "buylink" : "",
   "remark" : "",
   "reset" : "Presser 3 fois en moins d'une seconde le bouton du haut puis le maintenir appuyé pendant 10s au moins (attention à ne pas dépasser 20s). La led doit clignoter rouge",
   "pairing" : "Presser 3 fois le bouton",
+  "documentation": "https:\/\/download.schneider-electric.com\/files?p_enDocType=System+user+guide&p_File_Name=Merten_PL_Wiser_TIs_DE.pdf&p_Doc_Ref=Merten_PL_Wiser_TIs_DE",
   "commands":[
     {
       "name": "Etat",
