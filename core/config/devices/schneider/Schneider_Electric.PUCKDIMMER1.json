@@ -1,6 +1,8 @@
 {
-  "name": "Puck dimmer",
-  "ref" : "PUCK DIMMER 1",
+  "name": "Wiser micro module dimmer",
+  "ref" : "CCT5010-0001",
+  "manufacturer": "Schneider",
+  "type": "Variateur",
   "buylink" : "",
   "commands": [
     {
