@@ -1,10 +1,12 @@
 {
-  "name": "Wiser Door sensor",
-  "ref" : "591011",
+  "name": "Wiser Window/Door Sensor",
+  "ref" : "CCT591011_AS",
+  "type": "Ouverture",
   "buylink" : "",
   "remark" : "!! Attention le module ne marche pas !!",
   "reset" : "Presser 3 fois en moins d'une seconde le bouton puis le maintenir appuyé pendant 10s au moins. La led doit clignoter rouge",
   "pairing" : "Presser 3 fois le bouton",
+  "documentation": "https:\/\/download.schneider-electric.com\/files?p_enDocType=User+guide&p_File_Name=MFR1569800.pdf&p_Doc_Ref=MFR1569800",
   "commands": [
     {
       "name": "Ouverture",
