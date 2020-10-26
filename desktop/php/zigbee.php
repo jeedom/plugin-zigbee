@@ -167,7 +167,8 @@ sendVarToJS('zigbee_ids',$ids);
 							<fieldset>
 								<div class="form-group">
 									<label class="col-sm-3 control-label"></label>
-									<div class="col-sm-2">
+									<div class="col-sm-9">
+										<a class="btn btn-danger" id="bt_autoDetectModule"><i class="fas fa-search" title="{{Recréer les commandes}}"></i>  {{Recréer les commandes}}</a>
 										<a id="bt_showZigbeeDevice" class="btn btn-default"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 									</div>
 								</div>

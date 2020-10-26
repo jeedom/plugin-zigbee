@@ -4,6 +4,9 @@
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/4518-xiaomi-detecteur-de-mouvement-zigbee-aqara-192784000090.html",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
+  "configuration" : {
+      "battery_type" : "1x3V CR2450"
+   },
   "commands": [
     {
       "name": "Présence",

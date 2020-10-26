@@ -145,6 +145,7 @@
         "Catégorie": "Categoría",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
         "Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
+        "Recréer les commandes": "Recrea comandos",
         "Fabricant": "Fabricante",
         "Inconnu": "Desconocido",
         "Ajouter une commande": "Añadir una orden",
@@ -172,7 +173,17 @@
         "Inverser": "Invertir",
         "Tester": "Probar",
         "Synchronisation en cours": "Sincronización en progreso",
-        "Operation realisee avec succes": "Operación completada con éxito"
+        "Operation realisee avec succes": "Operación completada con éxito",
+        "Recharge configuration": "Configuración de recarga",
+        "Recharger la configuration": "Recargar configuración",
+        "Sélectionner le mode de rechargement de la configuration ?": "Seleccione el modo de recarga de configuración?",
+        "Sans supprimer les commandes": "Sin borrar pedidos",
+        "En supprimant et recréant les commandes": "Al eliminar y volver a crear pedidos",
+        "Attention, \"En supprimant et recréant\" va supprimer les commandes existantes.": "Tenga en cuenta que \"Al eliminar y volver a crear\" eliminará los comandos existentes",
+        "Annuler": "Cancelar",
+        "Démarrer": "Iniciar",
+        "Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes": "¿Seguro que quieres recrear todos los comandos? Esto eliminará los pedidos existentes",
+        "Opération réalisée avec succès": "Operación completada con éxito"
     },
     "plugins\/zigbee\/core\/php\/jeeZigbee.php": {
         "Vous n\\'etes pas autorisé à effectuer cette action": "No tiene autorización para realizar esta acción",
@@ -193,6 +204,7 @@
     },
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Zigbee eqLogic non trouvé : ": "",
         "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {

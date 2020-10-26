@@ -145,6 +145,7 @@
         "Catégorie": "Kategori",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
         "Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
+        "Recréer les commandes": "Komutlari yeniden oluşturmak",
         "Fabricant": "",
         "Inconnu": "Bilinmeyen",
         "Ajouter une commande": "Komuta ekle",
@@ -172,7 +173,17 @@
         "Inverser": "Ters çevir",
         "Tester": "Test et",
         "Synchronisation en cours": "",
-        "Operation realisee avec succes": "Operasyon başarıyla tamamlandı"
+        "Operation realisee avec succes": "Operasyon başarıyla tamamlandı",
+        "Recharge configuration": "",
+        "Recharger la configuration": "",
+        "Sélectionner le mode de rechargement de la configuration ?": "",
+        "Sans supprimer les commandes": "",
+        "En supprimant et recréant les commandes": "",
+        "Attention, \"En supprimant et recréant\" va supprimer les commandes existantes.": "",
+        "Annuler": "Iptal et",
+        "Démarrer": "Başlangıç",
+        "Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes": "Tüm komutları yeniden oluşturmak istediğinizden emin misiniz? Bu mevcut komutları silecek",
+        "Opération réalisée avec succès": "Operasyon başarıyla tamamlandı"
     },
     "plugins\/zigbee\/core\/php\/jeeZigbee.php": {
         "Vous n\\'etes pas autorisé à effectuer cette action": "Bu işlemi gerçekleştirme yetkiniz yok",
@@ -193,6 +204,7 @@
     },
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Zigbee eqLogic non trouvé : ": "",
         "Aucune méthode correspondante à : ": "Aşağıdakilere karşılık gelen bir yöntem yok:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {

@@ -145,6 +145,7 @@
         "Catégorie": "カテゴリ",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
         "Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
+        "Recréer les commandes": "",
         "Fabricant": "",
         "Inconnu": "不明",
         "Ajouter une commande": "コマンドの追加",
@@ -172,7 +173,17 @@
         "Inverser": "逆",
         "Tester": "テスト",
         "Synchronisation en cours": "",
-        "Operation realisee avec succes": "操作は正常に完了しました"
+        "Operation realisee avec succes": "操作は正常に完了しました",
+        "Recharge configuration": "",
+        "Recharger la configuration": "",
+        "Sélectionner le mode de rechargement de la configuration ?": "",
+        "Sans supprimer les commandes": "",
+        "En supprimant et recréant les commandes": "",
+        "Attention, \"En supprimant et recréant\" va supprimer les commandes existantes.": "",
+        "Annuler": "キャンセル",
+        "Démarrer": "スタート",
+        "Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes": "あなたはすべてのコントロールを再作成してもよろしいですか？これは、既存の注文を削除します",
+        "Opération réalisée avec succès": "操作は正常に完了しました"
     },
     "plugins\/zigbee\/core\/php\/jeeZigbee.php": {
         "Vous n\\'etes pas autorisé à effectuer cette action": "このアクションを実行する権限がありません",
@@ -193,6 +204,7 @@
     },
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Zigbee eqLogic non trouvé : ": "",
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
