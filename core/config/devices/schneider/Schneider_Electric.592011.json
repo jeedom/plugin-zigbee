@@ -1,6 +1,8 @@
 {
-  "name": "Wiser leak snesor",
-  "ref" : "592011",
+  "name" : "Wiser Water Leakage Sensor",
+  "ref" : "CCT592011_AS",
+  "manufacturer" : "Schneider",
+  "type" : "Fuite", 
   "buylink" : "",
   "remark" : "!! Attention le module ne marche pas !!",
   "reset" : "Presser 3 fois en moins d'une seconde le bouton puis le maintenir appuyé pendant 10s au moins. La led doit clignoter rouge",
