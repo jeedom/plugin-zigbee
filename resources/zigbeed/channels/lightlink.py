@@ -26,3 +26,5 @@ import utils
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(lightlink.LightLink.cluster_id)
 class LightLink():
 	"""Lightlink channel."""
+
+	NO_BINDING=True

@@ -121,7 +121,7 @@ async def initialize(device):
 		if ep_id == 0: # Ignore ZDO
 			continue
 		for cluster in endpoint.in_clusters.values():
-			if not hasattr(cluster,'ep_attribute') or cluster.ep_attribute == 'lightlink' or cluster.ep_attribute == 'ota' or cluster.ep_attribute == 'identify' or cluster.ep_attribute == 'groups':
+			if not hasattr(cluster,'ep_attribute') or (cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'NO_BINDING') and registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].NO_BINDING):
 				continue
 			logging.debug("["+str(device._ieee)+"][zdevices.initialize] Begin configuration of input cluster '%s', is_server '%s'", cluster.ep_attribute,cluster.is_server)
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY :
@@ -151,7 +151,7 @@ async def initialize(device):
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Failed to initialize '%s' input cluster: %s", cluster.ep_attribute, str(ex))
 			logging.debug("["+str(device._ieee)+"][zdevices.initialize] End configuration of input cluster '%s'", cluster.ep_attribute)
 		for cluster in endpoint.out_clusters.values():
-			if not hasattr(cluster,'ep_attribute') or cluster.ep_attribute == 'lightlink' or cluster.ep_attribute == 'ota' or cluster.ep_attribute == 'identify' or cluster.ep_attribute == 'groups':
+			if not hasattr(cluster,'ep_attribute') or (cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'NO_BINDING') and registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].NO_BINDING):
 				continue
 			logging.debug("["+str(device._ieee)+"][zdevices.initialize] Begin configuration of output cluster '%s', is_server '%s'", cluster.ep_attribute,cluster.is_server)
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY :

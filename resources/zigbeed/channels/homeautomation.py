@@ -33,17 +33,25 @@ import utils
 class ApplianceEventAlerts():
 	"""Appliance Event Alerts channel."""
 
+	NO_BINDING=True
+
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(homeautomation.ApplianceIdentification.cluster_id)
 class ApplianceIdentification():
 	"""Appliance Identification channel."""
+
+	NO_BINDING=True
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(homeautomation.ApplianceStatistics.cluster_id)
 class ApplianceStatistics():
 	"""Appliance Statistics channel."""
 
+	NO_BINDING=True
+
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(homeautomation.Diagnostic.cluster_id)
 class Diagnostic():
 	"""Diagnostic channel."""
+
+	NO_BINDING=True
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(homeautomation.ElectricalMeasurement.cluster_id)
 class ElectricalMeasurementChannel():

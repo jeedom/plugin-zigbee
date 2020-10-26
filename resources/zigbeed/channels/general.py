@@ -111,10 +111,14 @@ class GreenPowerProxy():
 class Groups():
 	"""Groups channel."""
 
+	NO_BINDING=True
+
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(general.Identify.cluster_id)
 class Identify():
 	"""Identify channel."""
+
+	NO_BINDING=True
 
 @registries.CLIENT_CHANNELS_REGISTRY.register(general.LevelControl.cluster_id)
 class LevelControl():
@@ -169,6 +173,9 @@ class OnOffConfiguration():
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(general.Ota.cluster_id)
 class Ota():
 	"""OTA Channel."""
+
+	NO_BINDING=True
+
 	def attribute_updated(cluster, attribute_id, value):
 		return False
 
@@ -187,6 +194,7 @@ class PollControl():
 	CHECKIN_INTERVAL = 55 * 60 * 4  # 55min
 	CHECKIN_FAST_POLL_TIMEOUT = 2 * 4  # 2s
 	LONG_POLL = 6 * 4  # 6s
+	NO_BINDING=True
 
 	def attribute_updated(cluster, attribute_id, value):
 		return False
@@ -222,3 +230,5 @@ class Scenes():
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(general.Time.cluster_id)
 class Time():
 	"""Time channel."""
+
+	NO_BINDING=True
