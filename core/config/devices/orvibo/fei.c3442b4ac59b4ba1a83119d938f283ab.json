@@ -2,6 +2,8 @@
   "name": "Smoke detector",
   "buylink" : "",
   "remark" : "",
+  "ref":"SF30",
+  "pairing" : "Presser le bouton pendant 5 à 10s",
   "commands": [
     {
       "name": "Fumée",

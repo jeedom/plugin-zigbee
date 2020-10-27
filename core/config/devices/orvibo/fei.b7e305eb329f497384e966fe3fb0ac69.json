@@ -1,7 +1,8 @@
 {
   "name": "Water leak",
+  "ref":"SW30",
   "buylink" : "",
-  "remark" : "",
+  "pairing" : "Presser le bouton pendant 5 à 10s",
   "commands": [
     {
       "name": "Innondation",

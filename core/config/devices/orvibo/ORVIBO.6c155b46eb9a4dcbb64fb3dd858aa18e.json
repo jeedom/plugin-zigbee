@@ -2,6 +2,7 @@
   "name": "RGB controller",
   "ref" : "CC10ZW",
   "buylink" : "",
+  "pairing" : "Presser le bouton pendant 5 à 10s",
   "commands": [
     {
       "name": "Etat",
