@@ -1,5 +1,7 @@
 {
   "name": "Emergency button",
+  "ref":"SE30",
+  "pairing":"Presser le bouton set au dos du bouton pendant 5 à 10s",
   "buylink" : "",
   "commands": [
     {
@@ -8,8 +10,7 @@
       "subtype": "binary",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::1280::cmd::1",
-      "generic_type": "SMOKE"
+      "logicalId": "1::1280::cmd::1"
     }
   ]
 }
