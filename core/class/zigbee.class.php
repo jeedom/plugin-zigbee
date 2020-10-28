@@ -203,6 +203,7 @@ class zigbee extends eqLogic {
   }
   
   public static function parseDeviceInformation($_data){
+    
     $return = array();
     $return['ieee'] = $_data['ieee'];
     $return['nwk'] = $_data['nwk'];
@@ -228,15 +229,15 @@ class zigbee extends eqLogic {
       $return['alert_message'] = __('Aucun endpoints sur le module. Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\'inclusion)',__FILE__);
       return $return;
     }
-    
-    $return['zcl_version'] = self::getAttribute(1,0,0,$_data);
-    $return['app_version'] = self::getAttribute(1,0,1,$_data);
-    $return['stack_version'] = self::getAttribute(1,0,2,$_data);
-    $return['hw_version'] = self::getAttribute(1,0,3,$_data);
-    $return['manufacturer'] = self::getAttribute(1,0,4,$_data);
-    $return['model'] = self::getAttribute(1,0,5,$_data);
-    $return['date_code'] = self::getAttribute(1,0,6,$_data);
-    $return['power_source'] = self::getAttribute(1,0,7,$_data);
+    $endpoint_id = array_values($_data['endpoints'])[0]['id'];
+    $return['zcl_version'] = self::getAttribute($endpoint_id,0,0,$_data);
+    $return['app_version'] = self::getAttribute($endpoint_id,0,1,$_data);
+    $return['stack_version'] = self::getAttribute($endpoint_id,0,2,$_data);
+    $return['hw_version'] = self::getAttribute($endpoint_id,0,3,$_data);
+    $return['manufacturer'] = self::getAttribute($endpoint_id,0,4,$_data);
+    $return['model'] = self::getAttribute($endpoint_id,0,5,$_data);
+    $return['date_code'] = self::getAttribute($endpoint_id,0,6,$_data);
+    $return['power_source'] = self::getAttribute($endpoint_id,0,7,$_data);
     switch ($return['power_source']) {
       case 1:
       $return['power_source'] = __('Secteur monophasée',__FILE__);
@@ -260,10 +261,10 @@ class zigbee extends eqLogic {
       $return['power_source'] = __('Inconnue',__FILE__).' ('.$return['power_source'].')';
       break;
     }
-    $return['sw_build_id'] = self::getAttribute(1,0,16384,$_data);
+    $return['sw_build_id'] = self::getAttribute($endpoint_id,0,16384,$_data);
     
-    $return['battery_voltage'] = self::getAttribute(1,1,32,$_data)/10;
-    $return['battery_percent'] = self::getAttribute(1,1,33,$_data);
+    $return['battery_voltage'] = self::getAttribute($endpoint_id,1,32,$_data)/10;
+    $return['battery_percent'] = self::getAttribute($endpoint_id,1,33,$_data);
     if($return['battery_percent'] > 100){
       $return['battery_percent'] = 100;
     }
