@@ -106,6 +106,8 @@ class DeviceTemperature():
 class GreenPowerProxy():
 	"""Green Power Proxy channel."""
 
+	NO_BINDING=True
+
 
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(general.Groups.cluster_id)
 class Groups():

@@ -180,7 +180,7 @@ async def initialize(device):
 						await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
 				except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize] Failed to initialize '%s' output cluster: %s", cluster.ep_attribute, str(ex))
-			logging.debug("["+str(device._ieee)+"][zdevices.initialize] End configuration of output  cluster '%s'", cluster.ep_attribute)
+			logging.debug("["+str(device._ieee)+"][zdevices.initialize] End configuration of output cluster '%s'", cluster.ep_attribute)
 	try:
 		await get_basic_info(device)
 	except Exception as e:
@@ -191,26 +191,34 @@ async def initialize(device):
 	logging.debug("["+str(device._ieee)+"][zdevices.initialize] End device initialize")
 
 async def get_basic_info(device):
-		if 1 in device.endpoints and 0 in device.endpoints[1].in_clusters:
+	logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] Begin get basic info from device")
+	for ep_id, endpoint in device.endpoints.items():
+		if ep_id == 0: # Ignore ZDO
+			continue
+		for cluster in endpoint.in_clusters.values():
+			if cluster.cluster_id != 0:
+				continue
+			logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] End point found")
 			try:
-				await device.endpoints[1].in_clusters[0].read_attributes([4,5],True)
+				await cluster.read_attributes([4,5],True)
 				await asyncio.sleep(1)
 			except Exception as e:
 				logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] Error on read attribute level 1 : "+str(e))
 			try:
-				await device.endpoints[1].in_clusters[0].read_attributes([0,1,2,3],True)
+				await cluster.read_attributes([0,1,2,3],True)
 				await asyncio.sleep(1)
 			except Exception as e:
 				logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] Error on read attribute level 2 : "+str(e))
 			try:
-				await device.endpoints[1].in_clusters[0].read_attributes([7],True)
+				await cluster.read_attributes([7],True)
 				await asyncio.sleep(1)
 			except Exception as e:
 				logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] Error on read attribute level 3 : "+str(e))
 			try:
-				await device.endpoints[1].in_clusters[0].read_attributes([6,16384],True)
+				await cluster.read_attributes([6,16384],True)
 			except Exception as e:
 				logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] Error on read attribute level 4 : "+str(e))
+	logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] End get basic info from device")
 
 async def serialize(device):
 	obj = {

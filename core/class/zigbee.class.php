@@ -155,12 +155,12 @@ class zigbee extends eqLogic {
         '/' => '',
         '\\' => ''
       );
-      for($i=1;$i<6;$i++){
-        $device_type = trim(str_replace(array_keys($replace_device_type),$replace_device_type,trim(trim(self::getAttribute($i,0,4,$device).'.'.trim(self::getAttribute($i,0,5,$device)),'_'))),'.');
-        if($device_type != ''){
-          break;
-        }
+      
+      if(isset($device['endpoints'])){
+        $endpoint_id = array_values($device['endpoints'])[0]['id'];
+        $device_type = trim(str_replace(array_keys($replace_device_type),$replace_device_type,trim(trim(self::getAttribute($endpoint_id,0,4,$device).'.'.trim(self::getAttribute($endpoint_id,0,5,$device)),'_'))),'.');
       }
+      
       if(!is_object($eqLogic)){
         $eqLogic = new self();
         $eqLogic->setLogicalId($device['ieee']);
