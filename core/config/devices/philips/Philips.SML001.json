@@ -1,6 +1,8 @@
 {
   "name": "Philips mouvement",
+  "manufacturer": "Philips",
   "ref" : "SML001",
+  "type": "Mouvement,Luminosité,Température",
   "buylink" : "",
   "commands": [
     {
