@@ -117,6 +117,7 @@ async def check_write_attributes(_data):
 		await cluster.write_attributes(attributes,manufacturer=manufacturer)
 
 async def initialize(device):
+	logging.debug("["+str(device._ieee)+"][zdevices.initialize] Begin device initialize")
 	for ep_id, endpoint in device.endpoints.items():
 		if ep_id == 0: # Ignore ZDO
 			continue
@@ -185,7 +186,9 @@ async def initialize(device):
 	except Exception as e:
 		logging.warning("["+str(device._ieee)+"][zdevices.initialize] Error on get_basic_info : "+str(e))
 	if shared.CONTROLLER == 'deconz': # Force save neightbors on deconz after inclusion
+		logging.debug("["+str(device._ieee)+"][zdevices.initialize] It's deconz key, force neightbors scan")
 		await shared.ZIGPY.get_device(ieee=shared.ZIGPY.ieee).neighbors.scan()
+	logging.debug("["+str(device._ieee)+"][zdevices.initialize] End device initialize")
 
 async def get_basic_info(device):
 		if 1 in device.endpoints and 0 in device.endpoints[1].in_clusters:
