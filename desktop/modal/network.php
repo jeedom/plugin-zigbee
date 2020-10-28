@@ -300,7 +300,7 @@ if (!isConnect('admin')) {
         data_node.name = zigbee_logicalIds_name[devices_neighbours[z].ieee]
       }
       if(devices_neighbours[z].nwk == 0){
-        data_node.name = '{{Controlleur}}'
+        data_node.name = '{{Contrôleur}}'
       }
       graph.addNode(devices_neighbours[z].ieee, data_node);
       linkcolor = '#B7B7B7';
