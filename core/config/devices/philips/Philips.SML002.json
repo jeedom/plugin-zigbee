@@ -1,7 +1,7 @@
 {
-  "name": "Hue détecteur de mouvement intérieure",
+  "name": "Hue détecteur de mouvement extérieure",
   "manufacturer": "Philips",
-  "ref" : "SML001",
+  "ref" : "SML002",
   "type": "Mouvement,Luminosité,Température",
   "buylink" : "",
   "commands": [
