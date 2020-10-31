@@ -9,6 +9,10 @@ El complemento Zigbee le permite comunicarse con la mayoría de los equipos Zigb
 - ZNP (instrumento de Texas, pila Z 3.X.X). No probado por el equipo, marcado como experimental en Zigpy
 - CC (instrumento de Texas, pila Z 1.2.X). No probado por el equipo, marcado como experimental en Zigpy
 
+>**Importante**
+>
+>El complemento no es compatible con las lámparas antiguas que utilizan el tipo Zigbee Lightlink el primer PhilipsHue. Para estar seguro de la compatibilidad, no olvide consultar el sitio de [Compatibilidad Jeedom](https://compatibility.jeedom.com)
+
 # Configuración del plugin
 
 Después de instalar el complemento, solo tiene que instalar las dependencias, seleccionar su tipo de clave, el puerto (tenga cuidado solo el tipo de clave deconz admite el puerto en automático) e iniciar el demonio. También puedes elegir el canal para el zigbee.
