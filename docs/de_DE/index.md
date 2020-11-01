@@ -9,6 +9,10 @@ Mit dem ZigBee-Plugin können Sie mit den meisten vorhandenen ZigBee-Geräten ko
 - ZNP (Texas Instrument, Z-Stapel 3.X.X). Nicht vom Team getestet, experimentell bei Zigpy markiert
 - CC (Texas Instrument, Z-Stapel 1.2.X). Nicht vom Team getestet, experimentell bei Zigpy markiert
 
+>**Wichtig**
+>
+>Das Plugin ist nicht kompatibel mit den alten Lampen, die den Zigbee Lightlink-Typ 1st PhilipsHue verwenden. Um die Kompatibilität zu gewährleisten, vergessen Sie nicht, die Website von zu konsultieren [Jeedom-Kompatibilität](https://compatibility.jeedom.com)
+
 # Plugin Konfiguration
 
 Nach der Installation des Plugins müssen Sie nur die Abhängigkeiten installieren, Ihren Schlüsseltyp und den Port auswählen (achten Sie darauf, dass nur der Deconz-Schlüsseltyp den Port in Auto unterstützt) und den Daemon starten. Sie können auch den Kanal für den Zickzack auswählen.

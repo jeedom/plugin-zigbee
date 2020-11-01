@@ -9,6 +9,10 @@ O plugin Zigbee permite que você se comunique com a maioria dos equipamentos Zi
 - ZNP (Texas Instrument, Z-stack 3.X.X). Não testado pela equipe, marcado em experimental no Zigpy
 - CC (Texas Instrument, Z-stack 1.2.X). Não testado pela equipe, marcado em experimental no Zigpy
 
+>**IMPORTANTE**
+>
+>O plugin não é compatível com as lâmpadas antigas que usam o Zigbee Lightlink digite o primeiro PhilipsHue. Para ter certeza da compatibilidade não esqueça de consultar o site da [Compatibilidade Jeedom](https://compatibility.jeedom.com)
+
 # Configuração do plugin
 
 Depois de instalar o plugin, você só precisa instalar as dependências, selecionar seu tipo de chave, a porta (cuidado apenas o tipo de chave deconz suporta a porta em auto) e iniciar o daemon. Você também pode escolher o canal para o zigbee.
