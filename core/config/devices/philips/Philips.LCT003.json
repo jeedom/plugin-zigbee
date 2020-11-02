@@ -1,0 +1,76 @@
+{
+  "name": "Hue White and Color Ambiance Spot GU10",
+  "ref" : "LCT003",
+  "buylink" : "",
+  "remark":"Attention il n'y a pas de retour d'état pour ce modele, seulement un envoi d'ordre possible",
+  "reset" : "Il faut utiliser la fonction reset touchlink. Voir <a target='_blank' href='https://doc.jeedom.com/fr_FR/plugins/automation%20protocol/zigbee/#Touchlink'>ici</a>",
+  "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule (un on/off sera peut être nécessaire)",
+  "commands": [
+    {
+      "name": "On",
+      "generic_type": "LIGHT_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "11::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Off",
+      "generic_type": "LIGHT_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "11::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Luminosité",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat Luminosité",
+      "logicalId": "11::level::move_to_level::#slider#::0",
+      "generic_type": "LIGHT_SLIDER",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    },
+    {
+      "name": "Couleur",
+      "type": "action",
+      "subtype": "color",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat couleur",
+      "logicalId": "11::light_color::move_to_color::#color#::0",
+      "generic_type": "LIGHT_SET_COLOR"
+    },
+    {
+      "name": "Température couleur",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat température couleur",
+      "logicalId": "11::light_color::move_to_color_temp::#slider#::0",
+      "generic_type": "LIGHT_SET_COLOR_TEMP",
+      "configuration" : {
+        "minValue" : 2200,
+        "maxValue" : 6500
+      }
+    }
+  ]
+}
