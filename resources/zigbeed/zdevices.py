@@ -230,6 +230,8 @@ async def serialize(device):
 		'last_seen':str(device.last_seen),
 		'node_descriptor': None if not device.node_desc.is_valid else list(device.node_desc.serialize()),
 		'endpoints': [],
+		'signature':device.get_signature(),
+		'class':device.__module__,
 	}
 	if obj['node_descriptor'] is not None:
 		obj['node_descriptor'] = ":".join("{:02x}".format(x) for x in obj['node_descriptor'])

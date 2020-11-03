@@ -61,6 +61,8 @@ $infos = zigbee::parseDeviceInformation($node_data);
               <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['model'] ?></span></b>
               {{Fabricant :}}
               <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['manufacturer'] ?></span></b>
+              {{Classe :}}
+              <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['class'] ?></span></b>
             </p>
             <p>
               <span class=""></span></p>
