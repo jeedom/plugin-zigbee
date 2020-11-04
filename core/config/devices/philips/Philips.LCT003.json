@@ -14,11 +14,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "11::on_off::on",
-      "template":{
-        "dashboard" : "light",
-        "mobile" : "light"
-      }
+      "logicalId": "11::on_off::on"
     },
     {
       "name": "Off",
@@ -28,11 +24,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "11::on_off::off",
-      "template":{
-        "dashboard" : "light",
-        "mobile" : "light"
-      }
+      "logicalId": "11::on_off::off"
     },
     {
       "name": "Luminosité",
