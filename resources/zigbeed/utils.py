@@ -34,6 +34,7 @@ def check_apikey(apikey):
 async def serialize_application():
 	obj = {
 		'ieee': str(shared.ZIGPY.ieee),
+		'version':zigpy.__version__,
 		'nwk': shared.ZIGPY.nwk,
 		'config': shared.ZIGPY._config
 	}
