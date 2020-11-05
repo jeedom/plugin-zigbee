@@ -117,10 +117,16 @@ class zigbee extends eqLogic {
     return $return;
   }
   
-  public static function deamon_start() {
+  public static function deamon_start($_auto = false) {
     for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
       if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
         continue;
+      }
+      if($_auto){
+        $infos = self::deamon_info_instance($i);
+        if($infos['state'] == 'ok'){
+          continue;
+        }
       }
       self::deamon_start_instance($i);
     }
