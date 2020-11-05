@@ -34,6 +34,7 @@ jeedom.zigbee.application.include = function(_params){
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
+    instance : _params.instance || 1,
     request: '/application/include',
     data : json_encode({duration : _params.duration}),
     type : 'PUT'
@@ -54,6 +55,7 @@ jeedom.zigbee.application.info = function(_params){
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
+    instance : _params.instance || 1,
     request: '/application/info',
     type : 'GET'
   };
@@ -73,6 +75,7 @@ jeedom.zigbee.network.map = function(_params){
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
+    instance : _params.instance || 1,
     request: '/network/map',
     type : 'GET'
   };
@@ -92,6 +95,7 @@ jeedom.zigbee.device.all = function(_params){
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
+    instance : _params.instance || 1,
     request: '/device/all',
     type : 'GET'
   };
@@ -111,6 +115,7 @@ jeedom.zigbee.device.info = function(_params){
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
+    instance : _params.instance || 1,
     request: '/device/info',
     data : json_encode({ieee : _params.ieee}),
     type : 'GET'
@@ -131,6 +136,7 @@ jeedom.zigbee.device.delete = function(_params){
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
+    instance : _params.instance || 1,
     request: '/device',
     data : json_encode({ieee : _params.ieee}),
     type : 'DELETE'
@@ -151,6 +157,7 @@ jeedom.zigbee.device.initialize = function(_params){
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
+    instance : _params.instance || 1,
     request: '/device/initialize',
     data : json_encode({ieee : _params.ieee}),
     type : 'PUT'
@@ -171,6 +178,7 @@ jeedom.zigbee.device.get_basic_info = function(_params){
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
+    instance : _params.instance || 1,
     request: '/device/get_basic_info',
     data : json_encode({ieee : _params.ieee}),
     type : 'PUT'
@@ -191,6 +199,7 @@ jeedom.zigbee.device.getAttributes = function(_params){
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
+    instance : _params.instance || 1,
     request: '/device/attributes',
     data : json_encode({
       ieee : _params.ieee,
@@ -219,6 +228,7 @@ jeedom.zigbee.device.setAttributes = function(_params){
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
+    instance : _params.instance || 1,
     request: '/device/attributes',
     data : json_encode({
       ieee : _params.ieee,

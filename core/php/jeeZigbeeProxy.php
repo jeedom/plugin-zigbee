@@ -26,7 +26,7 @@ try {
   if($data != null){
     $data = json_decode($data,true);
   }
-  $result = zigbee::request(str_replace('//', '/', init('request')),$data,init('type','POST'));
+  $result = zigbee::request(init('instance',1),str_replace('//', '/', init('request')),$data,init('type','POST'));
   log::add('zigbee','debug',json_encode($result,true));
   echo json_encode(array('state' => 'ok','result' => $result));
 } catch (Exception $e) {

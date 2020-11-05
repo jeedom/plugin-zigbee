@@ -19,10 +19,6 @@ $('#bt_zigbeeNetwork').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Réseaux zigbee}}"}).load('index.php?v=d&plugin=zigbee&modal=network').dialog('open');
 });
 
-$('#bt_zigbeeMap').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Réseaux zigbee}}"}).load('index.php?v=d&plugin=zigbee&modal=map').dialog('open');
-});
-
 $('#bt_showZigbeeDevice').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Configuration du noeud}}"}).load('index.php?v=d&plugin=zigbee&modal=node&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
 });
@@ -32,14 +28,30 @@ $('#bt_syncEqLogic').off('click').on('click', function () {
 });
 
 $('.changeIncludeState').off('click').on('click', function () {
-  jeedom.zigbee.application.include({
-    duration : 180,
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-      $('#div_alert').showAlert({message: '{{Mode inclusion actif pendant 3 minutes}}', level: 'success'});
-      setTimeout(function(){ $('#div_alert').hideAlert() }, 3*60000);
+  var inputOptions = [];
+  for(var i in zigbee_instance){
+    inputOptions.push({value : i,text : '{{Démon}} '+i});
+  }
+  bootbox.prompt({
+    title: "Passage en inclusion sur",
+    value : inputOptions[0].value,
+    inputType: 'select',
+    inputOptions:inputOptions,
+    callback: function (result) {
+      if(result === null){
+        return;
+      }
+      jeedom.zigbee.application.include({
+        instance:result,
+        duration : 180,
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+          $('#div_alert').showAlert({message: '{{Mode inclusion actif pendant 3 minutes pour le démon}} '+result, level: 'success'});
+          setTimeout(function(){ $('#div_alert').hideAlert() }, 3*60000);
+        }
+      });
     }
   });
 });

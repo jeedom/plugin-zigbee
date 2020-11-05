@@ -125,6 +125,7 @@ _sub_controller = None
 _data_folder = '/tmp'
 _socket_host='127.0.0.1'
 _channel=15
+_instance=1
 
 parser = argparse.ArgumentParser(description='Zigbee Daemon for Jeedom plugin')
 parser.add_argument("--device", help="Device", type=str)

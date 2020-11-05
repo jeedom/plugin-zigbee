@@ -24,8 +24,8 @@ class zigbee extends eqLogic {
   
   /*     * ***********************Methode static*************************** */
   
-  public static function request($_request = '',$_data = null,$_type='GET'){
-    $url = 'http://127.0.0.1:'.config::byKey('socketport', 'zigbee').$_request;
+  public static function request($_instance,$_request = '',$_data = null,$_type='GET'){
+    $url = 'http://127.0.0.1:'.config::byKey('socketport_'.$_instance, 'zigbee').$_request;
     if($_type=='GET' && is_array($_data) && count($_data) > 0){
       $url .= '?';
       foreach ($_data as $key => $value) {
@@ -77,8 +77,29 @@ class zigbee extends eqLogic {
   public static function deamon_info() {
     $return = array();
     $return['log'] = 'zigbee';
+    $return['state'] = 'ok';
+    $return['launchable'] = 'ok';
+    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
+      if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
+        continue;
+      }
+      $info = self::deamon_info_instance($i);
+      if($info['state'] != 'ok'){
+        $return['state'] = $info['state'];
+      }
+      if($info['launchable'] != 'ok'){
+        $return['launchable'] = $info['launchable'];
+        $return['launchable_message'] = $info['launchable_message'];
+      }
+    }
+    return $return;
+  }
+  
+  public static function deamon_info_instance($_instance) {
+    $return = array();
+    $return['log'] = 'zigbee';
     $return['state'] = 'nok';
-    $pid_file = jeedom::getTmpFolder('zigbee') . '/deamon.pid';
+    $pid_file = jeedom::getTmpFolder('zigbee') . '/deamon_'.$_instance.'.pid';
     if (file_exists($pid_file)) {
       $pid = trim(file_get_contents($pid_file));
       if (is_numeric($pid) && posix_getsid($pid)) {
@@ -88,7 +109,7 @@ class zigbee extends eqLogic {
       }
     }
     $return['launchable'] = 'ok';
-    $port = config::byKey('port', 'zigbee');
+    $port = config::byKey('port_'.$_instance, 'zigbee');
     if ($port == 'none') {
       $return['launchable'] = 'nok';
       $return['launchable_message'] = __('Le port n\'est pas configuré', __FILE__);
@@ -97,46 +118,64 @@ class zigbee extends eqLogic {
   }
   
   public static function deamon_start() {
-    self::deamon_stop();
-    $deamon_info = self::deamon_info();
+    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
+      if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
+        continue;
+      }
+      self::deamon_start_instance($i);
+    }
+  }
+  
+  public static function deamon_start_instance($_instance) {
+    self::deamon_stop_instance($_instance);
+    $deamon_info = self::deamon_info_instance($_instance);
     if ($deamon_info['launchable'] != 'ok') {
       throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
     }
-    $port = config::byKey('port', 'zigbee');
+    $port = config::byKey('port_'.$_instance, 'zigbee');
     if ($port == 'pizigate') {
-      $port = 'pizigate:/dev/serial'.config::byKey('pizigate', 'zigbee');
+      $port = 'pizigate:/dev/serial'.config::byKey('pizigate_'.$_instance, 'zigbee');
     }else if ($port == 'wifizigate') {
-      $port = 'socket://'.config::byKey('wifizigate', 'zigbee');
+      $port = 'socket://'.config::byKey('wifizigate_'.$_instance, 'zigbee');
     }else if ($port != 'auto') {
       $port = jeedom::getUsbMapping($port);
+    }
+    if(!file_exists(dirname(__FILE__) . '/../../data/'.$_instance)){
+      mkdir(dirname(__FILE__) . '/../../data/'.$_instance,0777,true);
     }
     $zigbee_path = realpath(dirname(__FILE__) . '/../../resources/zigbeed');
     $cmd = '/usr/bin/python3 ' . $zigbee_path . '/zigbeed.py';
     $cmd .= ' --device ' . $port;
     $cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('zigbee'));
-    $cmd .= ' --socketport ' . config::byKey('socketport', 'zigbee');
+    $cmd .= ' --socketport ' . config::byKey('socketport_'.$_instance, 'zigbee');
     $cmd .= ' --callback ' . network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/zigbee/core/php/jeeZigbee.php';
     $cmd .= ' --apikey ' . jeedom::getApiKey('zigbee');
-    $cmd .= ' --cycle ' . config::byKey('cycle', 'zigbee');
-    $cmd .= ' --pid ' . jeedom::getTmpFolder('zigbee') . '/deamon.pid';
-    $cmd .= ' --data_folder '. realpath(dirname(__FILE__) . '/../../data');
-    $cmd .= ' --controller '. config::byKey('controller', 'zigbee');
-    $cmd .= ' --sub_controller '. config::byKey('sub_controller', 'zigbee','auto');
-    $cmd .= ' --channel '. config::byKey('channel', 'zigbee');
+    $cmd .= ' --cycle ' . config::byKey('cycle_'.$_instance, 'zigbee');
+    $cmd .= ' --pid ' . jeedom::getTmpFolder('zigbee') . '/deamon_'.$_instance.'.pid';
+    $cmd .= ' --data_folder '. realpath(dirname(__FILE__) . '/../../data/'.$_instance.'/');
+    $cmd .= ' --controller '. config::byKey('controller_'.$_instance, 'zigbee');
+    $cmd .= ' --sub_controller '. config::byKey('sub_controller_'.$_instance, 'zigbee','auto');
+    $cmd .= ' --channel '. config::byKey('channel_'.$_instance, 'zigbee');
     log::add('zigbee', 'info', 'Lancement démon zigbeed : ' . $cmd);
-    exec($cmd . ' >> ' . log::getPathToLog('zigbeed') . ' 2>&1 &');
+    exec($cmd . ' >> ' . log::getPathToLog('zigbeed_'.$_instance) . ' 2>&1 &');
     return true;
   }
   
   public static function deamon_stop() {
-    $pid_file = jeedom::getTmpFolder('zigbee') . '/deamon.pid';
+    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
+      self::deamon_stop_instance($i);
+    }
+  }
+  
+  public static function deamon_stop_instance($_instance) {
+    $pid_file = jeedom::getTmpFolder('zigbee') . '/deamon'.$_instance.'.pid';
     if (file_exists($pid_file)) {
       $pid = intval(trim(file_get_contents($pid_file)));
       system::kill($pid);
     }
     system::kill('zigbeed.py');
-    system::fuserk(config::byKey('socketport', 'zigbee'));
-    $port = config::byKey('port', 'zigbee');
+    system::fuserk(config::byKey('socketport_'.$_instance, 'zigbee'));
+    $port = config::byKey('port_'.$_instance, 'zigbee');
     if ($port != 'auto') {
       system::fuserk(jeedom::getUsbMapping($port));
     }
@@ -145,39 +184,43 @@ class zigbee extends eqLogic {
   
   public static function sync(){
     $new = null;
-    $devices = self::request('/device/all');
-    foreach ($devices as $device) {
-      if($device['nwk'] == 0){
+    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
+      if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
         continue;
       }
-      $eqLogic = self::byLogicalId($device['ieee'],'zigbee');
-      $replace_device_type = array(
-        ' ' => '_',
-        '/' => '',
-        '\\' => ''
-      );
-      
-      if(isset($device['endpoints'])){
-        $endpoint_id = array_values($device['endpoints'])[0]['id'];
-        $device_type = trim(str_replace(array_keys($replace_device_type),$replace_device_type,trim(trim(self::getAttribute($endpoint_id,0,4,$device).'.'.trim(self::getAttribute($endpoint_id,0,5,$device)),'_'))),'.');
-      }
-      
-      if(!is_object($eqLogic)){
-        $eqLogic = new self();
-        $eqLogic->setLogicalId($device['ieee']);
-        $eqLogic->setName($device_type.' '.$device['ieee']);
-        $eqLogic->setIsEnable(1);
-        $eqLogic->setEqType_name('zigbee');
-        $eqLogic->setConfiguration('device',$device_type);
-        $new = true;
-      }
-      $eqLogic->save();
-      if($new === true){
-        $new = $eqLogic->getId();
-      }
-      $battery = self::getAttribute(1,1,33,$device);
-      if($battery !== null && trim($battery) !== '' && is_numeric($battery)){
-        $eqLogic->batteryStatus($battery);
+      $devices = self::request($i,'/device/all');
+      foreach ($devices as $device) {
+        if($device['nwk'] == 0){
+          continue;
+        }
+        $eqLogic = self::byLogicalId($device['ieee'],'zigbee');
+        $replace_device_type = array(
+          ' ' => '_',
+          '/' => '',
+          '\\' => ''
+        );
+        if(isset($device['endpoints'])){
+          $endpoint_id = array_values($device['endpoints'])[0]['id'];
+          $device_type = trim(str_replace(array_keys($replace_device_type),$replace_device_type,trim(trim(self::getAttribute($endpoint_id,0,4,$device).'.'.trim(self::getAttribute($endpoint_id,0,5,$device)),'_'))),'.');
+        }
+        if(!is_object($eqLogic)){
+          $eqLogic = new self();
+          $eqLogic->setLogicalId($device['ieee']);
+          $eqLogic->setName($device_type.' '.$device['ieee']);
+          $eqLogic->setIsEnable(1);
+          $eqLogic->setEqType_name('zigbee');
+          $eqLogic->setConfiguration('device',$device_type);
+          $new = true;
+        }
+        $eqLogic->setConfiguration('instance',$i);
+        $eqLogic->save();
+        if($new === true){
+          $new = $eqLogic->getId();
+        }
+        $battery = self::getAttribute(1,1,33,$device);
+        if($battery !== null && trim($battery) !== '' && is_numeric($battery)){
+          $eqLogic->batteryStatus($battery);
+        }
       }
     }
     return $new;
@@ -204,7 +247,6 @@ class zigbee extends eqLogic {
   }
   
   public static function parseDeviceInformation($_data){
-    
     $return = array();
     $return['ieee'] = $_data['ieee'];
     $return['nwk'] = $_data['nwk'];
@@ -518,10 +560,10 @@ class zigbeeCmd extends cmd {
       }
     }
     if(count($commands) > 0){
-      zigbee::request('/device/command',array('ieee'=>$eqLogic->getLogicalId(),'cmd' => $commands,'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue',0) == 1)),'PUT');
+      zigbee::request($eqLogic->getConfiguration('instance',1),'/device/command',array('ieee'=>$eqLogic->getLogicalId(),'cmd' => $commands,'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue',0) == 1)),'PUT');
     }
     if(count($attributes) > 0){
-      zigbee::request('/device/attributes',array('ieee'=>$eqLogic->getLogicalId(),'attributes' => $attributes,'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue',0) == 1)),'PUT');
+      zigbee::request($eqLogic->getConfiguration('instance',1),'/device/attributes',array('ieee'=>$eqLogic->getLogicalId(),'attributes' => $attributes,'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue',0) == 1)),'PUT');
     }
   }
   

@@ -8,11 +8,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 function sortByOption($a, $b) {
 	return strcmp($a['name'], $b['name']);
 }
-if (config::byKey('include_mode', 'zigbee', 0) == 1) {
-	echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous etes en mode inclusion. Recliquez sur le bouton d\'inclusion pour sortir de ce mode}}</div>';
-} else {
-	echo '<div id="div_inclusionAlert"></div>';
-}
 $logicalIds = array();
 foreach ($eqLogics as $eqLogic) {
 	$logicalIds[$eqLogic->getLogicalId()] = $eqLogic->getHumanName(true);
@@ -28,6 +23,15 @@ foreach ($eqLogics as $eqLogic) {
 	$ids[$eqLogic->getLogicalId()] = $eqLogic->getId();
 }
 sendVarToJS('zigbee_ids',$ids);
+
+$zigbee_instance = array();
+for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
+	if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
+		continue;
+	}
+	$zigbee_instance[$i] = $i;
+}
+sendVarToJS('zigbee_instance', $zigbee_instance);
 ?>
 
 <div class="row row-overflow">
@@ -147,6 +151,18 @@ sendVarToJS('zigbee_ids',$ids);
 											echo '</label>';
 										}
 										?>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">{{Démon)}}</label>
+									<div class="col-sm-4">
+										<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="instance">
+											<?php
+											for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
+												echo '<option value="'.$i.'">{{Démon}} '.$i.'</option>';
+											}
+											?>
+										</select>
 									</div>
 								</div>
 								<div class="form-group">

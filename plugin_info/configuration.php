@@ -23,106 +23,122 @@ if (!isConnect('admin')) {
 ?>
 <form class="form-horizontal">
   <fieldset>
-    <legend><i class="icon loisir-darth"></i> {{Démon}}</legend>
-    <div class="form-group">
-      <label class="col-sm-4 control-label">{{Type de controlleur}}</label>
-      <div class="col-sm-2">
-        <select class="configKey form-control" data-l1key="controller">
-          <option value="ezsp">{{EZSP}}</option>
-          <option value="deconz">{{Deconz}}</option>
-          <option value="zigate">{{Zigate}}</option>
-          <option value="cc">{{CC}}</option>
-          <option value="xbee">{{Xbee}}</option>
-          <option value="znp">{{ZNP}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-4 control-label">{{Type de clef}}</label>
-      <div class="col-sm-2">
-        <select class="configKey form-control" data-l1key="sub_controller">
-          <option value="auto" data-controller="auto">{{Auto}}</option>
-          <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-4 control-label">{{Port Zigbee}}</label>
-      <div class="col-sm-2">
-        <select class="configKey form-control" data-l1key="port">
-          <option value="none">{{Aucun}}</option>
-          <option value="auto">{{Auto}}</option>
-          <?php
-          foreach (jeedom::getUsbMapping() as $name => $value) {
-            echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
-          }
-          foreach (ls('/dev/', 'tty*') as $value) {
-            echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
-          }
-          ?>
-          <option value="pizigate">{{Pizigate}}</option>
-          <option value="wifizigate">{{Wifi Zigate}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group zigbee_portConf pizigate" style="display:none;">
-      <label class="col-sm-4 control-label">{{Pizigate}}</label>
-      <div class="col-sm-2">
-        <input type="number" class="configKey form-control" data-l1key="pizigate" />
-      </div>
-    </div>
-    <div class="form-group zigbee_portConf wifizigate" style="display:none;">
-      <label class="col-sm-4 control-label">{{Wifi Zigate IP:PORT}}</label>
-      <div class="col-sm-2">
-        <input class="configKey form-control" data-l1key="wifizigate" />
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-4 control-label">{{Port interne}}</label>
-      <div class="col-sm-2">
-        <input class="configKey form-control" data-l1key="socketport" />
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-4 control-label">{{Cycle (s)}}</label>
-      <div class="col-sm-2">
-        <input class="configKey form-control" data-l1key="cycle" />
-      </div>
-    </div>
+    <legend><i class="icon loisir-darth"></i> {{Général}}</legend>
     <div class="form-group">
       <label class="col-lg-4 control-label">{{Supprimer automatiquement les périphériques exclus}}</label>
       <div class="col-lg-2">
         <input type="checkbox" class="configKey" data-l1key="autoRemoveExcludeDevice" />
       </div>
     </div>
-    <div class="form-group">
-      <label class="col-lg-4 control-label">{{Channel}}</label>
-      <div class="col-lg-2">
-        <select class="configKey form-control" data-l1key="channel">
-          <option value="11">{{11}}</option>
-          <option value="15">{{15}}</option>
-          <option value="20">{{20}}</option>
-          <option value="25">{{25}}</option>
-        </select>
+    <?php for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){ ?>
+      <legend><i class="icon loisir-darth"></i> {{Démon }}<?php echo $i ?></legend>
+      <div class="form-group">
+        <label class="col-lg-4 control-label">{{Activer}}</label>
+        <div class="col-lg-2">
+          <input type="checkbox" class="configKey" data-l1key="enable_deamon_<?php echo $i ?>" />
+        </div>
       </div>
-    </div>
+      <div id="zigbee_deamon_<?php echo $i ?>">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">{{Type de controlleur}}</label>
+          <div class="col-sm-2">
+            <select class="configKey form-control" data-l1key="controller_<?php echo $i ?>">
+              <option value="ezsp">{{EZSP}}</option>
+              <option value="deconz">{{Deconz}}</option>
+              <option value="zigate">{{Zigate}}</option>
+              <option value="cc">{{CC}}</option>
+              <option value="xbee">{{Xbee}}</option>
+              <option value="znp">{{ZNP}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">{{Type de clef}}</label>
+          <div class="col-sm-2">
+            <select class="configKey form-control" data-l1key="sub_controller_<?php echo $i ?>">
+              <option value="auto" data-controller="auto">{{Auto}}</option>
+              <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">{{Port Zigbee}}</label>
+          <div class="col-sm-2">
+            <select class="configKey form-control" data-l1key="port_<?php echo $i ?>">
+              <option value="none">{{Aucun}}</option>
+              <option value="auto">{{Auto}}</option>
+              <?php
+              foreach (jeedom::getUsbMapping() as $name => $value) {
+                echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
+              }
+              foreach (ls('/dev/', 'tty*') as $value) {
+                echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
+              }
+              ?>
+              <option value="pizigate">{{Pizigate}}</option>
+              <option value="wifizigate">{{Wifi Zigate}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group zigbee_portConf_<?php echo $i ?> pizigate_<?php echo $i ?>" style="display:none;">
+          <label class="col-sm-4 control-label">{{Pizigate}}</label>
+          <div class="col-sm-2">
+            <input type="number" class="configKey form-control" data-l1key="pizigate_<?php echo $i ?>" />
+          </div>
+        </div>
+        <div class="form-group zigbee_portConf_<?php echo $i ?> wifizigate_<?php echo $i ?>" style="display:none;">
+          <label class="col-sm-4 control-label">{{Wifi Zigate IP:PORT}}</label>
+          <div class="col-sm-2">
+            <input class="configKey form-control" data-l1key="wifizigate_1" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">{{Port interne}}</label>
+          <div class="col-sm-2">
+            <input class="configKey form-control" data-l1key="socketport_<?php echo $i ?>" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">{{Cycle (s)}}</label>
+          <div class="col-sm-2">
+            <input class="configKey form-control" data-l1key="cycle_<?php echo $i ?>" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">{{Channel}}</label>
+          <div class="col-lg-2">
+            <select class="configKey form-control" data-l1key="channel_<?php echo $i ?>">
+              <option value="11">{{11}}</option>
+              <option value="15">{{15}}</option>
+              <option value="20">{{20}}</option>
+              <option value="25">{{25}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    <?php } ?>
   </fieldset>
 </form>
 
 <script>
-$('.configKey[data-l1key="controller"]').off('change').on('change',function(){
-  $('.configKey[data-l1key="sub_controller"] option').hide()
-  $('.configKey[data-l1key="sub_controller"] option[data-controller=auto]').show()
-  $('.configKey[data-l1key="sub_controller"] option[data-controller='+$(this).value()+']').show()
-});
-$('.configKey[data-l1key="port"]').off('change').on('change',function(){
-  $('.zigbee_portConf').hide();
-  if($(this).value() == 'pizigate' || $(this).value() == 'wifizigate'){
-    $('.zigbee_portConf.'+$(this).value()).show();
-  }
-});
-$('#bt_manageRfxComProtocole').on('click', function () {
-  $('#md_modal2').dialog({title: "{{Gestion des protocoles RFXCOM}}"});
-  $('#md_modal2').load('index.php?v=d&plugin=rfxcom&modal=manage.protocole').dialog('open');
-});
+<?php for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){ ?>
+  $('.configKey[data-l1key="enable_deamon_<?php echo $i ?>"]').off('change').on('change',function(){
+    if($(this).value() == 0){
+      $('#zigbee_deamon_<?php echo $i ?>').hide();
+    }else{
+      $('#zigbee_deamon_<?php echo $i ?>').show();
+    }
+  });
+  $('.configKey[data-l1key="controller_<?php echo $i ?>"]').off('change').on('change',function(){
+    $('.configKey[data-l1key="sub_controller_<?php echo $i ?>"] option').hide()
+    $('.configKey[data-l1key="sub_controller_<?php echo $i ?>"] option[data-controller=auto]').show()
+    $('.configKey[data-l1key="sub_controller_<?php echo $i ?>"] option[data-controller='+$(this).value()+']').show()
+  });
+  $('.configKey[data-l1key="port_<?php echo $i ?>"]').off('change').on('change',function(){
+    $('.zigbee_portConf_<?php echo $i ?>').hide();
+    if($(this).value() == 'pizigate' || $(this).value() == 'wifizigate'){
+      $('.zigbee_portConf_<?php echo $i ?>.'+$(this).value()+"_<?php echo $i ?>").show();
+    }
+  });
+  <?php } ?>
 </script>

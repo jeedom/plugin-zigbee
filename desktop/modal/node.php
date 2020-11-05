@@ -22,7 +22,8 @@ if(!is_object($eqLogic)){
   throw new \Exception(__('Equipement introuvable : ',__FILE__).init('id'));
 }
 sendVarToJS('zigbeeNodeIeee',$eqLogic->getLogicalId());
-$node_data = zigbee::request('/device/info',array('ieee'=>$eqLogic->getLogicalId()));
+sendVarToJS('zigbeeNodeInstance',$eqLogic->getConfiguration('instance',1));
+$node_data = zigbee::request($eqLogic->getConfiguration('instance',1),'/device/info',array('ieee'=>$eqLogic->getLogicalId()));
 $device = zigbee::devicesParameters($eqLogic->getConfiguration('device'));
 $infos = zigbee::parseDeviceInformation($node_data);
 ?>
@@ -294,6 +295,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
     $('#configNodeTab .deviceConfig').each(function(){
       let tr = $(this)
       jeedom.zigbee.device.getAttributes({
+        instance : zigbeeNodeInstance,
         ieee : zigbeeNodeIeee,
         cluster_type : 'in',
         endpoint : parseInt(tr.attr('data-endpoint')),
@@ -323,6 +325,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
     let tr = $(this).closest('tr');
     tr.find('.configLoadIcon').show();
     jeedom.zigbee.device.getAttributes({
+      instance : zigbeeNodeInstance,
       ieee : zigbeeNodeIeee,
       cluster_type : 'in',
       endpoint : parseInt(tr.attr('data-endpoint')),
@@ -354,6 +357,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
     let attributes = {}
     attributes[parseInt(tr.attr('data-attribute'))] = parseInt(tr.find('.configAttrValue').value())
     jeedom.zigbee.device.setAttributes({
+      instance : zigbeeNodeInstance,
       ieee : zigbeeNodeIeee,
       cluster_type : 'in',
       endpoint : parseInt(tr.attr('data-endpoint')),
@@ -376,6 +380,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
     let infos = $('#actionNodeTab').getValues('.getNodeAttr')[0]
     $('#span_nodeGetAttrResult').empty()
     jeedom.zigbee.device.getAttributes({
+      instance : zigbeeNodeInstance,
       ieee : zigbeeNodeIeee,
       cluster_type : 'in',
       endpoint : parseInt(infos.endpoint),
@@ -401,6 +406,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
     let attributes = {}
     attributes[parseInt(infos.attributes)] = parseInt(infos.value)
     jeedom.zigbee.device.setAttributes({
+      instance : zigbeeNodeInstance,
       ieee : zigbeeNodeIeee,
       cluster_type : 'in',
       endpoint : parseInt(infos.endpoint),
@@ -418,6 +424,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
   
   $('#actionNodeTab').off('click','.bt_refreshZigbeeDeviceInfo').on('click','.bt_refreshZigbeeDeviceInfo',function(){
     jeedom.zigbee.device.get_basic_info({
+      instance : zigbeeNodeInstance,
       ieee : zigbeeNodeIeee,
       error: function (error) {
         $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
@@ -432,6 +439,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
     bootbox.confirm("Etês vous sur de vouloir supprimer ce noeud ?", function(result){
       if(result){
         jeedom.zigbee.device.delete({
+          instance : zigbeeNodeInstance,
           ieee : zigbeeNodeIeee,
           error: function (error) {
             $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
@@ -446,6 +454,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
   
   $('#actionNodeTab').off('click','.bt_initializeZigbeeDevice').on('click','.bt_initializeZigbeeDevice',function(){
     jeedom.zigbee.device.initialize({
+      instance : zigbeeNodeInstance,
       ieee : zigbeeNodeIeee,
       error: function (error) {
         $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});

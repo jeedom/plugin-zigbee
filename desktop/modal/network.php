@@ -63,6 +63,16 @@ if (!isConnect('admin')) {
 </style>
 <div id='div_networkZigbeeAlert' style="display: none;"></div>
 <div id="div_templateNetworkZigbee">
+  <select class="pull-right form-control" id="sel_networkZigbeeInstance" style="width:250px;">
+    <?php
+    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
+      if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
+        continue;
+      }
+      echo '<option value="'.$i.'">{{Démon}} '.$i.'</option>';
+    }
+    ?>
+  </select>
   <ul id="tabs_network" class="nav nav-tabs" data-tabs="tabs">
     <li class="active"><a href="#application_network" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Application}}</a></li>
     <li><a href="#devices_network" data-toggle="tab"><i class="fab fa-codepen"></i> {{Noeuds}}</a></li>
@@ -118,11 +128,17 @@ if (!isConnect('admin')) {
   </div>
   
   <script>
+  $('#sel_networkZigbeeInstance').off('change').on('change',function(){
+    refreshNetworkData();
+    refreshDevicekData();
+    refreshNetworkGraph();
+  })
   var devices_neighbours = null
   
   function refreshNetworkData(){
     jeedom.zigbee.application.info({
       global:false,
+      instance : $('#sel_networkZigbeeInstance').value(),
       type : 'GET',
       error: function (error) {
         $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
@@ -136,6 +152,7 @@ if (!isConnect('admin')) {
   function refreshDevicekData(){
     jeedom.zigbee.device.all({
       global:false,
+      instance : $('#sel_networkZigbeeInstance').value(),
       type : 'GET',
       error: function (error) {
         $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
@@ -208,6 +225,7 @@ if (!isConnect('admin')) {
   $('#table_networkDevice').off('click','.bt_infoZigbeeDevice').on('click','.bt_infoZigbeeDevice',function(){
     var ieee = $(this).closest('tr').attr('data-ieee');
     jeedom.zigbee.device.info({
+      instance : $('#sel_networkZigbeeInstance').value(),
       ieee : ieee,
       error: function (error) {
         $('#div_networZigbeeAlert').showAlert({message: error.message, level: 'danger'});
@@ -228,6 +246,7 @@ if (!isConnect('admin')) {
     bootbox.confirm("Etês vous sur de vouloir supprimer ce noeud ?", function(result){
       if(result){
         jeedom.zigbee.device.delete({
+          instance : $('#sel_networkZigbeeInstance').value(),
           ieee : tr.attr('data-ieee'),
           error: function (error) {
             $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
@@ -243,6 +262,7 @@ if (!isConnect('admin')) {
   $('#table_networkDevice').off('click','.bt_initializeZigbeeDevice').on('click','.bt_initializeZigbeeDevice',function(){
     var tr = $(this).closest('tr');
     jeedom.zigbee.device.initialize({
+      instance : $('#sel_networkZigbeeInstance').value(),
       ieee : tr.attr('data-ieee'),
       error: function (error) {
         $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
@@ -256,6 +276,7 @@ if (!isConnect('admin')) {
   $('#table_networkDevice').off('click','.bt_refreshZigbeeDeviceInfo').on('click','.bt_refreshZigbeeDeviceInfo',function(){
     var tr = $(this).closest('tr');
     jeedom.zigbee.device.get_basic_info({
+      instance : $('#sel_networkZigbeeInstance').value(),
       ieee : tr.attr('data-ieee'),
       error: function (error) {
         $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
@@ -266,169 +287,166 @@ if (!isConnect('admin')) {
     });
   });
   
-  function network_graph(devices_neighbours){
-    controler_ieee = null
-    for (z in devices_neighbours) {
-      if(devices_neighbours[z].nwk == 0){
-        controler_ieee = devices_neighbours[z].ieee
-      }
-    }
-    max_lqi = 1;
-    for (z in devices_neighbours) {
-      if(devices_neighbours[z].lqi > max_lqi){
-        max_lqi = devices_neighbours[z].lqi;
-      }
-    }
-    $('#graph_network svg').remove();
-    var graph = Viva.Graph.graph();
-    for (z in devices_neighbours) {
-      if (devices_neighbours[z].ieee == '' || devices_neighbours[z].nwk == null) {
-        continue;
-      }
-      let data_node = {
-        'ieee': devices_neighbours[z].ieee,
-        'name': devices_neighbours[z].ieee,
-        'lqi': devices_neighbours[z].lqi,
-        'rssi': devices_neighbours[z].rssi,
-        'type': devices_neighbours[z].device_type,
-        'nwk': devices_neighbours[z].nwk,
-        'model': devices_neighbours[z].model,
-        'manufacturer': devices_neighbours[z].manufacturer,
-        'offline': devices_neighbours[z].offline,
-      }
-      if (isset(zigbee_logicalIds_name[devices_neighbours[z].ieee])) {
-        data_node.name = zigbee_logicalIds_name[devices_neighbours[z].ieee]
-      }
-      if(devices_neighbours[z].nwk == 0){
-        data_node.name = '{{Contrôleur}}'
-      }
-      graph.addNode(devices_neighbours[z].ieee, data_node);
-      linkcolor = '#B7B7B7';
-      if(devices_neighbours[z].lqi > 170){
-        linkcolor = 'var(--al-success-color)';
-      }else if(devices_neighbours[z].lqi > 85){
-        linkcolor = 'var(--al-warning-color)';
-      }else if(devices_neighbours[z].lqi > 0){
-        linkcolor = 'var(--al-danger-color)';
-      }
-      if(devices_neighbours[z].neighbours.length == 0 && controler_ieee != null){
-        graph.addLink(devices_neighbours[z].ieee, controler_ieee, {color: linkcolor, lengthfactor: 20});
-      }else{
-        for(i in devices_neighbours[z].neighbours){
-          graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {color: linkcolor, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
+  function refreshNetworkGraph(){
+    jeedom.zigbee.network.map({
+      instance : $('#sel_networkZigbeeInstance').value(),
+      error: function (error) {
+        $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
+      },
+      success:function(devices_neighbours){
+        controler_ieee = null
+        for (z in devices_neighbours) {
+          if(devices_neighbours[z].nwk == 0){
+            controler_ieee = devices_neighbours[z].ieee
+          }
         }
-      }
-      
-    }
-    var graphics = Viva.Graph.View.svgGraphics()
-    var nodeSize = 24
-    graphics.node(function (node) {
-      if (typeof node.data == 'undefined') {
-        graph.removeNode(node.id);
-        return;
-      }
-      nodecolor = '#5F6A6A';
-      var nodesize = 10;
-      const nodeshape = 'rect';
-      if (node.data.nwk == '0x0000') {
-        nodecolor = '#a65ba6';
-        nodesize = 24;
-      } else if (node.data.type == 'Coordinator') {
-        nodesize = 16;
-        nodecolor = '#00a2e8';
-      }  else if (node.data.type == 'EndDevice' || node.data.type == 'End_Device') {
-        nodecolor = '#7BCC7B';
-      } else if (node.data.type == 'Router') {
-        nodesize = 16;
-        nodecolor = '#E5E500';
-      }
-      var ui = Viva.Graph.svg('g'),
-      svgText = Viva.Graph.svg('text').attr('y', '0px').text(node.data.name),
-      img = Viva.Graph.svg(nodeshape)
-      .attr("width", nodesize)
-      .attr("height", nodesize)
-      .attr("fill", nodecolor);
-      ui.append(svgText);
-      ui.append(img);
-      $(ui).hover(function () {
-        if (zigbee_ids[node.data.ieee]) {
-          linkname = '<a href="index.php?v=d&p=zigbee&m=zigbee&id=' + zigbee_ids[node.data.ieee] + '">' + node.data.name + '</a>'
-        } else {
-          linkname = node.data.name
+        max_lqi = 1;
+        for (z in devices_neighbours) {
+          if(devices_neighbours[z].lqi > max_lqi){
+            max_lqi = devices_neighbours[z].lqi;
+          }
         }
-        if(!node.data.lqi || node.data.lqi == 'None' || node.data.lqi == null){
-          linkname += ' <span class="label label-default" title="{{LQI}}">{{N/A}}</span>';
-        }else if(node.data.lqi > 170){
-          linkname += ' <span class="label label-success" title="{{LQI}}">'+node.data.lqi+'</span>';
-        }else if(node.data.lqi > 85){
-          linkname += ' <span class="label label-warning" title="{{LQI}}">'+node.data.lqi+'</span>';
-        }else{
-          linkname += ' <span class="label label-danger" title="{{LQI}}">'+node.data.lqi+'</span>';
+        $('#graph_network svg').remove();
+        var graph = Viva.Graph.graph();
+        for (z in devices_neighbours) {
+          if (devices_neighbours[z].ieee == '' || devices_neighbours[z].nwk == null) {
+            continue;
+          }
+          let data_node = {
+            'ieee': devices_neighbours[z].ieee,
+            'name': devices_neighbours[z].ieee,
+            'lqi': devices_neighbours[z].lqi,
+            'rssi': devices_neighbours[z].rssi,
+            'type': devices_neighbours[z].device_type,
+            'nwk': devices_neighbours[z].nwk,
+            'model': devices_neighbours[z].model,
+            'manufacturer': devices_neighbours[z].manufacturer,
+            'offline': devices_neighbours[z].offline,
+          }
+          if (isset(zigbee_logicalIds_name[devices_neighbours[z].ieee])) {
+            data_node.name = zigbee_logicalIds_name[devices_neighbours[z].ieee]
+          }
+          if(devices_neighbours[z].nwk == 0){
+            data_node.name = '{{Contrôleur}}'
+          }
+          graph.addNode(devices_neighbours[z].ieee, data_node);
+          linkcolor = '#B7B7B7';
+          if(devices_neighbours[z].lqi > 170){
+            linkcolor = 'var(--al-success-color)';
+          }else if(devices_neighbours[z].lqi > 85){
+            linkcolor = 'var(--al-warning-color)';
+          }else if(devices_neighbours[z].lqi > 0){
+            linkcolor = 'var(--al-danger-color)';
+          }
+          if(devices_neighbours[z].neighbours.length == 0 && controler_ieee != null){
+            graph.addLink(devices_neighbours[z].ieee, controler_ieee, {color: linkcolor, lengthfactor: 20});
+          }else{
+            for(i in devices_neighbours[z].neighbours){
+              graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {color: linkcolor, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
+            }
+          }
+          
         }
-        if(!node.data.rssi || node.data.rssi == 'None' || node.data.rssi == null){
-          linkname += ' <span class="label label-default" title="{{RSSI}}">{{N/A}}</span>';
-        }else if(node.data.rssi >= -60){
-          linkname += ' <span class="label label-success" title="{{RSSI}}">'+node.data.rssi+' dB</span>';
-        }else if(node.data.rssi > -80){
-          linkname += ' <span class="label label-warning" title="{{RSSI}}">'+node.data.rssi+' dB</span>';
-        }else{
-          linkname += ' <span class="label label-danger" title="{{RSSI}}">'+node.data.rssi+' dB</span>';
-        }
-        linkname += ' <span class="label label-primary" title="{{Type}}">'+node.data.type+'</span>'
-        linkname += ' <span class="label label-primary" title="{{Modèle}}">'+node.data.manufacturer+' '+node.data.model+'</span>'
-        linkname += ' <span class="label label-primary" title="{{NWK}}">'+node.data.nwk+'</span>'
-        $('#graph-node-name').html(linkname);
-      });
-      return ui;
-    }).placeNode(function (nodeUI, pos) {
-      nodeUI.attr('transform','translate(' +(pos.x - nodeSize / 3) + ',' + (pos.y - nodeSize / 2.5) +')');
-    });
-    var idealLength = 400;
-    var layout = Viva.Graph.Layout.forceDirected(graph, {
-      springLength: idealLength,
-      stableThreshold: 0.9,
-      dragCoeff: 0.01,
-      springCoeff: 0.0004,
-      gravity: -20,
-      springTransform: function (link, spring) {
-        spring.length = idealLength * (1 - link.data.lengthfactor);
+        var graphics = Viva.Graph.View.svgGraphics()
+        var nodeSize = 24
+        graphics.node(function (node) {
+          if (typeof node.data == 'undefined') {
+            graph.removeNode(node.id);
+            return;
+          }
+          nodecolor = '#5F6A6A';
+          var nodesize = 10;
+          const nodeshape = 'rect';
+          if (node.data.nwk == '0x0000') {
+            nodecolor = '#a65ba6';
+            nodesize = 24;
+          } else if (node.data.type == 'Coordinator') {
+            nodesize = 16;
+            nodecolor = '#00a2e8';
+          }  else if (node.data.type == 'EndDevice' || node.data.type == 'End_Device') {
+            nodecolor = '#7BCC7B';
+          } else if (node.data.type == 'Router') {
+            nodesize = 16;
+            nodecolor = '#E5E500';
+          }
+          var ui = Viva.Graph.svg('g'),
+          svgText = Viva.Graph.svg('text').attr('y', '0px').text(node.data.name),
+          img = Viva.Graph.svg(nodeshape)
+          .attr("width", nodesize)
+          .attr("height", nodesize)
+          .attr("fill", nodecolor);
+          ui.append(svgText);
+          ui.append(img);
+          $(ui).hover(function () {
+            if (zigbee_ids[node.data.ieee]) {
+              linkname = '<a href="index.php?v=d&p=zigbee&m=zigbee&id=' + zigbee_ids[node.data.ieee] + '">' + node.data.name + '</a>'
+            } else {
+              linkname = node.data.name
+            }
+            if(!node.data.lqi || node.data.lqi == 'None' || node.data.lqi == null){
+              linkname += ' <span class="label label-default" title="{{LQI}}">{{N/A}}</span>';
+            }else if(node.data.lqi > 170){
+              linkname += ' <span class="label label-success" title="{{LQI}}">'+node.data.lqi+'</span>';
+            }else if(node.data.lqi > 85){
+              linkname += ' <span class="label label-warning" title="{{LQI}}">'+node.data.lqi+'</span>';
+            }else{
+              linkname += ' <span class="label label-danger" title="{{LQI}}">'+node.data.lqi+'</span>';
+            }
+            if(!node.data.rssi || node.data.rssi == 'None' || node.data.rssi == null){
+              linkname += ' <span class="label label-default" title="{{RSSI}}">{{N/A}}</span>';
+            }else if(node.data.rssi >= -60){
+              linkname += ' <span class="label label-success" title="{{RSSI}}">'+node.data.rssi+' dB</span>';
+            }else if(node.data.rssi > -80){
+              linkname += ' <span class="label label-warning" title="{{RSSI}}">'+node.data.rssi+' dB</span>';
+            }else{
+              linkname += ' <span class="label label-danger" title="{{RSSI}}">'+node.data.rssi+' dB</span>';
+            }
+            linkname += ' <span class="label label-primary" title="{{Type}}">'+node.data.type+'</span>'
+            linkname += ' <span class="label label-primary" title="{{Modèle}}">'+node.data.manufacturer+' '+node.data.model+'</span>'
+            linkname += ' <span class="label label-primary" title="{{NWK}}">'+node.data.nwk+'</span>'
+            $('#graph-node-name').html(linkname);
+          });
+          return ui;
+        }).placeNode(function (nodeUI, pos) {
+          nodeUI.attr('transform','translate(' +(pos.x - nodeSize / 3) + ',' + (pos.y - nodeSize / 2.5) +')');
+        });
+        var idealLength = 400;
+        var layout = Viva.Graph.Layout.forceDirected(graph, {
+          springLength: idealLength,
+          stableThreshold: 0.9,
+          dragCoeff: 0.01,
+          springCoeff: 0.0004,
+          gravity: -20,
+          springTransform: function (link, spring) {
+            spring.length = idealLength * (1 - link.data.lengthfactor);
+          }
+        });
+        graphics.link(function (link) {
+          return Viva.Graph.svg('line').attr('stroke', link.data.color).attr('stroke-dasharray', '5,0').attr('stroke-width', '2px');
+        });
+        $('#graph_network svg').remove();
+        var renderer = Viva.Graph.View.renderer(graph, {
+          layout: layout,
+          graphics: graphics,
+          prerender: 10,
+          renderLinks: true,
+          container: document.getElementById('graph_network')
+        });
+        renderer.run();
+        setTimeout(function () {
+          renderer.pause();
+          renderer.reset();
+        }, 200);
       }
     });
-    graphics.link(function (link) {
-      return Viva.Graph.svg('line').attr('stroke', link.data.color).attr('stroke-dasharray', '5,0').attr('stroke-width', '2px');
-    });
-    $('#graph_network svg').remove();
-    var renderer = Viva.Graph.View.renderer(graph, {
-      layout: layout,
-      graphics: graphics,
-      prerender: 10,
-      renderLinks: true,
-      container: document.getElementById('graph_network')
-    });
-    renderer.run();
-    setTimeout(function () {
-      renderer.pause();
-      renderer.reset();
-    }, 200);
   }
   
   refreshNetworkData();
   refreshDevicekData();
+  refreshNetworkGraph();
   
   $("#tab_graph").off("click").one("click", function () {
-    if(devices_neighbours == null){
-      jeedom.zigbee.network.map({
-        error: function (error) {
-          $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
-        },
-        success:function(devices){
-          devices_neighbours = devices
-          network_graph(devices_neighbours);
-        }
-      });
-    }else{
-      network_graph(devices_neighbours);
-    }
+    refreshNetworkGraph();
   });
   
   $('#div_routingTable').off('click','.deviceConfigure').on('click','.deviceConfigure',function(){
