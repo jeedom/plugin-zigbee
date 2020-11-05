@@ -38,6 +38,15 @@ if (!isConnect('admin')) {
       </div>
     </div>
     <div class="form-group">
+      <label class="col-sm-4 control-label">{{Type de clef}}</label>
+      <div class="col-sm-2">
+        <select class="configKey form-control" data-l1key="sub_controller">
+          <option value="auto" data-controller="auto">{{Auto}}</option>
+          <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
       <label class="col-sm-4 control-label">{{Port Zigbee}}</label>
       <div class="col-sm-2">
         <select class="configKey form-control" data-l1key="port">
@@ -101,6 +110,11 @@ if (!isConnect('admin')) {
 </form>
 
 <script>
+$('.configKey[data-l1key="controller"]').off('change').on('change',function(){
+  $('.configKey[data-l1key="sub_controller"] option').hide()
+  $('.configKey[data-l1key="sub_controller"] option[data-controller=auto]').show()
+  $('.configKey[data-l1key="sub_controller"] option[data-controller='+$(this).value()+']').show()
+});
 $('.configKey[data-l1key="port"]').off('change').on('change',function(){
   $('.zigbee_portConf').hide();
   if($(this).value() == 'pizigate' || $(this).value() == 'wifizigate'){

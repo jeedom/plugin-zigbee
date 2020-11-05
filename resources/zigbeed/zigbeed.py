@@ -63,7 +63,7 @@ async def start_zigbee():
 				"channel" : _channel
 			}
 		}
-		if shared.CONTROLLER == 'ezsp':
+		if shared.CONTROLLER == 'ezsp' and shared.SUB_CONTROLLER == 'elelabs' :
 			zigpy_config['device']['baudrate'] = 115200
 			zigpy_config['ezsp'] = {
 				"CONFIG_APS_UNICAST_MESSAGE_COUNT": 12,
@@ -121,6 +121,7 @@ _apikey = ''
 _callback = ''
 _cycle = 0.3
 _controller = 'ezsp'
+_sub_controller = None
 _data_folder = '/tmp'
 _socket_host='127.0.0.1'
 _channel=15
@@ -133,6 +134,7 @@ parser.add_argument("--apikey", help="Apikey", type=str)
 parser.add_argument("--cycle", help="Cycle to send event", type=str)
 parser.add_argument("--pid", help="Pid file", type=str)
 parser.add_argument("--controller", help="Controller type (ezsp,deconz,zigate,cc...)", type=str)
+parser.add_argument("--sub_controller", help="Sub-controller type (elelabs...)", type=str)
 parser.add_argument("--data_folder", help="Data folder", type=str)
 parser.add_argument("--socketport", help="Port for Zigbee server", type=str)
 parser.add_argument("--channel", help="Channel for Zigbee network", type=str)
@@ -154,6 +156,8 @@ if args.channel:
 	_channel = int(args.channel)
 if args.controller:
 	_controller = args.controller
+if args.sub_controller:
+	_sub_controller = args.sub_controller
 if args.cycle:
 	_data_folder = args.data_folder
 if args.socketport:
@@ -191,12 +195,13 @@ elif _controller == 'znp' :
 	from zigpy_znp.zigbee.application import ControllerApplication
 
 shared.CONTROLLER = _controller
+shared.SUB_CONTROLLER = _sub_controller
 
 if _device == 'auto':
 	if _controller == 'ezsp' :
 		_device = jeedom_utils.find_tty_usb('1366','0105')
 		if _device == None:
-			_device = jeedom_utils.find_tty_usb('1a86','7523') # Elabs USB key
+			_device = jeedom_utils.find_tty_usb('1a86','7523') # Elelabs USB key
 	if _controller == 'deconz' :
 		_device = jeedom_utils.find_tty_usb('1cf1','0030')
 	if _controller == 'zigate' :
