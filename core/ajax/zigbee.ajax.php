@@ -32,18 +32,24 @@ try {
   }
   
   if (init('action') == 'autoDetectModule') {
-		$eqLogic = zigbee::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			throw new Exception(__('Zigbee eqLogic non trouvé : ', __FILE__) . init('id'));
-		}
-		if (init('createcommand') == 1){
-			foreach ($eqLogic->getCmd() as $cmd) {
-				$cmd->remove();
-			}
-		}
-		$eqLogic->applyModuleConfiguration();
-		ajax::success();
-	}
+    $eqLogic = zigbee::byId(init('id'));
+    if (!is_object($eqLogic)) {
+      throw new Exception(__('Zigbee eqLogic non trouvé : ', __FILE__) . init('id'));
+    }
+    if (init('createcommand') == 1){
+      foreach ($eqLogic->getCmd() as $cmd) {
+        $cmd->remove();
+      }
+    }
+    $eqLogic->applyModuleConfiguration();
+    ajax::success();
+  }
+  
+  if(init('action') == 'restartDeamon'){
+    zigbee::deamon_stop_instance(init('deamon'));
+    zigbee::deamon_start_instance(init('deamon'));
+    ajax::success();
+  }
   
   throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
   /*     * *********Catch exeption*************** */

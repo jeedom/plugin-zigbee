@@ -115,6 +115,12 @@ if (!isConnect('admin')) {
             </select>
           </div>
         </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">{{Action}}</label>
+          <div class="col-sm-2">
+            <a class="btn btn-warning bt_zigbeeRestartDeamon" data-deamon="<?php echo $i ?>"><i class="fas fa-redo-alt"></i> {{Redemarrer}}</a>
+          </div>
+        </div>
       </div>
     <?php } ?>
   </fieldset>
@@ -141,4 +147,26 @@ if (!isConnect('admin')) {
     }
   });
   <?php } ?>
-</script>
+  
+  $('.bt_zigbeeRestartDeamon').off('click').on('click',function(){
+    $.ajax({
+      type: "POST",
+      url: "plugins/zigbee/core/ajax/zigbee.ajax.php",
+      data: {
+        action: "restartDeamon",
+        deamon : $(this).attr('data-deamon')
+      },
+      dataType: 'json',
+      error: function (request, status, error) {
+        handleAjaxError(request, status, error);
+      },
+      success: function (data) {
+        if (data.state != 'ok') {
+          $('#div_alert').showAlert({message: data.result, level: 'danger'});
+          return;
+        }
+      }
+    });
+  })
+  </script>
+  
