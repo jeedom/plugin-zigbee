@@ -39,6 +39,14 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::5::cmd::7"
+    },
+    {
+      "name": "Bouton 3 long press",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::5::cmd::8"
     }
   ]
 }
