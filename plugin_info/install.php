@@ -25,7 +25,7 @@ function zigbee_install() {
 
 // Fonction exécutée automatiquement après la mise à jour du plugin
 function zigbee_update() {
-  if(config::byKey('update_20201101','zigbee') != 1={
+  if(config::byKey('update_20201101','zigbee') != 1){
     config::save('controller_1',config::byKey('controller','zigbee'),'zigbee');
     config::save('port_1',config::byKey('port','zigbee'),'zigbee');
     config::save('pizigate_1',config::byKey('pizigate','zigbee'),'zigbee');
@@ -33,6 +33,12 @@ function zigbee_update() {
     config::save('socketport_1',config::byKey('socketport','zigbee'),'zigbee');
     config::save('cycle_1',config::byKey('cycle','zigbee'),'zigbee');
     config::save('channel_1',config::byKey('channel','zigbee'),'zigbee');
+    zigbee::deamon_stop();
+    if(!file_exists(dirname(__FILE__) . '/../data/1')){
+      mkdir(dirname(__FILE__) . '/../data/1',0777,true);
+    }
+    shell_exec('mv '.dirname(__FILE__) . '/../data/*.db '.dirname(__FILE__) . '/../data/1/');
+    zigbee::deamon_start();
     config::save('update_20201101',1,'zigbee');
   }
   
