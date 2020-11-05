@@ -195,6 +195,8 @@ shared.CONTROLLER = _controller
 if _device == 'auto':
 	if _controller == 'ezsp' :
 		_device = jeedom_utils.find_tty_usb('1366','0105')
+		if _device == None:
+			_device = jeedom_utils.find_tty_usb('1a86','7523') # Elabs USB key
 	if _controller == 'deconz' :
 		_device = jeedom_utils.find_tty_usb('1cf1','0030')
 	if _controller == 'zigate' :
