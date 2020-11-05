@@ -63,6 +63,13 @@ async def start_zigbee():
 				"channel" : _channel
 			}
 		}
+		if shared.CONTROLLER == 'ezsp':
+			zigpy_config['device']['baudrate'] = 115200
+			zigpy_config['ezsp'] = {
+				"CONFIG_APS_UNICAST_MESSAGE_COUNT": 12,
+				"CONFIG_SOURCE_ROUTE_TABLE_SIZE": 16,
+				"CONFIG_ADDRESS_TABLE_SIZE": 8
+			}
 		logging.debug('[start_zigbee] Init zigbee network with config : '+str(zigpy_config))
 		shared.ZIGPY = await ControllerApplication.new(
 			config=ControllerApplication.SCHEMA(zigpy_config),
