@@ -124,6 +124,7 @@ class zigbee extends eqLogic {
       }
       self::deamon_start_instance($i);
     }
+    return true;
   }
   
   public static function deamon_start_instance($_instance) {
@@ -165,6 +166,7 @@ class zigbee extends eqLogic {
     for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
       self::deamon_stop_instance($i);
     }
+    system::kill('zigbeed.py');
   }
   
   public static function deamon_stop_instance($_instance) {
@@ -173,7 +175,6 @@ class zigbee extends eqLogic {
       $pid = intval(trim(file_get_contents($pid_file)));
       system::kill($pid);
     }
-    system::kill('zigbeed.py');
     system::fuserk(config::byKey('socketport_'.$_instance, 'zigbee'));
     $port = config::byKey('port_'.$_instance, 'zigbee');
     if ($port != 'auto') {
