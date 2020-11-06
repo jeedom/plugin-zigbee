@@ -32,6 +32,7 @@ import asyncio
 import logging
 import zhaquirks
 import zqueue
+import zigpy.config
 
 try:
 	from jeedom.jeedom import *
@@ -55,16 +56,16 @@ from restServer import *
 async def start_zigbee():
 	try:
 		zigpy_config={
-			"database_path": _data_folder+"/network_"+_controller+".db",
-			"device": {
+			zigpy.config.CONF_DATABASE : _data_folder+"/network_"+_controller+".db",
+			zigpy.config.CONF_DEVICE : {
 				"path": _device,
 			},
-			"network" : {
-				"channel" : _channel
+			zigpy.config.CONF_NWK : {
+				zigpy.config.CONF_NWK_CHANNEL : _channel
 			}
 		}
 		if shared.CONTROLLER == 'ezsp' and shared.SUB_CONTROLLER == 'elelabs' :
-			zigpy_config['device']['baudrate'] = 115200
+			zigpy_config[zigpy.config.CONF_DEVICE]['baudrate'] = 115200
 			zigpy_config['ezsp'] = {
 				"CONFIG_APS_UNICAST_MESSAGE_COUNT": 12,
 				"CONFIG_SOURCE_ROUTE_TABLE_SIZE": 16,
