@@ -30,5 +30,5 @@ echo 95 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade zigpy-cc
 echo 96 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade tornado
-echo "Everything is successfully installed!"
 rm ${PROGRESS_FILE}
+echo "Everything is successfully installed!"
