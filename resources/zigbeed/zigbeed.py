@@ -77,6 +77,12 @@ async def start_zigbee():
 			auto_form=True,
 			start_radio=True,
 		)
+		if shared.CONTROLLER == 'ezsp' :
+			try:
+				asyncio.ensure_future(shared.ZIGPY._ezsp.setRadioChannel(_channel))
+			except Exception as e:
+				pass
+
 		listener = Listener(shared.ZIGPY)
 		shared.ZIGPY.add_listener(listener)
 		for device in shared.ZIGPY.devices.values():
