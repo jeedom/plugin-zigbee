@@ -40,6 +40,12 @@ if (!isConnect('admin')) {
       </div>
       <div id="zigbee_deamon_<?php echo $i ?>">
         <div class="form-group">
+          <label class="col-sm-4 control-label">{{Nom}}</label>
+          <div class="col-sm-2">
+            <input class="configKey form-control" data-l1key="name_deamon_<?php echo $i ?>" />
+          </div>
+        </div>
+        <div class="form-group">
           <label class="col-sm-4 control-label">{{Type de controlleur}}</label>
           <div class="col-sm-2">
             <select class="configKey form-control" data-l1key="controller_<?php echo $i ?>">

@@ -29,8 +29,11 @@ $('#bt_syncEqLogic').off('click').on('click', function () {
 
 $('.changeIncludeState').off('click').on('click', function () {
   var inputOptions = [];
-  for(var i in zigbee_instance){
-    inputOptions.push({value : i,text : '{{Démon}} '+i});
+  for(var i in zigbee_instances){
+    if(zigbee_instances[i].enable != 1){
+      continue;
+    }
+    inputOptions.push({value : zigbee_instances[i].id,text : zigbee_instances[i].name});
   }
   bootbox.prompt({
     title: "Passage en inclusion sur",

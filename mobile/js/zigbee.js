@@ -23,21 +23,45 @@ function initZigbeeZigbee() {
     }
   });
   
-  $('.changeIncludeState').off('click').on('click', function () {
-    let instance = $(this).attr('data-instance');
-    jeedom.zigbee.application.include({
-      instance:instance,
-      duration : 180,
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-      },
-      success: function () {
-        $('#div_inclusionAlert').show()
-        $('#div_inclusionAlert').html('{{Mode inclusion actif pendant 3 minutes pour le démon}} '+instance);
-        setTimeout(function(){ $('#div_inclusionAlert').hideAlert() }, 3*60000);
+  jeedom.zigbee.deamon.getInstanceDef({
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      let html = '';
+      let type = 'a'
+      for(var i in data){
+        if(data[i].enable != 1){
+          continue;
+        }
+        html +='<div class="ui-block-'+type+'">';
+        html +='<center>';
+        html +='<a href="#" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button changeIncludeState" data-instance="'+data[i].id+'" style="margin: 5px;">';
+        html +='<i class="fas fa-sign-in-alt fa-rotate-90" style="font-size: 6em;"></i><br/>'+data[i].name;
+        html +='</a>';
+        html +='</center>';
+        html +='</div>';
+        type = (type == 'a') ? 'b' : 'a';
       }
-    });
+      $('#div_includeButton').html(html);
+      $('.changeIncludeState').off('click').on('click', function () {
+        let instance = $(this).attr('data-instance');
+        jeedom.zigbee.application.include({
+          instance:instance,
+          duration : 180,
+          error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+          },
+          success: function () {
+            $('#div_inclusionAlert').show()
+            $('#div_inclusionAlert').html('{{Mode inclusion actif pendant 3 minutes pour le démon}} '+instance);
+            setTimeout(function(){ $('#div_inclusionAlert').hideAlert() }, 3*60000);
+          }
+        });
+      });
+    }
   });
+  
   
   $('#bt_validateConfigDevice').on('click', function() {
     jeedom.eqLogic.save({

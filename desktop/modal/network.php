@@ -65,11 +65,11 @@ if (!isConnect('admin')) {
 <div id="div_templateNetworkZigbee">
   <select class="pull-right form-control" id="sel_networkZigbeeInstance" style="width:250px;">
     <?php
-    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
-      if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
+    foreach(zigbee::getDeamonInstanceDef() as $zigbee_instance) {
+      if($zigbee_instance['enable'] != 1){
         continue;
       }
-      echo '<option value="'.$i.'">{{Démon}} '.$i.'</option>';
+      echo '<option value="'.$zigbee_instance['id'].'">'.$zigbee_instance['name'].'</option>';
     }
     ?>
   </select>

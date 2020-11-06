@@ -20,6 +20,7 @@ jeedom.zigbee.application = function() {};
 jeedom.zigbee.network = function() {};
 jeedom.zigbee.util = function() {};
 jeedom.zigbee.device = function() {};
+jeedom.zigbee.deamon = function() {};
 
 jeedom.zigbee.application.include = function(_params){
   var paramsRequired = ['duration'];
@@ -241,6 +242,24 @@ jeedom.zigbee.device.setAttributes = function(_params){
       }]
     }),
     type : 'PUT'
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.zigbee.deamon.getInstanceDef = function(_params){
+  var paramsRequired = [];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/ajax/zigbee.ajax.php';
+  paramsAJAX.data = {
+    action: 'deamonInstanceDef'
   };
   $.ajax(paramsAJAX);
 }

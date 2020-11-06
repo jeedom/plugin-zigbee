@@ -51,6 +51,10 @@ try {
     ajax::success();
   }
   
+  if(init('action') == 'deamonInstanceDef'){
+    ajax::success(zigbee::getDeamonInstanceDef());
+  }
+  
   throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
   /*     * *********Catch exeption*************** */
 } catch (Exception $e) {

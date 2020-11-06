@@ -24,6 +24,18 @@ class zigbee extends eqLogic {
   
   /*     * ***********************Methode static*************************** */
   
+  public static function getDeamonInstanceDef(){
+    $return = array();
+    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
+      $return[$i] = array(
+        'id' => $i,
+        'enable' => config::byKey('enable_deamon_'.$i,'zigbee'),
+        'name' => config::byKey('name_deamon_'.$i,'zigbee',__('Démon',__FILE__).' '.$i)
+      );
+    }
+    return $return;
+  }
+  
   public static function request($_instance,$_request = '',$_data = null,$_type='GET'){
     $url = 'http://127.0.0.1:'.config::byKey('socketport_'.$_instance, 'zigbee').$_request;
     if($_type=='GET' && is_array($_data) && count($_data) > 0){

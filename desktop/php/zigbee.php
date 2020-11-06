@@ -24,14 +24,8 @@ foreach ($eqLogics as $eqLogic) {
 }
 sendVarToJS('zigbee_ids',$ids);
 
-$zigbee_instance = array();
-for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
-	if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
-		continue;
-	}
-	$zigbee_instance[$i] = $i;
-}
-sendVarToJS('zigbee_instance', $zigbee_instance);
+$zigbee_instances = zigbee::getDeamonInstanceDef();
+sendVarToJS('zigbee_instances', $zigbee_instances);
 ?>
 
 <div class="row row-overflow">
@@ -158,8 +152,11 @@ sendVarToJS('zigbee_instance', $zigbee_instance);
 									<div class="col-sm-4">
 										<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="instance">
 											<?php
-											for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
-												echo '<option value="'.$i.'">{{Démon}} '.$i.'</option>';
+											foreach($zigbee_instances as $zigbee_instance) {
+												if($zigbee_instance['enable'] != 1){
+													continue;
+												}
+												echo '<option value="'.$zigbee_instance['id'].'">'.$zigbee_instance['name'].'</option>';
 											}
 											?>
 										</select>
