@@ -1,7 +1,10 @@
 {
     "plugins\/zigbee\/plugin_info\/configuration.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Démon": "Daemon",
+        "Général": "Main",
+        "Supprimer automatiquement les périphériques exclus": "Automatically delete excluded devices",
+        "Démon ": "Daemon",
+        "Activer": "Activate",
         "Type de controlleur": "",
         "EZSP": "",
         "Deconz": "Deconz",
@@ -9,21 +12,23 @@
         "CC": "CC",
         "Xbee": "",
         "ZNP": "",
+        "Type de clef": "",
+        "Auto": "Auto",
+        "Elelabs": "",
         "Port Zigbee": "Zigbee Port",
         "Aucun": "None",
-        "Auto": "Auto",
         "Pizigate": "",
         "Wifi Zigate": "",
         "Wifi Zigate IP:PORT": "",
         "Port interne": "",
         "Cycle (s)": "Cycle (s)",
-        "Supprimer automatiquement les périphériques exclus": "Automatically delete excluded devices",
         "Channel": "Channel",
         "11": "",
         "15": "",
         "20": "20",
         "25": "",
-        "Gestion des protocoles RFXCOM": "Management of RFXcom protocols"
+        "Action": "Action",
+        "Redemarrer": "Restart"
     },
     "plugins\/zigbee\/desktop\/modal\/node.php": {
         "Equipement introuvable : ": "Equipment not found:",
@@ -89,6 +94,7 @@
         "Module reinitialisé": ""
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
+        "Démon": "Daemon",
         "Application": "Application",
         "Noeuds": "Knots",
         "Graphique du réseau": "Network graph",
@@ -122,7 +128,6 @@
     },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "None",
-        "Vous etes en mode inclusion. Recliquez sur le bouton d\\'inclusion pour sortir de ce mode": "You are in inclusion mode. Click again on the include button to exit this mode",
         "Gestion": "Management",
         "Ajouter": "Add",
         "Mode inclusion": "Inclusion mode",
@@ -143,6 +148,8 @@
         "Visible": "Visible",
         "Objet parent": "Parent object",
         "Catégorie": "Category",
+        "Démon)": "",
+        "Démon": "Daemon",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
         "Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
         "Recréer les commandes": "Recreate commands",
@@ -158,7 +165,8 @@
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
         "Réseaux zigbee": "Zigbee Network",
         "Configuration du noeud": "Node configuration",
-        "Mode inclusion actif pendant 3 minutes": "",
+        "Démon": "Daemon",
+        "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "A device has just been included \/ excluded. Please refresh the page",
         "Commande": "Command",
         "Valeur retour d\\'état": "Status return value",
