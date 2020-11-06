@@ -1,7 +1,10 @@
 {
     "plugins\/zigbee\/plugin_info\/configuration.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Démon": "Demônio",
+        "Général": "Geral",
+        "Supprimer automatiquement les périphériques exclus": "Excluir automaticamente dispositivos excluídos",
+        "Démon ": "Demônio",
+        "Activer": "Ativar",
         "Type de controlleur": "",
         "EZSP": "",
         "Deconz": "Deconz",
@@ -9,21 +12,23 @@
         "CC": "CC",
         "Xbee": "",
         "ZNP": "",
+        "Type de clef": "",
+        "Auto": "Carro",
+        "Elelabs": "",
         "Port Zigbee": "",
         "Aucun": "Nemhum",
-        "Auto": "Carro",
         "Pizigate": "",
         "Wifi Zigate": "",
         "Wifi Zigate IP:PORT": "",
         "Port interne": "",
         "Cycle (s)": "Ciclo (s)",
-        "Supprimer automatiquement les périphériques exclus": "Excluir automaticamente dispositivos excluídos",
         "Channel": "Canal",
         "11": "",
         "15": "",
         "20": "",
         "25": "",
-        "Gestion des protocoles RFXCOM": "Gerenciamento de protocolos RFXcom"
+        "Action": "Ação",
+        "Redemarrer": "Restart"
     },
     "plugins\/zigbee\/desktop\/modal\/node.php": {
         "Equipement introuvable : ": "Equipamento não encontrado:",
@@ -89,6 +94,7 @@
         "Module reinitialisé": ""
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
+        "Démon": "Demônio",
         "Application": "Aplicação",
         "Noeuds": "Nós",
         "Graphique du réseau": "Gráfico de rede",
@@ -122,7 +128,6 @@
     },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "Nemhum",
-        "Vous etes en mode inclusion. Recliquez sur le bouton d\\'inclusion pour sortir de ce mode": "Você é a inclusão de modo. Clique novamente no botão \\ de inclusão para sair deste modo",
         "Gestion": "Gestão",
         "Ajouter": "Adicionar",
         "Mode inclusion": "Inclusão moda",
@@ -143,6 +148,8 @@
         "Visible": "Visivél",
         "Objet parent": "Objeto pai",
         "Catégorie": "Categoria",
+        "Démon)": "",
+        "Démon": "Demônio",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
         "Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
         "Recréer les commandes": "Recriar comandos",
@@ -158,7 +165,8 @@
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
         "Réseaux zigbee": "Redes Zigbee",
         "Configuration du noeud": "Configuração do nó",
-        "Mode inclusion actif pendant 3 minutes": "",
+        "Démon": "Demônio",
+        "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Um dispositivo apenas \\ ser incluídos \/ excluídos. Atualize a página",
         "Commande": "Ordem",
         "Valeur retour d\\'état": "Estado Valor de retorno \\ 's",

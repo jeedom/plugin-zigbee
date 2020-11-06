@@ -1,7 +1,10 @@
 {
     "plugins\/zigbee\/plugin_info\/configuration.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Démon": "Demone",
+        "Général": "Principale",
+        "Supprimer automatiquement les périphériques exclus": "",
+        "Démon ": "Demone",
+        "Activer": "Attivare",
         "Type de controlleur": "",
         "EZSP": "",
         "Deconz": "",
@@ -9,21 +12,23 @@
         "CC": "",
         "Xbee": "",
         "ZNP": "",
+        "Type de clef": "",
+        "Auto": "",
+        "Elelabs": "",
         "Port Zigbee": "",
         "Aucun": "Nessuno",
-        "Auto": "",
         "Pizigate": "",
         "Wifi Zigate": "",
         "Wifi Zigate IP:PORT": "",
         "Port interne": "",
         "Cycle (s)": "Ciclo (s)",
-        "Supprimer automatiquement les périphériques exclus": "",
         "Channel": "",
         "11": "",
         "15": "",
         "20": "",
         "25": "",
-        "Gestion des protocoles RFXCOM": ""
+        "Action": "Azione",
+        "Redemarrer": "Riavvia"
     },
     "plugins\/zigbee\/desktop\/modal\/node.php": {
         "Equipement introuvable : ": "",
@@ -89,6 +94,7 @@
         "Module reinitialisé": ""
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
+        "Démon": "Demone",
         "Application": "",
         "Noeuds": "",
         "Graphique du réseau": "",
@@ -122,7 +128,6 @@
     },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "Nessuno",
-        "Vous etes en mode inclusion. Recliquez sur le bouton d\\'inclusion pour sortir de ce mode": "Sei in modalità inclusione. Clicca nuovamente il pulsante per uscire da questa modalità",
         "Gestion": "Gestione",
         "Ajouter": "Aggiungi",
         "Mode inclusion": "Modalità inclusione",
@@ -143,6 +148,8 @@
         "Visible": "Visibile",
         "Objet parent": "Oggetto padre",
         "Catégorie": "Categoria",
+        "Démon)": "",
+        "Démon": "Demone",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
         "Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
         "Recréer les commandes": "",
@@ -158,7 +165,8 @@
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
         "Réseaux zigbee": "",
         "Configuration du noeud": "",
-        "Mode inclusion actif pendant 3 minutes": "",
+        "Démon": "Demone",
+        "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Un dispositivo è stato incluso\/escluso. Si prega di ricaricare la pagina",
         "Commande": "Comando",
         "Valeur retour d\\'état": "Valore di feedback",
