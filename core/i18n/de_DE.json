@@ -1,10 +1,19 @@
 {
+    "plugins\/zigbee\/mobile\/js\/zigbee.js": {
+        "Mode inclusion actif pendant 3 minutes pour le démon": ""
+    },
+    "plugins\/zigbee\/mobile\/html\/zigbee.html": {
+        "Nouveau module inclus, configuration : ": "Neues Modul enthalten, Konfiguration:",
+        "Nom": "Name",
+        "Valider": "Validate"
+    },
     "plugins\/zigbee\/plugin_info\/configuration.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Général": "Allgemein",
         "Supprimer automatiquement les périphériques exclus": "Ausgeschlossene Geräte automatisch löschen",
         "Démon ": "Dämon",
         "Activer": "Aktivieren",
+        "Nom": "Name",
         "Type de controlleur": "",
         "EZSP": "",
         "Deconz": "Deconz",
@@ -94,7 +103,6 @@
         "Module reinitialisé": ""
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
-        "Démon": "Dämon",
         "Application": "Anwendung",
         "Noeuds": "Knoten",
         "Graphique du réseau": "Netzwerkdiagramm",
@@ -149,7 +157,6 @@
         "Objet parent": "Übergeordnetes Objekt",
         "Catégorie": "Kategorie",
         "Démon)": "",
-        "Démon": "Dämon",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
         "Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
         "Recréer les commandes": "Befehle neu erstellen",
@@ -165,7 +172,6 @@
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
         "Réseaux zigbee": "ZigBee-Netzwerke",
         "Configuration du noeud": "Knotenkonfiguration",
-        "Démon": "Dämon",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Ein Gerät wurde gerade aufgenommen \/ ausgeschlossen. Bitte aktualisieren Sie die Seite",
         "Commande": "Befehl",
@@ -216,6 +222,7 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
+        "Démon": "Dämon",
         "Erreur lors de la requete : ": "Fehler während der Anfrage:",
         "Le port n\\'est pas configuré": "Port ist nicht konfiguriert",
         "Veuillez vérifier la configuration": "Bitte überprüfen Sie die Konfiguration",
