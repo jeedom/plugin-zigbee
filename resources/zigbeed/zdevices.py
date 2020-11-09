@@ -81,7 +81,7 @@ async def write_attributes(_data):
 		for i in attribute['attributes']:
 			attributes[int(i)] = attribute['attributes'][i]
 		manufacturer = None
-		if 'manufacturer' in attribute:
+		if 'manufacturer' in attribute and attribute['manufacturer'] != '' :
 			manufacturer = attribute['manufacturer']
 		await cluster.write_attributes(attributes,manufacturer=manufacturer)
 		asyncio.ensure_future(check_write_attributes(_data))
@@ -104,7 +104,7 @@ async def check_write_attributes(_data):
 			cluster = endpoint.out_clusters[attribute['cluster']]
 		attributes = {}
 		manufacturer = None
-		if 'manufacturer' in attribute:
+		if 'manufacturer' in attribute and attribute['manufacturer'] != '':
 			manufacturer = attribute['manufacturer']
 		for i in attribute['attributes']:
 			values = await cluster.read_attributes([int(i)],True,manufacturer=manufacturer)

@@ -137,7 +137,7 @@ class DeviceHandler(RequestHandler):
 						raise Exception("Cluster not found : "+str(self.json_args['cluster']))
 					cluster = endpoint.out_clusters[self.json_args['cluster']]
 				manufacturer = None
-				if 'manufacturer' in self.json_args:
+				if 'manufacturer' in self.json_args and self.json_args['manufacturer'] != '' :
 					manufacturer = self.json_args['manufacturer']
 				if self.json_args['allowCache'] == 1:
 					values = await cluster.read_attributes(self.json_args['attributes'],True,manufacturer=manufacturer)
