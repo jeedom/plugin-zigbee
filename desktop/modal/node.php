@@ -261,9 +261,10 @@ $infos = zigbee::parseDeviceInformation($node_data);
       <hr/>
       <form class="form-horizontal">
         <fieldset>
-          <legend>{{Lecture d'un attribut}} <label class="checkbox-inline" style="margin-left:15px;"><input class="getNodeAttr" data-l1key="manufacturer"/>{{Manufacturer specific}}</label><label class="checkbox-inline" style="margin-left:15px;"><input type="checkbox" class="getNodeAttr" data-l1key="allowCache" checked/>{{Autoriser le cache}}</label></legend>
+          <legend>{{Lecture d'un attribut}} <label class="checkbox-inline" style="margin-left:15px;"><input type="checkbox" class="getNodeAttr" data-l1key="allowCache" checked/>{{Autoriser le cache}}</label></legend>
           <div class="form-group">
             <div class="col-sm-12">
+              <input class="getNodeAttr from-control" data-l1key="manufacturer" placeholder="{{Manufacturer}}"/>
               <input class="getNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}"/>
               <input class="getNodeAttr from-control" data-l1key="cluster" placeholder="{{Cluster}}"/>
               <input class="getNodeAttr from-control" data-l1key="attributes" placeholder="{{Attribut}}"/>
@@ -271,9 +272,10 @@ $infos = zigbee::parseDeviceInformation($node_data);
               <span id="span_nodeGetAttrResult" style="margin-left:10px;"></span>
             </div>
           </div>
-          <legend>{{Ecriture d'un attribut}} <label class="checkbox-inline" style="margin-left:15px;"><input type="checkbox" class="setNodeAttr" data-l1key="manufacturer"/>{{Manufacturer specific}}</label></legend>
+          <legend>{{Ecriture d'un attribut}}</legend>
           <div class="form-group">
             <div class="col-sm-12">
+              <input class="setNodeAttr from-control" data-l1key="manufacturer" placeholder="{{Manufacturer}}"/>
               <input class="setNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}"/>
               <input class="setNodeAttr from-control" data-l1key="cluster" placeholder="{{Cluster}}"/>
               <input class="setNodeAttr from-control" data-l1key="attributes" placeholder="{{Attribut}}"/>
