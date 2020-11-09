@@ -1,10 +1,19 @@
 {
+    "plugins\/zigbee\/mobile\/js\/zigbee.js": {
+        "Mode inclusion actif pendant 3 minutes pour le démon": ""
+    },
+    "plugins\/zigbee\/mobile\/html\/zigbee.html": {
+        "Nouveau module inclus, configuration : ": "",
+        "Nom": "Nama",
+        "Valider": "Mengesahkan"
+    },
     "plugins\/zigbee\/plugin_info\/configuration.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Général": "Umum",
         "Supprimer automatiquement les périphériques exclus": "",
         "Démon ": "Setan",
         "Activer": "Mengaktifkan",
+        "Nom": "Nama",
         "Type de controlleur": "",
         "EZSP": "",
         "Deconz": "",
@@ -94,7 +103,6 @@
         "Module reinitialisé": ""
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
-        "Démon": "Setan",
         "Application": "",
         "Noeuds": "",
         "Graphique du réseau": "",
@@ -149,7 +157,6 @@
         "Objet parent": "Objek induk",
         "Catégorie": "Kategori",
         "Démon)": "",
-        "Démon": "Setan",
         "Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)": "",
         "Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)": "",
         "Recréer les commandes": "",
@@ -165,7 +172,6 @@
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
         "Réseaux zigbee": "",
         "Configuration du noeud": "",
-        "Démon": "Setan",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Sebuah perangkat hanya \\ dimasukkan \/ dikeluarkan. Muat ulang halaman",
         "Commande": "Pesanan",
@@ -216,6 +222,7 @@
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
+        "Démon": "Setan",
         "Erreur lors de la requete : ": "",
         "Le port n\\'est pas configuré": "",
         "Veuillez vérifier la configuration": "",
