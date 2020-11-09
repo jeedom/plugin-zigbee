@@ -462,6 +462,44 @@ class zigbee extends eqLogic {
     $this->import($device,true);
   }
   
+  public function refreshValue(){
+    $datas = array();
+    foreach ($this->getCmd('info') as $cmd) {
+      $infos = explode('::',$cmd->getLogicalId());
+      if(count($infos) != 3){
+        continue;
+      }
+      if(!isset($datas[$infos[0]])){
+        $datas[$infos[0]] = array();
+      }
+      if(!isset($datas[$infos[0]][$infos[1]])){
+        $datas[$infos[0]][$infos[1]] = array();
+      }
+      $datas[$infos[0]][$infos[1]][] = intval($infos[2]);
+    }
+    
+    if(count($datas) == 0){
+      return;
+    }
+    foreach ($datas as $endpoint => $data) {
+      foreach ($data as $cluster => $attributes) {
+        try {
+          zigbee::request($this->getConfiguration('instance',1),'/device/attributes',array(
+            'ieee'=>$this->getLogicalId(),
+            'endpoint' => $endpoint,
+            'cluster' => $cluster,
+            'cluster_type' => 'in',
+            'attributes' => $attributes,
+            'allowCache' => 0
+          ),'POST');
+        } catch (\Exception $e) {
+          log::add('zigbee','info',$this->getHumanName().' '.$e->getMessage());
+        }
+      }
+    }
+    
+  }
+  
   
   /*     * **********************Getteur Setteur*************************** */
 }
@@ -537,9 +575,12 @@ class zigbeeCmd extends cmd {
     if($this->getType() == 'info'){
       return;
     }
+    $eqLogic = $this->getEqLogic();
+    if($this->getLogicalId() == 'refresh'){
+      return $eqLogic->refreshValue();
+    }
     $commands = array();
     $attributes = array();
-    $eqLogic = $this->getEqLogic();
     $informations = explode('|',$this->getLogicalId());
     foreach ($informations as $information) {
       $replace = array();
@@ -583,6 +624,11 @@ class zigbeeCmd extends cmd {
     }
     if(count($attributes) > 0){
       zigbee::request($eqLogic->getConfiguration('instance',1),'/device/attributes',array('ieee'=>$eqLogic->getLogicalId(),'attributes' => $attributes,'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue',0) == 1)),'PUT');
+    }
+    $refresh = $eqLogic->getCmd('action','refresh');
+    if(is_object($refresh)){
+      sleep(1);
+      $eqLogic->refreshValue();
     }
   }
   
