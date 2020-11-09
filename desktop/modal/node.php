@@ -334,7 +334,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
       cluster : parseInt(tr.attr('data-cluster')),
       attributes : [parseInt(tr.attr('data-attribute'))],
       manufacturer:parseInt(tr.attr('data-manufacturer')),
-      allowCache : 1,
+      allowCache : 0,
       global:false,
       error: function (error) {
         tr.find('.configLoadIcon').hide();
