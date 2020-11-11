@@ -11,7 +11,7 @@ sudo apt-get update
 echo 40 > ${PROGRESS_FILE}
 sudo pip3 uninstall serial
 echo 50 > ${PROGRESS_FILE}
-sudo apt remove python3-serial
+sudo apt remove -y python3-serial
 echo 52 > ${PROGRESS_FILE}
 sudo apt-get install -y python3 python3-pip python3-pyudev python3-requests python3-setuptools
 echo 57 > ${PROGRESS_FILE}
