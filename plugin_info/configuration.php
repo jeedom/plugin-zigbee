@@ -95,7 +95,7 @@ if (!isConnect('admin')) {
         <div class="form-group zigbee_portConf_<?php echo $i ?> wifizigate_<?php echo $i ?>" style="display:none;">
           <label class="col-sm-4 control-label">{{Wifi Zigate IP:PORT}}</label>
           <div class="col-sm-2">
-            <input class="configKey form-control" data-l1key="wifizigate_1" />
+            <input class="configKey form-control" data-l1key="wifizigate_<?php echo $i ?>" />
           </div>
         </div>
         <div class="form-group">
