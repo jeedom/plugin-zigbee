@@ -2,6 +2,8 @@
   "name": "Vanne Spirit",
   "buylink" : "",
   "ref":"SPZB0001",
+  "reset": "Appui long sur les trois bouton -0+, un compteur defile jusqu'à 10, puis la vanne se reinitialise",
+  "pairing": "Enlever les piles, lorsque la vanne redemarre, il apparait sur l'écran Ins, avec le 0 qui clignote, appuyer sur le O",
   "remark": "Vanne qui a tendance à ne plus accepter d'ordre (changement de consigne) à moins d'enlever les piles et de les remettres. Par contre elle remonte toujours bien les informations de température et changement de consigne manuel",
   "commands": [
     {
@@ -10,7 +12,7 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 1,
-      "unite" : "°C",
+      "unite" : "Â°C",
       "logicalId": "1::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
@@ -23,7 +25,7 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "unite" : "°C",
+      "unite" : "Â°C",
       "logicalId": "1::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
@@ -36,7 +38,7 @@
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 1,
-      "unite" : "°C",
+      "unite" : "Â°C",
       "value": "Consigne",
       "logicalId": "attributes::1::in::513::18::#slider#*100",
       "generic_type" : "THERMOSTAT_SET_SETPOINT",
@@ -56,7 +58,10 @@
       "isVisible": 1,
       "isHistorized": 1,
       "unite" : "%",
-      "logicalId": "1::513::8"
+      "logicalId": "1::513::8",
+      "configuration" : {
+        "calculValueOffset":"#value# / 255 * 100"
+      }
     },
     {
       "name": "Mode",
