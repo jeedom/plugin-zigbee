@@ -75,16 +75,29 @@ if (!isConnect('admin')) {
   </select>
   <ul id="tabs_network" class="nav nav-tabs" data-tabs="tabs">
     <li class="active"><a href="#application_network" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Application}}</a></li>
+    <li><a href="#actions_network" data-toggle="tab"><i class="fab fa-codepen"></i> {{Actions}}</a></li>
     <li><a href="#devices_network" data-toggle="tab"><i class="fab fa-codepen"></i> {{Noeuds}}</a></li>
     <li id="tab_graph"><a href="#graph_network" data-toggle="tab"><i class="far fa-image"></i> {{Graphique du réseau}}</a></li>
   </ul>
   
   <div id="network-tab-content" class="tab-content">
-    <div class="tab-pane active" id="application_network">
-    </div>
+    <div class="tab-pane active" id="application_network"></div>
     
     <div id="actions_network" class="tab-pane">
-      
+      <table class="table">
+        <thead>
+          <th>
+            <td>{{Action}}</td>
+            <td>{{Description}}</td>
+          </th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a class="btn btn-success bt_zigbeeAction" data-type="application" data-action="zgp_include">{{Inclusion GreenPower device}}</a></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     
     <div class="tab-pane" id="devices_network">
@@ -128,6 +141,22 @@ if (!isConnect('admin')) {
   </div>
   
   <script>
+  $('.bt_zigbeeAction').off('click').on('click',function(){
+    if($(this).attr('data-action') == 'zgp_include'){
+      jeedom.zigbee.application.zgp_include({
+        instance:$('#sel_networkZigbeeInstance').value(),
+        duration : 180,
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+          $('#div_alert').showAlert({message: '{{Mode inclusion green power actif pendant 3 minutes pour le démon}} '+result, level: 'success'});
+          setTimeout(function(){ $('#div_alert').hideAlert() }, 3*60000);
+        }
+      });
+    }
+  })
+  
   $('#sel_networkZigbeeInstance').off('change').on('change',function(){
     refreshNetworkData();
     refreshDevicekData();

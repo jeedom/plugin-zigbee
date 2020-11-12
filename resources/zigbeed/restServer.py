@@ -49,7 +49,7 @@ class ApplicationHandler(RequestHandler):
 			if arg1 == 'info':
 				info = await utils.serialize_application()
 				return self.write(utils.format_json_result(success=True,data=info))
-			raise Exception("No method found")
+			raise Exception("No method found for "+str(arg1))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
@@ -59,7 +59,15 @@ class ApplicationHandler(RequestHandler):
 			if arg1 == 'include':
 				await shared.ZIGPY.permit(self.json_args['duration'])
 				return self.write(utils.format_json_result(success=True))
-			raise Exception("No method found")
+			if arg1 == 'zgp_include':
+				gateway = shared.ZIGPY.get_device(nwk=0)
+				if not 242 in gateway.endpoints:
+					raise Exception("Your gateway does not support GreenPowerProxy")
+				if not 33 in gateway.endpoints[242].out_clusters:
+					raise Exception("Your gateway does not support GreenPowerProxy")
+				await gateway.endpoints[242].out_clusters[33].permit(self.json_args['duration'])
+				return self.write(utils.format_json_result(success=True))
+			raise Exception("No method found for "+str(arg1))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
@@ -84,7 +92,7 @@ class NetworkHandler(RequestHandler):
 				for i in map:
 					result.append(map[i].json())
 				return self.write(utils.format_json_result(success=True,data=result))
-			raise Exception("No method found")
+			raise Exception("No method found for "+str(arg1))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
@@ -114,7 +122,7 @@ class DeviceHandler(RequestHandler):
 					raise Exception("Device not found")
 				values = await zdevices.serialize(device)
 				return self.write(utils.format_json_result(success=True,data=values))
-			raise Exception("No method found")
+			raise Exception("No method found for "+str(arg1))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
@@ -185,7 +193,7 @@ class DeviceHandler(RequestHandler):
 					else:
 						raise
 				return self.write(utils.format_json_result(success=True))
-			raise Exception("No method found")
+			raise Exception("No method found for "+str(arg1))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
