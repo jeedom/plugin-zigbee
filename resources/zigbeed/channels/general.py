@@ -234,3 +234,9 @@ class Time():
 	"""Time channel."""
 
 	NO_BINDING=True
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(general.GreenPowerProxy.cluster_id)
+class GreenPowerProxy():
+	"""GreenPowerProxy channel."""
+
+	NO_BINDING=True

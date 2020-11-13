@@ -1,0 +1,23 @@
+{
+  "name": "PTM 215 ZE ",
+  "ref" : "ptm215ze",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "On Off",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::6::cmd::0"
+    },
+    {
+      "name": "Scene",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::5::cmd::1"
+    }
+  ]
+}
