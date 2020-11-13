@@ -203,6 +203,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 												}
 												$manufacturers[$info['manufacturer']][$id] = $info;
 											}
+											ksort($manufacturers);
 											foreach ($manufacturers as $manufacturer => $devices) {
 												echo '<option value="'.$manufacturer.'">' . $manufacturer . '</option>';
 											}

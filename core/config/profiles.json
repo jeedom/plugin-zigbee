@@ -54,7 +54,8 @@
     "2080" : "NON_COLOR_CONTROLLER",
     "2096" : "NON_COLOR_SCENE_CONTROLLER",
     "2112" : "CONTROL_BRIDGE",
-    "2128" : "ON_OFF_SENSOR"
+    "2128" : "ON_OFF_SENSOR",
+    "41440" : "GREEN_POWER"
   },
   "zll" : {
     "0" : "ON_OFF_LIGHT",

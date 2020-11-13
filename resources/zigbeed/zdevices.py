@@ -119,7 +119,9 @@ async def check_write_attributes(_data):
 async def initialize(device):
 	logging.debug("["+str(device._ieee)+"][zdevices.initialize] Begin device initialize")
 	for ep_id, endpoint in device.endpoints.items():
-		if ep_id == 0: # Ignore ZDO
+		if ep_id == 0 or ep_id == 242: # Ignore ZDO and green power
+			continue
+		if endpoint.device_type == 0xa1e0: # No binding for GreenPower device
 			continue
 		for cluster in endpoint.in_clusters.values():
 			if not hasattr(cluster,'ep_attribute') or (cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'NO_BINDING') and registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].NO_BINDING):
