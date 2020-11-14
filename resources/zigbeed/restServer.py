@@ -61,11 +61,11 @@ class ApplicationHandler(RequestHandler):
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'zgp_include':
 				gateway = shared.ZIGPY.get_device(nwk=0)
-				if not 242 in gateway.endpoints:
+				if not zigpy.zcl.clusters.general.GreenPowerProxy.enpoint_id in gateway.endpoints:
 					raise Exception("Your gateway does not support GreenPowerProxy")
-				if not 33 in gateway.endpoints[242].out_clusters:
+				if not zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id in gateway.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.enpoint_id].out_clusters:
 					raise Exception("Your gateway does not support GreenPowerProxy")
-				await gateway.endpoints[242].out_clusters[33].permit(self.json_args['duration'])
+				await gateway.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.enpoint_id].out_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].permit(self.json_args['duration'])
 				return self.write(utils.format_json_result(success=True))
 			raise Exception("No method found for "+str(arg1))
 		except Exception as e:
