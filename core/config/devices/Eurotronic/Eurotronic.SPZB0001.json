@@ -5,6 +5,9 @@
   "reset": "Appui long sur les trois bouton -0+, un compteur defile jusqu'à 10, puis la vanne se reinitialise",
   "pairing": "Enlever les piles, lorsque la vanne redemarre, il apparait sur l'écran Ins, avec le 0 qui clignote, appuyer sur le O",
   "remark": "Vanne qui a tendance à ne plus accepter d'ordre (changement de consigne) à moins d'enlever les piles et de les remettres. Par contre elle remonte toujours bien les informations de température et changement de consigne manuel",
+  "configuration" : {
+    "battery_type" : "2x1,5V AA"
+  },
   "commands": [
     {
       "name": "Température",
