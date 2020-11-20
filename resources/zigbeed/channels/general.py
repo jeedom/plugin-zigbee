@@ -209,16 +209,13 @@ class PollControl():
 
 	def cluster_command(cluster, tsn, *args):
 		"""Handle commands received to this cluster."""
+		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Received %s tsn : %s", tsn, args)
 		cmd_name = cluster.client_commands.get(args[0], [])[0]
-		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Received %s tsn command '%s': %s", tsn, cmd_name, args)
+		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Command %s", cmd_name)
 		if cmd_name == "checkin":
-			cluster.check_in_response(tsn)
-		return False
-
-	async def check_in_response(self, tsn: int) -> None:
-		"""Respond to checkin command."""
-		asyncio.ensure_future(cluster.checkin_response(True, PollControl.CHECKIN_FAST_POLL_TIMEOUT, tsn=tsn))
-		asyncio.ensure_future(cluster.set_long_poll_interval(PollControl.LONG_POLL))
+			logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Send checkin response")
+			asyncio.ensure_future(cluster.checkin_response(True, PollControl.CHECKIN_FAST_POLL_TIMEOUT, tsn=tsn))
+			asyncio.ensure_future(cluster.set_long_poll_interval(PollControl.LONG_POLL))
 		return False
 
 @registries.DEVICE_TRACKER_CLUSTERS.register(general.PowerConfiguration.cluster_id)
