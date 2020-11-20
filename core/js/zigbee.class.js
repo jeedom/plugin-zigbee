@@ -267,6 +267,30 @@ jeedom.zigbee.device.setAttributes = function(_params){
   $.ajax(paramsAJAX);
 }
 
+jeedom.zigbee.device.setGpKey = function(_params){
+  var paramsRequired = ['ieee','key'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    instance : _params.instance || 1,
+    request: '/device/gpkey',
+    data : json_encode({
+      ieee : _params.ieee,
+      key : _params.key,
+    }),
+    type : 'PUT'
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.zigbee.deamon.getInstanceDef = function(_params){
   var paramsRequired = [];
   var paramsSpecifics = {};

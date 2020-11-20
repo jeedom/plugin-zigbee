@@ -145,6 +145,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
             </div>
           </div>
           <?php
+          $isZGPDevice = false;
           foreach ($infos['endpoints'] as $endpoint_id => $endpoint) {
             echo  '<div class="panel panel-primary">';
             echo  '<div class="panel-heading">';
@@ -154,6 +155,9 @@ $infos = zigbee::parseDeviceInformation($node_data);
             echo  '<div class="panel-body">';
             echo  '{{Status :}} <b><span class="label label-default">'.$endpoint['status'].'</span></b><br/>';
             echo  '{{Device type :}} <b><span class="label label-default">'.$endpoint['device_type'].'</span></b><br/>';
+            if($endpoint['device_type'] == 'GREEN_POWER'){
+              $isZGPDevice = true;
+            }
             echo  '{{Profile :}} <b><span class="label label-default">'.$endpoint['profile_id'].'</span></b><br/>';
             echo '<p>';
             echo  '{{Cluster sortant :}}';
@@ -178,7 +182,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
       <form class="form-horizontal">
         <fieldset>
           <?php
-          if(!isset($device['config']) || count($device['config']) == 0){
+          if($isZGPDevice == false && (!isset($device['config']) || count($device['config']) == 0)){
             echo '<div class="alert alert-info">{{Il n\'éxiste aucun parametre de configuration connu pour ce module}}</div>';
           }else{
             echo '<table class="table table-condensed">';
@@ -193,39 +197,60 @@ $infos = zigbee::parseDeviceInformation($node_data);
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
-            foreach ($device['config'] as &$config) {
-              if(!isset($config['manufacturer'])){
-                $config['manufacturer'] = 0;
+            if($isZGPDevice){
+              $value = zigbee::getAttribute(242,33,39320,$node_data);
+              if($value === null){
+                $value = '';
               }
-              echo '<tr class="deviceConfig" data-manufacturer="'.$config['manufacturer'].'" data-endpoint="'.$config['endpoint'].'" data-cluster="'.$config['cluster'].' "data-attribute="'.$config['attribute'].'">';
-              echo '<td>'.$config['name'].'</td>';
-              echo '<td>'.$config['endpoint'].'</td>';
-              echo '<td>'.$config['cluster'].'</td>';
-              echo '<td>'.$config['attribute'].'</td>';
+              echo '<tr>';
+              echo '<td>{{Clef de cryptage GreenPower}}</td>';
+              echo '<td>242</td>';
+              echo '<td>33</td>';
+              echo '<td>39320</td>';
+              echo '<td><input class="form-control gpKeyValue" value="'.$value.'"/></td>';
               echo '<td>';
-              switch ($config['type']) {
-                case 'input':
-                echo '<input class="form-control configAttrValue" />';
-                break;
-                case 'number':
-                echo '<input type="number" class="form-control configAttrValue" min="'.(isset($config['min']) ? $config['min'] : '').'" max="'.(isset($config['max']) ? $config['max'] : '').'" />';
-                break;
-                case 'select':
-                echo '<select class="form-control configAttrValue">';
-                foreach ($config['values'] as $value) {
-                  echo '<option value="'.$value['value'].'">'.$value['name'].'</option>';
-                }
-                echo '</select>';
-                break;
-              }
-              echo '</td>';
-              echo '<td>';
-              echo '<a class="btn btn-default btn-xs bt_refreshConfigAttribute"><i class="fas fa-sync"></i></a> ';
-              echo '<a class="btn btn-success btn-xs bt_sendConfigAttribute"><i class="fas fa-file-import"></i> {{Envoyer}}</a>';
-              echo ' <i class="fas fa-spinner fa-spin configLoadIcon"></i>';
+              echo '<a class="btn btn-success btn-xs bt_sendGpKey"><i class="fas fa-file-import"></i> {{Envoyer}}</a>';
+              echo ' <i class="fas fa-spinner fa-spin configLoadIcon" style="display:none;"></i>';
               echo ' <i class="fas fa-times configErrorIcon" style="display:none;"></i>';
               echo '</td>';
               echo '</tr>';
+            }
+            if(count($device['config']) > 0){
+              foreach ($device['config'] as &$config) {
+                if(!isset($config['manufacturer'])){
+                  $config['manufacturer'] = 0;
+                }
+                
+                echo '<tr class="deviceConfig" data-manufacturer="'.$config['manufacturer'].'" data-endpoint="'.$config['endpoint'].'" data-cluster="'.$config['cluster'].' "data-attribute="'.$config['attribute'].'">';
+                echo '<td>'.$config['name'].'</td>';
+                echo '<td>'.$config['endpoint'].'</td>';
+                echo '<td>'.$config['cluster'].'</td>';
+                echo '<td>'.$config['attribute'].'</td>';
+                echo '<td>';
+                switch ($config['type']) {
+                  case 'input':
+                  echo '<input class="form-control configAttrValue" />';
+                  break;
+                  case 'number':
+                  echo '<input type="number" class="form-control configAttrValue" min="'.(isset($config['min']) ? $config['min'] : '').'" max="'.(isset($config['max']) ? $config['max'] : '').'" />';
+                  break;
+                  case 'select':
+                  echo '<select class="form-control configAttrValue">';
+                  foreach ($config['values'] as $value) {
+                    echo '<option value="'.$value['value'].'">'.$value['name'].'</option>';
+                  }
+                  echo '</select>';
+                  break;
+                }
+                echo '</td>';
+                echo '<td>';
+                echo '<a class="btn btn-default btn-xs bt_refreshConfigAttribute"><i class="fas fa-sync"></i></a> ';
+                echo '<a class="btn btn-success btn-xs bt_sendConfigAttribute"><i class="fas fa-file-import"></i> {{Envoyer}}</a>';
+                echo ' <i class="fas fa-spinner fa-spin configLoadIcon"></i>';
+                echo ' <i class="fas fa-times configErrorIcon" style="display:none;"></i>';
+                echo '</td>';
+                echo '</tr>';
+              }
             }
             echo '</tbody>';
             echo '</table>';
@@ -293,6 +318,24 @@ $infos = zigbee::parseDeviceInformation($node_data);
   
   <script>
   
+  $('.bt_sendGpKey').off('click').on('click',function(){
+    let tr = $(this)
+    let key = tr.closest('tr').find('.gpKeyValue').value();
+    jeedom.zigbee.device.setGpKey({
+      ieee : zigbeeNodeIeee,
+      key : key,
+      error: function (error) {
+        tr.find('.configLoadIcon').hide();
+        tr.find('.configErrorIcon').show().attr('title', error.message);
+      },
+      success : function(data){
+        tr.find('.configLoadIcon').hide();
+        tr.find('.configErrorIcon').hide();
+        $('#div_nodeDeconzAlert').showAlert({message: '{{Valeur ecrite avec succès}}', level: 'success'});
+      }
+    });
+  })
+  
   if($('#configNodeTab .deviceConfig').length > 0){
     $('#configNodeTab .deviceConfig').each(function(){
       let tr = $(this)
@@ -304,6 +347,8 @@ $infos = zigbee::parseDeviceInformation($node_data);
         cluster : parseInt(tr.attr('data-cluster')),
         attributes : [parseInt(tr.attr('data-attribute'))],
         manufacturer:parseInt(tr.attr('data-manufacturer')),
+        allowCache : 1,
+        global:false,
         allowCache : 1,
         global:false,
         error: function (error) {

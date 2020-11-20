@@ -26,6 +26,7 @@ import asyncio
 import registries
 import zdevices
 import zqueue
+import zigpy
 from map import *
 try:
 	from tornado.web import RequestHandler,Application,HTTPError
@@ -169,6 +170,12 @@ class DeviceHandler(RequestHandler):
 						zqueue.add('write_attributes',10,self.json_args,3)
 					else:
 						raise
+				return self.write(utils.format_json_result(success=True))
+			if arg1 == 'gpkey':
+				device = zdevices.find(self.json_args['ieee'])
+				if device == None :
+					raise Exception("Device not found")
+				device.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id].in_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id]._update_attribute(0x9998, int(self.json_args['key'], 16).to_bytes(16,'big'))
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'initialize':
 				device = zdevices.find(self.json_args['ieee'])
