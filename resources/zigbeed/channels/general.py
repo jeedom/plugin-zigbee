@@ -181,7 +181,7 @@ class Ota():
 	def attribute_updated(cluster, attribute_id, value):
 		return False
 
-	def cluster_command(cluster, command_id, *args):
+	def cluster_command(cluster, tsn, *args):
 		return False
 
 
@@ -196,12 +196,29 @@ class PollControl():
 	CHECKIN_INTERVAL = 55 * 60 * 4  # 55min
 	CHECKIN_FAST_POLL_TIMEOUT = 2 * 4  # 2s
 	LONG_POLL = 6 * 4  # 6s
-	NO_BINDING=True
+
+	async def initialize(cluster):
+		 try:
+			 res = await cluster.write_attributes({"checkin_interval": PollControl.CHECKIN_INTERVAL})
+			 logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.initialize] %ss check-in interval set: %s", PollControl.CHECKIN_INTERVAL / 4, res)
+		 except (asyncio.TimeoutError, zigpy.exceptions.ZigbeeException) as ex:
+			 logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.initialize] Couldn't set check-in interval: %s", ex)
 
 	def attribute_updated(cluster, attribute_id, value):
 		return False
 
-	def cluster_command(cluster, command_id, *args):
+	def cluster_command(cluster, tsn, *args):
+		"""Handle commands received to this cluster."""
+		cmd_name = cluster.client_commands.get(args[0], [])[0]
+		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Received %s tsn command '%s': %s", tsn, cmd_name, args)
+		if cmd_name == "checkin":
+			cluster.check_in_response(tsn)
+		return False
+
+	async def check_in_response(self, tsn: int) -> None:
+		"""Respond to checkin command."""
+		asyncio.ensure_future(cluster.checkin_response(True, PollControl.CHECKIN_FAST_POLL_TIMEOUT, tsn=tsn))
+		asyncio.ensure_future(cluster.set_long_poll_interval(PollControl.LONG_POLL))
 		return False
 
 @registries.DEVICE_TRACKER_CLUSTERS.register(general.PowerConfiguration.cluster_id)
@@ -225,7 +242,7 @@ class RSSILocation():
 class Scenes():
 	"""Scenes channel."""
 
-	def cluster_command(cluster, command_id, *args):
+	def cluster_command(cluster, tsn, *args):
 		shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::'+str(args[0]),{"value" : args[1][0]*10+args[1][1],"cluster_name" : cluster.name})
 		return True
 

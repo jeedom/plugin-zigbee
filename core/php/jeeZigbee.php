@@ -72,9 +72,9 @@ if (isset($result['device_initialized'])){
 	event::add('jeedom::alert', array(
 		'level' => 'warning',
 		'page' => 'zigbee',
-		'message' => __('Un périphérique Zigbee a été inclus : ', __FILE__).$result['device_initialized'].'.'.__('Pause de 60s avant synchronisation', __FILE__),
+		'message' => __('Un périphérique Zigbee a été inclus : ', __FILE__).$result['device_initialized'].'.'.__('Pause de 30s avant synchronisation', __FILE__),
 	));
-	sleep(60);
+	sleep(30);
 	$id = zigbee::sync();
 	event::add('zigbee::includeDevice', $id);
 	die();
@@ -100,10 +100,20 @@ $CONVERT_VALUE=array(
 	'SystemMode.Sleep' => __('En veille',__FILE__),
 );
 
+$FIND_VALUE=array(
+	'Alarm_1' => 1
+);
+
 function convertValue($_value){
 	global $CONVERT_VALUE;
 	if(isset($CONVERT_VALUE[$_value])){
 		return $CONVERT_VALUE[$_value];
+	}
+	global $FIND_VALUE;
+	foreach ($FIND_VALUE as $key => $value) {
+		if(strpos($_value,$key) !== false){
+			return $value;
+		}
 	}
 	return $_value;
 }

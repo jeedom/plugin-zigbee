@@ -51,7 +51,7 @@ $('.changeIncludeState').off('click').on('click', function () {
           $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-          $('#div_alert').showAlert({message: '{{Mode inclusion actif pendant 3 minutes pour le démon}} '+result, level: 'success'});
+          $('#div_alert').showAlert({message: '{{Mode inclusion actif pendant 3 minutes pour le démon}} '+zigbee_instances[result].name, level: 'success'});
           setTimeout(function(){ $('#div_alert').hideAlert() }, 3*60000);
         }
       });

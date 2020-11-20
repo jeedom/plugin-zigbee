@@ -61,9 +61,9 @@ class IASZoneChannel():
 			logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Failed to write cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,str(ex),)
 		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Finished IASZoneChannel configuration")
 
-	def cluster_command(cluster, command_id, *args):
+	def cluster_command(cluster, tsn, *args):
 		try:
-			if command_id == 1:
+			if args[0] == 1:
 				logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.cluster_command] Enroll requested")
 				asyncio.ensure_future(cluster.enroll_response(0, 0))
 			else:

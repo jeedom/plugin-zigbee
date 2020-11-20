@@ -63,14 +63,14 @@ class Listener:
 			asyncio.ensure_future(zdevices.initialize(device))
 			shared.JEEDOM_COM.send_change_immediate({'device_initialized' : str(device._ieee)});
 
-	def cluster_command(self, cluster, command_id, *args):
-		logging.info("["+str(cluster.endpoint.device._ieee)+"][listener.cluster_command] Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
+	def cluster_command(self, cluster, tsn, *args):
+		logging.info("["+str(cluster.endpoint.device._ieee)+"][listener.cluster_command] Cluster: %s ClusterId: 0x%04x tsn: %s args: %s" %(cluster, cluster.cluster_id, tsn, args))
 		try:
 			utils.initSharedDeviceData(cluster,'cmd')
 			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['cmd'] = args
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'cluster_command'):
 				logging.info("["+str(cluster.endpoint.device._ieee)+"][listener.cluster_command] Use specific decode funtion")
-				if registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].cluster_command(cluster, command_id, *args) is not None:
+				if registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].cluster_command(cluster, tsn, *args) is not None:
 					return
 			nb = 0
 			for i in args :
