@@ -9,7 +9,7 @@ sudo apt-get clean
 echo 30 > ${PROGRESS_FILE}
 sudo apt-get update
 echo 40 > ${PROGRESS_FILE}
-sudo pip3 uninstall serial
+sudo pip3 uninstall -y serial
 echo 50 > ${PROGRESS_FILE}
 sudo apt remove -y python3-serial
 echo 52 > ${PROGRESS_FILE}
