@@ -104,6 +104,7 @@ if (!isConnect('admin')) {
       <table id="table_networkDevice" class="table table-condensed">
         <thead>
           <tr>
+            <th>{{Image}}</th>
             <th>{{IEEE}}</th>
             <th>{{Nom}}</th>
             <th>{{ID}}</th>
@@ -175,7 +176,16 @@ if (!isConnect('admin')) {
       success: function (data) {
         tr = '';
         for(var i in data){
+          var img = '';
+		  if (zigbee_devices[data[i].ieee]){
+			img =zigbee_devices[data[i].ieee].img;
+		  } else if (data[i].nwk == 0) {
+           img = zigbee_devices[0].img;
+          }
           tr += '<tr data-ieee="'+data[i].ieee+'">';
+          tr += '<td style="font-size:0.8em !important;">';
+          tr += '<img class="lazy" src="'+img+'" height="40" width="40" />';
+          tr += '</td>';
           tr += '<td style="font-size:0.8em !important;">';
           tr += data[i].ieee;
           tr += '</td>';
