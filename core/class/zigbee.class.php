@@ -478,7 +478,7 @@ class zigbee extends eqLogic {
       if($infos[2] == 'color'){
         $datas[$infos[0]][$infos[1]][] = 3;
         $datas[$infos[0]][$infos[1]][] = 4;
-        return;
+        continue;
       }
       $datas[$infos[0]][$infos[1]][] = intval($infos[2]);
     }
