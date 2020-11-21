@@ -75,7 +75,7 @@ if (!isConnect('admin')) {
   </select>
   <ul id="tabs_network" class="nav nav-tabs" data-tabs="tabs">
     <li class="active"><a href="#application_network" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Application}}</a></li>
-    <li><a href="#actions_network" data-toggle="tab"><i class="fab fa-codepen"></i> {{Actions}}</a></li>
+    <li><a href="#actions_network" data-toggle="tab"><i class="fas fa-terminal"></i> {{Actions}}</a></li>
     <li><a href="#devices_network" data-toggle="tab"><i class="fab fa-codepen"></i> {{Noeuds}}</a></li>
     <li id="tab_graph"><a href="#graph_network" data-toggle="tab"><i class="far fa-image"></i> {{Graphique du réseau}}</a></li>
   </ul>
