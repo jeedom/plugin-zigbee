@@ -273,6 +273,9 @@ jeedom.zigbee.device.setGpDevice = function(_params){
 
 jeedom.zigbee.device.remoteCommissioning = function(_params){
   let qrcode = _params.qrcode.split('+')
+  if(qrcode.length != 5 || qrcode[0].indexOf('30S') == -1 || qrcode[1].indexOf('Z') == -1){
+    return
+  }
   let ieee = qrcode[0].replace("30S", "");
   if(ieee.length == 8){
     ieee = ieee[0]+ieee[1]+':'+ieee[2]+ieee[3]+':'+ieee[4]+ieee[5]+':'+ieee[6]+ieee[7]
