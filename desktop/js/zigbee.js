@@ -36,16 +36,16 @@ $('.changeIncludeState').off('click').on('click', function () {
     inputOptions.push({value : zigbee_instances[i].id,text : zigbee_instances[i].name});
   }
   bootbox.prompt({
-    title: "Passage en inclusion sur",
+    title: "Passage en inclusion sur ?",
     value : inputOptions[0].value,
     inputType: 'select',
     inputOptions:inputOptions,
-    callback: function (result) {
-      if(result === null){
+    callback: function (instance_result) {
+      if(instance_result === null){
         return;
       }
       jeedom.zigbee.application.include({
-        instance:result,
+        instance:instance_result,
         duration : 180,
         error: function (error) {
           $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -58,6 +58,40 @@ $('.changeIncludeState').off('click').on('click', function () {
     }
   });
 });
+
+$('#bt_remoteCommissioning').off('click').on('click', function () {
+  var inputOptions = [];
+  for(var i in zigbee_instances){
+    if(zigbee_instances[i].enable != 1){
+      continue;
+    }
+    inputOptions.push({value : zigbee_instances[i].id,text : zigbee_instances[i].name});
+  }
+  bootbox.prompt({
+    title: "Remote commissioning sur ?",
+    value : inputOptions[0].value,
+    inputType: 'select',
+    inputOptions:inputOptions,
+    callback: function (instance_result) {
+      if(instance_result === null){
+        return;
+      }
+      bootbox.prompt("Valeur du QR code ?", function(qrcode){
+        jeedom.zigbee.device.remoteCommissioning({
+          instance:instance_result,
+          qrcode : qrcode,
+          error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+          },
+          success: function () {
+            $('#div_alert').showAlert({message: '{{Module ajouté avec succès}}', level: 'success'});
+          }
+        });
+      });
+    }
+  });
+});
+
 
 $('body').off('zigbee::includeDevice').on('zigbee::includeDevice', function (_event, _options) {
   if (modifyWithoutSave) {

@@ -38,6 +38,11 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 				<br/>
 				<span>{{Mode inclusion}}</span>
 			</div>
+			<div class="cursor changeIncludeState include card" id="bt_remoteCommissioning">
+				<i class="fas fa-plus"></i>
+				<br/>
+				<span>{{Remote commissioning}}</span>
+			</div>
 			<div class="cursor eqLogicAction logoSecondary" id="bt_syncEqLogic" >
 				<i class="fas fa-sync-alt"></i>
 				<br>

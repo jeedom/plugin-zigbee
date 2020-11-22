@@ -276,6 +276,6 @@ async def serialize_cluster(cluster):
 
 def find(ieee):
 	for device in shared.ZIGPY.devices.values():
-		if str(device.ieee) == ieee:
+		if str(device.ieee).lower() == ieee.lower():
 			return device
 	return None

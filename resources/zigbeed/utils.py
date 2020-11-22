@@ -18,6 +18,7 @@ import time
 import shared
 import json
 import zigpy.exceptions
+import zigpy.types as t
 import registries
 import asyncio
 
@@ -82,4 +83,5 @@ def convertStrToIEU64(_ieee):
 		ieee.append(int(i,16))
 	if len(ieee) != 8:
 		raise Exception("Invalid ieee size")
+	ieee.reverse()
 	return  t.EUI64(ieee)
