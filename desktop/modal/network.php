@@ -92,10 +92,7 @@ if (!isConnect('admin')) {
           </th>
         </thead>
         <tbody>
-          <tr>
-            <td><a class="btn btn-success bt_zigbeeAction" data-type="application" data-action="zgp_include">{{Inclusion GreenPower device}}</a></td>
-            <td></td>
-          </tr>
+          
         </tbody>
       </table>
     </div>
@@ -122,28 +119,12 @@ if (!isConnect('admin')) {
       <br/>
       
       <div id="graph-node-name"></div>
-	  
+      
     </div>
-	
+    
   </div>
   
   <script>
-  $('.bt_zigbeeAction').off('click').on('click',function(){
-    if($(this).attr('data-action') == 'zgp_include'){
-      jeedom.zigbee.application.zgp_include({
-        instance:$('#sel_networkZigbeeInstance').value(),
-        duration : 180,
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-          $('#div_alert').showAlert({message: '{{Mode inclusion green power actif pendant 3 minutes pour le démon}} '+result, level: 'success'});
-          setTimeout(function(){ $('#div_alert').hideAlert() }, 3*60000);
-        }
-      });
-    }
-  })
-  
   $('#sel_networkZigbeeInstance').off('change').on('change',function(){
     refreshNetworkData();
     refreshDevicekData();
@@ -177,10 +158,10 @@ if (!isConnect('admin')) {
         tr = '';
         for(var i in data){
           var img = '';
-		  if (zigbee_devices[data[i].ieee]){
-			img =zigbee_devices[data[i].ieee].img;
-		  } else if (data[i].nwk == 0) {
-           img = zigbee_devices[0].img;
+          if (zigbee_devices[data[i].ieee]){
+            img =zigbee_devices[data[i].ieee].img;
+          } else if (data[i].nwk == 0) {
+            img = zigbee_devices[0].img;
           }
           tr += '<tr data-ieee="'+data[i].ieee+'">';
           tr += '<td style="font-size:0.8em !important;">';
@@ -339,11 +320,11 @@ if (!isConnect('admin')) {
           if (devices_neighbours[z].ieee == '' || devices_neighbours[z].nwk == null) {
             continue;
           }
-		  var img = '';
-		  if (zigbee_devices[devices_neighbours[z].ieee]){
-			img =zigbee_devices[devices_neighbours[z].ieee].img;
-		  } else if (devices_neighbours[z].nwk == 0) {
-           img = zigbee_devices[0].img;
+          var img = '';
+          if (zigbee_devices[devices_neighbours[z].ieee]){
+            img =zigbee_devices[devices_neighbours[z].ieee].img;
+          } else if (devices_neighbours[z].nwk == 0) {
+            img = zigbee_devices[0].img;
           }
           let data_node = {
             'ieee': devices_neighbours[z].ieee,
@@ -384,14 +365,14 @@ if (!isConnect('admin')) {
           
         }
         var graphics = Viva.Graph.View.svgGraphics()
-		highlightRelatedNodes = function (nodeId, isOn) {
-                graph.forEachLinkedNode(nodeId, function (node, link) {
-                    var linkUI = graphics.getLinkUI(link.id);
-                    if (linkUI) {
-                        linkUI.attr('stroke-width', isOn ? '2.2px' : '1px');
-                    }
-                });
-            };
+        highlightRelatedNodes = function (nodeId, isOn) {
+          graph.forEachLinkedNode(nodeId, function (node, link) {
+            var linkUI = graphics.getLinkUI(link.id);
+            if (linkUI) {
+              linkUI.attr('stroke-width', isOn ? '2.2px' : '1px');
+            }
+          });
+        };
         var nodeSize = 24
         graphics.node(function (node) {
           if (typeof node.data == 'undefined') {
@@ -416,9 +397,9 @@ if (!isConnect('admin')) {
           var ui = Viva.Graph.svg('g'),
           svgText = Viva.Graph.svg('text').attr('y', '-4px').attr('color', '#7BCC7B').text(node.data.name),
           img = Viva.Graph.svg('image')
-                     .attr('width', 48)
-                     .attr('height', 48)
-                     .link(node.data.img);
+          .attr('width', 48)
+          .attr('height', 48)
+          .link(node.data.img);
           ui.append(svgText);
           ui.append(img);
           $(ui).hover(function () {
@@ -449,17 +430,17 @@ if (!isConnect('admin')) {
             linkname += ' <span class="label label-primary" title="{{Modèle}}">'+node.data.manufacturer+' '+node.data.model+'</span>'
             linkname += ' <span class="label label-primary" title="{{NWK}}">'+node.data.nwk+'</span>'
             $('#graph-node-name').html(linkname);
-			highlightRelatedNodes(node.id, true);
+            highlightRelatedNodes(node.id, true);
           }, function () {
-                    highlightRelatedNodes(node.id, false);
-                });
+            highlightRelatedNodes(node.id, false);
+          });
           return ui;
         }) .placeNode(function(nodeUI, pos){
-		nodeUI.attr('transform',
-				'translate(' +
-					(pos.x - 24) + ',' + (pos.y - 24) +
-				')');
-    });
+          nodeUI.attr('transform',
+          'translate(' +
+          (pos.x - 24) + ',' + (pos.y - 24) +
+          ')');
+        });
         var idealLength = 400;
         var layout = Viva.Graph.Layout.forceDirected(graph, {
           springLength: idealLength,

@@ -59,14 +59,9 @@ class ApplicationHandler(RequestHandler):
 		try:
 			if arg1 == 'include':
 				await shared.ZIGPY.permit(self.json_args['duration'])
-				return self.write(utils.format_json_result(success=True))
-			if arg1 == 'zgp_include':
 				gateway = shared.ZIGPY.get_device(nwk=0)
-				if not zigpy.zcl.clusters.general.GreenPowerProxy.enpoint_id in gateway.endpoints:
-					raise Exception("Your gateway does not support GreenPowerProxy")
-				if not zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id in gateway.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.enpoint_id].out_clusters:
-					raise Exception("Your gateway does not support GreenPowerProxy")
-				await gateway.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.enpoint_id].out_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].permit(self.json_args['duration'])
+				if zigpy.zcl.clusters.general.GreenPowerProxy.enpoint_id in gateway.endpoints and zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id in gateway.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.enpoint_id].out_clusters:
+					await gateway.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.enpoint_id].out_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].permit(self.json_args['duration'])
 				return self.write(utils.format_json_result(success=True))
 			raise Exception("No method found for "+str(arg1))
 		except Exception as e:

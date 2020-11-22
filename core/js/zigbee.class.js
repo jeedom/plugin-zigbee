@@ -43,27 +43,6 @@ jeedom.zigbee.application.include = function(_params){
   $.ajax(paramsAJAX);
 }
 
-jeedom.zigbee.application.zgp_include = function(_params){
-  var paramsRequired = ['duration'];
-  var paramsSpecifics = {};
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
-  paramsAJAX.data = {
-    instance : _params.instance || 1,
-    request: '/application/zgp_include',
-    data : json_encode({duration : _params.duration}),
-    type : 'PUT'
-  };
-  $.ajax(paramsAJAX);
-}
-
 jeedom.zigbee.application.info = function(_params){
   var paramsRequired = [];
   var paramsSpecifics = {};
