@@ -267,7 +267,7 @@ jeedom.zigbee.device.setAttributes = function(_params){
   $.ajax(paramsAJAX);
 }
 
-jeedom.zigbee.device.setGpKey = function(_params){
+jeedom.zigbee.device.setGpDevice = function(_params){
   var paramsRequired = ['ieee','key'];
   var paramsSpecifics = {};
   try {
@@ -281,10 +281,11 @@ jeedom.zigbee.device.setGpKey = function(_params){
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
     instance : _params.instance || 1,
-    request: '/device/gpkey',
+    request: '/device/gpDevice',
     data : json_encode({
       ieee : _params.ieee,
       key : _params.key,
+      type : _params.type || '',
     }),
     type : 'PUT'
   };

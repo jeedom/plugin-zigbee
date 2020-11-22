@@ -75,3 +75,11 @@ def initSharedDeviceData(cluster,attribute_id):
 		shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id] = {}
 	if not attribute_id in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id] :
 		shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id][attribute_id] = {}
+
+def convertStrToIEU64(_ieee):
+	ieee = []
+	for i in _ieee.split(':'):
+		ieee.append(int(i,16))
+	if len(ieee) != 8:
+		raise Exception("Invalid ieee size")
+	return  t.EUI64(ieee)

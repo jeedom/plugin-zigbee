@@ -321,7 +321,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
   $('.bt_sendGpKey').off('click').on('click',function(){
     let tr = $(this)
     let key = tr.closest('tr').find('.gpKeyValue').value();
-    jeedom.zigbee.device.setGpKey({
+    jeedom.zigbee.device.setGpDevice({
       ieee : zigbeeNodeIeee,
       key : key,
       error: function (error) {

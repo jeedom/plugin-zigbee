@@ -171,11 +171,16 @@ class DeviceHandler(RequestHandler):
 					else:
 						raise
 				return self.write(utils.format_json_result(success=True))
-			if arg1 == 'gpkey':
+			if arg1 == 'gpDevice':
 				device = zdevices.find(self.json_args['ieee'])
 				if device == None :
-					raise Exception("Device not found")
-				device.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id].in_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id]._update_attribute(0x9998, int(self.json_args['key'], 16).to_bytes(16,'big'))
+					if not 'type' in self.json_args or self.json_args['type'] == '' :
+						self.json_args['type'] = None
+					device = shared.ZIGPY.devices[shared.ZIGPY].endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id].out_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].create_device(utils.convertStrToIEU64(self.json_args['ieee']),self.json_args['type'])
+				if self.json_args['key'] == '':
+					device.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id].in_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].setKey(None)
+				else:
+					device.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id].in_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].setKey(int(self.json_args['key'], 16))
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'initialize':
 				device = zdevices.find(self.json_args['ieee'])
