@@ -51,7 +51,7 @@ class ApplicationHandler(RequestHandler):
 			if arg1 == 'info':
 				info = await utils.serialize_application()
 				return self.write(utils.format_json_result(success=True,data=info))
-			raise Exception("No method found for "+str(arg1))
+			raise Exception("[ApplicationHandler.get] No method found for "+str(arg1))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
@@ -62,12 +62,12 @@ class ApplicationHandler(RequestHandler):
 				await shared.ZIGPY.permit(self.json_args['duration'])
 				gateway = shared.ZIGPY.get_device(nwk=0)
 				try:
-					if zigpy.zcl.clusters.general.GreenPowerProxy.enpoint_id in gateway.endpoints and zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id in gateway.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.enpoint_id].out_clusters:
-						await gateway.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.enpoint_id].out_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].permit(self.json_args['duration'])
-				except:
+					if zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id in gateway.endpoints and zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id in gateway.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id].out_clusters:
+						await gateway.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id].out_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].permit(self.json_args['duration'])
+				except :
 					pass
 				return self.write(utils.format_json_result(success=True))
-			raise Exception("No method found for "+str(arg1))
+			raise Exception("[ApplicationHandler.put] No method found for "+str(arg1))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
