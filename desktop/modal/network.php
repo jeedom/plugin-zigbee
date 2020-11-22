@@ -75,7 +75,7 @@ if (!isConnect('admin')) {
   </select>
   <ul id="tabs_network" class="nav nav-tabs" data-tabs="tabs">
     <li class="active"><a href="#application_network" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Application}}</a></li>
-    <li><a href="#actions_network" data-toggle="tab"><i class="fab fa-codepen"></i> {{Actions}}</a></li>
+    <li><a href="#actions_network" data-toggle="tab"><i class="fas fa-terminal"></i> {{Actions}}</a></li>
     <li><a href="#devices_network" data-toggle="tab"><i class="fab fa-codepen"></i> {{Noeuds}}</a></li>
     <li id="tab_graph"><a href="#graph_network" data-toggle="tab"><i class="far fa-image"></i> {{Graphique du réseau}}</a></li>
   </ul>
@@ -104,6 +104,7 @@ if (!isConnect('admin')) {
       <table id="table_networkDevice" class="table table-condensed">
         <thead>
           <tr>
+            <th>{{Image}}</th>
             <th>{{IEEE}}</th>
             <th>{{Nom}}</th>
             <th>{{ID}}</th>
@@ -119,25 +120,11 @@ if (!isConnect('admin')) {
     
     <div id="graph_network" class="tab-pane">
       <br/>
-      <table class="table table-bordered table-condensed" style="width: 350px;position:fixed;margin-top : 25px;">
-        <thead><tr><th colspan="2">{{Légende}}</th></tr></thead>
-        <tbody>
-          <tr>
-            <td class="zigbee-purple" style="width: 35px"><i class="fas fa-square fa-2x"></i></td>
-            <td>{{Contrôleur}}</td>
-          </tr>
-          <tr>
-            <td class="zigbee-green" style="width: 35px"><i class="fas fa-square fa-2x"></i></td>
-            <td>{{End device}}</td>
-          </tr>
-          <tr>
-            <td class="zigbee-yellow"><i class="fas fa-square fa-2x"></i></td>
-            <td>{{Routeur}}</td>
-          </tr>
-        </tbody>
-      </table>
+      
       <div id="graph-node-name"></div>
+	  
     </div>
+	
   </div>
   
   <script>
@@ -189,13 +176,24 @@ if (!isConnect('admin')) {
       success: function (data) {
         tr = '';
         for(var i in data){
+          var img = '';
+		  if (zigbee_devices[data[i].ieee]){
+			img =zigbee_devices[data[i].ieee].img;
+		  } else if (data[i].nwk == 0) {
+           img = zigbee_devices[0].img;
+          }
           tr += '<tr data-ieee="'+data[i].ieee+'">';
+          tr += '<td style="font-size:0.8em !important;">';
+          tr += '<img class="lazy" src="'+img+'" height="40" width="40" />';
+          tr += '</td>';
           tr += '<td style="font-size:0.8em !important;">';
           tr += data[i].ieee;
           tr += '</td>';
           tr += '<td>';
-          if (zigbee_logicalIds[data[i].ieee]){
-            tr += zigbee_logicalIds[data[i].ieee];
+          if (zigbee_devices[data[i].ieee]){
+            tr += zigbee_devices[data[i].ieee].HumanNameFull;
+          } else if (data[i].nwk == 0) {
+            tr += zigbee_devices[0].HumanNameFull;
           }
           tr += '</td>';
           tr += '<td>';
@@ -341,6 +339,12 @@ if (!isConnect('admin')) {
           if (devices_neighbours[z].ieee == '' || devices_neighbours[z].nwk == null) {
             continue;
           }
+		  var img = '';
+		  if (zigbee_devices[devices_neighbours[z].ieee]){
+			img =zigbee_devices[devices_neighbours[z].ieee].img;
+		  } else if (devices_neighbours[z].nwk == 0) {
+           img = zigbee_devices[0].img;
+          }
           let data_node = {
             'ieee': devices_neighbours[z].ieee,
             'name': devices_neighbours[z].ieee,
@@ -350,10 +354,13 @@ if (!isConnect('admin')) {
             'nwk': devices_neighbours[z].nwk,
             'model': devices_neighbours[z].model,
             'manufacturer': devices_neighbours[z].manufacturer,
+            'img': img,
             'offline': devices_neighbours[z].offline,
           }
-          if (isset(zigbee_logicalIds_name[devices_neighbours[z].ieee])) {
-            data_node.name = zigbee_logicalIds_name[devices_neighbours[z].ieee]
+          if (isset(zigbee_devices[devices_neighbours[z].ieee])) {
+            data_node.name = zigbee_devices[devices_neighbours[z].ieee].HumanName
+          } else if (devices_neighbours[z].nwk == 0) {
+            data_node.name = zigbee_devices[0].HumanName;
           }
           if(devices_neighbours[z].nwk == 0){
             data_node.name = '{{Contrôleur}}'
@@ -377,6 +384,14 @@ if (!isConnect('admin')) {
           
         }
         var graphics = Viva.Graph.View.svgGraphics()
+		highlightRelatedNodes = function (nodeId, isOn) {
+                graph.forEachLinkedNode(nodeId, function (node, link) {
+                    var linkUI = graphics.getLinkUI(link.id);
+                    if (linkUI) {
+                        linkUI.attr('stroke-width', isOn ? '2.2px' : '1px');
+                    }
+                });
+            };
         var nodeSize = 24
         graphics.node(function (node) {
           if (typeof node.data == 'undefined') {
@@ -399,16 +414,16 @@ if (!isConnect('admin')) {
             nodecolor = '#E5E500';
           }
           var ui = Viva.Graph.svg('g'),
-          svgText = Viva.Graph.svg('text').attr('y', '0px').text(node.data.name),
-          img = Viva.Graph.svg(nodeshape)
-          .attr("width", nodesize)
-          .attr("height", nodesize)
-          .attr("fill", nodecolor);
+          svgText = Viva.Graph.svg('text').attr('y', '-4px').attr('color', '#7BCC7B').text(node.data.name),
+          img = Viva.Graph.svg('image')
+                     .attr('width', 48)
+                     .attr('height', 48)
+                     .link(node.data.img);
           ui.append(svgText);
           ui.append(img);
           $(ui).hover(function () {
-            if (zigbee_ids[node.data.ieee]) {
-              linkname = '<a href="index.php?v=d&p=zigbee&m=zigbee&id=' + zigbee_ids[node.data.ieee] + '">' + node.data.name + '</a>'
+            if (zigbee_devices[node.data.ieee] && zigbee_devices[node.data.ieee].id) {
+              linkname = '<a href="index.php?v=d&p=zigbee&m=zigbee&id=' + zigbee_devices[node.data.ieee].id + '">' + node.data.name + '</a>'
             } else {
               linkname = node.data.name
             }
@@ -434,16 +449,22 @@ if (!isConnect('admin')) {
             linkname += ' <span class="label label-primary" title="{{Modèle}}">'+node.data.manufacturer+' '+node.data.model+'</span>'
             linkname += ' <span class="label label-primary" title="{{NWK}}">'+node.data.nwk+'</span>'
             $('#graph-node-name').html(linkname);
-          });
+			highlightRelatedNodes(node.id, true);
+          }, function () {
+                    highlightRelatedNodes(node.id, false);
+                });
           return ui;
-        }).placeNode(function (nodeUI, pos) {
-          nodeUI.attr('transform','translate(' +(pos.x - nodeSize / 3) + ',' + (pos.y - nodeSize / 2.5) +')');
-        });
+        }) .placeNode(function(nodeUI, pos){
+		nodeUI.attr('transform',
+				'translate(' +
+					(pos.x - 24) + ',' + (pos.y - 24) +
+				')');
+    });
         var idealLength = 400;
         var layout = Viva.Graph.Layout.forceDirected(graph, {
           springLength: idealLength,
           stableThreshold: 0.9,
-          dragCoeff: 0.01,
+          dragCoeff: 0.05,
           springCoeff: 0.0004,
           gravity: -20,
           springTransform: function (link, spring) {
@@ -451,7 +472,7 @@ if (!isConnect('admin')) {
           }
         });
         graphics.link(function (link) {
-          return Viva.Graph.svg('line').attr('stroke', link.data.color).attr('stroke-dasharray', '5,0').attr('stroke-width', '2px');
+          return Viva.Graph.svg('line').attr('stroke', link.data.color).attr('stroke-dasharray', '5,0').attr('stroke-width', '1px');
         });
         $('#graph_network svg').remove();
         var renderer = Viva.Graph.View.renderer(graph, {

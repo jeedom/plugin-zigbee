@@ -8,28 +8,24 @@ $eqLogics = eqLogic::byType($plugin->getId());
 function sortByOption($a, $b) {
 	return strcmp($a['name'], $b['name']);
 }
-$logicalIds = array();
+$devices = array();
 foreach ($eqLogics as $eqLogic) {
-	$logicalIds[$eqLogic->getLogicalId()] = $eqLogic->getHumanName(true);
+	$eqLogicArray =array();
+	$eqLogicArray['HumanNameFull'] = $eqLogic->getHumanName(true);
+	$eqLogicArray['HumanName'] = $eqLogic->getHumanName();
+	$eqLogicArray['id'] = $eqLogic->getId();
+	$eqLogicArray['img'] = 'plugins/zigbee/core/config/devices/'.zigbee::getImgFilePath($eqLogic->getConfiguration('device'));
+	$devices[$eqLogic->getLogicalId()] = $eqLogicArray;
 }
-sendVarToJS('zigbee_logicalIds',$logicalIds);
-$logicalIds = array();
-foreach ($eqLogics as $eqLogic) {
-	$logicalIds[$eqLogic->getLogicalId()] = $eqLogic->getHumanName();
-}
-sendVarToJS('zigbee_logicalIds_name',$logicalIds);
-$ids = array();
-foreach ($eqLogics as $eqLogic) {
-	$ids[$eqLogic->getLogicalId()] = $eqLogic->getId();
-}
-sendVarToJS('zigbee_ids',$ids);
+$devices[0]=array('HumanNameFull'=>'Contrôleur','HumanName'=>'Contrôleur','id'=>0,'img'=>'plugins/zigbee/core/config/devices/coordinator.png');
+sendVarToJS('zigbee_devices',$devices);
 
 $zigbee_instances = zigbee::getDeamonInstanceDef();
 sendVarToJS('zigbee_instances', $zigbee_instances);
 ?>
 
 <div class="row row-overflow">
-	<div class="col-xs-12 eqLogicThumbnailDisplay">
+	<div class="col-lg-12 eqLogicThumbnailDisplay">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<div class="cursor eqLogicAction logoPrimary" data-action="add">
@@ -82,7 +78,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 		</div>
 	</div>
 	
-	<div class="col-xs-12 eqLogic" style="display: none;">
+	<div class="col-lg-12 eqLogic" style="display: none;">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<a class="btn btn-default btn-sm eqLogicAction roundedLeft" data-action="configure"><i class="fas fa-cogs"></i> {{Configuration avancée}}</a><a class="btn btn-default btn-sm eqLogicAction" data-action="copy"><i class="fas fa-copy"></i> {{Dupliquer}}</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
@@ -97,32 +93,32 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 			<div role="tabpanel" class="tab-pane active" id="eqlogictab">
 				<br/>
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-lg-7">
 						<form class="form-horizontal">
 							<fieldset>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">{{Nom de l'équipement Zigbee}}</label>
-									<div class="col-sm-4">
+									<div class="col-sm-7">
 										<input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
 										<input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="Nom de l'équipement Zigbee"/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">{{ID}}</label>
-									<div class="col-sm-4">
+									<div class="col-sm-7">
 										<input type="text" class="eqLogicAttr form-control" data-l1key="logicalId" placeholder="Logical ID"/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label"></label>
-									<div class="col-sm-9">
+									<div class="col-sm-7">
 										<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
 										<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">{{Objet parent}}</label>
-									<div class="col-sm-4">
+									<div class="col-sm-7">
 										<select class="eqLogicAttr form-control" data-l1key="object_id">
 											<option value="">Aucun</option>
 											<?php
@@ -149,7 +145,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">{{Démon)}}</label>
-									<div class="col-sm-4">
+									<div class="col-sm-7">
 										<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="instance">
 											<?php
 											foreach($zigbee_instances as $zigbee_instance) {
@@ -164,20 +160,20 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">{{Ne pas attendre le retour d'éxécution des commandes (plus rapide mais moins fiable)}}</label>
-									<div class="col-sm-9">
+									<div class="col-sm-7">
 										<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="dontAwaitCmd"/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">{{Autoriser la mise en fil d'attente pour réessayer en cas d'erreur)}}</label>
-									<div class="col-sm-9">
+									<div class="col-sm-7">
 										<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="allowQueue"/>
 									</div>
 								</div>
 							</fieldset>
 						</form>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-lg-5">
 						<form class="form-horizontal">
 							<fieldset>
 								<div class="form-group">
