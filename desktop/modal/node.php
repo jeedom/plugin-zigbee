@@ -322,6 +322,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
     let tr = $(this)
     let key = tr.closest('tr').find('.gpKeyValue').value();
     jeedom.zigbee.device.setGpDevice({
+      instance : zigbeeNodeInstance,
       ieee : zigbeeNodeIeee,
       key : key,
       error: function (error) {
