@@ -1,5 +1,6 @@
 {
     "plugins\/zigbee\/mobile\/js\/zigbee.js": {
+        "Module ajouté avec succès. Qrcode lu :": "",
         "Mode inclusion actif pendant 3 minutes pour le démon": ""
     },
     "plugins\/zigbee\/mobile\/html\/zigbee.html": {
@@ -110,7 +111,6 @@
         "Graphique du réseau": "",
         "Action": "Eylem",
         "Description": "Tarif",
-        "Inclusion GreenPower device": "",
         "Image": "Fotoğraf",
         "IEEE": "",
         "Nom": "İsim",
@@ -118,7 +118,6 @@
         "Status": "Durum",
         "LQI": "",
         "RSSI (dB)": "",
-        "Mode inclusion green power actif pendant 3 minutes pour le démon": "",
         "Non initialisé": "",
         "Découverte des endpoints OK": "",
         "OK": "Tamam",
@@ -142,6 +141,7 @@
         "Gestion": "Idare",
         "Ajouter": "Ekle",
         "Mode inclusion": "İçerleme modu",
+        "Remote commissioning": "",
         "Synchronisation": "",
         "Réseau Zigbee": "",
         "Configuration": "Ayar",
@@ -176,6 +176,7 @@
         "Réseaux zigbee": "",
         "Configuration du noeud": "",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
+        "Module ajouté avec succès": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Yeni bir aygıt  içerildirildi \/ hariç tutuldu. Lütfen sayfayı güncelleyin",
         "Commande": "Komuta",
         "Valeur retour d\\'état": "İade durumu değeri",

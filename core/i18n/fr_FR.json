@@ -1,5 +1,6 @@
 {
     "plugins\/zigbee\/mobile\/js\/zigbee.js": {
+        "Module ajouté avec succès. Qrcode lu :": "Module ajouté avec succès. Qrcode lu :",
         "Mode inclusion actif pendant 3 minutes pour le démon": "Mode inclusion actif pendant 3 minutes pour le démon"
     },
     "plugins\/zigbee\/mobile\/html\/zigbee.html": {
@@ -110,7 +111,6 @@
         "Graphique du réseau": "Graphique du réseau",
         "Action": "Action",
         "Description": "Description",
-        "Inclusion GreenPower device": "Inclusion GreenPower device",
         "Image": "Image",
         "IEEE": "IEEE",
         "Nom": "Nom",
@@ -118,7 +118,6 @@
         "Status": "Status",
         "LQI": "LQI",
         "RSSI (dB)": "RSSI (dB)",
-        "Mode inclusion green power actif pendant 3 minutes pour le démon": "Mode inclusion green power actif pendant 3 minutes pour le démon",
         "Non initialisé": "Non initialisé",
         "Découverte des endpoints OK": "Découverte des endpoints OK",
         "OK": "OK",
@@ -142,6 +141,7 @@
         "Gestion": "Gestion",
         "Ajouter": "Ajouter",
         "Mode inclusion": "Mode inclusion",
+        "Remote commissioning": "Remote commissioning",
         "Synchronisation": "Synchronisation",
         "Réseau Zigbee": "Réseau Zigbee",
         "Configuration": "Configuration",
@@ -176,6 +176,7 @@
         "Réseaux zigbee": "Réseaux zigbee",
         "Configuration du noeud": "Configuration du noeud",
         "Mode inclusion actif pendant 3 minutes pour le démon": "Mode inclusion actif pendant 3 minutes pour le démon",
+        "Module ajouté avec succès": "Module ajouté avec succès",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page",
         "Commande": "Commande",
         "Valeur retour d\\'état": "Valeur retour d\\'état",

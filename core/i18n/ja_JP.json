@@ -1,5 +1,6 @@
 {
     "plugins\/zigbee\/mobile\/js\/zigbee.js": {
+        "Module ajouté avec succès. Qrcode lu :": "",
         "Mode inclusion actif pendant 3 minutes pour le démon": ""
     },
     "plugins\/zigbee\/mobile\/html\/zigbee.html": {
@@ -110,7 +111,6 @@
         "Graphique du réseau": "",
         "Action": "アクション",
         "Description": "説明",
-        "Inclusion GreenPower device": "",
         "Image": "画像",
         "IEEE": "",
         "Nom": "表題",
@@ -118,7 +118,6 @@
         "Status": "ステータス",
         "LQI": "",
         "RSSI (dB)": "",
-        "Mode inclusion green power actif pendant 3 minutes pour le démon": "",
         "Non initialisé": "",
         "Découverte des endpoints OK": "",
         "OK": "[OK]を",
@@ -142,6 +141,7 @@
         "Gestion": "管理",
         "Ajouter": "加えます",
         "Mode inclusion": "ファッションインクルージョン",
+        "Remote commissioning": "",
         "Synchronisation": "",
         "Réseau Zigbee": "",
         "Configuration": "コンフィギュレーション",
@@ -176,6 +176,7 @@
         "Réseaux zigbee": "",
         "Configuration du noeud": "",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
+        "Module ajouté avec succès": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "デバイスだけ\\ \/含ま除外すること。ページを再読み込みしてください",
         "Commande": "オーダー",
         "Valeur retour d\\'état": "戻り値\\「sの状態",
