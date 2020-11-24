@@ -72,7 +72,7 @@ class zigbee extends eqLogic {
     $return = array();
     $return['progress_file'] = jeedom::getTmpFolder('zigbee') . '/dependance';
     $return['state'] = 'ok';
-    if (exec(system::getCmdSudo() . system::get('cmd_check') . '-E "python3\-serial|python3\-requests|python3\-pyudev" | wc -l') < 3) {
+    if (exec(system::getCmdSudo() . system::get('cmd_check') . '-E "python3\-requests|python3\-pyudev" | wc -l') < 2) {
       $return['state'] = 'nok';
     }
     if (exec(system::getCmdSudo() . 'pip3 list | grep -E "zigpy|bellows|zha-quirks|zigpy_znp|zigpy-xbee|zigpy-deconz|zigpy-zigate|zigpy-cc|tornado" | wc -l') < 9) {

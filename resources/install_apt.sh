@@ -13,8 +13,10 @@ sudo pip3 uninstall -y serial
 echo 50 > ${PROGRESS_FILE}
 sudo apt remove -y python3-serial
 echo 52 > ${PROGRESS_FILE}
-sudo apt-get install -y python3 python3-pip python3-pyudev python3-requests python3-setuptools
+sudo apt-get install -y python3 python3-pip python3-pyudev python3-requests python3-setuptools python3-dev
 echo 57 > ${PROGRESS_FILE}
+sudo pip3 install --upgrade wheel
+echo 58 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade pyserial
 echo 60 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade zigpy
