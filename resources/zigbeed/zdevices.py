@@ -26,6 +26,7 @@ import registries
 import zqueue
 import zigpy
 from map import *
+from channels import specific
 
 async def command(_data):
 	device = find(_data['ieee'])
@@ -146,6 +147,7 @@ async def initialize(device):
 							await cluster.configure_reporting(attr, min_report_int, max_report_int, reportable_change, **kwargs)
 						except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 							logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(ep_id)+"] Failed to set reporting for '%s' attr on '%s' input cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
+				await specific.routing(device._manufacturer,device._model,cluster.cluster_id, ep_id,cluster)
 				try:
 					if hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
 						logging.debug('['+str(device._ieee)+'][zdevices.initialize][Endpoint "+str(ep_id)+"] Intput cluster '+str(cluster.cluster_id)+ ' has specific function to initialize, I used it')
