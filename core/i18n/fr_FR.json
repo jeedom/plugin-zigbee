@@ -90,6 +90,8 @@
         "Rafraichir": "Rafraichir",
         "Réinitialiser le module": "Réinitialiser le module",
         "Réinitialiser": "Réinitialiser",
+        "Redécouvrir le noeud": "Redécouvrir le noeud",
+        "Redécouvrir": "Redécouvrir",
         "Supprimer le module de la base zigbee": "Supprimer le module de la base zigbee",
         "Supprimer": "Supprimer",
         "Lecture d'un attribut": "Lecture d'un attribut",
@@ -102,6 +104,7 @@
         "Erreur attribut": "Erreur attribut",
         "Résulat attribut": "Résulat attribut",
         "Informations récuperées avec succès": "Informations récuperées avec succès",
+        "Module redécouvert": "Module redécouvert",
         "Module reinitialisé": "Module reinitialisé"
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
