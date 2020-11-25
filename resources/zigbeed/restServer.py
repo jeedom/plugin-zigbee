@@ -190,6 +190,13 @@ class DeviceHandler(RequestHandler):
 					raise Exception("Device not found")
 				await zdevices.initialize(device)
 				return self.write(utils.format_json_result(success=True))
+			if arg1 == 'rediscover':
+				device = zdevices.find(self.json_args['ieee'])
+				if device == None :
+					raise Exception("Device not found")
+				device.status = 0
+				await device._initialize()
+				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'get_basic_info':
 				device = zdevices.find(self.json_args['ieee'])
 				if device == None :

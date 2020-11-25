@@ -276,6 +276,12 @@ $infos = zigbee::parseDeviceInformation($node_data);
             </div>
           </div>
           <div class="form-group">
+            <label class="col-sm-3 control-label">{{Redécouvrir le noeud}}</label>
+            <div class="col-sm-2">
+              <a class="btn btn-danger bt_rediscoverZigbeeDeviceInfo"><i class="fas fa-sync"></i> {{Redécouvrir}}</a>
+            </div>
+          </div>
+          <div class="form-group">
             <label class="col-sm-3 control-label">{{Supprimer le module de la base zigbee}}</label>
             <div class="col-sm-2">
               <a class="btn btn-danger bt_removeZigbeeDevice"><i class="fa fa-trash"></i> {{Supprimer}}</a>
@@ -479,6 +485,19 @@ $infos = zigbee::parseDeviceInformation($node_data);
       },
       success: function (data) {
         $('#div_nodeDeconzAlert').showAlert({message: '{{Informations récuperées avec succès}}', level: 'success'});
+      }
+    });
+  });
+  
+  $('#actionNodeTab').off('click','.bt_rediscoverZigbeeDeviceInfo').on('click','.bt_rediscoverZigbeeDeviceInfo',function(){
+    jeedom.zigbee.device.rediscover({
+      instance : zigbeeNodeInstance,
+      ieee : zigbeeNodeIeee,
+      error: function (error) {
+        $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (data) {
+        $('#div_nodeDeconzAlert').showAlert({message: '{{Module redécouvert}}', level: 'success'});
       }
     });
   });
