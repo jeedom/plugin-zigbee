@@ -15,9 +15,11 @@
 
 import logging
 from zigpy.zcl.clusters.hvac import Thermostat
+import zigpy.quirks
+import shared
 
 ROUTING_SPECIFIC = {"Danfoss" :
-                        {"0x8030" :
+                        {"0x0200" :
                             {Thermostat.cluster_id:
                                 {1:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
                                 2:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
@@ -49,3 +51,20 @@ async def routing(manufacturer, model , cluster_id ,ep_id,cluster):
             await cluster.configure_reporting(routing["attr"], routing["min"],routing["max"], routing["report"])
     else:
         logging.debug('No specific routing found')
+
+async def init(device):
+    if (device.manufacturer == 'Danfoss' and device.model in ['0x8030','0x0200']):
+        endpoints = device.endpoints.items()
+        logging.debug('Found endpoints : ' + str(endpoints))
+        for endpoint_id, ep in device.endpoints.items():
+            if endpoint_id == 232:
+                logging.debug('Found endpoint 232')
+                try:
+                    await ep.initialize()
+                except Exception as exc:
+                    self.warning("Endpoint %s initialization failure: %s", endpoint_id, exc)
+                    break
+                logging.debug('Setting Device Model and Manufacturer')
+                device.model, device.manufacturer = await ep.get_model_info()
+                device = zigpy.quirks.get_device(device)
+                shared.ZIGPY.devices[device.ieee] = device

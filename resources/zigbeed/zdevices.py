@@ -119,6 +119,7 @@ async def check_write_attributes(_data):
 
 async def initialize(device):
 	logging.debug("["+str(device._ieee)+"][zdevices.initialize] Begin device initialize")
+	await specific.init(device)
 	for ep_id, endpoint in device.endpoints.items():
 		if ep_id == 0 or (hasattr(zigpy.zcl.clusters.general.GreenPowerProxy,'endpoint_id') and ep_id == zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id): # Ignore ZDO and green power
 			continue
@@ -247,6 +248,8 @@ async def serialize(device):
 		endpoint_obj['status'] = endpoint.status
 		endpoint_obj['device_type'] = getattr(endpoint, 'device_type', None)
 		endpoint_obj['profile_id'] = getattr(endpoint, 'profile_id', None)
+		endpoint_obj['manufacturer'] = getattr(endpoint, 'manufacturer', None)
+		endpoint_obj['model'] = getattr(endpoint, 'model', None)
 		endpoint_obj['output_clusters'] = []
 		endpoint_obj['input_clusters'] = []
 		endpoint_obj['output_clusters'] = []
