@@ -1,0 +1,15 @@
+{
+  "name": "Xioami interrupteur simple",
+  "ref" : "b186acn01",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4516-xiaomi-interrupteur-mural-simple-sans-fil-zigbee-aqara-6970504210",
+  "commands": [
+    {
+      "name": "Bouton",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::18::0"
+    }
+  ]
+}
