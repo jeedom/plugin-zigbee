@@ -88,7 +88,7 @@ async def write_attributes(_data):
 		asyncio.ensure_future(check_write_attributes(_data))
 
 async def check_write_attributes(_data):
-	await asyncio.sleep(120)
+	await asyncio.sleep(15)
 	device = find(_data['ieee'])
 	logging.debug('['+str(device._ieee)+'][zdevices.check_write_attributes] Check write attribute for : '+str(_data))
 	for attribute in _data['attributes']:
