@@ -591,7 +591,7 @@ class zigbeeCmd extends cmd {
       $replace = array();
       switch ($this->getSubType()) {
         case 'slider':
-        $replace['#slider#'] = round(floatval($_options['slider']),1);
+        $replace['#slider#'] = round(floatval($_options['slider']),2);
         break;
         case 'color':
         list($r, $g, $b) = str_split(str_replace('#', '', $_options['color']), 2);
