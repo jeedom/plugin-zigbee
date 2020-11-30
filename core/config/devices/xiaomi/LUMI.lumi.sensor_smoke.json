@@ -5,7 +5,7 @@
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [
     {
-      "name": "Inondation",
+      "name": "Fumée",
       "type": "info",
       "subtype": "binary",
       "isVisible": 1,
