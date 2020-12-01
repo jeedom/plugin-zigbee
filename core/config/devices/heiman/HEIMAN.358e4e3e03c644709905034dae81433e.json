@@ -1,0 +1,15 @@
+{
+  "name": "Gaz sensor",
+  "ref" : "SG21",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Gaz",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "1::1280::cmd::1"
+    }
+  ]
+}
