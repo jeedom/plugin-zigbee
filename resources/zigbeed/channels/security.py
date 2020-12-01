@@ -66,17 +66,22 @@ class IASZoneChannel():
 			if args[0] == 1:
 				logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.cluster_command] Enroll requested")
 				asyncio.ensure_future(cluster.enroll_response(0, 0))
-			else:
-				changes = {'devices' : {str(cluster.endpoint.device._ieee) : {str(cluster.endpoint._endpoint_id) : {str(cluster.cluster_id) : {'cmd' : {}}}}}}
-				nb = 0
-				for i in args :
-					if hasattr(i, "__len__"):
-						if len(i) == 0:
-							continue
-						i = i[0]
-					changes['devices'][str(cluster.endpoint.device._ieee)][str(cluster.endpoint._endpoint_id)][str(cluster.cluster_id)]['cmd'][nb] = {"value" : str(i),"cluster_name" : cluster.name}
-					nb += 1
-				shared.JEEDOM_COM.send_change_immediate(changes);
 				return True
+			changes = {'devices' : {str(cluster.endpoint.device._ieee) : {str(cluster.endpoint._endpoint_id) : {str(cluster.cluster_id) : {'cmd' : {}}}}}}
+			nb = 0
+			for i in args :
+				if hasattr(i, "__len__"):
+					if len(i) == 0:
+						continue
+					nb2 = 0
+					for j in i :
+						key = nb
+						if nb2 > 0:
+							key = str(nb)+'.'+str(nb2)
+						changes['devices'][str(cluster.endpoint.device._ieee)][str(cluster.endpoint._endpoint_id)][str(cluster.cluster_id)]['cmd'][key] = {"value" : str(j),"cluster_name" : cluster.name}
+						nb2 += 1
+				nb += 1
+			shared.JEEDOM_COM.send_change_immediate(changes);
+			return True
 		except Exception as e:
 			logging.error(traceback.format_exc())

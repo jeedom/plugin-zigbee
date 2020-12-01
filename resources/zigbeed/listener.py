@@ -74,14 +74,18 @@ class Listener:
 				logging.info("["+str(cluster.endpoint.device._ieee)+"][listener.cluster_command] Use specific decode funtion")
 				if registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].cluster_command(cluster, tsn, *args) is not None:
 					return
+			changes = {'devices' : {str(cluster.endpoint.device._ieee) : {str(cluster.endpoint._endpoint_id) : {str(cluster.cluster_id) : {'cmd' : {}}}}}}
 			nb = 0
 			for i in args :
-				if hasattr(i, "__len__"):
-					if len(i) == 0:
-						continue
-					i = i[0]
-				infos = {"value" : str(i),"cluster_name" : cluster.name}
-				shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::'+str(nb),infos)
+				if not hasattr(i, "__len__") or len(i) == 0:
+					continue
+				nb2 = 0
+				for j in i :
+					key = nb
+					if nb2 > 0:
+						key = str(nb)+'.'+str(nb2)
+					shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::'+str(key),{"value" : str(j),"cluster_name" : cluster.name})
+					nb2 += 1
 				nb += 1
 		except Exception as e:
 			logging.error(traceback.format_exc())
