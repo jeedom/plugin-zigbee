@@ -1,0 +1,10 @@
+{
+  "name": "Panic button",
+  "ref" : "PBTZB-110",
+  "manufacturer" : "Develco",
+  "pairing": "Inserez les piles",
+  "reset": "Retirer et remetter les piles puis dans les 60s maintenir le bouton appuyé jusqu'a ce que la led flash",
+  "commands": [
+    
+  ]
+}

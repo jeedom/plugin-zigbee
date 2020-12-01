@@ -101,7 +101,8 @@ $CONVERT_VALUE=array(
 );
 
 $FIND_VALUE=array(
-	'Alarm_1' => 1
+	'Alarm_1' => 1,
+	'Alarm_2' => 1
 );
 
 function convertValue($_value){

@@ -150,7 +150,7 @@ async def initialize(device):
 				await specifics.reporting(device._manufacturer,device._model,cluster.cluster_id, ep_id,cluster)
 				try:
 					if hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
-						logging.debug('['+str(device._ieee)+'][zdevices.initialize][Endpoint "+str(ep_id)+"] Intput cluster '+str(cluster.cluster_id)+ ' has specific function to initialize, I used it')
+						logging.debug('['+str(device._ieee)+'][zdevices.initialize][Endpoint '+str(ep_id)+'] Intput cluster '+str(cluster.cluster_id)+ ' has specific function to initialize, I used it')
 						await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
 				except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(ep_id)+"] Failed to initialize '%s' input cluster: %s", cluster.ep_attribute, str(ex))
@@ -180,7 +180,7 @@ async def initialize(device):
 							logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(ep_id)+"] failed to set reporting for '%s' attr on '%s' output cluster: %s",attr_name,cluster.ep_attribute,str(ex),)
 				try:
 					if hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'initialize'):
-						logging.debug('['+str(device._ieee)+'][zdevices.initialize][Endpoint "+str(ep_id)+"] Output cluster '+str(cluster.cluster_id)+ ' has specific function to initialize, I used it')
+						logging.debug('['+str(device._ieee)+'][zdevices.initialize][Endpoint '+str(ep_id)+'] Output cluster '+str(cluster.cluster_id)+ ' has specific function to initialize, I used it')
 						await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
 				except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
 					logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(ep_id)+"] Failed to initialize '%s' output cluster: %s", cluster.ep_attribute, str(ex))
