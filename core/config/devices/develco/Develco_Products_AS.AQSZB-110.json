@@ -1,0 +1,36 @@
+{
+  "name": "Air Quality Sensor",
+  "ref" : "AQSZB-110",
+  "manufacturer" : "Develco",
+  "type": "Tête thermostatique",
+  "pairing": "Inserez les piles",
+  "reset": "Appuyer sur le bouton jusqu'a ce que la led  clignote rouge",
+  "commands": [
+    {
+      "name": "Humidité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "38::1029::0",
+      "unite" : "%",
+      "generic_type": "HUMIDITY",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "38::1026::0",
+      "unite" : "°C",
+      "generic_type": "TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    }
+  ]
+}
