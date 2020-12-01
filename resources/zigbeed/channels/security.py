@@ -46,6 +46,39 @@ class IasAce():
 class IasWd():
 	"""IAS Warning Device channel."""
 
+
+	def set_bit(destination_value, destination_bit, source_value, source_bit):
+		"""Set the specified bit in the value."""
+		if IasWd.get_bit(source_value, source_bit):
+			return destination_value | (1 << destination_bit)
+		return destination_value
+
+	def get_bit(value, bit):
+		"""Get the specified bit from the value."""
+		return (value & (1 << bit)) != 0
+
+	async def start_warning(cluster,cmd):
+		value = 0
+		value = IasWd.set_bit(value, 0, int(cmd['args'][2]), 0) # mode
+		value = IasWd.set_bit(value, 1, int(cmd['args'][2]), 1)
+		value = IasWd.set_bit(value, 2, int(cmd['args'][1]), 0) # strobe
+		value = IasWd.set_bit(value, 4, int(cmd['args'][0]), 0) # level
+		value = IasWd.set_bit(value, 5, int(cmd['args'][0]), 1)
+		value = IasWd.set_bit(value, 6, int(cmd['args'][0]), 2)
+		value = IasWd.set_bit(value, 7, int(cmd['args'][0]), 3)
+		await cluster.start_warning(value, int(cmd['args'][3]), int(cmd['args'][4]), int(cmd['args'][5]))
+
+	async def squawk(cluster,cmd):
+		value = 0
+		value = IasWd.set_bit(value, 0, int(cmd['args'][2]), 0) # mode
+		value = IasWd.set_bit(value, 1, int(cmd['args'][2]), 1)
+		value = IasWd.set_bit(value, 3, int(cmd['args'][1]), 0) # strobe
+		value = IasWd.set_bit(value, 4, int(cmd['args'][0]), 0) # level
+		value = IasWd.set_bit(value, 5, int(cmd['args'][0]), 1)
+		value = IasWd.set_bit(value, 6, int(cmd['args'][0]), 2)
+		value = IasWd.set_bit(value, 7, int(cmd['args'][0]), 3)
+		await cluster.squawk(value)
+
 @registries.BINARY_SENSOR_CLUSTERS.register(security.IasZone.cluster_id)
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(security.IasZone.cluster_id)
 class IASZoneChannel():

@@ -1,0 +1,105 @@
+{
+  "name": "Siren",
+  "ref" : "AQSZB-110",
+  "manufacturer" : "Develco",
+  "pairing": "Brancher les sirene",
+  "reset": "Appuyer sur le bouton jusqu'a ce que la led clignote rouge",
+  "commands": [
+    {
+      "name": "Armement",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "43::ias_wd::squawk::#slider#::0::0",
+      "configuration" : {
+        "minValue":"1",
+        "maxValue":"9"
+      }
+    },
+    {
+      "name": "Desarmement",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "43::ias_wd::squawk::#slider#::0::1",
+      "configuration" : {
+        "minValue":"1",
+        "maxValue":"9"
+      }
+    },
+    {
+      "name": "Arret",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "43::ias_wd::start_warning::#slider#::0::0::1::1::1",
+      "configuration" : {
+        "minValue":"1",
+        "maxValue":"9"
+      }
+    },
+    {
+      "name": "Burglar",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "43::ias_wd::start_warning::#slider#::0::1::1::1::1",
+      "configuration" : {
+        "minValue":"1",
+        "maxValue":"9"
+      }
+    },
+    {
+      "name": "Incendie",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "43::ias_wd::start_warning::#slider#::0::2::1::1::1",
+      "configuration" : {
+        "minValue":"1",
+        "maxValue":"9"
+      }
+    },
+    {
+      "name": "Urgence",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "43::ias_wd::start_warning::#slider#::0::3::1::1::1",
+      "configuration" : {
+        "minValue":"1",
+        "maxValue":"9"
+      }
+    },
+    {
+      "name": "Panic Incendie",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "43::ias_wd::start_warning::#slider#::0::5::1::1::1",
+      "configuration" : {
+        "minValue":"1",
+        "maxValue":"9"
+      }
+    },
+    {
+      "name": "Panic urgence",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "43::ias_wd::start_warning::#slider#::0::6::1::1::1",
+      "configuration" : {
+        "minValue":"1",
+        "maxValue":"9"
+      }
+    }
+  ]
+}
