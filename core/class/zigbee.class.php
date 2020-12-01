@@ -296,7 +296,11 @@ class zigbee extends eqLogic {
       $return['alert_message'] = __('Aucun endpoints sur le module. Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\'inclusion)',__FILE__);
       return $return;
     }
-    $endpoint_id = array_values($_data['endpoints'])[0]['id'];
+    if(isset(array_values($_data['endpoints'])[0]['input_clusters'][0]['id']) && array_values($_data['endpoints'])[0]['input_clusters'][0]['id'] == 0){
+      $endpoint_id = array_values($_data['endpoints'])[0]['id'];
+    }else{
+      $endpoint_id = array_values($_data['endpoints'])[1]['id'];
+    }
     $return['zcl_version'] = self::getAttribute($endpoint_id,0,0,$_data);
     $return['app_version'] = self::getAttribute($endpoint_id,0,1,$_data);
     $return['stack_version'] = self::getAttribute($endpoint_id,0,2,$_data);
