@@ -1,0 +1,25 @@
+{
+  "name": "Keypad",
+  "ref" : "KEPZB-110 ",
+  "manufacturer" : "Develco",
+  "pairing": "Inserez les piles",
+  "reset": "Appuyer sur le bouton jusqu'a ce que la led clignote rouge",
+  "commands": [
+    {
+      "name": "Code",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "44::1281::cmd::0.1"
+    },
+    {
+      "name": "Command",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "44::1281::cmd::0"
+    }
+  ]
+}
