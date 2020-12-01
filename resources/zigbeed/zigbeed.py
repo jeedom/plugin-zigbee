@@ -30,9 +30,6 @@ from os.path import join
 import json
 import asyncio
 import logging
-import zhaquirks
-import zqueue
-import zigpy.config
 
 try:
 	from jeedom.jeedom import *
@@ -40,16 +37,12 @@ except ImportError:
 	print("Error: importing module jeedom.jeedom")
 	sys.exit(1)
 
-from listener import *
-
 try:
 	from tornado.httpserver import HTTPServer
 	from tornado.ioloop import IOLoop
 except Exception as e:
 	print("Error: %s" % str(e), 'error')
 	sys.exit(1)
-
-from restServer import *
 
 # ----------------------------------------------------------------------------
 
@@ -223,7 +216,11 @@ logging.info('Find device : '+str(_device))
 
 signal.signal(signal.SIGINT, handler)
 signal.signal(signal.SIGTERM, handler)
-
+import zhaquirks
+import zqueue
+import zigpy.config
+from listener import *
+from restServer import *
 try:
 	jeedom_utils.write_pid(str(_pidfile))
 	shared.JEEDOM_COM = jeedom_com(apikey = _apikey,url = _callback,cycle=_cycle)
