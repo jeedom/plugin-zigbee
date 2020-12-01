@@ -1,0 +1,181 @@
+{
+  "name": "0x0200",
+  "ref" : "014G2461",
+  "manufacturer" : "Danfoss",
+  "type": "Contrôleur Plancher Chauffant",
+  "buylink" : "",
+  "documentation" : "",
+  "pairing": "",
+  "reset": "",
+  "configuration" : {
+    "canbesplit" : 1
+  },
+  "config" : [
+    {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":21,"name":"Température minimale Thermostat","type":"number","min":500,"max":3500},
+    {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":22,"name":"Température maximale Thermostat","type":"number","min":500,"max":3500}
+  ],
+  "commands": [
+    {
+      "name": "Température 1",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "1::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 1",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "1::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 1",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 1",
+      "logicalId": "attributes::1::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 1",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "1::513::16656"
+    },
+    {
+      "name": "Température 2",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "2::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 2",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "2::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 2",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 2",
+      "logicalId": "attributes::2::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 2",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "2::513::16656"
+    },
+    {
+      "name": "Température 3",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "3::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 3",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "3::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 3",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 3",
+      "logicalId": "attributes::3::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 3",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "3::513::16656"
+    }
+  ]
+}

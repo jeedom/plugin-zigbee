@@ -26,6 +26,7 @@ sendVarToJS('zigbeeNodeInstance',$eqLogic->getConfiguration('instance',1));
 $node_data = zigbee::request($eqLogic->getConfiguration('instance',1),'/device/info',array('ieee'=>$eqLogic->getLogicalId()));
 $device = zigbee::devicesParameters($eqLogic->getConfiguration('device'));
 $infos = zigbee::parseDeviceInformation($node_data);
+$endpointArray=array();
 ?>
 <div id='div_nodeDeconzAlert' style="display: none;"></div>
 <ul class="nav nav-tabs" role="tablist">
@@ -147,6 +148,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
           <?php
           $isZGPDevice = false;
           foreach ($infos['endpoints'] as $endpoint_id => $endpoint) {
+            $endpointArray[] = $endpoint_id;
             echo  '<div class="panel panel-primary">';
             echo  '<div class="panel-heading">';
             echo  '<h4 class="panel-title"><i class="fas fa-map-marker-alt"></i> {{Endpoints}} '.$endpoint_id;
@@ -220,7 +222,19 @@ $infos = zigbee::parseDeviceInformation($node_data);
                 if(!isset($config['manufacturer'])){
                   $config['manufacturer'] = 0;
                 }
-                
+                if (strpos($config['endpoint'],'multiple')!== false) {
+                    $endpointString = explode('|',$config['endpoint'])[1];
+                    $endpoints = explode(';',$endpointString);
+					foreach ($endpoints as $endpoint){
+						$newconfig = $config;
+						$newconfig['endpoint']= $endpoint;
+						$device['config'][]=$newconfig;
+					}
+					continue;
+                }
+				if (!in_array($config['endpoint'],$endpointArray)){
+					continue;
+				}
                 echo '<tr class="deviceConfig" data-manufacturer="'.$config['manufacturer'].'" data-endpoint="'.$config['endpoint'].'" data-cluster="'.$config['cluster'].' "data-attribute="'.$config['attribute'].'">';
                 echo '<td>'.$config['name'].'</td>';
                 echo '<td>'.$config['endpoint'].'</td>';
