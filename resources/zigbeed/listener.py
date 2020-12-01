@@ -77,15 +77,16 @@ class Listener:
 			changes = {'devices' : {str(cluster.endpoint.device._ieee) : {str(cluster.endpoint._endpoint_id) : {str(cluster.cluster_id) : {'cmd' : {}}}}}}
 			nb = 0
 			for i in args :
-				if not hasattr(i, "__len__") or len(i) == 0:
-					continue
-				nb2 = 0
-				for j in i :
-					key = nb
-					if nb2 > 0:
-						key = str(nb)+'.'+str(nb2)
-					shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::'+str(key),{"value" : str(j),"cluster_name" : cluster.name})
-					nb2 += 1
+				if hasattr(i, "__len__") and len(i) != 0:
+					nb2 = 0
+					for j in i :
+						key = nb
+						if nb2 > 0:
+							key = str(nb)+'.'+str(nb2)
+						shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::'+str(key),{"value" : str(j),"cluster_name" : cluster.name})
+						nb2 += 1
+				else:
+					shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::'+str(nb),{"value" : str(i),"cluster_name" : cluster.name})
 				nb += 1
 		except Exception as e:
 			logging.error(traceback.format_exc())
