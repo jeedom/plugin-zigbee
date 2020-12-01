@@ -26,6 +26,7 @@ sendVarToJS('zigbeeNodeInstance',$eqLogic->getConfiguration('instance',1));
 $node_data = zigbee::request($eqLogic->getConfiguration('instance',1),'/device/info',array('ieee'=>$eqLogic->getLogicalId()));
 $device = zigbee::devicesParameters($eqLogic->getConfiguration('device'));
 $infos = zigbee::parseDeviceInformation($node_data);
+$endpointArray=array();
 ?>
 <div id='div_nodeDeconzAlert' style="display: none;"></div>
 <ul class="nav nav-tabs" role="tablist">
@@ -147,6 +148,7 @@ $infos = zigbee::parseDeviceInformation($node_data);
           <?php
           $isZGPDevice = false;
           foreach ($infos['endpoints'] as $endpoint_id => $endpoint) {
+            $endpointArray[] = $endpoint_id;
             echo  '<div class="panel panel-primary">';
             echo  '<div class="panel-heading">';
             echo  '<h4 class="panel-title"><i class="fas fa-map-marker-alt"></i> {{Endpoints}} '.$endpoint_id;
@@ -185,6 +187,8 @@ $infos = zigbee::parseDeviceInformation($node_data);
           if($isZGPDevice == false && (!isset($device['config']) || count($device['config']) == 0)){
             echo '<div class="alert alert-info">{{Il n\'éxiste aucun parametre de configuration connu pour ce module}}</div>';
           }else{
+            if($isZGPDevice){
+			echo '<label>ZGP</label>';
             echo '<table class="table table-condensed">';
             echo '<thead>';
             echo '<tr>';
@@ -197,7 +201,6 @@ $infos = zigbee::parseDeviceInformation($node_data);
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
-            if($isZGPDevice){
               $value = zigbee::getAttribute(242,33,39320,$node_data);
               if($value === null){
                 $value = '';
@@ -215,12 +218,44 @@ $infos = zigbee::parseDeviceInformation($node_data);
               echo '</td>';
               echo '</tr>';
             }
+			echo '</tbody></table>';
+            $cleanConfig = array();
             if(count($device['config']) > 0){
               foreach ($device['config'] as &$config) {
                 if(!isset($config['manufacturer'])){
                   $config['manufacturer'] = 0;
                 }
-                
+                if (strpos($config['endpoint'],'multiple')!== false) {
+                    $endpointString = explode('|',$config['endpoint'])[1];
+                    $endpoints = explode(';',$endpointString);
+					foreach ($endpoints as $endpoint){
+						$newconfig = $config;
+						$newconfig['endpoint']= $endpoint;
+						$device['config'][]=$newconfig;
+					}
+					continue;
+                }
+				if (!in_array($config['endpoint'],$endpointArray)){
+					continue;
+				} else {
+					$cleanConfig[$config['endpoint']][]=$config;
+				}
+			  }
+			  foreach ($cleanConfig as $endpoint => $data) {
+				echo '<label>Endpoint ' . $endpoint . '</label>';
+				echo '<table class="table table-condensed">';
+				echo '<thead>';
+				echo '<tr>';
+				echo '<th>{{Nom}}</th>';
+				echo '<th>{{Endpoint}}</th>';
+				echo '<th>{{Cluster}}</th>';
+				echo '<th>{{Attribut}}</th>';
+				echo '<th>{{Valeur}}</th>';
+				echo '<th style="width:300px;"></th>';
+				echo '</tr>';
+				echo '</thead>';
+				echo '<tbody>';
+				foreach ($data as $config){
                 echo '<tr class="deviceConfig" data-manufacturer="'.$config['manufacturer'].'" data-endpoint="'.$config['endpoint'].'" data-cluster="'.$config['cluster'].' "data-attribute="'.$config['attribute'].'">';
                 echo '<td>'.$config['name'].'</td>';
                 echo '<td>'.$config['endpoint'].'</td>';
@@ -250,10 +285,11 @@ $infos = zigbee::parseDeviceInformation($node_data);
                 echo ' <i class="fas fa-times configErrorIcon" style="display:none;"></i>';
                 echo '</td>';
                 echo '</tr>';
+				}
+				echo '</tbody>';
+				echo '</table>';
               }
             }
-            echo '</tbody>';
-            echo '</table>';
           }
           ?>
         </fieldset>
