@@ -187,6 +187,8 @@ $endpointArray=array();
           if($isZGPDevice == false && (!isset($device['config']) || count($device['config']) == 0)){
             echo '<div class="alert alert-info">{{Il n\'éxiste aucun parametre de configuration connu pour ce module}}</div>';
           }else{
+            if($isZGPDevice){
+			echo '<label>ZGP</label>';
             echo '<table class="table table-condensed">';
             echo '<thead>';
             echo '<tr>';
@@ -199,7 +201,6 @@ $endpointArray=array();
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
-            if($isZGPDevice){
               $value = zigbee::getAttribute(242,33,39320,$node_data);
               if($value === null){
                 $value = '';
@@ -217,6 +218,8 @@ $endpointArray=array();
               echo '</td>';
               echo '</tr>';
             }
+			echo '</tbody></table>';
+            $cleanConfig = array();
             if(count($device['config']) > 0){
               foreach ($device['config'] as &$config) {
                 if(!isset($config['manufacturer'])){
@@ -234,7 +237,25 @@ $endpointArray=array();
                 }
 				if (!in_array($config['endpoint'],$endpointArray)){
 					continue;
+				} else {
+					$cleanConfig[$config['endpoint']][]=$config;
 				}
+			  }
+			  foreach ($cleanConfig as $endpoint => $data) {
+				echo '<label>Endpoint ' . $endpoint . '</label>';
+				echo '<table class="table table-condensed">';
+				echo '<thead>';
+				echo '<tr>';
+				echo '<th>{{Nom}}</th>';
+				echo '<th>{{Endpoint}}</th>';
+				echo '<th>{{Cluster}}</th>';
+				echo '<th>{{Attribut}}</th>';
+				echo '<th>{{Valeur}}</th>';
+				echo '<th style="width:300px;"></th>';
+				echo '</tr>';
+				echo '</thead>';
+				echo '<tbody>';
+				foreach ($data as $config){
                 echo '<tr class="deviceConfig" data-manufacturer="'.$config['manufacturer'].'" data-endpoint="'.$config['endpoint'].'" data-cluster="'.$config['cluster'].' "data-attribute="'.$config['attribute'].'">';
                 echo '<td>'.$config['name'].'</td>';
                 echo '<td>'.$config['endpoint'].'</td>';
@@ -264,10 +285,11 @@ $endpointArray=array();
                 echo ' <i class="fas fa-times configErrorIcon" style="display:none;"></i>';
                 echo '</td>';
                 echo '</tr>';
+				}
+				echo '</tbody>';
+				echo '</table>';
               }
             }
-            echo '</tbody>';
-            echo '</table>';
           }
           ?>
         </fieldset>
