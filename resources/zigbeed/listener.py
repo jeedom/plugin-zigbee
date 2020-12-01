@@ -20,6 +20,7 @@ import registries
 import asyncio
 import zdevices
 import time
+import specifics
 
 class Listener:
 	"""
@@ -51,6 +52,7 @@ class Listener:
 		"""
 		Called at runtime after a device's information has been queried.I also call it on startup to load existing devices from the DB.
 		"""
+		specifics.init(device)
 		logging.info("["+str(device._ieee)+"][listener.device_initialized] new=%s", new)
 		for ep_id, endpoint in device.endpoints.items():
 			if ep_id == 0: # Ignore ZDO
