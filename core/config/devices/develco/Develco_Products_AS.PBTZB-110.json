@@ -4,7 +4,15 @@
   "manufacturer" : "Develco",
   "pairing": "Inserez les piles",
   "reset": "Retirer et remetter les piles puis dans les 60s maintenir le bouton appuyé jusqu'a ce que la led flash",
+  "remark" : "Il semble y avoir un soucis avec le firmware seul la desactivation de l'alerte (appuie 5s sur le bouton après activation du mode panic) est envoyé sur le réseaux zigbee",
   "commands": [
-    
+    {
+      "name": "Panic",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "35::1280::cmd::1"
+    }
   ]
 }

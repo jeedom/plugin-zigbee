@@ -102,6 +102,8 @@ class Listener:
 		nb1=0
 		nb2=0
 		for i in args[0]:
+			if not hasattr(i, "__len__") or len(i) != 0:
+				continue
 			for j in i:
 				if not hasattr(j,'attrid') or j.attrid == 0 or not hasattr(j,'value') :
 					continue;
