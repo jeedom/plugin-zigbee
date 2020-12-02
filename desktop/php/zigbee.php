@@ -69,12 +69,15 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 			foreach ($eqLogics as $eqLogic) {
 				$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
 				$child = ($eqLogic->getConfiguration('ischild',0) == 1) ? '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_orange fas fa-user" title="Ce device est un enfant"></i>' : '';
+				$child .= ($eqLogic->getConfiguration('canbesplit',0) == 1 && $eqLogic->getConfiguration('ischild',0)==0) ? '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green fas fa-random" title="Ce device peut être séparé en enfants"></i>' : '';
 				echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '" >';
 				if ($eqLogic->getConfiguration('device') != ""){
 					if (zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false && $eqLogic->getConfiguration('ischild',0) == 0) {
 						echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
-					} else if ($eqLogic->getConfiguration('ischild',0) == 1 && file_exists(dirname(__FILE__) . '/../../core/config/devices/'.$eqLogic->getConfiguration('visual'))) {
+					} else if ($eqLogic->getConfiguration('ischild',0) == 1 && file_exists(dirname(__FILE__) . '/../../core/config/devices/'.$eqLogic->getConfiguration('visual','none'))) {
 						echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . $eqLogic->getConfiguration('visual') . '"/>'.$child;
+					} else if ($eqLogic->getConfiguration('ischild',0) == 1 && zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false) {
+						echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
 					} else {
 						echo '<img src="' . $plugin->getPathImgIcon() . '" />'.$child;
 					}
