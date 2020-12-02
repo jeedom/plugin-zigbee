@@ -1,0 +1,28 @@
+{
+  "name": "Electric meter interface",
+  "ref" : "ZHEMI101",
+  "buylink" : "",
+  "reset" : "Il faut presser pendant 10s le bouton du module",
+  "pairing":"Alimenter le module",
+  "commands": [
+    {
+      "name": "Puissance",
+      "type": "info",
+      "subtype": "numeric",
+      "generic_type": "POWER",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "2::1794::1024"
+    },
+    {
+      "name": "Consommation",
+      "generic_type": "CONSUMPTION",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "2::1794::0"
+    }
+  ]
+}
