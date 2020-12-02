@@ -447,6 +447,12 @@ class zigbee extends eqLogic {
   
   public function getImage() {
     $file = 'plugins/zigbee/core/config/devices/' . self::getImgFilePath($this->getConfiguration('device'));
+    if ($this->getConfiguration('ischild',0) == 1) {
+        $childfile = 'plugins/zigbee/core/config/devices/' . $this->getConfiguration('visual','none');
+        if(file_exists(__DIR__.'/../../../../'.$childfile)){
+            return $childfile;
+        }
+    }
     if(!file_exists(__DIR__.'/../../../../'.$file)){
       return 'plugins/zigbee/plugin_info/zigbee_icon.png';
     }
