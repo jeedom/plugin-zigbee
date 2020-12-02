@@ -1,0 +1,17 @@
+{
+  "name": "Smoke detector",
+  "ref" : "SMSZB-120",
+  "reset" : "Presser le bouton jusqu'a ce que le module clignote",
+  "pairing":"Il faut enlever remettre la pile dans le module",
+  "commands": [
+    {
+      "name": "Fumée",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "35::15::85",
+      "generic_type": "SMOKE"
+    }
+  ]
+}
