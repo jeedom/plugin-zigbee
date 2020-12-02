@@ -247,8 +247,9 @@ async def serialize(device):
 		endpoint_obj['status'] = endpoint.status
 		endpoint_obj['device_type'] = getattr(endpoint, 'device_type', None)
 		endpoint_obj['profile_id'] = getattr(endpoint, 'profile_id', None)
-		endpoint_obj['manufacturer'] = getattr(endpoint, 'manufacturer', None)
-		endpoint_obj['model'] = getattr(endpoint, 'model', None)
+		model,manufacturer = await endpoint.get_model_info()
+		endpoint_obj['manufacturer'] = manufacturer
+		endpoint_obj['model'] = model
 		endpoint_obj['output_clusters'] = []
 		endpoint_obj['input_clusters'] = []
 		endpoint_obj['output_clusters'] = []

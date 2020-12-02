@@ -161,6 +161,7 @@ $endpointArray=array();
               $isZGPDevice = true;
             }
             echo  '{{Profile :}} <b><span class="label label-default">'.$endpoint['profile_id'].'</span></b><br/>';
+            echo  '{{Modèle :}} <b><span class="label label-default">'.$endpoint['model'].'</span></b><br/>';
             echo '<p>';
             echo  '{{Cluster sortant :}}';
             foreach ($endpoint['out_cluster'] as $out_cluster) {
