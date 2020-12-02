@@ -347,6 +347,8 @@ class zigbee extends eqLogic {
         'status' => $endpoint['status'],
         'device_type' => $endpoint['device_type'],
         'profile_id' => $endpoint['profile_id'],
+        'manufacturer' => $endpoint['manufacturer'],
+        'model' => $endpoint['model'],
         'in_cluster' => array(),
         'out_cluster' => array(),
       );
