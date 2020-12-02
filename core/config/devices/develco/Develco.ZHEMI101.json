@@ -12,6 +12,7 @@
       "generic_type": "POWER",
       "isVisible": 0,
       "isHistorized": 0,
+      "unite" : "W",
       "logicalId": "2::1794::1024"
     },
     {
@@ -21,7 +22,7 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "value" : "Etat",
+      "unite" : "kWh",
       "logicalId": "2::1794::0"
     }
   ]
