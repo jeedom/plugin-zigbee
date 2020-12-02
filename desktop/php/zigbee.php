@@ -9,6 +9,7 @@ function sortByOption($a, $b) {
 	return strcmp($a['name'], $b['name']);
 }
 $devices = array();
+$deviceAttr = array();
 foreach ($eqLogics as $eqLogic) {
 	$eqLogicArray =array();
 	$eqLogicArray['HumanNameFull'] = $eqLogic->getHumanName(true);
@@ -16,9 +17,11 @@ foreach ($eqLogics as $eqLogic) {
 	$eqLogicArray['id'] = $eqLogic->getId();
 	$eqLogicArray['img'] = 'plugins/zigbee/core/config/devices/'.zigbee::getImgFilePath($eqLogic->getConfiguration('device'));
 	$devices[$eqLogic->getLogicalId()] = $eqLogicArray;
+	$deviceAttr[$eqLogic->getId()] = array('canbesplit' => $eqLogic->getConfiguration('canbesplit',0),'ischild' => $eqLogic->getConfiguration('ischild',0));
 }
 $devices[0]=array('HumanNameFull'=>'Contrôleur','HumanName'=>'Contrôleur','id'=>0,'img'=>'plugins/zigbee/core/config/devices/coordinator.png');
 sendVarToJS('zigbee_devices',$devices);
+sendVarToJS('devices_attr',$deviceAttr);
 
 $zigbee_instances = zigbee::getDeamonInstanceDef();
 sendVarToJS('zigbee_instances', $zigbee_instances);
@@ -86,7 +89,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 	<div class="col-lg-12 eqLogic" style="display: none;">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-default btn-sm eqLogicAction roundedLeft" data-action="configure"><i class="fas fa-cogs"></i> {{Configuration avancée}}</a><a class="btn btn-default btn-sm eqLogicAction" data-action="copy"><i class="fas fa-copy"></i> {{Dupliquer}}</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+				<a class="btn btn-default btn-sm eqLogicAction roundedLeft" data-action="configure"><i class="fas fa-cogs"></i> {{Configuration avancée}}</a><a id="bt_childCreate" class="btn btn-success btn-sm childCreate" style="display : none;"><i class="fas fa-cogs"></i> {{Créer un enfant}}</a><a class="btn btn-default btn-sm eqLogicAction" data-action="copy"><i class="fas fa-copy"></i> {{Dupliquer}}</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
 		<ul class="nav nav-tabs" role="tablist">

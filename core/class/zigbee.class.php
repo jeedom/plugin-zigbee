@@ -453,6 +453,22 @@ class zigbee extends eqLogic {
     return $file;
   }
   
+  public function childCreate($_endpoint) {
+    log::add('zigbee','error','Child Create For : ' . $_endpoint);
+    $ieee = $this->getLogicalId();
+    $eqLogic = self::byLogicalId($ieee.'|'.$_endpoint,'zigbee');
+    if(!is_object($eqLogic)){
+      $eqLogic = new self();
+      $eqLogic->setLogicalId($ieee.'|'.$_endpoint);
+      $eqLogic->setName($this->getName().'-EP'.$_endpoint);
+      $eqLogic->setIsEnable(1);
+      $eqLogic->setEqType_name('zigbee');
+      $eqLogic->setConfiguration('device',$this->getConfiguration('device',''));
+      $eqLogic->setConfiguration('ischild',1);
+      $eqLogic->save();
+    }
+  }
+  
   public function postSave() {
     if ($this->getConfiguration('applyDevice') != $this->getConfiguration('device')) {
       $this->applyModuleConfiguration();
@@ -470,6 +486,18 @@ class zigbee extends eqLogic {
       return true;
     }
     $this->import($device,true);
+	if ($this->getConfiguration('ischild',0) == 1){
+		$endpoint = explode('|',$this->getLogicalId())[1];
+		foreach ($this->getCmd() as $cmd) {
+			$cmdLogical = $cmd->getLogicalId();
+			$elements = explode('::',$cmdLogical);
+			if ($elements[0] == $endpoint || ($elements[0] == 'attributes' && $elements[1] == $endpoint)){
+				continue;
+			} else {
+				$cmd->remove();
+			}
+		}
+	}
   }
   
   public function refreshValue(){
@@ -634,11 +662,12 @@ class zigbeeCmd extends cmd {
         $commands[] = $command;
       }
     }
+    $ieee=explode('|',$eqLogic->getLogicalId())[0];
     if(count($commands) > 0){
-      zigbee::request($eqLogic->getConfiguration('instance',1),'/device/command',array('ieee'=>$eqLogic->getLogicalId(),'cmd' => $commands,'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue',0) == 1)),'PUT');
+      zigbee::request($eqLogic->getConfiguration('instance',1),'/device/command',array('ieee'=>$ieee,'cmd' => $commands,'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue',0) == 1)),'PUT');
     }
     if(count($attributes) > 0){
-      zigbee::request($eqLogic->getConfiguration('instance',1),'/device/attributes',array('ieee'=>$eqLogic->getLogicalId(),'attributes' => $attributes,'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue',0) == 1)),'PUT');
+      zigbee::request($eqLogic->getConfiguration('instance',1),'/device/attributes',array('ieee'=>$ieee,'attributes' => $attributes,'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue',0) == 1)),'PUT');
     }
     $refresh = $eqLogic->getCmd('action','refresh');
     if(is_object($refresh)){

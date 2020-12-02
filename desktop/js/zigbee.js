@@ -92,6 +92,23 @@ $('#bt_remoteCommissioning').off('click').on('click', function () {
   });
 });
 
+$('#bt_childCreate').off('click').on('click', function () {
+      bootbox.prompt("Vous voulez créer un enfant sur quel endpoint ? (attention il ne faut jamais supprimer le device père)", function(endpoint){
+         if (endpoint) {jeedom.zigbee.device.childCreate({
+		  id : $('.eqLogicAttr[data-l1key=id]').value(),
+          endpoint : endpoint,
+          error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+          },
+          success: function () {
+            $('#div_alert').showAlert({message: '{{Enfant créé avec succès}}', level: 'success'});
+			window.location.href = 'index.php?v=d&p=zigbee&m=zigbee';
+          }
+        });
+		 }
+      });
+});
+
 
 $('body').off('zigbee::includeDevice').on('zigbee::includeDevice', function (_event, _options) {
   if (modifyWithoutSave) {
@@ -131,9 +148,18 @@ $('.eqLogicAttr[data-l1key=configuration][data-l2key=device]').off('change').on(
     $('#img_device').attr("src", 'plugins/zigbee/core/config/devices/'+img);
   }else{
     $('#img_device').attr("src",'plugins/zigbee/plugin_info/zigbee_icon.png');
-  }
+  } 
 });
 
+$('.eqLogicAttr[data-l1key=id]').off('change').on('change', function () {
+	if ($(this).value() in devices_attr) {
+		if (devices_attr[$(this).value()]['canbesplit']==1 && devices_attr[$(this).value()]['ischild']==0) {
+			$('.childCreate').show();
+		} else{
+			$('.childCreate').hide();
+		}
+	}
+});
 
 $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 

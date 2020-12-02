@@ -51,6 +51,19 @@ try {
     ajax::success();
   }
   
+  if(init('action') == 'childCreate'){
+	$eqLogic = zigbee::byId(init('id'));
+	if (!is_object($eqLogic)) {
+      throw new Exception(__('Zigbee eqLogic non trouvé : ', __FILE__) . init('id'));
+    }
+	$childeqLogic = eqLogic::byLogicalId($eqLogic->getLogicalId().'|'.init('endpoint'),'zigbee');
+	if (is_object($childeqLogic)) {
+      throw new Exception(__('Un enfant existe déjà sur cet endpoint', __FILE__));
+    }
+    $eqLogic->childCreate(init('endpoint'));
+    ajax::success();
+  }
+  
   if(init('action') == 'deamonInstanceDef'){
     ajax::success(zigbee::getDeamonInstanceDef());
   }

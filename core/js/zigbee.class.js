@@ -292,6 +292,26 @@ jeedom.zigbee.device.setGpDevice = function(_params){
   $.ajax(paramsAJAX);
 }
 
+jeedom.zigbee.device.childCreate = function(_params){
+  var paramsRequired = ['id','endpoint'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/ajax/zigbee.ajax.php';
+  paramsAJAX.data = {
+    id: _params.id,
+	endpoint:_params.endpoint,
+	action: 'childCreate'
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.zigbee.device.remoteCommissioning = function(_params){
   let qrcode = _params.qrcode.split('+')
   if(qrcode.length != 5 || qrcode[0].indexOf('30S') == -1 || qrcode[1].indexOf('Z') == -1){

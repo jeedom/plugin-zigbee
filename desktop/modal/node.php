@@ -21,9 +21,9 @@ $eqLogic = zigbee::byId(init('id'));
 if(!is_object($eqLogic)){
   throw new \Exception(__('Equipement introuvable : ',__FILE__).init('id'));
 }
-sendVarToJS('zigbeeNodeIeee',$eqLogic->getLogicalId());
+sendVarToJS('zigbeeNodeIeee',explode('|',$eqLogic->getLogicalId())[0]);
 sendVarToJS('zigbeeNodeInstance',$eqLogic->getConfiguration('instance',1));
-$node_data = zigbee::request($eqLogic->getConfiguration('instance',1),'/device/info',array('ieee'=>$eqLogic->getLogicalId()));
+$node_data = zigbee::request($eqLogic->getConfiguration('instance',1),'/device/info',array('ieee'=>explode('|',$eqLogic->getLogicalId())[0]));
 $device = zigbee::devicesParameters($eqLogic->getConfiguration('device'));
 $infos = zigbee::parseDeviceInformation($node_data);
 $endpointArray=array();
