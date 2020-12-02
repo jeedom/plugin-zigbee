@@ -134,6 +134,9 @@ if (isset($result['devices'])) {
 			foreach ($deviceArray as $zigbee) {
 				foreach($clusters as $cluster_id => $attributs){
 					foreach($attributs as $attribut_id => $value){
+						if($value == '[]'){
+							continue;
+						}
 						if($cluster_id == 1 && $attribut_id == 33){
 							$zigbee->batteryStatus($value);
 						}else if(strcmp($attribut_id, 'cmd') === 0){
