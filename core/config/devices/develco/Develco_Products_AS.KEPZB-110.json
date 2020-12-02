@@ -11,15 +11,15 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "44::1281::cmd::0.1"
+      "logicalId": "44::1281::cmd::1.1"
     },
     {
-      "name": "Command",
+      "name": "Commande",
       "type": "info",
       "subtype": "string",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "44::1281::cmd::0"
+      "logicalId": "44::1281::cmd::1"
     }
   ]
 }
