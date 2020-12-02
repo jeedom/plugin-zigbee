@@ -64,6 +64,14 @@ try {
     ajax::success();
   }
   
+  if(init('action') == 'getVisualList'){
+	$eqLogic = zigbee::byId(init('id'));
+	if (!is_object($eqLogic)) {
+      throw new Exception(__('Zigbee eqLogic non trouvé : ', __FILE__) . init('id'));
+    }
+    ajax::success($eqLogic->getVisualList());
+  }
+  
   if(init('action') == 'deamonInstanceDef'){
     ajax::success(zigbee::getDeamonInstanceDef());
   }

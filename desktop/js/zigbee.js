@@ -151,12 +151,57 @@ $('.eqLogicAttr[data-l1key=configuration][data-l2key=device]').off('change').on(
   } 
 });
 
+$('.eqLogicAttr[data-l1key=configuration][data-l2key=visual]').off('change').on('change', function () {
+  if($(this).value() != '' && $(this).value() != null){
+    $('#img_device').attr("src", 'plugins/zigbee/core/config/devices/'+$(this).value());
+  } else {
+	 var img = $('.eqLogicAttr[data-l1key=configuration][data-l2key=device] option:selected').attr('data-img')
+     $('#img_device').attr("src", 'plugins/zigbee/core/config/devices/'+img);
+  }
+});
+
 $('.eqLogicAttr[data-l1key=id]').off('change').on('change', function () {
 	if ($(this).value() in devices_attr) {
 		if (devices_attr[$(this).value()]['canbesplit']==1 && devices_attr[$(this).value()]['ischild']==0) {
 			$('.childCreate').show();
 		} else{
 			$('.childCreate').hide();
+		}
+		if (devices_attr[$(this).value()]['ischild']==1) {
+			 $.ajax({
+				type: "POST",
+				url: "plugins/zigbee/core/ajax/zigbee.ajax.php",
+				data: {
+					action: "getVisualList",
+					id: $(this).value(),
+				},
+				dataType: 'json',
+				global: false,
+				error: function (request, status, error) {
+				handleAjaxError(request, status, error);
+				},
+				success: function (data) {
+				if (data.state != 'ok') {
+					$('#div_alert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+				var options = '';
+				for (var i in data.result) {
+					if (data.result[i]['selected'] == 1){
+						options += '<option value="'+data.result[i]['path']+'" selected>'+data.result[i]['name']+'</option>';
+						if (data.result[i]['path'] != '') {
+							$('#img_device').attr("src", 'plugins/zigbee/core/config/devices/'+data.result[i]['path']);
+						}
+					} else {
+						options += '<option value="'+data.result[i]['path']+'">'+data.result[i]['name']+'</option>';
+					}
+				}
+				$(".listVisual").html(options);
+			}
+			});
+			$('.visual').show();
+		} else{
+			$('.visual').hide();
 		}
 	}
 });

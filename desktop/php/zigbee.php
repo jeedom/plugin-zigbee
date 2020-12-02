@@ -68,15 +68,18 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 			<?php
 			foreach ($eqLogics as $eqLogic) {
 				$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
+				$child = ($eqLogic->getConfiguration('ischild',0) == 1) ? '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_orange fas fa-user" title="Ce device est un enfant"></i>' : '';
 				echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '" >';
 				if ($eqLogic->getConfiguration('device') != ""){
-					if (zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false) {
-						echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>';
+					if (zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false && $eqLogic->getConfiguration('ischild',0) == 0) {
+						echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
+					} else if ($eqLogic->getConfiguration('ischild',0) == 1 && file_exists(dirname(__FILE__) . '/../../core/config/devices/'.$eqLogic->getConfiguration('visual'))) {
+						echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . $eqLogic->getConfiguration('visual') . '"/>'.$child;
 					} else {
-						echo '<img src="' . $plugin->getPathImgIcon() . '" />';
+						echo '<img src="' . $plugin->getPathImgIcon() . '" />'.$child;
 					}
 				}else{
-					echo '<img src="' . $plugin->getPathImgIcon() . '" />';
+					echo '<img src="' . $plugin->getPathImgIcon() . '" />'.$child;
 				}
 				echo "<br/>";
 				echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
@@ -249,6 +252,14 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 												}
 											}
 											?>
+										</select>
+									</div>
+								</div>
+								<div class="form-group visual" style="display: none;">
+									<label class="col-sm-3 control-label">{{Visuel}}</label>
+									<div class="col-sm-6">
+										<select class="eqLogicAttr form-control listVisual" data-l1key="configuration" data-l2key="visual">
+											<option value="">{{Par défaut}}</option>
 										</select>
 									</div>
 								</div>

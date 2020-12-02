@@ -453,6 +453,35 @@ class zigbee extends eqLogic {
     return $file;
   }
   
+  public function getVisualList() {
+    $device = $this->getConfiguration('device','');
+    $visual = str_replace('\/','/',$this->getConfiguration('visual',''));
+	log::add('zigbee','error',$visual);
+    $files = array();
+    $files[] = array('path'=>'','name'=> 'Par défaut','selected' => 0);
+    foreach (ls(dirname(__FILE__) . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
+      foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $device . '_child_*.{jpg,png}', false, array('files', 'quiet')) as $file) {
+        $fileEl['path'] = $folder.$file;
+		$cleanName = explode('_child_',$file)[1];
+		foreach (array('.jpg','.png') as $clean){
+			$cleanName = str_replace($clean,'',$cleanName);
+		}
+		$fileEl['selected'] = 0;
+		if ($visual == $folder.$file){
+			$fileEl['selected'] =1;
+		}
+        $fileEl['name'] = ucfirst(str_replace('.',' ',$cleanName));
+        $files[]=$fileEl;
+      }
+    }
+    if (count($files) > 0) {
+      
+	log::add('zigbee','error',json_encode($files));
+      return $files;
+    }
+    return False;
+  }
+  
   public function childCreate($_endpoint) {
     log::add('zigbee','error','Child Create For : ' . $_endpoint);
     $ieee = $this->getLogicalId();
