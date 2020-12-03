@@ -46,8 +46,8 @@ class DanfossSpecific():
 	async def reporting(self,model , cluster_id ,ep_id,cluster):
 		logging.debug('Checking specific reporting for device '+str(model)+' '+str(cluster_id)+' '+str(ep_id))
 		if model in details.REPORTING_SPECIFIC and cluster_id in details.REPORTING_SPECIFIC[model] and ep_id in details.REPORTING_SPECIFIC[model][cluster_id]:
-			logging.debug('Found specific reporting ' + str(REPORTING_SPECIFIC[model][cluster_id][ep_id]))
-			for reporting in REPORTING_SPECIFIC[model][cluster_id][ep_id]:
+			logging.debug('Found specific reporting ' + str(details.REPORTING_SPECIFIC[model][cluster_id][ep_id]))
+			for reporting in details.REPORTING_SPECIFIC[model][cluster_id][ep_id]:
 				logging.debug('Setting specific reporting ' + str(reporting))
 				await cluster.configure_reporting(reporting["attr"], reporting["min"],reporting["max"], reporting["report"])
 		else:
