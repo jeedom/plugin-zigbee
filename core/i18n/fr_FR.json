@@ -151,6 +151,7 @@
         "Mes équipements Zigbee": "Mes équipements Zigbee",
         "Rechercher": "Rechercher",
         "Configuration avancée": "Configuration avancée",
+        "Créer un enfant": "Créer un enfant",
         "Dupliquer": "Dupliquer",
         "Sauvegarder": "Sauvegarder",
         "Supprimer": "Supprimer",
@@ -168,6 +169,8 @@
         "Recréer les commandes": "Recréer les commandes",
         "Fabricant": "Fabricant",
         "Inconnu": "Inconnu",
+        "Visuel": "Visuel",
+        "Par défaut": "Par défaut",
         "Ajouter une commande": "Ajouter une commande",
         "Nom": "Nom",
         "Type": "Type",
@@ -180,6 +183,7 @@
         "Configuration du noeud": "Configuration du noeud",
         "Mode inclusion actif pendant 3 minutes pour le démon": "Mode inclusion actif pendant 3 minutes pour le démon",
         "Module ajouté avec succès": "Module ajouté avec succès",
+        "Enfant créé avec succès": "Enfant créé avec succès",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page",
         "Commande": "Commande",
         "Valeur retour d\\'état": "Valeur retour d\\'état",
@@ -226,6 +230,7 @@
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Zigbee eqLogic non trouvé : ": "Zigbee eqLogic non trouvé : ",
+        "Un enfant existe déjà sur cet endpoint": "Un enfant existe déjà sur cet endpoint",
         "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {

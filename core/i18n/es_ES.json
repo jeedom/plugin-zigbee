@@ -151,6 +151,7 @@
         "Mes équipements Zigbee": "",
         "Rechercher": "Buscar",
         "Configuration avancée": "Configuración avanzada",
+        "Créer un enfant": "",
         "Dupliquer": "Duplicar",
         "Sauvegarder": "Guardar",
         "Supprimer": "Borrar",
@@ -168,6 +169,8 @@
         "Recréer les commandes": "Recrea comandos",
         "Fabricant": "Fabricante",
         "Inconnu": "Desconocido",
+        "Visuel": "Visual",
+        "Par défaut": "Por defecto",
         "Ajouter une commande": "Añadir una orden",
         "Nom": "Nombre",
         "Type": "Tipo",
@@ -180,6 +183,7 @@
         "Configuration du noeud": "Configuración de nodos",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Module ajouté avec succès": "",
+        "Enfant créé avec succès": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Un dispositivo acaba de ser incluido \/ excluido. Por favor actualiza la página",
         "Commande": "Comando",
         "Valeur retour d\\'état": "Valor de retorno de estado",
@@ -226,6 +230,7 @@
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Zigbee eqLogic non trouvé : ": "",
+        "Un enfant existe déjà sur cet endpoint": "",
         "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
@@ -252,6 +257,6 @@
         "Le message et le sujet ne peuvent pas être vide": "El mensaje y el asunto no pueden estar vacíos"
     },
     "info.json": {
-        "Plugin zigbee pouvant etre utilisé avec les Zigbee  : deconz, ezsp (Silicon labs) et en support beta avec Zigate, Texas Instrument. IMPORTANT : bien lire la documentation avant tout achat": ""
+        "Plugin zigbee pouvant etre utilisé avec les Zigbee  : deconz, ezsp (Silicon labs) et en support beta avec Zigate, Texas Instrument. IMPORTANT : bien lire la documentation avant tout achat": "Complemento de Zigbee que se puede usar con Zigbee: deconz, ezsp (Silicon labs) y en soporte beta con Zigate, Texas Instrument. IMPORTANTE: lea la documentación detenidamente antes de realizar cualquier compra"
     }
 }

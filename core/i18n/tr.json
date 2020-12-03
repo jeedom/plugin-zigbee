@@ -151,6 +151,7 @@
         "Mes équipements Zigbee": "",
         "Rechercher": "Arayın",
         "Configuration avancée": "Gelişmiş ayarlar",
+        "Créer un enfant": "",
         "Dupliquer": "Kopyala",
         "Sauvegarder": "Kaydet",
         "Supprimer": "Sil",
@@ -168,6 +169,8 @@
         "Recréer les commandes": "Komutlari yeniden oluşturmak",
         "Fabricant": "",
         "Inconnu": "Bilinmeyen",
+        "Visuel": "Görsel",
+        "Par défaut": "Varsayılan olarak",
         "Ajouter une commande": "Komuta ekle",
         "Nom": "İsim",
         "Type": "Çeşit",
@@ -180,6 +183,7 @@
         "Configuration du noeud": "",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Module ajouté avec succès": "",
+        "Enfant créé avec succès": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Yeni bir aygıt  içerildirildi \/ hariç tutuldu. Lütfen sayfayı güncelleyin",
         "Commande": "Komuta",
         "Valeur retour d\\'état": "İade durumu değeri",
@@ -226,6 +230,7 @@
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Zigbee eqLogic non trouvé : ": "",
+        "Un enfant existe déjà sur cet endpoint": "",
         "Aucune méthode correspondante à : ": "Aşağıdakilere karşılık gelen bir yöntem yok:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
