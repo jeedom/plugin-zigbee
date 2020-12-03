@@ -31,20 +31,15 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 	<div class="col-lg-12 eqLogicThumbnailDisplay">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="eqLogicThumbnailContainer">
-			<div class="cursor eqLogicAction logoPrimary" data-action="add">
-				<i class="fas fa-plus-circle"></i>
-				<br/>
-				<span>{{Ajouter}}</span>
-			</div>
-			<div class="cursor changeIncludeState include card logoSecondary" data-mode="1" data-state="1">
+			<div class="cursor changeIncludeState include card logoPrimary" data-mode="1" data-state="1">
 				<i class="fas fa-sign-in-alt fa-rotate-90"></i>
 				<br/>
-				<span>{{Mode inclusion}}</span>
+				<span>{{Autoriser Join}}</span>
 			</div>
-			<div class="cursor changeIncludeState include card" id="bt_remoteCommissioning">
+			<div class="cursor changeIncludeState include card logoSecondary" id="bt_remoteCommissioning">
 				<i class="fas fa-plus"></i>
 				<br/>
-				<span>{{Remote commissioning}}</span>
+				<span>{{Commissioning}}</span>
 			</div>
 			<div class="cursor eqLogicAction logoSecondary" id="bt_syncEqLogic" >
 				<i class="fas fa-sync-alt"></i>

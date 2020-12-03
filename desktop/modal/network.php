@@ -395,13 +395,21 @@ if (!isConnect('admin')) {
             nodecolor = '#E5E500';
           }
           var ui = Viva.Graph.svg('g'),
-          svgText = Viva.Graph.svg('text').attr('y', '-4px').attr('color', '#7BCC7B').text(node.data.name),
+          svgText = Viva.Graph.svg('text').text(node.data.name),
           img = Viva.Graph.svg('image')
           .attr('width', 48)
           .attr('height', 48)
           .link(node.data.img);
           ui.append(svgText);
           ui.append(img);
+		  circle = Viva.Graph.svg('circle')
+          .attr('r', 7)
+          .attr('cx', -10)
+          .attr('cy', -4)
+          .attr('stroke', '#fff')
+          .attr('stroke-width', '1.5px')
+          .attr('fill', nodecolor);
+		  ui.append(circle);
           $(ui).hover(function () {
             if (zigbee_devices[node.data.ieee] && zigbee_devices[node.data.ieee].id) {
               linkname = '<a href="index.php?v=d&p=zigbee&m=zigbee&id=' + zigbee_devices[node.data.ieee].id + '">' + node.data.name + '</a>'

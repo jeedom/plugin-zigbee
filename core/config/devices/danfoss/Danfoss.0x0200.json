@@ -1,6 +1,6 @@
 {
-  "name": "0x0200",
-  "ref" : "014G2461",
+  "name": "Danfoss Icon Floor Controller",
+  "ref" : "088U1130",
   "manufacturer" : "Danfoss",
   "type": "Contrôleur Plancher Chauffant",
   "buylink" : "",
@@ -12,7 +12,10 @@
   },
   "config" : [
     {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":21,"name":"Température minimale Thermostat","type":"number","min":500,"max":3500},
-    {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":22,"name":"Température maximale Thermostat","type":"number","min":500,"max":3500}
+    {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":22,"name":"Température maximale Thermostat","type":"number","min":500,"max":3500},
+    {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":16673,"name":"Température minimale Sol","type":"number","min":500,"max":3500},
+    {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":16674,"name":"Température maximale Sol","type":"number","min":500,"max":3500},
+    {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":16688,"name":"Mode Programme","type":"number","min":500,"max":3500}
   ],
   "commands": [
     {
@@ -70,6 +73,50 @@
       "logicalId": "1::513::16656"
     },
     {
+      "name": "Consigne Absent 1",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "1::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 1",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 1",
+      "logicalId": "attributes::1::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 1",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "1::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
       "name": "Température 2",
       "type": "info",
       "subtype": "numeric",
@@ -122,6 +169,50 @@
       "isHistorized": 0,
       "unite" : "",
       "logicalId": "2::513::16656"
+    },
+    {
+      "name": "Consigne Absent 2",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "2::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 2",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 2,
+      "unite" : "°C",
+      "value": "Consigne Absent 2",
+      "logicalId": "attributes::2::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 2",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "2::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
     },
     {
       "name": "Température 3",
@@ -177,6 +268,50 @@
       "unite" : "",
       "logicalId": "3::513::16656"
     },
+    {
+      "name": "Consigne Absent 3",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "3::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 3",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 3",
+      "logicalId": "attributes::3::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 3",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "3::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
 	{
       "name": "Température 4",
       "type": "info",
@@ -231,6 +366,50 @@
       "unite" : "",
       "logicalId": "4::513::16656"
     },
+    {
+      "name": "Consigne Absent 4",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "4::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 4",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 4",
+      "logicalId": "attributes::4::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 4",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "4::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
 	{
       "name": "Température 5",
       "type": "info",
@@ -284,6 +463,1030 @@
       "isHistorized": 0,
       "unite" : "",
       "logicalId": "5::513::16656"
+    },
+    {
+      "name": "Consigne Absent 5",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "5::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 5",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 5",
+      "logicalId": "attributes::5::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 5",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "5::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+	{
+      "name": "Température 6",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "6::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 6",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "6::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 6",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 6",
+      "logicalId": "attributes::6::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 6",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "6::513::16656"
+    },
+    {
+      "name": "Consigne Absent 6",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "6::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 6",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 6",
+      "logicalId": "attributes::6::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 6",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "6::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+	{
+      "name": "Température 7",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "7::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 7",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "7::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 7",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 7",
+      "logicalId": "attributes::7::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 7",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "7::513::16657"
+    },
+    {
+      "name": "Consigne Absent 7",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "7::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 7",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 7",
+      "logicalId": "attributes::7::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 7",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "7::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+	{
+      "name": "Température 8",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "8::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 8",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "8::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 8",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 8",
+      "logicalId": "attributes::8::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 8",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "8::513::16657"
+    },
+    {
+      "name": "Consigne Absent 8",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "8::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 8",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 8",
+      "logicalId": "attributes::8::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 8",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "8::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+	{
+      "name": "Température 9",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "9::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 9",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "9::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 9",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 9",
+      "logicalId": "attributes::9::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 9",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "9::513::16657"
+    },
+    {
+      "name": "Consigne Absent 9",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "9::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 9",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 9",
+      "logicalId": "attributes::9::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 9",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "9::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+	{
+      "name": "Température 10",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "10::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 10",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "10::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 10",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 10",
+      "logicalId": "attributes::10::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 10",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "10::513::16657"
+    },
+    {
+      "name": "Consigne Absent 10",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "10::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 10",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 10",
+      "logicalId": "attributes::10::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 10",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "10::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+	{
+      "name": "Température 11",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "11::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 11",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "11::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 11",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 11",
+      "logicalId": "attributes::11::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 11",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "11::513::16657"
+    },
+    {
+      "name": "Consigne Absent 11",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "11::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 11",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 11",
+      "logicalId": "attributes::11::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 11",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "11::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+	{
+      "name": "Température 12",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "12::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 12",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "12::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 12",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 12",
+      "logicalId": "attributes::12::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 12",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "12::513::16657"
+    },
+    {
+      "name": "Consigne Absent 12",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "12::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 12",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 12",
+      "logicalId": "attributes::12::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 12",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "12::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+	{
+      "name": "Température 13",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "13::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 13",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "13::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 13",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 13",
+      "logicalId": "attributes::13::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 13",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "13::513::16657"
+    },
+    {
+      "name": "Consigne Absent 13",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "13::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 13",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 13",
+      "logicalId": "attributes::13::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 13",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "13::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+	{
+      "name": "Température 14",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "14::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 14",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "14::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 14",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 14",
+      "logicalId": "attributes::14::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 14",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "14::513::16657"
+    },
+    {
+      "name": "Consigne Absent 14",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "14::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 14",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 14",
+      "logicalId": "attributes::14::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 14",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "14::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+	{
+      "name": "Température 15",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "15::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne 15",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "15::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat 15",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne 15",
+      "logicalId": "attributes::15::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Chauffe 15",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite" : "",
+      "logicalId": "15::513::16657"
+    },
+    {
+      "name": "Consigne Absent 15",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "15::513::20",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat Absent 15",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Absent 15",
+      "logicalId": "attributes::15::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Température sol 15",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "15::1026::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
     }
   ]
 }

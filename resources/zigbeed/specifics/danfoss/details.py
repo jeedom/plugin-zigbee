@@ -20,21 +20,21 @@ import zigpy.types as types
 
 REPORTING_SPECIFIC = {"0x0200" :
 						{Thermostat.cluster_id:
-							{1:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1}],
-							2:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1}],
-							3:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1}],
-							4:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							5:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							6:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							7:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							8:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							9:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							10:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							11:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							12:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							13:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							14:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							15:[{"attr":"output_status","min":1,"max":65534,"report": 1}]
+							{1:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							2:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							3:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							4:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							5:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							6:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							7:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							8:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							9:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							10:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							11:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							12:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							13:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							14:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
+							15:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}]
 							}
 						}
 					}

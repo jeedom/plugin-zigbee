@@ -41,8 +41,12 @@ class DanfossSpecific():
 					shared.ZIGPY.devices[device.ieee] = device
 				if endpoint_id in range(1,15):
 					cluster = details.JeedomDanfossThermostatCluster(ep, is_server=True)
+					for oldcluster in ep.in_clusters.values():
+						if oldcluster.cluster_id == cluster.cluster_id:
+							cluster._attr_cache=oldcluster._attr_cache
+							break
 					ep.add_input_cluster(cluster.cluster_id, cluster)
-				
+
 	async def reporting(self,model , cluster_id ,ep_id,cluster):
 		logging.debug('Checking specific reporting for device '+str(model)+' '+str(cluster_id)+' '+str(ep_id))
 		if model in details.REPORTING_SPECIFIC and cluster_id in details.REPORTING_SPECIFIC[model] and ep_id in details.REPORTING_SPECIFIC[model][cluster_id]:
