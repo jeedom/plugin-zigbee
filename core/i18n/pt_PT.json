@@ -151,6 +151,7 @@
         "Mes équipements Zigbee": "",
         "Rechercher": "Pesquisa",
         "Configuration avancée": "Configuração avançada",
+        "Créer un enfant": "",
         "Dupliquer": "Duplicar",
         "Sauvegarder": "Salvar",
         "Supprimer": "Remover",
@@ -168,6 +169,8 @@
         "Recréer les commandes": "Recriar comandos",
         "Fabricant": "Fabricante",
         "Inconnu": "Desconhecido",
+        "Visuel": "Visual",
+        "Par défaut": "Por padrão",
         "Ajouter une commande": "Adicionar comando",
         "Nom": "Nome",
         "Type": "Tipo",
@@ -180,6 +183,7 @@
         "Configuration du noeud": "Configuração do nó",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Module ajouté avec succès": "",
+        "Enfant créé avec succès": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Um dispositivo apenas \\ ser incluídos \/ excluídos. Atualize a página",
         "Commande": "Ordem",
         "Valeur retour d\\'état": "Estado Valor de retorno \\ 's",
@@ -226,6 +230,7 @@
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Zigbee eqLogic non trouvé : ": "",
+        "Un enfant existe déjà sur cet endpoint": "",
         "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
@@ -248,10 +253,10 @@
         "Inactive": "",
         "ZHA": "",
         "ZLL": "",
-        "Aucun cluster basic trouvé sur le module.Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\\'inclusion)": "",
+        "Aucun cluster basic trouvé sur le module.Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\\'inclusion)": "Nenhum cluster básico encontrado no módulo. Isso geralmente é devido a uma inclusão parcial, é aconselhável remover o módulo da rede zigbee e incluí-lo novamente (dependendo do módulo, pode ser necessário mantê-lo ativo por 2 minutos após o \\'inclusão)",
         "Le message et le sujet ne peuvent pas être vide": "A mensagem e o assunto não podem estar em branco"
     },
     "info.json": {
-        "Plugin zigbee pouvant etre utilisé avec les Zigbee  : deconz, ezsp (Silicon labs) et en support beta avec Zigate, Texas Instrument. IMPORTANT : bien lire la documentation avant tout achat": ""
+        "Plugin zigbee pouvant etre utilisé avec les Zigbee  : deconz, ezsp (Silicon labs) et en support beta avec Zigate, Texas Instrument. IMPORTANT : bien lire la documentation avant tout achat": "Plugin Zigbee que pode ser usado com Zigbee: deconz, ezsp (Silicon labs) e em suporte beta com Zigate, Texas Instrument. IMPORTANTE: leia a documentação com atenção antes de qualquer compra"
     }
 }

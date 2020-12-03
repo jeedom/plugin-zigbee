@@ -151,6 +151,7 @@
         "Mes équipements Zigbee": "",
         "Rechercher": "検索",
         "Configuration avancée": "高度な構成",
+        "Créer un enfant": "",
         "Dupliquer": "重複",
         "Sauvegarder": "セーブ",
         "Supprimer": "取り除きます",
@@ -168,6 +169,8 @@
         "Recréer les commandes": "",
         "Fabricant": "",
         "Inconnu": "不明",
+        "Visuel": "ビジュアル",
+        "Par défaut": "デフォルト",
         "Ajouter une commande": "コマンドの追加",
         "Nom": "表題",
         "Type": "タイプ",
@@ -180,6 +183,7 @@
         "Configuration du noeud": "",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Module ajouté avec succès": "",
+        "Enfant créé avec succès": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "デバイスだけ\\ \/含ま除外すること。ページを再読み込みしてください",
         "Commande": "オーダー",
         "Valeur retour d\\'état": "戻り値\\「sの状態",
@@ -226,6 +230,7 @@
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Zigbee eqLogic non trouvé : ": "",
+        "Un enfant existe déjà sur cet endpoint": "",
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {

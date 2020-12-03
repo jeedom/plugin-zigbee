@@ -151,6 +151,7 @@
         "Mes équipements Zigbee": "",
         "Rechercher": "Pencarian",
         "Configuration avancée": "Konfigurasi lanjutan",
+        "Créer un enfant": "",
         "Dupliquer": "Duplikat",
         "Sauvegarder": "Menyimpan",
         "Supprimer": "Menghapus",
@@ -168,6 +169,8 @@
         "Recréer les commandes": "",
         "Fabricant": "",
         "Inconnu": "Tidak diketahui",
+        "Visuel": "",
+        "Par défaut": "Secara default",
         "Ajouter une commande": "Tambahan pesanan",
         "Nom": "Nama",
         "Type": "Jenis",
@@ -180,6 +183,7 @@
         "Configuration du noeud": "",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Module ajouté avec succès": "",
+        "Enfant créé avec succès": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Sebuah perangkat hanya \\ dimasukkan \/ dikeluarkan. Muat ulang halaman",
         "Commande": "Pesanan",
         "Valeur retour d\\'état": "Nilai kondisi kembali",
@@ -226,6 +230,7 @@
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Zigbee eqLogic non trouvé : ": "",
+        "Un enfant existe déjà sur cet endpoint": "",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {

@@ -151,6 +151,7 @@
         "Mes équipements Zigbee": "",
         "Rechercher": "Search",
         "Configuration avancée": "Advanced configuration",
+        "Créer un enfant": "",
         "Dupliquer": "Duplicate",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
@@ -168,6 +169,8 @@
         "Recréer les commandes": "Recreate commands",
         "Fabricant": "Maker",
         "Inconnu": "Unknown",
+        "Visuel": "Visual",
+        "Par défaut": "By default",
         "Ajouter une commande": "Add a command",
         "Nom": "Name",
         "Type": "Type",
@@ -180,6 +183,7 @@
         "Configuration du noeud": "Node configuration",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Module ajouté avec succès": "",
+        "Enfant créé avec succès": "",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "A device has just been included \/ excluded. Please refresh the page",
         "Commande": "Command",
         "Valeur retour d\\'état": "Status return value",
@@ -226,6 +230,7 @@
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Zigbee eqLogic non trouvé : ": "",
+        "Un enfant existe déjà sur cet endpoint": "",
         "Aucune méthode correspondante à : ": "No method corresponding to:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
