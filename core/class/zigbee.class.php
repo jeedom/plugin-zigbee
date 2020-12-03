@@ -462,7 +462,6 @@ class zigbee extends eqLogic {
   public function getVisualList() {
     $device = $this->getConfiguration('device','');
     $visual = str_replace('\/','/',$this->getConfiguration('visual',''));
-	log::add('zigbee','error',$visual);
     $files = array();
     $files[] = array('path'=>'','name'=> 'Par défaut','selected' => 0);
     foreach (ls(dirname(__FILE__) . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
@@ -481,15 +480,13 @@ class zigbee extends eqLogic {
       }
     }
     if (count($files) > 0) {
-      
-	log::add('zigbee','error',json_encode($files));
       return $files;
     }
     return False;
   }
   
   public function childCreate($_endpoint) {
-    log::add('zigbee','error','Child Create For : ' . $_endpoint);
+    log::add('zigbee','debug','Child Create For : ' . $_endpoint);
     $ieee = $this->getLogicalId();
     $eqLogic = self::byLogicalId($ieee.'|'.$_endpoint,'zigbee');
     if(!is_object($eqLogic)){
@@ -532,6 +529,27 @@ class zigbee extends eqLogic {
 				$cmd->remove();
 			}
 		}
+	} else if ($this->getConfiguration('canbesplit',0) == 1){
+		$allendpoints =array();
+		 try {
+          $details = zigbee::request($this->getConfiguration('instance',1),'/device/info',array(
+            'ieee'=>$this->getLogicalId()
+          ),'GET');
+		  foreach ($details['endpoints'] as $endpoint) {
+			$allendpoints[] = $endpoint['id'];
+		 }
+		 foreach ($this->getCmd() as $cmd) {
+			$cmdLogical = $cmd->getLogicalId();
+			$elements = explode('::',$cmdLogical);
+			if (in_array($elements[0],$allendpoints)|| ($elements[0] == 'attributes' && in_array($elements[1],$allendpoints))){
+				continue;
+			} else {
+				$cmd->remove();
+			}
+		}
+        } catch (\Exception $e) {
+          log::add('zigbee','info',$this->getHumanName().' '.$e->getMessage());
+        }
 	}
   }
   
