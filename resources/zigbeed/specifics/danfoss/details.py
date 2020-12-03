@@ -20,9 +20,9 @@ import zigpy.types as types
 
 REPORTING_SPECIFIC = {"0x0200" :
 						{Thermostat.cluster_id:
-							{1:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							2:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
-							3:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
+							{1:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1}],
+							2:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1}],
+							3:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1}],
 							4:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
 							5:[{"attr":"output_status","min":1,"max":65534,"report": 1}],
 							6:[{"attr":"output_status","min":1,"max":65534,"report": 1}],

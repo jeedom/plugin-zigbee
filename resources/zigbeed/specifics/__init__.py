@@ -22,7 +22,7 @@ async def reporting(manufacturer, model , cluster_id ,ep_id,cluster):
 	for specific in shared.JEEDOM_SPECIFIC:
 		if specific().isvalid(manufacturer) and 'reporting' in specific().specific:
 			logging.debug('Found specific Reporting')
-			specific().reporting(model,cluster_id,ep_id,cluster)
+			await specific().reporting(model,cluster_id,ep_id,cluster)
 			break
 
 def init(device):
