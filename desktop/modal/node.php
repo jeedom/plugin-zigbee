@@ -224,7 +224,7 @@ $endpointArray=array();
             if(count($device['config']) > 0){
               foreach ($device['config'] as &$config) {
                 if(!isset($config['manufacturer'])){
-                  $config['manufacturer'] = 0;
+                  $config['manufacturer'] = None;
                 }
                 if (strpos($config['endpoint'],'multiple')!== false) {
                     $endpointString = explode('|',$config['endpoint'])[1];
@@ -391,8 +391,6 @@ $endpointArray=array();
         cluster : parseInt(tr.attr('data-cluster')),
         attributes : [parseInt(tr.attr('data-attribute'))],
         manufacturer:parseInt(tr.attr('data-manufacturer')),
-        allowCache : 1,
-        global:false,
         allowCache : 1,
         global:false,
         error: function (error) {
