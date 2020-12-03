@@ -121,14 +121,14 @@ function convertValue($_value){
 
 if (isset($result['devices'])) {
 	foreach ($result['devices'] as $ieee => $endpoints) {
-		$zigbee = zigbee::byLogicalId($ieee, 'zigbee');
-		if (!is_object($zigbee) || !$zigbee->getIsEnable()) {
+		$masterzigbee = zigbee::byLogicalId($ieee, 'zigbee');
+		if (!is_object($masterzigbee) || !$masterzigbee->getIsEnable()) {
 			continue;
 		}
 		foreach($endpoints as $endpoint_id => $clusters){
-			$deviceArray = [$zigbee];
+			$deviceArray = [$masterzigbee];
 			$childzigbee = zigbee::byLogicalId($ieee.'|'.$endpoint_id, 'zigbee');
-			if (is_object($zigbee) && $zigbee->getIsEnable()) {
+			if (is_object($childzigbee) && $childzigbee->getIsEnable()) {
 				$deviceArray[] = $childzigbee;
 			}
 			foreach ($deviceArray as $zigbee) {
