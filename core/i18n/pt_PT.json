@@ -142,9 +142,8 @@
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "Nemhum",
         "Gestion": "Gestão",
-        "Ajouter": "Adicionar",
-        "Mode inclusion": "Inclusão moda",
-        "Remote commissioning": "",
+        "Autoriser Join": "",
+        "Commissioning": "",
         "Synchronisation": "Sincronização",
         "Réseau Zigbee": "Rede Zigbee",
         "Configuration": "Configuração",
@@ -252,7 +251,7 @@
         "Ok": "Ok",
         "Inactive": "",
         "ZHA": "",
-        "ZLL": "",
+        "ZLL": "ZLL",
         "Aucun cluster basic trouvé sur le module.Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\\'inclusion)": "Nenhum cluster básico encontrado no módulo. Isso geralmente é devido a uma inclusão parcial, é aconselhável remover o módulo da rede zigbee e incluí-lo novamente (dependendo do módulo, pode ser necessário mantê-lo ativo por 2 minutos após o \\'inclusão)",
         "Le message et le sujet ne peuvent pas être vide": "A mensagem e o assunto não podem estar em branco"
     },

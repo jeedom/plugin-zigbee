@@ -142,9 +142,8 @@
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "Tak ada",
         "Gestion": "Manajemen",
-        "Ajouter": "Tambahan",
-        "Mode inclusion": "Modus Inklusi",
-        "Remote commissioning": "",
+        "Autoriser Join": "",
+        "Commissioning": "",
         "Synchronisation": "",
         "Réseau Zigbee": "",
         "Configuration": "Konfigurasi",

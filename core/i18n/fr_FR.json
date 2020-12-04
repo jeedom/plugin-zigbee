@@ -142,9 +142,8 @@
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "Aucun",
         "Gestion": "Gestion",
-        "Ajouter": "Ajouter",
-        "Mode inclusion": "Mode inclusion",
-        "Remote commissioning": "Remote commissioning",
+        "Autoriser Join": "Autoriser Join",
+        "Commissioning": "Commissioning",
         "Synchronisation": "Synchronisation",
         "Réseau Zigbee": "Réseau Zigbee",
         "Configuration": "Configuration",

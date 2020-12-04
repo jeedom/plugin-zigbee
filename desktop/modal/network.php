@@ -196,7 +196,7 @@ if (!isConnect('admin')) {
             break;
           }
           tr += '<td>';
-          if(!data[i].lqi || data[i].lqi == 'None'){
+          if(!data[i].lqi || data[i].lqi == 'None' || data[i].nwk == 0){
             tr += '<span class="label label-default">{{N/A}}</span>';
           }else if(data[i].lqi > 170){
             tr += '<span class="label label-success">'+data[i].lqi+'</span>';
@@ -207,7 +207,7 @@ if (!isConnect('admin')) {
           }
           tr += '</td>';
           tr += '<td>';
-          if(!data[i].rssi || data[i].rssi == 'None'){
+          if(!data[i].rssi || data[i].rssi == 'None' || data[i].nwk == 0){
             tr += '<span class="label label-default">{{N/A}}</span>';
           }else if(data[i].rssi >= -60){
             tr += '<span class="label label-success">'+data[i].rssi+'</span>';
@@ -402,14 +402,14 @@ if (!isConnect('admin')) {
           .link(node.data.img);
           ui.append(svgText);
           ui.append(img);
-		  circle = Viva.Graph.svg('circle')
+          circle = Viva.Graph.svg('circle')
           .attr('r', 7)
           .attr('cx', -10)
           .attr('cy', -4)
           .attr('stroke', '#fff')
           .attr('stroke-width', '1.5px')
           .attr('fill', nodecolor);
-		  ui.append(circle);
+          ui.append(circle);
           $(ui).hover(function () {
             if (zigbee_devices[node.data.ieee] && zigbee_devices[node.data.ieee].id) {
               linkname = '<a href="index.php?v=d&p=zigbee&m=zigbee&id=' + zigbee_devices[node.data.ieee].id + '">' + node.data.name + '</a>'

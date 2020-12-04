@@ -142,9 +142,8 @@
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "Нет",
         "Gestion": "Управление",
-        "Ajouter": "Добавить",
-        "Mode inclusion": "Режим включения",
-        "Remote commissioning": "",
+        "Autoriser Join": "",
+        "Commissioning": "",
         "Synchronisation": "",
         "Réseau Zigbee": "",
         "Configuration": "Конфигурация",

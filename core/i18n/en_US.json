@@ -142,9 +142,8 @@
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "None",
         "Gestion": "Management",
-        "Ajouter": "Add",
-        "Mode inclusion": "Inclusion mode",
-        "Remote commissioning": "",
+        "Autoriser Join": "",
+        "Commissioning": "",
         "Synchronisation": "Synchronization",
         "Réseau Zigbee": "Zigbee Network",
         "Configuration": "Configuration",
@@ -257,6 +256,6 @@
         "Le message et le sujet ne peuvent pas être vide": "Message and subject cannot be empty"
     },
     "info.json": {
-        "Plugin zigbee pouvant etre utilisé avec les Zigbee  : deconz, ezsp (Silicon labs) et en support beta avec Zigate, Texas Instrument. IMPORTANT : bien lire la documentation avant tout achat": ""
+        "Plugin zigbee pouvant etre utilisé avec les Zigbee  : deconz, ezsp (Silicon labs) et en support beta avec Zigate, Texas Instrument. IMPORTANT : bien lire la documentation avant tout achat": "Zigbee plugin that can be used with Zigbee: deconz, ezsp (Silicon labs) and in beta support with Zigate, Texas Instrument. IMPORTANT: read the documentation carefully before any purchase"
     }
 }

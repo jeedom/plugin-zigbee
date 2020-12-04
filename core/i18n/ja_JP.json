@@ -142,9 +142,8 @@
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "何でもありません",
         "Gestion": "管理",
-        "Ajouter": "加えます",
-        "Mode inclusion": "ファッションインクルージョン",
-        "Remote commissioning": "",
+        "Autoriser Join": "",
+        "Commissioning": "",
         "Synchronisation": "",
         "Réseau Zigbee": "",
         "Configuration": "コンフィギュレーション",
