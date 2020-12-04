@@ -6,15 +6,29 @@
   "reset": "Appuyer sur le bouton jusqu'a ce que la led clignote rouge",
   "commands": [
     {
-      "name": "Durée sonnerie",
+      "name": "Etat durée",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat durée",
+      "logicalId": "durationstate",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 1800
+      }
+    },
+    {
+      "name": "Durée",
       "type": "action",
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
+      "value" : "Etat durée",
       "logicalId": "duration",
       "configuration" : {
-        "minValue":"1",
-        "maxValue":"600"
+        "minValue" : 0,
+        "maxValue" : 1800
       }
     },
     {
