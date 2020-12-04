@@ -671,6 +671,11 @@ class zigbeeCmd extends cmd {
     if($this->getLogicalId() == 'refresh'){
       return $eqLogic->refreshValue();
     }
+    if($this->getLogicalId() == 'duration'){
+      $eqLogic->setCache('duration',$_options['slider']);
+      $eqLogic->checkAndUpdateCmd('durationstate', $_options['slider']);
+      return;
+    }
     $commands = array();
     $attributes = array();
     $informations = explode('|',$this->getLogicalId());
@@ -697,6 +702,7 @@ class zigbeeCmd extends cmd {
         }
         break;
       }
+      $replace['#duration#'] = $eqLogic->getCache('duration',0);
       $info = explode('::',str_replace(array_keys($replace),$replace,$information));
       if($info[0] == 'attributes'){
         $attributes[] = array('endpoint' => intval($info[1]),'cluster_type'=> $info[2],'cluster'=>intval($info[3]),'attributes'=>array(intval($info[4])=>evaluate($info[5])));

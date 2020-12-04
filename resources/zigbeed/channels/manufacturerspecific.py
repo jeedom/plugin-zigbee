@@ -56,13 +56,13 @@ class OppleRemote():
 	"""Opple button channel."""
 	REPORT_CONFIG = []
 
-@registries.ZIGBEE_CHANNEL_REGISTRY.register(registries.SMARTTHINGS_ACCELERATION_CLUSTER)
-class SmartThingsAcceleration():
-	"""Smart Things Acceleration channel."""
-
-	REPORT_CONFIG = [
-		{"attr": "acceleration", "config": REPORT_CONFIG_ASAP},
-		{"attr": "x_axis", "config": REPORT_CONFIG_ASAP},
-		{"attr": "y_axis", "config": REPORT_CONFIG_ASAP},
-		{"attr": "z_axis", "config": REPORT_CONFIG_ASAP},
-	]
+#@registries.ZIGBEE_CHANNEL_REGISTRY.register(registries.SMARTTHINGS_ACCELERATION_CLUSTER)
+#class SmartThingsAcceleration():
+#	"""Smart Things Acceleration channel."""
+#
+#	REPORT_CONFIG = [
+#		{"attr": "acceleration", "config": REPORT_CONFIG_ASAP},
+#		{"attr": "x_axis", "config": REPORT_CONFIG_ASAP},
+#		{"attr": "y_axis", "config": REPORT_CONFIG_ASAP},
+#		{"attr": "z_axis", "config": REPORT_CONFIG_ASAP},
+#	]

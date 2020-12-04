@@ -9,7 +9,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "2::64512::cmd::1"
+      "logicalId": "2::64512::cmd::1",
+	  "configuration": {
+        "repeatEventManagement": "always"
+      },
     }
   ]
 }
