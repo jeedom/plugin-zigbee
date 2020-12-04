@@ -132,6 +132,9 @@ if (isset($result['devices'])) {
 				$deviceArray[] = $childzigbee;
 			}
 			foreach ($deviceArray as $zigbee) {
+				if(is_object($zigbee)){
+					continue;
+				}
 				foreach($clusters as $cluster_id => $attributs){
 					foreach($attributs as $attribut_id => $value){
 						if($value == '[]'){
