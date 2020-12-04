@@ -501,6 +501,7 @@ class zigbee extends eqLogic {
     if ($this->getConfiguration('applyDevice') != $this->getConfiguration('device')) {
       $this->applyModuleConfiguration();
     }
+    $this->refreshValue();
   }
   
   public function applyModuleConfiguration() {
@@ -577,7 +578,7 @@ class zigbee extends eqLogic {
       foreach ($data as $cluster => $attributes) {
         try {
           zigbee::request($this->getConfiguration('instance',1),'/device/attributes',array(
-            'ieee'=>$this->getLogicalId(),
+            'ieee'=>explode('|',$this->getLogicalId())[0],
             'endpoint' => $endpoint,
             'cluster' => $cluster,
             'cluster_type' => 'in',
@@ -689,7 +690,7 @@ class zigbeeCmd extends cmd {
         list($r, $g, $b) = str_split(str_replace('#', '', $_options['color']), 2);
         $info = self::convertRGBToXY(hexdec($r), hexdec($g), hexdec($b));
         $replace['#color#'] = round($info['x']*65535).'::'.round($info['y']*65535);
-        $commands[] = array('endpoint' => intval(explode('::',$information)[0]),'cluster'=>'level','command'=>'move_to_level','args'=>array();
+        $commands[] = array('endpoint' => intval(explode('::',$information)[0]),'cluster'=>'level','command'=>'move_to_level','args'=>array());
         break;
         case 'select':
         $replace['#select#'] = $_options['select'];
