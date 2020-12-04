@@ -124,3 +124,9 @@ class Listener:
 			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::'+str(attribute_id),{"value" : str(value),"cluster_name" : cluster.name})
 		except Exception as e:
 			logging.error(traceback.format_exc())
+
+	def zha_send_event(self, cluster, attribute_id, value):
+		try:
+			logging.info("["+str(cluster.endpoint.device._ieee)+"][listener.zha_send_event] Received an event update %s=%s on cluster %s",attribute_id, value, cluster.cluster_id)
+		except Exception as e:
+			logging.error(traceback.format_exc())
