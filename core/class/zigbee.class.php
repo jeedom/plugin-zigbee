@@ -672,8 +672,8 @@ class zigbeeCmd extends cmd {
       return $eqLogic->refreshValue();
     }
     if($this->getLogicalId() == 'duration'){
-      $eqLogic->setCache('duration',$_options['slider']);
-      $eqLogic->checkAndUpdateCmd('durationstate', $_options['slider']);
+      $eqLogic->setCache('duration',round($_options['slider']));
+      $eqLogic->checkAndUpdateCmd('durationstate', round($_options['slider']));
       return;
     }
     $commands = array();
