@@ -430,14 +430,10 @@ class zigbee extends eqLogic {
   }
   
   public static function getImgFilePath($_device) {
-    $files = ls(dirname(__FILE__) . '/../config/devices', $_device . '_*.{jpg,png}', false, array('files', 'quiet'));
     foreach (ls(dirname(__FILE__) . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
       foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $_device . '.{jpg,png}', false, array('files', 'quiet')) as $file) {
-        $files[] = $folder . $file;
+        return $folder . $file;
       }
-    }
-    if (count($files) > 0) {
-      return $files[0];
     }
     return false;
   }
@@ -448,10 +444,10 @@ class zigbee extends eqLogic {
   public function getImage() {
     $file = 'plugins/zigbee/core/config/devices/' . self::getImgFilePath($this->getConfiguration('device'));
     if ($this->getConfiguration('ischild',0) == 1) {
-        $childfile = 'plugins/zigbee/core/config/devices/' . $this->getConfiguration('visual','none');
-        if(file_exists(__DIR__.'/../../../../'.$childfile)){
-            return $childfile;
-        }
+      $childfile = 'plugins/zigbee/core/config/devices/' . $this->getConfiguration('visual','none');
+      if(file_exists(__DIR__.'/../../../../'.$childfile)){
+        return $childfile;
+      }
     }
     if(!file_exists(__DIR__.'/../../../../'.$file)){
       return 'plugins/zigbee/plugin_info/zigbee_icon.png';
@@ -467,14 +463,14 @@ class zigbee extends eqLogic {
     foreach (ls(dirname(__FILE__) . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
       foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $device . '_child_*.{jpg,png}', false, array('files', 'quiet')) as $file) {
         $fileEl['path'] = $folder.$file;
-		$cleanName = explode('_child_',$file)[1];
-		foreach (array('.jpg','.png') as $clean){
-			$cleanName = str_replace($clean,'',$cleanName);
-		}
-		$fileEl['selected'] = 0;
-		if ($visual == $folder.$file){
-			$fileEl['selected'] =1;
-		}
+        $cleanName = explode('_child_',$file)[1];
+        foreach (array('.jpg','.png') as $clean){
+          $cleanName = str_replace($clean,'',$cleanName);
+        }
+        $fileEl['selected'] = 0;
+        if ($visual == $folder.$file){
+          $fileEl['selected'] =1;
+        }
         $fileEl['name'] = ucfirst(str_replace('.',' ',$cleanName));
         $files[]=$fileEl;
       }
@@ -518,39 +514,39 @@ class zigbee extends eqLogic {
       return true;
     }
     $this->import($device,true);
-	if ($this->getConfiguration('ischild',0) == 1){
-		$endpoint = explode('|',$this->getLogicalId())[1];
-		foreach ($this->getCmd() as $cmd) {
-			$cmdLogical = $cmd->getLogicalId();
-			$elements = explode('::',$cmdLogical);
-			if ($elements[0] == $endpoint || ($elements[0] == 'attributes' && $elements[1] == $endpoint)){
-				continue;
-			} else {
-				$cmd->remove();
-			}
-		}
-	} else if ($this->getConfiguration('canbesplit',0) == 1){
-		$allendpoints =array();
-		 try {
-          $details = zigbee::request($this->getConfiguration('instance',1),'/device/info',array(
-            'ieee'=>$this->getLogicalId()
-          ),'GET');
-		  foreach ($details['endpoints'] as $endpoint) {
-			$allendpoints[] = $endpoint['id'];
-		 }
-		 foreach ($this->getCmd() as $cmd) {
-			$cmdLogical = $cmd->getLogicalId();
-			$elements = explode('::',$cmdLogical);
-			if (in_array($elements[0],$allendpoints)|| ($elements[0] == 'attributes' && in_array($elements[1],$allendpoints))){
-				continue;
-			} else {
-				$cmd->remove();
-			}
-		}
-        } catch (\Exception $e) {
-          log::add('zigbee','info',$this->getHumanName().' '.$e->getMessage());
+    if ($this->getConfiguration('ischild',0) == 1){
+      $endpoint = explode('|',$this->getLogicalId())[1];
+      foreach ($this->getCmd() as $cmd) {
+        $cmdLogical = $cmd->getLogicalId();
+        $elements = explode('::',$cmdLogical);
+        if ($elements[0] == $endpoint || ($elements[0] == 'attributes' && $elements[1] == $endpoint)){
+          continue;
+        } else {
+          $cmd->remove();
         }
-	}
+      }
+    } else if ($this->getConfiguration('canbesplit',0) == 1){
+      $allendpoints =array();
+      try {
+        $details = zigbee::request($this->getConfiguration('instance',1),'/device/info',array(
+          'ieee'=>$this->getLogicalId()
+        ),'GET');
+        foreach ($details['endpoints'] as $endpoint) {
+          $allendpoints[] = $endpoint['id'];
+        }
+        foreach ($this->getCmd() as $cmd) {
+          $cmdLogical = $cmd->getLogicalId();
+          $elements = explode('::',$cmdLogical);
+          if (in_array($elements[0],$allendpoints)|| ($elements[0] == 'attributes' && in_array($elements[1],$allendpoints))){
+            continue;
+          } else {
+            $cmd->remove();
+          }
+        }
+      } catch (\Exception $e) {
+        log::add('zigbee','info',$this->getHumanName().' '.$e->getMessage());
+      }
+    }
   }
   
   public function refreshValue(){
