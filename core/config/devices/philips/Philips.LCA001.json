@@ -135,7 +135,7 @@
       "logicalId": "duration",
       "configuration" : {
         "minValue" : 0,
-        "maxValue" : 1000
+        "maxValue" : 100
       }
     }
   ]
