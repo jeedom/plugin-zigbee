@@ -142,9 +142,8 @@
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "Hiçbir",
         "Gestion": "Idare",
-        "Ajouter": "Ekle",
-        "Mode inclusion": "İçerleme modu",
-        "Remote commissioning": "",
+        "Autoriser Join": "",
+        "Commissioning": "",
         "Synchronisation": "",
         "Réseau Zigbee": "",
         "Configuration": "Ayar",
