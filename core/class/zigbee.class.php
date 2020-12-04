@@ -689,7 +689,7 @@ class zigbeeCmd extends cmd {
         list($r, $g, $b) = str_split(str_replace('#', '', $_options['color']), 2);
         $info = self::convertRGBToXY(hexdec($r), hexdec($g), hexdec($b));
         $replace['#color#'] = round($info['x']*65535).'::'.round($info['y']*65535);
-        $commands[] = array('endpoint' => intval(explode('::',$information)[0]),'cluster'=>'level','command'=>'move_to_level','args'=>array(round($info['bri']),0));
+        $commands[] = array('endpoint' => intval(explode('::',$information)[0]),'cluster'=>'level','command'=>'move_to_level','args'=>array();
         break;
         case 'select':
         $replace['#select#'] = $_options['select'];
