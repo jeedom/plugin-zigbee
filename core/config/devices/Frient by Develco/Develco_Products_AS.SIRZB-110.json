@@ -6,6 +6,18 @@
   "reset": "Appuyer sur le bouton jusqu'a ce que la led clignote rouge",
   "commands": [
     {
+      "name": "Durée sonnerie",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "duration",
+      "configuration" : {
+        "minValue":"1",
+        "maxValue":"600"
+      }
+    },
+    {
       "name": "Armement",
       "type": "action",
       "subtype": "slider",
@@ -47,7 +59,7 @@
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "43::ias_wd::start_warning::#slider#::0::1::60::1::1",
+      "logicalId": "43::ias_wd::start_warning::#slider#::0::1::#duration#::1::1",
       "configuration" : {
         "minValue":"1",
         "maxValue":"9"
@@ -59,7 +71,7 @@
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "43::ias_wd::start_warning::#slider#::0::2::60::1::1",
+      "logicalId": "43::ias_wd::start_warning::#slider#::0::2::#duration#::1::1",
       "configuration" : {
         "minValue":"1",
         "maxValue":"9"
@@ -71,7 +83,7 @@
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "43::ias_wd::start_warning::#slider#::0::3::60::1::1",
+      "logicalId": "43::ias_wd::start_warning::#slider#::0::3::#duration#::1::1",
       "configuration" : {
         "minValue":"1",
         "maxValue":"9"
@@ -83,7 +95,7 @@
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "43::ias_wd::start_warning::#slider#::0::5::60::1::1",
+      "logicalId": "43::ias_wd::start_warning::#slider#::0::5::#duration#::1::1",
       "configuration" : {
         "minValue":"1",
         "maxValue":"9"
@@ -95,7 +107,7 @@
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "43::ias_wd::start_warning::#slider#::0::6::60::1::1",
+      "logicalId": "43::ias_wd::start_warning::#slider#::0::6::#duration#::1::1",
       "configuration" : {
         "minValue":"1",
         "maxValue":"9"
