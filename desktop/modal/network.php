@@ -359,7 +359,9 @@ if (!isConnect('admin')) {
             graph.addLink(devices_neighbours[z].ieee, controler_ieee, {color: linkcolor, lengthfactor: 20});
           }else{
             for(i in devices_neighbours[z].neighbours){
-              graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {color: linkcolor, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
+              if (controler_ieee != devices_neighbours[z].ieee) {
+                  graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {color: linkcolor, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
+              }
             }
           }
           
