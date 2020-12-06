@@ -134,7 +134,6 @@ if (isset($result['devices'])) {
 			foreach ($deviceArray as $zigbee) {
 				foreach($clusters as $cluster_id => $attributs){
 					foreach($attributs as $attribut_id => $value){
-						log::add('zigbee','error','AAAAAAA ' . $attribut_id . ' '. print_r($value,true));
 						if($value == '[]'){
 							continue;
 						}
