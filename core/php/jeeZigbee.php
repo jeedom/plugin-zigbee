@@ -134,6 +134,7 @@ if (isset($result['devices'])) {
 			foreach ($deviceArray as $zigbee) {
 				foreach($clusters as $cluster_id => $attributs){
 					foreach($attributs as $attribut_id => $value){
+						log::add('zigbee','error','AAAAAAA ' . $attribut_id . ' '. print_r($value,true));
 						if($value == '[]'){
 							continue;
 						}
@@ -153,6 +154,14 @@ if (isset($result['devices'])) {
 								$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
 								if(is_object($cmd)){
 									$cmd->event(convertValue($cmd_value['value']));
+								}
+							}
+						}else if(strcmp($attribut_id, 'event') === 0){
+							foreach ($value['value'] as $cmd_id => $cmd_value) {
+								log::add('zigbee','debug','Search general command for '.$ieee.' logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.' => '.$cmd_value);
+								$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
+								if(is_object($cmd)){
+									$cmd->event(convertValue($cmd_value));
 								}
 							}
 						}else {

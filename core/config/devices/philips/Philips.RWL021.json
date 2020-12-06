@@ -13,6 +13,17 @@
       "configuration": {
         "repeatEventManagement": "always"
       }
+    },
+    {
+      "name": "Event",
+      "type": "info",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::64512::event::attribute",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }
