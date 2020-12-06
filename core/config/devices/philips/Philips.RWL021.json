@@ -17,7 +17,7 @@
     {
       "name": "Event",
       "type": "info",
-      "subtype": "other",
+      "subtype": "string",
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "2::64512::event::attribute",
