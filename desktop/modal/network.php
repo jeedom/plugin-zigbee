@@ -86,10 +86,10 @@ if (!isConnect('admin')) {
     <div id="actions_network" class="tab-pane">
       <table class="table">
         <thead>
-          <th>
-            <td>{{Action}}</td>
-            <td>{{Description}}</td>
-          </th>
+          <tr>
+            <th>{{Action}}</th>
+            <th>{{Description}}</th>
+          </tr>
         </thead>
         <tbody>
           

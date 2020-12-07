@@ -19,8 +19,18 @@ $('#bt_zigbeeNetwork').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Réseaux zigbee}}"}).load('index.php?v=d&plugin=zigbee&modal=network').dialog('open');
 });
 
+$('#bt_zigbeeGroups').off('click').on('click', function () {
+  $('#md_modal').dialog({title: "{{Groupes zigbee}}"}).load('index.php?v=d&plugin=zigbee&modal=groups').dialog('open');
+});
+
 $('#bt_showZigbeeDevice').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Configuration du noeud}}"}).load('index.php?v=d&plugin=zigbee&modal=node&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
+  if ($('.eqLogicAttr[data-l1key=id]').value() in devices_attr) {
+	 if (devices_attr[$('.eqLogicAttr[data-l1key=id]').value()]['isgroup']==0) {
+			$('#md_modal').dialog({title: "{{Configuration du noeud}}"}).load('index.php?v=d&plugin=zigbee&modal=node&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
+	 } else {
+			$('#md_modal').dialog({title: "{{Configuration du groupe}}"}).load('index.php?v=d&plugin=zigbee&modal=group&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
+	 }
+  }
 });
 
 $('#bt_syncEqLogic').off('click').on('click', function () {
@@ -166,6 +176,12 @@ $('.eqLogicAttr[data-l1key=id]').off('change').on('change', function () {
 			$('.childCreate').show();
 		} else{
 			$('.childCreate').hide();
+		}
+		if (devices_attr[$(this).value()]['isgroup']==1) {
+			$('.eqLogicAttr[data-l1key=configuration][data-l2key=manufacturer]').value("Groupes");
+			$('.eqLogicAttr[data-l1key=configuration][data-l2key=manufacturer]').css('pointer-events', 'none');
+		} else {
+			$('.eqLogicAttr[data-l1key=configuration][data-l2key=manufacturer]').css('pointer-events', 'auto');
 		}
 		if (devices_attr[$(this).value()]['ischild']==1) {
 			 $.ajax({

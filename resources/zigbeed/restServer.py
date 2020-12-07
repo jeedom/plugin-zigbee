@@ -25,6 +25,7 @@ import traceback
 import asyncio
 import registries
 import zdevices
+import zgroups
 import zqueue
 import zigpy
 
@@ -122,6 +123,13 @@ class DeviceHandler(RequestHandler):
 					raise Exception("Device not found")
 				values = await zdevices.serialize(device)
 				return self.write(utils.format_json_result(success=True,data=values))
+			if arg1 == 'groupable':
+				result = []
+				for device in shared.ZIGPY.devices.values():
+					if zdevices.is_groupable(device):
+						values = await zdevices.serialize(device)
+						result.append(values)
+				return self.write(utils.format_json_result(success=True,data=result))
 			raise Exception("No method found for "+str(arg1))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
@@ -213,7 +221,7 @@ class DeviceHandler(RequestHandler):
 					else:
 						raise
 				return self.write(utils.format_json_result(success=True))
-			raise Exception("No method found for "+str(arg1))
+
 		except Exception as e:
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
@@ -229,10 +237,98 @@ class DeviceHandler(RequestHandler):
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
+class GroupHandler(RequestHandler):
+	def prepare(self):
+		utils.check_apikey(self.request.headers.get("autorization", ""))
+		self.json_args = None
+		try:
+			if self.request.headers.get("Content-Type", "").startswith("application/json"):
+				self.json_args = json.loads(self.request.body)
+		except Exception as e:
+			self.json_args = None
+		logging.debug('[GroupHandler.prepare] Json arg : '+str(self.json_args))
+
+	async def get(self,arg1):
+		try:
+			if arg1 == 'all':
+				result = []
+				for group in shared.ZIGPY.groups.values():
+					values = await zgroups.serialize(group)
+					result.append(values)
+				return self.write(utils.format_json_result(success=True,data=result))
+			if arg1 == 'info':
+				result = []
+				group = zgroups.find(self.get_argument('id',''))
+				if group == None:
+					raise Exception("Group not found")
+				values = await zgroups.serialize(group)
+				return self.write(utils.format_json_result(success=True,data=values))
+			raise Exception("No method found for "+str(arg1))
+		except Exception as e:
+			logging.debug(traceback.format_exc())
+			return self.write(utils.format_json_result(success="error",data=str(e)))
+
+	async def post(self,arg1):
+		try:
+			True
+		except Exception as e:
+			logging.debug(traceback.format_exc())
+			return self.write(utils.format_json_result(success="error",data=str(e)))
+
+	async def put(self,arg1):
+		try:
+			if arg1 == 'command':
+				try:
+					await zgroups.command(self.json_args)
+				except Exception as e:
+					if 'allowQueue' in self.json_args and self.json_args['allowQueue']:
+						logging.debug('[GroupHandler.put] Failed on command'+str(self.json_args)+' => '+str(e)+'. Replan group command later')
+						zqueue.add('command',5,self.json_args,1)
+					else:
+						raise
+				return self.write(utils.format_json_result(success=True))
+			if arg1 == 'create':
+				try:
+					await zgroups.create_group(self.json_args['name'])
+					return self.write(utils.format_json_result(success=True))
+				except:
+					raise
+				return self.write(utils.format_json_result(success=True))
+			if arg1 == 'add_device':
+				try:
+					await zgroups.add_device(self.json_args)
+				except Exception as e:
+					raise
+				return self.write(utils.format_json_result(success=True))
+			if arg1 == 'delete_device':
+				try:
+					await zgroups.delete_device(self.json_args)
+				except Exception as e:
+					raise
+				return self.write(utils.format_json_result(success=True))
+			raise Exception("No method found for "+str(arg1))
+
+		except Exception as e:
+			logging.debug(traceback.format_exc())
+			return self.write(utils.format_json_result(success="error",data=str(e)))
+	
+	async def delete(self):
+		try:
+			group = zgroups.find(self.json_args['id'])
+			if group == None :
+				raise Exception("Group not found")
+			shared.ZIGPY.groups.pop(group._group_id)
+			return self.write(utils.format_json_result(success=True))
+		except Exception as e:
+			logging.debug(traceback.format_exc())
+			return self.write(utils.format_json_result(success="error",data=str(e)))
+
 
 shared.REST_SERVER = Application([
 		(r"/application/([^/]+)?", ApplicationHandler),
 		(r"/network/([^/]+)?", NetworkHandler),
 		(r"/device/([^/]+)?", DeviceHandler),
-		(r"/device", DeviceHandler)
+		(r"/device", DeviceHandler),
+		(r"/group/([^/]+)?", GroupHandler),
+		(r"/group", GroupHandler)
 	])

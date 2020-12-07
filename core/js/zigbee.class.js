@@ -20,6 +20,7 @@ jeedom.zigbee.application = function() {};
 jeedom.zigbee.network = function() {};
 jeedom.zigbee.util = function() {};
 jeedom.zigbee.device = function() {};
+jeedom.zigbee.group = function() {};
 jeedom.zigbee.deamon = function() {};
 
 jeedom.zigbee.application.include = function(_params){
@@ -337,6 +338,110 @@ jeedom.zigbee.device.remoteCommissioning = function(_params){
     error: _params.error,
     success : _params.success
   });
+}
+
+jeedom.zigbee.group.all = function(_params){
+  var paramsRequired = [];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    instance : _params.instance || 1,
+    request: '/group/all',
+    type : 'GET'
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.zigbee.group.create = function(_params){
+  var paramsRequired = ['name'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    instance : _params.instance || 1,
+    request: '/group/create',
+    data : json_encode({name : _params.name}),
+    type : 'PUT'
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.zigbee.group.add_device = function(_params){
+  var paramsRequired = ['ieee','id'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    instance : _params.instance || 1,
+    request: '/group/add_device',
+    data : json_encode({ieee : _params.ieee, id : parseInt(_params.id)}),
+    type : 'PUT'
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.zigbee.group.delete_device = function(_params){
+  var paramsRequired = ['ieee','id'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    instance : _params.instance || 1,
+    request: '/group/delete_device',
+    data : json_encode({ieee : _params.ieee, id : parseInt(_params.id)}),
+    type : 'PUT'
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.zigbee.group.delete = function(_params){
+  var paramsRequired = ['id'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    instance : _params.instance || 1,
+    request: '/group',
+    data : json_encode({id : _params.id}),
+    type : 'DELETE'
+  };
+  $.ajax(paramsAJAX);
 }
 
 jeedom.zigbee.deamon.getInstanceDef = function(_params){

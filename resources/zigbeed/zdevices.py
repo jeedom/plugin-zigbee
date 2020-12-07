@@ -27,6 +27,7 @@ import zqueue
 import zigpy
 from map import *
 import specifics
+from zigpy.zcl.clusters.general import Groups
 
 async def command(_data):
 	device = find(_data['ieee'])
@@ -223,6 +224,15 @@ async def get_basic_info(device):
 			except Exception as e:
 				logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] Error on read attribute level 4 : "+str(e))
 	logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] End get basic info from device")
+
+def is_groupable(device):
+	for ep_id, endpoint in device.endpoints.items():
+		if ep_id == 0:
+			continue
+		for cluster in endpoint.in_clusters.values():
+			if Groups.cluster_id == cluster.cluster_id:
+				return True
+	return False
 
 async def serialize(device):
 	obj = {

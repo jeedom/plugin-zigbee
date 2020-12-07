@@ -17,7 +17,7 @@ foreach ($eqLogics as $eqLogic) {
 	$eqLogicArray['id'] = $eqLogic->getId();
 	$eqLogicArray['img'] = 'plugins/zigbee/core/config/devices/'.zigbee::getImgFilePath($eqLogic->getConfiguration('device'));
 	$devices[$eqLogic->getLogicalId()] = $eqLogicArray;
-	$deviceAttr[$eqLogic->getId()] = array('canbesplit' => $eqLogic->getConfiguration('canbesplit',0),'ischild' => $eqLogic->getConfiguration('ischild',0));
+	$deviceAttr[$eqLogic->getId()] = array('canbesplit' => $eqLogic->getConfiguration('canbesplit',0),'ischild' => $eqLogic->getConfiguration('ischild',0),'isgroup' => $eqLogic->getConfiguration('isgroup',0));
 }
 $devices[0]=array('HumanNameFull'=>'Contrôleur','HumanName'=>'Contrôleur','id'=>0,'img'=>'plugins/zigbee/core/config/devices/coordinator.png');
 sendVarToJS('zigbee_devices',$devices);
@@ -51,37 +51,71 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 				<br>
 				<span>{{Réseau Zigbee}}</span>
 			</div>
+			<div class="cursor logoSecondary" id="bt_zigbeeGroups" >
+				<i class="fas fa-columns"></i>
+				<br>
+				<span>{{Groupes Zigbee}}</span>
+			</div>
 			<div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
 				<i class="fas fa-wrench"></i>
 				<br/>
 				<span>{{Configuration}}</span>
 			</div>
 		</div>
-		<legend><i class="fas fa-table"></i>  {{Mes équipements Zigbee}}</legend>
 		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
+		<legend><i class="fas fa-table"></i>  {{Mes équipements Zigbee}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<?php
 			foreach ($eqLogics as $eqLogic) {
-				$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
-				$child = ($eqLogic->getConfiguration('ischild',0) == 1) ? '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_orange fas fa-user" title="Ce device est un enfant"></i>' : '';
-				$child .= ($eqLogic->getConfiguration('canbesplit',0) == 1 && $eqLogic->getConfiguration('ischild',0)==0) ? '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green fas fa-random" title="Ce device peut être séparé en enfants"></i>' : '';
-				echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '" >';
-				if ($eqLogic->getConfiguration('device') != ""){
-					if (zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false && $eqLogic->getConfiguration('ischild',0) == 0) {
-						echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
-					} else if ($eqLogic->getConfiguration('ischild',0) == 1 && file_exists(dirname(__FILE__) . '/../../core/config/devices/'.$eqLogic->getConfiguration('visual','none'))) {
-						echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . $eqLogic->getConfiguration('visual') . '"/>'.$child;
-					} else if ($eqLogic->getConfiguration('ischild',0) == 1 && zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false) {
-						echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
-					} else {
+				if ($eqLogic->getConfiguration('isgroup',0) == 0) {
+					$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
+					$child = ($eqLogic->getConfiguration('ischild',0) == 1) ? '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_orange fas fa-user" title="Ce device est un enfant"></i>' : '';
+					$child .= ($eqLogic->getConfiguration('canbesplit',0) == 1 && $eqLogic->getConfiguration('ischild',0)==0) ? '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green fas fa-random" title="Ce device peut être séparé en enfants"></i>' : '';
+					echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '" >';
+					if ($eqLogic->getConfiguration('device') != ""){
+						if (zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false && $eqLogic->getConfiguration('ischild',0) == 0) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
+						} else if ($eqLogic->getConfiguration('ischild',0) == 1 && file_exists(dirname(__FILE__) . '/../../core/config/devices/'.$eqLogic->getConfiguration('visual','none'))) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . $eqLogic->getConfiguration('visual') . '"/>'.$child;
+						} else if ($eqLogic->getConfiguration('ischild',0) == 1 && zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
+						} else {
+							echo '<img src="' . $plugin->getPathImgIcon() . '" />'.$child;
+						}
+					}else{
 						echo '<img src="' . $plugin->getPathImgIcon() . '" />'.$child;
 					}
-				}else{
-					echo '<img src="' . $plugin->getPathImgIcon() . '" />'.$child;
+					echo "<br/>";
+					echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
+					echo '</div>';
 				}
-				echo "<br/>";
-				echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
-				echo '</div>';
+			}
+			?>
+		</div>
+		<legend><i class="fas fa-table"></i>  {{Mes groupes Zigbee}}</legend>
+		<div class="eqLogicThumbnailContainer">
+			<?php
+			$child = '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green fas fa-columns" title="Groupe"></i>';
+			foreach ($eqLogics as $eqLogic) {
+				if ($eqLogic->getConfiguration('isgroup',0) == 1) {
+					echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '" >';
+					if ($eqLogic->getConfiguration('device') != ""){
+						if (zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false && $eqLogic->getConfiguration('ischild',0) == 0) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
+						} else if ($eqLogic->getConfiguration('ischild',0) == 1 && file_exists(dirname(__FILE__) . '/../../core/config/devices/'.$eqLogic->getConfiguration('visual','none'))) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . $eqLogic->getConfiguration('visual') . '"/>'.$child;
+						} else if ($eqLogic->getConfiguration('ischild',0) == 1 && zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
+						} else {
+							echo '<img src="' . $plugin->getPathImgIcon() . '" />'.$child;
+						}
+					}else{
+						echo '<img src="' . $plugin->getPathImgIcon() . '" />'.$child;
+					}
+					echo "<br/>";
+					echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
+					echo '</div>';
+				}
 			}
 			?>
 		</div>

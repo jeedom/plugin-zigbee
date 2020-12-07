@@ -1,0 +1,25 @@
+{
+  "name": "On - Off",
+  "ref" : "Groupes",
+  "commands": [
+    {
+      "name": "On",
+      "generic_type": "LIGHT_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "gr::on_off::on"
+    },
+    {
+      "name": "Off",
+      "generic_type": "LIGHT_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "gr::on_off::off"
+    }
+  ]
+}
