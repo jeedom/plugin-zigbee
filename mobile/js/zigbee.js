@@ -15,7 +15,6 @@
 */
 
 function initZigbeeZigbee() {
-  CURRENT_PAGE = 'zigbee';
   $('body').off('zigbee::includeDevice').on('zigbee::includeDevice', function (_event, _options) {
     $('.eqLogicAttr[data-l1key=id]').value('');
     if (_options != '') {
