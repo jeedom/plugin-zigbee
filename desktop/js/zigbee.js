@@ -25,11 +25,11 @@ $('#bt_zigbeeGroups').off('click').on('click', function () {
 
 $('#bt_showZigbeeDevice').off('click').on('click', function () {
   if ($('.eqLogicAttr[data-l1key=id]').value() in devices_attr) {
-	 if (devices_attr[$('.eqLogicAttr[data-l1key=id]').value()]['isgroup']==0) {
-			$('#md_modal').dialog({title: "{{Configuration du noeud}}"}).load('index.php?v=d&plugin=zigbee&modal=node&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
-	 } else {
-			$('#md_modal').dialog({title: "{{Configuration du groupe}}"}).load('index.php?v=d&plugin=zigbee&modal=group&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
-	 }
+    if (devices_attr[$('.eqLogicAttr[data-l1key=id]').value()]['isgroup']==0) {
+      $('#md_modal').dialog({title: "{{Configuration du noeud}}"}).load('index.php?v=d&plugin=zigbee&modal=node&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
+    } else {
+      $('#md_modal').dialog({title: "{{Configuration du groupe}}"}).load('index.php?v=d&plugin=zigbee&modal=group&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
+    }
   }
 });
 
@@ -103,20 +103,20 @@ $('#bt_remoteCommissioning').off('click').on('click', function () {
 });
 
 $('#bt_childCreate').off('click').on('click', function () {
-      bootbox.prompt("Vous voulez créer un enfant sur quel endpoint ? (attention il ne faut jamais supprimer le device père)", function(endpoint){
-         if (endpoint) {jeedom.zigbee.device.childCreate({
-		  id : $('.eqLogicAttr[data-l1key=id]').value(),
-          endpoint : endpoint,
-          error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-          },
-          success: function () {
-            $('#div_alert').showAlert({message: '{{Enfant créé avec succès}}', level: 'success'});
-			window.location.href = 'index.php?v=d&p=zigbee&m=zigbee';
-          }
-        });
-		 }
-      });
+  bootbox.prompt("Vous voulez créer un enfant sur quel endpoint ? (attention il ne faut jamais supprimer le device père)", function(endpoint){
+    if (endpoint) {jeedom.zigbee.device.childCreate({
+      id : $('.eqLogicAttr[data-l1key=id]').value(),
+      endpoint : endpoint,
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function () {
+        $('#div_alert').showAlert({message: '{{Enfant créé avec succès}}', level: 'success'});
+        window.location.href = 'index.php?v=d&p=zigbee&m=zigbee';
+      }
+    });
+  }
+});
 });
 
 
@@ -158,68 +158,68 @@ $('.eqLogicAttr[data-l1key=configuration][data-l2key=device]').off('change').on(
     $('#img_device').attr("src", 'plugins/zigbee/core/config/devices/'+img);
   }else{
     $('#img_device').attr("src",'plugins/zigbee/plugin_info/zigbee_icon.png');
-  } 
+  }
 });
 
 $('.eqLogicAttr[data-l1key=configuration][data-l2key=visual]').off('change').on('change', function () {
   if($(this).value() != '' && $(this).value() != null){
     $('#img_device').attr("src", 'plugins/zigbee/core/config/devices/'+$(this).value());
   } else {
-	 var img = $('.eqLogicAttr[data-l1key=configuration][data-l2key=device] option:selected').attr('data-img')
-     $('#img_device').attr("src", 'plugins/zigbee/core/config/devices/'+img);
+    var img = $('.eqLogicAttr[data-l1key=configuration][data-l2key=device] option:selected').attr('data-img')
+    $('#img_device').attr("src", 'plugins/zigbee/core/config/devices/'+img);
   }
 });
 
 $('.eqLogicAttr[data-l1key=id]').off('change').on('change', function () {
-	if ($(this).value() in devices_attr) {
-		if (devices_attr[$(this).value()]['canbesplit']==1 && devices_attr[$(this).value()]['ischild']==0) {
-			$('.childCreate').show();
-		} else{
-			$('.childCreate').hide();
-		}
-		if (devices_attr[$(this).value()]['isgroup']==1) {
-			$('.eqLogicAttr[data-l1key=configuration][data-l2key=manufacturer]').value("Groupes");
-			$('.eqLogicAttr[data-l1key=configuration][data-l2key=manufacturer]').css('pointer-events', 'none');
-		} else {
-			$('.eqLogicAttr[data-l1key=configuration][data-l2key=manufacturer]').css('pointer-events', 'auto');
-		}
-		if (devices_attr[$(this).value()]['ischild']==1) {
-			 $.ajax({
-				type: "POST",
-				url: "plugins/zigbee/core/ajax/zigbee.ajax.php",
-				data: {
-					action: "getVisualList",
-					id: $(this).value(),
-				},
-				dataType: 'json',
-				global: false,
-				error: function (request, status, error) {
-				handleAjaxError(request, status, error);
-				},
-				success: function (data) {
-				if (data.state != 'ok') {
-					$('#div_alert').showAlert({message: data.result, level: 'danger'});
-					return;
-				}
-				var options = '';
-				for (var i in data.result) {
-					if (data.result[i]['selected'] == 1){
-						options += '<option value="'+data.result[i]['path']+'" selected>'+data.result[i]['name']+'</option>';
-						if (data.result[i]['path'] != '') {
-							$('#img_device').attr("src", 'plugins/zigbee/core/config/devices/'+data.result[i]['path']);
-						}
-					} else {
-						options += '<option value="'+data.result[i]['path']+'">'+data.result[i]['name']+'</option>';
-					}
-				}
-				$(".listVisual").html(options);
-			}
-			});
-			$('.visual').show();
-		} else{
-			$('.visual').hide();
-		}
-	}
+  if ($(this).value() in devices_attr) {
+    if (devices_attr[$(this).value()]['canbesplit']==1 && devices_attr[$(this).value()]['ischild']==0) {
+      $('.childCreate').show();
+    } else{
+      $('.childCreate').hide();
+    }
+    if (devices_attr[$(this).value()]['isgroup']==1) {
+      $('.eqLogicAttr[data-l1key=configuration][data-l2key=manufacturer]').value("Groupes");
+      $('.eqLogicAttr[data-l1key=configuration][data-l2key=manufacturer]').css('pointer-events', 'none');
+    } else {
+      $('.eqLogicAttr[data-l1key=configuration][data-l2key=manufacturer]').css('pointer-events', 'auto');
+    }
+    if (devices_attr[$(this).value()]['ischild']==1) {
+      $.ajax({
+        type: "POST",
+        url: "plugins/zigbee/core/ajax/zigbee.ajax.php",
+        data: {
+          action: "getVisualList",
+          id: $(this).value(),
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+          handleAjaxError(request, status, error);
+        },
+        success: function (data) {
+          if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
+          }
+          var options = '';
+          for (var i in data.result) {
+            if (data.result[i]['selected'] == 1){
+              options += '<option value="'+data.result[i]['path']+'" selected>'+data.result[i]['name']+'</option>';
+              if (data.result[i]['path'] != '') {
+                $('#img_device').attr("src", 'plugins/zigbee/core/config/devices/'+data.result[i]['path']);
+              }
+            } else {
+              options += '<option value="'+data.result[i]['path']+'">'+data.result[i]['name']+'</option>';
+            }
+          }
+          $(".listVisual").html(options);
+        }
+      });
+      $('.visual').show();
+    } else{
+      $('.visual').hide();
+    }
+  }
 });
 
 $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
