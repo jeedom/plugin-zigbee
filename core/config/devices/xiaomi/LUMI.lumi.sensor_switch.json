@@ -1,6 +1,6 @@
 {
   "name": "Xiaomi Aquara switch",
-  "ref" : "swtich",
+  "ref" : "switch",
   "buylink" : "",
   "commands": [
     {
@@ -10,6 +10,28 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::6::0"
+    },
+    {
+      "name": "Type",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::event::attribute",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Event",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::event::click_type",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }

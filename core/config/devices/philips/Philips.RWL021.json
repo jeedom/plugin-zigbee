@@ -7,9 +7,31 @@
       "name": "Etat",
       "type": "info",
       "subtype": "numeric",
-      "isVisible": 0,
+      "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "2::64512::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Bouton",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::64512::event::button",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Type",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::64512::event::press_type",
       "configuration": {
         "repeatEventManagement": "always"
       }
