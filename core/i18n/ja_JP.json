@@ -107,6 +107,16 @@
         "Module redécouvert": "",
         "Module reinitialisé": ""
     },
+    "plugins\/zigbee\/desktop\/modal\/groups.php": {
+        "Ajouter": "加えます",
+        "Id": "",
+        "Nom Jeedom": "",
+        "Membres": "",
+        "Nom": "表題",
+        "Actions": "株式",
+        "Supprimer": "取り除きます",
+        "Groupe créé avec succès": ""
+    },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
         "Application": "",
         "Actions": "株式",
@@ -139,6 +149,23 @@
         "Modèle": "モデル",
         "NWK": ""
     },
+    "plugins\/zigbee\/desktop\/modal\/group.php": {
+        "Equipement introuvable : ": "",
+        "Informations Groupe": "",
+        "Nom :": "",
+        "Nom Zigbee :": "",
+        "Identifiant :": "",
+        "Membres": "",
+        "Ajouter": "加えます",
+        "Image": "画像",
+        "IEEE": "",
+        "Nom": "表題",
+        "Action": "アクション",
+        "Supprimer": "取り除きます",
+        "Aucun module ne peut etre ajouté dans ce groupe": "",
+        "Module ajouté avec succès au groupe": "",
+        "Configuration du groupe": ""
+    },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "何でもありません",
         "Gestion": "管理",
@@ -146,9 +173,11 @@
         "Commissioning": "",
         "Synchronisation": "",
         "Réseau Zigbee": "",
+        "Groupes Zigbee": "",
         "Configuration": "コンフィギュレーション",
-        "Mes équipements Zigbee": "",
         "Rechercher": "検索",
+        "Mes équipements Zigbee": "",
+        "Mes groupes Zigbee": "",
         "Configuration avancée": "高度な構成",
         "Créer un enfant": "",
         "Dupliquer": "重複",
@@ -179,7 +208,9 @@
     },
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
         "Réseaux zigbee": "",
+        "Groupes zigbee": "",
         "Configuration du noeud": "",
+        "Configuration du groupe": "",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Module ajouté avec succès": "",
         "Enfant créé avec succès": "",

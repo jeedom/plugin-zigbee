@@ -107,6 +107,16 @@
         "Module redécouvert": "",
         "Module reinitialisé": ""
     },
+    "plugins\/zigbee\/desktop\/modal\/groups.php": {
+        "Ajouter": "Tambahan",
+        "Id": "",
+        "Nom Jeedom": "",
+        "Membres": "",
+        "Nom": "Nama",
+        "Actions": "Tindakan",
+        "Supprimer": "Menghapus",
+        "Groupe créé avec succès": ""
+    },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
         "Application": "",
         "Actions": "Tindakan",
@@ -139,6 +149,23 @@
         "Modèle": "Model",
         "NWK": ""
     },
+    "plugins\/zigbee\/desktop\/modal\/group.php": {
+        "Equipement introuvable : ": "",
+        "Informations Groupe": "",
+        "Nom :": "",
+        "Nom Zigbee :": "",
+        "Identifiant :": "",
+        "Membres": "",
+        "Ajouter": "Tambahan",
+        "Image": "Gambar",
+        "IEEE": "",
+        "Nom": "Nama",
+        "Action": "Tindakan",
+        "Supprimer": "Menghapus",
+        "Aucun module ne peut etre ajouté dans ce groupe": "",
+        "Module ajouté avec succès au groupe": "",
+        "Configuration du groupe": ""
+    },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "Tak ada",
         "Gestion": "Manajemen",
@@ -146,9 +173,11 @@
         "Commissioning": "",
         "Synchronisation": "",
         "Réseau Zigbee": "",
+        "Groupes Zigbee": "",
         "Configuration": "Konfigurasi",
-        "Mes équipements Zigbee": "",
         "Rechercher": "Pencarian",
+        "Mes équipements Zigbee": "",
+        "Mes groupes Zigbee": "",
         "Configuration avancée": "Konfigurasi lanjutan",
         "Créer un enfant": "",
         "Dupliquer": "Duplikat",
@@ -179,7 +208,9 @@
     },
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
         "Réseaux zigbee": "",
+        "Groupes zigbee": "",
         "Configuration du noeud": "",
+        "Configuration du groupe": "",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Module ajouté avec succès": "",
         "Enfant créé avec succès": "",
