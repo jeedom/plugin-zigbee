@@ -14,7 +14,10 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "2::18::85"
+      "logicalId": "2::18::85",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Rotation",
@@ -25,6 +28,29 @@
       "logicalId": "3::12::85",
       "configuration" : {
         "historizeRound" : 0,
+		"repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Type",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::18::event::attribute",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Type rotation",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "3::12::event::attribute",
+      "configuration": {
+        "repeatEventManagement": "always"
       }
     }
   ]

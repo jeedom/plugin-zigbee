@@ -107,6 +107,16 @@
         "Module redécouvert": "",
         "Module reinitialisé": ""
     },
+    "plugins\/zigbee\/desktop\/modal\/groups.php": {
+        "Ajouter": "Ekle",
+        "Id": "Kimlik",
+        "Nom Jeedom": "",
+        "Membres": "",
+        "Nom": "İsim",
+        "Actions": "Işlemler",
+        "Supprimer": "Sil",
+        "Groupe créé avec succès": ""
+    },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
         "Application": "",
         "Actions": "Işlemler",
@@ -139,6 +149,23 @@
         "Modèle": "Model",
         "NWK": ""
     },
+    "plugins\/zigbee\/desktop\/modal\/group.php": {
+        "Equipement introuvable : ": "",
+        "Informations Groupe": "",
+        "Nom :": "",
+        "Nom Zigbee :": "",
+        "Identifiant :": "",
+        "Membres": "",
+        "Ajouter": "Ekle",
+        "Image": "Fotoğraf",
+        "IEEE": "",
+        "Nom": "İsim",
+        "Action": "Eylem",
+        "Supprimer": "Sil",
+        "Aucun module ne peut etre ajouté dans ce groupe": "",
+        "Module ajouté avec succès au groupe": "",
+        "Configuration du groupe": ""
+    },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "Hiçbir",
         "Gestion": "Idare",
@@ -146,9 +173,11 @@
         "Commissioning": "",
         "Synchronisation": "",
         "Réseau Zigbee": "",
+        "Groupes Zigbee": "",
         "Configuration": "Ayar",
-        "Mes équipements Zigbee": "",
         "Rechercher": "Arayın",
+        "Mes équipements Zigbee": "",
+        "Mes groupes Zigbee": "",
         "Configuration avancée": "Gelişmiş ayarlar",
         "Créer un enfant": "",
         "Dupliquer": "Kopyala",
@@ -179,7 +208,9 @@
     },
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
         "Réseaux zigbee": "",
+        "Groupes zigbee": "",
         "Configuration du noeud": "",
+        "Configuration du groupe": "",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Module ajouté avec succès": "",
         "Enfant créé avec succès": "",

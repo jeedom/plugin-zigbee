@@ -107,6 +107,16 @@
         "Module redécouvert": "",
         "Module reinitialisé": ""
     },
+    "plugins\/zigbee\/desktop\/modal\/groups.php": {
+        "Ajouter": "Aggiungi",
+        "Id": "",
+        "Nom Jeedom": "",
+        "Membres": "",
+        "Nom": "Nome",
+        "Actions": "Stock",
+        "Supprimer": "Rimuovere",
+        "Groupe créé avec succès": ""
+    },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
         "Application": "",
         "Actions": "Stock",
@@ -139,6 +149,23 @@
         "Modèle": "Modello",
         "NWK": ""
     },
+    "plugins\/zigbee\/desktop\/modal\/group.php": {
+        "Equipement introuvable : ": "",
+        "Informations Groupe": "",
+        "Nom :": "",
+        "Nom Zigbee :": "",
+        "Identifiant :": "",
+        "Membres": "",
+        "Ajouter": "Aggiungi",
+        "Image": "Immagine",
+        "IEEE": "",
+        "Nom": "Nome",
+        "Action": "Azione",
+        "Supprimer": "Rimuovere",
+        "Aucun module ne peut etre ajouté dans ce groupe": "",
+        "Module ajouté avec succès au groupe": "",
+        "Configuration du groupe": ""
+    },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "Nessuno",
         "Gestion": "Gestione",
@@ -146,9 +173,11 @@
         "Commissioning": "",
         "Synchronisation": "",
         "Réseau Zigbee": "",
+        "Groupes Zigbee": "",
         "Configuration": "Configurazione",
-        "Mes équipements Zigbee": "",
         "Rechercher": "Ricercare",
+        "Mes équipements Zigbee": "",
+        "Mes groupes Zigbee": "",
         "Configuration avancée": "Configurazione avanzata",
         "Créer un enfant": "",
         "Dupliquer": "Duplicato",
@@ -179,7 +208,9 @@
     },
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
         "Réseaux zigbee": "",
+        "Groupes zigbee": "",
         "Configuration du noeud": "",
+        "Configuration du groupe": "",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Module ajouté avec succès": "",
         "Enfant créé avec succès": "",

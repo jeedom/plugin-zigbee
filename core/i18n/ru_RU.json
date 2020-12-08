@@ -107,6 +107,16 @@
         "Module redécouvert": "",
         "Module reinitialisé": ""
     },
+    "plugins\/zigbee\/desktop\/modal\/groups.php": {
+        "Ajouter": "Добавить",
+        "Id": "Идентификатор",
+        "Nom Jeedom": "",
+        "Membres": "",
+        "Nom": "Имя",
+        "Actions": "акции",
+        "Supprimer": "удаление",
+        "Groupe créé avec succès": ""
+    },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
         "Application": "",
         "Actions": "акции",
@@ -139,6 +149,23 @@
         "Modèle": "Модель",
         "NWK": ""
     },
+    "plugins\/zigbee\/desktop\/modal\/group.php": {
+        "Equipement introuvable : ": "",
+        "Informations Groupe": "",
+        "Nom :": "",
+        "Nom Zigbee :": "",
+        "Identifiant :": "",
+        "Membres": "",
+        "Ajouter": "Добавить",
+        "Image": "Изображение",
+        "IEEE": "",
+        "Nom": "Имя",
+        "Action": "Действие",
+        "Supprimer": "удаление",
+        "Aucun module ne peut etre ajouté dans ce groupe": "",
+        "Module ajouté avec succès au groupe": "",
+        "Configuration du groupe": ""
+    },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
         "Aucun": "Нет",
         "Gestion": "Управление",
@@ -146,9 +173,11 @@
         "Commissioning": "",
         "Synchronisation": "",
         "Réseau Zigbee": "",
+        "Groupes Zigbee": "",
         "Configuration": "Конфигурация",
-        "Mes équipements Zigbee": "",
         "Rechercher": "поиск",
+        "Mes équipements Zigbee": "",
+        "Mes groupes Zigbee": "",
         "Configuration avancée": "Расширенные настройки",
         "Créer un enfant": "",
         "Dupliquer": "дубликат",
@@ -179,7 +208,9 @@
     },
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
         "Réseaux zigbee": "",
+        "Groupes zigbee": "",
         "Configuration du noeud": "",
+        "Configuration du groupe": "",
         "Mode inclusion actif pendant 3 minutes pour le démon": "",
         "Module ajouté avec succès": "",
         "Enfant créé avec succès": "",
