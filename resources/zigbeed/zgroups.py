@@ -61,7 +61,7 @@ async def command(_data):
 	for cmd in _data['cmd']:
 		cluster = group._endpoint.__getattr__(cmd['cluster'])
 		if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],cmd['command']):
-			logging.info("["+str(device._ieee)+"][zdevices.command] Use specific command action")
+			logging.info("["+str(group._group_id)+"][zgroups.command] Use specific command action")
 			command = getattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], cmd['command'])
 			if 'await' in cmd:
 				await command(cluster,cmd)

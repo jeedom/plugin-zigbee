@@ -81,6 +81,39 @@
         "minValue" : 0,
         "maxValue" : 100
       }
+    },
+    {
+      "name": "Toggle",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "gr::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
+    },
+    {
+      "name": "Loop",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "gr::light_color::color_loop_start",
+      "display": {
+        "icon": "<i class=\"fas fa-spinner\"></i>"
+      }
+    },
+    {
+      "name": "Stop Loop",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "gr::light_color::color_loop_stop",
+      "display": {
+        "icon": "<i class=\"fas fa-stop\"></i>"
+      }
     }
   ]
 }
