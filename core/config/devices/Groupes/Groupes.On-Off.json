@@ -20,6 +20,17 @@
       "isHistorized": 0,
       "value" : "Etat",
       "logicalId": "gr::on_off::off"
+    },
+    {
+      "name": "Toggle",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "gr::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
     }
   ]
 }

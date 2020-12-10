@@ -46,6 +46,12 @@ class ColorChannel():
 		{"attr": "color_temperature", "config": REPORT_CONFIG_DEFAULT},
 	)
 
+	async def color_loop_stop(cluster,cmd):
+		await cluster.color_loop_set(0x1,0,0,0,0)
+
+	async def color_loop_start(cluster,cmd):
+		await cluster.color_loop_set(0x1,0x2,0x1,7,0)
+
 	def attribute_updated(cluster, attribute_id, value):
 		if attribute_id != 3 and attribute_id != 4:
 			return None
