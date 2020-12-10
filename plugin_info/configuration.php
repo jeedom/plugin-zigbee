@@ -30,6 +30,12 @@ if (!isConnect('admin')) {
         <input type="checkbox" class="configKey" data-l1key="autoRemoveExcludeDevice" />
       </div>
     </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">{{M'alerter si un module n'a pas envoyé de message depuis (min)}}</label>
+      <div class="col-lg-2">
+        <input class="configKey form-control" data-l1key="max_duration_last_seen" />
+      </div>
+    </div>
     <?php for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){ ?>
       <legend><i class="icon loisir-darth"></i> {{Démon }}<?php echo $i ?></legend>
       <div class="form-group">

@@ -69,6 +69,31 @@ class zigbee extends eqLogic {
     return isset($result['result']) ? $result['result'] : $result;
   }
   
+  public static function cronDaily(){
+    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
+      if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
+        continue;
+      }
+      $devices = self::request($i,'/device/all');
+      foreach ($devices as $device) {
+        if($device['nwk'] == 0 || $device['last_seen'] == 'None'){
+          continue;
+        }
+        if((strtotime('now') - $device['last_seen']) < config::byKey('max_duration_last_seen','zigbee') * 60){
+          continue;
+        }
+        $zigbee = zigbee::byLogicalId($device['ieee'], 'zigbee');
+        if(!is_object($zigbee)){
+          continue;
+        }
+        $message = __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __('n\'a pas envoyé de message depuis plus de ', __FILE__).config::byKey('max_duration_last_seen').' min';
+        if ($message != '') {
+          log::add('zigbee', 'error', $message, 'device_dead_' . $zigbee->getId());
+        }
+      }
+    }
+  }
+  
   public static function dependancy_info() {
     $return = array();
     $return['progress_file'] = jeedom::getTmpFolder('zigbee') . '/dependance';
