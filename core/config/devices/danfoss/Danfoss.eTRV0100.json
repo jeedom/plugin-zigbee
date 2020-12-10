@@ -32,7 +32,7 @@
         {"value":3,"name":"Apprentissage ok et en cours"}
       ]
     },
-    {"endpoint" : 1,"cluster":513,"attribute":16461,"manufacturer":4678,"name":"Lancer un apprentissage","type":"select","values":
+    {"endpoint" : 1,"cluster":513,"attribute":16460,"manufacturer":4678,"name":"Lancer un apprentissage","type":"select","values":
       [
         {"value":0,"name":""},
         {"value":1,"name":"Lancer apprentissage"},
