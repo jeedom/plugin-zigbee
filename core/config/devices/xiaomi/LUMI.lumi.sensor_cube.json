@@ -28,7 +28,7 @@
       "logicalId": "3::12::85",
       "configuration" : {
         "historizeRound" : 0,
-		"repeatEventManagement": "always"
+        "repeatEventManagement": "always"
       }
     },
     {
