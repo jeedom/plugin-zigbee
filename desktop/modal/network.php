@@ -108,6 +108,7 @@ if (!isConnect('admin')) {
             <th>{{Status}}</th>
             <th>{{LQI}}</th>
             <th>{{RSSI (dB)}}</th>
+            <th>{{Dernière communication}}</th>
             <th>{{Action}}</th>
           </tr>
         </thead>
@@ -216,6 +217,9 @@ if (!isConnect('admin')) {
           }else{
             tr += '<span class="label label-danger">'+data[i].rssi+'</span>';
           }
+          tr += '</td>';
+          tr += '<td>';
+          tr += jeedom.zigbee.util.timestampConverter(data[i].last_seen);
           tr += '</td>';
           tr += '<td>';
           tr += '<a class="btn btn-default btn-xs bt_infoZigbeeDevice"><i class="fa fa-info"></i> {{Info}}</a> ';
@@ -360,7 +364,7 @@ if (!isConnect('admin')) {
           }else{
             for(i in devices_neighbours[z].neighbours){
               if (controler_ieee != devices_neighbours[z].ieee) {
-                  graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {color: linkcolor, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
+                graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {color: linkcolor, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
               }
             }
           }

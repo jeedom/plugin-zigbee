@@ -307,8 +307,8 @@ jeedom.zigbee.device.childCreate = function(_params){
   paramsAJAX.url = 'plugins/zigbee/core/ajax/zigbee.ajax.php';
   paramsAJAX.data = {
     id: _params.id,
-	endpoint:_params.endpoint,
-	action: 'childCreate'
+    endpoint:_params.endpoint,
+    action: 'childCreate'
   };
   $.ajax(paramsAJAX);
 }
@@ -490,3 +490,35 @@ jeedom.zigbee.util.displayAsTable = function(_data){
   table+= '</table>';
   return table;
 }
+
+jeedom.zigbee.util.timestampConverter = function (time) {
+  if (time == "None"){
+    return "N/A";
+  }
+  var ret;
+  var date = new Date(time * 1000);
+  var hours = date.getHours();
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  var minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  var seconds = date.getSeconds();
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  var num = date.getDate();
+  if (num < 10) {
+    num = "0" + num;
+  }
+  var month = date.getMonth() + 1;
+  if (month < 10) {
+    month = "0" + month;
+  }
+  var year = date.getFullYear();
+  var formattedTime = hours + ':' + minutes + ':' + seconds;
+  var formattedDate = num + "/" + month + "/" + year;
+  return formattedDate + ' ' + formattedTime;
+};
