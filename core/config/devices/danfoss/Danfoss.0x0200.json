@@ -13,9 +13,21 @@
   "config" : [
     {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":21,"name":"Température minimale Thermostat","type":"number","min":500,"max":3500},
     {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":22,"name":"Température maximale Thermostat","type":"number","min":500,"max":3500},
+    {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":16672,"name":"Mode Capteur Sol","type":"select","values":
+      [
+        {"value":0,"name":"Ambiant + Sol"},
+        {"value":1,"name":"Sol"},
+        {"value":2,"name":"Sol + Radiateur"}
+      ]
+    ,"readonly":1},
     {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":16673,"name":"Température minimale Sol","type":"number","min":500,"max":3500},
     {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":16674,"name":"Température maximale Sol","type":"number","min":500,"max":3500},
-    {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":16688,"name":"Mode Programme","type":"number","min":500,"max":3500}
+    {"endpoint" : "multiple|1;2;3;4;5;6;7;8;9;10;11;12;13;14;15","cluster":513,"attribute":16688,"name":"Mode Programme","type":"select","values":
+      [
+        {"value":0,"name":"Standard"},
+        {"value":1,"name":"Vacances"}
+      ]
+    }
   ],
   "commands": [
     {
@@ -28,7 +40,9 @@
       "logicalId": "1::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -41,7 +55,9 @@
       "logicalId": "1::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -82,7 +98,9 @@
       "logicalId": "1::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -113,7 +131,77 @@
       "unite" : "°C",
       "logicalId": "1::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 1",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "1::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 1",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 1",
+      "logicalId": "attributes::1::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 1",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "1::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 1",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 1",
+      "logicalId": "attributes::1::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
     {
@@ -126,7 +214,9 @@
       "logicalId": "2::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -139,7 +229,9 @@
       "logicalId": "2::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -180,7 +272,9 @@
       "logicalId": "2::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -211,7 +305,77 @@
       "unite" : "°C",
       "logicalId": "2::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 2",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "2::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 2",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 2",
+      "logicalId": "attributes::2::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 2",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "2::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 2",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 2",
+      "logicalId": "attributes::2::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
     {
@@ -224,7 +388,9 @@
       "logicalId": "3::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -237,7 +403,9 @@
       "logicalId": "3::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -278,7 +446,9 @@
       "logicalId": "3::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -309,7 +479,77 @@
       "unite" : "°C",
       "logicalId": "3::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 3",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "3::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 3",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 3",
+      "logicalId": "attributes::3::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 3",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "3::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 3",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 3",
+      "logicalId": "attributes::3::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
 	{
@@ -322,7 +562,9 @@
       "logicalId": "4::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -335,7 +577,9 @@
       "logicalId": "4::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -376,7 +620,9 @@
       "logicalId": "4::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -407,7 +653,77 @@
       "unite" : "°C",
       "logicalId": "4::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 4",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "4::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 4",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 4",
+      "logicalId": "attributes::4::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 4",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "4::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 4",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 4",
+      "logicalId": "attributes::4::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
 	{
@@ -420,7 +736,9 @@
       "logicalId": "5::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -433,7 +751,9 @@
       "logicalId": "5::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -474,7 +794,9 @@
       "logicalId": "5::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -505,7 +827,77 @@
       "unite" : "°C",
       "logicalId": "5::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 5",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "5::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 5",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 5",
+      "logicalId": "attributes::5::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 5",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "5::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 5",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 5",
+      "logicalId": "attributes::5::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
 	{
@@ -518,7 +910,9 @@
       "logicalId": "6::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -531,7 +925,9 @@
       "logicalId": "6::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -572,7 +968,9 @@
       "logicalId": "6::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -603,7 +1001,77 @@
       "unite" : "°C",
       "logicalId": "6::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 6",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "6::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 6",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 6",
+      "logicalId": "attributes::6::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 6",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "6::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 6",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 6",
+      "logicalId": "attributes::6::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
 	{
@@ -616,7 +1084,9 @@
       "logicalId": "7::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -629,7 +1099,9 @@
       "logicalId": "7::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -670,7 +1142,9 @@
       "logicalId": "7::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -701,7 +1175,77 @@
       "unite" : "°C",
       "logicalId": "7::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 7",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "7::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 7",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 7",
+      "logicalId": "attributes::7::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 7",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "7::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 7",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 7",
+      "logicalId": "attributes::7::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
 	{
@@ -714,7 +1258,9 @@
       "logicalId": "8::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -727,7 +1273,9 @@
       "logicalId": "8::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -768,7 +1316,9 @@
       "logicalId": "8::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -799,7 +1349,77 @@
       "unite" : "°C",
       "logicalId": "8::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 8",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "8::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 8",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 8",
+      "logicalId": "attributes::8::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 8",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "8::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 8",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 8",
+      "logicalId": "attributes::8::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
 	{
@@ -812,7 +1432,9 @@
       "logicalId": "9::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -825,7 +1447,9 @@
       "logicalId": "9::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -866,7 +1490,9 @@
       "logicalId": "9::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -897,7 +1523,77 @@
       "unite" : "°C",
       "logicalId": "9::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 9",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "9::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 9",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 9",
+      "logicalId": "attributes::9::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 9",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "9::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 9",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 9",
+      "logicalId": "attributes::9::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
 	{
@@ -910,7 +1606,9 @@
       "logicalId": "10::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -923,7 +1621,9 @@
       "logicalId": "10::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -964,7 +1664,9 @@
       "logicalId": "10::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -995,7 +1697,77 @@
       "unite" : "°C",
       "logicalId": "10::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 10",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "10::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 10",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 10",
+      "logicalId": "attributes::10::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 10",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "10::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 10",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 10",
+      "logicalId": "attributes::10::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
 	{
@@ -1008,7 +1780,9 @@
       "logicalId": "11::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -1021,7 +1795,9 @@
       "logicalId": "11::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -1062,7 +1838,9 @@
       "logicalId": "11::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -1093,7 +1871,77 @@
       "unite" : "°C",
       "logicalId": "11::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 11",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "11::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 11",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 11",
+      "logicalId": "attributes::11::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 11",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "11::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 11",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 11",
+      "logicalId": "attributes::11::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
 	{
@@ -1106,7 +1954,9 @@
       "logicalId": "12::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -1119,7 +1969,9 @@
       "logicalId": "12::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -1160,7 +2012,9 @@
       "logicalId": "12::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -1191,7 +2045,77 @@
       "unite" : "°C",
       "logicalId": "12::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 12",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "12::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 12",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 12",
+      "logicalId": "attributes::12::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 12",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "12::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 12",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 12",
+      "logicalId": "attributes::12::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
 	{
@@ -1204,7 +2128,9 @@
       "logicalId": "13::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -1217,7 +2143,9 @@
       "logicalId": "13::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -1258,7 +2186,9 @@
       "logicalId": "13::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -1289,7 +2219,77 @@
       "unite" : "°C",
       "logicalId": "13::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 13",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "13::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 13",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 13",
+      "logicalId": "attributes::13::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 13",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "13::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 13",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 13",
+      "logicalId": "attributes::13::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
 	{
@@ -1302,7 +2302,9 @@
       "logicalId": "14::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -1315,7 +2317,9 @@
       "logicalId": "14::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -1356,7 +2360,9 @@
       "logicalId": "14::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -1387,7 +2393,77 @@
       "unite" : "°C",
       "logicalId": "14::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 14",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "14::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 14",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 14",
+      "logicalId": "attributes::14::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 14",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "14::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 14",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 14",
+      "logicalId": "attributes::14::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
 	{
@@ -1400,7 +2476,9 @@
       "logicalId": "15::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
       }
     },
     {
@@ -1413,7 +2491,9 @@
       "logicalId": "15::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -1454,7 +2534,9 @@
       "logicalId": "15::513::20",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
       }
     },
     {
@@ -1485,7 +2567,77 @@
       "unite" : "°C",
       "logicalId": "15::1026::0",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"40"
+      }
+    },
+    {
+      "name": "Consigne Min Sol 15",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "15::513::16673",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Min Sol 15",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Min Sol 15",
+      "logicalId": "attributes::15::in::513::16673::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Max Sol 15",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "15::513::16674",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"5",
+        "maxValue":"35"
+      }
+    },
+    {
+      "name": "Thermostat Max Sol 15",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne Max Sol 15",
+      "logicalId": "attributes::15::in::513::16674::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"5",
+        "maxValue":"35"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     }
   ]

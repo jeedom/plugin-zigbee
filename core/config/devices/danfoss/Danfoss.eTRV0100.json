@@ -23,8 +23,8 @@
     {"endpoint" : 1,"cluster":513,"attribute":21,"name":"Température minimal","type":"number","min":300,"max":2200},
     {"endpoint" : 1,"cluster":513,"attribute":22,"name":"Température maximal","type":"number","min":2100,"max":3000},
     {"endpoint" : 1,"cluster":513,"attribute":16459,"manufacturer":4678,"name":"Offset consigne","type":"number"},
-    {"endpoint" : 1,"cluster":513,"attribute":16458,"manufacturer":4678,"name":"Puissance estimée du radiateur","type":"number","readonly":true},
-    {"endpoint" : 1,"cluster":513,"attribute":16461,"manufacturer":4678,"name":"Status de l'apprentissage","type":"select","readonly":true,"values":
+    {"endpoint" : 1,"cluster":513,"attribute":16458,"manufacturer":4678,"name":"Puissance estimée du radiateur","type":"number","readonly":1},
+    {"endpoint" : 1,"cluster":513,"attribute":16461,"manufacturer":4678,"name":"Status de l'apprentissage","type":"select","readonly":1,"values":
       [
         {"value":0,"name":"Aucun apprentissage trouvé"},
         {"value":1,"name":"Apprentissage en cours"},
@@ -39,7 +39,7 @@
         {"value":2,"name":"Annuler apprentissage"}
       ]
     },
-    {"endpoint" : 1,"cluster":513,"attribute":16402,"manufacturer":4678,"name":"Mode de montage actif","type":"select","readonly":true,"values":
+    {"endpoint" : 1,"cluster":513,"attribute":16402,"manufacturer":4678,"name":"Mode de montage actif","type":"select","readonly":1,"values":
       [
         {"value":0,"name":"Monté"},
         {"value":1,"name":"Non monté"}
