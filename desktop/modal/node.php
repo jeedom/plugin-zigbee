@@ -27,6 +27,12 @@ $node_data = zigbee::request($eqLogic->getConfiguration('instance',1),'/device/i
 $device = zigbee::devicesParameters($eqLogic->getConfiguration('device'));
 $infos = zigbee::parseDeviceInformation($node_data);
 $endpointArray=array();
+$ischild = false;
+$endpoint = false;
+if ($eqLogic->getConfiguration('ischild',0) == 1){
+$ischild = true;
+$childendpoint = explode('|',$eqLogic->getLogicalId())[1];
+}
 ?>
 <div id='div_nodeDeconzAlert' style="display: none;"></div>
 <ul class="nav nav-tabs" role="tablist">
@@ -53,7 +59,11 @@ $endpointArray=array();
         <?php } ?>
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h4 class="panel-title"><i class="fas fa-info-circle"></i> {{Informations Noeud}}</h4>
+			<?php if ($ischild) {
+            echo '<h4 class="panel-title"><i class="fas fa-info-circle"></i> {{Informations Père}}</h4>';
+			}else {
+            echo '<h4 class="panel-title"><i class="fas fa-info-circle"></i> {{Informations Noeud}}</h4>';
+			}?>
           </div>
           <div class="panel-body">
             <p>
@@ -95,7 +105,11 @@ $endpointArray=array();
           </div>
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h4 class="panel-title"><i class="fas fa-network-wired"></i> {{Réseaux}}</h4>
+			<?php if ($ischild) {
+            echo '<h4 class="panel-title"><i class="fas fa-network-wired"></i> {{Réseaux Père}}</h4>';
+			}else {
+            echo '<h4 class="panel-title"><i class="fas fa-network-wired"></i> {{Réseaux}}</h4>';
+			}?>              
             </div>
             <div class="panel-body">
               <p>
@@ -133,8 +147,11 @@ $endpointArray=array();
           </div>
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h4 class="panel-title"><i class="fab fa-microsoft"></i> {{Informations logiciel}}
-              </h4>
+			<?php if ($ischild) {
+            echo '<h4 class="panel-title"><i class="fab fa-microsoft"></i> {{Informations logiciel Père}}</h4>';
+			}else {
+            echo '<h4 class="panel-title"><i class="fab fa-microsoft"></i> {{Informations logiciel}}</h4>';
+			}?>
             </div>
             <div class="panel-body">
               {{ZCL Version :}} <b><span class="label label-default"><?php echo $infos['zcl_version'] ?></span></b>
@@ -148,6 +165,11 @@ $endpointArray=array();
           <?php
           $isZGPDevice = false;
           foreach ($infos['endpoints'] as $endpoint_id => $endpoint) {
+			if ($ischild) {
+				if ($endpoint_id != $childendpoint) {
+					continue;
+				}
+			}
             $endpointArray[] = $endpoint_id;
             echo  '<div class="panel panel-primary">';
             echo  '<div class="panel-heading">';
