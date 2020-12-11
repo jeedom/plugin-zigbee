@@ -30,7 +30,7 @@ class DanfossSpecific():
 			return True
 
 	def init(self,device):
-		if (device.model in ['0x8030','0x0200']):
+		if (device.model in ['0x8020','0x8021','0x8030','0x8031','0x8034','0x8035','0x0200']):
 			endpoints = device.endpoints.items()
 			logging.debug('Found endpoints : ' + str(endpoints))
 			for endpoint_id, ep in device.endpoints.items():
