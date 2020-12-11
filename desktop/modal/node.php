@@ -189,19 +189,19 @@ $endpointArray=array();
             echo '<div class="alert alert-info">{{Il n\'éxiste aucun parametre de configuration connu pour ce module}}</div>';
           }else{
             if($isZGPDevice){
-              echo '<label>ZGP</label>';
-              echo '<table class="table table-condensed">';
-              echo '<thead>';
-              echo '<tr>';
-              echo '<th>{{Nom}}</th>';
-              echo '<th>{{Endpoint}}</th>';
-              echo '<th>{{Cluster}}</th>';
-              echo '<th>{{Attribut}}</th>';
-              echo '<th>{{Valeur}}</th>';
-              echo '<th style="width:300px;"></th>';
-              echo '</tr>';
-              echo '</thead>';
-              echo '<tbody>';
+			echo '<label>ZGP</label>';
+            echo '<table class="table table-condensed">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>{{Nom}}</th>';
+            echo '<th>{{Endpoint}}</th>';
+            echo '<th>{{Cluster}}</th>';
+            echo '<th>{{Attribut}}</th>';
+            echo '<th>{{Valeur}}</th>';
+            echo '<th style="width:300px;"></th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
               $value = zigbee::getAttribute(242,33,39320,$node_data);
               if($value === null){
                 $value = '';
@@ -219,7 +219,7 @@ $endpointArray=array();
               echo '</td>';
               echo '</tr>';
             }
-            echo '</tbody></table>';
+			echo '</tbody></table>';
             $cleanConfig = array();
             if(count($device['config']) > 0){
               foreach ($device['config'] as &$config) {
@@ -227,74 +227,84 @@ $endpointArray=array();
                   $config['manufacturer'] = None;
                 }
                 if (strpos($config['endpoint'],'multiple')!== false) {
-                  $endpointString = explode('|',$config['endpoint'])[1];
-                  $endpoints = explode(';',$endpointString);
-                  foreach ($endpoints as $endpoint){
-                    $newconfig = $config;
-                    $newconfig['endpoint']= $endpoint;
-                    $device['config'][]=$newconfig;
+                    $endpointString = explode('|',$config['endpoint'])[1];
+                    $endpoints = explode(';',$endpointString);
+					foreach ($endpoints as $endpoint){
+						$newconfig = $config;
+						$newconfig['endpoint']= $endpoint;
+						$device['config'][]=$newconfig;
+					}
+					continue;
+                }
+				if (!in_array($config['endpoint'],$endpointArray)){
+					continue;
+				} else {
+					$cleanConfig[$config['endpoint']][]=$config;
+				}
+			  }
+			  foreach ($cleanConfig as $endpoint => $data) {
+				echo '<label>Endpoint ' . $endpoint . '</label>';
+				echo '<table class="table table-condensed">';
+				echo '<thead>';
+				echo '<tr>';
+				echo '<th>{{Nom}}</th>';
+				echo '<th>{{Endpoint}}</th>';
+				echo '<th>{{Cluster}}</th>';
+				echo '<th>{{Attribut}}</th>';
+				echo '<th>{{Valeur}}</th>';
+				echo '<th style="width:300px;"></th>';
+				echo '</tr>';
+				echo '</thead>';
+				echo '<tbody>';
+				foreach ($data as $config){
+                echo '<tr class="deviceConfig" data-manufacturer="'.$config['manufacturer'].'" data-endpoint="'.$config['endpoint'].'" data-cluster="'.$config['cluster'].' "data-attribute="'.$config['attribute'].'">';
+                echo '<td>'.$config['name'].'</td>';
+                echo '<td>'.$config['endpoint'].'</td>';
+                echo '<td>'.$config['cluster'].'</td>';
+                echo '<td>'.$config['attribute'].'</td>';
+                echo '<td>';
+                switch ($config['type']) {
+                  case 'input':
+				  if (isset($config['readonly']) && $config['readonly'] == 1) {
+					echo '<input class="form-control configAttrValue" readonly/>';
+				  } else {
+					echo '<input class="form-control configAttrValue" />';
+				  }
+                  break;
+                  case 'number':
+				  if (isset($config['readonly']) && $config['readonly'] == 1) {
+					echo '<input type="number" class="form-control configAttrValue" min="'.(isset($config['min']) ? $config['min'] : '').'" max="'.(isset($config['max']) ? $config['max'] : '').'" readonly/>';
+				  } else {
+					echo '<input type="number" class="form-control configAttrValue" min="'.(isset($config['min']) ? $config['min'] : '').'" max="'.(isset($config['max']) ? $config['max'] : '').'" />';
+				  }
+                  break;
+                  case 'select':
+				  if (isset($config['readonly']) && $config['readonly'] == 1) {
+                        echo '<select class="form-control configAttrValue" disabled="true">';
+				  } else {
+					  echo '<select class="form-control configAttrValue">';
+				  }
+                  foreach ($config['values'] as $value) {
+                    echo '<option value="'.$value['value'].'">'.$value['name'].'</option>';
                   }
-                  continue;
+                  echo '</select>';
+                  break;
                 }
-                if (!in_array($config['endpoint'],$endpointArray)){
-                  continue;
-                } else {
-                  $cleanConfig[$config['endpoint']][]=$config;
+                echo '</td>';
+                echo '<td>';
+                echo '<a class="btn btn-default btn-xs bt_refreshConfigAttribute"><i class="fas fa-sync"></i></a> ';
+				if (isset($config['readonly']) && $config['readonly'] == 1) {
+					echo '<sup><i class="fas fa-question-circle tooltips" title="{{Configuration informative uniquement}}"></i></sup>';
+				} else {
+					echo '<a class="btn btn-success btn-xs bt_sendConfigAttribute"><i class="fas fa-file-import"></i> {{Envoyer}}</a>';
                 }
-              }
-              foreach ($cleanConfig as $endpoint => $data) {
-                echo '<label>Endpoint ' . $endpoint . '</label>';
-                echo '<table class="table table-condensed">';
-                echo '<thead>';
-                echo '<tr>';
-                echo '<th>{{Nom}}</th>';
-                echo '<th>{{Endpoint}}</th>';
-                echo '<th>{{Cluster}}</th>';
-                echo '<th>{{Attribut}}</th>';
-                echo '<th>{{Valeur}}</th>';
-                echo '<th style="width:300px;"></th>';
+				echo ' <i class="fas fa-spinner fa-spin configLoadIcon"></i>';
+                echo ' <i class="fas fa-times configErrorIcon" style="display:none;"></i>';
+                echo '</td>';
                 echo '</tr>';
-                echo '</thead>';
-                echo '<tbody>';
-                foreach ($data as $config){
-                  echo '<tr class="deviceConfig" data-manufacturer="'.$config['manufacturer'].'" data-endpoint="'.$config['endpoint'].'" data-cluster="'.$config['cluster'].' "data-attribute="'.$config['attribute'].'">';
-                  echo '<td>'.$config['name'].'</td>';
-                  echo '<td>'.$config['endpoint'].'</td>';
-                  echo '<td>'.$config['cluster'].'</td>';
-                  echo '<td>'.$config['attribute'].'</td>';
-                  echo '<td>';
-                  $disabled = '';
-                  if(isset($config['readonly']) && $config['readonly']){
-                    $disabled = 'disabled';
-                  }
-                  switch ($config['type']) {
-                    case 'input':
-                    echo '<input class="form-control configAttrValue" '.$disabled.' />';
-                    break;
-                    case 'number':
-                    echo '<input type="number" class="form-control configAttrValue" '.$disabled.' min="'.(isset($config['min']) ? $config['min'] : '').'" max="'.(isset($config['max']) ? $config['max'] : '').'" />';
-                    break;
-                    case 'select':
-                    echo '<select class="form-control configAttrValue" '.$disabled.'>';
-                    foreach ($config['values'] as $value) {
-                      echo '<option value="'.$value['value'].'">'.$value['name'].'</option>';
-                    }
-                    echo '</select>';
-                    break;
-                  }
-                  echo '</td>';
-                  echo '<td>';
-                  echo '<a class="btn btn-default btn-xs bt_refreshConfigAttribute"><i class="fas fa-sync"></i></a> ';
-                  if(!isset($config['readonly']) || !$config['readonly']){
-                    echo '<a class="btn btn-success btn-xs bt_sendConfigAttribute"><i class="fas fa-file-import"></i> {{Envoyer}}</a>';
-                  }
-                  echo ' <i class="fas fa-spinner fa-spin configLoadIcon"></i>';
-                  echo ' <i class="fas fa-times configErrorIcon" style="display:none;"></i>';
-                  echo '</td>';
-                  echo '</tr>';
-                }
-                echo '</tbody>';
-                echo '</table>';
+				}
+				echo '</tbody>';
+				echo '</table>';
               }
             }
           }
