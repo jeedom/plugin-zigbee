@@ -1,6 +1,6 @@
 {
   "name": "Sonoff bouton",
-  "ref" : "WB01",
+  "ref" : "WB01/SNBZ-01",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5259-sonoff-interrupteur-sans-fil-zigbee-30.html",
   "configuration" : {
     "battery_type" : "1x3V CR2450"
