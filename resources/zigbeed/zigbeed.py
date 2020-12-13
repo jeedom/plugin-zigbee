@@ -205,6 +205,8 @@ if _device == 'auto':
 			_device = jeedom_utils.find_tty_usb('1a86','7523') # Elelabs USB key
 	if _controller == 'deconz' :
 		_device = jeedom_utils.find_tty_usb('1cf1','0030')
+		if _device == None:
+			_device = jeedom_utils.find_tty_usb('0403','6015')
 	if _controller == 'zigate' :
 		_device = jeedom_utils.find_tty_usb('067b','2303')
 
