@@ -9,7 +9,7 @@
   "pairing" : "Presser 3 fois le bouton",
   "commands": [
     {
-      "name": "Ouverture",
+      "name": "Innondation",
       "type": "info",
       "subtype": "binary",
       "isVisible": 1,
