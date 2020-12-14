@@ -2,6 +2,8 @@
   "name": "Sunricher remote dimmer switch",
   "ref" : "ZGRC-KEY-013",
   "buylink" : "",
+  "reset" : "Appuyer sur le bouton principal On jusqu'a ce que la diode s'allume puis réappuyer 5 fois dessus de suite, la diode clignote au bout de quelques secondes 3 fois",
+  "pairing" : "Appuyer sur le bouton principal On jusqu'a ce que la diode s'allume puis appuyer sur le bouton principal off une fois",
   "commands": [
     {
       "name": "On Off 1",
