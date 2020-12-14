@@ -2,8 +2,8 @@
   "name": "Multiprise",
   "ref" : "E220-KR4N0Z0-HA",
   "buylink" : "",
-  "reset" : "",
-  "pairing":"",
+  "reset" : "Rester appuyer sur le bouton principal",
+  "pairing":"Brancher la prise",
   "commands": [
     {
       "name": "Etat 1",
