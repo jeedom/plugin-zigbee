@@ -1,8 +1,10 @@
 {
-  "name": "Multi-functional Replay",
+  "name": "Multi-functional Relay",
   "ref" : "CM10ZW",
   "buylink" : "",
-  "pairing" : "Presser le bouton pendant 5 à 10s",
+  "reset" : "Presser le bouton 5 fois et laisser appuyer la 5eme fois jusqu'à clignottement très rapide de la diode bleue",
+  "pairing" : "Automatique dès lors que le device n'est pas déjà appairé, cf reset au dessus. Code diode bleue : très rapide : pas de reseau, toutes les 1s : recherche reseau, toutes les 2s : appairage en cours, aucun : appairage OK",
+  "remark" : "Au 15/12/2020, retour d'etat non fonctionnel",
   "commands": [
     {
       "name": "Etat 1",
