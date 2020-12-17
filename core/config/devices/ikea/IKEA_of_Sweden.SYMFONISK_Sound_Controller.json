@@ -1,0 +1,36 @@
+{
+  "name": "Ikea TRADFRI Symfonisk sound controller",
+  "ref" : "",
+  "type" : "Télécommande",
+  "reset" : "Appuyer sur le bouton de couplage 4 fois en moins de 5 secondes.",
+  "pairing" : "Maintenez le bouton d'appariement enfoncé pendant au moins 10 seconde",
+  "remark" : "",
+  "documentation" : "",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Bouton",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::cmd::0"
+    },
+    {
+      "name": "Sens rotation",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::8::cmd::1"
+    },
+    {
+      "name": "Action",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::8::cmd::1.1"
+    }
+  ]
+}
