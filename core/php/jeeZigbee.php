@@ -134,13 +134,16 @@ if (isset($result['devices'])) {
 			foreach ($deviceArray as $zigbee) {
 				foreach($clusters as $cluster_id => $attributs){
 					foreach($attributs as $attribut_id => $value){
-						if($value == '[]'){
+						if(!is_array($value) && $value == '[]'){
 							continue;
 						}
 						if($cluster_id == 1 && $attribut_id == 33){
 							$zigbee->batteryStatus($value);
 						}else if(strcmp($attribut_id, 'cmd') === 0){
 							foreach ($value as $cmd_id => $cmd_value) {
+								if($cmd_value['value'] == '[]'){
+									continue;
+								}
 								log::add('zigbee','debug','Search command for '.$ieee.' logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.' => '.$cmd_value['value']);
 								$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
 								if(is_object($cmd)){
@@ -149,6 +152,9 @@ if (isset($result['devices'])) {
 							}
 						}else if(strcmp($attribut_id, 'gcmd') === 0){
 							foreach ($value as $cmd_id => $cmd_value) {
+								if($cmd_value['value'] == '[]'){
+									continue;
+								}
 								log::add('zigbee','debug','Search general command for '.$ieee.' logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.' => '.$cmd_value['value']);
 								$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
 								if(is_object($cmd)){
@@ -157,6 +163,9 @@ if (isset($result['devices'])) {
 							}
 						}else if(strcmp($attribut_id, 'event') === 0){
 							foreach ($value['value'] as $cmd_id => $cmd_value) {
+								if($cmd_value['value'] == '[]'){
+									continue;
+								}
 								log::add('zigbee','debug','Search general command for '.$ieee.' logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.' => '.$cmd_value);
 								$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
 								if(is_object($cmd)){
