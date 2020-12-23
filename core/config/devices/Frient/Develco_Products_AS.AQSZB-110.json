@@ -30,6 +30,15 @@
       "configuration" : {
         "calculValueOffset":"#value# / 100"
       }
+    },
+    {
+      "name": "Voc",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "38::64515::0",
+      "unite" : "ppb"
     }
   ]
 }
