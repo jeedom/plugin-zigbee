@@ -38,6 +38,10 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "38::64515::0",
+      "configuration": {
+            "minValue": 0, 
+            "maxValue": 60000
+       }, 
       "unite" : "ppb"
     }
   ]

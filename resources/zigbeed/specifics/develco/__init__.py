@@ -16,6 +16,7 @@
 import logging
 from . import details
 import shared
+import asyncio
 
 
 
@@ -40,6 +41,8 @@ class DevelcoSpecific():
 							cluster._attr_cache=oldcluster._attr_cache
 							break
 					ep.add_input_cluster(cluster.cluster_id, cluster)
+					logging.debug('Binding Manufacturer Cluster')
+					asyncio.ensure_future(cluster.bind())
 
 	async def reporting(self,model , cluster_id ,ep_id,cluster):
 		logging.debug('Checking specific reporting for device '+str(model)+' '+str(cluster_id)+' '+str(ep_id))
