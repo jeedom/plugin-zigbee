@@ -70,7 +70,7 @@ class zigbee extends eqLogic {
   }
   
   public static function cronDaily(){
-    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
+    for($i=1;$i<=config::byKey('max_instance_number','zigbee');$i++){
       if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
         continue;
       }
@@ -86,7 +86,7 @@ class zigbee extends eqLogic {
         if(!is_object($zigbee)){
           continue;
         }
-        $message = __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __('n\'a pas envoyé de message depuis plus de ', __FILE__).config::byKey('max_duration_last_seen').' min';
+        $message = __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __('n\'a pas envoyé de message depuis plus de ', __FILE__).config::byKey('max_duration_last_seen','zigbee').' min';
         if ($message != '') {
           log::add('zigbee', 'error', $message, 'device_dead_' . $zigbee->getId());
         }
