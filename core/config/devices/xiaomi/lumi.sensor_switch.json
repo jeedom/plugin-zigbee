@@ -9,16 +9,8 @@
       "subtype": "binary",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::18::0"
-    },
-    {
-      "name": "Etat multiple",
-      "type": "info",
-      "subtype": "binary",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "1::18::85"
-    },
+      "logicalId": "1::6::0"
+    }
     {
       "name": "Type",
       "type": "info",
