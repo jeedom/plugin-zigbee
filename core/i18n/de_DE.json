@@ -289,8 +289,8 @@
         "Commutateur de transfert secteur d\\'urgence": "Notsektor-Umschalter",
         "Ok": "OK",
         "Inactive": "Inaktiv",
-        "ZHA": "ZHA",
-        "ZLL": "ZLL",
+        "ZHA": "",
+        "ZLL": "",
         "Aucun cluster basic trouvé sur le module.Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\\'inclusion)": "Es wurde kein Basiscluster auf dem Modul gefunden. Dies ist häufig auf eine teilweise Einbeziehung zurückzuführen. Es ist ratsam, das Modul aus dem ZigBee-Netzwerk zu entfernen und erneut einzuschließen (je nach Modul kann es erforderlich sein, es nach dem 2-minütigen Betrieb wach zu halten \\'Aufnahme)",
         "Le message et le sujet ne peuvent pas être vide": "Nachricht und Betreff dürfen nicht leer sein"
     },
