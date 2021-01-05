@@ -69,8 +69,8 @@
       "logicalId": "1::level::move_to_level::#slider#::0",
       "generic_type": "LIGHT_SLIDER",
       "configuration" : {
-        "minValue" : 0,
-        "maxValue" : 254
+        "minValue" : 250,
+        "maxValue" : 454
       }
     },
     {
