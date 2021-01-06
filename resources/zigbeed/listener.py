@@ -133,7 +133,7 @@ class Listener:
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'attribute_updated'):
 				if registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].attribute_updated(cluster, attribute_id, value) is not None:
 					return
-			value['attribute'] = attribute_id
-			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::event',{"value" : value,"cluster_name" : cluster.name})
+			#value['attribute'] = attribute_id
+			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::event::'+str(attribute_id),{"value" : value,"cluster_name" : cluster.name})
 		except Exception as e:
 			logging.error(traceback.format_exc())
