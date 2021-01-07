@@ -1,6 +1,6 @@
 {
-  "name": "Adeo LEXK-4",
-  "ref" : "LEXK-4",
+  "name": "Adeo LEXK-7",
+  "ref" : "LEXK-7",
   "buylink" : "",
   "reset" : "6x On/Off",
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule (un on/off sera peut être nécessaire)",
@@ -68,26 +68,6 @@
         "minValue" : 0,
         "maxValue" : 254
       }
-    },
-    {
-      "name": "Etat couleur",
-      "type": "info",
-      "subtype": "string",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "value" : "Etat couleur",
-      "logicalId": "11::768::color",
-      "generic_type": "LIGHT_COLOR"
-    },
-    {
-      "name": "Couleur",
-      "type": "action",
-      "subtype": "color",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "value" : "Etat couleur",
-      "logicalId": "11::light_color::move_to_color::#color#::#duration#",
-      "generic_type": "LIGHT_SET_COLOR"
     },
     {
       "name": "Etat température couleur",
