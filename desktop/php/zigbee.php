@@ -163,7 +163,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 									<label class="col-sm-3 control-label">{{Objet parent}}</label>
 									<div class="col-sm-7">
 										<select class="eqLogicAttr form-control" data-l1key="object_id">
-											<option value="">Aucun</option>
+											<option value="">{{Aucun}}</option>
 											<?php
 											$options = '';
 											foreach ((jeeObject::buildTree(null, false)) as $object) {
@@ -211,6 +211,12 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 									<label class="col-sm-3 control-label">{{Autoriser la mise en fil d'attente pour réessayer en cas d'erreur}}</label>
 									<div class="col-sm-7">
 										<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="allowQueue"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">{{Ne pas alerte en cas de non communication du module}}</label>
+									<div class="col-sm-7">
+										<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="ignore_last_seen"/>
 									</div>
 								</div>
 							</fieldset>

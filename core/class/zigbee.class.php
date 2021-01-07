@@ -83,7 +83,7 @@ class zigbee extends eqLogic {
           continue;
         }
         $zigbee = zigbee::byLogicalId($device['ieee'], 'zigbee');
-        if(!is_object($zigbee)){
+        if(!is_object($zigbee) || $zigbee->getConfiguration('ignore_last_seen',0) == 1){
           continue;
         }
         $message = __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __('n\'a pas envoyé de message depuis plus de ', __FILE__).config::byKey('max_duration_last_seen','zigbee').' min';
