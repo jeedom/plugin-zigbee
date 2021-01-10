@@ -12,6 +12,16 @@
       "isHistorized": 0,
       "logicalId": "35::15::85",
       "generic_type": "FLOOD"
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "38::1026::0",
+      "unite" : "°",
+      "generic_type": "TEMPERATURE"
     }
   ]
 }
