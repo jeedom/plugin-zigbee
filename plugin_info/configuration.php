@@ -56,7 +56,7 @@ if (!isConnect('admin')) {
           <div class="col-sm-2">
             <select class="configKey form-control" data-l1key="controller_<?php echo $i ?>">
               <option value="ezsp">{{EZSP}}</option>
-              <option value="deconz">{{Deconz}}</option>
+              <option value="deconz">{{Conbee}}</option>
               <option value="zigate">{{Zigate}}</option>
               <option value="cc">{{CC}}</option>
               <option value="xbee">{{Xbee}}</option>
