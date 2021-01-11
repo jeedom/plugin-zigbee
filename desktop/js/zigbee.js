@@ -78,7 +78,7 @@ $('#bt_remoteCommissioning').off('click').on('click', function () {
     inputOptions.push({value : zigbee_instances[i].id,text : zigbee_instances[i].name});
   }
   bootbox.prompt({
-    title: "Remote commissioning sur ?",
+    title: "{{Remote commissioning sur ?}}",
     value : inputOptions[0].value,
     inputType: 'select',
     inputOptions:inputOptions,
@@ -103,7 +103,7 @@ $('#bt_remoteCommissioning').off('click').on('click', function () {
 });
 
 $('#bt_childCreate').off('click').on('click', function () {
-  bootbox.prompt("Vous voulez créer un enfant sur quel endpoint ? (attention il ne faut jamais supprimer le device père)", function(endpoint){
+  bootbox.prompt("{{Vous voulez créer un enfant sur quel endpoint ? (attention il ne faut jamais supprimer le device père)}}", function(endpoint){
     if (endpoint) {jeedom.zigbee.device.childCreate({
       id : $('.eqLogicAttr[data-l1key=id]').value(),
       endpoint : endpoint,
@@ -367,7 +367,7 @@ $('#bt_autoDetectModule').off('click').on('click', function () {
                       return;
                     }
                     $('#div_alert').showAlert({message: '{{Opération réalisée avec succès}}', level: 'success'});
-                    $('.li_eqLogic[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
+                    $('.eqLogicDisplayCard[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
                   }
                 });
               }
@@ -392,7 +392,7 @@ $('#bt_autoDetectModule').off('click').on('click', function () {
                   return;
                 }
                 $('#div_alert').showAlert({message: '{{Opération réalisée avec succès}}', level: 'success'});
-                $('.li_eqLogic[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
+                $('.eqLogicDisplayCard[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
               }
             });
           }
