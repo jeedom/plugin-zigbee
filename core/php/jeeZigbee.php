@@ -169,7 +169,7 @@ if (isset($result['devices'])) {
 											$sub_cmd_value = 1;
 										}
 										log::add('zigbee','debug','Search event command for '.$ieee.' logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.'::'.$sub_cmd_id.' => '.$sub_cmd_value);
-										$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::event::'.$attribut_id.'::'.$cmd_id.'::'.$sub_cmd_id);
+										$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.'::'.$sub_cmd_id);
 										if(is_object($cmd)){
 											$cmd->event(convertValue($sub_cmd_value));
 										}
@@ -179,7 +179,7 @@ if (isset($result['devices'])) {
 										$sub_cmd_value = 1;
 									}
 									log::add('zigbee','debug','Search event command for '.$ieee.' logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.' => '.$cmd_value);
-									$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::event::'.$attribut_id.'::'.$cmd_id);
+									$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
 									if(is_object($cmd)){
 										$cmd->event(convertValue($cmd_value));
 									}
