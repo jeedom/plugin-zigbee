@@ -1,0 +1,30 @@
+{
+  "name": "Aqara Opple 6 boutons",
+  "ref" : "b686opcn01",
+  "commands": [
+    {
+      "name": "Bouton 1",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::18::0"
+    },
+    {
+      "name": "Bouton 2",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::18::0"
+    },
+    {
+      "name": "Bouton 3",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "3::18::0"
+    }
+  ]
+}
