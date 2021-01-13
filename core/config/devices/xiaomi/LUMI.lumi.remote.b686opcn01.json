@@ -25,6 +25,30 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "3::18::0"
+    },
+    {
+      "name": "Bouton 4",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "4::18::0"
+    },
+    {
+      "name": "Bouton 5",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "5::18::0"
+    },
+    {
+      "name": "Bouton 6",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "6::18::0"
     }
   ]
 }
