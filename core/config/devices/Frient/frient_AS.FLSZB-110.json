@@ -21,7 +21,10 @@
       "isHistorized": 0,
       "logicalId": "38::1026::0",
       "unite" : "°C",
-      "generic_type": "TEMPERATURE"
+      "generic_type": "TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
     }
   ]
 }
