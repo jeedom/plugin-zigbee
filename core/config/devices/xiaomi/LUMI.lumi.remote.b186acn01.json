@@ -9,7 +9,10 @@
       "subtype": "string",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::18::0"
+      "logicalId": "1::18::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }

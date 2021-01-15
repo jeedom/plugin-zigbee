@@ -17,7 +17,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::18::85"
+      "logicalId": "1::18::85",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }
