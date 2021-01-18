@@ -1,0 +1,15 @@
+{
+  "name": "Xiaomi serrure connectée",
+  "ref" : "lumi.lock.v1",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Clef",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::0::65328"
+    }
+  ]
+}
