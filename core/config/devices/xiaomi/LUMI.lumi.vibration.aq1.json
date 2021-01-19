@@ -21,6 +21,17 @@
       "isHistorized": 0,
       "logicalId": "1::257::1283"
     },
+     {
+      "name": "Orientation",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::257::1288",
+       "configuration" : {
+         "calculValueOffset":"#value# / 10000000000",
+       }
+    },
     {
       "name": "Porte",
       "type": "info",
