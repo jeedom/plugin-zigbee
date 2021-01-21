@@ -10,7 +10,11 @@
       "isVisible": 0,
       "isHistorized": 0,
       "logicalId": "1::8::0",
-      "generic_type": "FLAP_STATE"
+      "generic_type": "FLAP_STATE",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
     },
     {
       "name": "Position",
@@ -20,7 +24,11 @@
       "isHistorized": 0,
       "value" : "Etat",
       "logicalId": "1::level::move_to_level::#slider#::1",
-      "generic_type": "FLAP_SLIDER"
+      "generic_type": "FLAP_SLIDER",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
     }
   ]
 }
