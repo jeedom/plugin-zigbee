@@ -99,6 +99,7 @@ jeedom.zigbee.device.all = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/all',
+    data : json_encode({with_attributes : _params.with_attributes || 1}),
     type : 'GET'
   };
   $.ajax(paramsAJAX);

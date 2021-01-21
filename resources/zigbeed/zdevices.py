@@ -234,7 +234,7 @@ def is_groupable(device):
 				return True
 	return False
 
-async def serialize(device):
+async def serialize(device,with_attributes = True):
 	obj = {
 		'ieee': str(device.ieee),
 		'nwk': device.nwk,
@@ -269,20 +269,22 @@ async def serialize(device):
 		endpoint_obj['input_clusters'] = []
 		endpoint_obj['output_clusters'] = []
 		for cluster in endpoint.out_clusters.values():
-			values = await serialize_cluster(cluster);
+			values = await serialize_cluster(cluster,with_attributes);
 			endpoint_obj['output_clusters'].append(values)
 		for cluster in endpoint.in_clusters.values():
-			values = await serialize_cluster(cluster);
+			values = await serialize_cluster(cluster,with_attributes);
 			endpoint_obj['input_clusters'].append(values)
 		obj['endpoints'].append(endpoint_obj)
 	return obj
 
-async def serialize_cluster(cluster):
+async def serialize_cluster(cluster,with_attributes = True):
 	obj = {
 		'id' : cluster.cluster_id,
 		'name' : cluster.name,
 		'attributes' : []
 	}
+	if not with_attributes:
+		return obj
 	for attribute in cluster.attributes:
 		value = await cluster.read_attributes([attribute],True,True)
 		if attribute in value[0]:

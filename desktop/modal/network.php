@@ -151,6 +151,7 @@ if (!isConnect('admin')) {
     jeedom.zigbee.device.all({
       global:false,
       instance : $('#sel_networkZigbeeInstance').value(),
+      with_attributes : 0,
       type : 'GET',
       error: function (error) {
         $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
