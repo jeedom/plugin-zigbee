@@ -1,0 +1,26 @@
+{
+  "name": "Profalux MOE",
+  "ref":"moe",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::8::0",
+      "generic_type": "FLAP_STATE"
+    },
+    {
+      "name": "Position",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::level::move_to_level::#slider#::1",
+      "generic_type": "FLAP_SLIDER"
+    }
+  ]
+}
