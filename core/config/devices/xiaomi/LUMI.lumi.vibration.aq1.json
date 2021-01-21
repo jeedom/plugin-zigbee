@@ -37,7 +37,7 @@
       "isHistorized": 0,
       "logicalId": "1::257::1288",
       "configuration" : {
-        "calculValueOffset":"#value# / 10000000000",
+        "calculValueOffset":"#value# / 10000000000"
       }
     },
     {
@@ -48,7 +48,7 @@
       "isHistorized": 0,
       "logicalId": "1::257::1285",
       "configuration" : {
-        "calculValueOffset":"#value# / 65536",
+        "calculValueOffset":"#value# / 65536"
       }
     },
     {
