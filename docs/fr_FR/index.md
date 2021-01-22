@@ -103,3 +103,7 @@ C'est la partie compliqué (comme toujours en Zigbee le plus dur c'est le reset/
 >**Le LQI ou le RSSI est à N/A
 >
 >C'est normalement suite à un redemarrage du réseaux Zigbee les valeurs sont vidées, il faut attendre que le module recomunique pour que les valeurs reviennent
+
+>**J'ai des soucis d'inclusion ou  des erreurs dans les logs de type ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
+>
+>Essayer de supprimer la rallonge USB si vous en avez une ou de changer celle-ci ou d'en mettre une si vous n'en avez pas
