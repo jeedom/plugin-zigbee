@@ -103,3 +103,7 @@ This is the complicated part (as always in Zigbee the hardest is the reset / ass
 >**LQI or RSSI is N / A
 >
 >It is normally following a restart of the Zigbee networks the values are emptied, it is necessary to wait for the module to recomunique so that the values return
+
+>**I have inclusion issues or errors in the type logs ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
+>
+>Try to remove the USB extension if you have one or change it or put one in if you don't have one

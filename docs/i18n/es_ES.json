@@ -88,6 +88,8 @@
         "Pour les ampoules hue vous pouvez aussi les inclures sur le pont hue puis les supprimer de celui-ci": "Para las bombillas de tono, también puede incluirlas en el puente de tono y luego quitarlas de él",
         "Le LQI ou le RSSI est à N\/A": "LQI o RSSI es N \/ A",
         "C'est normalement suite à un redemarrage du réseaux Zigbee les valeurs sont vidées, il faut attendre que le module recomunique pour que les valeurs reviennent": "Normalmente es luego de un reinicio de las redes Zigbee los valores se vacían, es necesario esperar a que el módulo se vuelva a unir para que los valores regresen",
+        "J'ai des soucis d'inclusion ou  des erreurs dans les logs de type": "Tengo problemas de inclusión o errores en los registros de tipos",
+        "Essayer de supprimer la rallonge USB si vous en avez une ou de changer celle-ci ou d'en mettre une si vous n'en avez pas": "Intente quitar la extensión USB si tiene una o cámbiela o coloque una si no tiene una",
         " Deconz.": " Deconz.",
         " Deconz?": " Deconz?",
         "Deconz ": "Deconz ",

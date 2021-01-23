@@ -103,3 +103,7 @@ Esta es la parte complicada (como siempre en Zigbee lo más difícil es el reini
 >**LQI o RSSI es N / A
 >
 >Normalmente es luego de un reinicio de las redes Zigbee los valores se vacían, es necesario esperar a que el módulo se vuelva a unir para que los valores regresen
+
+>**Tengo problemas de inclusión o errores en los registros de tipos ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
+>
+>Intente quitar la extensión USB si tiene una o cámbiela o coloque una si no tiene una
