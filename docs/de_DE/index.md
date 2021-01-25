@@ -103,3 +103,7 @@ Dies ist der komplizierte Teil (wie immer in Zigbee ist das Zurücksetzen / Asso
 >**LQI oder RSSI ist N / A
 >
 >Normalerweise werden nach einem Neustart der ZigBee-Netzwerke die Werte geleert. Es muss gewartet werden, bis das Modul erneut angezeigt wird, damit die Werte zurückkehren
+
+>**Ich habe Einschlussprobleme oder Fehler in den Typprotokollen ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
+>
+>Versuchen Sie, die USB-Erweiterung zu entfernen, wenn Sie eine haben, oder ändern Sie sie oder setzen Sie eine ein, wenn Sie keine haben
