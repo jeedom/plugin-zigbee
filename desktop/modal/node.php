@@ -35,10 +35,14 @@ if ($eqLogic->getConfiguration('ischild',0) == 1){
 }
 $endpoints_select = '';
 $clusters_select = '';
+$attribute_name_select = '';
 foreach ($node_data['endpoints'] as $endpoint) {
   $endpoints_select .= '<option value="'.$endpoint['id'].'">Endpoint '.$endpoint['id'].'</option>';
   foreach ($endpoint['input_clusters'] as $cluster) {
     $clusters_select .= '<option data-endpoint="'.$endpoint['id'].'" value="'.$cluster['id'].'">'.$cluster['id'].' - '.$cluster['name'].'</option>';
+    foreach ($cluster['attributes'] as $attribute) {
+      $attribute_name_select .= '<option data-endpoint="'.$endpoint['id'].'" data-cluster="'.$cluster['id'].'" value="'.$attribute['name'].'">'.$attribute['id'].' - '.$attribute['name'].'</option>';
+    }
   }
 }
 ?>
@@ -379,10 +383,10 @@ foreach ($node_data['endpoints'] as $endpoint) {
           <div class="form-group">
             <div class="col-sm-12">
               <input class="getNodeAttr from-control" data-l1key="manufacturer" placeholder="{{Code manufacturer}}"/>
-              <select class="getNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 200px">
+              <select class="getNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 150px">
                 <?php echo $endpoints_select;?>
               </select>
-              <select class="getNodeAttr from-control" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 400px">
+              <select class="getNodeAttr from-control" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 300px">
                 <?php echo $clusters_select;?>
               </select>
               <input class="getNodeAttr from-control" data-l1key="attributes" placeholder="{{Attribut}}"/>
@@ -394,10 +398,10 @@ foreach ($node_data['endpoints'] as $endpoint) {
           <div class="form-group">
             <div class="col-sm-12">
               <input class="setNodeAttr from-control" data-l1key="manufacturer" placeholder="{{Code manufacturer}}"/>
-              <select class="setNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 200px">
+              <select class="setNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 150px">
                 <?php echo $endpoints_select;?>
               </select>
-              <select class="setNodeAttr from-control sel_cluster" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 400px">
+              <select class="setNodeAttr from-control sel_cluster" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 300px">
                 <?php echo $clusters_select;?>
               </select>
               <input class="setNodeAttr from-control" data-l1key="attributes" placeholder="{{Attribut}}"/>
@@ -408,13 +412,15 @@ foreach ($node_data['endpoints'] as $endpoint) {
           <legend>{{Configuration des rapports}}</legend>
           <div class="form-group">
             <div class="col-sm-12">
-              <select class="setConfigReport from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 200px">
+              <select class="setConfigReport from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 150px">
                 <?php echo $endpoints_select;?>
               </select>
-              <select class="setConfigReport from-control" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 400px">
+              <select class="setConfigReport from-control" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 300px">
                 <?php echo $clusters_select;?>
               </select>
-              <input class="setConfigReport from-control" data-l1key="name" placeholder="{{Attribut (nom)}}"/>
+              <select class="setConfigReport from-control" data-l1key="name" placeholder="{{Attribut (nom)}}" style="width : 300px">
+                <?php echo $attribute_name_select;?>
+              </select>
               <input class="setConfigReport from-control" data-l1key="min_report_int" placeholder="{{Delai minimal}}"/>
               <input class="setConfigReport from-control" data-l1key="max_report_int" placeholder="{{Delai maximal}}"/>
               <input type="checkbox" class="setConfigReport from-control" data-l1key="reportable_change"/><label>{{Rapporter changement}}</label>
@@ -436,6 +442,22 @@ foreach ($node_data['endpoints'] as $endpoint) {
     cluster.find('option').hide();
     cluster.find('option[data-endpoint='+$(this).value()+']').show()
     cluster.find('option').each(function () {
+      if ($(this).css('display') != 'none') {
+        $(this).prop("selected", true);
+        $('#actionNodeTab select[data-l1key=cluster]').change();
+        return false;
+      }
+    });
+  })
+  
+  $('#actionNodeTab select[data-l1key=cluster]').off('change').on('change',function(){
+    let name = $(this).parent().find('select[data-l1key=name]')
+    if(name == undefined){
+      return;
+    }
+    name.find('option').hide();
+    name.find('option[data-endpoint='+$(this).find('option:selected').attr('data-endpoint')+'][data-cluster='+$(this).value()+']').show()
+    name.find('option').each(function () {
       if ($(this).css('display') != 'none') {
         $(this).prop("selected", true);
         return false;
