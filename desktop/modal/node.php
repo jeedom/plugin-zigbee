@@ -389,6 +389,18 @@ if ($eqLogic->getConfiguration('ischild',0) == 1){
               <a class="btn btn-success btn-sm" id="bt_nodeSetAttr">{{Valider}}</a>
             </div>
           </div>
+          <legend>{{Configuration des rapports}}</legend>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input class="setConfigReport from-control" data-l1key="endpoint" placeholder="{{Endpoint}}"/>
+              <input class="setConfigReport from-control" data-l1key="cluster" placeholder="{{Cluster}}"/>
+              <input class="setConfigReport from-control" data-l1key="name" placeholder="{{Attribut (nom)}}"/>
+              <input class="setConfigReport from-control" data-l1key="min_report_int" placeholder="{{Delai minimal}}"/>
+              <input class="setConfigReport from-control" data-l1key="max_report_int" placeholder="{{Delai maximal}}"/>
+              <input type="checkbox" class="setConfigReport from-control" data-l1key="reportable_change"/><label>{{Rapporter changement}}</label>
+              <a class="btn btn-success btn-sm" id="bt_nodeSetConfigReport">{{Valider}}</a>
+            </div>
+          </div>
         </fieldset>
       </form>
     </div>
@@ -540,6 +552,30 @@ if ($eqLogic->getConfiguration('ischild',0) == 1){
       cluster : parseInt(infos.cluster),
       manufacturer : parseInt(infos.manufacturer),
       attributes : attributes,
+      error: function (error) {
+        $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+      },
+      success : function(data){
+        $('#div_nodeDeconzAlert').showAlert({message: '{{Valeur ecrite avec succès}}', level: 'success'});
+      }
+    })
+  });
+  
+  
+  $('#actionNodeTab').off('click','#bt_nodeSetConfigReport').on('click','#bt_nodeSetConfigReport',function(){
+    let infos = $('#actionNodeTab').getValues('.setConfigReport')[0]
+    let attributes = {}
+    attributes[parseInt(infos.attributes)] = parseInt(infos.value)
+    jeedom.zigbee.device.setReportConfig({
+      instance : zigbeeNodeInstance,
+      ieee : zigbeeNodeIeee,
+      cluster_type : 'in',
+      endpoint : parseInt(infos.endpoint),
+      cluster : parseInt(infos.cluster),
+      manufacturer : parseInt(infos.manufacturer),
+      attributes : [
+        {'name' : infos.name,'min_report_int' : parseInt(infos.min_report_int),'max_report_int' : parseInt(infos.max_report_int),'reportable_change' : parseInt(infos.reportable_change)}
+      ],
       error: function (error) {
         $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
       },

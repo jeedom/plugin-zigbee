@@ -180,6 +180,26 @@ class DeviceHandler(RequestHandler):
 					else:
 						raise
 				return self.write(utils.format_json_result(success=True))
+			if arg1 == 'reportConfig':
+				device = zdevices.find(self.json_args['ieee'])
+				if device == None:
+					raise Exception("Device not found")
+				for attribute in self.json_args['attributes']:
+					if not attribute['endpoint'] in device.endpoints:
+						raise Exception("Endpoint not found : "+str(attribute['endpoint']))
+					endpoint = device.endpoints[attribute['endpoint']]
+					if attribute['cluster_type'] == 'in':
+						if not attribute['cluster'] in endpoint.in_clusters:
+							raise Exception("Cluster not found : "+str(attribute['cluster']))
+						cluster = endpoint.in_clusters[attribute['cluster']]
+					else:
+						if not attribute['cluster'] in endpoint.out_clusters:
+							raise Exception("Cluster not found : "+str(attribute['cluster']))
+						cluster = endpoint.out_clusters[attribute['cluster']]
+					kwargs = {}
+					for attr in attribute['attributes']:
+						await cluster.configure_reporting(attr['name'],attr['min_report_int'],attr['max_report_int'],attr['reportable_change'], **kwargs)
+				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'gpDevice':
 				deviceAdded = False
 				device = zdevices.find(self.json_args['ieee'])
