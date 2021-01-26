@@ -33,6 +33,14 @@ if ($eqLogic->getConfiguration('ischild',0) == 1){
   $ischild = true;
   $childendpoint = explode('|',$eqLogic->getLogicalId())[1];
 }
+$endpoints_select = '';
+$clusters_select = '';
+foreach ($node_data['endpoints'] as $endpoint) {
+  $endpoints_select .= '<option value="'.$endpoint['id'].'">Endpoint '.$endpoint['id'].'</option>';
+  foreach ($endpoint['input_clusters'] as $cluster) {
+    $clusters_select .= '<option data-endpoint="'.$endpoint['id'].'" value="'.$cluster['id'].'">'.$cluster['id'].' - '.$cluster['name'].'</option>';
+  }
+}
 ?>
 <div id='div_nodeDeconzAlert' style="display: none;"></div>
 <ul class="nav nav-tabs" role="tablist">
@@ -370,9 +378,13 @@ if ($eqLogic->getConfiguration('ischild',0) == 1){
           <legend>{{Lecture d'un attribut}} <label class="checkbox-inline" style="margin-left:15px;"><input type="checkbox" class="getNodeAttr" data-l1key="allowCache" checked/>{{Autoriser le cache}}</label></legend>
           <div class="form-group">
             <div class="col-sm-12">
-              <input class="getNodeAttr from-control" data-l1key="manufacturer" placeholder="{{Manufacturer}}"/>
-              <input class="getNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}"/>
-              <input class="getNodeAttr from-control" data-l1key="cluster" placeholder="{{Cluster}}"/>
+              <input class="getNodeAttr from-control" data-l1key="manufacturer" placeholder="{{Code manufacturer}}"/>
+              <select class="getNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 200px">
+                <?php echo $endpoints_select;?>
+              </select>
+              <select class="getNodeAttr from-control" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 400px">
+                <?php echo $clusters_select;?>
+              </select>
               <input class="getNodeAttr from-control" data-l1key="attributes" placeholder="{{Attribut}}"/>
               <a class="btn btn-success btn-sm" id="bt_nodeGetAttr">{{Valider}}</a>
               <span id="span_nodeGetAttrResult" style="margin-left:10px;"></span>
@@ -381,9 +393,13 @@ if ($eqLogic->getConfiguration('ischild',0) == 1){
           <legend>{{Ecriture d'un attribut}}</legend>
           <div class="form-group">
             <div class="col-sm-12">
-              <input class="setNodeAttr from-control" data-l1key="manufacturer" placeholder="{{Manufacturer}}"/>
-              <input class="setNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}"/>
-              <input class="setNodeAttr from-control" data-l1key="cluster" placeholder="{{Cluster}}"/>
+              <input class="setNodeAttr from-control" data-l1key="manufacturer" placeholder="{{Code manufacturer}}"/>
+              <select class="setNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 200px">
+                <?php echo $endpoints_select;?>
+              </select>
+              <select class="setNodeAttr from-control sel_cluster" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 400px">
+                <?php echo $clusters_select;?>
+              </select>
               <input class="setNodeAttr from-control" data-l1key="attributes" placeholder="{{Attribut}}"/>
               <input class="setNodeAttr from-control" data-l1key="value" placeholder="{{Valeur}}"/>
               <a class="btn btn-success btn-sm" id="bt_nodeSetAttr">{{Valider}}</a>
@@ -392,8 +408,12 @@ if ($eqLogic->getConfiguration('ischild',0) == 1){
           <legend>{{Configuration des rapports}}</legend>
           <div class="form-group">
             <div class="col-sm-12">
-              <input class="setConfigReport from-control" data-l1key="endpoint" placeholder="{{Endpoint}}"/>
-              <input class="setConfigReport from-control" data-l1key="cluster" placeholder="{{Cluster}}"/>
+              <select class="setConfigReport from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 200px">
+                <?php echo $endpoints_select;?>
+              </select>
+              <select class="setConfigReport from-control" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 400px">
+                <?php echo $clusters_select;?>
+              </select>
               <input class="setConfigReport from-control" data-l1key="name" placeholder="{{Attribut (nom)}}"/>
               <input class="setConfigReport from-control" data-l1key="min_report_int" placeholder="{{Delai minimal}}"/>
               <input class="setConfigReport from-control" data-l1key="max_report_int" placeholder="{{Delai maximal}}"/>
@@ -410,6 +430,20 @@ if ($eqLogic->getConfiguration('ischild',0) == 1){
   </div>
   
   <script>
+  
+  $('#actionNodeTab select[data-l1key=endpoint]').off('change').on('change',function(){
+    let cluster = $(this).parent().find('select[data-l1key=cluster]')
+    cluster.find('option').hide();
+    cluster.find('option[data-endpoint='+$(this).value()+']').show()
+    cluster.find('option').each(function () {
+      if ($(this).css('display') != 'none') {
+        $(this).prop("selected", true);
+        return false;
+      }
+    });
+  })
+  
+  $('#actionNodeTab select[data-l1key=endpoint]').change();
   
   $('.bt_sendGpKey').off('click').on('click',function(){
     let tr = $(this)
@@ -640,5 +674,4 @@ if ($eqLogic->getConfiguration('ischild',0) == 1){
       }
     });
   });
-  </script>
-  
+</script>
