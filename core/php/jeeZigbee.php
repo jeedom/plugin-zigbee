@@ -137,8 +137,20 @@ if (isset($result['devices'])) {
 						if(!is_array($value) && $value == '[]'){
 							continue;
 						}
-						if($cluster_id == 1 && $attribut_id == 33){
-							$zigbee->batteryStatus($value);
+						if($cluster_id == 1){
+							if( $attribut_id == 33){
+								$zigbee->batteryStatus($value);
+							}
+							if( $attribut_id == 32){
+								if($value > $zigbee->getConfiguration('maxBatteryVoltage',0)){
+									$zigbee->setConfiguration('maxBatteryVoltage',$value);
+									$zigbee->save();
+								}
+								if($zigbee->getConfiguration('maxBatteryVoltage',0) != 0){
+									$zigbee->batteryStatus($value/$zigbee->getConfiguration('maxBatteryVoltage',0) * 100);
+								}
+							}
+							continue;
 						}else if(strcmp($attribut_id, 'cmd') === 0){
 							foreach ($value as $cmd_id => $cmd_value) {
 								if($cmd_value['value'] == '[]'){

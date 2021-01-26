@@ -76,19 +76,38 @@ class zigbee extends eqLogic {
       }
       $devices = self::request($i,'/device/all');
       foreach ($devices as $device) {
-        if($device['nwk'] == 0 || $device['last_seen'] == 'None'){
-          continue;
-        }
-        if((strtotime('now') - $device['last_seen']) < config::byKey('max_duration_last_seen','zigbee') * 60){
+        if($device['nwk'] == 0){
           continue;
         }
         $zigbee = zigbee::byLogicalId($device['ieee'], 'zigbee');
-        if(!is_object($zigbee) || $zigbee->getConfiguration('ignore_last_seen',0) == 1){
+        if(!is_object($zigbee)){
           continue;
         }
-        $message = __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __('n\'a pas envoyé de message depuis plus de ', __FILE__).config::byKey('max_duration_last_seen','zigbee').' min';
-        if ($message != '') {
-          log::add('zigbee', 'error', $message, 'device_dead_' . $zigbee->getId());
+        if(isset(array_values($device['endpoints'])[0]['input_clusters'][0]['id']) && array_values($device['endpoints'])[0]['input_clusters'][0]['id'] == 0){
+          $endpoint_id = array_values($device['endpoints'])[0]['id'];
+        }else{
+          $endpoint_id = array_values($device['endpoints'])[1]['id'];
+        }
+        if(self::getAttribute($endpoint_id,1,33,$device) != null){
+          $zigbee->batteryStatus(self::getAttribute($endpoint_id,1,33,$device));
+        }else if(self::getAttribute($endpoint_id,1,32,$device) != null){
+          $battery_voltage = self::getAttribute($endpoint_id,1,32,$device);
+          if($battery_voltage > $zigbee->getConfiguration('maxBatteryVoltage',0)){
+            $zigbee->setConfiguration('maxBatteryVoltage',$battery_voltage);
+            $zigbee->save();
+          }
+          if($zigbee->getConfiguration('maxBatteryVoltage',0) != 0){
+            $zigbee->batteryStatus($battery_voltage/$zigbee->getConfiguration('maxBatteryVoltage',0) * 100);
+          }
+        }
+        if($device['last_seen'] == 'None' || (strtotime('now') - $device['last_seen']) < config::byKey('max_duration_last_seen','zigbee') * 60){
+          continue;
+        }
+        if($zigbee->getConfiguration('ignore_last_seen',0) != 1){
+          $message = __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __('n\'a pas envoyé de message depuis plus de ', __FILE__).config::byKey('max_duration_last_seen','zigbee').' min';
+          if ($message != '') {
+            log::add('zigbee', 'error', $message, 'device_dead_' . $zigbee->getId());
+          }
         }
       }
     }
