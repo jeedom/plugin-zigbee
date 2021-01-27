@@ -29,6 +29,14 @@
         "minValue" : 0,
         "maxValue" : 254
       }
+    },
+    {
+      "name": "Stop",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::level::stop"
     }
   ]
 }
