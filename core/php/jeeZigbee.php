@@ -139,15 +139,15 @@ if (isset($result['devices'])) {
 						}
 						if($cluster_id == 1){
 							if( $attribut_id == 33){
-								$zigbee->batteryStatus($value);
+								$zigbee->batteryStatus($value['value']);
 							}
 							if( $attribut_id == 32){
 								if($value > $zigbee->getConfiguration('maxBatteryVoltage',0)){
-									$zigbee->setConfiguration('maxBatteryVoltage',$value);
+									$zigbee->setConfiguration('maxBatteryVoltage',$value['value']);
 									$zigbee->save();
 								}
 								if($zigbee->getConfiguration('maxBatteryVoltage',0) != 0){
-									$zigbee->batteryStatus($value/$zigbee->getConfiguration('maxBatteryVoltage',0) * 100);
+									$zigbee->batteryStatus($value['value']/$zigbee->getConfiguration('maxBatteryVoltage',0) * 100);
 								}
 							}
 							continue;
