@@ -94,12 +94,15 @@ jeedom.zigbee.device.all = function(_params){
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  if(_params.with_attributes == undefined){
+    _params.with_attributes = 1
+  }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/all',
-    data : json_encode({with_attributes : _params.with_attributes || 1}),
+    data : json_encode({with_attributes : _params.with_attributes}),
     type : 'GET'
   };
   $.ajax(paramsAJAX);
