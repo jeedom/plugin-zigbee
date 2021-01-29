@@ -271,7 +271,7 @@ class zigbee extends eqLogic {
       if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
         continue;
       }
-      $devices = self::request($i,'/device/all');
+      $devices = self::request($i,'/device/all',array('with_attributes' => 2));
       foreach ($devices as $device) {
         if($device['nwk'] == 0){
           continue;

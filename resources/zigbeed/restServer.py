@@ -113,9 +113,7 @@ class DeviceHandler(RequestHandler):
 		try:
 			if arg1 == 'all':
 				result = []
-				with_attributes = True
-				if self.get_argument('with_attributes',1) == 0:
-					with_attributes = False
+				with_attributes = self.get_argument('with_attributes',1)
 				for device in shared.ZIGPY.devices.values():
 					values = await zdevices.serialize(device,with_attributes)
 					result.append(values)
