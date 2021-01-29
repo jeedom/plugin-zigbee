@@ -1,6 +1,7 @@
 {
   "name": "Legrand cable outlet",
   "buylink" : "",
+  "ref" : "0 648 79"
   "commands": [
     {
       "name": "Etat",
