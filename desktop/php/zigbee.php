@@ -95,7 +95,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 		<legend><i class="fas fa-table"></i>  {{Mes groupes Zigbee}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<?php
-			$child = '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green fas fa-columns" title="Groupe"></i>';
+			$child = '<i style="position:relative;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green fas fa-columns" title="Groupe"></i>';
 			foreach ($eqLogics as $eqLogic) {
 				if ($eqLogic->getConfiguration('isgroup',0) == 1) {
 					echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '" >';
