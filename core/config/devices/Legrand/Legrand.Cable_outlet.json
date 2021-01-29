@@ -31,6 +31,16 @@
       "isHistorized": 0,
       "value" : "Etat",
       "logicalId": "1::on_off::off"
+    },
+    {
+      "name": "Puissance",
+      "type": "info",
+      "subtype": "numeric",
+      "generic_type": "POWER",
+      "unite" : "W",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::2820::1291"
     }
   ]
 }
