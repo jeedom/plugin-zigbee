@@ -142,7 +142,7 @@ if (isset($result['devices'])) {
 								$zigbee->batteryStatus($value['value']);
 							}
 							if( $attribut_id == 32){
-								if($value > $zigbee->getConfiguration('maxBatteryVoltage',0)){
+								if(is_array($zigbee->getConfiguration('maxBatteryVoltage',0)) || $value > $zigbee->getConfiguration('maxBatteryVoltage',0)){
 									$zigbee->setConfiguration('maxBatteryVoltage',$value['value']);
 									$zigbee->save();
 								}
