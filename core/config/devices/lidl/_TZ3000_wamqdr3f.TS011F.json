@@ -11,7 +11,7 @@
       "generic_type": "LIGHT_STATE",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::6::0"
+      "logicalId": "11::6::0"
     },
     {
       "name": "On",
@@ -21,7 +21,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::on",
+      "logicalId": "11::on_off::on",
       "template":{
         "dashboard" : "light",
         "mobile" : "light"
@@ -35,7 +35,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::off",
+      "logicalId": "11::on_off::off",
       "template":{
         "dashboard" : "light",
         "mobile" : "light"
