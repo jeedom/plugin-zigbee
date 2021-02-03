@@ -199,8 +199,8 @@ class zigbee extends eqLogic {
     $port = config::byKey('port_'.$_instance, 'zigbee');
     if ($port == 'pizigate') {
       $port = 'pizigate:/dev/serial'.config::byKey('pizigate_'.$_instance, 'zigbee');
-    }else if ($port == 'wifizigate') {
-      $port = 'socket://'.config::byKey('wifizigate_'.$_instance, 'zigbee');
+    }else if ($port == 'gateway') {
+      $port = 'socket://'.config::byKey('gateway_'.$_instance, 'zigbee');
     }else if ($port != 'auto') {
       $port = jeedom::getUsbMapping($port);
     }

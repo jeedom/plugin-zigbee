@@ -79,6 +79,8 @@ if (!isConnect('admin')) {
             <select class="configKey form-control" data-l1key="port_<?php echo $i ?>">
               <option value="none">{{Aucun}}</option>
               <option value="auto">{{Auto}}</option>
+              <option value="pizigate">{{Pizigate}}</option>
+              <option value="gateway">{{Passerelle distante}}</option>
               <?php
               foreach (jeedom::getUsbMapping() as $name => $value) {
                 echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
@@ -87,8 +89,6 @@ if (!isConnect('admin')) {
                 echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
               }
               ?>
-              <option value="pizigate">{{Pizigate}}</option>
-              <option value="wifizigate">{{Wifi Zigate}}</option>
             </select>
           </div>
         </div>
@@ -98,10 +98,10 @@ if (!isConnect('admin')) {
             <input type="number" class="configKey form-control" data-l1key="pizigate_<?php echo $i ?>" />
           </div>
         </div>
-        <div class="form-group zigbee_portConf_<?php echo $i ?> wifizigate_<?php echo $i ?>" style="display:none;">
-          <label class="col-sm-4 control-label">{{Wifi Zigate IP:PORT}}</label>
+        <div class="form-group zigbee_portConf_<?php echo $i ?> gateway_<?php echo $i ?>" style="display:none;">
+          <label class="col-sm-4 control-label">{{Passerelle distante IP:PORT}}</label>
           <div class="col-sm-2">
-            <input class="configKey form-control" data-l1key="wifizigate_<?php echo $i ?>" />
+            <input class="configKey form-control" data-l1key="gateway_<?php echo $i ?>" />
           </div>
         </div>
         <div class="form-group">
@@ -154,7 +154,7 @@ if (!isConnect('admin')) {
   });
   $('.configKey[data-l1key="port_<?php echo $i ?>"]').off('change').on('change',function(){
     $('.zigbee_portConf_<?php echo $i ?>').hide();
-    if($(this).value() == 'pizigate' || $(this).value() == 'wifizigate'){
+    if($(this).value() == 'pizigate' || $(this).value() == 'wifizigate' || $(this).value() == 'gateway'){
       $('.zigbee_portConf_<?php echo $i ?>.'+$(this).value()+"_<?php echo $i ?>").show();
     }
   });
