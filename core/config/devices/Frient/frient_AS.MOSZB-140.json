@@ -1,0 +1,48 @@
+{
+  "name": "Motion detector",
+  "ref" : "MOSZB-140",
+  "reset" : "Presser le bouton jusqu'a ce que le module clignote",
+  "pairing":"Il faut enlever remettre la pile dans le module",
+  "commands": [
+    {
+      "name": "Présence",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "34::1030::0",
+      "generic_type": "PRESENCE",
+      "display": {
+        "invertBinary" : 1
+      }
+    },
+    {
+      "name": "Luminosité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "39::1024::0",
+      "generic_type": "BRIGHTNESS",
+      "display": {
+        "invertBinary" : 1
+      },
+      "configuration":{
+        "historizeRound" : 2
+      }
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "38::1026::0",
+      "unite" : "°C",
+      "generic_type": "TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    }
+  ]
+}
