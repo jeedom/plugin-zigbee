@@ -42,7 +42,7 @@
       "isVisible": 1,
       "isHistorized": 1,
       "unite":"kWh",
-      "logicalId": "1::1794::181",
+      "logicalId": "1::1794::0",
       "configuration":{
         "historizeRound" : 2
       }
@@ -57,7 +57,8 @@
       "unite":"W",
       "logicalId": "1::2820::1291",
       "configuration":{
-        "historizeRound" : 2
+        "historizeRound" : 2,
+        "calculValueOffset":"#value# / 10"
       }
     }
   ]
