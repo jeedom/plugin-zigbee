@@ -806,6 +806,11 @@ class zigbeeCmd extends cmd {
         if (count($info) > 3){
           $command['args'] = array_slice($info,3);
         }
+        foreach ($command['args'] as &$value) {
+          if(is_float($value)){
+            $value = intval($value);
+          }
+        }
         $commands[] = $command;
       }
     }
