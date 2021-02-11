@@ -12,6 +12,19 @@
       "isHistorized": 0,
       "logicalId": "35::15::85",
       "generic_type": "SMOKE"
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "38::1026::0",
+      "unite" : "°C",
+      "generic_type": "TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
     }
   ]
 }
