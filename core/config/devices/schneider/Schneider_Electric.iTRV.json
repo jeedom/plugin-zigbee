@@ -1,0 +1,74 @@
+{
+  "name": "Schneider Electric iTRV",
+  "ref" : "CCTFR6100",
+  "type": "Tête thermostatique",
+  "buylink" : "",
+  "documentation" : "",
+  "pairing": "Pousser la vanne coté + pendant 5s",
+  "reset": "Pousser la vanne coté + pendant au moins 15s, relacher quand la led clignote rouge",
+  "commands": [
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "1::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "1::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne",
+      "logicalId": "attributes::1::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"6",
+        "maxValue":"28"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Puissance",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "%",
+      "logicalId": "1::513::8"
+    },
+    {
+      "name": "Mode",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "generic_type" : "THERMOSTAT_STATE_NAME",
+      "logicalId": "1::513::28"
+    }
+  ]
+}
