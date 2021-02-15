@@ -29,6 +29,9 @@ class zigbee extends eqLogic {
     $log = log::getPathToLog(__CLASS__ . '_ota');
     log::add('zigbee_ota','debug',__('Début de la mise à jour du répertoire OTA',__FILE__));
     $ota_dir = __DIR__.'/../../data/ota';
+    if(!file_exists($ota_dir)){
+      mkdir($ota_dir,0777,true);
+    }
     $request_http = new com_http('https://raw.githubusercontent.com/Koenkk/zigbee-OTA/master/index.json');
     $ota_zigbee = is_json($request_http->exec(30), true);
     foreach ($ota_zigbee as $ota) {
@@ -285,8 +288,8 @@ class zigbee extends eqLogic {
     }else if ($port != 'auto') {
       $port = jeedom::getUsbMapping($port);
     }
-    if(!file_exists(dirname(__FILE__) . '/../../data/'.$_instance)){
-      mkdir(dirname(__FILE__) . '/../../data/'.$_instance,0777,true);
+    if(!file_exists(__DIR__ . '/../../data/'.$_instance)){
+      mkdir(__DIR__ . '/../../data/'.$_instance,0777,true);
     }
     $zigbee_path = realpath(dirname(__FILE__) . '/../../resources/zigbeed');
     $cmd = '/usr/bin/python3 ' . $zigbee_path . '/zigbeed.py';
@@ -297,11 +300,17 @@ class zigbee extends eqLogic {
     $cmd .= ' --apikey ' . jeedom::getApiKey('zigbee');
     $cmd .= ' --cycle ' . config::byKey('cycle_'.$_instance, 'zigbee');
     $cmd .= ' --pid ' . jeedom::getTmpFolder('zigbee') . '/deamon_'.$_instance.'.pid';
-    $cmd .= ' --data_folder '. realpath(dirname(__FILE__) . '/../../data/'.$_instance.'/');
+    $cmd .= ' --data_folder '. realpath(__DIR__ . '/../../data/'.$_instance.'/');
     $cmd .= ' --controller '. config::byKey('controller_'.$_instance, 'zigbee');
     $cmd .= ' --sub_controller '. config::byKey('sub_controller_'.$_instance, 'zigbee','auto');
     $cmd .= ' --channel '. config::byKey('channel_'.$_instance, 'zigbee');
-    $cmd .= ' --allowOTA '. config::byKey('allowOTA', 'zigbee');
+    if(config::byKey('allowOTA', 'zigbee') == 1){
+      if(!file_exists(__DIR__ . '/../../data/ota')){
+        mkdir(__DIR__ . '/../../data/ota',0777,true);
+      }
+      $cmd .= ' --folder_OTA '. realpath(__DIR__ . '/../../data/ota');
+    }
+    
     log::add('zigbee', 'info', 'Lancement démon zigbeed : ' . $cmd);
     exec($cmd . ' >> ' . log::getPathToLog('zigbeed_'.$_instance) . ' 2>&1 &');
     return true;

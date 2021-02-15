@@ -350,6 +350,14 @@ foreach ($node_data['endpoints'] as $endpoint) {
       <br/>
       <form class="form-horizontal">
         <fieldset>
+          <?php if(config::byKey('allowOTA', 'zigbee') == 1){ ?>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">{{Forcer la mise à jour du module}}</label>
+              <div class="col-sm-2">
+                <a class="btn btn-warning bt_forceOTA"><i class="fa fa-trash"></i> {{OTA}}</a>
+              </div>
+            </div>
+          <?php } ?>
           <div class="form-group">
             <label class="col-sm-3 control-label">{{Rafraichir les informations}}</label>
             <div class="col-sm-2">
