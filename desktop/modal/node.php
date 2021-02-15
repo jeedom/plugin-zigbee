@@ -704,4 +704,22 @@ foreach ($node_data['endpoints'] as $endpoint) {
       }
     });
   });
+  
+  $('#actionNodeTab').off('click','.bt_forceOTA').on('click','.bt_forceOTA',function(){
+    jeedom.zigbee.device.command({
+      instance : zigbeeNodeInstance,
+      ieee : zigbeeNodeIeee,
+      endpoint : 1,
+      cluster_type : 'out',
+      cluster : 25,
+      command : 'image_notify',
+      args : [0,100],
+      error: function (error) {
+        $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (data) {
+        $('#div_nodeDeconzAlert').showAlert({message: '{{Mise à jour OTA forcée envoyée avec succes}}', level: 'success'});
+      }
+    });
+  });
 </script>

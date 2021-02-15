@@ -169,6 +169,27 @@ jeedom.zigbee.device.all = function(_params){
   $.ajax(paramsAJAX);
 }
 
+jeedom.zigbee.device.command = function(_params){
+  var paramsRequired = ['ieee','endpoint','cluster','command'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    instance : _params.instance || 1,
+    request: '/device/command',
+    data : json_encode({ieee : _params.ieee,'cmd':[{endpoint : _params.endpoint,cluster_type : _params.cluster_type,cluster : _params.cluster,command : _params.command,args : _params.args}]}),
+    type : 'PUT'
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.zigbee.device.info = function(_params){
   var paramsRequired = ['ieee'];
   var paramsSpecifics = {};

@@ -37,9 +37,16 @@ async def command(_data):
 		if not cmd['endpoint'] in device.endpoints:
 			raise Exception("Endpoint not found : "+str(cmd['endpoint']))
 		endpoint = device.endpoints[cmd['endpoint']]
-		if not hasattr(endpoint,cmd['cluster']):
+		cluster = None
+		if 'cluster_type' in cmd :
+			if cmd['cluster_type'] == 'out' and cmd['cluster'] in endpoint.out_clusters:
+				cluster = endpoint.out_clusters[cmd['cluster']]
+			elif cmd['cluster'] in endpoint.in_clusters:
+				cluster = endpoint.in_clusters[cmd['cluster']]
+		elif hasattr(endpoint,cmd['cluster']):
+			cluster = getattr(endpoint, cmd['cluster'])
+		if cluster is None:
 			raise Exception("Cluster not found : "+str(cmd['cluster']))
-		cluster = getattr(endpoint, cmd['cluster'])
 		if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],cmd['command']):
 			logging.info("["+str(device._ieee)+"][zdevices.command] Use specific command action")
 			command = getattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], cmd['command'])
