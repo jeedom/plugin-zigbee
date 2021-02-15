@@ -181,7 +181,9 @@ class Ota():
 	def attribute_updated(cluster, attribute_id, value):
 		return False
 
-	def cluster_command(cluster, tsn, *args):
+	def cluster_command(cluster, tsn,command_id, *args):
+		cmd_name = cluster.server_commands.get(command_id, [command_id])[0]
+		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.Ota.cluster_command] Received command "+str(cmd_name))
 		return False
 
 

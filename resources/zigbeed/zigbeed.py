@@ -55,6 +55,12 @@ async def start_zigbee():
 			},
 			zigpy.config.CONF_NWK : {
 				zigpy.config.CONF_NWK_CHANNEL : _channel
+			},
+			zigpy.config.CONF_OTA : {
+				zigpy.config.CONF_OTA_DIR  : _data_folder+"/ota",
+				zigpy.config.CONF_OTA_IKEA : True,
+				zigpy.config.CONF_OTA_IKEA_URL : "http://fw.test.ota.homesmart.ikea.net/feed/version_info.json",
+				zigpy.config.CONF_OTA_LEDVANCE : True
 			}
 		}
 		if shared.CONTROLLER == 'ezsp' and shared.SUB_CONTROLLER == 'elelabs' :
