@@ -36,6 +36,12 @@ if (!isConnect('admin')) {
         <input class="configKey form-control" data-l1key="max_duration_last_seen" />
       </div>
     </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">{{Backup/restore d'un coordinateur}}</label>
+      <div class="col-lg-2">
+        <a class="form-control btn btn-default" id="bt_backup_restore"><i class="far fa-save"></i> {{Lancer l'assistant}}</a>
+      </div>
+    </div>
     <?php for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){ ?>
       <legend><i class="icon loisir-darth"></i> {{Démon }}<?php echo $i ?></legend>
       <div class="form-group">
@@ -179,6 +185,10 @@ if (!isConnect('admin')) {
         }
       }
     });
+  })
+  
+  $('#bt_backup_restore').off('clic').on('click',function(){
+    $('#md_modal').dialog({title: "{{Assistant de backup/restore du coordinateur}}"}).load('index.php?v=d&plugin=zigbee&modal=backup_restore').dialog('open');
   })
   </script>
   

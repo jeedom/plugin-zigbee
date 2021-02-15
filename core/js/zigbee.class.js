@@ -23,6 +23,49 @@ jeedom.zigbee.device = function() {};
 jeedom.zigbee.group = function() {};
 jeedom.zigbee.deamon = function() {};
 
+jeedom.zigbee.backup = function(_params){
+  var paramsRequired = ['port','controller'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/ajax/zigbee.php';
+  paramsAJAX.data = {
+    action: 'backup',
+    port : _params.port,
+    controller : _params.controller,
+    gateway : _params.gateway
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.zigbee.restore = function(_params){
+  var paramsRequired = ['port','controller','backup'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/ajax/zigbee.php';
+  paramsAJAX.data = {
+    action: 'restore',
+    port : _params.port,
+    controller : _params.controller,
+    gateway : _params.gateway,
+    backup : _params.backup
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.zigbee.application.include = function(_params){
   var paramsRequired = ['duration'];
   var paramsSpecifics = {};

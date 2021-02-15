@@ -52,12 +52,12 @@ try {
   }
   
   if(init('action') == 'childCreate'){
-	$eqLogic = zigbee::byId(init('id'));
-	if (!is_object($eqLogic)) {
+    $eqLogic = zigbee::byId(init('id'));
+    if (!is_object($eqLogic)) {
       throw new Exception(__('Zigbee eqLogic non trouvé : ', __FILE__) . init('id'));
     }
-	$childeqLogic = eqLogic::byLogicalId($eqLogic->getLogicalId().'|'.init('endpoint'),'zigbee');
-	if (is_object($childeqLogic)) {
+    $childeqLogic = eqLogic::byLogicalId($eqLogic->getLogicalId().'|'.init('endpoint'),'zigbee');
+    if (is_object($childeqLogic)) {
       throw new Exception(__('Un enfant existe déjà sur cet endpoint', __FILE__));
     }
     $eqLogic->childCreate(init('endpoint'));
@@ -65,8 +65,8 @@ try {
   }
   
   if(init('action') == 'getVisualList'){
-	$eqLogic = zigbee::byId(init('id'));
-	if (!is_object($eqLogic)) {
+    $eqLogic = zigbee::byId(init('id'));
+    if (!is_object($eqLogic)) {
       throw new Exception(__('Zigbee eqLogic non trouvé : ', __FILE__) . init('id'));
     }
     ajax::success($eqLogic->getVisualList());
@@ -74,6 +74,27 @@ try {
   
   if(init('action') == 'deamonInstanceDef'){
     ajax::success(zigbee::getDeamonInstanceDef());
+  }
+  
+  
+  if(init('action') == 'backup'){
+    if (init('port') == 'gateway') {
+      $port = 'socket://'.init('gateway');
+    }else{
+      $port = jeedom::getUsbMapping(init('port'));
+    }
+    zigbee::backup_coordinator(array(array('port' => $port,'controller' => init('controller'))));
+    ajax::success();
+  }
+  
+  if(init('action') == 'restore'){
+    if (init('port') == 'gateway') {
+      $port = 'socket://'.init('gateway');
+    }else{
+      $port = jeedom::getUsbMapping(init('port'));
+    }
+    zigbee::restore_coordinator(array(array('port' => $port,'controller' => init('controller'),'backup' => init('backup'))));
+    ajax::success();
   }
   
   throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
