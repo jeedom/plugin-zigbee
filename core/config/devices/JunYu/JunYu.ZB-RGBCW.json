@@ -1,9 +1,9 @@
 {
-  "name": "ASLED Swing",
-  "ref" : "_TZ3000_40zcsvfv TS0502A",
+  "name": "LED RGBW",
+  "ref" : "ZB-RGBCW",
   "buylink" : "",
-  "reset" : "",
-  "pairing" : "",
+  "reset" : "Il faut utiliser la fonction reset touchlink. Voir <a target='_blank' href='https://doc.jeedom.com/fr_FR/plugins/automation%20protocol/zigbee/#Touchlink'>ici</a>",
+  "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule (un on/off sera peut être nécessaire)",
   "commands": [
     {
       "name": "Etat",
@@ -62,12 +62,32 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat Luminosité",
-      "logicalId": "1::level::move_to_level::#slider#::#duration#",
+      "logicalId": "1::level::move_to_level::#slider#::0",
       "generic_type": "LIGHT_SLIDER",
       "configuration" : {
         "minValue" : 0,
         "maxValue" : 254
       }
+    },
+    {
+      "name": "Etat couleur",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat couleur",
+      "logicalId": "1::768::color",
+      "generic_type": "LIGHT_COLOR"
+    },
+    {
+      "name": "Couleur",
+      "type": "action",
+      "subtype": "color",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat couleur",
+      "logicalId": "1::light_color::move_to_color::#color#::0",
+      "generic_type": "LIGHT_SET_COLOR"
     },
     {
       "name": "Etat température couleur",
@@ -88,8 +108,8 @@
       "logicalId": "1::light_color::move_to_color_temp::#slider#::0",
       "generic_type": "LIGHT_SET_COLOR_TEMP",
       "configuration" : {
-        "minValue" : 0,
-        "maxValue" : 254
+        "minValue" : 2200,
+        "maxValue" : 6500
       }
     }
   ]
