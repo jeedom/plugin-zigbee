@@ -97,6 +97,17 @@ try {
     ajax::success();
   }
   
+  if(init('action') == 'updateOTA'){
+    $cron = new cron();
+    $cron->setClass('zigbee');
+    $cron->setFunction('updateOTA');
+    $cron->setSchedule(cron::convertDateToCron(strtotime('now +1 year')));
+    $cron->setOnce(1);
+    $cron->save();
+    $cron->run();
+    ajax::success();
+  }
+  
   throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
   /*     * *********Catch exeption*************** */
 } catch (Exception $e) {

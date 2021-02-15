@@ -39,7 +39,19 @@ if (!isConnect('admin')) {
     <div class="form-group">
       <label class="col-lg-4 control-label">{{Backup/restore d'un coordinateur}}</label>
       <div class="col-lg-2">
-        <a class="form-control btn btn-default" id="bt_backup_restore"><i class="far fa-save"></i> {{Lancer l'assistant}}</a>
+        <a class="form-control btn btn-default" id="bt_backupRestore"><i class="far fa-save"></i> {{Lancer l'assistant}}</a>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">{{Autoriser les mise à jour OTA}}</label>
+      <div class="col-lg-2">
+        <input type="checkbox" class="configKey" data-l1key="allowOTA" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">{{Mettre à jour les fichiers OTAs}}</label>
+      <div class="col-lg-2">
+        <a class="form-control btn btn-default" id="bt_UpdateOta"><i class="fas fa-sync"></i> {{Lancer}}</a>
       </div>
     </div>
     <?php for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){ ?>
@@ -143,7 +155,7 @@ if (!isConnect('admin')) {
     <?php } ?>
   </fieldset>
 </form>
-
+<?php include_file('core', 'zigbee', 'class.js', 'zigbee');?>
 <script>
 <?php for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){ ?>
   $('.configKey[data-l1key="enable_deamon_<?php echo $i ?>"]').off('change').on('change',function(){
@@ -187,8 +199,19 @@ if (!isConnect('admin')) {
     });
   })
   
-  $('#bt_backup_restore').off('clic').on('click',function(){
+  $('#bt_backupRestore').off('clic').on('click',function(){
     $('#md_modal').dialog({title: "{{Assistant de backup/restore du coordinateur}}"}).load('index.php?v=d&plugin=zigbee&modal=backup_restore').dialog('open');
+  })
+  
+  $('#bt_UpdateOta').off('clic').on('click',function(){
+    jeedom.zigbee.updateOTA({
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function () {
+        $('#md_modal').dialog({title: "{{Assistant de backup/restore du coordinateur}}"}).load('index.php?v=d&modal=log.display&log=zigbee_ota').dialog('open');
+      }
+    });
   })
   </script>
   

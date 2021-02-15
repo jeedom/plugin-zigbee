@@ -24,6 +24,22 @@ class zigbee extends eqLogic {
   
   /*     * ***********************Methode static*************************** */
   
+  public static function updateOTA($_options = array()){
+    log::clear(__CLASS__ . '_ota');
+    $log = log::getPathToLog(__CLASS__ . '_ota');
+    log::add('zigbee_ota','debug',__('Début de la mise à jour du répertoire OTA',__FILE__));
+    $ota_dir = __DIR__.'/../../data/ota';
+    $request_http = new com_http('https://raw.githubusercontent.com/Koenkk/zigbee-OTA/master/index.json');
+    $ota_zigbee = is_json($request_http->exec(30), true);
+    foreach ($ota_zigbee as $ota) {
+      if(strpos($ota['url'],'Ledvance') !== false){
+        continue;
+      }
+      shell_exec('wget -N -P '.  $ota_dir.' '.$ota['url'].' >> '.$log.' 2>&1');
+    }
+    log::add('zigbee_ota','debug',__('Fin de la mise à jour du répertoire OTA',__FILE__));
+  }
+  
   public static function backup_coordinator($_options = array()){
     config::save('deamonAutoMode', 0, 'zigbee');
     self::deamon_stop();
@@ -52,7 +68,6 @@ class zigbee extends eqLogic {
     }
     config::save('deamonAutoMode', 0, 'zigbee');
   }
-  
   
   public static function restore_coordinator($_options = array()){
     config::save('deamonAutoMode', 0, 'zigbee');
@@ -286,6 +301,7 @@ class zigbee extends eqLogic {
     $cmd .= ' --controller '. config::byKey('controller_'.$_instance, 'zigbee');
     $cmd .= ' --sub_controller '. config::byKey('sub_controller_'.$_instance, 'zigbee','auto');
     $cmd .= ' --channel '. config::byKey('channel_'.$_instance, 'zigbee');
+    $cmd .= ' --allowOTA '. config::byKey('allowOTA', 'zigbee');
     log::add('zigbee', 'info', 'Lancement démon zigbeed : ' . $cmd);
     exec($cmd . ' >> ' . log::getPathToLog('zigbeed_'.$_instance) . ' 2>&1 &');
     return true;

@@ -55,14 +55,15 @@ async def start_zigbee():
 			},
 			zigpy.config.CONF_NWK : {
 				zigpy.config.CONF_NWK_CHANNEL : _channel
-			},
-			zigpy.config.CONF_OTA : {
+			}
+		}
+		if _allowOTA == 1 :
+			zigpy_config[zigpy.config.CONF_OTA] = {
 				zigpy.config.CONF_OTA_DIR  : _data_folder+"/ota",
 				zigpy.config.CONF_OTA_IKEA : True,
 				zigpy.config.CONF_OTA_IKEA_URL : "http://fw.test.ota.homesmart.ikea.net/feed/version_info.json",
 				zigpy.config.CONF_OTA_LEDVANCE : True
 			}
-		}
 		if shared.CONTROLLER == 'ezsp' and shared.SUB_CONTROLLER == 'elelabs' :
 			zigpy_config[zigpy.config.CONF_DEVICE]['baudrate'] = 115200
 			zigpy_config['ezsp'] = {
@@ -132,6 +133,7 @@ _data_folder = '/tmp'
 _socket_host='127.0.0.1'
 _channel=15
 _instance=1
+_allowOTA=0
 
 parser = argparse.ArgumentParser(description='Zigbee Daemon for Jeedom plugin')
 parser.add_argument("--device", help="Device", type=str)
@@ -145,6 +147,7 @@ parser.add_argument("--sub_controller", help="Sub-controller type (elelabs...)",
 parser.add_argument("--data_folder", help="Data folder", type=str)
 parser.add_argument("--socketport", help="Port for Zigbee server", type=str)
 parser.add_argument("--channel", help="Channel for Zigbee network", type=str)
+parser.add_argument("--allowOTA", help="Allow device OTA update", type=str)
 args = parser.parse_args()
 
 if args.device:
@@ -169,6 +172,8 @@ if args.cycle:
 	_data_folder = args.data_folder
 if args.socketport:
 	_socketport = args.socketport
+if args.allowOTA:
+	_allowOTA = args.allowOTA
 
 jeedom_utils.set_log_level(_log_level)
 
@@ -182,6 +187,7 @@ logging.info('Cycle : '+str(_cycle))
 logging.info('Controller : '+str(_controller))
 logging.info('Channel : '+str(_channel))
 logging.info('Data folder : '+str(_data_folder))
+logging.info('Allow OTA : '+str(_allowOTA))
 
 shared.APIKEY = _apikey
 if os.path.exists(_data_folder+'/config.json'):
