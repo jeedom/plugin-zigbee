@@ -28,7 +28,7 @@
       "subtype": "string",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::6::event::click_type",
+      "logicalId": "1::6::event::click::click_type",
       "configuration": {
         "repeatEventManagement": "always"
       }
