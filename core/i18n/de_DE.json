@@ -13,10 +13,15 @@
         "Général": "Allgemein",
         "Supprimer automatiquement les périphériques exclus": "Ausgeschlossene Geräte automatisch löschen",
         "M'alerter si un module n'a pas envoyé de message depuis (min)": "M'alerter si un module n'a pas envoyé de message depuis (min)",
+        "Backup\/restore d'un coordinateur": "Sicherung \/ Wiederherstellung eines Koordinators",
+        "Lancer l'assistant": "Starten Sie den Assistenten",
+        "Autoriser les mise à jour OTA": "OTA-Updates zulassen",
+        "Mettre à jour les fichiers OTAs": "Aktualisieren Sie die OTAs-Dateien",
+        "Lancer": "Starten",
         "Démon ": "Dämon",
         "Activer": "Aktivieren",
         "Nom": "Name",
-        "Type de controlleur": "Type de controlleur",
+        "Type de controlleur": "Controller-Typ",
         "EZSP": "EZSP",
         "Conbee": "Conbee",
         "Zigate": "Zigate",
@@ -27,7 +32,7 @@
         "Auto": "Auto",
         "Elelabs": "Elelabs",
         "Port Zigbee": "Port Zigbee",
-        "Aucun": "Ohne",
+        "Aucun": "Nein",
         "Pizigate": "Pizigate",
         "Passerelle distante": "Remote-Gateway",
         "Passerelle distante IP:PORT": "Remote-IP-Gateway: PORT",
@@ -39,7 +44,8 @@
         "20": "20",
         "25": "25",
         "Action": "Aktionen",
-        "Redemarrer": "Neu starten"
+        "Redemarrer": "Neu starten",
+        "Assistant de backup\/restore du coordinateur": "Assistent für die Sicherung \/ Wiederherstellung des Koordinators"
     },
     "plugins\/zigbee\/desktop\/modal\/node.php": {
         "Equipement introuvable : ": "Ausrüstung nicht gefunden:",
@@ -91,6 +97,8 @@
         "Clef de cryptage GreenPower": "Clef de cryptage GreenPower",
         "Envoyer": "Senden",
         "Configuration informative uniquement": "Configuration informative uniquement",
+        "Forcer la mise à jour du module": "Erzwingen Sie die Modulaktualisierung",
+        "OTA": "OTA",
         "Rafraichir les informations": "Rafraichir les informations",
         "Rafraichir": "Aktualisieren",
         "Réinitialiser le module": "Réinitialiser le module",
@@ -115,7 +123,8 @@
         "Résulat attribut": "Résulat attribut",
         "Informations récuperées avec succès": "Informations récuperées avec succès",
         "Module redécouvert": "Module redécouvert",
-        "Module reinitialisé": "Module reinitialisé"
+        "Module reinitialisé": "Module reinitialisé",
+        "Mise à jour OTA forcée envoyée avec succes": "Erzwungenes OTA-Update erfolgreich gesendet"
     },
     "plugins\/zigbee\/desktop\/modal\/groups.php": {
         "Ajouter": "Einfügen",
@@ -126,6 +135,26 @@
         "Actions": "Aktionen",
         "Supprimer": "Löschen",
         "Groupe créé avec succès": "Groupe créé avec succès"
+    },
+    "plugins\/zigbee\/desktop\/modal\/backup_restore.php": {
+        "Backup": "Backup",
+        "IMPORTANT : seul les clefs de type EZSP et ZNP peuvent etre backupée pour le moment. Durant le backup tous les démons zigbee sont coupés": "WICHTIG: Derzeit können nur Schlüssel vom Typ EZSP und ZNP gesichert werden. Während des Backups werden alle ZigBee-Dämonen abgeschnitten",
+        "Type de controlleur": "Controller-Typ",
+        "EZSP": "EZSP",
+        "ZNP": "ZNP",
+        "Port Zigbee": "Port Zigbee",
+        "Aucun": "Nein",
+        "Passerelle distante": "Remote-Gateway",
+        "Passerelle distante IP:PORT": "Remote-IP-Gateway: PORT",
+        "Lancer le backup": "Starten Sie die Sicherung",
+        "Lancer": "Starten",
+        "Restore": "Wiederherstellen",
+        "IMPORTANT : seul les clefs de type EZSP et ZNP peuvent etre restorée pour le moment": "WICHTIG: Derzeit können nur Schlüssel vom Typ EZSP und ZNP wiederhergestellt werden",
+        "IMPORTANT : Vous ne pouvez restorer un backup d'un type de clef que sur le meme type de clef": "WICHTIG: Sie können eine Sicherung eines Schlüsseltyps nur auf demselben Schlüsseltyp wiederherstellen",
+        "IMPORTANT : il n'est possible de restorer que UNE SEUL FOIS un backup sur les clef de type EZSP": "WICHTIG: Es ist nur möglich, eine Sicherung EINMAL auf Schlüsseln vom Typ EZSP wiederherzustellen",
+        "Lancer la restauration": "Starten Sie die Wiederherstellung",
+        "Backup réalisé avec succes": "Sicherung erfolgreich abgeschlossen",
+        "Restoration réalisé avec succes": "Restaurierung erfolgreich abgeschlossen"
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
         "Application": "Anwendung",
@@ -178,7 +207,7 @@
         "Configuration du groupe": "Configuration du groupe"
     },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
-        "Aucun": "Ohne",
+        "Aucun": "Nein",
         "Gestion": "Verwaltung",
         "Autoriser Join": "Autoriser Join",
         "Commissioning": "Commissioning",
@@ -278,6 +307,15 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
+        "Début de la mise à jour du répertoire OTA": "Start der Aktualisierung des OTA-Verzeichnisses",
+        "Fin de la mise à jour du répertoire OTA": "Ende der Aktualisierung des OTA-Verzeichnisses",
+        "Lancement du backup ezsp de la clef : ": "Start der ezsp-Sicherung des Schlüssels:",
+        "Lancement du backup znp de la clef : ": "Start der znp-Sicherung des Schlüssels:",
+        "Pas de backup possible pour : ": "Keine Sicherung möglich für:",
+        "Erreur lors du backup de : ": "Fehler beim Sichern:",
+        "Erreur fichier de backup introuvable : ": "Sicherungsdatei nicht gefunden Fehler:",
+        "Le fichier de backup ne semble pas etre du type du controller : ": "Die Sicherungsdatei scheint nicht vom Controllertyp zu sein:",
+        "Erreur lors de la restoration de : ": "Fehler beim Wiederherstellen:",
         "Démon": "Dämon",
         "Erreur lors de la requete : ": "Fehler während der Anfrage:",
         "Le module": "Das Modul",
