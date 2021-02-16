@@ -98,6 +98,26 @@ C'est la partie compliqué (comme toujours en Zigbee le plus dur c'est le reset/
   - appuyer sur le bouton reset (a coté de la batterie) pendant 5 à 10 secondes près de l'ampoule alimentée (attention sur certaine ampoule il faut parfois éteindre/allumer l'ampoule juste avant) pour les télécommandes Ikea
 - Pour les ampoules hue vous pouvez aussi les inclures sur le pont hue puis les supprimer de celui-ci
 
+# Mise à jour OTA 
+
+Les mises à jour OTA sont les mise à jour des firmware des modules, cela prends très très très longtemps (plusieurs heures) mais permets d'avoir moins de soucis en général. Pour pouvoir mettre à jour un module il faut que le fabricant communique le firmware : 
+
+- Pour Ikea et Ledavance pas de soucis c'est fournis en ligne directemnt par Ikea, le plugin va directement le chercher chez eux 
+- Pour d'autre (voir [ici](https://github.com/Koenkk/zigbee-OTA/tree/master/images)) le fabricant fournis desfois officieusement une mise à jour 
+- Pour tous les autres il n'y a pas possibilité de mettre à jour le module par le plugin 
+
+Pour activer les mises jour OTA il suffit de cocher la case dans la configuration du plugin puis, de sauvegarder puis de cliquer sur le bouton pour mettre à jour les fichiers OTA. Ensuite plus qu'a redemarrer le(s) démon(s) zigbee.
+
+Les mises à jour se lance si il y en a une et après que le module demande si yen a une (vous pouver forcer cela dans l'onglet action sur la configuration du module/noeud). Il n'y a malheureusement pas d'indicateur simple pour voir l'avancement de la mise à jour, la seul solution est d'aller dans les log zigbee_X (si le log est en debug) et de chercher ota et la vous pouvez voir si un module se met à jour des logs du type : 
+
+````
+2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA query_next_image handler for 'IKEA of Sweden TRADFRI control outlet': field_control=1, manufacture_id=4476, image_type=4353, current_file_version=536974883, hardware_version=60
+2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA image version: 537011747, size: 204222. Update needed: True
+2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA image_block handler for 'IKEA of Sweden TRADFRI control outlet': field_control=0, manufacturer_id=4476, image_type=4353, file_version=537011747, file_offset=0, max_data_size=63, request_node_addr=Noneblock_request_delay=None
+2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
+
+ ````
+
 # FAQ
 
 >**Le LQI ou le RSSI est à N/A
@@ -107,3 +127,11 @@ C'est la partie compliqué (comme toujours en Zigbee le plus dur c'est le reset/
 >**J'ai des soucis d'inclusion ou  des erreurs dans les logs de type ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
 >
 >Essayer de supprimer la rallonge USB si vous en avez une ou de changer celle-ci ou d'en mettre une si vous n'en avez pas
+
+>**J'ai des erreurs "can not send to device"**
+>
+>Malheureusement c'est tres compliqué à corriger, c'est en général du à un soucis de routage (le routage est plus ou moins fixe en zigbee et non symetrique : le module peut utiliser une route differente pour vous repondre que celle utilisée pour lui parler). Souvent l'arret electrique (retrait des piles par exemple) et remise du courant (ou remise des piles) suffit a regler le probleme.
+
+>**J'ai des erreurs bizarre sur des modules sur pile ou des soucis d'inclusion**
+>
+>Nous avons remarqué qu'une bonne partie des problemes en zigbee sur des modules sur batterie sont du aux piles (ou des problemes de reset des modules avant inclusion). Meme si celle-ci semble neuves il est conseillé de tester avec d'autre pour etre sur.
