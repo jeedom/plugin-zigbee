@@ -13,6 +13,11 @@
         "Général": "Principale",
         "Supprimer automatiquement les périphériques exclus": "Supprimer automatiquement les périphériques exclus",
         "M'alerter si un module n'a pas envoyé de message depuis (min)": "M'alerter si un module n'a pas envoyé de message depuis (min)",
+        "Backup\/restore d'un coordinateur": "Backup\/restore d'un coordinateur",
+        "Lancer l'assistant": "Lancer l'assistant",
+        "Autoriser les mise à jour OTA": "Autoriser les mise à jour OTA",
+        "Mettre à jour les fichiers OTAs": "Mettre à jour les fichiers OTAs",
+        "Lancer": "Lancer",
         "Démon ": "Demone",
         "Activer": "Attivare",
         "Nom": "Nome",
@@ -39,7 +44,8 @@
         "20": "20",
         "25": "25",
         "Action": "Azione",
-        "Redemarrer": "Riavvia"
+        "Redemarrer": "Riavvia",
+        "Assistant de backup\/restore du coordinateur": "Assistant de backup\/restore du coordinateur"
     },
     "plugins\/zigbee\/desktop\/modal\/node.php": {
         "Equipement introuvable : ": "Equipement introuvable :",
@@ -91,6 +97,8 @@
         "Clef de cryptage GreenPower": "Clef de cryptage GreenPower",
         "Envoyer": "Invia",
         "Configuration informative uniquement": "Configuration informative uniquement",
+        "Forcer la mise à jour du module": "Forcer la mise à jour du module",
+        "OTA": "OTA",
         "Rafraichir les informations": "Rafraichir les informations",
         "Rafraichir": "Aggiorna",
         "Réinitialiser le module": "Réinitialiser le module",
@@ -115,7 +123,8 @@
         "Résulat attribut": "Résulat attribut",
         "Informations récuperées avec succès": "Informations récuperées avec succès",
         "Module redécouvert": "Module redécouvert",
-        "Module reinitialisé": "Module reinitialisé"
+        "Module reinitialisé": "Module reinitialisé",
+        "Mise à jour OTA forcée envoyée avec succes": "Mise à jour OTA forcée envoyée avec succes"
     },
     "plugins\/zigbee\/desktop\/modal\/groups.php": {
         "Ajouter": "Aggiungi",
@@ -126,6 +135,26 @@
         "Actions": "Stock",
         "Supprimer": "Rimuovere",
         "Groupe créé avec succès": "Groupe créé avec succès"
+    },
+    "plugins\/zigbee\/desktop\/modal\/backup_restore.php": {
+        "Backup": "Backup",
+        "IMPORTANT : seul les clefs de type EZSP et ZNP peuvent etre backupée pour le moment. Durant le backup tous les démons zigbee sont coupés": "IMPORTANT : seul les clefs de type EZSP et ZNP peuvent etre backupée pour le moment. Durant le backup tous les démons zigbee sont coupés",
+        "Type de controlleur": "Type de controlleur",
+        "EZSP": "EZSP",
+        "ZNP": "ZNP",
+        "Port Zigbee": "Port Zigbee",
+        "Aucun": "Aucun",
+        "Passerelle distante": "Passerelle distante",
+        "Passerelle distante IP:PORT": "Passerelle distante IP:PORT",
+        "Lancer le backup": "Lancer le backup",
+        "Lancer": "Lancer",
+        "Restore": "Restore",
+        "IMPORTANT : seul les clefs de type EZSP et ZNP peuvent etre restorée pour le moment": "IMPORTANT : seul les clefs de type EZSP et ZNP peuvent etre restorée pour le moment",
+        "IMPORTANT : Vous ne pouvez restorer un backup d'un type de clef que sur le meme type de clef": "IMPORTANT : Vous ne pouvez restorer un backup d'un type de clef que sur le meme type de clef",
+        "IMPORTANT : il n'est possible de restorer que UNE SEUL FOIS un backup sur les clef de type EZSP": "IMPORTANT : il n'est possible de restorer que UNE SEUL FOIS un backup sur les clef de type EZSP",
+        "Lancer la restauration": "Lancer la restauration",
+        "Backup réalisé avec succes": "Backup réalisé avec succes",
+        "Restoration réalisé avec succes": "Restoration réalisé avec succes"
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
         "Application": "Application",
@@ -278,6 +307,15 @@
         "Aucune méthode correspondante à : ": "Nessun metodo corrispondente a:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
+        "Début de la mise à jour du répertoire OTA": "Début de la mise à jour du répertoire OTA",
+        "Fin de la mise à jour du répertoire OTA": "Fin de la mise à jour du répertoire OTA",
+        "Lancement du backup ezsp de la clef : ": "Lancement du backup ezsp de la clef :",
+        "Lancement du backup znp de la clef : ": "Lancement du backup znp de la clef :",
+        "Pas de backup possible pour : ": "Pas de backup possible pour :",
+        "Erreur lors du backup de : ": "Erreur lors du backup de :",
+        "Erreur fichier de backup introuvable : ": "Erreur fichier de backup introuvable :",
+        "Le fichier de backup ne semble pas etre du type du controller : ": "Le fichier de backup ne semble pas etre du type du controller :",
+        "Erreur lors de la restoration de : ": "Erreur lors de la restoration de :",
         "Démon": "Demone",
         "Erreur lors de la requete : ": "Erreur lors de la requete :",
         "Le module": "Le module",

@@ -13,10 +13,15 @@
         "Général": "Geral",
         "Supprimer automatiquement les périphériques exclus": "Excluir automaticamente dispositivos excluídos",
         "M'alerter si un module n'a pas envoyé de message depuis (min)": "M'alerter si un module n'a pas envoyé de message depuis (min)",
+        "Backup\/restore d'un coordinateur": "Backup \/ restauração de um coordenador",
+        "Lancer l'assistant": "Inicie o assistente",
+        "Autoriser les mise à jour OTA": "Permitir atualizações OTA",
+        "Mettre à jour les fichiers OTAs": "Atualizar arquivos OTAs",
+        "Lancer": "Lançar",
         "Démon ": "Demônio",
         "Activer": "Ativar",
         "Nom": "Nome",
-        "Type de controlleur": "Type de controlleur",
+        "Type de controlleur": "Tipo de controlador",
         "EZSP": "EZSP",
         "Conbee": "Conbee",
         "Zigate": "Zigate",
@@ -27,7 +32,7 @@
         "Auto": "Carro",
         "Elelabs": "Elelabs",
         "Port Zigbee": "Port Zigbee",
-        "Aucun": "Nemhum",
+        "Aucun": "Não",
         "Pizigate": "Pizigate",
         "Passerelle distante": "Gateway remoto",
         "Passerelle distante IP:PORT": "Gateway IP remoto: PORT",
@@ -39,7 +44,8 @@
         "20": "20",
         "25": "25",
         "Action": "Ação",
-        "Redemarrer": "Restart"
+        "Redemarrer": "Restart",
+        "Assistant de backup\/restore du coordinateur": "Assistente de backup \/ restauração do coordenador"
     },
     "plugins\/zigbee\/desktop\/modal\/node.php": {
         "Equipement introuvable : ": "Equipamento não encontrado:",
@@ -91,6 +97,8 @@
         "Clef de cryptage GreenPower": "Clef de cryptage GreenPower",
         "Envoyer": "Enviar",
         "Configuration informative uniquement": "Configuration informative uniquement",
+        "Forcer la mise à jour du module": "Força a atualização do módulo",
+        "OTA": "OTA",
         "Rafraichir les informations": "Rafraichir les informations",
         "Rafraichir": "Legal",
         "Réinitialiser le module": "Réinitialiser le module",
@@ -115,7 +123,8 @@
         "Résulat attribut": "Résulat attribut",
         "Informations récuperées avec succès": "Informations récuperées avec succès",
         "Module redécouvert": "Module redécouvert",
-        "Module reinitialisé": "Module reinitialisé"
+        "Module reinitialisé": "Module reinitialisé",
+        "Mise à jour OTA forcée envoyée avec succes": "Atualização forçada OTA enviada com sucesso"
     },
     "plugins\/zigbee\/desktop\/modal\/groups.php": {
         "Ajouter": "Adicionar",
@@ -126,6 +135,26 @@
         "Actions": "Estoque",
         "Supprimer": "Remover",
         "Groupe créé avec succès": "Groupe créé avec succès"
+    },
+    "plugins\/zigbee\/desktop\/modal\/backup_restore.php": {
+        "Backup": "Cópia de segurança",
+        "IMPORTANT : seul les clefs de type EZSP et ZNP peuvent etre backupée pour le moment. Durant le backup tous les démons zigbee sont coupés": "IMPORTANTE: apenas as chaves do tipo EZSP e ZNP podem ser copiadas no momento. Durante o backup, todos os daemons zigbee são cortados",
+        "Type de controlleur": "Tipo de controlador",
+        "EZSP": "EZSP",
+        "ZNP": "ZNP",
+        "Port Zigbee": "Port Zigbee",
+        "Aucun": "Não",
+        "Passerelle distante": "Gateway remoto",
+        "Passerelle distante IP:PORT": "Gateway IP remoto: PORT",
+        "Lancer le backup": "Inicie o backup",
+        "Lancer": "Lançar",
+        "Restore": "Restaurar",
+        "IMPORTANT : seul les clefs de type EZSP et ZNP peuvent etre restorée pour le moment": "IMPORTANTE: apenas as chaves do tipo EZSP e ZNP podem ser restauradas no momento",
+        "IMPORTANT : Vous ne pouvez restorer un backup d'un type de clef que sur le meme type de clef": "IMPORTANTE: Você só pode restaurar um backup de um tipo de chave no mesmo tipo de chave",
+        "IMPORTANT : il n'est possible de restorer que UNE SEUL FOIS un backup sur les clef de type EZSP": "IMPORTANTE: só é possível restaurar um backup UMA VEZ em chaves do tipo EZSP",
+        "Lancer la restauration": "Iniciar restauração",
+        "Backup réalisé avec succes": "Backup completado com sucesso",
+        "Restoration réalisé avec succes": "Restauração concluída com sucesso"
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
         "Application": "Aplicação",
@@ -178,7 +207,7 @@
         "Configuration du groupe": "Configuration du groupe"
     },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
-        "Aucun": "Nemhum",
+        "Aucun": "Não",
         "Gestion": "Gestão",
         "Autoriser Join": "Autoriser Join",
         "Commissioning": "Commissioning",
@@ -278,6 +307,15 @@
         "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
+        "Début de la mise à jour du répertoire OTA": "Início da atualização do diretório OTA",
+        "Fin de la mise à jour du répertoire OTA": "Fim da atualização do diretório OTA",
+        "Lancement du backup ezsp de la clef : ": "Lançamento do backup ezsp da chave:",
+        "Lancement du backup znp de la clef : ": "Lançamento do backup znp da chave:",
+        "Pas de backup possible pour : ": "Nenhum backup possível para:",
+        "Erreur lors du backup de : ": "Erro ao fazer backup:",
+        "Erreur fichier de backup introuvable : ": "Erro de arquivo de backup não encontrado:",
+        "Le fichier de backup ne semble pas etre du type du controller : ": "O arquivo de backup não parece ser do tipo controlador:",
+        "Erreur lors de la restoration de : ": "Erro ao restaurar:",
         "Démon": "Demônio",
         "Erreur lors de la requete : ": "Erro durante a solicitação:",
         "Le module": "O módulo",
