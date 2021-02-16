@@ -41,6 +41,7 @@ class zigbee extends eqLogic {
       shell_exec('wget -N -P '.  $ota_dir.' '.$ota['url'].' >> '.$log.' 2>&1');
     }
     log::add('zigbee_ota','debug',__('Fin de la mise à jour du répertoire OTA',__FILE__));
+    log::add('zigbee_ota','debug',__('Pensez bien à redemarrer le(s) démon(s) zigbee pour la prise en compte des nouvelles maj OTA',__FILE__));
   }
   
   public static function backup_coordinator($_options = array()){

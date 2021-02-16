@@ -48,12 +48,14 @@ if (!isConnect('admin')) {
         <input type="checkbox" class="configKey" data-l1key="allowOTA" />
       </div>
     </div>
-    <div class="form-group">
-      <label class="col-lg-4 control-label">{{Mettre à jour les fichiers OTAs}}</label>
-      <div class="col-lg-2">
-        <a class="form-control btn btn-default" id="bt_UpdateOta"><i class="fas fa-sync"></i> {{Lancer}}</a>
+    <?php if(config::byKey('allowOTA', 'zigbee') == 1){ ?>
+      <div class="form-group">
+        <label class="col-lg-4 control-label">{{Mettre à jour les fichiers OTAs}}</label>
+        <div class="col-lg-2">
+          <a class="form-control btn btn-default" id="bt_UpdateOta"><i class="fas fa-sync"></i> {{Lancer}}</a>
+        </div>
       </div>
-    </div>
+    <?php } ?>
     <?php for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){ ?>
       <legend><i class="icon loisir-darth"></i> {{Démon }}<?php echo $i ?></legend>
       <div class="form-group">
