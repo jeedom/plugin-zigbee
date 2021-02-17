@@ -71,92 +71,104 @@ if (!isConnect('admin')) {
         </div>
       </div>
       <div id="zigbee_deamon_<?php echo $i ?>">
-        <div class="form-group">
-          <label class="col-sm-4 control-label">{{Nom}}</label>
-          <div class="col-sm-2">
-            <input class="configKey form-control" data-l1key="name_deamon_<?php echo $i ?>" />
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="col-sm-8 control-label">{{Nom}}</label>
+              <div class="col-sm-4">
+                <input class="configKey form-control" data-l1key="name_deamon_<?php echo $i ?>" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-8 control-label">{{Type de controlleur}}</label>
+              <div class="col-sm-4">
+                <select class="configKey form-control" data-l1key="controller_<?php echo $i ?>">
+                  <option value="ezsp">{{EZSP}}</option>
+                  <option value="deconz">{{Conbee}}</option>
+                  <option value="zigate">{{Zigate}}</option>
+                  <option value="cc">{{CC}}</option>
+                  <option value="xbee">{{Xbee}}</option>
+                  <option value="znp">{{ZNP}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-8 control-label">{{Type de clef}}</label>
+              <div class="col-sm-4">
+                <select class="configKey form-control" data-l1key="sub_controller_<?php echo $i ?>">
+                  <option value="auto" data-controller="auto">{{Auto}}</option>
+                  <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-8 control-label">{{Port Zigbee}}</label>
+              <div class="col-sm-4">
+                <select class="configKey form-control" data-l1key="port_<?php echo $i ?>">
+                  <option value="none">{{Aucun}}</option>
+                  <option value="auto">{{Auto}}</option>
+                  <option value="pizigate">{{Pizigate}}</option>
+                  <option value="gateway">{{Passerelle distante}}</option>
+                  <?php
+                  foreach (jeedom::getUsbMapping() as $name => $value) {
+                    echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
+                  }
+                  foreach (ls('/dev/', 'tty*') as $value) {
+                    echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <div class="form-group zigbee_portConf_<?php echo $i ?> pizigate_<?php echo $i ?>" style="display:none;">
+              <label class="col-sm-8 control-label">{{Pizigate}}</label>
+              <div class="col-sm-4">
+                <input type="number" class="configKey form-control" data-l1key="pizigate_<?php echo $i ?>" />
+              </div>
+            </div>
+            <div class="form-group zigbee_portConf_<?php echo $i ?> gateway_<?php echo $i ?>" style="display:none;">
+              <label class="col-sm-8 control-label">{{Passerelle distante IP:PORT}}</label>
+              <div class="col-sm-4">
+                <input class="configKey form-control" data-l1key="gateway_<?php echo $i ?>" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-8 control-label">{{Port interne}}</label>
+              <div class="col-sm-4">
+                <input class="configKey form-control" data-l1key="socketport_<?php echo $i ?>" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-8 control-label">{{Cycle (s)}}</label>
+              <div class="col-sm-4">
+                <input class="configKey form-control" data-l1key="cycle_<?php echo $i ?>" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-8 control-label">{{Channel}}</label>
+              <div class="col-lg-4">
+                <select class="configKey form-control" data-l1key="channel_<?php echo $i ?>">
+                  <option value="11">{{11}}</option>
+                  <option value="15">{{15}}</option>
+                  <option value="20">{{20}}</option>
+                  <option value="25">{{25}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-8 control-label">{{Action}}</label>
+              <div class="col-sm-4">
+                <a class="btn btn-warning bt_zigbeeRestartDeamon" data-deamon="<?php echo $i ?>"><i class="fas fa-redo-alt"></i> {{Redemarrer}}</a>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-4 control-label">{{Type de controlleur}}</label>
-          <div class="col-sm-2">
-            <select class="configKey form-control" data-l1key="controller_<?php echo $i ?>">
-              <option value="ezsp">{{EZSP}}</option>
-              <option value="deconz">{{Conbee}}</option>
-              <option value="zigate">{{Zigate}}</option>
-              <option value="cc">{{CC}}</option>
-              <option value="xbee">{{Xbee}}</option>
-              <option value="znp">{{ZNP}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-4 control-label">{{Type de clef}}</label>
-          <div class="col-sm-2">
-            <select class="configKey form-control" data-l1key="sub_controller_<?php echo $i ?>">
-              <option value="auto" data-controller="auto">{{Auto}}</option>
-              <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-4 control-label">{{Port Zigbee}}</label>
-          <div class="col-sm-2">
-            <select class="configKey form-control" data-l1key="port_<?php echo $i ?>">
-              <option value="none">{{Aucun}}</option>
-              <option value="auto">{{Auto}}</option>
-              <option value="pizigate">{{Pizigate}}</option>
-              <option value="gateway">{{Passerelle distante}}</option>
-              <?php
-              foreach (jeedom::getUsbMapping() as $name => $value) {
-                echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
-              }
-              foreach (ls('/dev/', 'tty*') as $value) {
-                echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
-              }
-              ?>
-            </select>
-          </div>
-        </div>
-        <div class="form-group zigbee_portConf_<?php echo $i ?> pizigate_<?php echo $i ?>" style="display:none;">
-          <label class="col-sm-4 control-label">{{Pizigate}}</label>
-          <div class="col-sm-2">
-            <input type="number" class="configKey form-control" data-l1key="pizigate_<?php echo $i ?>" />
-          </div>
-        </div>
-        <div class="form-group zigbee_portConf_<?php echo $i ?> gateway_<?php echo $i ?>" style="display:none;">
-          <label class="col-sm-4 control-label">{{Passerelle distante IP:PORT}}</label>
-          <div class="col-sm-2">
-            <input class="configKey form-control" data-l1key="gateway_<?php echo $i ?>" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-4 control-label">{{Port interne}}</label>
-          <div class="col-sm-2">
-            <input class="configKey form-control" data-l1key="socketport_<?php echo $i ?>" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-4 control-label">{{Cycle (s)}}</label>
-          <div class="col-sm-2">
-            <input class="configKey form-control" data-l1key="cycle_<?php echo $i ?>" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-4 control-label">{{Channel}}</label>
-          <div class="col-lg-2">
-            <select class="configKey form-control" data-l1key="channel_<?php echo $i ?>">
-              <option value="11">{{11}}</option>
-              <option value="15">{{15}}</option>
-              <option value="20">{{20}}</option>
-              <option value="25">{{25}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-4 control-label">{{Action}}</label>
-          <div class="col-sm-2">
-            <a class="btn btn-warning bt_zigbeeRestartDeamon" data-deamon="<?php echo $i ?>"><i class="fas fa-redo-alt"></i> {{Redemarrer}}</a>
+          <div class="col-lg-6">
+            <label class="control-label">{{Configuration avancer de zigpy au format json (expert)}}</label>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <textarea class="configKey form-control" rows="10" data-l1key="advance_zigpy_config_<?php echo $i ?>" ><?php echo json_encode(config::byKey('advance_zigpy_config_'.$i, 'zigbee'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE); ?></textarea>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -182,6 +194,21 @@ if (!isConnect('admin')) {
     $('.zigbee_portConf_<?php echo $i ?>').hide();
     if($(this).value() == 'pizigate' || $(this).value() == 'wifizigate' || $(this).value() == 'gateway'){
       $('.zigbee_portConf_<?php echo $i ?>.'+$(this).value()+"_<?php echo $i ?>").show();
+    }
+  });
+  $(".configKey[data-l1key=advance_zigpy_config_<?php echo $i ?>]").keydown(function(e) {
+    if(e.keyCode === 9) { // tab was pressed
+      // get caret position/selection
+      var start = this.selectionStart;
+      var end = this.selectionEnd;
+      var $this = $(this);
+      var value = $this.val();
+      // set textarea value to: text before caret + tab + text after caret
+      $this.val(value.substring(0, start)+ "\t"+ value.substring(end));
+      // put caret at right position again (add one for the tab)
+      this.selectionStart = this.selectionEnd = start + 1;
+      // prevent the focus lose
+      e.preventDefault();
     }
   });
   <?php } ?>

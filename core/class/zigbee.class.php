@@ -336,7 +336,10 @@ class zigbee extends eqLogic {
       }
       $cmd .= ' --folder_OTA '. realpath(__DIR__ . '/../../data/ota');
     }
-    
+    if(config::byKey('advance_zigpy_config_'.$_instance, 'zigbee') != '' && is_array(config::byKey('advance_zigpy_config_'.$_instance, 'zigbee'))){
+      file_put_contents(__DIR__ . '/../../data/'.$_instance.'/advance_zigpy_config.json',json_encode(config::byKey('advance_zigpy_config_'.$_instance, 'zigbee')));
+      $cmd .= ' --zigpy_advance_config '. realpath(__DIR__ . '/../../data/'.$_instance.'/advance_zigpy_config.json');
+    }
     log::add('zigbee', 'info', 'Lancement démon zigbeed : ' . $cmd);
     exec($cmd . ' >> ' . log::getPathToLog('zigbeed_'.$_instance) . ' 2>&1 &');
     return true;

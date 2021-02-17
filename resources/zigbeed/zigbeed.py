@@ -30,6 +30,7 @@ from os.path import join
 import json
 import asyncio
 import logging
+import json
 
 try:
 	from jeedom.jeedom import *
@@ -45,6 +46,21 @@ except Exception as e:
 	sys.exit(1)
 
 # ----------------------------------------------------------------------------
+
+def merge_dict(a, b, path=None):
+    "merges b into a"
+    if path is None: path = []
+    for key in b:
+        if key in a:
+            if isinstance(a[key], dict) and isinstance(b[key], dict):
+                merge_dict(a[key], b[key], path + [str(key)])
+            elif a[key] == b[key]:
+                pass # same leaf value
+            else:
+                a[key] = b[key]
+        else:
+            a[key] = b[key]
+    return a
 
 async def start_zigbee():
 	try:
@@ -64,13 +80,18 @@ async def start_zigbee():
 				zigpy.config.CONF_OTA_IKEA_URL : "http://fw.test.ota.homesmart.ikea.net/feed/version_info.json",
 				zigpy.config.CONF_OTA_LEDVANCE : True
 			}
-		if shared.CONTROLLER == 'ezsp' and shared.SUB_CONTROLLER == 'elelabs' :
-			zigpy_config[zigpy.config.CONF_DEVICE]['baudrate'] = 115200
-			zigpy_config['ezsp'] = {
-				"CONFIG_APS_UNICAST_MESSAGE_COUNT": 12,
-				"CONFIG_SOURCE_ROUTE_TABLE_SIZE": 16,
-				"CONFIG_ADDRESS_TABLE_SIZE": 8
-			}
+		if shared.CONTROLLER == 'ezsp' :
+			if shared.SUB_CONTROLLER == 'elelabs' :
+				zigpy_config[zigpy.config.CONF_DEVICE]['baudrate'] = 115200
+				zigpy_config['ezsp'] = {
+					"CONFIG_APS_UNICAST_MESSAGE_COUNT": 12,
+					"CONFIG_SOURCE_ROUTE_TABLE_SIZE": 16,
+					"CONFIG_ADDRESS_TABLE_SIZE": 8
+				}
+		if _zigpy_advance_config is not None:
+			with open(_zigpy_advance_config) as f:
+  				advance_config = json.load(f)
+			zigpy_config = merge_dict(zigpy_config,advance_config)	
 		logging.debug('[start_zigbee] Init zigbee network with config : '+str(zigpy_config))
 		shared.ZIGPY = await ControllerApplication.new(
 			config=ControllerApplication.SCHEMA(zigpy_config),
@@ -134,6 +155,7 @@ _socket_host ='127.0.0.1'
 _channel = 15
 _instance = 1
 _folder_OTA = None
+_zigpy_advance_config = None
 
 parser = argparse.ArgumentParser(description='Zigbee Daemon for Jeedom plugin')
 parser.add_argument("--device", help="Device", type=str)
@@ -148,6 +170,7 @@ parser.add_argument("--data_folder", help="Data folder", type=str)
 parser.add_argument("--socketport", help="Port for Zigbee server", type=str)
 parser.add_argument("--channel", help="Channel for Zigbee network", type=str)
 parser.add_argument("--folder_OTA", help="Allow device OTA update", type=str)
+parser.add_argument("--zigpy_advance_config", help="Allow to override zigpy initial configuration (json format file)", type=str)
 args = parser.parse_args()
 
 if args.device:
@@ -174,6 +197,11 @@ if args.socketport:
 	_socketport = args.socketport
 if args.folder_OTA:
 	_folder_OTA = args.folder_OTA
+if args.zigpy_advance_config:
+	_zigpy_advance_config = args.zigpy_advance_config
+	if not os.path.isfile(_zigpy_advance_config):
+		logging.info('Advance config file path invalid : '+str(_zigpy_advance_config))
+		_zigpy_advance_config = None
 
 jeedom_utils.set_log_level(_log_level)
 
@@ -188,6 +216,7 @@ logging.info('Controller : '+str(_controller))
 logging.info('Channel : '+str(_channel))
 logging.info('Data folder : '+str(_data_folder))
 logging.info('Folder OTA : '+str(_folder_OTA))
+logging.info('Zigpy advance configuration file : '+str(_zigpy_advance_config))
 
 shared.APIKEY = _apikey
 if os.path.exists(_data_folder+'/config.json'):
