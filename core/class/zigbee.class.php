@@ -37,6 +37,7 @@ class zigbee extends eqLogic {
       log::add('zigbee_firmware','info',__('Pas de mise à jour possible du firmware pour : ',__FILE__).$_options['port']);
       return;
     }
+    shell_exec('sudo kill 9 $(lsof -t '.$_options['port'].') >> '.$log.' 2>&1');
     shell_exec($cmd.' >> '.$log.' 2>&1');
     config::save('deamonAutoMode', 0, 'zigbee');
     self::deamon_start();
@@ -78,16 +79,17 @@ class zigbee extends eqLogic {
       if($_options['sub_controller'] == 'elelabs'){
         $bauderate = '-b 115200';
       }
-      $cmd = 'sudo bellows '.$bauderate.' -d '.$_options['port'].' backup > '.$path.'-ezsp-'.date('Y-m-d_H:i:s').'.txt';
+      $cmd = 'sudo timeout 5m bellows '.$bauderate.' -d '.$_options['port'].' backup > '.$path.'/ezsp-'.date('Y-m-d_H:i:s').'.txt';
       log::add('zigbee_backup','info',__('Lancement du backup ezsp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
     }elseif($_options['controller'] == 'znp'){
-      $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_read '.$_options['port'].' -o '.$path.'-znp-'.date('Y-m-d_H:i:s').'.json';
+      $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_read '.$_options['port'].' -o '.$path.'/znp-'.date('Y-m-d_H:i:s').'.json';
       log::add('zigbee_backup','info',__('Lancement du backup znp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
     }else{
       log::add('zigbee_backup','info',__('Pas de backup possible pour : ',__FILE__).$_options['port']);
       return;
     }
-    shell_exec($cmd.' >> '.$log.' 2>&1');
+    shell_exec('sudo kill 9 $(lsof -t '.$_options['port'].') >> '.$log.' 2>&1');
+    shell_exec($cmd);
     //config::save('deamonAutoMode', 0, 'zigbee');
     //self::deamon_start();
     log::add('zigbee_backup','debug',__('Fin du backup',__FILE__));
@@ -124,6 +126,7 @@ class zigbee extends eqLogic {
       log::add('zigbee_restore','info',__('Pas de backup possible pour : ',__FILE__).$_options['port']);
       return;
     }
+    shell_exec('sudo kill 9 $(lsof -t '.$_options['port'].') >> '.$log.' 2>&1');
     shell_exec($cmd.' >> '.$log.' 2>&1');
     config::save('deamonAutoMode', 0, 'zigbee');
     self::deamon_start();
