@@ -28,20 +28,18 @@ class zigbee extends eqLogic {
     config::save('deamonAutoMode', 0, 'zigbee');
     log::clear(__CLASS__ . '_firmware');
     $log = log::getPathToLog(__CLASS__ . '_firmware');
-    log::add('zigbee_firmware','info',print_r($_options ,true));
     self::deamon_stop();
-    foreach ($_options as $value) {
-      if($value['sub_controller'] == 'elelabs'){
-        $cmd = 'sudo chmod +x '.__DIR__.'/../../resources/misc/update-firmware-elelabs.sh;';
-        $cmd .= 'sudo '.__DIR__.'/../../resources/misc/update-firmware-elelabs.sh '.$value['port'].' '.$value['firmware'];
-        log::add('zigbee_firmware','info',__('Lancement de la mise à jour du firmware pour : ',__FILE__).$value['port'].' => '.$cmd);
-      }else{
-        log::add('zigbee_firmware','info',__('Pas de mise à jour possible du firmware pour : ',__FILE__).$value['port']);
-        continue;
-      }
-      shell_exec($cmd.' >> '.$log.' 2>&1');
+    if($_options['sub_controller'] == 'elelabs'){
+      $cmd = 'sudo chmod +x '.__DIR__.'/../../resources/misc/update-firmware-elelabs.sh;';
+      $cmd .= 'sudo '.__DIR__.'/../../resources/misc/update-firmware-elelabs.sh '.$_options['port'].' '.$_options['firmware'];
+      log::add('zigbee_firmware','info',__('Lancement de la mise à jour du firmware pour : ',__FILE__).$_options['port'].' => '.$cmd);
+    }else{
+      log::add('zigbee_firmware','info',__('Pas de mise à jour possible du firmware pour : ',__FILE__).$_options['port']);
+      return;
     }
+    shell_exec($cmd.' >> '.$log.' 2>&1');
     config::save('deamonAutoMode', 0, 'zigbee');
+    self::deamon_start();
     log::add('zigbee_firmware','debug',__('Fin de la mise à jour du firmware de la clef',__FILE__));
   }
   
@@ -66,68 +64,62 @@ class zigbee extends eqLogic {
   }
   
   public static function backup_coordinator($_options = array()){
-    config::save('deamonAutoMode', 0, 'zigbee');
-    self::deamon_stop();
+    log::clear(__CLASS__ . '_backup');
+    $log = log::getPathToLog(__CLASS__ . '_backup');
+    log::add('zigbee_backup','debug',__('Début du backup',__FILE__));
+    //config::save('deamonAutoMode', 0, 'zigbee');
+    //self::deamon_stop();
     $path = __DIR__.'/../../data/backup';
     if(!file_exists($path)){
       mkdir($path);
     }
-    foreach ($_options as $value) {
-      if($value['controller'] == 'ezsp'){
-        $cmd = 'sudo bellows -d '.$value['port'].' backup > '.$path.'-ezsp-'.date('Y-m-d_H:i:s').'.txt';
-        log::add('zigbee','info',__('Lancement du backup ezsp de la clef : ',__FILE__).$value['port'].' => '.$cmd);
-      }elseif($value['controller'] == 'znp'){
-        $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_read '.$value['port'].' -o '.$path.'-znp-'.date('Y-m-d_H:i:s').'.json';
-        log::add('zigbee','info',__('Lancement du backup znp de la clef : ',__FILE__).$value['port'].' => '.$cmd);
-      }else{
-        log::add('zigbee','info',__('Pas de backup possible pour : ',__FILE__).$value['port']);
-        continue;
-      }
-      $output=null;
-      $retval=null;
-      exec($cmd, $output, $retval);
-      if($retval != 0){
-        throw new \Exception(__('Erreur lors du backup de : ',__FILE__).$value['port'].' => '.$output);
-      }
-      sleep(1);
+    if($_options['controller'] == 'ezsp'){
+      $cmd = 'sudo bellows -d '.$_options['port'].' backup > '.$path.'-ezsp-'.date('Y-m-d_H:i:s').'.txt';
+      log::add('zigbee_backup','info',__('Lancement du backup ezsp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
+    }elseif($_options['controller'] == 'znp'){
+      $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_read '.$_options['port'].' -o '.$path.'-znp-'.date('Y-m-d_H:i:s').'.json';
+      log::add('zigbee_backup','info',__('Lancement du backup znp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
+    }else{
+      log::add('zigbee_backup','info',__('Pas de backup possible pour : ',__FILE__).$_options['port']);
+      return;
     }
-    config::save('deamonAutoMode', 0, 'zigbee');
+    shell_exec($cmd.' >> '.$log.' 2>&1');
+    //config::save('deamonAutoMode', 0, 'zigbee');
+    //self::deamon_start();
+    log::add('zigbee_backup','debug',__('Fin du backup',__FILE__));
   }
   
   public static function restore_coordinator($_options = array()){
+    log::clear(__CLASS__ . '_restore');
+    $log = log::getPathToLog(__CLASS__ . '_restore');
+    log::add('zigbee_restore','debug',__('Début de la restoration',__FILE__));
     config::save('deamonAutoMode', 0, 'zigbee');
     self::deamon_stop();
     $path = __DIR__.'/../../data/backup';
     if(!file_exists($path)){
       mkdir($path);
     }
-    foreach ($_options as $value) {
-      $backup  =$path.'/'.$value['backup'];
-      if(!file_exists($backup)){
-        throw new \Exception(__('Erreur fichier de backup introuvable : ',__FILE__).$backup);
-      }
-      if(strpos($backup,$value['controller']) === false){
-        throw new \Exception(__('Le fichier de backup ne semble pas etre du type du controller : ',__FILE__));
-      }
-      if($value['controller'] == 'ezsp'){
-        $cmd = 'sudo bellows -d '.$value['port'].' restore --i-understand-i-can-update-eui64-only-once-and-i-still-want-to-do-it -B '.$path.'-ezsp-'.date('Y-m-d_H:i:s').'.txt';
-        log::add('zigbee','info',__('Lancement du backup ezsp de la clef : ',__FILE__).$value['port'].' => '.$cmd);
-      }elseif($value['controller'] == 'znp'){
-        $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_write '.$value['port'].' -i '.$backup;
-        log::add('zigbee','info',__('Lancement du backup znp de la clef : ',__FILE__).$value['port'].' => '.$cmd);
-      }else{
-        log::add('zigbee','info',__('Pas de backup possible pour : ',__FILE__).$value['port']);
-        continue;
-      }
-      $output=null;
-      $retval=null;
-      exec($cmd, $output, $retval);
-      if($retval != 0){
-        throw new \Exception(__('Erreur lors de la restoration de : ',__FILE__).$value['port'].' => '.$output);
-      }
-      sleep(1);
+    $backup  =$path.'/'.$_options['backup'];
+    if(!file_exists($backup)){
+      throw new \Exception(__('Erreur fichier de backup introuvable : ',__FILE__).$backup);
     }
+    if(strpos($backup,$_options['controller']) === false){
+      throw new \Exception(__('Le fichier de backup ne semble pas etre du type du controller : ',__FILE__));
+    }
+    if($_options['controller'] == 'ezsp'){
+      $cmd = 'sudo bellows -d '.$_options['port'].' restore --i-understand-i-can-update-eui64-only-once-and-i-still-want-to-do-it -B '.$path.'-ezsp-'.date('Y-m-d_H:i:s').'.txt';
+      log::add('zigbee_restore','info',__('Lancement du backup ezsp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
+    }elseif($_options['controller'] == 'znp'){
+      $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_write '.$_options['port'].' -i '.$backup;
+      log::add('zigbee_restore','info',__('Lancement du backup znp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
+    }else{
+      log::add('zigbee_restore','info',__('Pas de backup possible pour : ',__FILE__).$_options['port']);
+      return;
+    }
+    shell_exec($cmd.' >> '.$log.' 2>&1');
     config::save('deamonAutoMode', 0, 'zigbee');
+    self::deamon_start();
+    log::add('zigbee_restore','debug',__('Fin de la restoration',__FILE__));
   }
   
   public static function getDeamonInstanceDef(){

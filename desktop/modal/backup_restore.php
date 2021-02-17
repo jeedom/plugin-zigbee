@@ -145,7 +145,7 @@ $('#bt_launchBackup').off('click').on('click',function(){
       $('#div_alertBackupRestore').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      $('#div_alertBackupRestore').showAlert({message: '{{Backup réalisé avec succes}}', level: 'success'});
+      $('#md_modal2').dialog({title: "{{Backup zigbee}}"}).load('index.php?v=d&modal=log.display&log=zigbee_backup').dialog('open');
     }
   });
 })
@@ -160,7 +160,7 @@ $('#bt_launchRestore').off('click').on('click',function(){
       $('#div_alertBackupRestore').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      $('#div_alertBackupRestore').showAlert({message: '{{Restoration réalisé avec succes}}', level: 'success'});
+      $('#md_modal2').dialog({title: "{{Restauration zigbee}}"}).load('index.php?v=d&modal=log.display&log=zigbee_restore').dialog('open');
     }
   });
 })

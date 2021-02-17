@@ -96,7 +96,6 @@ $('#bt_launchFirmwareUpdate').off('click').on('click',function(){
       $('#div_alertFirmwareUpdate').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      $('#div_alertFirmwareUpdate').showAlert({message: '{{Lancement de la mise à jour du firmware réalisé avec succes}}', level: 'success'});
       $('#md_modal2').dialog({title: "{{Mise à jour du firmware de la clef}}"}).load('index.php?v=d&modal=log.display&log=zigbee_firmware').dialog('open');
     }
   });

@@ -83,7 +83,14 @@ try {
     }else{
       $port = jeedom::getUsbMapping(init('port'));
     }
-    zigbee::backup_coordinator(array(array('port' => $port,'controller' => init('controller'))));
+    $cron = new cron();
+    $cron->setClass('zigbee');
+    $cron->setFunction('backup_coordinator');
+    $cron->setOption(array('port' => $port,'controller' => init('controller')));
+    $cron->setSchedule(cron::convertDateToCron(strtotime('now +1 year')));
+    $cron->setOnce(1);
+    $cron->save();
+    $cron->run();
     ajax::success();
   }
   
@@ -93,7 +100,14 @@ try {
     }else{
       $port = jeedom::getUsbMapping(init('port'));
     }
-    zigbee::restore_coordinator(array(array('port' => $port,'controller' => init('controller'),'backup' => init('backup'))));
+    $cron = new cron();
+    $cron->setClass('zigbee');
+    $cron->setFunction('restore_coordinator');
+    $cron->setOption(array('port' => $port,'controller' => init('controller'),'backup' => init('backup')));
+    $cron->setSchedule(cron::convertDateToCron(strtotime('now +1 year')));
+    $cron->setOnce(1);
+    $cron->save();
+    $cron->run();
     ajax::success();
   }
   
@@ -117,7 +131,7 @@ try {
     $cron = new cron();
     $cron->setClass('zigbee');
     $cron->setFunction('firmwareUpdate');
-    $cron->setOption(array(array('port' => $port,'sub_controller' => init('sub_controller'),'firmware' => init('firmware'))));
+    $cron->setOption(array('port' => $port,'sub_controller' => init('sub_controller'),'firmware' => init('firmware')));
     $cron->setSchedule(cron::convertDateToCron(strtotime('now +1 year')));
     $cron->setOnce(1);
     $cron->save();
