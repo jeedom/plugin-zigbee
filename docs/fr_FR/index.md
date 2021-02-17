@@ -21,6 +21,19 @@ Après installation du plugin, il vous suffit de bien installer les dépendances
 >
 >Tout changement de canal nécessite forcement un redemarrage du démon. Un changement de canal peut aussi nécessiter une reinclusion de certain module
 
+Il est possible de mettre en place des parametres specifique pour le sous systeme zigbee (zigpy). Cette partie est vraiment réservé aux experts et Jeedom ne fournis pas de liste de parametres possible (il y a des centaines qui dépendent du type de clef). Le champs prend en entrée du json exemple : 
+
+````
+{
+    "ezsp": {
+        "CONFIG_ADDRESS_TABLE_SIZE": "16"
+    }
+}
+````
+
+>**IMPORTANT**
+>
+>Lors de TOUTE demande de support si il y a une configuration la dessus la demande de support sera automatiquement refusée
 
 # Inclusion de module
 
