@@ -31,24 +31,24 @@ if (!isConnect('admin')) {
     ?>
   </select>
   
-    <div class="tab-pane active" id="application_network"></div>
-    <a class="btn btn-success bt_addZigbeeGroup pull-right"><i class="fa fa-plus"></i> {{Ajouter}}</a>
-    <div id="group_table" class="tab-pane">
-      <table class="table">
-        <thead>
-          <tr>
-            <td>{{Id}}</td>
-            <td>{{Nom Jeedom}}</td>
-            <td>{{Membres}}</td>
-            <td>{{Nom}}</td>
-            <td>{{Actions}}</td>
-          </tr>
-        </thead>
-        <tbody>
-          
-        </tbody>
-      </table>
-    </div>
+  <div class="tab-pane active" id="application_network"></div>
+  <a class="btn btn-success bt_addZigbeeGroup pull-right"><i class="fa fa-plus"></i> {{Ajouter}}</a>
+  <div id="group_table" class="tab-pane">
+    <table class="table">
+      <thead>
+        <tr>
+          <td>{{Id}}</td>
+          <td>{{Nom Jeedom}}</td>
+          <td>{{Membres}}</td>
+          <td>{{Nom}}</td>
+          <td>{{Actions}}</td>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  </div>
   <script>
   $('#sel_networkZigbeeInstance').off('change').on('change',function(){
     refreshGroupsData();
@@ -86,13 +86,13 @@ if (!isConnect('admin')) {
           tr += '</tr>';
         }
         $('#group_table tbody').empty().append(tr)
-        }
+      }
     });
   }
   
   $('#group_table').off('click','.bt_removeZigbeeGroup').on('click','.bt_removeZigbeeGroup',function(){
     var tr = $(this).closest('tr');
-    bootbox.confirm("Etês vous sur de vouloir supprimer ce groupe ?", function(result){
+    bootbox.confirm("{{Etês vous sur de vouloir supprimer ce groupe ?}}", function(result){
       if(result){
         jeedom.zigbee.group.delete({
           instance : $('#sel_networkZigbeeInstance').value(),
@@ -109,20 +109,22 @@ if (!isConnect('admin')) {
   });
   
   $('.bt_addZigbeeGroup').off('click').on('click',function(){
-	  bootbox.prompt("Vous voulez créer un groupe quel sera son nom ?", function(name){
-         if (name) {jeedom.zigbee.group.create({
-		  name : name,
+    bootbox.prompt("{{Vous voulez créer un groupe quel sera son nom ?}}", function(name){
+      if (name) {
+        jeedom.zigbee.group.create({
+          instance : $('#sel_networkZigbeeInstance').value(),
+          name : name,
           error: function (error) {
             $('#div_groupZigbeeAlert').showAlert({message: error.message, level: 'danger'});
           },
           success: function () {
             $('#div_groupZigbeeAlert').showAlert({message: '{{Groupe créé avec succès}}', level: 'success'});
-			refreshGroupsData();
-			sync();
+            refreshGroupsData();
+            sync();
           }
         });
-		 }
-      });
+      }
+    });
   })
   
   refreshGroupsData();
