@@ -99,8 +99,8 @@ class zigbee extends eqLogic {
     log::clear(__CLASS__ . '_restore');
     $log = log::getPathToLog(__CLASS__ . '_restore');
     log::add('zigbee_restore','debug',__('Début de la restoration',__FILE__));
-    //config::save('deamonAutoMode', 0, 'zigbee');
-    //self::deamon_stop();
+    config::save('deamonAutoMode', 0, 'zigbee');
+    self::deamon_stop();
     $path = __DIR__.'/../../data/backup';
     if(!file_exists($path)){
       mkdir($path);
@@ -129,8 +129,8 @@ class zigbee extends eqLogic {
     }
     shell_exec('sudo kill 9 $(lsof -t '.$_options['port'].') >> '.$log.' 2>&1');
     shell_exec($cmd.' >> '.$log.' 2>&1');
-    //config::save('deamonAutoMode', 0, 'zigbee');
-    //self::deamon_start();
+    config::save('deamonAutoMode', 0, 'zigbee');
+    self::deamon_start();
     log::add('zigbee_restore','debug',__('Fin de la restoration',__FILE__));
   }
   
