@@ -98,6 +98,26 @@ Dies ist der komplizierte Teil (wie immer in Zigbee ist das Zurücksetzen / Asso
   - Drücken Sie die Reset-Taste (neben der Batterie) für Ikea-Fernbedienungen 5 bis 10 Sekunden lang in der Nähe der Glühbirne (Vorsicht vor bestimmten Glühbirnen, manchmal müssen Sie die Glühbirne kurz zuvor aus- und wieder einschalten)
 - Für die Farbtonbirnen können Sie sie auch auf der Farbtonbrücke einfügen und dann von dieser entfernen
 
+# OTA-Update 
+
+OTA-Updates sind Modul-Firmware-Updates. Sie dauern sehr lange (mehrere Stunden), ermöglichen Ihnen jedoch im Allgemeinen weniger Sorgen. Um ein Modul aktualisieren zu können, muss der Hersteller die Firmware mitteilen : 
+
+- Für Ikea und Ledavance keine Sorge, es wird online direkt von Ikea bereitgestellt, das Plugin wird es direkt von ihnen abholen 
+- Für andere (siehe [Hier](https://github.com/Koenkk/zigbee-OTA/tree/master/images)) Der Hersteller stellt manchmal inoffiziell ein Update zur Verfügung 
+- Für alle anderen gibt es keine Möglichkeit, das Modul über das Plugin zu aktualisieren 
+
+Um OTA-Updates zu aktivieren, aktivieren Sie einfach das Kontrollkästchen in der Plugin-Konfiguration, speichern Sie und klicken Sie auf die Schaltfläche, um die OTA-Dateien zu aktualisieren. Starten Sie dann einfach die ZigBee-Dämonen neu.
+
+Die Updates werden gestartet, wenn es eines gibt, und danach fragt das Modul, ob es eines gibt (Sie können dies auf der Registerkarte Aktion in der Konfiguration des Moduls / Knotens erzwingen). Leider gibt es keinen einfachen Indikator, um den Fortschritt des Updates zu sehen. Die einzige Lösung besteht darin, in den zigbee_X-Protokollen (wenn das Protokoll debuggt ist) nach ota zu suchen und zu sehen, ob sich ein Modul mit Protokollen des Typs selbst aktualisiert : 
+
+````
+2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA query_next_image handler for 'IKEA of Sweden TRADFRI control outlet': field_control=1, manufacture_id=4476, image_type=4353, current_file_version=536974883, hardware_version=60
+2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA image version: 537011747, size: 204222. Update needed: True
+2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA image_block handler for 'IKEA of Sweden TRADFRI control outlet': field_control=0, manufacturer_id=4476, image_type=4353, file_version=537011747, file_offset=0, max_data_size=63, request_node_addr=Noneblock_request_delay=None
+2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
+
+ ````
+
 # FAQ
 
 >**LQI oder RSSI ist N / A
@@ -107,3 +127,11 @@ Dies ist der komplizierte Teil (wie immer in Zigbee ist das Zurücksetzen / Asso
 >**Ich habe Einschlussprobleme oder Fehler in den Typprotokollen ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
 >
 >Versuchen Sie, die USB-Erweiterung zu entfernen, wenn Sie eine haben, oder ändern Sie sie oder setzen Sie eine ein, wenn Sie keine haben
+
+>**Ich habe Fehler "kann nicht an Gerät senden""**
+>
+>Leider ist die Korrektur sehr kompliziert, es liegt normalerweise an einem Routing-Problem (das Routing ist mehr oder weniger im Zickzack fixiert und nicht symmetrisch : Das Modul kann eine andere Route verwenden, um Ihnen zu antworten, als die, mit der es gesprochen hat). Oft reicht die elektrische Abschaltung (z. B. Entfernen der Batterien) und Zurücksetzen des Stroms (oder Ersetzen der Batterien) aus, um das Problem zu beheben.
+
+>**Ich habe seltsame Fehler bei gestapelten Modulen oder Einschlussproblemen**
+>
+>Wir haben festgestellt, dass ein großer Teil der Zickzackprobleme bei Batteriemodulen auf die Batterien zurückzuführen ist (oder auf Probleme beim Zurücksetzen der Module vor dem Einschluss). Auch wenn es neu erscheint, ist es ratsam, mit anderen zu testen, um sicherzugehen.

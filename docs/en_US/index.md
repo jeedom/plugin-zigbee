@@ -98,6 +98,26 @@ This is the complicated part (as always in Zigbee the hardest is the reset / ass
   - press the reset button (next to the battery) for 5 to 10 seconds near the powered bulb (beware of certain bulbs, you sometimes have to turn the bulb off / on just before) for Ikea remote controls
 - For the hue bulbs you can also include them on the hue bridge then remove them from it
 
+# OTA update 
+
+OTA updates are module firmware updates, it takes a very very long time (several hours) but allows you to have less worries in general. To be able to update a module, the manufacturer must communicate the firmware : 
+
+- For Ikea and Ledavance no worries it is provided online directly by Ikea, the plugin will pick it up directly from them 
+- For others (see [here](https://github.com/Koenkk/zigbee-OTA/tree/master/images)) the manufacturer sometimes unofficially provides an update 
+- For all the others there is no possibility to update the module by the plugin 
+
+To activate OTA updates, just check the box in the plugin configuration then save then click on the button to update the OTA files. Then just restart the zigbee demon (s).
+
+The updates are launched if there is one and after that the module asks if there is one (you can force this in the action tab on the configuration of the module / node). Unfortunately, there is no simple indicator to see the progress of the update, the only solution is to go to the zigbee_X logs (if the log is debugged) and look for ota and you can see if a module updates itself with logs of the type : 
+
+````
+2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA query_next_image handler for 'IKEA of Sweden TRADFRI control outlet': field_control=1, manufacture_id=4476, image_type=4353, current_file_version=536974883, hardware_version=60
+2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA image version: 537011747, size: 204222. Update needed: True
+2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA image_block handler for 'IKEA of Sweden TRADFRI control outlet': field_control=0, manufacturer_id=4476, image_type=4353, file_version=537011747, file_offset=0, max_data_size=63, request_node_addr=Noneblock_request_delay=None
+2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
+
+ ````
+
 # FAQ
 
 >**LQI or RSSI is N / A
@@ -107,3 +127,11 @@ This is the complicated part (as always in Zigbee the hardest is the reset / ass
 >**I have inclusion issues or errors in the type logs ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
 >
 >Try to remove the USB extension if you have one or change it or put one in if you don't have one
+
+>**I have "can not send to device" errors"**
+>
+>Unfortunately it is very complicated to correct, it is usually due to a routing problem (the routing is more or less fixed in zigbee and not symmetrical : the module can use a different route to answer you than the one used to talk to it). Often the electrical shutdown (removing the batteries for example) and resetting the current (or replacing the batteries) is enough to resolve the problem.
+
+>**I have weird errors on stacked modules or inclusion issues**
+>
+>We noticed that a good part of the zigbee problems on battery modules are due to the batteries (or problems of resetting the modules before inclusion). Even if it seems new, it is advisable to test with others to be sure.

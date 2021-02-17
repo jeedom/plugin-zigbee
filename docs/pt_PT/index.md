@@ -98,6 +98,26 @@ Esta é a parte complicada (como sempre no Zigbee o mais difícil é o reset / a
   - pressione o botão de reinicialização (ao lado da bateria) por 5 a 10 segundos próximo à lâmpada elétrica (cuidado com certas lâmpadas, às vezes você precisa ligar / desligar a lâmpada um pouco antes) para os controles remotos Ikea
 - Para os bulbos de matiz, você também pode incluí-los na ponte matiz e removê-los
 
+# Atualização OTA 
+
+As atualizações OTA são atualizações de firmware de módulo, leva muito, muito tempo (várias horas), mas permite que você tenha menos preocupações em geral. Para ser capaz de atualizar um módulo, o fabricante deve comunicar o firmware : 
+
+- Para Ikea e Ledavance, não se preocupe, ele é fornecido online diretamente pela Ikea, o plug-in irá retirá-lo diretamente deles 
+- Para outros (ver [aqui](https://github.com/Koenkk/zigbee-OTA/tree/master/images)) o fabricante às vezes fornece uma atualização não oficial 
+- Para todos os outros não há possibilidade de atualizar o módulo pelo plugin 
+
+Para ativar as atualizações OTA, basta marcar a caixa na configuração do plugin, salvar e clicar no botão para atualizar os arquivos OTA. Em seguida, basta reiniciar o (s) demônio (s) zigbee.
+
+As atualizações são lançadas se houver uma e depois disso o módulo pergunta se há uma (você pode forçar isto na página de ação na configuração do módulo / nó). Infelizmente, não existe um indicador simples para ver o progresso da atualização, a única solução é ir para os logs zigbee_X (se o log for depurado) e procurar ota e você pode ver se um módulo se atualiza com logs do tipo : 
+
+````
+2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA query_next_image handler for 'IKEA of Sweden TRADFRI control outlet': field_control=1, manufacture_id=4476, image_type=4353, current_file_version=536974883, hardware_version=60
+2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA image version: 537011747, size: 204222. Update needed: True
+2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA image_block handler for 'IKEA of Sweden TRADFRI control outlet': field_control=0, manufacturer_id=4476, image_type=4353, file_version=537011747, file_offset=0, max_data_size=63, request_node_addr=Noneblock_request_delay=None
+2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
+
+ ````
+
 # FAQ
 
 >**LQI ou RSSI é N / A
@@ -107,3 +127,11 @@ Esta é a parte complicada (como sempre no Zigbee o mais difícil é o reset / a
 >**Tenho problemas de inclusão ou erros nos registros de tipo ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
 >
 >Tente remover a extensão USB se você tiver uma ou altere-a ou coloque uma se você não tiver
+
+>**Tenho erros "não consigo enviar para o dispositivo""**
+>
+>Infelizmente é muito complicado de corrigir, geralmente é devido a um problema de roteamento (o roteamento é mais ou menos fixo em zigbee e não simétrico : o módulo pode usar uma rota diferente para responder a você do que aquela usada para falar com ele). Muitas vezes, o desligamento elétrico (removendo as baterias, por exemplo) e reiniciando a corrente (ou substituindo as baterias) é o suficiente para resolver o problema.
+
+>**Tenho erros estranhos em módulos empilhados ou problemas de inclusão**
+>
+>Percebemos que boa parte dos problemas do zigbee nos módulos de bateria são devido às baterias (ou problemas de reinicialização dos módulos antes da inclusão). Mesmo que pareça novo, é aconselhável testar com outras pessoas para ter certeza.
