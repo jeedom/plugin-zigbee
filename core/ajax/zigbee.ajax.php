@@ -108,6 +108,23 @@ try {
     ajax::success();
   }
   
+  if(init('action') == 'firmwareUpdate'){
+    if (init('port') == 'gateway') {
+      $port = 'socket://'.init('gateway');
+    }else{
+      $port = jeedom::getUsbMapping(init('port'));
+    }
+    $cron = new cron();
+    $cron->setClass('zigbee');
+    $cron->setFunction('firmwareUpdate');
+    $cron->setOption(array(array('port' => $port,'sub_controller' => init('sub_controller'),'firmware' => init('firmware'))));
+    $cron->setSchedule(cron::convertDateToCron(strtotime('now +1 year')));
+    $cron->setOnce(1);
+    $cron->save();
+    $cron->run();
+    ajax::success();
+  }
+  
   throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
   /*     * *********Catch exeption*************** */
 } catch (Exception $e) {

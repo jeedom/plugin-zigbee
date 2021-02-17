@@ -24,6 +24,27 @@ class zigbee extends eqLogic {
   
   /*     * ***********************Methode static*************************** */
   
+  public static function firmwareUpdate($_options = array()){
+    //config::save('deamonAutoMode', 0, 'zigbee');
+    log::clear(__CLASS__ . '_firmware');
+    $log = log::getPathToLog(__CLASS__ . '_firmware');
+    log::add('zigbee_firmware','info',print_r($_options ,true));
+    //self::deamon_stop();
+    foreach ($_options as $value) {
+      if($value['sub_controller'] == 'elelabs'){
+        $cmd = 'sudo chmod +x '.__DIR__.'/../../resources/misc/update-firmware-elelabs.sh;';
+        $cmd .= 'sudo '.__DIR__.'/../../resources/misc/update-firmware-elelabs.sh '.$value['port'].' '.$value['firmware'];
+        log::add('zigbee_firmware','info',__('Lancement de la mise à jour du firmware pour : ',__FILE__).$value['port'].' => '.$cmd);
+      }else{
+        log::add('zigbee_firmware','info',__('Pas de mise à jour possible du firmware pour : ',__FILE__).$value['port']);
+        continue;
+      }
+      shell_exec($cmd.' >> '.$log.' 2>&1');
+    }
+    //config::save('deamonAutoMode', 0, 'zigbee');
+    log::add('zigbee_firmware','debug',__('Fin de la mise à jour du firmware de la clef',__FILE__));
+  }
+  
   public static function updateOTA($_options = array()){
     log::clear(__CLASS__ . '_ota');
     $log = log::getPathToLog(__CLASS__ . '_ota');

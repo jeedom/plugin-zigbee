@@ -56,6 +56,12 @@ if (!isConnect('admin')) {
         </div>
       </div>
     <?php } ?>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">{{Mise à jour du firmware de la clef}}</label>
+      <div class="col-lg-2">
+        <a class="form-control btn btn-warning" id="bt_UpdateFirmware"><i class="fas fa-sync"></i> {{Lancer}}</a>
+      </div>
+    </div>
     <?php for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){ ?>
       <legend><i class="icon loisir-darth"></i> {{Démon }}<?php echo $i ?></legend>
       <div class="form-group">
@@ -205,13 +211,17 @@ if (!isConnect('admin')) {
     $('#md_modal').dialog({title: "{{Assistant de backup/restore du coordinateur}}"}).load('index.php?v=d&plugin=zigbee&modal=backup_restore').dialog('open');
   })
   
+  $('#bt_UpdateFirmware').off('clic').on('click',function(){
+    $('#md_modal').dialog({title: "{{Mise à jour du firmware de clef}}"}).load('index.php?v=d&plugin=zigbee&modal=firmware_update').dialog('open');
+  })
+  
   $('#bt_UpdateOta').off('clic').on('click',function(){
     jeedom.zigbee.updateOTA({
       error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
       success: function () {
-        $('#md_modal').dialog({title: "{{Assistant de backup/restore du coordinateur}}"}).load('index.php?v=d&modal=log.display&log=zigbee_ota').dialog('open');
+        $('#md_modal').dialog({title: "{{Mise à jour des fichier OTA}}"}).load('index.php?v=d&modal=log.display&log=zigbee_ota').dialog('open');
       }
     });
   })

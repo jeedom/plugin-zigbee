@@ -41,6 +41,28 @@ jeedom.zigbee.updateOTA = function(_params){
   $.ajax(paramsAJAX);
 }
 
+jeedom.zigbee.firmwareUpdate = function(_params){
+  var paramsRequired = ['port','sub_controller','firmware'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/ajax/zigbee.ajax.php';
+  paramsAJAX.data = {
+    action: 'firmwareUpdate',
+    port : _params.port,
+    sub_controller : _params.sub_controller,
+    gateway : _params.gateway,
+    firmware : _params.firmware
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.zigbee.backup = function(_params){
   var paramsRequired = ['port','controller'];
   var paramsSpecifics = {};
