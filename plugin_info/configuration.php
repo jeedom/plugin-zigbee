@@ -163,7 +163,9 @@ if (!isConnect('admin')) {
             </div>
           </div>
           <div class="col-lg-6">
-            <label class="control-label">{{Configuration avancer de zigpy au format json (expert)}}</label>
+            <div class="form-group has-error">
+              <label class="control-label">{{Configuration avancer de zigpy au format json (expert)}}</label>
+            </div>
             <div class="form-group">
               <div class="col-sm-12">
                 <textarea class="configKey form-control" rows="10" data-l1key="advance_zigpy_config_<?php echo $i ?>" ><?php echo json_encode(config::byKey('advance_zigpy_config_'.$i, 'zigbee'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE); ?></textarea>
