@@ -125,7 +125,7 @@ if (!isConnect('admin')) {
       <div class="col-sm-2">
         <select class="restoreAttr form-control" data-l1key="backup" >
           <?php 
-          foreach (ls(__DIR__.'/../data/backup') as $file) {
+          foreach (ls(__DIR__.'/../../data/backup') as $file) {
             echo '<option value="'.$file.'">'.$file.'</option>';
           }
           ?>

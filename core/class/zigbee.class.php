@@ -99,13 +99,13 @@ class zigbee extends eqLogic {
     log::clear(__CLASS__ . '_restore');
     $log = log::getPathToLog(__CLASS__ . '_restore');
     log::add('zigbee_restore','debug',__('Début de la restoration',__FILE__));
-    config::save('deamonAutoMode', 0, 'zigbee');
-    self::deamon_stop();
+    //config::save('deamonAutoMode', 0, 'zigbee');
+    //self::deamon_stop();
     $path = __DIR__.'/../../data/backup';
     if(!file_exists($path)){
       mkdir($path);
     }
-    $backup  =$path.'/'.$_options['backup'];
+    $backup = $path.'/'.$_options['backup'];
     if(!file_exists($backup)){
       throw new \Exception(__('Erreur fichier de backup introuvable : ',__FILE__).$backup);
     }
@@ -117,7 +117,8 @@ class zigbee extends eqLogic {
       if($_options['sub_controller'] == 'elelabs'){
         $bauderate = '-b 115200';
       }
-      $cmd = 'sudo bellows '.$bauderate.' -d '.$_options['port'].' restore --i-understand-i-can-update-eui64-only-once-and-i-still-want-to-do-it -B '.$path.'-ezsp-'.date('Y-m-d_H:i:s').'.txt';
+      $cmd = 'sudo bellows '.$bauderate.' -d '.$_options['port'].' leave;';
+      $cmd .= 'sudo bellows '.$bauderate.' -d '.$_options['port'].' restore --i-understand-i-can-update-eui64-only-once-and-i-still-want-to-do-it -B '.$backup;
       log::add('zigbee_restore','info',__('Lancement du backup ezsp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
     }elseif($_options['controller'] == 'znp'){
       $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_write '.$_options['port'].' -i '.$backup;
@@ -128,8 +129,8 @@ class zigbee extends eqLogic {
     }
     shell_exec('sudo kill 9 $(lsof -t '.$_options['port'].') >> '.$log.' 2>&1');
     shell_exec($cmd.' >> '.$log.' 2>&1');
-    config::save('deamonAutoMode', 0, 'zigbee');
-    self::deamon_start();
+    //config::save('deamonAutoMode', 0, 'zigbee');
+    //self::deamon_start();
     log::add('zigbee_restore','debug',__('Fin de la restoration',__FILE__));
   }
   
