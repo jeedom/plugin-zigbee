@@ -309,6 +309,7 @@
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
         "Début de la mise à jour du répertoire OTA": "Début de la mise à jour du répertoire OTA",
         "Fin de la mise à jour du répertoire OTA": "Fin de la mise à jour du répertoire OTA",
+        "Pensez bien à redemarrer le(s) démon(s) zigbee pour la prise en compte des nouvelles maj OTA": "Pensez bien à redemarrer le(s) démon(s) zigbee pour la prise en compte des nouvelles maj OTA",
         "Lancement du backup ezsp de la clef : ": "Lancement du backup ezsp de la clef :",
         "Lancement du backup znp de la clef : ": "Lancement du backup znp de la clef :",
         "Pas de backup possible pour : ": "Pas de backup possible pour :",

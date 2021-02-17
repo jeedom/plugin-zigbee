@@ -21,7 +21,7 @@
         "Démon ": "Demonio",
         "Activer": "Activar",
         "Nom": "Nombre",
-        "Type de controlleur": "Tipo de controlador",
+        "Type de controlleur": "Type de controlleur",
         "EZSP": "EZSP",
         "Conbee": "Conbee",
         "Zigate": "Zigate",
@@ -32,7 +32,7 @@
         "Auto": "Auto",
         "Elelabs": "Elelabs",
         "Port Zigbee": "Port Zigbee",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Pizigate": "Pizigate",
         "Passerelle distante": "Puerta de enlace remota",
         "Passerelle distante IP:PORT": "Puerta de enlace IP remota: PUERTO",
@@ -207,7 +207,7 @@
         "Configuration du groupe": "Configuration du groupe"
     },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Gestion": "Gestión",
         "Autoriser Join": "Autoriser Join",
         "Commissioning": "Commissioning",
@@ -309,6 +309,7 @@
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
         "Début de la mise à jour du répertoire OTA": "Inicio de la actualización del directorio OTA",
         "Fin de la mise à jour du répertoire OTA": "Fin de la actualización del directorio OTA",
+        "Pensez bien à redemarrer le(s) démon(s) zigbee pour la prise en compte des nouvelles maj OTA": "Recuerde reiniciar los demonios zigbee para tener en cuenta las nuevas actualizaciones de OTA",
         "Lancement du backup ezsp de la clef : ": "Lanzamiento de la copia de seguridad ezsp de la clave:",
         "Lancement du backup znp de la clef : ": "Lanzamiento de la copia de seguridad znp de la clave:",
         "Pas de backup possible pour : ": "No es posible realizar copias de seguridad para:",
