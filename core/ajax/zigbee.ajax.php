@@ -86,7 +86,7 @@ try {
     $cron = new cron();
     $cron->setClass('zigbee');
     $cron->setFunction('backup_coordinator');
-    $cron->setOption(array('port' => $port,'controller' => init('controller')));
+    $cron->setOption(array('port' => $port,'controller' => init('controller'),'sub_controller' => init('sub_controller')));
     $cron->setSchedule(cron::convertDateToCron(strtotime('now +1 year')));
     $cron->setOnce(1);
     $cron->save();
@@ -103,7 +103,7 @@ try {
     $cron = new cron();
     $cron->setClass('zigbee');
     $cron->setFunction('restore_coordinator');
-    $cron->setOption(array('port' => $port,'controller' => init('controller'),'backup' => init('backup')));
+    $cron->setOption(array('port' => $port,'controller' => init('controller'),'sub_controller' => init('sub_controller'),'backup' => init('backup')));
     $cron->setSchedule(cron::convertDateToCron(strtotime('now +1 year')));
     $cron->setOnce(1);
     $cron->save();

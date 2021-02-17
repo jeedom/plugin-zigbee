@@ -74,7 +74,11 @@ class zigbee extends eqLogic {
       mkdir($path);
     }
     if($_options['controller'] == 'ezsp'){
-      $cmd = 'sudo bellows -d '.$_options['port'].' backup > '.$path.'-ezsp-'.date('Y-m-d_H:i:s').'.txt';
+      $bauderate = '';
+      if($_options['sub_controller'] == 'elelabs'){
+        $bauderate = '-b 115200';
+      }
+      $cmd = 'sudo bellows '.$bauderate.' -d '.$_options['port'].' backup > '.$path.'-ezsp-'.date('Y-m-d_H:i:s').'.txt';
       log::add('zigbee_backup','info',__('Lancement du backup ezsp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
     }elseif($_options['controller'] == 'znp'){
       $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_read '.$_options['port'].' -o '.$path.'-znp-'.date('Y-m-d_H:i:s').'.json';
@@ -107,7 +111,11 @@ class zigbee extends eqLogic {
       throw new \Exception(__('Le fichier de backup ne semble pas etre du type du controller : ',__FILE__));
     }
     if($_options['controller'] == 'ezsp'){
-      $cmd = 'sudo bellows -d '.$_options['port'].' restore --i-understand-i-can-update-eui64-only-once-and-i-still-want-to-do-it -B '.$path.'-ezsp-'.date('Y-m-d_H:i:s').'.txt';
+      $bauderate = '';
+      if($_options['sub_controller'] == 'elelabs'){
+        $bauderate = '-b 115200';
+      }
+      $cmd = 'sudo bellows '.$bauderate.' -d '.$_options['port'].' restore --i-understand-i-can-update-eui64-only-once-and-i-still-want-to-do-it -B '.$path.'-ezsp-'.date('Y-m-d_H:i:s').'.txt';
       log::add('zigbee_restore','info',__('Lancement du backup ezsp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
     }elseif($_options['controller'] == 'znp'){
       $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_write '.$_options['port'].' -i '.$backup;

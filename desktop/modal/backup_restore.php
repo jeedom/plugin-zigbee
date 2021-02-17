@@ -33,6 +33,15 @@ if (!isConnect('admin')) {
       </div>
     </div>
     <div class="form-group">
+      <label class="col-sm-4 control-label">{{Type de clef}}</label>
+      <div class="col-sm-2">
+        <select class="backupAttr form-control" data-l1key="sub_controller">
+          <option value="auto" data-controller="auto">{{Auto}}</option>
+          <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
       <label class="col-sm-4 control-label">{{Port Zigbee}}</label>
       <div class="col-sm-2">
         <select class="backupAttr form-control" data-l1key="port">
@@ -76,6 +85,15 @@ if (!isConnect('admin')) {
         <select class="restoreAttr form-control" data-l1key="controller">
           <option value="ezsp">{{EZSP}}</option>
           <option value="znp">{{ZNP}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-4 control-label">{{Type de clef}}</label>
+      <div class="col-sm-2">
+        <select class="restoreAttr form-control" data-l1key="sub_controller">
+          <option value="auto" data-controller="auto">{{Auto}}</option>
+          <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
         </select>
       </div>
     </div>
@@ -135,11 +153,22 @@ $('.restoreAttr[data-l1key="port"]').off('change').on('change',function(){
     $('.zigbee_restore_portConf.'+$(this).value()).show();
   }
 });
+$('.backupAttr[data-l1key="controller"]').off('change').on('change',function(){
+  $('.backupAttr[data-l1key="sub_controller"] option').hide()
+  $('.backupAttr[data-l1key="sub_controller"] option[data-controller=auto]').show()
+  $('.backupAttr[data-l1key="sub_controller"] option[data-controller='+$(this).value()+']').show()
+});
+$('.restoreAttr[data-l1key="controller"]').off('change').on('change',function(){
+  $('.restoreAttr[data-l1key="sub_controller"] option').hide()
+  $('.restoreAttr[data-l1key="sub_controller"] option[data-controller=auto]').show()
+  $('.restoreAttr[data-l1key="sub_controller"] option[data-controller='+$(this).value()+']').show()
+});
 
 $('#bt_launchBackup').off('click').on('click',function(){
   jeedom.zigbee.backup({
     port : $('.backupAttr[data-l1key=port]').value(),
     controller : $('.backupAttr[data-l1key=controller]').value(),
+    sub_controller : $('.backupAttr[data-l1key=sub_controller]').value(),
     gateway : $('.backupAttr[data-l1key=gateway]').value(),
     error: function (error) {
       $('#div_alertBackupRestore').showAlert({message: error.message, level: 'danger'});
@@ -155,6 +184,7 @@ $('#bt_launchRestore').off('click').on('click',function(){
     port : $('.restoreAttr[data-l1key=port]').value(),
     controller : $('.restoreAttr[data-l1key=controller]').value(),
     gateway : $('.restoreAttr[data-l1key=gateway]').value(),
+    sub_controller : $('.restoreAttr[data-l1key=sub_controller]').value(),
     backup : $('.restoreAttr[data-l1key=backup]').value(),
     error: function (error) {
       $('#div_alertBackupRestore').showAlert({message: error.message, level: 'danger'});

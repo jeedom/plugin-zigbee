@@ -79,6 +79,7 @@ jeedom.zigbee.backup = function(_params){
     action: 'backup',
     port : _params.port,
     controller : _params.controller,
+    sub_controller : _params.sub_controller,
     gateway : _params.gateway
   };
   $.ajax(paramsAJAX);
@@ -100,6 +101,7 @@ jeedom.zigbee.restore = function(_params){
     action: 'restore',
     port : _params.port,
     controller : _params.controller,
+    sub_controller : _params.sub_controller,
     gateway : _params.gateway,
     backup : _params.backup
   };
