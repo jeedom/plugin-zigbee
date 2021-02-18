@@ -50,14 +50,14 @@ if (!isConnect('admin')) {
     </table>
   </div>
   <script>
-  $('#sel_networkZigbeeInstance').off('change').on('change',function(){
+  $('#sel_groupZigbeeInstance').off('change').on('change',function(){
     refreshGroupsData();
   })
   
   function refreshGroupsData(){
     jeedom.zigbee.group.all({
       global:false,
-      instance : $('#sel_networkZigbeeInstance').value(),
+      instance : $('#sel_groupZigbeeInstance').value(),
       type : 'GET',
       error: function (error) {
         $('#div_groupZigbeeAlert').showAlert({message: error.message, level: 'danger'});
@@ -95,7 +95,7 @@ if (!isConnect('admin')) {
     bootbox.confirm("{{Etês vous sur de vouloir supprimer ce groupe ?}}", function(result){
       if(result){
         jeedom.zigbee.group.delete({
-          instance : $('#sel_networkZigbeeInstance').value(),
+          instance : $('#sel_groupZigbeeInstance').value(),
           id : tr.attr('data-id'),
           error: function (error) {
             $('#div_groupZigbeeAlert').showAlert({message: error.message, level: 'danger'});
@@ -112,7 +112,7 @@ if (!isConnect('admin')) {
     bootbox.prompt("{{Vous voulez créer un groupe quel sera son nom ?}}", function(name){
       if (name) {
         jeedom.zigbee.group.create({
-          instance : $('#sel_networkZigbeeInstance').value(),
+          instance : $('#sel_groupZigbeeInstance').value(),
           name : name,
           error: function (error) {
             $('#div_groupZigbeeAlert').showAlert({message: error.message, level: 'danger'});

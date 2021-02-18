@@ -187,7 +187,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-3 control-label">{{Démon)}}</label>
+									<label class="col-sm-3 control-label">{{Démon}}</label>
 									<div class="col-sm-7">
 										<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="instance">
 											<?php

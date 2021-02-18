@@ -138,7 +138,7 @@ $('.bt_addToZigbeeGroup').off('click').on('click',function(){
         return;
       }
       jeedom.zigbee.group.add_device({
-        instance : $('#sel_networkZigbeeInstance').value(),
+        instance : zigbeeNodeInstance,
         ieee:device_result,
         id:group_id,
         error: function (error) {
@@ -159,7 +159,7 @@ $('.bt_removeFromZigbeeGroup').off('click').on('click',function(){
   bootbox.confirm("Etês vous sur de vouloir supprimer ce noeud du groupe ?", function(result){
     if(result){
       jeedom.zigbee.group.delete_device({
-        instance : $('#sel_networkZigbeeInstance').value(),
+        instance : zigbeeNodeInstance,
         ieee : tr.attr('data-ieee'),
         id:group_id,
         error: function (error) {
