@@ -138,6 +138,7 @@ $('.bt_addToZigbeeGroup').off('click').on('click',function(){
         return;
       }
       jeedom.zigbee.group.add_device({
+        instance : $('#sel_networkZigbeeInstance').value(),
         ieee:device_result,
         id:group_id,
         error: function (error) {
