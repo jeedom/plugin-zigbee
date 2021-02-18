@@ -21,6 +21,30 @@ Après installation du plugin, il vous suffit de bien installer les dépendances
 >
 >Tout changement de canal nécessite forcement un redemarrage du démon. Un changement de canal peut aussi nécessiter une reinclusion de certain module
 
+## Backup/restore 
+
+Il est possible sur les clef de type EZSP (Elelabs par exemple) et ZNP de faire un backup de celle-ci pour le restaurer sur une autre clef.
+
+>**IMPORTANT**
+>
+> Sur les clef de type EZXP (Elelabs) il n'est possible de faire que une seule restauration de backup en tout et pour dans la vie de la clef !!!!
+
+Le backup ne contient pas la liste des modules mais seulement les informations de bases du réseaux zigbee, il n'est donc pas necessaire d'en faire souvent, un seul suffit car il ne bouge pas au cours de la vie de la clef.
+
+>**IMPORTANT**
+>
+> Lors d'un backup ou d'une restauration le(s) démon(s) zigbee sont arretés
+
+## Mise à jour du firmware 
+
+Il est possible depuis Jeedom de mettre à jour le firmware de la clef Zigbee (que pour Elelabs pour le moment). Le firmware étant vraiment très important en zigbee (c'est lui qui gere le routage par exemple) il est important de le mettre à jour.
+
+>**IMPORTANT**
+>
+> Lors d'une mise à jour du firmware le(s) démon(s) zigbee sont arretés
+
+## Paramètres spécifique zigpy (reservé aux experts !!!!)
+
 Il est possible de mettre en place des parametres specifique pour le sous systeme zigbee (zigpy). Cette partie est vraiment réservé aux experts et Jeedom ne fournis pas de liste de parametres possible (il y a des centaines qui dépendent du type de clef). Le champs prend en entrée du json exemple : 
 
 ````
@@ -34,6 +58,7 @@ Il est possible de mettre en place des parametres specifique pour le sous system
 >**IMPORTANT**
 >
 >Lors de TOUTE demande de support si il y a une configuration la dessus la demande de support sera automatiquement refusée
+
 
 # Inclusion de module
 
