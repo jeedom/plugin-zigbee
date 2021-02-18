@@ -1,5 +1,6 @@
 {
   "name": "Bulb E27 WS opal 980lm",
+  "remark":"Attention le retour d'état pour ce model n'est pas en temps réel (soit suite à une commande soit en demandant explicitement une mise à jour de celui-ci)",
   "buylink" : "",
   "commands": [
     {
