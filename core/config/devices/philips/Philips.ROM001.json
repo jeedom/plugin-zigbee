@@ -15,16 +15,20 @@
 			"logicalId": "1::64512::cmd::1"
 		},
 		{
-			"name": "Etat Luminosité",
+			"name": "Appui",
 			"type": "info",
-			"subtype": "numeric",
+			"subtype": "string",
 			"isVisible": 0,
 			"isHistorized": 0,
-			"logicalId": "1::8::0",
-			"configuration" : {
-				"minValue" : 0,
-				"maxValue" : 254
-			}
+			"logicalId": "1::64512::event::on_press::press_type"
+		},
+		{
+			"name": "Appui court",
+			"type": "info",
+			"subtype": "string",
+			"isVisible": 0,
+			"isHistorized": 0,
+			"logicalId": "1::64512::event::on_short_release::press_type"
 		}
 	]
 }
