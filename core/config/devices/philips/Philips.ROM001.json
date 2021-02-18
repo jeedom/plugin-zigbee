@@ -17,18 +17,50 @@
 		{
 			"name": "Appui",
 			"type": "info",
-			"subtype": "string",
+			"subtype": "binary",
 			"isVisible": 0,
 			"isHistorized": 0,
-			"logicalId": "1::64512::event::on_press::press_type"
+			"logicalId": "1::64512::event::on_press::command_id"
 		},
 		{
 			"name": "Appui court",
 			"type": "info",
-			"subtype": "string",
+			"subtype": "binary",
 			"isVisible": 0,
 			"isHistorized": 0,
-			"logicalId": "1::64512::event::on_short_release::press_type"
+			"logicalId": "1::64512::event::on_short_release::command_id"
+		},
+		{
+			"name": "Appui long",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 0,
+			"isHistorized": 0,
+			"logicalId": "1::64512::event::on_long_release::command_id"
+		},
+		{
+			"name": "Triple appui",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 0,
+			"isHistorized": 0,
+			"logicalId": "1::64512::event::on_triple_press::command_id"
+		},
+		{
+			"name": "Quadruple appui",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 0,
+			"isHistorized": 0,
+			"logicalId": "1::64512::event::on_quadruple_press::command_id"
+		},
+		{
+			"name": "Maintien",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 0,
+			"isHistorized": 0,
+			"logicalId": "1::64512::event::on_hold::command_id"
 		}
 	]
 }
