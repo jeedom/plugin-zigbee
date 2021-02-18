@@ -2,7 +2,7 @@
   "name": "Wallplug",
   "ref" : "SPLZB-132",
   "buylink" : "",
-  "reset" : "Il faut presser pendant 10s le bouton du module",
+  "reset" : "Il faut presser pendant 20s le bouton du module",
   "pairing":"Alimenter le module",
   "commands": [
     {
