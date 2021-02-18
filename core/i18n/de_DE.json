@@ -18,6 +18,7 @@
         "Autoriser les mise à jour OTA": "OTA-Updates zulassen",
         "Mettre à jour les fichiers OTAs": "Aktualisieren Sie die OTAs-Dateien",
         "Lancer": "Starten",
+        "Mise à jour du firmware de la clef": "Firmware-Update des Schlüssels",
         "Démon ": "Dämon",
         "Activer": "Aktivieren",
         "Nom": "Name",
@@ -28,11 +29,11 @@
         "CC": "CC",
         "Xbee": "Xbee",
         "ZNP": "ZNP",
-        "Type de clef": "Type de clef",
+        "Type de clef": "Schlüsselart",
         "Auto": "Auto",
         "Elelabs": "Elelabs",
         "Port Zigbee": "Port Zigbee",
-        "Aucun": "Ohne",
+        "Aucun": "Nein",
         "Pizigate": "Pizigate",
         "Passerelle distante": "Remote-Gateway",
         "Passerelle distante IP:PORT": "Remote-IP-Gateway: PORT",
@@ -45,7 +46,10 @@
         "25": "25",
         "Action": "Aktionen",
         "Redemarrer": "Neu starten",
-        "Assistant de backup\/restore du coordinateur": "Assistent für die Sicherung \/ Wiederherstellung des Koordinators"
+        "Configuration avancer de zigpy au format json (expert)": "Erweiterte Konfiguration von Zigpy im JSON-Format (Experte)",
+        "Assistant de backup\/restore du coordinateur": "Assistent für die Sicherung \/ Wiederherstellung des Koordinators",
+        "Mise à jour du firmware de clef": "Key Firmware Update",
+        "Mise à jour des fichier OTA": "OTA-Dateien aktualisieren"
     },
     "plugins\/zigbee\/desktop\/modal\/node.php": {
         "Equipement introuvable : ": "Ausrüstung nicht gefunden:",
@@ -134,6 +138,8 @@
         "Nom": "Name",
         "Actions": "Aktionen",
         "Supprimer": "Löschen",
+        "Etês vous sur de vouloir supprimer ce groupe ?": "Möchten Sie diese Gruppe wirklich löschen?",
+        "Vous voulez créer un groupe quel sera son nom ?": "Sie möchten eine Gruppe erstellen, wie heißt sie?",
         "Groupe créé avec succès": "Groupe créé avec succès"
     },
     "plugins\/zigbee\/desktop\/modal\/backup_restore.php": {
@@ -142,6 +148,9 @@
         "Type de controlleur": "Controller-Typ",
         "EZSP": "EZSP",
         "ZNP": "ZNP",
+        "Type de clef": "Schlüsselart",
+        "Auto": "Auto",
+        "Elelabs": "Elelabs",
         "Port Zigbee": "Port Zigbee",
         "Aucun": "Nein",
         "Passerelle distante": "Remote-Gateway",
@@ -153,8 +162,24 @@
         "IMPORTANT : Vous ne pouvez restorer un backup d'un type de clef que sur le meme type de clef": "WICHTIG: Sie können eine Sicherung eines Schlüsseltyps nur auf demselben Schlüsseltyp wiederherstellen",
         "IMPORTANT : il n'est possible de restorer que UNE SEUL FOIS un backup sur les clef de type EZSP": "WICHTIG: Es ist nur möglich, eine Sicherung EINMAL auf Schlüsseln vom Typ EZSP wiederherzustellen",
         "Lancer la restauration": "Starten Sie die Wiederherstellung",
-        "Backup réalisé avec succes": "Sicherung erfolgreich abgeschlossen",
-        "Restoration réalisé avec succes": "Restaurierung erfolgreich abgeschlossen"
+        "Backup zigbee": "Backup ZigBee",
+        "Restauration zigbee": "ZigBee-Restaurierung"
+    },
+    "plugins\/zigbee\/desktop\/modal\/firmware_update.php": {
+        "Backup": "Backup",
+        "IMPORTANT : seul les clefs Elelabs peuvent etre mise à jour par Jeedom actuellement": "WICHTIG: Derzeit können nur Jeelabs-Schlüssel von Jeedom aktualisiert werden",
+        "Type de clef": "Schlüsselart",
+        "Aucun": "Nein",
+        "Elelabs": "Elelabs",
+        "Port Zigbee": "Port Zigbee",
+        "Passerelle distante": "Remote-Gateway",
+        "Passerelle distante IP:PORT": "Remote-IP-Gateway: PORT",
+        "Firmware": "Firmware",
+        "officiel": "offiziell",
+        "non officiel": "inoffiziell",
+        "Lancer la mise à jour": "Starten Sie das Update",
+        "Lancer": "Starten",
+        "Mise à jour du firmware de la clef": "Firmware-Update des Schlüssels"
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
         "Application": "Anwendung",
@@ -207,7 +232,7 @@
         "Configuration du groupe": "Configuration du groupe"
     },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
-        "Aucun": "Ohne",
+        "Aucun": "Nein",
         "Gestion": "Verwaltung",
         "Autoriser Join": "Autoriser Join",
         "Commissioning": "Commissioning",
@@ -307,16 +332,21 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
+        "Lancement de la mise à jour du firmware pour : ": "Start des Firmware-Updates für:",
+        "Pas de mise à jour possible du firmware pour : ": "Kein Firmware-Update möglich für:",
+        "Fin de la mise à jour du firmware de la clef": "Ende des Firmware-Updates des Schlüssels",
         "Début de la mise à jour du répertoire OTA": "Start der Aktualisierung des OTA-Verzeichnisses",
         "Fin de la mise à jour du répertoire OTA": "Ende der Aktualisierung des OTA-Verzeichnisses",
         "Pensez bien à redemarrer le(s) démon(s) zigbee pour la prise en compte des nouvelles maj OTA": "Denken Sie daran, die ZigBee-Daemons neu zu starten, um die neuen OTA-Updates zu berücksichtigen",
+        "Début du backup": "Start der Sicherung",
         "Lancement du backup ezsp de la clef : ": "Start der ezsp-Sicherung des Schlüssels:",
         "Lancement du backup znp de la clef : ": "Start der znp-Sicherung des Schlüssels:",
         "Pas de backup possible pour : ": "Keine Sicherung möglich für:",
-        "Erreur lors du backup de : ": "Fehler beim Sichern:",
+        "Fin du backup": "Ende der Sicherung",
+        "Début de la restoration": "Beginn der Restaurierung",
         "Erreur fichier de backup introuvable : ": "Sicherungsdatei nicht gefunden Fehler:",
         "Le fichier de backup ne semble pas etre du type du controller : ": "Die Sicherungsdatei scheint nicht vom Controllertyp zu sein:",
-        "Erreur lors de la restoration de : ": "Fehler beim Wiederherstellen:",
+        "Fin de la restoration": "Ende der Restaurierung",
         "Démon": "Dämon",
         "Erreur lors de la requete : ": "Fehler während der Anfrage:",
         "Le module": "Das Modul",

@@ -18,6 +18,7 @@
         "Autoriser les mise à jour OTA": "Autoriser les mise à jour OTA",
         "Mettre à jour les fichiers OTAs": "Mettre à jour les fichiers OTAs",
         "Lancer": "Lancer",
+        "Mise à jour du firmware de la clef": "Mise à jour du firmware de la clef",
         "Démon ": "悪魔",
         "Activer": "アクティブ",
         "Nom": "表題",
@@ -45,7 +46,10 @@
         "25": "25",
         "Action": "アクション",
         "Redemarrer": "再起動",
-        "Assistant de backup\/restore du coordinateur": "Assistant de backup\/restore du coordinateur"
+        "Configuration avancer de zigpy au format json (expert)": "Configuration avancer de zigpy au format json (expert)",
+        "Assistant de backup\/restore du coordinateur": "Assistant de backup\/restore du coordinateur",
+        "Mise à jour du firmware de clef": "Mise à jour du firmware de clef",
+        "Mise à jour des fichier OTA": "Mise à jour des fichier OTA"
     },
     "plugins\/zigbee\/desktop\/modal\/node.php": {
         "Equipement introuvable : ": "Equipement introuvable :",
@@ -134,6 +138,8 @@
         "Nom": "表題",
         "Actions": "株式",
         "Supprimer": "取り除きます",
+        "Etês vous sur de vouloir supprimer ce groupe ?": "Etês vous sur de vouloir supprimer ce groupe ?",
+        "Vous voulez créer un groupe quel sera son nom ?": "Vous voulez créer un groupe quel sera son nom ?",
         "Groupe créé avec succès": "Groupe créé avec succès"
     },
     "plugins\/zigbee\/desktop\/modal\/backup_restore.php": {
@@ -142,6 +148,9 @@
         "Type de controlleur": "Type de controlleur",
         "EZSP": "EZSP",
         "ZNP": "ZNP",
+        "Type de clef": "Type de clef",
+        "Auto": "Auto",
+        "Elelabs": "Elelabs",
         "Port Zigbee": "Port Zigbee",
         "Aucun": "Aucun",
         "Passerelle distante": "Passerelle distante",
@@ -153,8 +162,24 @@
         "IMPORTANT : Vous ne pouvez restorer un backup d'un type de clef que sur le meme type de clef": "IMPORTANT : Vous ne pouvez restorer un backup d'un type de clef que sur le meme type de clef",
         "IMPORTANT : il n'est possible de restorer que UNE SEUL FOIS un backup sur les clef de type EZSP": "IMPORTANT : il n'est possible de restorer que UNE SEUL FOIS un backup sur les clef de type EZSP",
         "Lancer la restauration": "Lancer la restauration",
-        "Backup réalisé avec succes": "Backup réalisé avec succes",
-        "Restoration réalisé avec succes": "Restoration réalisé avec succes"
+        "Backup zigbee": "Backup zigbee",
+        "Restauration zigbee": "Restauration zigbee"
+    },
+    "plugins\/zigbee\/desktop\/modal\/firmware_update.php": {
+        "Backup": "Backup",
+        "IMPORTANT : seul les clefs Elelabs peuvent etre mise à jour par Jeedom actuellement": "IMPORTANT : seul les clefs Elelabs peuvent etre mise à jour par Jeedom actuellement",
+        "Type de clef": "Type de clef",
+        "Aucun": "Aucun",
+        "Elelabs": "Elelabs",
+        "Port Zigbee": "Port Zigbee",
+        "Passerelle distante": "Passerelle distante",
+        "Passerelle distante IP:PORT": "Passerelle distante IP:PORT",
+        "Firmware": "Firmware",
+        "officiel": "officiel",
+        "non officiel": "non officiel",
+        "Lancer la mise à jour": "Lancer la mise à jour",
+        "Lancer": "Lancer",
+        "Mise à jour du firmware de la clef": "Mise à jour du firmware de la clef"
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
         "Application": "Application",
@@ -307,16 +332,21 @@
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
+        "Lancement de la mise à jour du firmware pour : ": "Lancement de la mise à jour du firmware pour :",
+        "Pas de mise à jour possible du firmware pour : ": "Pas de mise à jour possible du firmware pour :",
+        "Fin de la mise à jour du firmware de la clef": "Fin de la mise à jour du firmware de la clef",
         "Début de la mise à jour du répertoire OTA": "Début de la mise à jour du répertoire OTA",
         "Fin de la mise à jour du répertoire OTA": "Fin de la mise à jour du répertoire OTA",
         "Pensez bien à redemarrer le(s) démon(s) zigbee pour la prise en compte des nouvelles maj OTA": "Pensez bien à redemarrer le(s) démon(s) zigbee pour la prise en compte des nouvelles maj OTA",
+        "Début du backup": "Début du backup",
         "Lancement du backup ezsp de la clef : ": "Lancement du backup ezsp de la clef :",
         "Lancement du backup znp de la clef : ": "Lancement du backup znp de la clef :",
         "Pas de backup possible pour : ": "Pas de backup possible pour :",
-        "Erreur lors du backup de : ": "Erreur lors du backup de :",
+        "Fin du backup": "Fin du backup",
+        "Début de la restoration": "Début de la restoration",
         "Erreur fichier de backup introuvable : ": "Erreur fichier de backup introuvable :",
         "Le fichier de backup ne semble pas etre du type du controller : ": "Le fichier de backup ne semble pas etre du type du controller :",
-        "Erreur lors de la restoration de : ": "Erreur lors de la restoration de :",
+        "Fin de la restoration": "Fin de la restoration",
         "Démon": "悪魔",
         "Erreur lors de la requete : ": "Erreur lors de la requete :",
         "Le module": "Le module",
