@@ -21,6 +21,19 @@ After installing the plugin, you just have to install the dependencies, select y
 >
 >Any change of channel necessarily requires a restart of the daemon. A change of channel may also require reinclusion of certain modulus
 
+It is possible to set up specific parameters for the zigbee sub-system (zigpy). This part is really reserved for experts and Jeedom does not provide a list of possible parameters (there are hundreds which depend on the type of key). The field takes as input from the json example : 
+
+````
+{
+    "ezsp": {
+        "CONFIG_ADDRESS_TABLE_SIZE": "16"
+    }
+}
+````
+
+>**Important**
+>
+>During ANY support request if there is a configuration above, the support request will be automatically refused
 
 # Module inclusion
 

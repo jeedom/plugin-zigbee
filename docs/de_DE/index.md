@@ -21,6 +21,19 @@ Nach der Installation des Plugins müssen Sie nur die Abhängigkeiten installier
 >
 >Jeder Kanalwechsel erfordert zwangsläufig einen Neustart des Daemons. Ein Kanalwechsel kann auch die Wiedereinschaltung eines bestimmten Moduls erfordern
 
+Es ist möglich, bestimmte Parameter für das ZigBee-Subsystem (Zigpy) festzulegen). Dieser Teil ist wirklich Experten vorbehalten und Jeedom bietet keine Liste möglicher Parameter (es gibt Hunderte, die von der Art des Schlüssels abhängen). Das Feld wird als Eingabe aus dem json-Beispiel verwendet : 
+
+````
+{
+    "ezsp": {
+        "CONFIG_ADDRESS_TABLE_SIZE": "16"
+    }
+}
+````
+
+>**Wichtig**
+>
+>Wenn bei JEDER Supportanfrage eine Konfiguration vorliegt, wird die Supportanfrage automatisch abgelehnt
 
 # Moduleinschluss
 

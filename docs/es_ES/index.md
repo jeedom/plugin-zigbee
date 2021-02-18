@@ -21,6 +21,19 @@ Después de instalar el complemento, solo tiene que instalar las dependencias, s
 >
 >Cualquier cambio de canal requiere necesariamente un reinicio del demonio. Un cambio de canal también puede requerir la reincorporación de cierto módulo
 
+Es posible configurar parámetros específicos para el subsistema zigbee (zigpy). Esta parte está realmente reservada para expertos y Jeedom no proporciona una lista de posibles parámetros (hay cientos que dependen del tipo de clave). El campo toma como entrada del ejemplo json : 
+
+````
+{
+    "ezsp": {
+        "CONFIG_ADDRESS_TABLE_SIZE": "16"
+    }
+}
+````
+
+>**Importante**
+>
+>Durante CUALQUIER solicitud de soporte, si hay una configuración anterior, la solicitud de soporte se rechazará automáticamente
 
 # Inclusión del módulo
 

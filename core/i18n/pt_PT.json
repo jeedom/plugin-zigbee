@@ -18,6 +18,7 @@
         "Autoriser les mise à jour OTA": "Permitir atualizações OTA",
         "Mettre à jour les fichiers OTAs": "Atualizar arquivos OTAs",
         "Lancer": "Lançar",
+        "Mise à jour du firmware de la clef": "Atualização de firmware da chave",
         "Démon ": "Demônio",
         "Activer": "Ativar",
         "Nom": "Nome",
@@ -28,11 +29,11 @@
         "CC": "CC",
         "Xbee": "Xbee",
         "ZNP": "ZNP",
-        "Type de clef": "Type de clef",
-        "Auto": "Carro",
+        "Type de clef": "Tipo de chave",
+        "Auto": "Auto",
         "Elelabs": "Elelabs",
         "Port Zigbee": "Port Zigbee",
-        "Aucun": "Nemhum",
+        "Aucun": "Não",
         "Pizigate": "Pizigate",
         "Passerelle distante": "Gateway remoto",
         "Passerelle distante IP:PORT": "Gateway IP remoto: PORT",
@@ -45,7 +46,10 @@
         "25": "25",
         "Action": "Ação",
         "Redemarrer": "Restart",
-        "Assistant de backup\/restore du coordinateur": "Assistente de backup \/ restauração do coordenador"
+        "Configuration avancer de zigpy au format json (expert)": "Configuração avançada do zigpy em formato json (especialista)",
+        "Assistant de backup\/restore du coordinateur": "Assistente de backup \/ restauração do coordenador",
+        "Mise à jour du firmware de clef": "Atualização de firmware chave",
+        "Mise à jour des fichier OTA": "Atualizando arquivos OTA"
     },
     "plugins\/zigbee\/desktop\/modal\/node.php": {
         "Equipement introuvable : ": "Equipamento não encontrado:",
@@ -134,6 +138,8 @@
         "Nom": "Nome",
         "Actions": "Estoque",
         "Supprimer": "Remover",
+        "Etês vous sur de vouloir supprimer ce groupe ?": "Tem certeza de que deseja excluir este grupo?",
+        "Vous voulez créer un groupe quel sera son nom ?": "Você quer criar um grupo, qual será o seu nome?",
         "Groupe créé avec succès": "Groupe créé avec succès"
     },
     "plugins\/zigbee\/desktop\/modal\/backup_restore.php": {
@@ -142,6 +148,9 @@
         "Type de controlleur": "Tipo de controlador",
         "EZSP": "EZSP",
         "ZNP": "ZNP",
+        "Type de clef": "Tipo de chave",
+        "Auto": "Auto",
+        "Elelabs": "Elelabs",
         "Port Zigbee": "Port Zigbee",
         "Aucun": "Não",
         "Passerelle distante": "Gateway remoto",
@@ -153,8 +162,24 @@
         "IMPORTANT : Vous ne pouvez restorer un backup d'un type de clef que sur le meme type de clef": "IMPORTANTE: Você só pode restaurar um backup de um tipo de chave no mesmo tipo de chave",
         "IMPORTANT : il n'est possible de restorer que UNE SEUL FOIS un backup sur les clef de type EZSP": "IMPORTANTE: só é possível restaurar um backup UMA VEZ em chaves do tipo EZSP",
         "Lancer la restauration": "Iniciar restauração",
-        "Backup réalisé avec succes": "Backup completado com sucesso",
-        "Restoration réalisé avec succes": "Restauração concluída com sucesso"
+        "Backup zigbee": "Zigbee de backup",
+        "Restauration zigbee": "Restauração Zigbee"
+    },
+    "plugins\/zigbee\/desktop\/modal\/firmware_update.php": {
+        "Backup": "Cópia de segurança",
+        "IMPORTANT : seul les clefs Elelabs peuvent etre mise à jour par Jeedom actuellement": "IMPORTANTE: apenas as chaves Elelabs podem ser atualizadas pela Jeedom atualmente",
+        "Type de clef": "Tipo de chave",
+        "Aucun": "Não",
+        "Elelabs": "Elelabs",
+        "Port Zigbee": "Port Zigbee",
+        "Passerelle distante": "Gateway remoto",
+        "Passerelle distante IP:PORT": "Gateway IP remoto: PORT",
+        "Firmware": "Firmware",
+        "officiel": "oficial",
+        "non officiel": "não oficial",
+        "Lancer la mise à jour": "Comece a atualização",
+        "Lancer": "Lançar",
+        "Mise à jour du firmware de la clef": "Atualização de firmware da chave"
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
         "Application": "Aplicação",
@@ -207,7 +232,7 @@
         "Configuration du groupe": "Configuration du groupe"
     },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
-        "Aucun": "Nemhum",
+        "Aucun": "Não",
         "Gestion": "Gestão",
         "Autoriser Join": "Autoriser Join",
         "Commissioning": "Commissioning",
@@ -307,16 +332,21 @@
         "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
+        "Lancement de la mise à jour du firmware pour : ": "Lançamento da atualização do firmware para:",
+        "Pas de mise à jour possible du firmware pour : ": "Nenhuma atualização de firmware possível para:",
+        "Fin de la mise à jour du firmware de la clef": "Fim da atualização do firmware da chave",
         "Début de la mise à jour du répertoire OTA": "Início da atualização do diretório OTA",
         "Fin de la mise à jour du répertoire OTA": "Fim da atualização do diretório OTA",
         "Pensez bien à redemarrer le(s) démon(s) zigbee pour la prise en compte des nouvelles maj OTA": "Lembre-se de reiniciar o (s) daemon (s) zigbee para levar em consideração as novas atualizações OTA",
+        "Début du backup": "Início do backup",
         "Lancement du backup ezsp de la clef : ": "Lançamento do backup ezsp da chave:",
         "Lancement du backup znp de la clef : ": "Lançamento do backup znp da chave:",
         "Pas de backup possible pour : ": "Nenhum backup possível para:",
-        "Erreur lors du backup de : ": "Erro ao fazer backup:",
+        "Fin du backup": "Fim do backup",
+        "Début de la restoration": "Início da restauração",
         "Erreur fichier de backup introuvable : ": "Erro de arquivo de backup não encontrado:",
         "Le fichier de backup ne semble pas etre du type du controller : ": "O arquivo de backup não parece ser do tipo controlador:",
-        "Erreur lors de la restoration de : ": "Erro ao restaurar:",
+        "Fin de la restoration": "Fim da restauração",
         "Démon": "Demônio",
         "Erreur lors de la requete : ": "Erro durante a solicitação:",
         "Le module": "O módulo",

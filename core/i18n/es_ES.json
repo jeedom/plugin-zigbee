@@ -18,6 +18,7 @@
         "Autoriser les mise à jour OTA": "Permitir actualizaciones OTA",
         "Mettre à jour les fichiers OTAs": "Actualizar archivos OTA",
         "Lancer": "Lanzamiento",
+        "Mise à jour du firmware de la clef": "Actualización de firmware de la clave",
         "Démon ": "Demonio",
         "Activer": "Activar",
         "Nom": "Nombre",
@@ -28,11 +29,11 @@
         "CC": "CC",
         "Xbee": "Xbee",
         "ZNP": "ZNP",
-        "Type de clef": "Type de clef",
+        "Type de clef": "Tipo de clave",
         "Auto": "Auto",
         "Elelabs": "Elelabs",
         "Port Zigbee": "Port Zigbee",
-        "Aucun": "Ninguna",
+        "Aucun": "No",
         "Pizigate": "Pizigate",
         "Passerelle distante": "Puerta de enlace remota",
         "Passerelle distante IP:PORT": "Puerta de enlace IP remota: PUERTO",
@@ -45,7 +46,10 @@
         "25": "25",
         "Action": "Acción",
         "Redemarrer": "Reiniciar",
-        "Assistant de backup\/restore du coordinateur": "Asistente de copia de seguridad \/ restauración del coordinador"
+        "Configuration avancer de zigpy au format json (expert)": "Configuración avanzada de zigpy en formato json (experto)",
+        "Assistant de backup\/restore du coordinateur": "Asistente de copia de seguridad \/ restauración del coordinador",
+        "Mise à jour du firmware de clef": "Actualización de firmware clave",
+        "Mise à jour des fichier OTA": "Actualización de archivos OTA"
     },
     "plugins\/zigbee\/desktop\/modal\/node.php": {
         "Equipement introuvable : ": "Equipo no encontrado:",
@@ -134,6 +138,8 @@
         "Nom": "Nombre",
         "Actions": "Acciones",
         "Supprimer": "Borrar",
+        "Etês vous sur de vouloir supprimer ce groupe ?": "¿Estás seguro de que deseas eliminar este grupo?",
+        "Vous voulez créer un groupe quel sera son nom ?": "¿Quieres crear un grupo como se llamará?",
         "Groupe créé avec succès": "Groupe créé avec succès"
     },
     "plugins\/zigbee\/desktop\/modal\/backup_restore.php": {
@@ -142,6 +148,9 @@
         "Type de controlleur": "Tipo de controlador",
         "EZSP": "EZSP",
         "ZNP": "ZNP",
+        "Type de clef": "Tipo de clave",
+        "Auto": "Auto",
+        "Elelabs": "Elelabs",
         "Port Zigbee": "Port Zigbee",
         "Aucun": "No",
         "Passerelle distante": "Puerta de enlace remota",
@@ -153,8 +162,24 @@
         "IMPORTANT : Vous ne pouvez restorer un backup d'un type de clef que sur le meme type de clef": "IMPORTANTE: solo puede restaurar una copia de seguridad de un tipo de clave en el mismo tipo de clave",
         "IMPORTANT : il n'est possible de restorer que UNE SEUL FOIS un backup sur les clef de type EZSP": "IMPORTANTE: solo es posible restaurar una copia de seguridad UNA VEZ en llaves tipo EZSP",
         "Lancer la restauration": "Iniciar restauración",
-        "Backup réalisé avec succes": "Copia de seguridad completada con éxito",
-        "Restoration réalisé avec succes": "Restauración completada con éxito"
+        "Backup zigbee": "Zigbee de respaldo",
+        "Restauration zigbee": "Restauración de Zigbee"
+    },
+    "plugins\/zigbee\/desktop\/modal\/firmware_update.php": {
+        "Backup": "Respaldo",
+        "IMPORTANT : seul les clefs Elelabs peuvent etre mise à jour par Jeedom actuellement": "IMPORTANTE: Jeedom solo puede actualizar las claves de Elelabs actualmente",
+        "Type de clef": "Tipo de clave",
+        "Aucun": "No",
+        "Elelabs": "Elelabs",
+        "Port Zigbee": "Port Zigbee",
+        "Passerelle distante": "Puerta de enlace remota",
+        "Passerelle distante IP:PORT": "Puerta de enlace IP remota: PUERTO",
+        "Firmware": "Firmware",
+        "officiel": "oficial",
+        "non officiel": "no oficial",
+        "Lancer la mise à jour": "Iniciar la actualización",
+        "Lancer": "Lanzamiento",
+        "Mise à jour du firmware de la clef": "Actualización de firmware de la clave"
     },
     "plugins\/zigbee\/desktop\/modal\/network.php": {
         "Application": "Solicitud",
@@ -207,7 +232,7 @@
         "Configuration du groupe": "Configuration du groupe"
     },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
-        "Aucun": "Ninguna",
+        "Aucun": "No",
         "Gestion": "Gestión",
         "Autoriser Join": "Autoriser Join",
         "Commissioning": "Commissioning",
@@ -307,16 +332,21 @@
         "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
     },
     "plugins\/zigbee\/core\/class\/zigbee.class.php": {
+        "Lancement de la mise à jour du firmware pour : ": "Lanzamiento de la actualización de firmware para:",
+        "Pas de mise à jour possible du firmware pour : ": "No es posible actualizar el firmware para:",
+        "Fin de la mise à jour du firmware de la clef": "Fin de la actualización del firmware de la clave",
         "Début de la mise à jour du répertoire OTA": "Inicio de la actualización del directorio OTA",
         "Fin de la mise à jour du répertoire OTA": "Fin de la actualización del directorio OTA",
         "Pensez bien à redemarrer le(s) démon(s) zigbee pour la prise en compte des nouvelles maj OTA": "Recuerde reiniciar los demonios zigbee para tener en cuenta las nuevas actualizaciones de OTA",
+        "Début du backup": "Inicio de la copia de seguridad",
         "Lancement du backup ezsp de la clef : ": "Lanzamiento de la copia de seguridad ezsp de la clave:",
         "Lancement du backup znp de la clef : ": "Lanzamiento de la copia de seguridad znp de la clave:",
         "Pas de backup possible pour : ": "No es posible realizar copias de seguridad para:",
-        "Erreur lors du backup de : ": "Error al realizar la copia de seguridad:",
+        "Fin du backup": "Fin de la copia de seguridad",
+        "Début de la restoration": "Inicio de restauración",
         "Erreur fichier de backup introuvable : ": "Error de archivo de copia de seguridad no encontrado:",
         "Le fichier de backup ne semble pas etre du type du controller : ": "El archivo de respaldo no parece ser del tipo de controlador:",
-        "Erreur lors de la restoration de : ": "Error al restaurar:",
+        "Fin de la restoration": "Fin de la restauración",
         "Démon": "Demonio",
         "Erreur lors de la requete : ": "Error durante la solicitud:",
         "Le module": "El módulo",
