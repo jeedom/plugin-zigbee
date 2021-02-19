@@ -917,7 +917,11 @@ class zigbeeCmd extends cmd {
       $replace['#duration#'] = $eqLogic->getCache('duration',0);
       $info = explode('::',str_replace(array_keys($replace),$replace,$information));
       if($info[0] == 'attributes'){
-        $attributes[] = array('endpoint' => intval($info[1]),'cluster_type'=> $info[2],'cluster'=>intval($info[3]),'attributes'=>array(intval($info[4])=>evaluate($info[5])));
+        $value = evaluate($info[5]);
+        if(is_float($value)){
+          $value = intval($value);
+        }
+        $attributes[] = array('endpoint' => intval($info[1]),'cluster_type'=> $info[2],'cluster'=>intval($info[3]),'attributes'=>array(intval($info[4])=>$value));
       }else{
         $command = array('endpoint' => intval($info[0]),'cluster'=>$info[1],'command'=>$info[2]);
         if($this->getEqLogic()->getConfiguration('dontAwaitCmd',0) == 0){
