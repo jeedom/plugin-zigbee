@@ -21,6 +21,30 @@ Después de instalar el complemento, solo tiene que instalar las dependencias, s
 >
 >Cualquier cambio de canal requiere necesariamente un reinicio del demonio. Un cambio de canal también puede requerir la reincorporación de cierto módulo
 
+## Copia de seguridad de restauracion 
+
+Es posible en llaves tipo EZSP (Elelabs por ejemplo) y ZNP hacer una copia de seguridad de esta para restaurarla en otra llave.
+
+>**Importante**
+>
+> En las claves de tipo EZXP (Elelabs) solo es posible realizar una única restauración de respaldo en todas y durante la vida de la clave !!!!
+
+La copia de seguridad no contiene la lista de módulos sino solo la información básica de la red zigbee, por lo que no es necesario hacerlo con frecuencia, solo uno es suficiente porque no se mueve durante la vida de la llave.
+
+>**Importante**
+>
+> Durante una copia de seguridad o una restauración, los demonios de zigbee se detienen
+
+## Actualización de firmware 
+
+Es posible desde Jeedom actualizar el firmware de la clave Zigbee (solo para Elelabs por el momento). El firmware es realmente muy importante en zigbee (es él quien gestiona el enrutamiento por ejemplo) es importante actualizarlo.
+
+>**Importante**
+>
+> Durante una actualización de firmware, los demonios zigbee se detienen
+
+## Parámetros específicos de Zigpy (reservados para expertos !!!!)
+
 Es posible configurar parámetros específicos para el subsistema zigbee (zigpy). Esta parte está realmente reservada para expertos y Jeedom no proporciona una lista de posibles parámetros (hay cientos que dependen del tipo de clave). El campo toma como entrada del ejemplo json : 
 
 ````
@@ -34,6 +58,7 @@ Es posible configurar parámetros específicos para el subsistema zigbee (zigpy)
 >**Importante**
 >
 >Durante CUALQUIER solicitud de soporte, si hay una configuración anterior, la solicitud de soporte se rechazará automáticamente
+
 
 # Inclusión del módulo
 

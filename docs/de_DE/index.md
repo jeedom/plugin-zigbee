@@ -21,6 +21,30 @@ Nach der Installation des Plugins müssen Sie nur die Abhängigkeiten installier
 >
 >Jeder Kanalwechsel erfordert zwangsläufig einen Neustart des Daemons. Ein Kanalwechsel kann auch die Wiedereinschaltung eines bestimmten Moduls erfordern
 
+## Backup wiederherstellen 
+
+Auf EZSP-Schlüsseln (z. B. Elelabs) und ZNP ist es möglich, eine Sicherungskopie dieses Schlüssels zu erstellen, um ihn auf einem anderen Schlüssel wiederherzustellen.
+
+>**Wichtig**
+>
+> Bei EZXP-Schlüsseln (Elelabs) ist es nur möglich, eine einzige Sicherungswiederherstellung insgesamt und für die Lebensdauer des Schlüssels durchzuführen !!!!
+
+Das Backup enthält nicht die Liste der Module, sondern nur die Basisinformationen des ZigBee-Netzwerks. Daher ist es nicht erforderlich, dies häufig durchzuführen. Nur eines reicht aus, da es sich während der Lebensdauer des Schlüssels nicht bewegt.
+
+>**Wichtig**
+>
+> Während einer Sicherung oder Wiederherstellung werden die ZigBee-Daemons gestoppt
+
+## Firmware Update 
+
+Von Jeedom aus ist es möglich, die Firmware des ZigBee-Schlüssels zu aktualisieren (derzeit nur für Elelabs). Die Firmware ist in ZigBee wirklich sehr wichtig (er ist es, der zum Beispiel das Routing verwaltet). Es ist wichtig, sie zu aktualisieren.
+
+>**Wichtig**
+>
+> Während eines Firmware-Updates werden die ZigBee-Daemons gestoppt
+
+## Zigpy-spezifische Parameter (Experten vorbehalten !!!!)
+
 Es ist möglich, bestimmte Parameter für das ZigBee-Subsystem (Zigpy) festzulegen). Dieser Teil ist wirklich Experten vorbehalten und Jeedom bietet keine Liste möglicher Parameter (es gibt Hunderte, die von der Art des Schlüssels abhängen). Das Feld wird als Eingabe aus dem json-Beispiel verwendet : 
 
 ````
@@ -34,6 +58,7 @@ Es ist möglich, bestimmte Parameter für das ZigBee-Subsystem (Zigpy) festzuleg
 >**Wichtig**
 >
 >Wenn bei JEDER Supportanfrage eine Konfiguration vorliegt, wird die Supportanfrage automatisch abgelehnt
+
 
 # Moduleinschluss
 
