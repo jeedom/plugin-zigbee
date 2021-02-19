@@ -21,6 +21,30 @@ Depois de instalar o plugin, você só precisa instalar as dependências, seleci
 >
 >Qualquer mudança de canal requer necessariamente a reinicialização do daemon. Uma mudança de canal também pode exigir a reinclusão de certo módulo
 
+## Restauração de backup 
+
+É possível em chaves do tipo EZSP (Elelabs por exemplo) e ZNP fazer um backup desta para restaurá-la em outra chave.
+
+>**IMPORTANTE**
+>
+> Em chaves do tipo EZXP (Elelabs), só é possível fazer uma única restauração de backup em todos e para a vida da chave !!!!
+
+O backup não contém a lista de módulos, mas apenas as informações básicas da rede zigbee, por isso não é necessário fazê-lo com frequência, apenas um é suficiente porque não se move durante a vida da chave.
+
+>**IMPORTANTE**
+>
+> Durante um backup ou restauração, os daemon (s) zigbee são interrompidos
+
+## Atualização de Firmware 
+
+É possível a partir do Jeedom atualizar o firmware da chave Zigbee (apenas para Elelabs no momento). O firmware é realmente muito importante no zigbee (é ele quem gerencia o roteamento por exemplo) é importante atualizá-lo.
+
+>**IMPORTANTE**
+>
+> Durante uma atualização de firmware, os daemon (s) zigbee são interrompidos
+
+## Parâmetros específicos do Zigpy (reservados para especialistas !!!!)
+
 É possível configurar parâmetros específicos para o subsistema zigbee (zigpy). Esta parte está realmente reservada para especialistas e o Jeedom não fornece uma lista de parâmetros possíveis (existem centenas que dependem do tipo de chave). O campo recebe como entrada o exemplo json : 
 
 ````
@@ -34,6 +58,7 @@ Depois de instalar o plugin, você só precisa instalar as dependências, seleci
 >**IMPORTANTE**
 >
 >Durante QUALQUER solicitação de suporte, se houver uma configuração acima, a solicitação de suporte será automaticamente recusada
+
 
 # Inclusão de Módulo
 

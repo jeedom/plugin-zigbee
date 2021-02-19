@@ -21,6 +21,30 @@ After installing the plugin, you just have to install the dependencies, select y
 >
 >Any change of channel necessarily requires a restart of the daemon. A change of channel may also require reinclusion of certain modulus
 
+## Backup / restore 
+
+It is possible on EZSP type keys (Elelabs for example) and ZNP to make a backup of this one to restore it on another key.
+
+>**Important**
+>
+> On EZXP type keys (Elelabs) it is only possible to make a single backup restore in all and for the life of the key !!!!
+
+The backup does not contain the list of modules but only the basic information of the zigbee network, so it is not necessary to do it often, only one is enough because it does not move during the life of the key.
+
+>**Important**
+>
+> During a backup or a restore the zigbee daemon (s) are stopped
+
+## Firmware update 
+
+It is possible from Jeedom to update the firmware of the Zigbee key (only for Elelabs for the moment). The firmware is really very important in zigbee (it is he who manages the routing for example) it is important to update it.
+
+>**Important**
+>
+> During a firmware update the zigbee daemon (s) are stopped
+
+## Zigpy specific parameters (reserved for experts !!!!)
+
 It is possible to set up specific parameters for the zigbee sub-system (zigpy). This part is really reserved for experts and Jeedom does not provide a list of possible parameters (there are hundreds which depend on the type of key). The field takes as input from the json example : 
 
 ````
@@ -34,6 +58,7 @@ It is possible to set up specific parameters for the zigbee sub-system (zigpy). 
 >**Important**
 >
 >During ANY support request if there is a configuration above, the support request will be automatically refused
+
 
 # Module inclusion
 
