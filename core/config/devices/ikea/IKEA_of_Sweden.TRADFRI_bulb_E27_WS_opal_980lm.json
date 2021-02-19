@@ -56,8 +56,8 @@
       "isHistorized": 0,
       "logicalId": "1::8::0",
       "configuration" : {
-        "minValue" : 0,
-        "maxValue" : 254
+        "minValue" : 250,
+        "maxValue" : 454
       }
     },
     {
