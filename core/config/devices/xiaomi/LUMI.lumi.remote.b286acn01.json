@@ -24,6 +24,17 @@
       "configuration": {
         "repeatEventManagement": "always"
       }
+    },
+    {
+      "name": "Double appui",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "3::18::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }
