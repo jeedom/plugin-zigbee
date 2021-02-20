@@ -347,7 +347,7 @@
         "Erreur fichier de backup introuvable : ": "Backup file not found error:",
         "Le fichier de backup ne semble pas etre du type du controller : ": "The backup file does not seem to be of the controller type:",
         "Fin de la restoration": "End of restoration",
-        "Démon": "Devil",
+        "Démon": "Daemon",
         "Erreur lors de la requete : ": "Error during request:",
         "Le module": "The module",
         "n\\'a pas envoyé de message depuis plus de ": "has not sent a message for more than",
