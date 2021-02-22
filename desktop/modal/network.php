@@ -320,6 +320,7 @@ if (!isConnect('admin')) {
           }
         }
         $('#graph_network svg').remove();
+        devices_neighbours_ok = {}
         var graph = Viva.Graph.graph();
         for (z in devices_neighbours) {
           if (devices_neighbours[z].ieee == '' || devices_neighbours[z].nwk == null) {
@@ -360,16 +361,20 @@ if (!isConnect('admin')) {
           }else if(devices_neighbours[z].lqi > 0){
             linkcolor = 'var(--al-danger-color)';
           }
-          if(devices_neighbours[z].neighbours.length == 0 && controler_ieee != null){
-            graph.addLink(devices_neighbours[z].ieee, controler_ieee, {color: linkcolor, lengthfactor: 20});
-          }else{
+          if(devices_neighbours[z].neighbours.length >0){
             for(i in devices_neighbours[z].neighbours){
-              if (controler_ieee != devices_neighbours[z].ieee) {
-                graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {color: linkcolor, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
-              }
+              devices_neighbours_ok[devices_neighbours[z].neighbours[i].ieee] = devices_neighbours[z].neighbours[i].ieee
+              graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {color: linkcolor, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
             }
           }
-          
+        }
+        if(controler_ieee != null){
+          for (z in devices_neighbours) {
+            if(devices_neighbours_ok[devices_neighbours[z].ieee]){
+              continue;
+            }
+            graph.addLink(devices_neighbours[z].ieee, controler_ieee, {color: linkcolor, lengthfactor: 20});
+          }
         }
         var graphics = Viva.Graph.View.svgGraphics()
         highlightRelatedNodes = function (nodeId, isOn) {
