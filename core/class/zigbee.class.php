@@ -210,6 +210,12 @@ class zigbee extends eqLogic {
             $zigbee->batteryStatus($battery_voltage/$zigbee->getConfiguration('maxBatteryVoltage',0) * 100);
           }
         }
+        if($device['last_seen'] == 'None' && $zigbee->getConfiguration('ignore_last_seen',0) != 1){
+          $message = __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __('na pas de date connu de derniere communication', __FILE__);
+          if ($message != '') {
+            log::add('zigbee', 'error', $message, 'device_dead_' . $zigbee->getId());
+          }
+        }
         if($device['last_seen'] == 'None' || (strtotime('now') - $device['last_seen']) < config::byKey('max_duration_last_seen','zigbee') * 60){
           continue;
         }
