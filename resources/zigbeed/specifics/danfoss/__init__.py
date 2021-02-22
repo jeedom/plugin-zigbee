@@ -30,6 +30,18 @@ class DanfossSpecific():
 			return True
 
 	def init(self,device):
+		if (device.model in ['eTRV0100']):
+			endpoints = device.endpoints.items()
+			logging.debug('Found danfoss valve')
+			for endpoint_id, ep in device.endpoints.items():
+				if endpoint_id == 1:
+					cluster = details.JeedomDanfossValveCluster(ep, is_server=True)
+					for oldcluster in ep.in_clusters.values():
+						if oldcluster.cluster_id == cluster.cluster_id:
+							cluster._attr_cache=oldcluster._attr_cache
+							break
+					ep.add_input_cluster(cluster.cluster_id, cluster)
+			
 		if (device.model in ['0x8020','0x8021','0x8030','0x8031','0x8034','0x8035','0x0200']):
 			endpoints = device.endpoints.items()
 			logging.debug('Found endpoints : ' + str(endpoints))

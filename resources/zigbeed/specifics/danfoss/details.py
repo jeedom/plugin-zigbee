@@ -64,6 +64,19 @@ DANFOSS_THERMOSTAT_MANUFACTURER_ATTRIBUTES = {
 class JeedomDanfossThermostatCluster(CustomCluster, Thermostat):
 	"""Danfoss Thermostat cluster."""
 	manufacturer_attributes = DANFOSS_THERMOSTAT_MANUFACTURER_ATTRIBUTES
+	
+	
+DANFOSS_VALVE_MANUFACTURER_ATTRIBUTES = {
+		0x4020: ("algorithm_frequency", types.uint8_t),
+		0x404A: ("load_estimate_radiator", types.uint16_t),
+		0x404B: ("setpoint_offset", types.int8s),
+		0x404C: ("adaptation_control", types.bitmap8),
+		0x404D: ("adaptation_status", types.bitmap8),
+	}
+	
+class JeedomDanfossValveCluster(CustomCluster, Thermostat):
+	"""Danfoss Thermostat cluster."""
+	manufacturer_attributes = DANFOSS_VALVE_MANUFACTURER_ATTRIBUTES
 
 
 
