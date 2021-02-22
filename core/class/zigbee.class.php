@@ -210,21 +210,14 @@ class zigbee extends eqLogic {
             $zigbee->batteryStatus($battery_voltage/$zigbee->getConfiguration('maxBatteryVoltage',0) * 100);
           }
         }
-        if($device['last_seen'] == 'None' && $zigbee->getConfiguration('ignore_last_seen',0) != 1){
-          $message = __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __('na pas de date connu de derniere communication', __FILE__);
-          if ($message != '') {
-            log::add('zigbee', 'error', $message, 'device_dead_' . $zigbee->getId());
-          }
-        }
-        if($device['last_seen'] == 'None' || (strtotime('now') - $device['last_seen']) < config::byKey('max_duration_last_seen','zigbee') * 60){
-          continue;
-        }
         if($zigbee->getConfiguration('ignore_last_seen',0) != 1){
-          $message = __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __('n\'a pas envoyé de message depuis plus de ', __FILE__).config::byKey('max_duration_last_seen','zigbee').' min';
-          if ($message != '') {
-            log::add('zigbee', 'error', $message, 'device_dead_' . $zigbee->getId());
+          if($device['last_seen'] == 'None'){
+            log::add('zigbee', 'error', __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __(' n\'a pas de date connu de derniere communication', __FILE__), 'device_dead_' . $zigbee->getId());
+          }else if((strtotime('now') - $device['last_seen']) >= config::byKey('max_duration_last_seen','zigbee') * 60){
+            log::add('zigbee', 'error', __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __(' n\'a pas envoyé de message depuis plus de ', __FILE__).config::byKey('max_duration_last_seen','zigbee').' min', 'device_dead_' . $zigbee->getId());
           }
         }
+        
       }
     }
   }
