@@ -6,6 +6,14 @@
   "pairing" : "Il faut presser pendant 10s le bouton au dessus de la prise jusqu'à entendre un clic-clac",
   "commands": [
     {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    },
+    {
       "name": "Etat",
       "type": "info",
       "subtype": "binary",
