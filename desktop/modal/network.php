@@ -373,7 +373,7 @@ if (!isConnect('admin')) {
             if(devices_neighbours_ok[devices_neighbours[z].ieee]){
               continue;
             }
-            graph.addLink(devices_neighbours[z].ieee, controler_ieee, {color: linkcolor, lengthfactor: 20});
+            graph.addLink(devices_neighbours[z].ieee, controler_ieee, {color: '#B7B7B7', lengthfactor: 20});
           }
         }
         var graphics = Viva.Graph.View.svgGraphics()
