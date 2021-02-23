@@ -1,7 +1,7 @@
 {
   "name": "Capteur de luminosité",
-  "ref" : "mgl01",
-  "buylink" : "",
+  "ref" : "YTC4043GL",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5486-xiaomi-mi-capteur-de-luminosite-zigbee-30-6934177710865.html",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [
