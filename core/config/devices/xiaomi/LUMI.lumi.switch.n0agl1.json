@@ -1,6 +1,7 @@
 {
-  "name": "Micro module on/off avec neutre",
-  "buylink" : "",
+  "name": "Micromodule on/off avec neutre",
+  "ref" : "SSM-U01",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5386-aqara-micromodule-onoff-zigbee-30-2500w-avec-neutre-6970504213296.html",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [
