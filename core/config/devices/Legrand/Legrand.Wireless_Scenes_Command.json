@@ -1,0 +1,14 @@
+{
+  "name": "Legrand commande 4 scènes sans fil",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "scène",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::5::cmd::5"
+    }
+  ]
+}
