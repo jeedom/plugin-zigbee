@@ -1,5 +1,5 @@
 {
-  "name": "Xiaomi interrupteur simple sans neutre",
+  "name": "AQARA - Interrupteur simple sans neutre",
   "ref" : "ctrl_neutral1",
   "buylink" : "",
   "commands": [
