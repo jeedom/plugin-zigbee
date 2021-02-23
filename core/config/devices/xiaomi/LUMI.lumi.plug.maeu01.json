@@ -1,7 +1,7 @@
 {
-  "name": "Xiaomi prise",
-  "ref" : "Plug",
-  "buylink" : "",
+  "name": "Prise connectée",
+  "ref" : "ZNCZ12LM",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5385-aqara-prise-connectee-zigbee-30-smart-plug-6970504210646.html",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [
