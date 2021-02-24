@@ -1,6 +1,6 @@
 {
-  "name": "Legrand contactor",
-  "ref" : "Contactor",
+  "name": "Contacteur connecté DRIVIA",
+  "ref" : "412171",
   "buylink" : "",
   "commands": [
     {
