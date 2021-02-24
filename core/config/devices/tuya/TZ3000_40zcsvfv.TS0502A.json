@@ -51,7 +51,7 @@
       "isHistorized": 0,
       "logicalId": "1::8::0",
       "configuration" : {
-        "minValue" : 0,
+        "minValue" : 3,
         "maxValue" : 254
       }
     },
@@ -65,7 +65,7 @@
       "logicalId": "1::level::move_to_level::#slider#::#duration#",
       "generic_type": "LIGHT_SLIDER",
       "configuration" : {
-        "minValue" : 0,
+        "minValue" : 3,
         "maxValue" : 254
       }
     },
