@@ -1,6 +1,6 @@
 {
-  "name": "CO Sensor",
-  "ref" : "COSensor-EM",
+  "name": "Détecteur de monoxyde de carbone",
+  "ref" : "HS1SA",
   "buylink" : "",
   "commands": [
     {
