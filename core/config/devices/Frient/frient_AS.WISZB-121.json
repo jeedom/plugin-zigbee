@@ -4,7 +4,7 @@
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5401-frient-detecteur-d-ouverture-de-porte-ou-fenetre-zigbee-30-5713594002545.html",
   "commands": [
     {
-      "name": "Présence",
+      "name": "Ouverture",
       "type": "info",
       "subtype": "binary",
       "isVisible": 1,

@@ -1,0 +1,31 @@
+{
+  "name": "Capteur d'ouverture et températeur",
+  "ref" : "20202000",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5402-frient-detecteur-d-ouverture-de-porte-ou-fenetre-zigbee-30-capteur-de-temperature-5713594002354.html",
+  "commands": [
+    {
+      "name": "Présence",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "35::15::85",
+      "generic_type": "OPENING",
+      "display": {
+        "invertBinary" : 1
+      }
+    },
+    {
+      "name": "Ouverture",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "35::15::85",
+      "generic_type": "OPENING",
+      "display": {
+        "invertBinary" : 1
+      }
+    }
+  ]
+}
