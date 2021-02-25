@@ -1,9 +1,7 @@
 {
-  "name": "BlitzWolf BW-SHP13 Zigbee 3.0 Prise 16A Prise EU",
-  "ref" : "BW-SHP13",
-  "buylink" : "",
-  "reset" : "",
-  "pairing":"",
+  "name": "Prise",
+  "ref" : "SP220",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5362-innr-prise-connectee-super-slim-zigbee-30-8718781552657.html",
   "commands": [
     {
       "name": "Etat",
@@ -40,19 +38,6 @@
       "template":{
         "dashboard" : "prise",
         "mobile" : "prise"
-      }
-    },
-    {
-      "name": "Puissance",
-      "generic_type": "POWER",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 1,
-      "isHistorized": 1,
-      "unite":"W",
-      "logicalId": "1::2820::1291",
-      "configuration":{
-        "historizeRound" : 2
       }
     }
   ]

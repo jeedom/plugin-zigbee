@@ -21,7 +21,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::on"
+      "logicalId": "1::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
     },
     {
       "name": "Off",
@@ -31,7 +35,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::off"
+      "logicalId": "1::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
     }
   ]
 }

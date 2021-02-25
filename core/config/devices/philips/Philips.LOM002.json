@@ -24,8 +24,8 @@
       "value" : "Etat",
       "logicalId": "11::on_off::on",
       "template":{
-        "dashboard" : "light",
-        "mobile" : "light"
+        "dashboard" : "prise",
+        "mobile" : "prise"
       }
     },
     {
@@ -38,8 +38,8 @@
       "value" : "Etat",
       "logicalId": "11::on_off::off",
       "template":{
-        "dashboard" : "light",
-        "mobile" : "light"
+        "dashboard" : "prise",
+        "mobile" : "prise"
       }
     }
   ]

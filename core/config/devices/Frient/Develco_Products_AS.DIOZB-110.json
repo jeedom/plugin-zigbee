@@ -22,7 +22,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat 1",
-      "logicalId": "116::on_off::on"
+      "logicalId": "116::on_off::on",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
     },
     {
       "name": "Off 1",
@@ -32,7 +36,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat 1",
-      "logicalId": "116::on_off::off"
+      "logicalId": "116::on_off::off",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
     },
     {
       "name": "Etat 2",
@@ -51,7 +59,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat 2",
-      "logicalId": "117::on_off::on"
+      "logicalId": "117::on_off::on",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
     },
     {
       "name": "Off 2",
@@ -61,7 +73,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat 2",
-      "logicalId": "117::on_off::off"
+      "logicalId": "117::on_off::off",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
     },
     {
       "name": "Entrée 1",

@@ -19,7 +19,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat 1",
-      "logicalId": "1::on_off::on"
+      "logicalId": "1::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
     },
     {
       "name": "Off",
@@ -29,7 +33,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat 1",
-      "logicalId": "1::on_off::off"
+      "logicalId": "1::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
     },
     {
       "name": "Etat 2",
@@ -48,7 +56,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat 2",
-      "logicalId": "2::on_off::on"
+      "logicalId": "2::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
     },
     {
       "name": "Off 2",
@@ -58,7 +70,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat 2",
-      "logicalId": "2::on_off::off"
+      "logicalId": "2::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
     }
   ]
 }
