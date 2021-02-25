@@ -9,7 +9,7 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 1,
-      "unite" : "Â°C",
+      "unite" : "°C",
       "logicalId": "1::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
@@ -22,7 +22,7 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "unite" : "Â°C",
+      "unite" : "°C",
       "logicalId": "1::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
@@ -35,7 +35,7 @@
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 1,
-      "unite" : "Â°C",
+      "unite" : "°C",
       "value": "Consigne",
       "logicalId": "attributes::1::in::513::18::#slider#*100",
       "generic_type" : "THERMOSTAT_SET_SETPOINT",
