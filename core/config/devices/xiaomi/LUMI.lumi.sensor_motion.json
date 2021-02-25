@@ -5,8 +5,8 @@
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "configuration" : {
-     "battery_type" : "1x3V CR2450"
-    },
+    "battery_type" : "1x3V CR2450"
+  },
   "commands": [
     {
       "name": "Présence",
@@ -18,6 +18,10 @@
       "generic_type": "PRESENCE",
       "display": {
         "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "presence",
+        "mobile" : "presence"
       }
     }
   ]

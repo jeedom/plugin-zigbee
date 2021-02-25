@@ -5,8 +5,8 @@
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "configuration" : {
-	"battery_type" : "1x3V CR1632"
-	},
+    "battery_type" : "1x3V CR1632"
+  },
   "commands": [
     {
       "name": "Ouverture",
@@ -18,6 +18,10 @@
       "generic_type": "OPENING",
       "display": {
         "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "window",
+        "mobile" : "window"
       }
     }
   ]

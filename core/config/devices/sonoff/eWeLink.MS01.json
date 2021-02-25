@@ -3,8 +3,8 @@
   "ref" : "MS01",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5261-sonoff-detecteur-de-mouvement-zigbee-30.html",
   "configuration" : {
-	"battery_type" : "1x3V CR2450"
-	},
+    "battery_type" : "1x3V CR2450"
+  },
   "commands": [
     {
       "name": "Présence",
@@ -16,6 +16,10 @@
       "generic_type": "PRESENCE",
       "display": {
         "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "presence",
+        "mobile" : "presence"
       }
     }
   ]

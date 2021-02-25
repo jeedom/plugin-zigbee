@@ -12,6 +12,10 @@
       "generic_type": "PRESENCE",
       "display": {
         "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "presence",
+        "mobile" : "presence"
       }
     }
   ]

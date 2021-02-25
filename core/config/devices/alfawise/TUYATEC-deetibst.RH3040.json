@@ -4,8 +4,8 @@
   "buylink" : "",
   "remark" : "",
   "configuration" : {
-	"battery_type" : "1x3V CR2"
-	},
+    "battery_type" : "1x3V CR2"
+  },
   "commands": [
     {
       "name": "Présence",
@@ -17,6 +17,10 @@
       "generic_type": "PRESENCE",
       "display": {
         "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "presence",
+        "mobile" : "presence"
       }
     }
   ]

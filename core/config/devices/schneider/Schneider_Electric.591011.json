@@ -19,6 +19,10 @@
       "template" : {
         "dashboard" : "door",
         "mobile" : "door"
+      },
+      "template" : {
+        "dashboard" : "window",
+        "mobile" : "window"
       }
     }
   ]

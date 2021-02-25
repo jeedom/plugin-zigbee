@@ -15,8 +15,8 @@
         "invertBinary" : 1
       },
       "template" : {
-        "dashboard" : "door",
-        "mobile" : "door"
+        "dashboard" : "window",
+        "mobile" : "window"
       }
     }
   ]
