@@ -1,0 +1,19 @@
+{
+  "name": "Detecteur de mouvement",
+  "ref" : "20202550",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5403-frient-detecteur-de-mouvement-zigbee-30-5713594002835.html",
+  "commands": [
+    {
+      "name": "Présence",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "35::15::85",
+      "generic_type": "PRESENCE",
+      "display": {
+        "invertBinary" : 1
+      }
+    }
+  ]
+}
