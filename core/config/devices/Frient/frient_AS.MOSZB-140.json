@@ -28,7 +28,8 @@
         "invertBinary" : 1
       },
       "configuration":{
-        "historizeRound" : 2
+        "historizeRound" : 2,
+        "calculValueOffset":"#value# / 1000"
       }
     },
     {
