@@ -33,7 +33,7 @@
       },
       "configuration":{
         "historizeRound" : 2,
-        "calculValueOffset":"#value# / 1000"
+        "calculValueOffset":"10**((#value#-1)/10000)"
       }
     },
     {
