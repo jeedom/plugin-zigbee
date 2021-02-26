@@ -124,6 +124,9 @@ function convertValue($_value){
 			return $value;
 		}
 	}
+	if(strpos($_value,'enum8.undefined_') !== false){
+		return hexdec(str_replace('enum8.undefined_','',$_value));
+	}
 	return $_value;
 }
 
