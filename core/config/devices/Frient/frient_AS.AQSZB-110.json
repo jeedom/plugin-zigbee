@@ -1,7 +1,7 @@
 {
   "name": "Air Quality Sensor",
-  "ref" : "AQSZB-110",
-  "manufacturer" : "Develco",
+  "ref" : "20204000",
+  "buylink":"https://www.domadoo.fr/fr/peripheriques/5408-frient-capteur-de-qualite-d-air-zigbee-ha-5713594002392.html",
   "pairing": "Inserez les piles",
   "reset": "Appuyer sur le bouton jusqu'a ce que la led clignote rouge",
   "commands": [
@@ -39,9 +39,9 @@
       "isHistorized": 0,
       "logicalId": "38::64515::0",
       "configuration": {
-            "minValue": 0, 
-            "maxValue": 60000
-       }, 
+        "minValue": 0, 
+        "maxValue": 60000
+      }, 
       "unite" : "ppb"
     }
   ]

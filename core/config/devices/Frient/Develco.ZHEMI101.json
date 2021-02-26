@@ -1,6 +1,7 @@
 {
   "name": "Electric meter interface",
-  "ref" : "ZHEMI101",
+  "ref" : "20207000",
+  "buylink":"https://www.domadoo.fr/fr/peripheriques/5424-frient-compteur-optique-de-consommation-d-electricite-zigbee-ha-5713594002583.html",
   "buylink" : "",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Alimenter le module",

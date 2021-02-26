@@ -1,21 +1,20 @@
 {
-  "name": "Water leak detector",
-  "ref" : "20209800",
-  "buylink":"https://www.domadoo.fr/fr/peripheriques/5427-frient-detecteur-d-inondation-zigbee-30-5713594002453.html",
+  "name": "Detecteur de chaleur",
+  "ref" : "20209700",
+  "buylink":"https://www.domadoo.fr/fr/peripheriques/5411-frient-detecteur-de-chaleur-intelligent-zigbee-30-din-en-14604-et-din-14676-5713594002446.html",
   "reset" : "Presser le bouton jusqu'a ce que le module clignote",
   "pairing":"Il faut enlever remettre la pile dans le module",
   "commands": [
     {
-      "name": "Inondation",
+      "name": "Chaleur",
       "type": "info",
       "subtype": "binary",
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "35::15::85",
-      "generic_type": "FLOOD",
       "template":{
-        "dashboard" : "flood",
-        "mobile" : "flood"
+        "dashboard" : "heat",
+        "mobile" : "heat"
       }
     },
     {

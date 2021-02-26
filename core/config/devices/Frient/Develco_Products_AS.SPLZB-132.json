@@ -1,6 +1,7 @@
 {
   "name": "Wallplug",
-  "ref" : "SPLZB-132",
+  "ref" : "20201200",
+  "buylink":"https://www.domadoo.fr/fr/peripheriques/5412-frient-prise-intelligente-mini-avec-mesure-de-consommation-zigbee-ha-version-fr-5713594002514.html",
   "buylink" : "",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Alimenter le module",
