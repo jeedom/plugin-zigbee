@@ -77,6 +77,14 @@ if (isset($result['device_initialized'])){
 	sleep(30);
 	$id = zigbee::sync();
 	event::add('zigbee::includeDevice', $id);
+	try {
+		$zigbee = zigbee::byId($id);
+		if(is_object($zigbee)){
+			$zigbee->setTime();
+		}
+	} catch (\Exception $e) {
+		
+	}
 	die();
 }
 
