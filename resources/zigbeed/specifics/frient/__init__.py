@@ -22,7 +22,7 @@ import asyncio
 
 class FrientSpecific():
 	def __init__(self):
-		self.manuf = 'Frient A/S'
+		self.manuf = 'frient A/S'
 		self.specific = ['init','reporting']
 
 	def isvalid(self,manufacturer):
@@ -35,7 +35,7 @@ class FrientSpecific():
 			logging.debug('Found endpoints : ' + str(endpoints))
 			for endpoint_id, ep in device.endpoints.items():
 				if endpoint_id == 38:
-					cluster = details.JeedomDevelcoVOCCluster(ep, is_server=True)
+					cluster = details.JeedomFrientVOCCluster(ep, is_server=True)
 					for oldcluster in ep.in_clusters.values():
 						if oldcluster.cluster_id == cluster.cluster_id:
 							cluster._attr_cache=oldcluster._attr_cache
