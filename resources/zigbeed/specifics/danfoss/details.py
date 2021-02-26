@@ -44,26 +44,16 @@ REPORTING_SPECIFIC = {"0x0200" :
 						}
 					}
 
-DANFOSS_WINDOWS_DETECTION = 0x4000
-DANFOSS_EXTERNAL_OPEN_WINDOWS_DETECTION = 0x4003
-DANFOSS_ORIENTATION = 0x4014
-DANFOSS_ROOM_STATUS_CODE = 0x4100
-DANFOSS_OUTPUT_STATUS = 0x4110
-DANFOSS_ROOM_FLOOR_SENSOR_MODE = 0x4120
-DANFOSS_FLOOR_MIN_SETPOINT = 0x4121
-DANFOSS_FLOOR_MAX_SETPOINT = 0x4122
-DANFOSS_SCHEDULED_TYPE_USED = 0x4130
-
 DANFOSS_THERMOSTAT_MANUFACTURER_ATTRIBUTES = {
-		DANFOSS_WINDOWS_DETECTION: ("etrv_open_windows_detection", types.enum8),
-		DANFOSS_EXTERNAL_OPEN_WINDOWS_DETECTION: ("external_open_windows_detected", types.Bool),
-		DANFOSS_ORIENTATION: ("orientation", types.Bool),
-		DANFOSS_ROOM_STATUS_CODE: ("room_status_code", types.uint16_t),
-		DANFOSS_OUTPUT_STATUS: ("output_status", types.int8s),
-		DANFOSS_ROOM_FLOOR_SENSOR_MODE: ("room_floor_sensor_mode", types.int8s),
-		DANFOSS_FLOOR_MIN_SETPOINT: ("floor_min_setpoint", types.int16s),
-		DANFOSS_FLOOR_MAX_SETPOINT: ("floor_max_setpoint", types.int16s),
-		DANFOSS_SCHEDULED_TYPE_USED: ("scheduled_type_used", types.int8s),
+		0x4000: ("etrv_open_windows_detection", types.enum8),
+		0x4003: ("external_open_windows_detected", types.Bool),
+		0x4014: ("orientation", types.Bool),
+		0x4100: ("room_status_code", types.uint16_t),
+		0x4110: ("output_status", types.int8s),
+		0x4120: ("room_floor_sensor_mode", types.int8s),
+		0x4121: ("floor_min_setpoint", types.int16s),
+		0x4122: ("floor_max_setpoint", types.int16s),
+		0x4130: ("scheduled_type_used", types.int8s),
 	}
 
 class JeedomDanfossThermostatCluster(CustomCluster, Thermostat):
