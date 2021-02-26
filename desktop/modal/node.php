@@ -294,8 +294,8 @@ foreach ($node_data['endpoints'] as $endpoint) {
                   echo '<tr class="deviceConfig" data-manufacturer="'.$config['manufacturer'].'" data-endpoint="'.$config['endpoint'].'" data-cluster="'.$config['cluster'].' "data-attribute="'.$config['attribute'].'">';
                   echo '<td>'.$config['name'].'</td>';
                   echo '<td>'.$config['endpoint'].'</td>';
-                  echo '<td>'.$config['cluster'].'</td>';
-                  echo '<td>'.$config['attribute'].'</td>';
+                  echo '<td>'.$config['cluster'].' <small>(0x'.dechex($config['cluster']).')</small></td>';
+                  echo '<td>'.$config['attribute'].' <small>(0x'.dechex($config['attribute']).')</small></td>';
                   echo '<td>';
                   switch ($config['type']) {
                     case 'input':

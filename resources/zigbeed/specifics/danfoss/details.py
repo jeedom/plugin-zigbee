@@ -67,11 +67,25 @@ class JeedomDanfossThermostatCluster(CustomCluster, Thermostat):
 	
 	
 DANFOSS_VALVE_MANUFACTURER_ATTRIBUTES = {
-		0x4020: ("algorithm_frequency", types.uint8_t),
+		0x4000: ("etrv_open_windows_detection", types.enum8),
+		0x4003: ("external_open_windows_detected", types.Bool),
+		0x4010: ("exercise_day_of_week", types.enum8),
+		0x4011: ("exercise_trigger_time", types.uint16_t),
+		0x4012: ("mounting_mode_active", types.Bool),
+		0x4013: ("mounting_mode_control", types.Bool),
+		0x4014: ("orientation", types.Bool),
+		0x4015: ("external_measured_room_sensor", types.int16s),
+		0x4016: ("radiator_overed", types.Bool),
+		0x4020: ("control_algorithm_scale_factor", types.uint8_t),
+		0x4030: ("heat_available", types.Bool),
+		0x4031: ("heat_supply_request", types.Bool),
+		0x4032: ("load_balancing_enable", types.Bool),
 		0x404A: ("load_estimate_radiator", types.uint16_t),
-		0x404B: ("setpoint_offset", types.int8s),
-		0x404C: ("adaptation_control", types.bitmap8),
-		0x404D: ("adaptation_status", types.bitmap8),
+		0x404B: ("regulation_setPoint_offset", types.int8s),
+		0x404C: ("adaptation_run_control", types.enum8),
+		0x404D: ("adaptation_run_status", types.bitmap8),
+		0x404E: ("adaptation_run_settings", types.bitmap8),
+		0xFFFD: ("cluster_revision", types.uint16_t),
 	}
 	
 class JeedomDanfossValveCluster(CustomCluster, Thermostat):
