@@ -21,6 +21,7 @@ $eqLogic = zigbee::byId(init('id'));
 if(!is_object($eqLogic)){
   throw new \Exception(__('Equipement introuvable : ',__FILE__).init('id'));
 }
+sendVarToJS('zigbeeNodeId',$eqLogic->getId());
 sendVarToJS('zigbeeNodeIeee',explode('|',$eqLogic->getLogicalId())[0]);
 sendVarToJS('zigbeeNodeInstance',$eqLogic->getConfiguration('instance',1));
 $node_data = zigbee::request($eqLogic->getConfiguration('instance',1),'/device/info',array('ieee'=>explode('|',$eqLogic->getLogicalId())[0]));
@@ -358,6 +359,12 @@ foreach ($node_data['endpoints'] as $endpoint) {
               </div>
             </div>
           <?php } ?>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">{{Mettre à jour l'heure}}</label>
+            <div class="col-sm-2">
+              <a class="btn btn-success bt_setTime"><i class="fas fa-hourglass-start"></i> {{Heure}}</a>
+            </div>
+          </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">{{Rafraichir les informations}}</label>
             <div class="col-sm-2">
@@ -722,4 +729,18 @@ foreach ($node_data['endpoints'] as $endpoint) {
       }
     });
   });
+  
+  $('#actionNodeTab').off('click','.bt_setTime').on('click','.bt_setTime',function(){
+    jeedom.zigbee.device.setTime({
+      id : zigbeeNodeId,
+      error: function (error) {
+        $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (data) {
+        $('#div_nodeDeconzAlert').showAlert({message: '{{Mise à jour de l\'heure réussie}}', level: 'success'});
+      }
+    });
+  });
+  
+  
 </script>

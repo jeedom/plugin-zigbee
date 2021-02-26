@@ -214,6 +214,25 @@ jeedom.zigbee.device.command = function(_params){
   $.ajax(paramsAJAX);
 }
 
+jeedom.zigbee.device.setTime = function(_params){
+  var paramsRequired = ['id'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/ajax/zigbee.ajax.php';
+  paramsAJAX.data = {
+    action: 'setTime',
+    id : _params.id,
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.zigbee.device.info = function(_params){
   var paramsRequired = ['ieee'];
   var paramsSpecifics = {};

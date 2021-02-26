@@ -45,6 +45,15 @@ try {
     ajax::success();
   }
   
+  if (init('action') == 'setTime') {
+    $eqLogic = zigbee::byId(init('id'));
+    if (!is_object($eqLogic)) {
+      throw new Exception(__('Zigbee eqLogic non trouvé : ', __FILE__) . init('id'));
+    }
+    $eqLogic->setTime();
+    ajax::success();
+  }
+  
   if(init('action') == 'restartDeamon'){
     zigbee::deamon_stop_instance(init('deamon'));
     zigbee::deamon_start_instance(init('deamon'));

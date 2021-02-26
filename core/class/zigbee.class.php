@@ -217,7 +217,11 @@ class zigbee extends eqLogic {
             log::add('zigbee', 'error', __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __(' n\'a pas envoyé de message depuis plus de ', __FILE__).config::byKey('max_duration_last_seen','zigbee').' min', 'device_dead_' . $zigbee->getId());
           }
         }
-        
+        try {
+          $zigbee->setTime($device);
+        } catch (\Exception $e) {
+          
+        }
       }
     }
   }
@@ -647,6 +651,23 @@ class zigbee extends eqLogic {
   
   
   /*     * *********************Méthodes d'instance************************* */
+  
+  public function setTime($_node_data = null){
+    $ieee=explode('|',$this->getLogicalId())[0];
+    if($_node_data == null){
+      $_node_data = zigbee::request($this->getConfiguration('instance',1),'/device/info',array('ieee'=>$ieee));
+    }
+    foreach ($_node_data['endpoints'] as $endpoint) {
+      foreach ($endpoint['input_clusters'] as $cluster) {
+        if($cluster['id'] != 10){
+          continue;
+        }
+        $timestamp = strtotime('now') - strtotime('1st January 2000 UTC 00:00:00');
+        $attributes = array(array('endpoint' => $endpoint['id'],'cluster_type'=> 'in','cluster'=>10,'attributes'=> (object)array(0=>$timestamp,1=>1)));
+        zigbee::request($this->getConfiguration('instance',1),'/device/attributes',array('ieee'=>$ieee,'attributes' => $attributes,'allowQueue' => false),'PUT');
+      }
+    }
+  }
   
   public function getImage() {
     $file = 'plugins/zigbee/core/config/devices/' . self::getImgFilePath($this->getConfiguration('device'));
