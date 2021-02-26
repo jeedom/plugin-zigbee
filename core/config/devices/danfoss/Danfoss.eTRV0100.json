@@ -118,6 +118,14 @@
       "isHistorized": 0,
       "generic_type" : "THERMOSTAT_STATE_NAME",
       "logicalId": "1::513::28"
+    },
+    {
+      "name": "Fênetre",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "1::513::16384 "
     }
   ]
 }

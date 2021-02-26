@@ -105,7 +105,7 @@ foreach ($node_data['endpoints'] as $endpoint) {
                   if($infos['battery_percent'] < 30){
                     $battery_label = 'label label-danger';
                   }else if($infos['battery_percent'] < 60){
-                    $battery_label = 'label label-danger';
+                    $battery_label = 'label label-warning';
                   }
                   ?>
                   <span class="node-battery-span">{{Batterie : }} <b><span class="<?php echo $battery_label; ?>" style="font-size : 1em;"><?php echo $infos['battery_percent']?>%</span></b> (<?php echo $infos['battery_voltage'] ?>v)</span>
