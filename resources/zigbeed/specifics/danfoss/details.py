@@ -36,6 +36,11 @@ REPORTING_SPECIFIC = {"0x0200" :
 							14:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}],
 							15:[{"attr":"output_status","min":1,"max":65534,"report": 1},{"attr":"floor_min_setpoint","min":1,"max":65534,"report": 1},{"attr":"floor_max_setpoint","min":1,"max":65534,"report": 1},{"attr":"scheduled_type_used","min":1,"max":65534,"report": 1},{"attr":"room_status_code","min":1,"max":65534,"report": 1},{"attr":"room_floor_sensor_mode","min":1,"max":65534,"report": 1}]
 							}
+						},
+					"eTRV0100" :
+						{Thermostat.cluster_id:
+							{1:[{"attr":"etrv_open_windows_detection","min":0,"max":4,"report": 1}],
+							}
 						}
 					}
 
