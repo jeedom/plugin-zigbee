@@ -11,7 +11,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "35::15::85",
-      "generic_type": "FLOOD"
+      "generic_type": "FLOOD",
+      "template":{
+        "dashboard" : "flood",
+        "mobile" : "flood"
+      }
     },
     {
       "name": "Température",

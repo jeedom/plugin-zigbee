@@ -18,6 +18,10 @@
       "generic_type": "FLOOD",
       "display": {
         "invertBinary" : 1
+      },
+      "template":{
+        "dashboard" : "flood",
+        "mobile" : "flood"
       }
     }
   ]

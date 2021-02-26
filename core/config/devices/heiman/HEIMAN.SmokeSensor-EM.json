@@ -10,7 +10,11 @@
       "isVisible": 1,
       "isHistorized": 1,
       "logicalId": "1::1280::cmd::1",
-      "generic_type": "SMOKE"
+      "generic_type": "SMOKE",
+      "template":{
+        "dashboard" : "heat",
+        "mobile" : "heat"
+      }
     }
   ]
 }
