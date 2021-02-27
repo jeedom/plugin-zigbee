@@ -103,6 +103,8 @@
         "Configuration informative uniquement": "Configuration informative uniquement",
         "Forcer la mise à jour du module": "Forzar la actualización del módulo",
         "OTA": "OTA",
+        "Mettre à jour l'heure": "Tiempo de actualizacion",
+        "Heure": "Hora",
         "Rafraichir les informations": "Rafraichir les informations",
         "Rafraichir": "Refrescar",
         "Réinitialiser le module": "Réinitialiser le module",
@@ -128,7 +130,8 @@
         "Informations récuperées avec succès": "Informations récuperées avec succès",
         "Module redécouvert": "Module redécouvert",
         "Module reinitialisé": "Module reinitialisé",
-        "Mise à jour OTA forcée envoyée avec succes": "Actualización forzada de OTA enviada con éxito"
+        "Mise à jour OTA forcée envoyée avec succes": "Actualización forzada de OTA enviada con éxito",
+        "Mise à jour de l\\'heure réussie": "Actualización de hora exitosa"
     },
     "plugins\/zigbee\/desktop\/modal\/groups.php": {
         "Ajouter": "Añadir",
