@@ -28,7 +28,26 @@
       "subtype": "other",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::level::stop"
+      "logicalId": "1::window_covering::stop",
+      "generic_type": "FLAP_STOP"
+    },
+    {
+      "name": "Monter",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::window_covering::up_open",
+      "generic_type": "FLAP_UP"
+    },
+    {
+      "name": "Descendre",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::window_covering::down_close",
+      "generic_type": "FLAP_DOWN"
     }
   ]
 }

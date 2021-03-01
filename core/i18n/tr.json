@@ -103,6 +103,8 @@
         "Configuration informative uniquement": "Configuration informative uniquement",
         "Forcer la mise à jour du module": "Forcer la mise à jour du module",
         "OTA": "OTA",
+        "Mettre à jour l'heure": "Mettre à jour l'heure",
+        "Heure": "Heure",
         "Rafraichir les informations": "Rafraichir les informations",
         "Rafraichir": "Yenile",
         "Réinitialiser le module": "Réinitialiser le module",
@@ -128,7 +130,8 @@
         "Informations récuperées avec succès": "Informations récuperées avec succès",
         "Module redécouvert": "Module redécouvert",
         "Module reinitialisé": "Module reinitialisé",
-        "Mise à jour OTA forcée envoyée avec succes": "Mise à jour OTA forcée envoyée avec succes"
+        "Mise à jour OTA forcée envoyée avec succes": "Mise à jour OTA forcée envoyée avec succes",
+        "Mise à jour de l\\'heure réussie": "Mise à jour de l\\'heure réussie"
     },
     "plugins\/zigbee\/desktop\/modal\/groups.php": {
         "Ajouter": "Ekle",
