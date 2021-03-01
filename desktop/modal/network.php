@@ -122,23 +122,23 @@ if (!isConnect('admin')) {
         <thead><tr><th colspan="2">{{Légende}}</th></tr></thead>
         <tbody>
           <tr>
-            <td style="color:#B7B7B7"><i class="fas fa-square fa-2x"></i></td>
+            <td><center><i class="fas fa-ellipsis-h"></i></center></td>
             <td>{{Liaison présumé}}</td>
           </tr>
           <tr>
-            <td style="color:#90caf9"><i class="fas fa-square fa-2x"></i></td>
+            <td style="color:#B7B7B7"><center><i class="fas fa-square fa-2x"></i></center></td>
             <td>{{Aucune info sur la qualité de la liaison}}</td>
           </tr>
           <tr>
-            <td style="color:var(--al-danger-color)"><i class="fas fa-square fa-2x"></i></td>
+            <td style="color:var(--al-danger-color)"><center><i class="fas fa-square fa-2x"></i></center></td>
             <td>{{Mauvaise liaison}}</td>
           </tr>
           <tr>
-            <td style="color:var(--al-warning-color)"><i class="fas fa-square fa-2x"></i></td>
+            <td style="color:var(--al-warning-color)"><center><i class="fas fa-square fa-2x"></i></center></td>
             <td>{{Liaison correcte}}</td>
           </tr>
           <tr>
-            <td style="color:var(--al-success-color)"><i class="fas fa-square fa-2x"></i></td>
+            <td style="color:var(--al-success-color)"><center><i class="fas fa-square fa-2x"></i></center></td>
             <td>{{Très bonne laison}}</td>
           </tr>
         </tbody>
@@ -377,18 +377,26 @@ if (!isConnect('admin')) {
             data_node.name = '{{Contrôleur}}'
           }
           graph.addNode(devices_neighbours[z].ieee, data_node);
-          linkcolor = '#90caf9';
-          if(devices_neighbours[z].lqi > 170){
-            linkcolor = 'var(--al-success-color)';
-          }else if(devices_neighbours[z].lqi > 85){
-            linkcolor = 'var(--al-warning-color)';
-          }else if(devices_neighbours[z].lqi > 0){
-            linkcolor = 'var(--al-danger-color)';
-          }
+          
           if(devices_neighbours[z].neighbours.length >0){
+            let lqi = devices_neighbours[z].lqi;
             for(i in devices_neighbours[z].neighbours){
+              for (j in devices_neighbours) {
+                if(devices_neighbours[j].ieee == devices_neighbours[z].neighbours[i].ieee){
+                  lqi = devices_neighbours[j].lqi;
+                  break;
+                }
+              }
+              linkcolor = '#B7B7B7';
+              if(lqi > 170){
+                linkcolor = 'var(--al-success-color)';
+              }else if(lqi > 85){
+                linkcolor = 'var(--al-warning-color)';
+              }else if(lqi > 0){
+                linkcolor = 'var(--al-danger-color)';
+              }
               devices_neighbours_ok[devices_neighbours[z].neighbours[i].ieee] = devices_neighbours[z].neighbours[i].ieee
-              graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {color: linkcolor, lengthfactor: devices_neighbours[z].neighbours[i].lqi/max_lqi});
+              graph.addLink(devices_neighbours[z].ieee, devices_neighbours[z].neighbours[i].ieee, {color: linkcolor, lengthfactor: (lqi/max_lqi)*1.1});
             }
           }
         }
@@ -397,7 +405,16 @@ if (!isConnect('admin')) {
             if(devices_neighbours_ok[devices_neighbours[z].ieee]){
               continue;
             }
-            graph.addLink(devices_neighbours[z].ieee, controler_ieee, {color: '#B7B7B7', lengthfactor: 20});
+            let lqi = devices_neighbours[z].lqi;
+            linkcolor = '#B7B7B7';
+            if(lqi > 170){
+              linkcolor = 'var(--al-success-color)';
+            }else if(lqi > 85){
+              linkcolor = 'var(--al-warning-color)';
+            }else if(lqi > 0){
+              linkcolor = 'var(--al-danger-color)';
+            }
+            graph.addLink(devices_neighbours[z].ieee, controler_ieee, {isdash: 1,color: linkcolor, lengthfactor: (lqi/max_lqi)*1.1});
           }
         }
         var graphics = Viva.Graph.View.svgGraphics()
@@ -497,7 +514,11 @@ if (!isConnect('admin')) {
           }
         });
         graphics.link(function (link) {
-          return Viva.Graph.svg('line').attr('stroke', link.data.color).attr('stroke-dasharray', '5,0').attr('stroke-width', '1px');
+          dashvalue = '5, 0';
+          if (link.data.isdash == 1) {
+            dashvalue = '5, 2';
+          }
+          return Viva.Graph.svg('line').attr('stroke', link.data.color).attr('stroke-dasharray', dashvalue).attr('stroke-width', '2px');
         });
         $('#graph_network svg').remove();
         var renderer = Viva.Graph.View.renderer(graph, {
