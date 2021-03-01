@@ -1,6 +1,7 @@
 {
   "name": "Sortie de câble connectée",
   "buylink" : "",
+  "remark" : "Ne peut etre appairé que sur le canal 11",
   "ref" : "064879",
   "commands": [
     {

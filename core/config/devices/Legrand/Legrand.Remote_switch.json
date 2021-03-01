@@ -1,5 +1,6 @@
 {
   "name": "Legrand commande éclairage sans fil",
+  "remark" : "Ne peut etre appairé que sur le canal 11",
   "buylink" : "",
   "commands": [
     {

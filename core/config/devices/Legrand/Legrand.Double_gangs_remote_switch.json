@@ -1,6 +1,7 @@
 {
   "name": "Legrand interrupteur double",
   "buylink" : "",
+  "remark" : "Ne peut etre appairé que sur le canal 11",
   "commands": [
     {
       "name": "Etat 1",

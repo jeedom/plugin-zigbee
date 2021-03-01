@@ -1,5 +1,6 @@
 {
   "name": "Legrand volet roulant",
+  "remark" : "Ne peut etre appairé que sur le canal 11",
   "ref":"0 676 46",
   "buylink" : "",
   "commands": [
