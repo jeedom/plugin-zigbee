@@ -1,5 +1,6 @@
 {
   "name": "Applique LIDL",
+  "manufacturer" : "LIDL",
   "buylink" : "",
   "pairing" : "10s éteinte,1s allumée,3s éteinte,1s allumée,3s éteinte,Allumer",
   "commands": [
