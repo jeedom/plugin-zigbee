@@ -1,9 +1,12 @@
 {
-  "name": "Xioami Aquara Vibration",
+  "name": "Xiaomi Aquara Vibration",
   "ref" : "vibration.aq1",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/4667-xiaomi-capteur-de-vibration-zigbee-aqara-192784000113.html",
-  "reset" : "Il faut presser pendant 10s le bouton du module",
-  "pairing":"Il faut presser pendant 5s le bouton du module",
+  "reset" : "Appuyer pendant 10s le sur bouton du module",
+  "pairing":"Appuyer pendant 5s le sur bouton du module",
+  "configuration" : {
+     "battery_type" : "1x3V CR2032"
+    },
   "commands": [
     {
       "name": "Evènement",
@@ -25,9 +28,14 @@
       "name": "Inclinaison",
       "type": "info",
       "subtype": "numeric",
+	  "unite":"°",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::257::1283"
+      "logicalId": "1::257::1283",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+                  }	  
     },
     {
       "name": "Orientation",
@@ -36,9 +44,14 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::257::1288",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+                  },  
       "configuration" : {
-        "calculValueOffset":"#value# / 10000000000"
-      }
+        "calculValueOffset":"#value# / 10000000000",
+		"historizeRound":""
+                        }
     },
     {
       "name": "Niveau de vibration",
@@ -47,9 +60,13 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::257::1285",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+                  },  
       "configuration" : {
         "calculValueOffset":"#value# / 65536"
-      }
+                        }
     },
     {
       "name": "Porte",

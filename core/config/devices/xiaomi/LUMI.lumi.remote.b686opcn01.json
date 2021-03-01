@@ -1,6 +1,9 @@
 {
   "name": "Aqara Opple 6 boutons",
   "ref" : "b686opcn01",
+  "configuration" : {
+    "battery_type" : "1x3V CR2032"
+  },
   "commands": [
     {
       "name": "Bouton 1",

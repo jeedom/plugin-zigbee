@@ -2,6 +2,11 @@
   "name": "MIJIA - Serrure connectée",
   "ref" : "lumi.lock.v1",
   "buylink" : "",
+  "reset" : "",
+  "pairing":"",
+  "configuration" : {
+     "battery_type" : "3x1.5V LR01"
+    },
   "commands": [
     {
       "name": "Clef",

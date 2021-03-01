@@ -177,7 +177,7 @@
       }
     },
     {
-      "name": "Off 4",
+      "name": "Off USB",
       "generic_type": "ENERGY_OFF",
       "type": "action",
       "subtype": "other",
