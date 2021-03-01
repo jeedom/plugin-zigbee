@@ -1,5 +1,5 @@
 {
-  "name": "Reglette led LIDL",
+  "name": "Applique LIDL",
   "buylink" : "",
   "pairing" : "10s éteinte,1s allumée,3s éteinte,1s allumée,3s éteinte,Allumer",
   "commands": [
@@ -65,26 +65,6 @@
         "minValue" : 0,
         "maxValue" : 254
       }
-    },
-    {
-      "name": "Etat couleur",
-      "type": "info",
-      "subtype": "string",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "value" : "Etat couleur",
-      "logicalId": "1::768::color",
-      "generic_type": "LIGHT_COLOR"
-    },
-    {
-      "name": "Couleur",
-      "type": "action",
-      "subtype": "color",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "value" : "Etat couleur",
-      "logicalId": "1::light_color::move_to_color::#color#::0",
-      "generic_type": "LIGHT_SET_COLOR"
     },
     {
       "name": "Etat température couleur",
