@@ -118,7 +118,31 @@ if (!isConnect('admin')) {
     
     <div id="graph_network" class="tab-pane">
       <br/>
-      
+      <table class="table table-bordered table-condensed" style="width: 350px;position:fixed;margin-top : 25px;">
+        <thead><tr><th colspan="2">{{Légende}}</th></tr></thead>
+        <tbody>
+          <tr>
+            <td style="color:#B7B7B7"><i class="fas fa-square fa-2x"></i></td>
+            <td>{{Liaison présumé}}</td>
+          </tr>
+          <tr>
+            <td style="color:#90caf9"><i class="fas fa-square fa-2x"></i></td>
+            <td>{{Aucune info sur la qualité de la liaison}}</td>
+          </tr>
+          <tr>
+            <td style="color:var(--al-danger-color)"><i class="fas fa-square fa-2x"></i></td>
+            <td>{{Mauvaise liaison}}</td>
+          </tr>
+          <tr>
+            <td style="color:var(--al-warning-color)"><i class="fas fa-square fa-2x"></i></td>
+            <td>{{Liaison correcte}}</td>
+          </tr>
+          <tr>
+            <td style="color:var(--al-success-color)"><i class="fas fa-square fa-2x"></i></td>
+            <td>{{Très bonne laison}}</td>
+          </tr>
+        </tbody>
+      </table>
       <div id="graph-node-name"></div>
       
     </div>
@@ -353,7 +377,7 @@ if (!isConnect('admin')) {
             data_node.name = '{{Contrôleur}}'
           }
           graph.addNode(devices_neighbours[z].ieee, data_node);
-          linkcolor = '#B7B7B7';
+          linkcolor = '#90caf9';
           if(devices_neighbours[z].lqi > 170){
             linkcolor = 'var(--al-success-color)';
           }else if(devices_neighbours[z].lqi > 85){
