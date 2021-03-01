@@ -12,12 +12,9 @@
     {"endpoint" : 1,"cluster":513,"attribute":16404,"manufacturer":4678,"name":"Orientation de la vanne","type":"select","values":[{"value":0,"name":"Horizontal (default)"},{"value":1,"name":"Vertical"}]},
     {"endpoint" : 1,"cluster":513,"attribute":16416,"manufacturer":4678,"name":"Fréquence de l'algorithme","type":"select","values":
       [
-        {"value":1,"name":"5min quick"},
-        {"value":5,"name":"30min quick"},
-        {"value":10,"name":"80min quick"},
-        {"value":17,"name":"5min"},
-        {"value":21,"name":"30min"},
-        {"value":26,"name":"80min"}
+        {"value":1,"name":"5min"},
+        {"value":5,"name":"30min"},
+        {"value":10,"name":"80min"}
       ]
     },
     {"endpoint" : 1,"cluster":513,"attribute":21,"name":"Température minimal","type":"number","min":300,"max":2200},
