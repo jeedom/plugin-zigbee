@@ -68,6 +68,9 @@ class ApplicationHandler(RequestHandler):
 				except :
 					pass
 				return self.write(utils.format_json_result(success=True))
+			if arg1 == 'neighbors_scan':
+				await shared.ZIGPY.get_device(ieee=shared.ZIGPY.ieee).neighbors.scan()
+				return self.write(utils.format_json_result(success=True))
 			raise Exception("[ApplicationHandler.put] No method found for "+str(arg1))
 		except Exception as e:
 			logging.debug(traceback.format_exc())

@@ -92,7 +92,7 @@ if (!isConnect('admin')) {
           </tr>
         </thead>
         <tbody>
-          
+          <tr><td><a class="btn btn-defaut" id="bt_scanNeighbors">{{Rescan des voisins}}</a></td><td>{{Lancer un scan des voisins de la clef Zigbee}}</td></tr>
         </tbody>
       </table>
     </div>
@@ -150,6 +150,19 @@ if (!isConnect('admin')) {
   </div>
   
   <script>
+  $('#bt_scanNeighbors').off('click').on('click',function(){
+    jeedom.zigbee.application.neighbors_scan({
+      instance : $('#sel_networkZigbeeInstance').value(),
+      type : 'GET',
+      error: function (error) {
+        $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (data) {
+        $('#div_networkZigbeeAlert').showAlert({message: '{{Lancement du scan des voisins reussi}}', level: 'success'});
+      }
+    });
+  })
+  
   $('#sel_networkZigbeeInstance').off('change').on('change',function(){
     refreshNetworkData();
     refreshDevicekData();
