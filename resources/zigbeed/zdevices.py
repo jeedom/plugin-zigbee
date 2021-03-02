@@ -117,6 +117,8 @@ async def check_write_attributes(_data):
 			manufacturer = attribute['manufacturer']
 		for i in attribute['attributes']:
 			values = await cluster.read_attributes([int(i)],True,manufacturer=manufacturer)
+			if not 0 in values:
+				continue
 			if values[0][int(i)] != attribute['attributes'][i]:
 				logging.debug('['+str(device._ieee)+'][zdevice.check_write_attributes] Attribute value issue for device : '+str(_data['ieee'])+' '+str(attribute['endpoint'])+'/'+str(attribute['cluster'])+'/'+str(int(i))+' expected value : '+str(attribute['attributes'][i])+' current value : '+str(values[0][int(i)]))
 				attributes[int(i)] = attribute['attributes'][i]
