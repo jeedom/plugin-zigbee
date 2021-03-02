@@ -1,6 +1,5 @@
 {
-  "name": "Reglette led LIDL",
-  "manufacturer" : "LIDL",
+  "name": "Reglette led",
   "buylink" : "",
   "pairing" : "10s éteinte,1s allumée,3s éteinte,1s allumée,3s éteinte,Allumer",
   "commands": [

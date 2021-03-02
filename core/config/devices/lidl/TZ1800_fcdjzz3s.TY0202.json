@@ -1,6 +1,5 @@
 {
-  "name": "Capteur de mouvement LIDL",
-  "manufacturer" : "LIDL",
+  "name": "Capteur de mouvement",
   "commands": [
     {
       "name": "Présence",
