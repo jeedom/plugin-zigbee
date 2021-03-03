@@ -320,6 +320,9 @@ class zigbee extends eqLogic {
     if(!file_exists(__DIR__ . '/../../data/'.$_instance)){
       mkdir(__DIR__ . '/../../data/'.$_instance,0777,true);
     }
+    if(!file_exists(__DIR__ . '/../../device')){
+      mkdir(__DIR__ . '/../../device');
+    }
     $zigbee_path = realpath(dirname(__FILE__) . '/../../resources/zigbeed');
     $cmd = '/usr/bin/python3 ' . $zigbee_path . '/zigbeed.py';
     $cmd .= ' --device ' . $port;
@@ -330,6 +333,7 @@ class zigbee extends eqLogic {
     $cmd .= ' --cycle ' . config::byKey('cycle_'.$_instance, 'zigbee');
     $cmd .= ' --pid ' . jeedom::getTmpFolder('zigbee') . '/deamon_'.$_instance.'.pid';
     $cmd .= ' --data_folder '. realpath(__DIR__ . '/../../data/'.$_instance.'/');
+    $cmd .= ' --device_folder '. realpath(__DIR__ . '/../../data/device');
     $cmd .= ' --controller '. config::byKey('controller_'.$_instance, 'zigbee');
     $cmd .= ' --sub_controller '. config::byKey('sub_controller_'.$_instance, 'zigbee','auto');
     $cmd .= ' --channel '. config::byKey('channel_'.$_instance, 'zigbee');
@@ -672,7 +676,7 @@ class zigbee extends eqLogic {
   public function getImage() {
     $file = 'plugins/zigbee/core/config/devices/' . self::getImgFilePath($this->getConfiguration('device'));
     if ($this->getConfiguration('ischild',0) == 1) {
-      $childfile = 'plugins/zigbee/core/config/devices/' . $this->getConfiguration('visual','none');
+      $childfile = 'plugins/zigbee/core/config/device/' . $this->getConfiguration('visual','none');
       if(file_exists(__DIR__.'/../../../../'.$childfile)){
         return $childfile;
       }
@@ -729,6 +733,19 @@ class zigbee extends eqLogic {
     if ($this->getConfiguration('applyDevice') != $this->getConfiguration('device')) {
       $this->applyModuleConfiguration();
       $this->refreshValue();
+    }
+    if($this->getConfiguration('deviceSpecific') != '' && is_array($this->getConfiguration('deviceSpecific'))){
+      $deviceSpecificPath = __DIR__.'/../../data/device';
+      if(!file_exists($deviceSpecificPath)){
+        mkdir($deviceSpecificPath);
+      }
+      $deviceSpecificPath .= '/'.$this->getLogicalId().'.json';
+      file_put_contents($deviceSpecificPath,json_encode($this->getConfiguration('deviceSpecific')));
+      try {
+        zigbee::request($this->getConfiguration('instance',1),'/device/update_specific',array('ieee'=>$this->getLogicalId()),'PUT');
+      } catch (\Exception $e) {
+        
+      }
     }
   }
   

@@ -21,6 +21,7 @@ $eqLogic = zigbee::byId(init('id'));
 if(!is_object($eqLogic)){
   throw new \Exception(__('Equipement introuvable : ',__FILE__).init('id'));
 }
+sendVarToJS('zigbeeNodeDevice',utils::o2a($eqLogic));
 sendVarToJS('zigbeeNodeId',$eqLogic->getId());
 sendVarToJS('zigbeeNodeIeee',explode('|',$eqLogic->getLogicalId())[0]);
 sendVarToJS('zigbeeNodeInstance',$eqLogic->getConfiguration('instance',1));
@@ -219,9 +220,10 @@ foreach ($node_data['endpoints'] as $endpoint) {
       <br/>
       <form class="form-horizontal">
         <fieldset>
+          <legend>{{Cnfiguration spécifique}}</legend>
           <?php
           if($isZGPDevice == false && (!isset($device['config']) || count($device['config']) == 0)){
-            echo '<div class="alert alert-info">{{Il n\'éxiste aucun parametre de configuration connu pour ce module}}</div>';
+            echo '<div class="alert alert-info">{{Il n\'éxiste aucun parametre spécifique de configuration connu pour ce module}}</div>';
           }else{
             if($isZGPDevice){
               echo '<label>ZGP</label>';
@@ -344,6 +346,22 @@ foreach ($node_data['endpoints'] as $endpoint) {
             }
           }
           ?>
+          <div id="div_specificDeviceAttr">
+            <legend>{{Poll control}} <a class="btn btn-success btn-sm pull-right" id="bt_saveDeviceAttr"><i class="far fa-save"></i> {{Sauvegarder}}</a></legend>
+            <div class="alert alert-danger">{{Attention la configuration du Poll control est complexe (et volontairement pas expliquée). La moindre erreur peut vous obliger a faire un reset du module voir le casser. Pour remettre les valeurs par defaut laisser les champs vides}}</div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">{{Long pool (en 1/4 de seconde)}}</label>
+              <div class="col-sm-2">
+                <input type="number" class="deviceAttr form-control" data-l1key="poll_control" data-l2key="long_poll"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">{{Fast pool timeout (en 1/4 de seconde)}}</label>
+              <div class="col-sm-2">
+                <input type="number" class="deviceAttr form-control" data-l1key="poll_control" data-l2key="fast_poll_timeout"/>
+              </div>
+            </div>
+          </div>
         </fieldset>
       </form>
     </div>
@@ -451,6 +469,23 @@ foreach ($node_data['endpoints'] as $endpoint) {
   </div>
   
   <script>
+  
+  if(zigbeeNodeDevice && zigbeeNodeDevice.configuration && zigbeeNodeDevice.configuration.deviceSpecific){
+    $('#div_specificDeviceAttr').setValues(zigbeeNodeDevice.configuration.deviceSpecific,'.deviceAttr')
+  }
+  
+  $('#bt_saveDeviceAttr').off('click').on('click',function(){
+    let deviceAttr = $('#div_specificDeviceAttr').getValues('.deviceAttr')[0]
+    jeedom.eqLogic.simpleSave({
+      eqLogic : {id:zigbeeNodeId,configuration:{deviceSpecific : deviceAttr}},
+      error: function (error) {
+        $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+      },
+      success : function(data){
+        $('#div_nodeDeconzAlert').showAlert({message: '{{Configuration sauvegardée avec succès}}', level: 'success'});
+      }
+    })
+  })
   
   $('#actionNodeTab select[data-l1key=endpoint]').off('change').on('change',function(){
     let cluster = $(this).parent().find('select[data-l1key=cluster]')

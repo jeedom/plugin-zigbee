@@ -217,6 +217,11 @@ class PollControl():
 		if cmd_name == "checkin":
 			fast_poll_timeout = PollControl.CHECKIN_FAST_POLL_TIMEOUT
 			long_poll = PollControl.LONG_POLL
+			if cluster.endpoint.device._ieee in shared.DEVICE_SPECIFIC and 'poll_control' in shared.DEVICE_SPECIFIC[cluster.endpoint.device._ieee]:
+				if 'long_poll' in shared.DEVICE_SPECIFIC[cluster.endpoint.device._ieee]['poll_control'] and shared.DEVICE_SPECIFIC[cluster.endpoint.device._ieee]['poll_control']['long_poll'] != '' :
+					long_poll = shared.DEVICE_SPECIFIC[cluster.endpoint.device._ieee]['poll_control']['long_poll']
+				if 'fast_poll_timeout' in shared.DEVICE_SPECIFIC[cluster.endpoint.device._ieee]['poll_control'] and shared.DEVICE_SPECIFIC[cluster.endpoint.device._ieee]['poll_control']['fast_poll_timeout'] != '' :
+					fast_poll_timeout = shared.DEVICE_SPECIFIC[cluster.endpoint.device._ieee]['poll_control']['fast_poll_timeout']
 			logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Send checkin response. Fastpoll timeout : %s s, long poll %s s",(fast_poll_timeout/4),(long_poll/4))
 			asyncio.ensure_future(cluster.checkin_response(True, fast_poll_timeout, tsn=tsn))
 			asyncio.ensure_future(cluster.set_long_poll_interval(long_poll))

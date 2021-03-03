@@ -151,6 +151,7 @@ _cycle = 0.3
 _controller = 'ezsp'
 _sub_controller = None
 _data_folder = '/tmp'
+_device_folder = '/tmp'
 _socket_host ='127.0.0.1'
 _channel = 15
 _instance = 1
@@ -167,6 +168,7 @@ parser.add_argument("--pid", help="Pid file", type=str)
 parser.add_argument("--controller", help="Controller type (ezsp,deconz,zigate,cc...)", type=str)
 parser.add_argument("--sub_controller", help="Sub-controller type (elelabs...)", type=str)
 parser.add_argument("--data_folder", help="Data folder", type=str)
+parser.add_argument("--device_folder", help="Data folder", type=str)
 parser.add_argument("--socketport", help="Port for Zigbee server", type=str)
 parser.add_argument("--channel", help="Channel for Zigbee network", type=str)
 parser.add_argument("--folder_OTA", help="Allow device OTA update", type=str)
@@ -191,8 +193,10 @@ if args.controller:
 	_controller = args.controller
 if args.sub_controller:
 	_sub_controller = args.sub_controller
-if args.cycle:
+if args.data_folder:
 	_data_folder = args.data_folder
+if args.device_folder:
+	_device_folder = args.device_folder
 if args.socketport:
 	_socketport = args.socketport
 if args.folder_OTA:
@@ -215,6 +219,7 @@ logging.info('Cycle : '+str(_cycle))
 logging.info('Controller : '+str(_controller))
 logging.info('Channel : '+str(_channel))
 logging.info('Data folder : '+str(_data_folder))
+logging.info('Device folder : '+str(_device_folder))
 logging.info('Folder OTA : '+str(_folder_OTA))
 logging.info('Zigpy advance configuration file : '+str(_zigpy_advance_config))
 
@@ -238,6 +243,15 @@ elif _controller == 'znp' :
 
 shared.CONTROLLER = _controller
 shared.SUB_CONTROLLER = _sub_controller
+shared.DEVICE_FOLDER=_device_folder
+
+if os.path.exists(shared.DEVICE_FOLDER):
+	for file in os.listdir(shared.DEVICE_FOLDER):
+		if file.endswith(".json"):
+			ieee = file.replace('.json','')
+			with open(shared.DEVICE_FOLDER+'/'+file) as specific_file:
+				shared.DEVICE_SPECIFIC[ieee] = json.load(specific_file)
+			logging.debug('Add specific configuration for '+str(ieee)+' to '+str(shared.DEVICE_SPECIFIC[ieee]))
 
 if _device == 'auto':
 	if _controller == 'ezsp' :

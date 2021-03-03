@@ -176,7 +176,7 @@ class DeviceHandler(RequestHandler):
 					await zdevices.write_attributes(self.json_args)
 				except Exception as e:
 					if 'allowQueue' in self.json_args and self.json_args['allowQueue'] :
-						logging.debug('[DeviceHandler.put] Failed on write attribute'+str(self.json_args)+' => '+str(e)+'. Replan write attribut later')
+						logging.debug('[DeviceHandler.put/attributes] Failed on write attribute'+str(self.json_args)+' => '+str(e)+'. Replan write attribut later')
 						zqueue.add('write_attributes',10,self.json_args,3)
 					else:
 						raise
@@ -240,12 +240,19 @@ class DeviceHandler(RequestHandler):
 					await zdevices.command(self.json_args)
 				except Exception as e:
 					if 'allowQueue' in self.json_args and self.json_args['allowQueue']:
-						logging.debug('[DeviceHandler.put] Failed on command'+str(self.json_args)+' => '+str(e)+'. Replan command later')
+						logging.debug('[DeviceHandler.put/command] Failed on command'+str(self.json_args)+' => '+str(e)+'. Replan command later')
 						zqueue.add('command',5,self.json_args,1)
 					else:
 						raise
 				return self.write(utils.format_json_result(success=True))
-
+			if arg1 == 'update_specific':
+				ieee = self.json_args['ieee']
+				if not os.path.exists(shared.DEVICE_FOLDER+'/'+ieee+'.json'):
+					raise Exception("File not found "+str(shared.DEVICE_FOLDER+'/'+ieee+'.json'))
+				with open(shared.DEVICE_FOLDER+'/'+ieee+'.json') as specific_file:
+					shared.DEVICE_SPECIFIC[ieee] = json.load(specific_file)
+				logging.debug('[DeviceHandler.put/update_specific] Update specific configuration for '+str(ieee)+' to '+str(shared.DEVICE_SPECIFIC[ieee]))
+				return self.write(utils.format_json_result(success=True))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
