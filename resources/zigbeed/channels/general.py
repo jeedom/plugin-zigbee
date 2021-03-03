@@ -218,7 +218,7 @@ class PollControl():
 			fast_poll_timeout = PollControl.CHECKIN_FAST_POLL_TIMEOUT
 			long_poll = PollControl.LONG_POLL
 			ieee = str(cluster.endpoint.device._iee)
-			if cluster.endpoint.device._ieee in shared.DEVICE_SPECIFIC and 'poll_control' in shared.DEVICE_SPECIFIC[ieee]:
+			if ieee in shared.DEVICE_SPECIFIC and 'poll_control' in shared.DEVICE_SPECIFIC[ieee]:
 				if 'long_poll' in shared.DEVICE_SPECIFIC[ieee]['poll_control'] and shared.DEVICE_SPECIFIC[ieee]['poll_control']['long_poll'] != '' :
 					long_poll = shared.DEVICE_SPECIFIC[ieee]['poll_control']['long_poll']
 				if 'fast_poll_timeout' in shared.DEVICE_SPECIFIC[ieee]['poll_control'] and shared.DEVICE_SPECIFIC[ieee]['poll_control']['fast_poll_timeout'] != '' :
