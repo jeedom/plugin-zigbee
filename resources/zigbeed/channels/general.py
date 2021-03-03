@@ -215,9 +215,11 @@ class PollControl():
 		cmd_name = cluster.client_commands.get(args[0], [])[0]
 		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Command %s", cmd_name)
 		if cmd_name == "checkin":
-			logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Send checkin response")
-			asyncio.ensure_future(cluster.checkin_response(True, PollControl.CHECKIN_FAST_POLL_TIMEOUT, tsn=tsn))
-			asyncio.ensure_future(cluster.set_long_poll_interval(PollControl.LONG_POLL))
+			fast_poll_timeout = PollControl.CHECKIN_FAST_POLL_TIMEOUT
+			long_poll = PollControl.LONG_POLL
+			logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Send checkin response. Fastpoll timeout : %s, long poll %s",fast_poll_timeout,long_poll)
+			asyncio.ensure_future(cluster.checkin_response(True, fast_poll_timeout, tsn=tsn))
+			asyncio.ensure_future(cluster.set_long_poll_interval(long_poll))
 		return False
 
 @registries.DEVICE_TRACKER_CLUSTERS.register(general.PowerConfiguration.cluster_id)
