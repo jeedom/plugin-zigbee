@@ -217,7 +217,7 @@ class PollControl():
 		if cmd_name == "checkin":
 			fast_poll_timeout = PollControl.CHECKIN_FAST_POLL_TIMEOUT
 			long_poll = PollControl.LONG_POLL
-			ieee = str(cluster.endpoint.device._iee)
+			ieee = str(cluster.endpoint.device._ieee)
 			if ieee in shared.DEVICE_SPECIFIC and 'poll_control' in shared.DEVICE_SPECIFIC[ieee]:
 				if 'long_poll' in shared.DEVICE_SPECIFIC[ieee]['poll_control'] and shared.DEVICE_SPECIFIC[ieee]['poll_control']['long_poll'] != '' :
 					long_poll = shared.DEVICE_SPECIFIC[ieee]['poll_control']['long_poll']
