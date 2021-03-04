@@ -1,6 +1,6 @@
 {
-  "name": "Smart plug with dimmer",
-  "ref" : "AC2010/26",
+  "name": "Wall mount relay with dimmer",
+  "ref" : "AC2010/16",
   "pairing" : "Il faut presser pendant 10s le bouton du module",
   "commands": [
     {
