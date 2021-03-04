@@ -220,7 +220,7 @@ foreach ($node_data['endpoints'] as $endpoint) {
       <br/>
       <form class="form-horizontal">
         <fieldset>
-          <legend>{{Cnfiguration spécifique}}</legend>
+          <legend><i class="fas fa-cog"></i> {{Configuration spécifique}}</legend>
           <?php
           if($isZGPDevice == false && (!isset($device['config']) || count($device['config']) == 0)){
             echo '<div class="alert alert-info">{{Il n\'éxiste aucun parametre spécifique de configuration connu pour ce module}}</div>';
@@ -346,8 +346,13 @@ foreach ($node_data['endpoints'] as $endpoint) {
             }
           }
           ?>
-          <div id="div_specificDeviceAttr">
-            <legend>{{Poll control}} <a class="btn btn-success btn-sm pull-right" id="bt_saveDeviceAttr"><i class="far fa-save"></i> {{Sauvegarder}}</a></legend>
+        </fieldset>
+      </form>
+      <div id="div_specificDeviceAttr">
+        <form class="form-horizontal">
+          <fieldset>
+            
+            <legend><i class="far fa-bell"></i> {{Poll control}} <a class="btn btn-success btn-sm pull-right" id="bt_saveDeviceAttr"><i class="far fa-save"></i> {{Sauvegarder}}</a></legend>
             <div class="alert alert-danger">{{Attention la configuration du Poll control est complexe (et volontairement pas expliquée). La moindre erreur peut vous obliger a faire un reset du module voir le casser. Pour remettre les valeurs par defaut laisser les champs vides}}</div>
             <div class="form-group">
               <label class="col-sm-3 control-label">{{Long pool (en 1/4 de seconde)}}</label>
@@ -361,9 +366,10 @@ foreach ($node_data['endpoints'] as $endpoint) {
                 <input type="number" class="deviceAttr form-control" data-l1key="poll_control" data-l2key="fast_poll_timeout"/>
               </div>
             </div>
-          </div>
-        </fieldset>
-      </form>
+            
+          </fieldset>
+        </form>
+      </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="actionNodeTab">
       <br/>
