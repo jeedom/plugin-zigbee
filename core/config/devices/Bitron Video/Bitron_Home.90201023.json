@@ -1,0 +1,23 @@
+{
+  "name": "Remote control",
+  "ref" : "AV2010/23",
+  "pairing" : "Rester appuyer 10s sur le bouton 2",
+  "commands": [
+    {
+      "name": "Bouton 1 et 4",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::8::cmd::1"
+    },
+    {
+      "name": "Bouton 2 et 3",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::cmd::0"
+    }
+  ]
+}
