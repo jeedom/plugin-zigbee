@@ -753,7 +753,7 @@ class zigbee extends eqLogic {
           mkdir($deviceSpecificPath);
         }
         $deviceSpecificPath .= '/'.$this->getLogicalId().'.json';
-        file_put_contents($deviceSpecificPath,json_encode($this->getConfiguration('deviceSpecific')));
+        file_put_contents($deviceSpecificPath,json_encode($deviceSpecific));
         try {
           zigbee::request($this->getConfiguration('instance',1),'/device/update_specific',array('ieee'=>$this->getLogicalId()),'PUT');
         } catch (\Exception $e) {
