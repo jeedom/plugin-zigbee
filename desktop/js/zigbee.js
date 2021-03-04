@@ -135,7 +135,7 @@ $('.eqLogicAttr[data-l1key=configuration][data-l2key=manufacturer]').off('change
   $('.eqLogicAttr[data-l1key=configuration][data-l2key=device] option').hide();
   $('.eqLogicAttr[data-l1key=configuration][data-l2key=device] option[data-manufacturer=all]').show();
   if($(this).value() != ''){
-    $('.eqLogicAttr[data-l1key=configuration][data-l2key=device] option[data-manufacturer='+$(this).value()+']').show();
+    $('.eqLogicAttr[data-l1key=configuration][data-l2key=device] option[data-manufacturer="'+$(this).value()+'"]').show();
   }
   let manufacturer = $('.eqLogicAttr[data-l1key=configuration][data-l2key=device] option:selected').attr('data-manufacturer');
   if(manufacturer && manufacturer != 'all' && manufacturer != $(this).value()){

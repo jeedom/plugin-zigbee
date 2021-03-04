@@ -1,0 +1,15 @@
+{
+  "name": "Wall switch",
+  "ref" : "AV2010/34",
+  "pairing" : "Rester appuyer 10s sur le bouton au dos de l'interrupteur",
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::5::cmd::5"
+    }
+  ]
+}
