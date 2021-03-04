@@ -320,8 +320,8 @@ class zigbee extends eqLogic {
     if(!file_exists(__DIR__ . '/../../data/'.$_instance)){
       mkdir(__DIR__ . '/../../data/'.$_instance,0777,true);
     }
-    if(!file_exists(__DIR__ . '/../../device')){
-      mkdir(__DIR__ . '/../../device');
+    if(!file_exists(__DIR__ . '/../../data/device')){
+      mkdir(__DIR__ . '/../../data/device');
     }
     $zigbee_path = realpath(dirname(__FILE__) . '/../../resources/zigbeed');
     $cmd = '/usr/bin/python3 ' . $zigbee_path . '/zigbeed.py';
