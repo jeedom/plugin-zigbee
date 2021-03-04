@@ -735,14 +735,47 @@ class zigbee extends eqLogic {
       $this->refreshValue();
     }
     if($this->getConfiguration('deviceSpecific') != '' && is_array($this->getConfiguration('deviceSpecific'))){
-      $deviceSpecificPath = __DIR__.'/../../data/device';
-      if(!file_exists($deviceSpecificPath)){
-        mkdir($deviceSpecificPath);
+      $deviceSpecific = array();
+      foreach ($this->getConfiguration('deviceSpecific') as $key => $datas) {
+        foreach ($datas as $key2 => $value) {
+          if(trim($value) == ''){
+            continue;
+          }
+          if(!isset($deviceSpecific[$key])){
+            $deviceSpecific[$key] = array();
+          }
+          $deviceSpecific[$key][$key2] = $value;
+        }
       }
-      $deviceSpecificPath .= '/'.$this->getLogicalId().'.json';
-      file_put_contents($deviceSpecificPath,json_encode($this->getConfiguration('deviceSpecific')));
+      if(count($deviceSpecific) > 0){
+        $deviceSpecificPath = __DIR__.'/../../data/device';
+        if(!file_exists($deviceSpecificPath)){
+          mkdir($deviceSpecificPath);
+        }
+        $deviceSpecificPath .= '/'.$this->getLogicalId().'.json';
+        file_put_contents($deviceSpecificPath,json_encode($this->getConfiguration('deviceSpecific')));
+        try {
+          zigbee::request($this->getConfiguration('instance',1),'/device/update_specific',array('ieee'=>$this->getLogicalId()),'PUT');
+        } catch (\Exception $e) {
+          
+        }
+      }elseif(file_exists(__DIR__.'/../../data/device/'.$this->getLogicalId().'.json')){
+        unlink(__DIR__.'/../../data/device/'.$this->getLogicalId().'.json');
+        try {
+          zigbee::request($this->getConfiguration('instance',1),'/device/delete_specific',array('ieee'=>$this->getLogicalId()),'PUT');
+        } catch (\Exception $e) {
+          
+        }
+      }
+    }
+  }
+  
+  public function preRemove(){
+    $deviceSpecificPath = __DIR__.'/../../data/device/'.$this->getLogicalId().'.json';
+    if(file_exists($deviceSpecificPath)){
+      unlink($deviceSpecificPath);
       try {
-        zigbee::request($this->getConfiguration('instance',1),'/device/update_specific',array('ieee'=>$this->getLogicalId()),'PUT');
+        zigbee::request($this->getConfiguration('instance',1),'/device/delete_specific',array('ieee'=>$this->getLogicalId()),'PUT');
       } catch (\Exception $e) {
         
       }

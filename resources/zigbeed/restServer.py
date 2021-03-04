@@ -253,6 +253,11 @@ class DeviceHandler(RequestHandler):
 					shared.DEVICE_SPECIFIC[ieee] = json.load(specific_file)
 				logging.debug('[DeviceHandler.put/update_specific] Update specific configuration for '+str(ieee)+' to '+str(shared.DEVICE_SPECIFIC[ieee]))
 				return self.write(utils.format_json_result(success=True))
+			if arg1 == 'delete_specific':
+				ieee = self.json_args['ieee']
+				shared.DEVICE_SPECIFIC.pop(ieee, None)
+				logging.debug('[DeviceHandler.put/delete_specific] Delete specific configuration for '+str(ieee))
+				return self.write(utils.format_json_result(success=True))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
