@@ -1,0 +1,23 @@
+{
+  "name": "Magnetic contact",
+  "ref":"AV2010/21B",
+  "pairing":"Appuyer sur les 2 boutons (avant et arriere) pendant 10s",
+  "commands": [
+    {
+      "name": "Ouverture",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "OPENING",
+      "display": {
+        "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "window",
+        "mobile" : "window"
+      }
+    }
+  ]
+}
