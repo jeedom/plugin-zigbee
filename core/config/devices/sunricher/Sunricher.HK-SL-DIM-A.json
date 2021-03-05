@@ -49,7 +49,7 @@
       "logicalId": "1::8::0",
       "configuration" : {
         "minValue" : 0,
-        "maxValue" : 100
+        "maxValue" : 254
       }
     },
     {
@@ -63,7 +63,7 @@
       "generic_type": "LIGHT_SLIDER",
       "configuration" : {
         "minValue" : 0,
-        "maxValue" : 100
+        "maxValue" : 254
       }
     },
     {
@@ -76,7 +76,8 @@
       "unite":"W",
       "logicalId": "1::2820::1291",
       "configuration":{
-        "historizeRound" : 2
+        "historizeRound" : 2,
+        "calculValueOffset":"#value# / 10"
       }
     },
     {
@@ -89,7 +90,8 @@
       "unite":"V",
       "logicalId": "1::2820::1285",
       "configuration":{
-        "historizeRound" : 2
+        "historizeRound" : 2,
+        "calculValueOffset":"#value# / 10"
       }
     },
     {
@@ -98,10 +100,11 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 1,
-      "unite":"V",
+      "unite":"A",
       "logicalId": "1::2820::1288",
       "configuration":{
-        "historizeRound" : 2
+        "historizeRound" : 2,
+        "calculValueOffset":"#value# / 100"
       }
     }
   ]
