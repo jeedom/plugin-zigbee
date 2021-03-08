@@ -241,7 +241,7 @@ class zigbee extends eqLogic {
           foreach ($device['endpoints'] as $endpoint) {
             foreach ($endpoint['input_clusters'] as $input_cluster) {
               if($input_cluster['id'] == 32){ //Poll control cluster
-                $max_duration_last_seen = 60*60;
+                $max_duration_last_seen = 2*60*60;
                 break;
               }
             }
