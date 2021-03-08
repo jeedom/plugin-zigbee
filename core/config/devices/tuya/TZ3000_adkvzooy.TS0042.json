@@ -1,6 +1,8 @@
 {
-  "name": "Tuya TS0042",
+  "name": "Tuya TS0042 - 2",
   "ref" : "TS0042",
+  "reset" : "Faire un appui de 5 secondes sur le bouton S0 (près de la pile)",
+  "pairing" : "Faire un appui de 5 secondes sur le bouton S0 (près de la pile)",
   "commands": [
     {
       "name": "Bouton 1",
@@ -8,7 +10,7 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::6::cmd::0",
+      "logicalId": "1::6::cmd::1",
       "configuration": {
         "repeatEventManagement": "always"
       }
@@ -19,7 +21,7 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "2::6::cmd::0",
+      "logicalId": "2::6::cmd::1",
       "configuration": {
         "repeatEventManagement": "always"
       }
