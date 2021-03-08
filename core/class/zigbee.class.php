@@ -210,17 +210,50 @@ class zigbee extends eqLogic {
             $zigbee->batteryStatus($battery_voltage/$zigbee->getConfiguration('maxBatteryVoltage',0) * 100);
           }
         }
-        if($zigbee->getConfiguration('ignore_last_seen',0) != 1){
-          if($device['last_seen'] == 'None'){
-            log::add('zigbee', 'error', __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __(' n\'a pas de date connu de derniere communication', __FILE__), 'device_dead_' . $zigbee->getId());
-          }else if((strtotime('now') - $device['last_seen']) >= config::byKey('max_duration_last_seen','zigbee') * 60){
-            log::add('zigbee', 'error', __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __(' n\'a pas envoyé de message depuis plus de ', __FILE__).config::byKey('max_duration_last_seen','zigbee').' min', 'device_dead_' . $zigbee->getId());
-          }
-        }
         try {
           $zigbee->setTime($device);
         } catch (\Exception $e) {
           
+        }
+      }
+    }
+  }
+  
+  
+  public static function cronHourly(){
+    for($i=1;$i<=config::byKey('max_instance_number','zigbee');$i++){
+      if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
+        continue;
+      }
+      $last_launch_deamon = strtotime(config::byKey('lastDeamonLaunchTime_'.$i,'zigbee'));
+      $devices = self::request($i,'/device/all');
+      foreach ($devices as $device) {
+        if($device['nwk'] == 0){
+          continue;
+        }
+        $zigbee = zigbee::byLogicalId($device['ieee'], 'zigbee');
+        if(!is_object($zigbee)){
+          continue;
+        }
+        
+        if($zigbee->getConfiguration('ignore_last_seen',0) != 1){
+          $max_duration_last_seen = config::byKey('max_duration_last_seen','zigbee') * 60;
+          foreach ($device['endpoints'] as $endpoint) {
+            foreach ($endpoint['input_clusters'] as $input_cluster) {
+              if($input_cluster['id'] == 32){ //Poll control cluster
+                $max_duration_last_seen = 60*60;
+                break;
+              }
+            }
+          }
+          if(($last_launch_deamon + $max_duration_last_seen) > strtotime('now')){
+            continue;
+          }
+          if($device['last_seen'] == 'None'){
+            log::add('zigbee', 'error', __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __(' n\'a pas de date connu de derniere communication', __FILE__), 'device_dead_' . $zigbee->getId());
+          }else if((strtotime('now') - $device['last_seen']) >= $max_duration_last_seen){
+            log::add('zigbee', 'error', __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __(' n\'a pas envoyé de message depuis plus de ', __FILE__).($max_duration_last_seen/60).' min', 'device_dead_' . $zigbee->getId());
+          }
         }
       }
     }
@@ -349,6 +382,7 @@ class zigbee extends eqLogic {
     }
     log::add('zigbee', 'info', 'Lancement démon zigbeed : ' . $cmd);
     exec($cmd . ' >> ' . log::getPathToLog('zigbeed_'.$_instance) . ' 2>&1 &');
+    config::save('lastDeamonLaunchTime_'.$_instance, date('Y-m-d H:i:s'), 'zigbee');
     return true;
   }
   
