@@ -32,11 +32,9 @@
       "isHistorized": 0,
       "logicalId": "1::1024::0",
       "generic_type": "BRIGHTNESS",
-      "display": {
-        "invertBinary" : 1
-      },
       "configuration":{
-        "historizeRound" : 2
+        "historizeRound" : 2,
+        "calculValueOffset":"10**((#value#-1)/10000)"
       }
     }
   ]
