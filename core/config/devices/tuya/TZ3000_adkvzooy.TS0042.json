@@ -3,6 +3,9 @@
   "ref" : "TS0042",
   "reset" : "Faire un appui de 5 secondes sur le bouton S0 (près de la pile)",
   "pairing" : "Faire un appui de 5 secondes sur le bouton S0 (près de la pile)",
+  "configuration" : {
+    "battery_type" : "1x3V CR2032"
+  }, 
   "commands": [
     {
       "name": "Bouton 1",
