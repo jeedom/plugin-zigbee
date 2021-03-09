@@ -2,6 +2,13 @@
   "name": "Remote control",
   "ref" : "AV2010/23",
   "pairing" : "Rester appuyer 10s sur le bouton 2",
+  "configuration" :{
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160"
+      }
+    }
+  },
   "commands": [
     {
       "name": "Bouton 1 et 4",

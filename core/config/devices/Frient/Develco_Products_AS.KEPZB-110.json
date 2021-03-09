@@ -4,6 +4,13 @@
   "manufacturer" : "Develco",
   "pairing": "Inserez les piles",
   "reset": "Appuyer sur le bouton jusqu'a ce que la led clignote rouge",
+  "configuration" :{
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160"
+      }
+    }
+  },
   "commands": [
     {
       "name": "Code",

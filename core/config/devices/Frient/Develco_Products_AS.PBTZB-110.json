@@ -5,6 +5,13 @@
   "pairing": "Inserez les piles",
   "reset": "Retirer et remetter les piles puis dans les 60s maintenir le bouton appuyé jusqu'a ce que la led flash",
   "remark" : "Il semble y avoir un soucis avec le firmware seul la desactivation de l'alerte (appuie 5s sur le bouton après activation du mode panic) est envoyé sur le réseaux zigbee",
+  "configuration" :{
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160"
+      }
+    }
+  },
   "commands": [
     {
       "name": "Panic",

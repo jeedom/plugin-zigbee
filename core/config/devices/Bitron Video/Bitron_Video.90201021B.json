@@ -2,6 +2,13 @@
   "name": "Magnetic contact",
   "ref":"AV2010/21B",
   "pairing":"Appuyer sur les 2 boutons (avant et arriere) pendant 10s",
+  "configuration" :{
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160"
+      }
+    }
+  },
   "commands": [
     {
       "name": "Ouverture",

@@ -2,6 +2,13 @@
   "name": "Wall switch",
   "ref" : "AV2010/34",
   "pairing" : "Rester appuyer 10s sur le bouton au dos de l'interrupteur",
+  "configuration" :{
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160"
+      }
+    }
+  },
   "commands": [
     {
       "name": "Etat",

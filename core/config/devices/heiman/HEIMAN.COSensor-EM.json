@@ -2,6 +2,13 @@
   "name": "Détecteur de monoxyde de carbone",
   "ref" : "HS1SA",
   "buylink" : "",
+  "configuration" :{
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160"
+      }
+    }
+  },
   "commands": [
     {
       "name": "CO",

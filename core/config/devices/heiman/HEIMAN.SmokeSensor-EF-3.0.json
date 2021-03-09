@@ -2,6 +2,13 @@
   "name": "Détecteur de fumée",
   "ref" : "EF-3.0",
   "buylink" : "",
+  "configuration" :{
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160"
+      }
+    }
+  },
   "commands": [
     {
       "name": "Fumée",

@@ -2,6 +2,13 @@
   "name": "Outdoor motion sensor",
   "ref":"AV2010/22B",
   "pairing":"Appuyer sur les 2 boutons pendant 10s",
+  "configuration" :{
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160"
+      }
+    }
+  },
   "commands": [
     {
       "name": "Présence",
