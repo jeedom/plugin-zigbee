@@ -8,8 +8,7 @@
     "ignore_last_seen":"1",
     "deviceSpecific":{
       "poll_control":{
-        "long_poll":"1160",
-        "fast_poll_timeout":""
+        "long_poll":"1160"
       }
     }
   },
