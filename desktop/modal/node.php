@@ -351,22 +351,33 @@ foreach ($node_data['endpoints'] as $endpoint) {
       <div id="div_specificDeviceAttr">
         <form class="form-horizontal">
           <fieldset>
-            
-            <legend><i class="far fa-bell"></i> {{Poll control}} <a class="btn btn-success btn-sm pull-right" id="bt_saveDeviceAttr"><i class="far fa-save"></i> {{Sauvegarder}}</a></legend>
-            <div class="alert alert-danger">{{Attention la configuration du Poll control est complexe (et volontairement pas expliquée). La moindre erreur peut vous obliger a faire un reset du module voir le casser. Pour remettre les valeurs par defaut laisser les champs vides}}</div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">{{Long pool (en 1/4 de seconde)}}</label>
-              <div class="col-sm-2">
-                <input type="number" class="deviceAttr form-control" data-l1key="poll_control" data-l2key="long_poll"/>
+            <?php 
+            $has_poll_control = false;
+            foreach ($node_data['endpoints'] as $endpoint) {
+              foreach ($endpoint['input_clusters'] as $input_cluster) {
+                if($input_cluster['id'] == 32){ //Poll control cluster
+                  $has_poll_control = true;
+                  break;
+                }
+              }
+            }
+            if($has_poll_control){
+              ?>
+              <legend><i class="far fa-bell"></i> {{Poll control}} <a class="btn btn-success btn-sm pull-right" id="bt_saveDeviceAttr"><i class="far fa-save"></i> {{Sauvegarder}}</a></legend>
+              <div class="alert alert-danger">{{Attention la configuration du Poll control est complexe (et volontairement pas expliquée). La moindre erreur peut vous obliger a faire un reset du module voir le casser. Pour remettre les valeurs par defaut laisser les champs vides}}</div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">{{Long pool (en 1/4 de seconde)}}</label>
+                <div class="col-sm-2">
+                  <input type="number" class="deviceAttr form-control" data-l1key="poll_control" data-l2key="long_poll"/>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">{{Fast pool timeout (en 1/4 de seconde)}}</label>
-              <div class="col-sm-2">
-                <input type="number" class="deviceAttr form-control" data-l1key="poll_control" data-l2key="fast_poll_timeout"/>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">{{Fast pool timeout (en 1/4 de seconde)}}</label>
+                <div class="col-sm-2">
+                  <input type="number" class="deviceAttr form-control" data-l1key="poll_control" data-l2key="fast_poll_timeout"/>
+                </div>
               </div>
-            </div>
-            
+            <?php } ?>
           </fieldset>
         </form>
       </div>
