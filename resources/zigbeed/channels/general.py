@@ -197,7 +197,8 @@ class PollControl():
 	"""Poll Control channel."""
 	CHECKIN_INTERVAL = 55 * 60 * 4  # 60min
 	CHECKIN_FAST_POLL_TIMEOUT = 10 * 4  # 2s
-	LONG_POLL = 6 * 4  # 6s
+	LONG_POLL = 5 * 4  # 6s
+	SHORT_POLL = 2  # 2 quarterseconds
 
 	async def initialize(cluster):
 		 try:
@@ -217,15 +218,20 @@ class PollControl():
 		if cmd_name == "checkin":
 			fast_poll_timeout = PollControl.CHECKIN_FAST_POLL_TIMEOUT
 			long_poll = PollControl.LONG_POLL
+			short_poll = PollControl.SHORT_POLL
 			ieee = str(cluster.endpoint.device._ieee)
 			if ieee in shared.DEVICE_SPECIFIC and 'poll_control' in shared.DEVICE_SPECIFIC[ieee]:
 				if 'long_poll' in shared.DEVICE_SPECIFIC[ieee]['poll_control'] and shared.DEVICE_SPECIFIC[ieee]['poll_control']['long_poll'] != '' :
 					long_poll = int(shared.DEVICE_SPECIFIC[ieee]['poll_control']['long_poll'])
 				if 'fast_poll_timeout' in shared.DEVICE_SPECIFIC[ieee]['poll_control'] and shared.DEVICE_SPECIFIC[ieee]['poll_control']['fast_poll_timeout'] != '' :
 					fast_poll_timeout = int(shared.DEVICE_SPECIFIC[ieee]['poll_control']['fast_poll_timeout'])
+				if 'short_poll' in shared.DEVICE_SPECIFIC[ieee]['poll_control'] and shared.DEVICE_SPECIFIC[ieee]['poll_control']['short_poll'] != '' :
+					short_poll = int(shared.DEVICE_SPECIFIC[ieee]['poll_control']['short_poll'])
 			logging.debug("["+ieee+"][chanels.general.PollControl.cluster_command] Send checkin response. Fastpoll timeout : %s s, long poll %s s",(fast_poll_timeout/4),(long_poll/4))
 			asyncio.ensure_future(cluster.checkin_response(True, fast_poll_timeout, tsn=tsn))
 			asyncio.ensure_future(cluster.set_long_poll_interval(long_poll))
+			asyncio.ensure_future(cluster.set_short_poll_interval(short_poll))
+			asyncio.ensure_future(cluster.fast_poll_stop())
 		return False
 
 @registries.DEVICE_TRACKER_CLUSTERS.register(general.PowerConfiguration.cluster_id)
