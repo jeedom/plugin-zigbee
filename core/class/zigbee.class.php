@@ -219,7 +219,6 @@ class zigbee extends eqLogic {
     }
   }
   
-  
   public static function cronHourly(){
     for($i=1;$i<=config::byKey('max_instance_number','zigbee');$i++){
       if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
@@ -236,13 +235,15 @@ class zigbee extends eqLogic {
           continue;
         }
         
-        if($zigbee->getConfiguration('ignore_last_seen',0) != 1){
+        if($zigbee->getConfiguration('last_seen::check_mode','auto') != 'disable'){
           $max_duration_last_seen = config::byKey('max_duration_last_seen','zigbee') * 60;
-          foreach ($device['endpoints'] as $endpoint) {
-            foreach ($endpoint['input_clusters'] as $input_cluster) {
-              if($input_cluster['id'] == 32){ //Poll control cluster
-                $max_duration_last_seen = 2*60*60;
-                break;
+          if($zigbee->getConfiguration('last_seen::check_mode','auto') == 'auto'){
+            foreach ($device['endpoints'] as $endpoint) {
+              foreach ($endpoint['input_clusters'] as $input_cluster) {
+                if($input_cluster['id'] == 32){ //Poll control cluster
+                  $max_duration_last_seen = 2*60*60;
+                  break;
+                }
               }
             }
           }

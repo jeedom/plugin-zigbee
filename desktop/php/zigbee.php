@@ -214,9 +214,13 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-3 control-label">{{Ne pas alerte en cas de non communication du module}}</label>
+									<label class="col-sm-3 control-label">{{Mode de verification de la communication du module}}</label>
 									<div class="col-sm-7">
-										<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="ignore_last_seen"/>
+										<select class="eqLogicAttr" data-l1key="configuration" data-l2key="last_seen::check_mode">
+											<option value="auto">{{Automatique}}</option>
+											<option value="ignore_poll_control">{{Ignorer le poll control}}</option>
+											<option value="disable">{{Désactiver}}</option>
+										</select>
 									</div>
 								</div>
 							</fieldset>
