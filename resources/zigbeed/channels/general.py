@@ -195,9 +195,9 @@ class Partition():
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(general.PollControl.cluster_id)
 class PollControl():
 	"""Poll Control channel."""
-	CHECKIN_INTERVAL = 55 * 60 * 4  # 60min
-	CHECKIN_FAST_POLL_TIMEOUT = 10 * 4  # 2s
-	LONG_POLL = 5 * 4  # 6s
+	CHECKIN_INTERVAL = 60 * 60 * 4  # 60min
+	CHECKIN_FAST_POLL_TIMEOUT = 10 * 4  # 10s
+	LONG_POLL = 5 * 4  # 5s
 	SHORT_POLL = 2  # 2 quarterseconds
 
 	async def initialize(cluster):
