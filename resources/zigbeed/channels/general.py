@@ -196,7 +196,7 @@ class Partition():
 class PollControl():
 	"""Poll Control channel."""
 	CHECKIN_INTERVAL = 55 * 60 * 4  # 60min
-	CHECKIN_FAST_POLL_TIMEOUT = 2 * 4  # 2s
+	CHECKIN_FAST_POLL_TIMEOUT = 10 * 4  # 2s
 	LONG_POLL = 6 * 4  # 6s
 
 	async def initialize(cluster):
