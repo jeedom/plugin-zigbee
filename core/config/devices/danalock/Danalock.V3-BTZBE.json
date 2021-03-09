@@ -2,13 +2,6 @@
   "name": "Danalock V3",
   "ref" : "DANA_277755",
   "buylink" : "https://www.domadoo.fr/fr/controle-acces/4540-danalock-serrure-connectee-bluetooth-et-zigbee-danalock-v3-5712560000493.html",
-  "configuration" :{
-    "deviceSpecific":{
-      "poll_control":{
-        "long_poll":"1160"
-      }
-    }
-  },
   "commands": [
     {
       "name": "Etat",
