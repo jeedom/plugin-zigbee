@@ -231,7 +231,6 @@ class PollControl():
 			asyncio.ensure_future(cluster.checkin_response(True, fast_poll_timeout, tsn=tsn))
 			asyncio.ensure_future(cluster.set_long_poll_interval(long_poll))
 			asyncio.ensure_future(cluster.set_short_poll_interval(short_poll))
-			asyncio.ensure_future(cluster.fast_poll_stop())
 		return False
 
 @registries.DEVICE_TRACKER_CLUSTERS.register(general.PowerConfiguration.cluster_id)
