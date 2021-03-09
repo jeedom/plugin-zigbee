@@ -227,7 +227,7 @@ class PollControl():
 					fast_poll_timeout = int(shared.DEVICE_SPECIFIC[ieee]['poll_control']['fast_poll_timeout'])
 				if 'short_poll' in shared.DEVICE_SPECIFIC[ieee]['poll_control'] and shared.DEVICE_SPECIFIC[ieee]['poll_control']['short_poll'] != '' :
 					short_poll = int(shared.DEVICE_SPECIFIC[ieee]['poll_control']['short_poll'])
-			logging.debug("["+ieee+"][chanels.general.PollControl.cluster_command] Send checkin response. Fastpoll timeout : %s s, long poll %s s",(fast_poll_timeout/4),(long_poll/4))
+			logging.debug("["+ieee+"][chanels.general.PollControl.cluster_command] Send checkin response. Fastpoll timeout : %s s, long poll %s s, short poll %s s",(fast_poll_timeout/4),(long_poll/4),(short_poll/4))
 			asyncio.ensure_future(cluster.checkin_response(True, fast_poll_timeout, tsn=tsn))
 			asyncio.ensure_future(cluster.set_long_poll_interval(long_poll))
 			asyncio.ensure_future(cluster.set_short_poll_interval(short_poll))
