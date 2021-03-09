@@ -4,6 +4,15 @@
   "buylink" : "",
   "reset" : "Appuyer sur le bouton de couplage 4 fois en moins de 5 secondes.",
   "pairing" : "Maintenez le bouton d'appariement enfoncé pendant au moins 10 seconde",
+  "configuration" :{
+    "ignore_last_seen":"1",
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160",
+        "fast_poll_timeout":""
+      }
+    }
+  },
   "commands": [
     {
       "name": "Bouton 1",

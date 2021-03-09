@@ -7,6 +7,15 @@
   "remark" : "",
   "documentation" : "https:\/\/www.ikea.com\/fr\/fr\/assembly_instructions\/tradfri-wireless-dimmer-white__AA-2175106-3_pub.pdf",
   "buylink" : "",
+  "configuration" :{
+    "ignore_last_seen":"1",
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160",
+        "fast_poll_timeout":""
+      }
+    }
+  },
   "commands": [
     {
       "name": "Bouton 1",
