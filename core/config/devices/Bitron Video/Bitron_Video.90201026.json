@@ -1,7 +1,7 @@
 {
-  "name": "Smart plug with dimmer",
+  "name": "SMABIT - Prise intelligente Zigbee variateur 2,5A",
   "ref" : "AC2010/26",
-  "pairing" : "Il faut presser pendant 10s le bouton du module",
+  "pairing" : "Maintenez appuyé pendant 10s le bouton du module",
   "commands": [
     {
       "name": "Etat",
