@@ -1,6 +1,6 @@
 {
-  "name": "Prise connectée",
-  "ref" : "ZNCZ12LM",
+  "name": "AQARA - Prise connectée",
+  "ref" : "SP-EUC01",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5385-aqara-prise-connectee-zigbee-30-smart-plug-6970504210646.html",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
