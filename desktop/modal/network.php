@@ -221,19 +221,23 @@ if (!isConnect('admin')) {
           tr += data[i].nwk;
           tr += '</td>';
           tr += '<td>';
-          switch (data[i].status) {
-            case 0:
-            tr += '{{Non initialisé}}';
-            break;
-            case 1:
-            tr += '{{Découverte des endpoints OK}}';
-            break;
-            case 2:
-            tr += '{{OK}}';
-            break;
-            default:
-            tr += '{{Inconnue}} ('+data[i].status+')';
-            break;
+          if (data[i].nwk == 0) {
+            tr += '{{N/A}}';
+          }else{
+            switch (data[i].status) {
+              case 0:
+              tr += '{{Non initialisé}}';
+              break;
+              case 1:
+              tr += '{{Découverte des endpoints OK}}';
+              break;
+              case 2:
+              tr += '{{OK}}';
+              break;
+              default:
+              tr += '{{Inconnue}} ('+data[i].status+')';
+              break;
+            }
           }
           tr += '<td>';
           if(!data[i].lqi || data[i].lqi == 'None' || data[i].nwk == 0){
