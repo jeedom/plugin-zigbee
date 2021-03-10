@@ -1,7 +1,7 @@
 {
-  "name": "Magnetic contact",
+  "name": "SMABIT - Détecteur d'ouverture Zigbee + Entrée capteurs filaires",
   "ref":"AV2010/21B",
-  "pairing":"Appuyer sur les 2 boutons (avant et arriere) pendant 10s",
+  "pairing":"Appuyez sur les 2 boutons (avant et arriere) pendant 10s",
   "configuration" :{
     "deviceSpecific":{
       "poll_control":{
