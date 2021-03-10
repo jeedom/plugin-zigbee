@@ -1,7 +1,7 @@
 {
-  "name": "Wall mount relay with dimmer",
+  "name": "SMABIT - Relais mural variateur 2,5A",
   "ref" : "AC2010/16",
-  "pairing" : "Il faut presser pendant 10s le bouton du module",
+  "pairing" : "Maintenez appuyé pendant 10s le bouton du module",
   "commands": [
     {
       "name": "Etat",
