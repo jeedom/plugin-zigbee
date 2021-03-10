@@ -1,7 +1,7 @@
 {
-  "name": "Wall switch",
+  "name": "SMABIT - Interrupteur mural avec piles",
   "ref" : "AV2010/34",
-  "pairing" : "Rester appuyer 10s sur le bouton au dos de l'interrupteur",
+  "pairing" : "Maintenez appuyé 10s sur le bouton au dos de l'interrupteur",
   "configuration" :{
     "deviceSpecific":{
       "poll_control":{
