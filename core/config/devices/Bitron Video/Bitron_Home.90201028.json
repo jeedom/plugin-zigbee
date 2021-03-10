@@ -1,5 +1,5 @@
 {
-  "name": "SMABIT - Prise intelligente Zigbee ON/OFF 16A",
+  "name": "SMABIT - Prise intelligente ON/OFF 16A",
   "ref" : "AC2010/28",
   "pairing" : "Il faut presser pendant 10s le bouton du module",
   "commands": [
