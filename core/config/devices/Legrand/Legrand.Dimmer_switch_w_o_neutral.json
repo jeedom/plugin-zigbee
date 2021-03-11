@@ -44,6 +44,46 @@
         "dashboard" : "light",
         "mobile" : "light"
       }
+    },
+    {
+      "name": "Etat Luminosité",
+      "generic_type": "LIGHT_BRIGHTNESS",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::8::0",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    },
+    {
+      "name": "Luminosité",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat Luminosité",
+      "logicalId": "1::level::move_to_level::#slider#::#duration#",
+      "generic_type": "LIGHT_SLIDER",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    },
+    {
+      "name": "Durée",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat durée",
+      "logicalId": "duration",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 100
+      }
     }
   ]
 }
