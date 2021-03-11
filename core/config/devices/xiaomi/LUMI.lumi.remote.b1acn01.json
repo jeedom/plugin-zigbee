@@ -1,7 +1,8 @@
 {
-  "name": "Xiaomi interrupteur simple AQ3",
-  "ref" : "b1acn01",
-  "buylink" : "",
+  "name": "AQARA - Interrupteur sans fil intelligent",
+  "ref" : "WXKG11LM",
+  "type": "Télécommande,Interrupteur",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4669-aqara-interrupteur-sans-fil-intelligent-zigbee-192784000052.html",
   "reset" : "Appuyer pendant 10s sur le bouton du module",
   "pairing":"Appuyer pendant 5s sur le bouton du module",
   "configuration" : {
