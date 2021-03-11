@@ -1,6 +1,7 @@
 {
   "name": "AQARA - Micromodule on/off sans neutre",
   "ref" : "SSM-U02",
+  "type": "Contacteur,Compteur,Puissance",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5387-aqara-micromodule-onoff-zigbee-30-1250w-sans-neutre-6970504213302.html",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
