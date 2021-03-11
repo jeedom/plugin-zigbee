@@ -1,7 +1,10 @@
 {
-  "name": "Sunricher motor controller",
+  "name": "Module volet roulant",
   "ref" : "SR-ZG9080A",
-  "buylink" : "",
+  "type": "Volet,Store",
+  "reset": "Appuyer 5 fois rapidement sur le bouton K2",
+  "pairing": "Couper l'alimentation du module, puis la remettre pour qu'il entre en mode appairage",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5245-sunricher-module-volet-roulant-zigbee-30.html",
   "commands": [
     {
       "name": "Etat",
