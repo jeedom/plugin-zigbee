@@ -1,6 +1,7 @@
 {
-  "name": "Capteur d'ouverture et températeur",
+  "name": "Thermostat d'ambiance connecté Wiser",
   "ref" : "CCTFR6400",
+  "type": "Thermostat,Chauffage",
   "buylink" : "https://www.domadoo.fr/fr/thermostats/5496-schneider-electric-thermostat-d-ambiance-connecte-zigbee-30-wiser-3606489710194.html",
   "reset" : "Inserer les piles puis au moment ou l'écran affiche Wiser appuyer sur les bouton + et - en meme temps juqu'au redemarrage du module",
   "pairing" : "Faire un reset et suivre les consignes de l'écran",
