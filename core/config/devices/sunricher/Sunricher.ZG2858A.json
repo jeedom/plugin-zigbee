@@ -1,7 +1,10 @@
 {
-  "name": "Sunricher remote color",
-  "ref" : "ZG2858A",
-  "buylink" : "",
+  "name": "Télécommande 3 en 1",
+  "ref" : "SR-ZG2858A",
+  "type": "Télécommande",
+  "reset": "Appuyer sur le bouton ON/OFF jusqu'à ce que la LED s'allume, puis faire 5 appuis rapides successifs",
+  "pairing": "Appuyer sur le bouton ON/OFF jusqu'à ce que la LED s'allume, puis appuyer sur la touche S1",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5247-sunricher-telecommande-3-en-1-zigbee-30.html",
   "commands": [
     {
       "name": "On Off 1",
