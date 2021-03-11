@@ -1,7 +1,9 @@
 {
-  "name": "Schneider Plug",
+  "name": "Prise connectée et répéteur Wiser",
   "ref" : "CCTFR6500",
-  "buylink" : "",
+  "manufacturer": "Schneider",
+  "type": "Prise,Compteur,Puissance,Répéteur",
+  "buylink" : "https://www.domadoo.fr/fr/eclairage/5499-schneider-electric-prise-connectee-et-repeteur-zigbee-30-wiser-3606489917883.html",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [
