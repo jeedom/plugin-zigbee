@@ -54,6 +54,19 @@
       "configuration":{
         "historizeRound" : 2
       }
+    },
+    {
+      "name": "Consommation",
+      "generic_type": "CONSUMPTION",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"W",
+      "logicalId": "1::1794::0",
+      "configuration":{
+        "historizeRound" : 2
+      }
     }
   ]
 }
