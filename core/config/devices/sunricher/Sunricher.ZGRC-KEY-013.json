@@ -1,7 +1,8 @@
 {
-  "name": "Sunricher remote dimmer switch",
+  "name": "Télécommande 4 zones",
   "ref" : "SR-ZG9001K12-DIM-Z",
-  "buylink" : "",
+  "type": "Télécommande",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5246-sunricher-telecommande-4-zones-zigbee-30.html",
   "reset" : "Appuyer sur le bouton principal On jusqu'a ce que la diode s'allume puis réappuyer 5 fois dessus de suite, la diode clignote au bout de quelques secondes 3 fois",
   "pairing" : "Appuyer sur le bouton principal On jusqu'a ce que la diode s'allume puis appuyer sur le bouton principal off une fois",
   "commands": [
