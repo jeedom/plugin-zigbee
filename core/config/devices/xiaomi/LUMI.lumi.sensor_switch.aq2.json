@@ -1,7 +1,8 @@
 {
-  "name": "Xiaomi Aquara switch Aq2",
-  "ref" : "switch",
-  "buylink" : "",
+  "name": "AQARA - Interrupteur sans fil intelligent",
+  "ref" : "WXKG11LM",
+  "type": "Télécommande,Interrupteur",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4669-aqara-interrupteur-sans-fil-intelligent-zigbee-192784000052.html",
   "reset" : "Appuyer pendant 10s le sur bouton du module",
   "pairing":"Appuyer pendant 5s le sur bouton du module",
   "configuration" : {
