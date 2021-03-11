@@ -1,7 +1,10 @@
 {
-  "name": "Sunricher RGB",
+  "name": "Contrôleur LED RGBW 4 en 1",
   "ref" : "SR-ZG1029-5C",
-  "buylink" : "",
+  "type": "Lumière,RGBW,Variateur",
+  "reset": "Appuyer 5 fois rapidement sur le bouton Prog.",
+  "pairing": "Couper l'alimentation du module, puis le ré-alimenter pour qu'il entre en mode appairage",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5248-sunricher-controleur-led-rgbw-4-en-1-zigbee-30.html",
   "commands": [
     {
       "name": "Etat",
