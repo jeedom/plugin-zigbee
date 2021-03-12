@@ -1,10 +1,10 @@
 {
-  "name": "Led Smart Dimmer",
-  "ref" : "ECO-DIM.97",
-  "type": "Variateur",
+  "name": "Interrupteur variateur rotatif",
+  "ref" : "ECO-DIM.07",
+  "type": "Interrupteur,Variateur",
   "reset" : "Presser le bouton reset pendant 5s. La led doit s'allumer rouge",
   "pairing":"Presser 2 fois le bouton reset. La led doit clignoter bleu",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/eclairage/5369-ecodim-interrupteur-variateur-rotatif-zigbee-30-200w-8719322371263.html",
   "commands": [
     {
       "name": "Etat",

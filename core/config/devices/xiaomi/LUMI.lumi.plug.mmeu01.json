@@ -1,7 +1,7 @@
 {
   "name": "MI - Prise connectée ON/OFF + Mesure de consommation",
   "ref" : "ZNCZ04LM",
-  "buylink" : "",
+  "buylink" : "https:\/\/www.domadoo.fr\/fr\/peripheriques\/5305-xiaomi-prise-connectee-zigbee-mi-smart-plug-6934177706493.html",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [

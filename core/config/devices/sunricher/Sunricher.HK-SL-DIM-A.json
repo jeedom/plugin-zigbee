@@ -1,6 +1,10 @@
 {
-  "name": "Sunricher HK-SL-DIM-A",
-  "buylink" : "",
+  "name": "Module variateur 2-fils",
+  "ref": "SR-ZG9040A",
+  "type": "Variateur,Lumière,Puissance,Comptage",
+  "reset": "Appuyer 5 fois rapidement sur le bouton Reset",
+  "pairing": "Couper l'alimentation du module, puis le ré-alimenter pour qu'il entre en mode appairage",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5244-sunricher-module-variateur-2-fils-zigbee-30.html",
   "commands": [
     {
       "name": "Etat",

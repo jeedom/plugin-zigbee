@@ -1,7 +1,8 @@
 {
-  "name": "Xiaomi smart cube",
-  "ref" : "Cube",
-  "buylink" : "",
+  "name": "AQARA - Contrôleur intelligent Magic Cube",
+  "ref" : "MFKZQ01LM",
+  "type": "Télécommande,Contrôleur",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4668-aqara-controleur-intelligent-magic-cube-zigbee-0192784000045.html",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "configuration" : {

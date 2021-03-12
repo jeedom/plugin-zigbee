@@ -1,6 +1,10 @@
 {
-  "name": "Sunricher HK-SL-RELAY-A",
-  "buylink" : "",
+  "name": "Module ON/OFF",
+  "ref": "SR-ZG9100A",
+  "type": "Contacteur,Lumière",
+  "reset": "Appuyer 5 fois rapidement sur le bouton Reset",
+  "pairing": "Couper l'alimentation du module, puis le ré-alimenter pour qu'il entre en mode appairage",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5242-sunricher-module-onoff-zigbee-30.html",
   "commands": [
     {
       "name": "Etat",

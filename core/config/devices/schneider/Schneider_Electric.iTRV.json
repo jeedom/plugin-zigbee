@@ -1,8 +1,8 @@
 {
-  "name": "Schneider Electric iTRV",
+  "name": "Tête de vanne thermostatique connectée Wiser",
   "ref" : "CCTFR6100",
-  "type": "Tête thermostatique",
-  "buylink" : "",
+  "type": "Tête thermostatique,Chauffage",
+  "buylink" : "https://www.domadoo.fr/fr/tetes-thermostatiques/5497-schneider-electric-tete-de-vanne-thermostatique-connectee-zigbee-30-wiser-3606489582821.html",
   "documentation" : "",
   "pairing": "Pousser la vanne coté + pendant 5s",
   "reset": "Pousser la vanne coté + pendant au moins 15s, relacher quand la led clignote rouge",
