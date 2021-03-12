@@ -141,6 +141,23 @@ if (!isConnect('admin')) {
             <td style="color:var(--al-success-color)"><center><i class="fas fa-square fa-2x"></i></center></td>
             <td>{{Très bonne laison}}</td>
           </tr>
+          <tr></tr>
+          <tr>
+            <td style="color:#a65ba6"><center><i class="fas fa-circle"></i></center></td>
+            <td>{{Gateway}}</td>
+          </tr>
+          <tr>
+            <td style="color:#00a2e8"><center><i class="fas fa-circle"></i></center></td>
+            <td>{{Coordinateur}}</td>
+          </tr>
+          <tr>
+            <td style="color:#E5E500"><center><i class="fas fa-circle"></i></center></td>
+            <td>{{Routeur}}</td>
+          </tr>
+          <tr>
+            <td style="color:#7BCC7B"><center><i class="fas fa-circle"></i></center></td>
+            <td>{{End device}}</td>
+          </tr>
         </tbody>
       </table>
       <div id="graph-node-name"></div>
