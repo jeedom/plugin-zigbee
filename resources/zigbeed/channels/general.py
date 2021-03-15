@@ -270,10 +270,10 @@ class Scenes():
 	"""Scenes channel."""
 
 	def cluster_command(cluster, tsn, *args):
-		if 0 not in args or 1 not in args or 0 not in args[1]:
-			return False
+		if len(args) < 2 or len(args[1]) < 1:
+			return True
 		value = args[1][0]*10
-		if 1 in args[1]:
+		if len(args[1]) > 1:
 			value += args[1][1]
 		shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::'+str(args[0]),{"value" : value,"cluster_name" : cluster.name})
 		return True
