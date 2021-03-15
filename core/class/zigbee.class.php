@@ -526,7 +526,11 @@ class zigbee extends eqLogic {
     $return['class'] = $_data['class'];
     $return['lqi'] = $_data['lqi'];
     $return['rssi'] = $_data['rssi'];
-    $return['last_seen'] = date('Y-m-d H:i:s',$_data['last_seen']);
+    if($_data['last_seen'] == 'None'){
+      $return['last_seen'] = 'N/A';
+    }else{
+      $return['last_seen'] = date('Y-m-d H:i:s',$_data['last_seen']);
+    }
     $return['node_descriptor'] = $_data['node_descriptor'];
     switch ($_data['status']) {
       case 0:
