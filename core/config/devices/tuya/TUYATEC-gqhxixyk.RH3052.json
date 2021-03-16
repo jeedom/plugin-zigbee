@@ -1,5 +1,5 @@
 {
-  "name": "Température/humidité",
+  "name": "Capteur de température et humidité",
   "ref" : "ST-TH01",
   "buylink" : "",
   "commands": [
