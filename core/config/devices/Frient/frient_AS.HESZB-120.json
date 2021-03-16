@@ -1,8 +1,8 @@
 {
-  "name": "Detecteur de chaleur",
+  "name": "Détecteur de chaleur",
   "ref" : "20209700",
   "buylink":"https://www.domadoo.fr/fr/peripheriques/5411-frient-detecteur-de-chaleur-intelligent-zigbee-30-din-en-14604-et-din-14676-5713594002446.html",
-  "reset" : "Presser le bouton jusqu'a ce que le module clignote",
+  "reset" : "Pressez le bouton jusqu'à ce que le module clignote",
   "pairing":"Il faut enlever remettre la pile dans le module",
   "configuration" :{
     "deviceSpecific":{
