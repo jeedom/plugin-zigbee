@@ -1,6 +1,6 @@
 {
-  "name": "Tuya prise + 2 USB",
-  "ref" : "LXN59-1S7LX1.0",
+  "name": "Prise intelligente + 2 ports USB",
+  "ref" : "SSA-002",
   "buylink" : "",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
