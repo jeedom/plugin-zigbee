@@ -1,6 +1,7 @@
 {
   "name": "SMABIT - Interrupteur mural avec piles",
   "ref" : "AV2010/34",
+  "buylink":"https://www.domadoo.fr/fr/peripheriques/5568-smabit-interrupteur-mural-zigbee-avec-piles-8021156061037.html",
   "pairing" : "Maintenez appuyé 10s sur le bouton au dos de l'interrupteur",
   "configuration" :{
     "deviceSpecific":{
