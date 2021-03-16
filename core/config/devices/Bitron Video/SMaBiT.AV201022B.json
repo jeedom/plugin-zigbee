@@ -1,6 +1,7 @@
 {
   "name": "SMABIT - Détecteur de mouvement extérieur",
   "ref":"AV2010/22B",
+  "buylink":"https://www.domadoo.fr/fr/peripheriques/5550-smabit-detecteur-de-mouvement-exterieur-zigbee-8023874397665.html",
   "pairing":"Maintenez appuyé sur les 2 boutons pendant 10s",
   "configuration" :{
     "deviceSpecific":{
