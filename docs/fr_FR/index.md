@@ -166,7 +166,7 @@ Les mises à jour se lance si il y en a une et après que le module demande si y
 >
 >Essayer de supprimer la rallonge USB si vous en avez une ou de changer celle-ci ou d'en mettre une si vous n'en avez pas
 
->**J'ai des erreurs "can not send to device" ou "send error"**
+>**J'ai des erreurs "can not send to device" ou "send error" ou "Message send failure"**
 >
 >Malheureusement c'est tres compliqué à corriger, c'est en général du à un soucis de routage (le routage est plus ou moins fixe en zigbee et non symetrique : le module peut utiliser une route differente pour vous repondre que celle utilisée pour lui parler). Souvent l'arret electrique (retrait des piles par exemple) et remise du courant (ou remise des piles) suffit a regler le probleme.
 
