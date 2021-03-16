@@ -166,10 +166,16 @@ Les mises à jour se lance si il y en a une et après que le module demande si y
 >
 >Essayer de supprimer la rallonge USB si vous en avez une ou de changer celle-ci ou d'en mettre une si vous n'en avez pas
 
->**J'ai des erreurs "can not send to device"**
+>**J'ai des erreurs "can not send to device" ou "send error"**
 >
 >Malheureusement c'est tres compliqué à corriger, c'est en général du à un soucis de routage (le routage est plus ou moins fixe en zigbee et non symetrique : le module peut utiliser une route differente pour vous repondre que celle utilisée pour lui parler). Souvent l'arret electrique (retrait des piles par exemple) et remise du courant (ou remise des piles) suffit a regler le probleme.
 
 >**J'ai des erreurs bizarre sur des modules sur pile ou des soucis d'inclusion**
 >
 >Nous avons remarqué qu'une bonne partie des problemes en zigbee sur des modules sur batterie sont du aux piles (ou des problemes de reset des modules avant inclusion). Meme si celle-ci semble neuves il est conseillé de tester avec d'autre pour etre sur.
+
+>**J'ai des soucis de mise à jour des valeurs de l'équipement**
+>
+> Il y a 2 cas possibles :
+> - c'est un "vieux module" en ZLL (voir configuration de l'équipement Jeedom indique si c'est du ZHA ou ZLL), dans ce cas il faut absolument une commande "Rafraichir" pour que vous ou Jeedom force une mise à jour des valeurs. Si vous ne l'avez pas alors il faut contacter le support pour qu'on l'ajoute dans la prochaine version stable. Une fois sortie il vous faudra cliquer sur "recreer les commandes" sans suppression
+> - le module est en ZHA, alors c'est un soucis d'inclusion  : dans l'onglet action de la configuration de l'équipement vous avez un bouton reinitialiser pour forcer les actions post inclusion, bien penser à garder le module eveillé si il est sur batterie.
