@@ -1,9 +1,9 @@
 {
-  "name": "Air Quality Sensor",
+  "name": "Capteur de qualité d'air",
   "ref" : "20204000",
   "buylink":"https://www.domadoo.fr/fr/peripheriques/5408-frient-capteur-de-qualite-d-air-zigbee-ha-5713594002392.html",
   "pairing": "Inserez les piles",
-  "reset": "Appuyer sur le bouton jusqu'a ce que la led clignote rouge",
+  "reset": "Appuyez sur le bouton jusqu'à ce que la led clignote rouge",
   "commands": [
     {
       "name": "Humidité",
