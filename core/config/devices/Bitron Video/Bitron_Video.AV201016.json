@@ -1,6 +1,7 @@
 {
   "name": "SMABIT - Relais mural variateur 2,5A",
   "ref" : "AC2010/16",
+  "buylink":"https://www.domadoo.fr/fr/peripheriques/5543-smabit-relais-mural-variateur-25a-zigbee-8023874397122.html",
   "pairing" : "Maintenez appuyé pendant 10s le bouton du module",
   "commands": [
     {
