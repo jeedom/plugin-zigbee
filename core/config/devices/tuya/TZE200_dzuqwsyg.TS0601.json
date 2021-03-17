@@ -1,5 +1,6 @@
 {
-  "name": "Thermostat",
+  "name": "MOES - Thermostat intelligent",
+  "ref" : "TS0601",
   "buylink" : "",
   "commands": [
     {
