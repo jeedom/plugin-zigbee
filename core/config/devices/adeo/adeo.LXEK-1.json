@@ -151,17 +151,6 @@
       }
     },
     {
-      "name": "Toggle",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "logicalId": "1::on_off::toggle",
-      "display": {
-        "icon": "<i class=\"fas fa-random\"></i>"
-      }
-    },
-    {
       "name": "Loop",
       "type": "action",
       "subtype": "other",
