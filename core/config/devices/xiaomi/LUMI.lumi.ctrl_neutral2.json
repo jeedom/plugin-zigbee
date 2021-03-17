@@ -33,6 +33,18 @@
       "logicalId": "2::on_off::off"
     },
     {
+      "name": "Toggle",
+      "generic_type": "LIGHT_TOGGLE",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "2::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
+    },
+    {
       "name": "Etat 2",
       "type": "info",
       "subtype": "binary",
@@ -60,6 +72,18 @@
       "isHistorized": 0,
       "value" : "Etat 2",
       "logicalId": "3::on_off::off"
+    },
+    {
+      "name": "Toggle",
+      "generic_type": "LIGHT_TOGGLE",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "3::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
     }
   ]
 }
