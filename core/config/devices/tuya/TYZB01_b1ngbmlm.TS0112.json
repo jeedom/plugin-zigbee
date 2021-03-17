@@ -1,5 +1,6 @@
 {
-  "name": "USEELINK - MULTIPRISE CONNECTÉE 4 PRISES + 2 PORTS USB",
+  "name": "Prise intelligente ON/OFF et 2 ports USB",
+  "ref" : "ZK-FR-2U",
   "reset" : "",
   "pairing":"Maintenez appuyé le bouton général pendant 6 secondes",
   "commands": [

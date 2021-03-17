@@ -1,6 +1,7 @@
 {
   "name": "SMABIT - Prise intelligente variateur 2,5A",
   "ref" : "AC2010/26",
+  "buylink":"https://www.domadoo.fr/fr/peripheriques/5561-smabit-prise-intelligente-zigbee-variateur-25a-8023874395845.html",
   "pairing" : "Maintenez appuyé pendant 10s le bouton du module",
   "commands": [
     {

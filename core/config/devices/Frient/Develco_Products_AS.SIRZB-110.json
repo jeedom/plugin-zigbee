@@ -1,9 +1,9 @@
 {
-  "name": "Siren",
+  "name": "Sirène intelligente",
   "ref" : "AQSZB-110",
   "manufacturer" : "Develco",
-  "pairing": "Brancher les sirene",
-  "reset": "Appuyer sur le bouton jusqu'a ce que la led clignote rouge",
+  "pairing": "Branchez la sirène",
+  "reset": "Appuyez sur le bouton jusqu'à ce que la led clignote rouge",
   "commands": [
     {
       "name": "Etat durée",

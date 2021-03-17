@@ -1,9 +1,8 @@
 {
-  "name": "Wallplug",
+  "name": "Prise intelligente",
   "ref" : "20201200",
   "buylink":"https://www.domadoo.fr/fr/peripheriques/5412-frient-prise-intelligente-mini-avec-mesure-de-consommation-zigbee-ha-version-fr-5713594002514.html",
-  "buylink" : "",
-  "reset" : "Il faut presser pendant 10s le bouton du module",
+  "reset" : "Il faut presser pendant 10s le bouton de la prise",
   "pairing":"Alimenter le module",
   "commands": [
     {

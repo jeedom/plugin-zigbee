@@ -166,10 +166,16 @@ Las actualizaciones se lanzan si hay una y luego el módulo pregunta si hay una 
 >
 >Intente quitar la extensión USB si tiene una o cámbiela o coloque una si no tiene una
 
->**Tengo errores de "no se puede enviar al dispositivo""**
+>**Tengo errores "no se puede enviar al dispositivo" o "error de envío" o "error en el envío del mensaje""**
 >
 >Desafortunadamente es muy complicado de corregir, generalmente se debe a un problema de enrutamiento (el enrutamiento es más o menos fijo en zigbee y no simétrico : el módulo puede usar una ruta diferente para responderte que la que usó para hablar con él). A menudo, el corte eléctrico (quitar las baterías, por ejemplo) y restablecer la corriente (o reemplazar las baterías) es suficiente para resolver el problema.
 
 >**Tengo errores extraños en módulos apilados o problemas de inclusión**
 >
 >Notamos que una buena parte de los problemas de zigbee en los módulos de batería se deben a las baterías (o problemas de resetear los módulos antes de la inclusión). Incluso si parece nuevo, es aconsejable probar con otras personas para asegurarse.
+
+>**Me preocupa actualizar los valores del equipo**
+>
+> Hay 2 casos posibles :
+> - c'est un "vieux module" en ZLL (voir configuration de l'équipement Jeedom indique si c'est du ZHA ou ZLL), dans ce cas il faut absolument une commande "Rafraichir" pour que vous ou Jeedom force une mise à jour valores. Si no lo tiene, debe ponerse en contacto con el soporte técnico para que se pueda agregar a la próxima versión estable. Una vez que haya salido, tendrá que hacer clic en "volver a crear pedidos" sin eliminar
+> - el módulo está en ZHA, por lo que es una preocupación de inclusión  : en la pestaña de acciones de la configuración del equipo tienes un botón de reinicio para forzar acciones de inclusión posterior, recuerda mantener el módulo despierto si está en batería.

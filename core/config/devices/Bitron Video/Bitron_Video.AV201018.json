@@ -1,6 +1,7 @@
 {
   "name": "SMABIT - Relais mural commutateur 10A",
   "ref" : "AC2010/18",
+  "buylink":"https://www.domadoo.fr/fr/peripheriques/5544-smabit-relais-mural-commutateur-10a-zigbee-8023874397139.html",
   "pairing" : "Maintenez appuyé pendant 10s le bouton du module",
   "commands": [
     {

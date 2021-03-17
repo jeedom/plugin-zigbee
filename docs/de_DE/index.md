@@ -166,10 +166,16 @@ Die Updates werden gestartet, wenn es eines gibt, und danach fragt das Modul, ob
 >
 >Versuchen Sie, die USB-Erweiterung zu entfernen, wenn Sie eine haben, oder ändern Sie sie oder setzen Sie eine ein, wenn Sie keine haben
 
->**Ich habe Fehler "kann nicht an Gerät senden""**
+>**Ich habe die Fehler "Kann nicht an Gerät senden" oder "Fehler senden" oder "Fehler beim Senden der Nachricht""**
 >
 >Leider ist die Korrektur sehr kompliziert, es liegt normalerweise an einem Routing-Problem (das Routing ist mehr oder weniger im Zickzack fixiert und nicht symmetrisch : Das Modul kann eine andere Route verwenden, um Ihnen zu antworten, als die, mit der es gesprochen hat). Oft reicht die elektrische Abschaltung (z. B. Entfernen der Batterien) und Zurücksetzen des Stroms (oder Ersetzen der Batterien) aus, um das Problem zu beheben.
 
 >**Ich habe seltsame Fehler bei gestapelten Modulen oder Einschlussproblemen**
 >
 >Wir haben festgestellt, dass ein großer Teil der Zickzackprobleme bei Batteriemodulen auf die Batterien zurückzuführen ist (oder auf Probleme beim Zurücksetzen der Module vor dem Einschluss). Auch wenn es neu erscheint, ist es ratsam, mit anderen zu testen, um sicherzugehen.
+
+>**Ich habe Bedenken, die Werte der Ausrüstung zu aktualisieren**
+>
+> Es gibt 2 mögliche Fälle :
+> - Es ist ein "altes Modul" in ZLL (siehe Konfiguration der Jeedom-Ausrüstung gibt an, ob es sich um ZHA oder ZLL handelt). In diesem Fall benötigen Sie unbedingt einen "Aktualisieren" -Befehl für Sie oder Jeedom, um eine Aktualisierung der Werte zu erzwingen. Wenn Sie es nicht haben, müssen Sie sich an den Support wenden, damit es zur nächsten stabilen Version hinzugefügt werden kann. Nach dem Beenden müssen Sie auf "Bestellungen neu erstellen" klicken, ohne sie zu löschen
+> - Das Modul befindet sich in ZHA, daher ist es ein Anliegen der Inklusion  : Auf der Registerkarte "Aktion" der Gerätekonfiguration befindet sich eine Schaltfläche zum Zurücksetzen, um Aktionen nach dem Einschluss zu erzwingen. Denken Sie daran, das Modul wach zu halten, wenn es im Akkubetrieb ist.

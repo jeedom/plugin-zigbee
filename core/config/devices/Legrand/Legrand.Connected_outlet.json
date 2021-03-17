@@ -1,9 +1,8 @@
 {
-  "name": "Prise intelligente + 2 ports USB",
-  "ref" : "SSA-002",
+  "name": "Legrand prise connectée",
+  "ref" : "067725",
+  "remark" : "Ne peut etre appairé que sur le canal 11",
   "buylink" : "",
-  "reset" : "Il faut presser pendant 10s le bouton du module",
-  "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [
     {
       "name": "Etat",
@@ -22,11 +21,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::on",
-      "template":{
-        "dashboard" : "prise",
-        "mobile" : "prise"
-      }
+      "logicalId": "1::on_off::on"
     },
     {
       "name": "Off",
@@ -37,6 +32,20 @@
       "isHistorized": 0,
       "value" : "Etat",
       "logicalId": "1::on_off::off",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Puissance",
+      "generic_type": "POWER",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"W",
+      "logicalId": "1::2820::1291",
       "template":{
         "dashboard" : "prise",
         "mobile" : "prise"
