@@ -1,5 +1,6 @@
 {
-  "name": "TUYA Zigbee RGBW RGBWW Led bande SMD 5050",
+  "name": "Contrôleur ruban de LED RGBW",
+  "ref" : "TS0504B",
   "buylink" : "",
   "commands": [
     {
