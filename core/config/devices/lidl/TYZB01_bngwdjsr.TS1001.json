@@ -1,5 +1,6 @@
 {
-  "name": "Télécommande",
+  "name": "Télécommande intelligente variateur",
+  "ref" : "TS1001",
   "buylink" : "",
   "commands": [
     {
