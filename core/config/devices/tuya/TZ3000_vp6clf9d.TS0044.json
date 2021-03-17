@@ -1,5 +1,5 @@
 {
-  "name": "Interrupteur 4 boutons",
+  "name": "Interrupteur intelligent 4 boutons avec piles",
   "ref": "TS0044",
   "configuration": {
     "battery_type": "1x3V CR2430"
