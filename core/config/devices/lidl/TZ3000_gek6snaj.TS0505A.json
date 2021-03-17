@@ -1,5 +1,6 @@
 {
-  "name": "Reglette led",
+  "name": "Reglette à LED connectée",
+  "ref" : "TS0505A",
   "buylink" : "",
   "pairing" : "10s éteinte,1s allumée,3s éteinte,1s allumée,3s éteinte,Allumer",
   "commands": [
