@@ -166,10 +166,16 @@ The updates are launched if there is one and after that the module asks if there
 >
 >Try to remove the USB extension if you have one or change it or put one in if you don't have one
 
->**I have "can not send to device" errors"**
+>**I have "can not send to device" or "send error" or "Message send failure" errors"**
 >
 >Unfortunately it is very complicated to correct, it is usually due to a routing problem (the routing is more or less fixed in zigbee and not symmetrical : the module can use a different route to answer you than the one used to talk to it). Often the electrical shutdown (removing the batteries for example) and resetting the current (or replacing the batteries) is enough to resolve the problem.
 
 >**I have weird errors on stacked modules or inclusion issues**
 >
 >We noticed that a good part of the zigbee problems on battery modules are due to the batteries (or problems of resetting the modules before inclusion). Even if it seems new, it is advisable to test with others to be sure.
+
+>**I have concerns updating the values of the equipment**
+>
+> There are 2 possible cases :
+> - it is an "old module" in ZLL (see configuration of the Jeedom equipment indicates whether it is ZHA or ZLL), in this case you absolutely need a "Refresh" command for you or Jeedom to force an update values. If you don't have it then you have to contact support so that it can be added to the next stable version. Once exited you will have to click on "recreate orders" without deleting
+> - the module is in ZHA, so it's a concern of inclusion  : in the action tab of the equipment configuration you have a reset button to force post inclusion actions, remember to keep the module awake if it is on battery.
