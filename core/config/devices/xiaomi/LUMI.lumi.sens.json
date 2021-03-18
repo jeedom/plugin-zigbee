@@ -1,6 +1,6 @@
 {
-  "name": "Capteur de température/humidité",
-  "ref" : "sens",
+  "name": "MIJIA - Capteur de température/humidité",
+  "ref" : "LYWSDCGQ/01ZM",
   "buylink" : "",
   "reset" : "Appuyer pendant 10s le sur bouton du module",
   "pairing":"Appuyer pendant 5s le sur bouton du module",
