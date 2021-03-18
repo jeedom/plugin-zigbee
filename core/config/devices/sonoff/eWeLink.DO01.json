@@ -1,8 +1,12 @@
 {
   "name": "Capteur d'ouverture porte/fenêtre",
   "ref" : "SNZB-04",
+  "type": "Capteur,Ouverture",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5320-sonoff-capteur-d-ouverture-de-portefenetre-zigbee.html",
   "remark" : "Attention il y a un bug dans le firmware qui le fait remonter comme un module de température et d'humidité il faut donc suite à l'inclusion remettre le bon model et supprimer les commandes de température et d'humidité",
+  "reset": "Retirer puis remettre la pile, puis appuyer pendant 10 secondes sur le bouton reset",
+  "pairing": "Appui maintenu de 5 secondes sur le bouton reset",
+  "documentation": "http://dl.itead.cc/SNZB-04/Instructions/SNZB-04_V1.0_User_manual_20201116.pdf",
   "configuration" : {
     "battery_type" : "1x3V CR2032"
   },
