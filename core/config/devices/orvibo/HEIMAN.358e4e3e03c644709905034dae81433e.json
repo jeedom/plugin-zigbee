@@ -4,10 +4,10 @@
   "manufacturer": "Orvibo",
   "type": "Capteur,Gaz",
   "reset": "",
-  "pairing": "",
+  "pairing": "Après avoir attendu les 3 minutes de démarrage du capteur, maintenir appuyé le bouton reset pendant 2 secondes.",
   "remark": "",
-  "documentation": "",
-  "buylink" : "",
+  "documentation": "https://www.domadoo.fr/fr/index.php?controller=attachment&id_attachment=2475",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5337-orvibo-detecteur-de-gaz-zigbee.html",
   "commands": [
     {
       "name": "Gaz",
