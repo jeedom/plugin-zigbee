@@ -1,8 +1,11 @@
 {
   "name": "Water leak",
   "ref":"SW30",
-  "buylink" : "",
+  "type": "Capteur,Fuite,Inondation",
+  "reset": "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5338-orvibo-detecteur-d-inondation-zigbee.html",
   "pairing" : "Presser le bouton pendant 5 à 10s",
+  "documentation": "https://www.domadoo.fr/fr/index.php?controller=attachment&id_attachment=2458",
   "commands": [
     {
       "name": "Innondation",
