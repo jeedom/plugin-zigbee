@@ -1,6 +1,12 @@
 {
   "name": "Gaz sensor",
   "ref" : "SG21",
+  "manufacturer": "Orvibo",
+  "type": "Capteur,Gaz",
+  "reset": "",
+  "pairing": "",
+  "remark": "",
+  "documentation": "",
   "buylink" : "",
   "commands": [
     {
