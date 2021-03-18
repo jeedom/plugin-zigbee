@@ -1,6 +1,6 @@
 {
-  "name": "ASLED Swing",
-  "ref" : "_TZ3000_40zcsvfv TS0502A",
+  "name": "Contrôleur de LED",
+  "ref" : "TS0502A",
   "buylink" : "",
   "reset" : "",
   "pairing" : "",

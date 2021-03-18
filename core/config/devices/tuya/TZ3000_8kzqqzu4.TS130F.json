@@ -1,5 +1,6 @@
 {
-  "name": "Tuya-interrupteur connecté pour rideau connecté",
+  "name": "Interrupteur connecté pour rideau connecté",
+  "ref" : "TS130F",
   "buylink" : "",
   "commands": [
     {

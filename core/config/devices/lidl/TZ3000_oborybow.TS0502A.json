@@ -1,5 +1,6 @@
 {
-  "name": "LIDL E14 LED LIVARNOLUX",
+  "name": "Ampoule LED connectée E14",
+  "ref" : "TS0502A",
   "buylink" : "",
   "reset" : "Il faut utiliser la fonction reset touchlink. Voir <a target='_blank' href='https://doc.jeedom.com/fr_FR/plugins/automation%20protocol/zigbee/#Touchlink'>ici</a>",
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule (un on/off sera peut être nécessaire)",

@@ -1,7 +1,8 @@
 {
-  "name": "Applique",
+  "name": "Applique murale LED d'exterieur connectée",
+  "ref" : "TS0505A",
   "buylink" : "",
-  "pairing" : "10s éteinte,1s allumée,3s éteinte,1s allumée,3s éteinte,Allumer",
+  "pairing" : "10s éteinte, 1s allumée, 3s éteinte, 1s allumée, 3s éteinte, Allumer",
   "commands": [
     {
       "name": "Etat",

@@ -1,5 +1,6 @@
 {
-  "name": "TUYA Zigbee Mini contrôleur de bande Led",
+  "name": "Mini contrôleur de ruban Led RGB",
+  "ref" : "TS0503B",
   "buylink" : "",
   "commands": [
     {

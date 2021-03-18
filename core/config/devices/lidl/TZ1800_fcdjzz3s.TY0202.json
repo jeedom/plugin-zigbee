@@ -1,5 +1,6 @@
 {
-  "name": "Capteur de mouvement",
+  "name": "Détecteur de mouvement intelligent",
+  "ref" : "TY0202",
   "commands": [
     {
       "name": "Présence",

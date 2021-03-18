@@ -1,5 +1,5 @@
 {
-  "name": "Température/humidité",
+  "name": "Capteur de température et humidité avec écran",
   "ref" : "TS0201",
   "buylink" : "",
   "commands": [
