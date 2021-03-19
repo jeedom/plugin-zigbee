@@ -97,6 +97,26 @@
       "value" : "Etat couleur",
       "logicalId": "1::light_color::move_to_color::#color#::0",
       "generic_type": "LIGHT_SET_COLOR"
+    },
+    {
+      "name": "Etat température couleur",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat température couleur",
+      "logicalId": "1::768::7",
+      "generic_type": "LIGHT_COLOR_TEMP"
+    },
+    {
+      "name": "Température Couleur",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat température couleur",
+      "logicalId": "1::light_color::move_to_color_temp::#slider#::0",
+      "generic_type": "LIGHT_SET_COLOR_TEMP"
     }
   ]
 }
