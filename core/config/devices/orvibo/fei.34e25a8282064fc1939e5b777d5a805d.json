@@ -1,8 +1,10 @@
 {
   "name": "Emergency button",
   "ref":"SE30",
+  "type": "Bouton,Télécommande",
+  "reset": "",
   "pairing":"Presser le bouton set au dos du bouton pendant 5 à 10s",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5335-orvibo-bouton-d-urgence-sos-zigbee.html",
   "commands": [
     {
       "name": "Bouton",

@@ -1,6 +1,7 @@
 {
   "name": "Gaz sensor",
   "ref":"SG30",
+  "type": "Capteur,Gaz",
   "reset":"",
   "pairing":"Presser le bouton pendant 5s",
   "buylink" : "",

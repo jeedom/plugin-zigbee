@@ -1,7 +1,8 @@
 {
-  "name": "Xiaomi Aquara switch",
-  "ref" : "switch",
+  "name": "MIJIA - Smart Wireless Switch",
+  "ref" : "YTC4040GL",
   "buylink" : "",
+  "type": "Interrupteur,Télécommande",
   "commands": [
     {
       "name": "Etat",

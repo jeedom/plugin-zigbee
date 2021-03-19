@@ -1,8 +1,12 @@
 {
   "name": "Micromodule commutateur 10A",
   "ref" : "BASICZBR3",
-  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5258-sonoff-module-commutateur-10a-zigbee-30.html",
-  "remark" : "",
+  "type": "Contacteur",
+  "buylink": "https://www.domadoo.fr/fr/peripheriques/5258-sonoff-module-commutateur-10a-zigbee-30.html",
+  "remark": "",
+  "documentation": "http://dl.itead.cc/basiczbr3/BASICZBR3-user-manual-V-1-1.pdf",
+  "reset": "Appui maintenu de 5 secondes sur le bouton de configuration",
+  "pairing": "Une fois alimenté le module entre en mode appairage",
   "commands": [
     {
       "name": "Etat",

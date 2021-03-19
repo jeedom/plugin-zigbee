@@ -1,6 +1,7 @@
 {
   "name": "Micromodule commutateur connecté",
   "ref" : "ZBMINI",
+  "type": "Contacteur,Lumière",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5375-sonoff-micromodule-commutateur-connecte-zigbee.html",
   "reset" : "Maintenez appuyé 5sec sur le bouton du micromodule",
   "pairing" : "Au premier branchement le module se mets en inclusion, passer votre réseaux Zigbee en mode inclusion il devrait s'appairer tout seul",

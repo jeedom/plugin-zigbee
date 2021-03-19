@@ -1,6 +1,11 @@
 {
   "name": "Motorisation pour vanne 1/4 de tour",
   "ref" : "ZG-V01",
+  "type": "Vanne",
+  "reset": "",
+  "pairing": "",
+  "remark": "",
+  "documentation": "",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5264-gr-smarthome-motorisation-zigbee-30-pour-vanne-14-de-tour.html",
   "commands": [
     {

@@ -1,7 +1,10 @@
 {
-  "name": "Température/humidité",
+  "name": "Temperature/humidity sensor",
   "ref" : "ST30",
-  "buylink" : "",
+  "type": "Capteur,Température,Humidité",
+  "reset": "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5334-orvibo-capteur-de-temperature-et-humidite-zigbee.html",
+  "documentation": "https://www.domadoo.fr/fr/index.php?controller=attachment&id_attachment=2455",
   "pairing" : "Presser le bouton pendant 5 à 10s",
   "commands": [
     {

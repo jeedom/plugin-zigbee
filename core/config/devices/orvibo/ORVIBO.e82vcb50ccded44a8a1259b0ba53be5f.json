@@ -1,6 +1,7 @@
 {
   "name": "Sensor connector",
   "ref" : "CD10ZW",
+  "type": "Capteur",
   "buylink" : "",
   "pairing" : "Presser le bouton pendant 5 à 10s",
   "commands": [

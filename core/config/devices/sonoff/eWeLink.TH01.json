@@ -1,7 +1,11 @@
 {
   "name": "Capteur de température et humidité",
   "ref" : "SNZB-02",
+  "type": "Capteur,Humidité,Température",
+  "reset": "retirer puis remettre la pile, puis appuyer pendant 10 secondes sur le bouton reset",
+  "pairing": "Appui maintenu de 5 secondes sur le bouton reset",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5260-sonoff-capteur-de-temperature-et-d-humidite-zigbee-30.html",
+  "documentation": "http://dl.itead.cc/SNZB-02/Instructions/SNZB-02_V1.0_User_manual_20201116.pdf",
   "configuration" : {
 	"battery_type" : "1x3V CR2450"
 	},
