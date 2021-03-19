@@ -36,6 +36,12 @@
         {"value":4,"name":"Sonde exterieure mais detecté fermée localement"}
       ]
     },
+    {"endpoint" : 1,"cluster":513,"attribute":16465,"manufacturer":4678,"name":"Detection fenêtre ouverte","type":"select","values":
+      [
+        {"value":0,"name":"Off"},
+        {"value":1,"name":"On"}
+      ]
+    },
     {"endpoint" : 1,"cluster":513,"attribute":16459,"manufacturer":4678,"name":"Offset consigne","type":"number"},
     {"endpoint" : 1,"cluster":513,"attribute":16458,"manufacturer":4678,"name":"Puissance estimée du radiateur","type":"number","readonly":1},
     {"endpoint" : 1,"cluster":513,"attribute":16461,"manufacturer":4678,"name":"Status de l'apprentissage","type":"select","readonly":1,"values":

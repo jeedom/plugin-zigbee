@@ -75,6 +75,7 @@ DANFOSS_VALVE_MANUFACTURER_ATTRIBUTES = {
 		0x4030: ("heat_available", types.Bool),
 		0x4031: ("heat_supply_request", types.Bool),
 		0x4032: ("load_balancing_enable", types.Bool),
+		0x4051: ("window_open_feature", types.Bool),
 		0x404A: ("load_estimate_radiator", types.uint16_t),
 		0x404B: ("regulation_setPoint_offset", types.int8s),
 		0x404C: ("adaptation_run_control", types.enum8),
