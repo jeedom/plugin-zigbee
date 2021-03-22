@@ -1,5 +1,6 @@
 {
-  "name": "Legrand variateur",
+  "name": "Interrupteur filaire connecté avec option variateur sans neutre",
+  "ref" : "064891-067721-067771",
   "buylink" : "",
   "remark" : "Ne peut etre appairé que sur le canal 11, 13 ou 15",
   "config" : [
