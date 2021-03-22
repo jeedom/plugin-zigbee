@@ -1,5 +1,6 @@
 {
-  "name": "Thermostat",
+  "name": "SMABIT - Thermostat intelligent avec relais intégré",
+  "ref" : "AV2010/32",
   "commands": [
     {
       "name": "Température",
