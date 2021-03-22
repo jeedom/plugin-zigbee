@@ -49,7 +49,7 @@
       "subtype": "other",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::on_off::toggle",
+      "logicalId": "11::on_off::toggle",
       "display": {
         "icon": "<i class=\"fas fa-random\"></i>"
       }
