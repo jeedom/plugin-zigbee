@@ -1,5 +1,6 @@
 {
-  "name": "QS-Zigbee-D02-TRIAC-2C-LN",
+  "name": "Module intelligent pour volet roulant",
+  "ref" : "QS-ZIGBEE-C01",
   "buylink" : "",
   "commands": [
     {

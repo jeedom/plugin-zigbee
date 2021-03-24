@@ -1,5 +1,6 @@
 {
-  "name": "Konke température et d'humidité",
+  "name": "Sonde de température et d'humidité",
+  "ref" : "PRO-FT",
   "buylink" : "",
   "commands": [
     {
