@@ -1,7 +1,7 @@
 {
-  "name": "Legrand interrupteur double",
+  "name": "Legrand interrupteur double sans fil",
   "buylink" : "",
-  "ref" : "067722/0677772/064895",
+  "ref" : "067722/067772/064895",
   "remark" : "Ne peut etre appairé que sur le canal 11",
   "commands": [
     {
