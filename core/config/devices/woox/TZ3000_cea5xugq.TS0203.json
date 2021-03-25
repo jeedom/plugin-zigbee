@@ -6,20 +6,19 @@
   "pairing" : "Maintenir appuyé 5 secondes le bouton reset jusqu'au clignotement de la LED",
   "commands": [
     {
-      "name": "Mouvement",
+      "name": "Ouverture",
       "type": "info",
       "subtype": "binary",
       "isVisible": 1,
-      "isHistorized": 1,
+      "isHistorized": 0,
       "logicalId": "1::1280::cmd::1",
-      "generic_type": "PRESENCE",
-      "configuration" : {
-        "returnStateValue" : 1,
-        "returnStateTime" : 1
+      "generic_type": "OPENING",
+      "display": {
+        "invertBinary" : 1
       },
-      "template":{
-        "dashboard" : "presence",
-        "mobile" : "presence"
+      "template" : {
+        "dashboard" : "window",
+        "mobile" : "window"
       }
     }
   ]

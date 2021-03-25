@@ -1,0 +1,20 @@
+{
+  "name": "Détecteur de fumée intelligent",
+  "ref" : "R7049",
+  "pairing":"Maintenir appuyé 5 secondes le bouton test jusqu'au clignotement de la LED",
+  "commands": [
+    {
+      "name": "Fumée",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "35::15::85",
+      "generic_type": "SMOKE",
+      "template":{
+        "dashboard" : "heat",
+        "mobile" : "heat"
+      }
+    }
+  ]
+}
