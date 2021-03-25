@@ -3,7 +3,7 @@
   "ref" : "R7052",
   "buylink" : "",
   "reset" : "",
-  "pairing" : "",
+  "pairing" : "Maintenir appuyé 5 secondes le bouton reset jusqu'au clignotement de la LED",
   "commands": [
     {
       "name": "Mouvement",
