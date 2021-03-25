@@ -1,9 +1,9 @@
 {
-  "name": "Détecteur de mouvement",
-  "ref" : "",
+  "name": "Télécommande 4 boutons SOS/Armer/Désarmer/Maison",
+  "ref" : "R7054",
   "buylink" : "",
   "reset" : "",
-  "pairing" : "",
+  "pairing" : "Maintenir appuyé 5 secondes le bouton reset jusqu'au clignotement de la LED",
   "commands": [
     {
       "name": "Mouvement",
