@@ -1,6 +1,7 @@
 {
   "name": "Legrand micro module",
   "buylink" : "",
+  "ref" : "064888",
   "remark" : "Ne peut etre appairé que sur le canal 11 ou 15",
   "commands": [
     {

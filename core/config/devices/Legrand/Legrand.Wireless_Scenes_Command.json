@@ -2,6 +2,7 @@
   "name": "Legrand commande 4 scènes sans fil",
   "remark" : "Ne peut etre appairé que sur le canal 11",
   "buylink" : "",
+  "ref" : "067755/067756/067780",
   "commands": [
     {
       "name": "scène",

@@ -1,6 +1,7 @@
 {
   "name": "Legrand prise mobile Céliane",
   "remark" : "Ne peut etre appairé que sur le canal 11",
+  "ref" : "064887",
   "buylink" : "",
   "commands": [
     {
