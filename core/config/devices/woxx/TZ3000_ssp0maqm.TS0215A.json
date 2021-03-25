@@ -1,6 +1,6 @@
 {
-  "name": "Détecteur de mouvement",
-  "ref" : "",
+  "name": "Sirène intelligente avec voyant LED",
+  "ref" : "R7051",
   "buylink" : "",
   "reset" : "",
   "pairing" : "",
