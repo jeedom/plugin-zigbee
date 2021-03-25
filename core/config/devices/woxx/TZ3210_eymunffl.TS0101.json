@@ -1,7 +1,7 @@
 {
-  "name": "Contrôleur d'arrosage",
+  "name": "Contrôleur d'arrosage extérieur intelligent ON/OFF ",
   "buylink" : "",
-  "ref" : "R7060 ",
+  "ref" : "R7060",
   "pairing" : "Maintenir appuyé 5 secondes le bouton reset jusqu'au clignotement de la LED",
   "commands": [
     {
