@@ -61,7 +61,7 @@
       "subtype": "other",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::ias_wd::start_warning::#slider#::0::0::1::1::1",
+      "logicalId": "43::ias_wd::start_warning::1::0::0::1::1::1",
       "configuration" : {
         "minValue":"1",
         "maxValue":"9"
