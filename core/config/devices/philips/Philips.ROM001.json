@@ -61,6 +61,14 @@
 			"isVisible": 0,
 			"isHistorized": 0,
 			"logicalId": "1::64512::event::on_quadruple_press::command_id"
+		},	
+		{
+			"name": "Quintuple appui",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 0,
+			"isHistorized": 0,
+			"logicalId": "1::64512::event::on_quintuple_press::command_id"
 		},
 		{
 			"name": "Maintien",
