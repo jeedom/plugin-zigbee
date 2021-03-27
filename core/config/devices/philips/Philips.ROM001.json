@@ -39,6 +39,14 @@
 			"logicalId": "1::64512::event::on_long_release::command_id"
 		},
 		{
+			"name": "Double appui",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 0,
+			"isHistorized": 0,
+			"logicalId": "1::64512::event::on_double_press::command_id"
+		},
+		{
 			"name": "Triple appui",
 			"type": "info",
 			"subtype": "binary",
