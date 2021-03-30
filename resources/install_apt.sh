@@ -23,7 +23,7 @@ sudo pip3 install --upgrade zigpy
 echo 65 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade bellows
 echo 70 > ${PROGRESS_FILE}
-sudo pip3 install --upgrade zha-quirks
+sudo pip3 install --upgrade zha-quirks==0.0.54
 echo 75 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade zigpy_znp
 echo 80 > ${PROGRESS_FILE}
