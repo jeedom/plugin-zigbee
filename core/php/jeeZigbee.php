@@ -144,11 +144,11 @@ if (isset($result['devices'])) {
 			}
 			foreach ($deviceArray as $zigbee) {
 				if($zigbee->getConfiguration('decode_file') != '' && file_exists(__DIR__.'/../'.$zigbee->getConfiguration('decode_file'))){
-					log::add('zigbee','debug','Use specific decode file for '.$zigbee->getHumanName().' => '.__DIR__.'/../'.$zigbee->getConfiguration('decode_file'));
 					try {
 						require_once __DIR__.'/../'.$zigbee->getConfiguration('decode_file');
 						$function = 'decode_'.str_replace('.','_',$zigbee->getConfiguration('device'));
 						if(function_exists($function)){
+							log::add('zigbee','debug','Use specific decode file for '.$zigbee->getHumanName().' => '.__DIR__.'/../'.$zigbee->getConfiguration('decode_file'));
 							if($function($zigbee,$endpoint_id,$clusters)){
 								continue;
 							}
