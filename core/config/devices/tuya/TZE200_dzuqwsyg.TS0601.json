@@ -10,7 +10,7 @@
       "isVisible": 1,
       "isHistorized": 1,
       "unite" : "°C",
-      "logicalId": "1::513::0",
+      "logicalId": "temperature",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
         "calculValueOffset":"#value# / 100"
@@ -23,10 +23,10 @@
       "isVisible": 0,
       "isHistorized": 0,
       "unite" : "°C",
-      "logicalId": "1::61184::cmd::1.9",
+      "logicalId": "target",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value#"
       }
     },
     {
@@ -36,16 +36,15 @@
       "isVisible": 1,
       "isHistorized": 0,
       "generic_type" : "THERMOSTAT_STATE_NAME",
-      "logicalId": "1::61184::cmd::1.6"
+      "logicalId": "mode"
     },
     {
-      "name": "Relai",
+      "name": "Ventilation",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "generic_type" : "THERMOSTAT_STATE_NAME",
-      "logicalId": "1::61184::cmd::0"
+      "logicalId": "ventilation"
     }
   ]
 }

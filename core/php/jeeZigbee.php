@@ -143,6 +143,20 @@ if (isset($result['devices'])) {
 				$deviceArray[] = $childzigbee;
 			}
 			foreach ($deviceArray as $zigbee) {
+				if($zigbee->getConfiguration('decode_file') != '' && file_exists(__DIR__.'/../'.$zigbee->getConfiguration('decode_file'))){
+					log::add('zigbee','debug','Use specific decode file for '.$zigbee->getHumanName().' => '.__DIR__.'/../'.$zigbee->getConfiguration('decode_file'));
+					try {
+						require_once __DIR__.'/../'.$zigbee->getConfiguration('decode_file');
+						$function = 'decode_'.str_replace('.','_',$zigbee->getConfiguration('device'));
+						if(function_exists($function)){
+							if($function($zigbee,$endpoint_id,$clusters)){
+								continue;
+							}
+						}
+					} catch (\Exception $e) {
+						log::add('zigbee','error',$e->getMessage());
+					}
+				}
 				foreach($clusters as $cluster_id => $attributs){
 					foreach($attributs as $attribut_id => $value){
 						if(!is_array($value) && $value == '[]'){
@@ -168,10 +182,7 @@ if (isset($result['devices'])) {
 									continue;
 								}
 								log::add('zigbee','debug','Search command for '.$ieee.' logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.' => '.$cmd_value['value']);
-								$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
-								if(is_object($cmd)){
-									$cmd->event(convertValue($cmd_value['value']));
-								}
+								$zigbee->checkAndUpdateCmd($endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id,convertValue($cmd_value['value']));
 							}
 						}else if(strcmp($attribut_id, 'gcmd') === 0){
 							foreach ($value as $cmd_id => $cmd_value) {
@@ -179,10 +190,7 @@ if (isset($result['devices'])) {
 									continue;
 								}
 								log::add('zigbee','debug','Search general command for '.$ieee.' logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.' => '.$cmd_value['value']);
-								$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
-								if(is_object($cmd)){
-									$cmd->event(convertValue($cmd_value['value']));
-								}
+								$zigbee->checkAndUpdateCmd($endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id,convertValue($cmd_value['value']));
 							}
 						}else if(strcmp($attribut_id, 'event') === 0){
 							foreach ($value as $cmd_id => $cmd_value) {
@@ -192,28 +200,19 @@ if (isset($result['devices'])) {
 											$sub_cmd_value = 1;
 										}
 										log::add('zigbee','debug','Search event command for '.$ieee.' logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.'::'.$sub_cmd_id.' => '.$sub_cmd_value);
-										$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.'::'.$sub_cmd_id);
-										if(is_object($cmd)){
-											$cmd->event(convertValue($sub_cmd_value));
-										}
+										$zigbee->checkAndUpdateCmd($endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.'::'.$sub_cmd_id,convertValue($sub_cmd_value));
 									}
 								}else{
 									if($cmd_value['value'] == '[]'){
 										$sub_cmd_value = 1;
 									}
 									log::add('zigbee','debug','Search event command for '.$ieee.' logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id.' => '.$cmd_value);
-									$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id);
-									if(is_object($cmd)){
-										$cmd->event(convertValue($cmd_value));
-									}
+									$zigbee->checkAndUpdateCmd($endpoint_id.'::'.$cluster_id.'::'.$attribut_id.'::'.$cmd_id,convertValue($cmd_value));
 								}
 							}
 						}else {
 							log::add('zigbee','debug','Search attribut for '.$ieee.' logicalId : '.$endpoint_id.'::'.$cluster_id.'::'.$attribut_id.' => '.$value['value']);
-							$cmd = $zigbee->getCmd('info',$endpoint_id.'::'.$cluster_id.'::'.$attribut_id);
-							if(is_object($cmd)){
-								$cmd->event(convertValue($value['value']));
-							}
+							$zigbee->checkAndUpdateCmd($endpoint_id.'::'.$cluster_id.'::'.$attribut_id,convertValue($value['value']));
 						}
 					}
 				}

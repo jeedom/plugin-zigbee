@@ -275,7 +275,7 @@ class zigbee extends eqLogic {
   
   public static function dependancy_install() {
     log::remove(__CLASS__ . '_update');
-    return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('zigbee') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+    return array('script' => __DIR__ . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('zigbee') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
   }
   
   public static function deamon_info() {
@@ -357,7 +357,7 @@ class zigbee extends eqLogic {
     if(!file_exists(__DIR__ . '/../../data/device')){
       mkdir(__DIR__ . '/../../data/device');
     }
-    $zigbee_path = realpath(dirname(__FILE__) . '/../../resources/zigbeed');
+    $zigbee_path = realpath(__DIR__ . '/../../resources/zigbeed');
     $cmd = '/usr/bin/python3 ' . $zigbee_path . '/zigbeed.py';
     $cmd .= ' --device ' . $port;
     $cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('zigbee'));
@@ -656,8 +656,8 @@ class zigbee extends eqLogic {
   
   public static function devicesParameters($_device = '') {
     $return = array();
-    foreach (ls(dirname(__FILE__) . '/../config/devices', '*') as $dir) {
-      $path = dirname(__FILE__) . '/../config/devices/' . $dir;
+    foreach (ls(__DIR__ . '/../config/devices', '*') as $dir) {
+      $path = __DIR__ . '/../config/devices/' . $dir;
       if (!is_dir($path)) {
         continue;
       }
@@ -684,8 +684,8 @@ class zigbee extends eqLogic {
   }
   
   public static function getImgFilePath($_device) {
-    foreach (ls(dirname(__FILE__) . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
-      foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $_device . '.{jpg,png}', false, array('files', 'quiet')) as $file) {
+    foreach (ls(__DIR__ . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
+      foreach (ls(__DIR__ . '/../config/devices/' . $folder, $_device . '.{jpg,png}', false, array('files', 'quiet')) as $file) {
         return $folder . $file;
       }
     }
@@ -731,8 +731,8 @@ class zigbee extends eqLogic {
     $visual = str_replace('\/','/',$this->getConfiguration('visual',''));
     $files = array();
     $files[] = array('path'=>'','name'=> 'Par défaut','selected' => 0);
-    foreach (ls(dirname(__FILE__) . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
-      foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $device . '_child_*.{jpg,png}', false, array('files', 'quiet')) as $file) {
+    foreach (ls(__DIR__ . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
+      foreach (ls(__DIR__ . '/../config/devices/' . $folder, $device . '_child_*.{jpg,png}', false, array('files', 'quiet')) as $file) {
         $fileEl['path'] = $folder.$file;
         $cleanName = explode('_child_',$file)[1];
         foreach (array('.jpg','.png') as $clean){
@@ -766,6 +766,16 @@ class zigbee extends eqLogic {
       $eqLogic->setConfiguration('ischild',1);
       $eqLogic->save();
     }
+  }
+  
+  public function preSave(){
+    $decode_file = null;
+    foreach (ls(__DIR__ . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
+      if(file_exists(__DIR__ . '/../config/devices/' . $folder.'/'.$this->getConfiguration('device') . '.php')){
+        $decode_file = 'config/devices/' . $folder.'/'.$this->getConfiguration('device') . '.php';
+      }
+    }
+    $this->setConfiguration('decode_file',$decode_file);
   }
   
   public function postSave() {
