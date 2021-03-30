@@ -352,6 +352,11 @@
         "Séchage": "Drying",
         "En veille": "Standby"
     },
+    "plugins\/zigbee\/core\/config\/devices\/tuya\/TZE200_dzuqwsyg.TS0601.php": {
+        "Froid": "Cold",
+        "Chaud": "Hot",
+        "Ventilation": "Ventilation"
+    },
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Zigbee eqLogic non trouvé : ": "Zigbee eqLogic not found:",

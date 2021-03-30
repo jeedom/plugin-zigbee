@@ -352,6 +352,11 @@
         "Séchage": "El secado",
         "En veille": "Colocarse"
     },
+    "plugins\/zigbee\/core\/config\/devices\/tuya\/TZE200_dzuqwsyg.TS0601.php": {
+        "Froid": "Frío",
+        "Chaud": "Caliente",
+        "Ventilation": "Ventilación"
+    },
     "plugins\/zigbee\/core\/ajax\/zigbee.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Zigbee eqLogic non trouvé : ": "Zigbee eqLogic no encontrado:",
