@@ -17,6 +17,7 @@
 */
 
 function decode_TZE200_dzuqwsyg_TS0601($_eqLogic,$_endpoint_id,$_cluster){
+  log::add('zigbee','debug','[decode_TZE200_dzuqwsyg_TS0601] Begin specific function for '.$_eqLogic->getHumanName().' with '.json_encode($_cluster));
   if(!isset($_cluster['61184'])){
     return false;
   }
@@ -29,7 +30,6 @@ function decode_TZE200_dzuqwsyg_TS0601($_eqLogic,$_endpoint_id,$_cluster){
   if(!isset($_cluster['61184']['cmd']['1.6'])){
     return false;
   }
-  log::add('zigbee','debug','[decode_TZE200_dzuqwsyg_TS0601] Begin specific function for '.$_eqLogic->getHumanName());
   $type = $_cluster['61184']['cmd']['1.2']['value'];
   $value = $_cluster['61184']['cmd']['1.6']['value'];
   switch ($type) {
