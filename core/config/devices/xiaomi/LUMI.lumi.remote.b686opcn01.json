@@ -1,6 +1,6 @@
 {
-  "name": "Aqara Opple 6 boutons",
-  "ref" : "b686opcn01",
+  "name": "AQARA - Interrupteur sans fil intelligent 6 boutons OPPLE",
+  "ref" : "WXCJKG13LM",
   "configuration" : {
     "battery_type" : "1x3V CR2032"
   },
