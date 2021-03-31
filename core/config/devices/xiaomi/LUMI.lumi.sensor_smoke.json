@@ -1,6 +1,6 @@
 {
-  "name": "Xiaomi Aquara fumée",
-  "ref" : "sensor_smoke",
+  "name": "MIJIA - Détecteur de fumée intelligent",
+  "ref" : "JTYJ-GD-01LM/BW",
   "reset" : "Appuyer pendant 10s sur le bouton du module",
   "pairing":"Appuyer pendant 5s sur le bouton du module",
   "configuration" : {

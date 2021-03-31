@@ -1,6 +1,6 @@
 {
-  "name": "Xiaomi capteur ouverture",
-  "ref" : "magnet",
+  "name": "MI - Capteur d'ouverture intelligent",
+  "ref" : "MCCGQ01LM",
   "buylink" : "",
   "reset" : "Appuyer pendant 10s le sur bouton du module",
   "pairing":"Appuyer pendant 5s le sur bouton du module",

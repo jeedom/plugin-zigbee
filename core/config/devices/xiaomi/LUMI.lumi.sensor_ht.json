@@ -1,7 +1,7 @@
 {
-  "name": "Capteur de température/humidité",
-  "ref" : "Weather",
-  "buylink" : "",
+  "name": "AQARA - Capteur de température et humidité intelligent",
+  "ref" : "WSDCGQ11LM",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4515-aqara-capteur-de-temperature-et-d-humidite-zigbee-6970504212510.html",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [

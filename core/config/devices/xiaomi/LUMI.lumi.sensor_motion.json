@@ -1,7 +1,7 @@
 {
-  "name": "Xiaomi capteur de mouvement",
-  "ref" : "motion",
-  "buylink" : "",
+  "name": "AQARA - Capteur de mouvement intelligent",
+  "ref" : "RTCGQ11LM",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4518-aqara-detecteur-de-mouvement-zigbee-192784000090.html",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "configuration" : {
