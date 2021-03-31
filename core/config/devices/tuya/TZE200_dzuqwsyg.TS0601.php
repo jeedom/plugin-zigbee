@@ -32,6 +32,7 @@ function decode_TZE200_dzuqwsyg_TS0601($_eqLogic,$_endpoint_id,$_cluster){
   }
   $type = $_cluster['61184']['cmd']['1.2']['value'];
   $value = $_cluster['61184']['cmd']['1.6']['value'];
+  log::add('zigbee','debug','[decode_TZE200_dzuqwsyg_TS0601] Type '.$type.' value '.$value);
   switch ($type) {
     case 2:
     switch ($value) {
