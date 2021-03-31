@@ -1,6 +1,6 @@
 {
-  "name": "Xiaomi Aquara inondation",
-  "ref" : "wleak.aq1",
+  "name": "AQARA - Détecteur d'inondation intelligent",
+  "ref" : "SJCGQ11LM",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/4519-xiaomi-capteur-d-eau-zigbee-aqara-6970504210257.html",
   "reset" : "Appuyer pendant 10s sur le bouton du module",
   "pairing":"Appuyer pendant 5s sur le bouton du module",
