@@ -1,7 +1,7 @@
 {
   "name": "Télécommande 4 boutons SOS/Armer/Désarmer/Maison",
   "ref" : "R7054",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5684-woox-telecommande-intelligente-4-boutons-zigbee-30-8435606701136.html",
   "reset" : "",
   "pairing" : "Maintenir appuyé 5 secondes le bouton reset jusqu'au clignotement de la LED",
   "commands": [
