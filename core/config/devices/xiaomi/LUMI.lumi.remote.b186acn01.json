@@ -1,6 +1,6 @@
 {
-  "name": "Xiaomi interrupteur simple",
-  "ref" : "b186acn01",
+  "name": "AQARA - Interrupteur simple sans fil intelligent",
+  "ref" : "WXKG03LM",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/4516-xiaomi-interrupteur-mural-simple-sans-fil-zigbee-aqara-6970504210",
   "configuration" : {
     "battery_type" : "1x3V CR2032"
