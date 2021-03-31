@@ -1,7 +1,7 @@
 {
-  "name": "Xioami interrupteur simple",
-  "ref" : "86sw1",
-  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4517-xiaomi-interrupteur-mural-double-sans-fil-zigbee-aqara-6970504210042.html",
+  "name": "AQARA - Interrupteur simple sans fil intelligent",
+  "ref" : "WXKG03LM",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4516-aqara-interrupteur-mural-simple-sans-fil-zigbee-6970504210035.html",
   "commands": [
     {
       "name": "Bouton",
