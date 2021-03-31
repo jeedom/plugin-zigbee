@@ -1,6 +1,6 @@
 {
   "name": "AQARA - Interrupteur simple sans neutre",
-  "ref" : "ctrl_neutral1",
+  "ref" : "QBKG11LM",
   "buylink" : "",
   "commands": [
     {
