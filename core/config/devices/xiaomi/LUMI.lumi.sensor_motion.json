@@ -1,6 +1,6 @@
 {
-  "name": "Xiaomi capteur de mouvement",
-  "ref" : "motion",
+  "name": "AQARA - Capteur de mouvement intelligent",
+  "ref" : "RTCGQ11LM",
   "buylink" : "",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
