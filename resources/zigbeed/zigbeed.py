@@ -64,6 +64,9 @@ def merge_dict(a, b, path=None):
 
 async def start_zigbee():
 	try:
+		zhaquirks.setup({
+			zhaquirks.const.CUSTOM_QUIRKS_PATH : os.path.dirname(os.path.realpath(__file__))+'/quirks'
+		})
 		zigpy_config={
 			zigpy.config.CONF_DATABASE : _data_folder+"/network_"+_controller+".db",
 			zigpy.config.CONF_DEVICE : {
