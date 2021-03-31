@@ -1,6 +1,6 @@
 {
-  "name": "Xiaomi Aquara capteur d'ouverture",
-  "ref" : "magnet.aq2",
+  "name": "AQARA - Capteur d'ouverture intelligent",
+  "ref" : "MCCGQ11LM",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/4514-xiaomi-detecteur-d-ouverture-portefenetre-zigbee-aqara.html",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
