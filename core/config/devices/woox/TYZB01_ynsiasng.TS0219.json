@@ -1,7 +1,7 @@
 {
   "name": "Sirène intelligente avec LED",
   "ref" : "R7051",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5682-woox-sirene-interieure-intelligente-zigbee-30-8435606701105.html",
   "reset" : "",
   "pairing" : "Maintenir appuyé 5 secondes le bouton reset jusqu'au clignotement de la LED",
   "commands": [
