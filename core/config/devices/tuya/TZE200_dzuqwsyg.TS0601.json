@@ -13,7 +13,7 @@
       "logicalId": "temperature",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 10"
       }
     },
     {

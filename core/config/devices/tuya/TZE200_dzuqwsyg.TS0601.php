@@ -36,23 +36,28 @@ function decode_TZE200_dzuqwsyg_TS0601($_eqLogic,$_endpoint_id,$_cluster){
     case 2:
     switch ($_cluster['61184']['cmd']['1.6']['value']) {
       case 0:
-      $_eqLogic->checkAndUpdateCmd('mode',__('Froid',__FILE__));
+      $mode = __('Froid',__FILE__);
       break;
       case 1:
-      $_eqLogic->checkAndUpdateCmd('mode',__('Chaud',__FILE__));
+      $mode = __('Chaud',__FILE__);
       break;
       case 2:
-      $_eqLogic->checkAndUpdateCmd('mode',__('Ventilation',__FILE__));
+      $mode = __('Ventilation',__FILE__);
       break;
     }
+    log::add('zigbee','debug','[decode_TZE200_dzuqwsyg_TS0601] Mode '.$mode);
+    $_eqLogic->checkAndUpdateCmd('mode',$mode);
     return true;
     case 16:
+    log::add('zigbee','debug','[decode_TZE200_dzuqwsyg_TS0601] Target '.$_cluster['61184']['cmd']['1.9']['value']);
     $_eqLogic->checkAndUpdateCmd('target',$_cluster['61184']['cmd']['1.9']['value']);
     return true;
     case 24:
+    log::add('zigbee','debug','[decode_TZE200_dzuqwsyg_TS0601] Temperature '.$_cluster['61184']['cmd']['1.9']['value']);
     $_eqLogic->checkAndUpdateCmd('temperature',$_cluster['61184']['cmd']['1.9']['value']);
     return true;
     case 28:
+    log::add('zigbee','debug','[decode_TZE200_dzuqwsyg_TS0601] Ventilation '.$_cluster['61184']['cmd']['1.9']['value']);
     $_eqLogic->checkAndUpdateCmd('ventilation',$_cluster['61184']['cmd']['1.6']['value']);
     return true;
   }
