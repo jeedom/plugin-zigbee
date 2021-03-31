@@ -1,6 +1,6 @@
 {
-  "name": "Xiaomi Aqara LLKZMK11LM Module bidirectionnel Intelligent",
-  "ref" : "C2ACN01",
+  "name": "AQARA - Module bidirectionnel intelligent",
+  "ref" : "LLKZMK11LM",
   "buylink" : "",
   "commands": [
     {
