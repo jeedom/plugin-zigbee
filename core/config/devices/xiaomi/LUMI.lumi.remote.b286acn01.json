@@ -1,6 +1,6 @@
 {
-  "name": "Xiaomi interrupteur double",
-  "ref" : "b286acn01",
+  "name": "AQARA - Interrupteur double sans fil",
+  "ref" : "WXKG02LM",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/4517-xiaomi-interrupteur-mural-double-sans-fil-zigbee-aqara-6970504210042.html",
    "configuration" : {
      "battery_type" : "1x3V CR2032"
