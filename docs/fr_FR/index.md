@@ -9,10 +9,6 @@ Le plugin Zigbee permet de communiquer avec la pluspart des équipements Zigbee 
 - ZNP (Texas Instrument, Z-stack 3.X.X). Non testé par l'équipe, marqué en experimental chez Zigpy
 - CC (Texas Instrument, Z-stack 1.2.X). Non testé par l'équipe, marqué en experimental chez Zigpy
 
->**IMPORTANT**
->
->Le plugin n'est pas compatible avec les anciennes lampe utilisant le Zigbee Lightlink type les 1er PhilipsHue. Pour etre sur de la compatibilité n'oubliez pas de consulter le site de [compatibilité Jeedom](https://compatibility.jeedom.com)
-
 # Configuration du plugin
 
 Après installation du plugin, il vous suffit de bien installer les dépendances, de selectionner votre type de clef, le port (attention seul le type de clef deconz support le port en auto) et de lancer le demon. Vous pouvez aussi choisir le canal pour le zigbee.
@@ -155,6 +151,19 @@ Les mises à jour se lance si il y en a une et après que le module demande si y
 2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
 
  ````
+
+# Conseil pour fiabiliser le réseaux zigbee 
+
+Pour avoir un réseaux zigbee fiable il est plus que recommandé d'avoir au minimum 3 modules routeur alimentés en permanance et d'éviter de les débrancher. En effet lors de nos tests nous avons remarquer une grosse amélioration de la fiabilité et la resiliance du réseaux zigbee lors de l'ajout de module routeur. Il est d'ailleurs conseillé de les inclures en premiers (sinon il faudra entre 24h à 48h pour les end device [module non routeur] le decouvre).
+
+Autre point important il se peut lors de la suppression d'un module routeur qu'une partie des end device [module non routeur] soit perdu pendant un temps plus ou moins loin (en dizaine d'heure voir plus), ou meme definitivement et que vous soyez obligé de les reinclures. Malheureusement l'équipe Jeedom ne peux rien la dessus c'est propre au end device [module non routeur] en fonction de comment le fabricant la configuré (et non au plugin Jeedom qui ne s'occupe absolument pas de la partie routage)
+
+>**NOTE**
+>
+> Le graphique du réseaux Zigbee est la a titre indicatif et se base sur les voisins que les modules déclare avoir ce n'est donc pas forcement le routage réel mais les routages possibles.
+
+Autre point important les gateway zigbee sur wifi sont moins fiable que les gateaway zigbee sur USB, c'est evident mais nous preferons le rappeler ici il est donc fortement conseillé d'utiliser des gateway USB.
+ 
 
 # FAQ
 
