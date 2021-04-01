@@ -1,0 +1,161 @@
+{
+  "name": "Dimmer 2 voix",
+  "ref" : "TS110F",
+  "buylink" : "",
+  "reset" : "",
+  "pairing" : "",
+  "commands": [
+    {
+      "name": "Etat 1",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "LIGHT_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::6::0"
+    },
+    {
+      "name": "On 1",
+      "generic_type": "LIGHT_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 1",
+      "logicalId": "1::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Off 1",
+      "generic_type": "LIGHT_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 1",
+      "logicalId": "1::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Toggle 1",
+      "generic_type": "LIGHT_TOGGLE",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
+    },
+    {
+      "name": "Etat Luminosité 1",
+      "generic_type": "LIGHT_BRIGHTNESS",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::8::0",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    },
+    {
+      "name": "Luminosité 1",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat Luminosité 1",
+      "logicalId": "1::level::move_to_level::#slider#::#duration#",
+      "generic_type": "LIGHT_SLIDER",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    },
+    {
+      "name": "Etat 2",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "LIGHT_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "2::6::0"
+    },
+    {
+      "name": "On 2",
+      "generic_type": "LIGHT_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 2",
+      "logicalId": "2::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Off 2",
+      "generic_type": "LIGHT_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 2",
+      "logicalId": "2::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Toggle 2",
+      "generic_type": "LIGHT_TOGGLE",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "2::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
+    },
+    {
+      "name": "Etat Luminosité 2",
+      "generic_type": "LIGHT_BRIGHTNESS",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "2::8::0",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    },
+    {
+      "name": "Luminosité 2",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat Luminosité 2",
+      "logicalId": "2::level::move_to_level::#slider#::#duration#",
+      "generic_type": "LIGHT_SLIDER",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    }
+  ]
+}
