@@ -1,0 +1,59 @@
+{
+  "name": "Multi sensor",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5571-casaia-multi-sensor-zigbee-mouvements-vibrations-temperature-humidite-3770021021045.html",
+  "commands": [
+    {
+      "name": "Présence",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "PRESENCE",
+      "display": {
+        "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "presence",
+        "mobile" : "presence"
+      }
+    },
+    {
+      "name": "Vibration",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "4::1280::cmd::1",
+      "display": {
+        "invertBinary" : 1
+      }
+    },
+    {
+      "name": "Humidité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::1029::0",
+      "unite" : "%",
+      "generic_type": "HUMIDITY",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::1026::0",
+      "unite" : "°C",
+      "generic_type": "TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    }
+  ]
+}

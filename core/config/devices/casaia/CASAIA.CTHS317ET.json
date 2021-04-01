@@ -1,0 +1,19 @@
+{
+  "name": "Capteur de température",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5572-casaia-sonde-de-temperature-deportee-sur-cable-zigbee-3770021021052.html",
+  "commands": [
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "3::1026::0",
+      "unite" : "°C",
+      "generic_type": "TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    }
+  ]
+}
