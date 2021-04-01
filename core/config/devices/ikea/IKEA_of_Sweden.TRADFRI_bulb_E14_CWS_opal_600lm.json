@@ -1,6 +1,6 @@
 {
-  "name": "TRADFRI bulb E14 WS opal 600lm",
-  "ref":"9077",
+  "name": "TRADFRI bulb E14 CWS opal 600lm",
+  "ref":"",
   "buylink" : "",
   "pairing" : "Mettez sur ON 1 seconde puis sur OFF 2 secondes et répétez la manipulation 3 fois jusqu'au clignotement de l'ampoule",
   "commands": [
