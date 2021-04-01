@@ -9,10 +9,6 @@ O plugin Zigbee permite que você se comunique com a maioria dos equipamentos Zi
 - ZNP (Texas Instrument, Z-stack 3.X.X). Não testado pela equipe, marcado em experimental no Zigpy
 - CC (Texas Instrument, Z-stack 1.2.X). Não testado pela equipe, marcado em experimental no Zigpy
 
->**IMPORTANTE**
->
->O plugin não é compatível com as lâmpadas antigas que usam o Zigbee Lightlink digite o primeiro PhilipsHue. Para ter certeza da compatibilidade não esqueça de consultar o site da [Compatibilidade Jeedom](https://compatibility.jeedom.com)
-
 # Configuração do plugin
 
 Depois de instalar o plugin, você só precisa instalar as dependências, selecionar seu tipo de chave, a porta (cuidado apenas o tipo de chave deconz suporta a porta em auto) e iniciar o daemon. Você também pode escolher o canal para o zigbee.
@@ -155,6 +151,19 @@ As atualizações são lançadas se houver uma e depois disso o módulo pergunta
 2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
 
  ````
+
+# Conselhos para tornar as redes zigbee mais confiáveis 
+
+Para ter redes zigbee confiáveis, é mais do que recomendado ter pelo menos 3 módulos roteadores permanentemente alimentados e evitar desconectá-los. De fato, durante nossos testes, notamos uma grande melhoria na confiabilidade e resiliência das redes zigbee ao adicionar um módulo roteador. Também é aconselhável incluí-los primeiro (caso contrário, levará entre 24 a 48 horas para que o dispositivo final [módulo não roteador] descubra).
+
+Outro ponto importante é que é possível durante a retirada de um módulo roteador que parte do dispositivo final [módulo não roteador] se perca por mais ou menos tempo (dez horas ou mais), ou mesmo definitivamente e que você tenha que reincluí-los. Infelizmente, a equipe Jeedom não pode fazer nada sobre isso, é específico para o dispositivo final [módulo não roteador] dependendo de como o fabricante o configurou (e não o plugin Jeedom que absolutamente não cuida da parte de roteamento)
+
+>**NOTA**
+>
+> O gráfico das redes Zigbee é apenas informativo e é baseado nos vizinhos que os módulos declaram ter, portanto não é necessariamente o roteamento real, mas os possíveis roteamentos.
+
+Outro ponto importante: os gateways zigbee em wi-fi são menos confiáveis do que os gateaways zigbee em USB, é óbvio, mas preferimos lembrá-lo aqui, portanto, é altamente recomendável usar gateways USB.
+ 
 
 # FAQ
 

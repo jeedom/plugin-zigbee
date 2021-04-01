@@ -9,10 +9,6 @@ Mit dem ZigBee-Plugin können Sie mit den meisten vorhandenen ZigBee-Geräten ko
 - ZNP (Texas Instrument, Z-Stapel 3.X.X). Nicht vom Team getestet, experimentell bei Zigpy markiert
 - CC (Texas Instrument, Z-Stapel 1.2.X). Nicht vom Team getestet, experimentell bei Zigpy markiert
 
->**Wichtig**
->
->Das Plugin ist nicht kompatibel mit den alten Lampen, die den Zigbee Lightlink-Typ 1st PhilipsHue verwenden. Um die Kompatibilität zu gewährleisten, vergessen Sie nicht, die Website von zu konsultieren [Jeedom-Kompatibilität](https://compatibility.jeedom.com)
-
 # Plugin Konfiguration
 
 Nach der Installation des Plugins müssen Sie nur die Abhängigkeiten installieren, Ihren Schlüsseltyp und den Port auswählen (achten Sie darauf, dass nur der Deconz-Schlüsseltyp den Port in Auto unterstützt) und den Daemon starten. Sie können auch den Kanal für den Zickzack auswählen.
@@ -155,6 +151,19 @@ Die Updates werden gestartet, wenn es eines gibt, und danach fragt das Modul, ob
 2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
 
  ````
+
+# Ratschläge, um ZigBee-Netzwerke zuverlässiger zu machen 
+
+Um ein zuverlässiges ZigBee-Netzwerk zu haben, wird mehr als empfohlen, mindestens 3 Routermodule permanent mit Strom zu versorgen und zu vermeiden, dass sie vom Stromnetz getrennt werden. Tatsächlich haben wir während unserer Tests eine große Verbesserung der Zuverlässigkeit und Ausfallsicherheit der ZigBee-Netzwerke beim Hinzufügen eines Routermoduls festgestellt. Es ist auch ratsam, sie zuerst einzuschließen (andernfalls dauert es zwischen 24 und 48 Stunden, bis das Endgerät [Nicht-Router-Modul] dies herausgefunden hat).
+
+Ein weiterer wichtiger Punkt ist, dass beim Entfernen eines Routermoduls ein Teil des Endgeräts [Nicht-Routermodul] für mehr oder weniger Zeit (zehn Stunden oder mehr) oder sogar endgültig verloren geht und Sie diese wieder einschließen müssen. Leider kann das Jeedom-Team nichts dagegen tun. Es hängt vom Endgerät [Nicht-Router-Modul] ab, je nachdem, wie der Hersteller es konfiguriert hat (und nicht vom Jeedom-Plugin, das sich absolut nicht um den Routing-Teil kümmert)
+
+>**HINWEIS**
+>
+> Das Diagramm der ZigBee-Netzwerke dient nur zur Information und basiert auf den Nachbarn, die die Module als solche deklarieren. Es handelt sich also nicht unbedingt um das tatsächliche Routing, sondern um die möglichen Routings.
+
+Ein weiterer wichtiger Punkt: ZigBee-Gateways über WLAN sind weniger zuverlässig als ZigBee-Gateways über USB. Es liegt auf der Hand, aber wir möchten Sie hier daran erinnern, dass die Verwendung von USB-Gateways dringend empfohlen wird.
+ 
 
 # FAQ
 
