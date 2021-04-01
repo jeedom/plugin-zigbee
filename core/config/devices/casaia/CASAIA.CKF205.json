@@ -8,7 +8,7 @@
     {
       "name": "Bouton 1",
       "type": "info",
-      "subtype": "numeric",
+      "subtype": "string",
       "isVisible": 1,
       "isHistorized": 1,
       "logicalId": "1::1281::cmd::1"
