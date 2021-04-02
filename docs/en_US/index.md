@@ -9,10 +9,6 @@ The Zigbee plugin allows you to communicate with most existing Zigbee equipment.
 - ZNP (Texas Instrument, Z-stack 3.X.X). Not tested by the team, marked in experimental at Zigpy
 - CC (Texas Instrument, Z-stack 1.2.X). Not tested by the team, marked in experimental at Zigpy
 
->**Important**
->
->The plugin is not compatible with the old lamps using the Zigbee Lightlink type the 1st PhilipsHue. To be sure of the compatibility do not forget to consult the site of [Jeedom compatibility](https://compatibility.jeedom.com)
-
 # Plugin configuration
 
 After installing the plugin, you just have to install the dependencies, select your type of key, the port (be careful only the type of deconz key supports the port in auto) and start the daemon. You can also choose the channel for the zigbee.
@@ -155,6 +151,19 @@ The updates are launched if there is one and after that the module asks if there
 2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
 
  ````
+
+# Advice to make zigbee networks more reliable 
+
+To have a reliable zigbee network, it is more than recommended to have at least 3 router modules permanently powered and to avoid unplugging them. Indeed during our tests we noticed a big improvement in the reliability and resilience of the zigbee networks when adding a router module. It is also advisable to include them first (otherwise it will take between 24 to 48 hours for the end device [non-router module] to find out).
+
+Another important point it is possible during the removal of a router module that part of the end device [non-router module] is lost for a longer or shorter time (ten hours or more), or even definitively and that you have to reinclude them. Unfortunately the Jeedom team can't do anything about it, it's specific to the end device [non-router module] depending on how the manufacturer configured it (and not the Jeedom plugin which absolutely does not take care of the routing part)
+
+>**NOTE**
+>
+> The graph of the Zigbee networks is for information only and is based on the neighbors that the modules declare to have, so it is not necessarily the real routing but the possible routings.
+
+Another important point: zigbee gateways on wifi are less reliable than zigbee gateaways on USB, it's obvious but we prefer to remind you here it is therefore strongly recommended to use USB gateways.
+ 
 
 # FAQ
 

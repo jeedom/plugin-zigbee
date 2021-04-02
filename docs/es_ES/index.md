@@ -9,10 +9,6 @@ El complemento Zigbee le permite comunicarse con la mayoría de los equipos Zigb
 - ZNP (instrumento de Texas, pila Z 3.X.X). No probado por el equipo, marcado como experimental en Zigpy
 - CC (instrumento de Texas, pila Z 1.2.X). No probado por el equipo, marcado como experimental en Zigpy
 
->**Importante**
->
->El complemento no es compatible con las lámparas antiguas que utilizan el tipo Zigbee Lightlink el primer PhilipsHue. Para estar seguro de la compatibilidad, no olvide consultar el sitio de [Compatibilidad Jeedom](https://compatibility.jeedom.com)
-
 # Configuración del plugin
 
 Después de instalar el complemento, solo tiene que instalar las dependencias, seleccionar su tipo de clave, el puerto (tenga cuidado solo el tipo de clave deconz admite el puerto en automático) e iniciar el demonio. También puedes elegir el canal para el zigbee.
@@ -155,6 +151,19 @@ Las actualizaciones se lanzan si hay una y luego el módulo pregunta si hay una 
 2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
 
  ````
+
+# Consejos para hacer más confiables las redes zigbee 
+
+Para tener una red zigbee confiable es más que recomendable tener al menos 3 módulos de enrutador permanentemente alimentados y evitar desenchufarlos. De hecho, durante nuestras pruebas notamos una gran mejora en la confiabilidad y resistencia de las redes zigbee al agregar un módulo de enrutador. También es aconsejable incluirlos primero (de lo contrario, el dispositivo final [módulo sin enrutador] tardará entre 24 y 48 horas en descubrirlo)).
+
+Otro punto importante es que durante la extracción de un módulo router es posible que parte del dispositivo final [módulo no router] se pierda durante más o menos tiempo (diez horas o más), o incluso definitivamente y que tengas que volver a incluirlos. Desafortunadamente, el equipo de Jeedom no puede hacer nada al respecto, es específico para el dispositivo final [módulo sin enrutador] dependiendo de cómo lo configuró el fabricante (y no el complemento Jeedom que no se ocupa de la parte de enrutamiento en absoluto))
+
+>**NOTA**
+>
+> El gráfico de las redes Zigbee es solo informativo y se basa en los vecinos que los módulos declaran tener, por lo que no es necesariamente el enrutamiento real sino los posibles enrutamientos.
+
+Otro punto importante: las pasarelas zigbee en wifi son menos confiables que las pasarelas zigbee en USB, es obvio, pero preferimos recordarle que aquí, por lo tanto, se recomienda encarecidamente utilizar pasarelas USB.
+ 
 
 # FAQ
 
