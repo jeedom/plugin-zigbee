@@ -111,14 +111,13 @@
       "generic_type": "LIGHT_SET_COLOR"
     },
     {
-      "name": "Couleur",
-      "type": "action",
-      "subtype": "color",
-      "isVisible": 1,
+      "name": "Etat température couleur",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
       "isHistorized": 0,
-      "value" : "Etat couleur",
-      "logicalId": "11::light_color::move_to_color::#color#::0",
-      "generic_type": "LIGHT_SET_COLOR"
+      "logicalId": "11::768::7",
+      "generic_type": "LIGHT_COLOR_TEMP"
     },
     {
       "name": "Température couleur",
