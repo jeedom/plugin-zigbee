@@ -1,0 +1,60 @@
+{
+  "name": "Puck shutter 1",
+  "manufacturer": "Schneider",
+  "type": "Volets",
+  "buylink" : "",
+  "remark" : "",
+  "reset" : "Presser 3 fois en moins d'une seconde le bouton du haut puis le maintenir appuyé pendant 10s au moins (attention à ne pas dépasser 20s). La led doit clignoter rouge",
+  "pairing" : "Presser 3 fois le bouton",
+  "documentation": "https:\/\/download.schneider-electric.com\/files?p_enDocType=System+user+guide&p_File_Name=Merten_PL_Wiser_TIs_DE.pdf&p_Doc_Ref=Merten_PL_Wiser_TIs_DE",
+  "commands":[
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "5::258::8",
+      "generic_type": "FLAP_STATE"
+    },
+    {
+      "name": "Position",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "5::window_covering::go_to_lift_percentage::#slider#",
+      "generic_type": "FLAP_SLIDER"
+    },
+    {
+      "name": "Stop",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::window_covering::stop",
+      "generic_type": "FLAP_STOP"
+    },
+    {
+      "name": "Monter",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::window_covering::up_open",
+      "generic_type": "FLAP_UP"
+    },
+    {
+      "name": "Descendre",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::window_covering::down_close",
+      "generic_type": "FLAP_DOWN"
+    }
+  ]
+}
