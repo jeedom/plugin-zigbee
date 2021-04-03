@@ -25,7 +25,7 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "38::1029::0",
+      "logicalId": "1::1029::0",
       "unite" : "%",
       "generic_type": "HUMIDITY",
       "configuration" : {
