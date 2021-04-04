@@ -1,0 +1,43 @@
+{
+  "name": "AQARA - Interrupteur double sans fil",
+  "ref" : "WXKG07LM",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4517-xiaomi-interrupteur-mural-double-sans-fil-zigbee-aqara-6970504210042.html",
+  "configuration" : {
+    "battery_type" : "1x3V CR2032"
+  },
+  "commands": [
+    {
+      "name": "Bouton 1",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::18::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Bouton 2",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::18::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Double appui",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "3::18::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    }
+  ]
+}
