@@ -783,7 +783,7 @@ foreach ($node_data['endpoints'] as $endpoint_id => $endpoint) {
     jeedom.zigbee.device.command({
       instance : zigbeeNodeInstance,
       ieee : zigbeeNodeIeee,
-      endpoint : $(this).attr('data-enpointOta'),
+      endpoint : parseInt($(this).attr('data-enpointOta')),
       cluster_type : 'out',
       cluster : 25,
       command : 'image_notify',
