@@ -2,16 +2,16 @@
 
 O plugin Zigbee permite que você se comunique com a maioria dos equipamentos Zigbee existentes. É baseado no (super) projeto Zigpy, que é compatível com as seguintes chaves zigbee :
 
-- Deconz. Testado e validado pela equipe Jeedom. Não é necessário ter o Deconz instalado
-- EZSP (chave baseada em um chupset da Silicon Labs). Em teste pela equipe Jeedom
-- X-bee. Não testado pela equipe Jeedom
-- Zigate. Não testado pela equipe, marcado em experimental no Zigpy
-- ZNP (Texas Instrument, Z-stack 3.X.X). Não testado pela equipe, marcado em experimental no Zigpy
-- CC (Texas Instrument, Z-stack 1.2.X). Não testado pela equipe, marcado em experimental no Zigpy
+-	Deconz. Testado e validado pela equipe Jeedom. Não é necessário ter o Deconz instalado
+-	EZSP (chave baseada em um chipset Silicon Labs). Em teste pela equipe Jeedom
+-	X-bee. Não testado pela equipe Jeedom
+-	Zigate. Não testado pela equipe, marcado em experimental no Zigpy
+-	ZNP (Texas Instrument, Z-stack 3.X.X). Não testado pela equipe, marcado em experimental no Zigpy
+-	CC (Texas Instrument, Z-stack 1.2.X). Não testado pela equipe, marcado em experimental no Zigpy
 
 # Configuração do plugin
 
-Depois de instalar o plugin, você só precisa instalar as dependências, selecionar seu tipo de chave, a porta (cuidado apenas o tipo de chave deconz suporta a porta em auto) e iniciar o daemon. Você também pode escolher o canal para o zigbee.
+Depois de instalar o plugin, você só precisa instalar as dependências, selecionar seu tipo de chave, a porta (cuidado apenas o tipo de chave deconz suporta a porta em auto) e iniciar o daemon. Você também pode escolher o canal para o zigbee
 
 >**IMPORTANTE**
 >
@@ -41,7 +41,7 @@ O backup não contém a lista de módulos, mas apenas as informações básicas 
 
 ## Parâmetros específicos do Zigpy (reservados para especialistas !!!!)
 
-É possível configurar parâmetros específicos para o subsistema zigbee (zigpy). Esta parte está realmente reservada para especialistas e o Jeedom não fornece uma lista de parâmetros possíveis (existem centenas que dependem do tipo de chave). O campo recebe como entrada o exemplo json : 
+É possível configurar parâmetros específicos para o subsistema zigbee (zigpy). Esta parte está realmente reservada para especialistas e o Jeedom não fornece uma lista de parâmetros possíveis (existem centenas que dependem do tipo de chave). O campo recebe como entrada o exemplo json :
 
 ````
 {
@@ -58,7 +58,7 @@ O backup não contém a lista de módulos, mas apenas as informações básicas 
 
 # Inclusão de Módulo
 
-Inclusão é a parte mais difícil no Zigbee. Embora simples, a operação costuma ser feita várias vezes. Do lado do plugin é fácil, basta clicar no botão "Modo de inclusão", uma vez feito você tem 3 minutos para incluir seu equipamento.
+Inclusão é a parte mais difícil no Zigbee. Embora simples, a operação costuma ser feita várias vezes. Coté plugin c'est facile il suffit de cliquer sur le bouton “Mode inclusion”, une fois fait vous avez 3minutes pour inclure votre équipement.
 
 Mudanças de lado do equipamento dependendo do módulo, é necessário consultar a documentação deste cada vez.
 
@@ -68,7 +68,7 @@ Mudanças de lado do equipamento dependendo do módulo, é necessário consultar
 
 # Equipement
 
-Uma vez incluído, o Jeedom deve reconhecer automaticamente o seu módulo (se este não for o caso, consulte o próximo capítulo) e, portanto, criar os comandos que funcionam bem. Observe que devido a um bug em certo firmware (Ikea, Sonoff ...) às vezes é necessário escolher o tipo de módulo diretamente na lista "Equipamentos" e salvar para ter os comandos corretos.
+Uma vez incluído, o Jeedom deve reconhecer automaticamente o seu módulo (se este não for o caso, consulte o próximo capítulo) e, portanto, criar os comandos que funcionam bem. A noter qu'a cause de bug dans certain firmware (Ikea, Sonoff…) il est parfois nécessaire de choisir le type de module directement dans la liste “Equipement” puis de sauvegarder pour avoir les bonnes commandes.
 
 Você tem na guia de equipamentos os seguintes parâmetros :
 
@@ -130,11 +130,11 @@ Esta é a parte complicada (como sempre no Zigbee o mais difícil é o reset / a
 - Use um controle remoto zigbee e
   - pressione ao mesmo tempo o botão LIGAR e DESLIGAR por 5 a 10 segundos perto da lâmpada elétrica (cuidado com algumas lâmpadas, às vezes você precisa desligar / ligar a lâmpada imediatamente antes) para os controles remotos Philips hue
   - pressione o botão de reinicialização (ao lado da bateria) por 5 a 10 segundos próximo à lâmpada elétrica (cuidado com certas lâmpadas, às vezes você precisa ligar / desligar a lâmpada um pouco antes) para os controles remotos Ikea
-- Para os bulbos de matiz, você também pode incluí-los na ponte matiz e removê-los
+- Para os bulbos de matiz, você também pode incluí-los na ponte de matiz e removê-los
 
 # Atualização OTA 
 
-As atualizações OTA são atualizações de firmware de módulo, leva muito, muito tempo (várias horas), mas permite que você tenha menos preocupações em geral. Para ser capaz de atualizar um módulo, o fabricante deve comunicar o firmware : 
+As atualizações OTA são as atualizações do firmware dos módulos, demora muito, muito, muito tempo (várias horas) mas permite ter menos preocupações em geral. Para ser capaz de atualizar um módulo, o fabricante deve comunicar o firmware :
 
 - Para Ikea e Ledavance, não se preocupe, ele é fornecido online diretamente pela Ikea, o plug-in irá retirá-lo diretamente deles 
 - Para outros (ver [aqui](https://github.com/Koenkk/zigbee-OTA/tree/master/images)) o fabricante às vezes fornece uma atualização não oficial 
@@ -142,7 +142,7 @@ As atualizações OTA são atualizações de firmware de módulo, leva muito, mu
 
 Para ativar as atualizações OTA, basta marcar a caixa na configuração do plugin, salvar e clicar no botão para atualizar os arquivos OTA. Em seguida, basta reiniciar o (s) demônio (s) zigbee.
 
-As atualizações são lançadas se houver uma e depois disso o módulo pergunta se há uma (você pode forçar isto na página de ação na configuração do módulo / nó). Infelizmente, não existe um indicador simples para ver o progresso da atualização, a única solução é ir para os logs zigbee_X (se o log for depurado) e procurar ota e você pode ver se um módulo se atualiza com logs do tipo : 
+As atualizações são lançadas se houver uma e após o módulo perguntar se há uma (você pode forçar isto na página de ação na configuração do módulo / nó). Infelizmente, não há um indicador simples para ver o progresso da atualização, a única solução é ir ao log zigbee_X (se o log estiver em depuração) e procurar ota e lá você pode ver se um módulo se atualiza com logs de o tipo :
 
 ````
 2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA query_next_image handler for 'IKEA of Sweden TRADFRI control outlet': field_control=1, manufacture_id=4476, image_type=4353, current_file_version=536974883, hardware_version=60
@@ -154,9 +154,9 @@ As atualizações são lançadas se houver uma e depois disso o módulo pergunta
 
 # Conselhos para tornar as redes zigbee mais confiáveis 
 
-Para ter redes zigbee confiáveis, é mais do que recomendado ter pelo menos 3 módulos roteadores permanentemente alimentados e evitar desconectá-los. De fato, durante nossos testes, notamos uma grande melhoria na confiabilidade e resiliência das redes zigbee ao adicionar um módulo roteador. Também é aconselhável incluí-los primeiro (caso contrário, levará entre 24 a 48 horas para que o dispositivo final [módulo não roteador] descubra).
+Para ter uma rede zigbee confiável, é mais do que recomendado ter pelo menos 3 módulos roteadores permanentemente alimentados e evitar desconectá-los. De fato, durante nossos testes, notamos uma grande melhoria na confiabilidade e resiliência da rede zigbee ao adicionar o módulo do roteador. Também é aconselhável incluí-los primeiro (caso contrário, levará entre 24 a 48 horas para que o dispositivo final [módulo não roteador] descubra).
 
-Outro ponto importante é que é possível durante a retirada de um módulo roteador que parte do dispositivo final [módulo não roteador] se perca por mais ou menos tempo (dez horas ou mais), ou mesmo definitivamente e que você tenha que reincluí-los. Infelizmente, a equipe Jeedom não pode fazer nada sobre isso, é específico para o dispositivo final [módulo não roteador] dependendo de como o fabricante o configurou (e não o plugin Jeedom que absolutamente não cuida da parte de roteamento)
+Outro ponto importante é que é possível durante a retirada de um módulo roteador que parte do dispositivo final [módulo não roteador] se perca por mais ou menos tempo (dez horas ou mais), ou mesmo definitivamente e que você tenha que reincluí-los. Infelizmente, a equipe Jeedom não pode fazer nada a respeito. É específico para o dispositivo final [módulo não roteador] dependendo de como o fabricante o configurou (e não do plugin Jeedom que não cuida da parte de roteamento de forma alguma)
 
 >**NOTA**
 >
@@ -169,7 +169,7 @@ Outro ponto importante: os gateways zigbee em wi-fi são menos confiáveis do qu
 
 >**LQI ou RSSI é N / A
 >
->Normalmente é após um reinício das redes Zigbee que os valores são esvaziados, é necessário aguardar que o módulo recomunique para que os valores retornem
+>Normalmente é após uma reinicialização das redes Zigbee que os valores são esvaziados, é necessário aguardar a reativação do módulo para que os valores retornem
 
 >**Tenho problemas de inclusão ou erros nos registros de tipo ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
 >
@@ -187,4 +187,4 @@ Outro ponto importante: os gateways zigbee em wi-fi são menos confiáveis do qu
 >
 > Existem 2 casos possíveis :
 > - é um "módulo antigo" em ZLL (ver configuração do equipamento Jeedom indica se é ZHA ou ZLL), neste caso você absolutamente precisa de um comando "Atualizar" para você ou Jeedom para forçar uma atualização de valores. Se você não o tiver, entre em contato com o suporte para que possa ser adicionado à próxima versão estável. Depois de sair, você terá que clicar em "recriar pedidos" sem excluir
-> - o módulo está no ZHA, então é uma preocupação de inclusão  : na aba de ação da configuração do equipamento você tem um botão de reset para forçar ações de pós inclusão, lembre-se de manter o módulo acordado se estiver na bateria.
+> -	o módulo está no ZHA, então é uma preocupação de inclusão : na aba de ação da configuração do equipamento você tem um botão de reset para forçar ações de pós inclusão, lembre-se de manter o módulo acordado se estiver na bateria

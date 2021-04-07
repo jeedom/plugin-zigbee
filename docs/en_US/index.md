@@ -2,16 +2,16 @@
 
 The Zigbee plugin allows you to communicate with most existing Zigbee equipment. It is based on the (super) Zigpy project which is compatible with the following zigbee keys :
 
-- Deconz. Tested and validated by the Jeedom team. There is no need to have Deconz installed
-- EZSP (key based on a Silicon Labs chupset). Under test by the Jeedom team
-- X-bee. Not tested by the Jeedom team
-- Zigate. Not tested by the team, marked in experimental at Zigpy
-- ZNP (Texas Instrument, Z-stack 3.X.X). Not tested by the team, marked in experimental at Zigpy
-- CC (Texas Instrument, Z-stack 1.2.X). Not tested by the team, marked in experimental at Zigpy
+-	Deconz. Tested and validated by the Jeedom team. There is no need to have Deconz installed
+-	EZSP (key based on a Silicon Labs chipset). Under test by the Jeedom team
+-	X-bee. Not tested by the Jeedom team
+-	Zigate. Not tested by the team, marked in experimental at Zigpy
+-	ZNP (Texas Instrument, Z-stack 3.X.X). Not tested by the team, marked in experimental at Zigpy
+-	CC (Texas Instrument, Z-stack 1.2.X). Not tested by the team, marked in experimental at Zigpy
 
 # Plugin configuration
 
-After installing the plugin, you just have to install the dependencies, select your type of key, the port (be careful only the type of deconz key supports the port in auto) and start the daemon. You can also choose the channel for the zigbee.
+After installing the plugin, you just have to install the dependencies, select your type of key, the port (be careful only the type of deconz key supports the port in auto) and start the daemon. You can also choose the channel for the zigbee
 
 >**Important**
 >
@@ -41,7 +41,7 @@ It is possible from Jeedom to update the firmware of the Zigbee key (only for El
 
 ## Zigpy specific parameters (reserved for experts !!!!)
 
-It is possible to set up specific parameters for the zigbee sub-system (zigpy). This part is really reserved for experts and Jeedom does not provide a list of possible parameters (there are hundreds which depend on the type of key). The field takes as input from the json example : 
+It is possible to set up specific parameters for the zigbee sub-system (zigpy). This part is really reserved for experts and Jeedom does not provide a list of possible parameters (there are hundreds which depend on the type of key). The field takes as input from the json example :
 
 ````
 {
@@ -58,7 +58,7 @@ It is possible to set up specific parameters for the zigbee sub-system (zigpy). 
 
 # Module inclusion
 
-Inclusion is the hardest part in Zigbee. Although simple, the operation is often done several times. On the plugin side, it's easy, just click on the "Include mode" button, once done you have 3 minutes to include your equipment.
+Inclusion is the hardest part in Zigbee. Although simple, the operation is often done several times. Coté plugin c'est facile il suffit de cliquer sur le bouton “Mode inclusion”, une fois fait vous avez 3minutes pour inclure votre équipement.
 
 Equipment side changes depending on the module, it is necessary to refer to the documentation of this one each time.
 
@@ -68,7 +68,7 @@ Equipment side changes depending on the module, it is necessary to refer to the 
 
 # Equipement
 
-Once included Jeedom must automatically recognize your module (if this is not the case see next chapter) and therefore create the commands that go well. Note that due to a bug in certain firmware (Ikea, Sonoff ...) it is sometimes necessary to choose the type of module directly in the "Equipment" list then to save to have the correct commands.
+Once included Jeedom must automatically recognize your module (if this is not the case see next chapter) and therefore create the commands that go well. A noter qu'a cause de bug dans certain firmware (Ikea, Sonoff…) il est parfois nécessaire de choisir le type de module directement dans la liste “Equipement” puis de sauvegarder pour avoir les bonnes commandes.
 
 You have in the equipment tab the following parameters :
 
@@ -130,11 +130,11 @@ This is the complicated part (as always in Zigbee the hardest is the reset / ass
 - Use a zigbee remote control and
   - press at the same time the ON and OFF button for 5 to 10 seconds near the powered bulb (beware of certain bulbs, you sometimes have to turn off / on the bulb just before) for Philips hue remote controls
   - press the reset button (next to the battery) for 5 to 10 seconds near the powered bulb (beware of certain bulbs, you sometimes have to turn the bulb off / on just before) for Ikea remote controls
-- For the hue bulbs you can also include them on the hue bridge then remove them from it
+- For the hue bulbs you can also include them on the hue bridge and then remove them from it
 
 # OTA update 
 
-OTA updates are module firmware updates, it takes a very very long time (several hours) but allows you to have less worries in general. To be able to update a module, the manufacturer must communicate the firmware : 
+The OTA updates are the updates of the firmware of the modules, it takes very very very long (several hours) but allows to have less worries in general. To be able to update a module, the manufacturer must communicate the firmware :
 
 - For Ikea and Ledavance no worries it is provided online directly by Ikea, the plugin will pick it up directly from them 
 - For others (see [here](https://github.com/Koenkk/zigbee-OTA/tree/master/images)) the manufacturer sometimes unofficially provides an update 
@@ -142,7 +142,7 @@ OTA updates are module firmware updates, it takes a very very long time (several
 
 To activate OTA updates, just check the box in the plugin configuration then save then click on the button to update the OTA files. Then just restart the zigbee demon (s).
 
-The updates are launched if there is one and after that the module asks if there is one (you can force this in the action tab on the configuration of the module / node). Unfortunately, there is no simple indicator to see the progress of the update, the only solution is to go to the zigbee_X logs (if the log is debugged) and look for ota and you can see if a module updates itself with logs of the type : 
+The updates are launched if there is one and after the module asks if there is one (you can force this in the action tab on the configuration of the module / node). Unfortunately, there is no simple indicator to see the progress of the update, the only solution is to go to the zigbee_X log (if the log is in debug) and look for ota and there you can see if a module updates itself with logs of the type :
 
 ````
 2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA query_next_image handler for 'IKEA of Sweden TRADFRI control outlet': field_control=1, manufacture_id=4476, image_type=4353, current_file_version=536974883, hardware_version=60
@@ -154,9 +154,9 @@ The updates are launched if there is one and after that the module asks if there
 
 # Advice to make zigbee networks more reliable 
 
-To have a reliable zigbee network, it is more than recommended to have at least 3 router modules permanently powered and to avoid unplugging them. Indeed during our tests we noticed a big improvement in the reliability and resilience of the zigbee networks when adding a router module. It is also advisable to include them first (otherwise it will take between 24 to 48 hours for the end device [non-router module] to find out).
+To have a reliable zigbee network, it is more than recommended to have at least 3 router modules permanently powered and to avoid unplugging them. Indeed during our tests we noticed a big improvement in the reliability and the resilience of the zigbee network when adding the router module. It is also advisable to include them first (otherwise it will take between 24 to 48 hours for the end device [non-router module] to find out).
 
-Another important point it is possible during the removal of a router module that part of the end device [non-router module] is lost for a longer or shorter time (ten hours or more), or even definitively and that you have to reinclude them. Unfortunately the Jeedom team can't do anything about it, it's specific to the end device [non-router module] depending on how the manufacturer configured it (and not the Jeedom plugin which absolutely does not take care of the routing part)
+Another important point it is possible during the removal of a router module that part of the end device [non-router module] is lost for a longer or shorter time (ten hours or more), or even definitively and that you have to reinclude them. Unfortunately the Jeedom team can not do anything about it.It is specific to the end device [non router module] depending on how the manufacturer configured it (and not to the Jeedom plugin which absolutely does not take care of the routing part)
 
 >**NOTE**
 >
@@ -169,7 +169,7 @@ Another important point: zigbee gateways on wifi are less reliable than zigbee g
 
 >**LQI or RSSI is N / A
 >
->It is normally following a restart of the Zigbee networks the values are emptied, it is necessary to wait for the module to recomunique so that the values return
+>It is normally following a restart of the Zigbee networks the values are emptied, it is necessary to wait for the module to reactivate so that the values return
 
 >**I have inclusion issues or errors in the type logs ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
 >
@@ -187,4 +187,4 @@ Another important point: zigbee gateways on wifi are less reliable than zigbee g
 >
 > There are 2 possible cases :
 > - it is an "old module" in ZLL (see configuration of the Jeedom equipment indicates whether it is ZHA or ZLL), in this case you absolutely need a "Refresh" command for you or Jeedom to force an update values. If you don't have it then you have to contact support so that it can be added to the next stable version. Once exited you will have to click on "recreate orders" without deleting
-> - the module is in ZHA, so it's a concern of inclusion  : in the action tab of the equipment configuration you have a reset button to force post inclusion actions, remember to keep the module awake if it is on battery.
+> -	the module is in ZHA, so it's a concern of inclusion : in the action tab of the equipment configuration you have a reset button to force post inclusion actions, remember to keep the module awake if it is on battery
