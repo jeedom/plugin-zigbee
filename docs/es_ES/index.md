@@ -2,16 +2,16 @@
 
 El complemento Zigbee le permite comunicarse con la mayoría de los equipos Zigbee existentes. Se basa en el proyecto (super) Zigpy que es compatible con las siguientes teclas zigbee :
 
-- Deconz. Probado y validado por el equipo de Jeedom. No es necesario tener instalado Deconz
-- EZSP (clave basada en un chupset de Silicon Labs). Sometido a prueba por el equipo de Jeedom
-- X-bee. No probado por el equipo de Jeedom
-- Zigate. No probado por el equipo, marcado como experimental en Zigpy
-- ZNP (instrumento de Texas, pila Z 3.X.X). No probado por el equipo, marcado como experimental en Zigpy
-- CC (instrumento de Texas, pila Z 1.2.X). No probado por el equipo, marcado como experimental en Zigpy
+-	Deconz. Probado y validado por el equipo de Jeedom. No es necesario tener instalado Deconz
+-	EZSP (clave basada en un chipset de Silicon Labs). Sometido a prueba por el equipo de Jeedom
+-	X-bee. No probado por el equipo de Jeedom
+-	Zigate. No probado por el equipo, marcado como experimental en Zigpy
+-	ZNP (instrumento de Texas, pila Z 3.X.X). No probado por el equipo, marcado como experimental en Zigpy
+-	CC (instrumento de Texas, pila Z 1.2.X). No probado por el equipo, marcado como experimental en Zigpy
 
 # Configuración del plugin
 
-Después de instalar el complemento, solo tiene que instalar las dependencias, seleccionar su tipo de clave, el puerto (tenga cuidado solo el tipo de clave deconz admite el puerto en automático) e iniciar el demonio. También puedes elegir el canal para el zigbee.
+Después de instalar el complemento, solo tiene que instalar las dependencias, seleccionar su tipo de clave, el puerto (tenga cuidado solo el tipo de clave deconz admite el puerto en automático) e iniciar el demonio. También puedes elegir el canal para el zigbee
 
 >**Importante**
 >
@@ -23,7 +23,7 @@ Es posible en llaves tipo EZSP (Elelabs por ejemplo) y ZNP hacer una copia de se
 
 >**Importante**
 >
-> En las claves de tipo EZXP (Elelabs) solo es posible realizar una única restauración de respaldo en todas y durante la vida de la clave !!!!
+> En las claves de tipo EZXP (Elelabs) solo es posible realizar una única restauración de copia de seguridad en todas y durante la vida de la clave !!!!
 
 La copia de seguridad no contiene la lista de módulos sino solo la información básica de la red zigbee, por lo que no es necesario hacerlo con frecuencia, solo uno es suficiente porque no se mueve durante la vida de la llave.
 
@@ -41,7 +41,7 @@ Es posible desde Jeedom actualizar el firmware de la clave Zigbee (solo para Ele
 
 ## Parámetros específicos de Zigpy (reservados para expertos !!!!)
 
-Es posible configurar parámetros específicos para el subsistema zigbee (zigpy). Esta parte está realmente reservada para expertos y Jeedom no proporciona una lista de posibles parámetros (hay cientos que dependen del tipo de clave). El campo toma como entrada del ejemplo json : 
+Es posible configurar parámetros específicos para el subsistema zigbee (zigpy). Esta parte está realmente reservada para expertos y Jeedom no proporciona una lista de posibles parámetros (hay cientos que dependen del tipo de clave). El campo toma como entrada del ejemplo json :
 
 ````
 {
@@ -58,7 +58,7 @@ Es posible configurar parámetros específicos para el subsistema zigbee (zigpy)
 
 # Inclusión del módulo
 
-La inclusión es la parte más difícil en Zigbee. Aunque simple, la operación a menudo se realiza varias veces. En el lado del complemento, es fácil simplemente hacer clic en el botón "Incluir modo", una vez hecho esto, tiene 3 minutos para incluir su equipo.
+La inclusión es la parte más difícil en Zigbee. Aunque simple, la operación a menudo se realiza varias veces. Coté plugin c'est facile il suffit de cliquer sur le bouton “Mode inclusion”, une fois fait vous avez 3minutes pour inclure votre équipement.
 
 Cambios de lado del equipo en función del módulo, es necesario consultar la documentación de este cada vez.
 
@@ -68,7 +68,7 @@ Cambios de lado del equipo en función del módulo, es necesario consultar la do
 
 # Equipement
 
-Una vez incluido, Jeedom debe reconocer automáticamente su módulo (si este no es el caso, consulte el siguiente capítulo) y por lo tanto crear los comandos que vayan bien. Tenga en cuenta que debido a un error en cierto firmware (Ikea, Sonoff ...) a veces es necesario elegir el tipo de módulo directamente en la lista "Equipo" y luego guardar para tener los comandos correctos.
+Una vez incluido, Jeedom debe reconocer automáticamente su módulo (si este no es el caso, consulte el siguiente capítulo) y por lo tanto crear los comandos que vayan bien. A noter qu'a cause de bug dans certain firmware (Ikea, Sonoff…) il est parfois nécessaire de choisir le type de module directement dans la liste “Equipement” puis de sauvegarder pour avoir les bonnes commandes.
 
 Tienes en la pestaña de equipos los siguientes parámetros :
 
@@ -120,7 +120,7 @@ Para ello, debe proporcionar los siguientes elementos (cualquier solicitud incom
 
 Touchlink o Lightlink es una parte especial del Zigbee que le permite enviar órdenes de gestión a un módulo si está muy cerca de él (50cm). Se usa por ejemplo para hacer un reset en las bombillas que no tienen botón.
 
-Esto por lo tanto concierne a todo lo que sean bombillas Zigbee tipo Philips Hue, Ikea, Osram, Icasa ... etc. El principio es muy sencillo para poder asociar este tipo de módulo con una red zigbee, primero debes hacer un reset. Luego, al reiniciar, el módulo intentará asociarse automáticamente con la primera red Zigbee abierta que encuentre.
+Esto por tanto concierne a todo lo que sean bombillas Zigbee tipo Philips Hue, Ikea, Osram, Icasa ... y así sucesivamente. El principio es muy sencillo para poder asociar este tipo de módulo con una red zigbee, primero debes hacer un reset. Luego, al reiniciar, el módulo intentará asociarse automáticamente con la primera red Zigbee abierta que encuentre.
 
 ## Restablecer en Touchlink
 
@@ -134,7 +134,7 @@ Esta es la parte complicada (como siempre en Zigbee lo más difícil es el reini
 
 # Actualización de OTA 
 
-Las actualizaciones OTA son actualizaciones de firmware del módulo, lleva mucho tiempo (varias horas) pero le permite tener menos preocupaciones en general. Para poder actualizar un módulo, el fabricante debe comunicar el firmware : 
+Las actualizaciones OTA son las actualizaciones del firmware de los módulos, toma muy muy muy largo (varias horas) pero permite tener menos preocupaciones en general. Para poder actualizar un módulo, el fabricante debe comunicar el firmware :
 
 - Para Ikea y Ledavance, no se preocupe, Ikea lo proporciona en línea directamente, el complemento lo recogerá directamente de ellos 
 - Para otros (ver [aquí](https://github.com/Koenkk/zigbee-OTA/tree/master/images)) el fabricante a veces proporciona una actualización no oficial 
@@ -142,7 +142,7 @@ Las actualizaciones OTA son actualizaciones de firmware del módulo, lleva mucho
 
 Para activar las actualizaciones OTA, simplemente marque la casilla en la configuración del complemento, luego guarde y luego haga clic en el botón para actualizar los archivos OTA. Entonces simplemente reinicia el (los) demonio (s) zigbee.
 
-Las actualizaciones se lanzan si hay una y luego el módulo pregunta si hay una (puede forzar esto en la pestaña de acción en la configuración del módulo / nodo). Desafortunadamente, no hay un indicador simple para ver el progreso de la actualización, la única solución es ir a los registros de zigbee_X (si el registro está depurado) y buscar ota y puedes ver si un módulo se actualiza con registros del tipo : 
+Las actualizaciones se lanzan si hay una y después de que el módulo pregunta si hay una (puede forzar esto en la pestaña de acción en la configuración del módulo / nodo). Desafortunadamente, no hay un indicador simple para ver el progreso de la actualización, la única solución es ir al registro de zigbee_X (si el registro está en depuración) y buscar ota y allí se puede ver si un módulo se actualiza con registros de el tipo :
 
 ````
 2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA query_next_image handler for 'IKEA of Sweden TRADFRI control outlet': field_control=1, manufacture_id=4476, image_type=4353, current_file_version=536974883, hardware_version=60
@@ -154,9 +154,9 @@ Las actualizaciones se lanzan si hay una y luego el módulo pregunta si hay una 
 
 # Consejos para hacer más confiables las redes zigbee 
 
-Para tener una red zigbee confiable es más que recomendable tener al menos 3 módulos de enrutador permanentemente alimentados y evitar desenchufarlos. De hecho, durante nuestras pruebas notamos una gran mejora en la confiabilidad y resistencia de las redes zigbee al agregar un módulo de enrutador. También es aconsejable incluirlos primero (de lo contrario, el dispositivo final [módulo sin enrutador] tardará entre 24 y 48 horas en descubrirlo)).
+Para tener una red zigbee confiable, es más que recomendable tener al menos 3 módulos de enrutador permanentemente alimentados y evitar desenchufarlos. De hecho, durante nuestras pruebas notamos una gran mejora en la confiabilidad y la resistencia de la red zigbee al agregar el módulo del enrutador. También es aconsejable incluirlos primero (de lo contrario, el dispositivo final [módulo sin enrutador] tardará entre 24 y 48 horas en descubrirlo)).
 
-Otro punto importante es que durante la extracción de un módulo router es posible que parte del dispositivo final [módulo no router] se pierda durante más o menos tiempo (diez horas o más), o incluso definitivamente y que tengas que volver a incluirlos. Desafortunadamente, el equipo de Jeedom no puede hacer nada al respecto, es específico para el dispositivo final [módulo sin enrutador] dependiendo de cómo lo configuró el fabricante (y no el complemento Jeedom que no se ocupa de la parte de enrutamiento en absoluto))
+Otro punto importante es que durante la extracción de un módulo router es posible que parte del dispositivo final [módulo no router] se pierda durante más o menos tiempo (diez horas o más), o incluso definitivamente y que tengas que volver a incluirlos. Desafortunadamente, el equipo de Jeedom no puede hacer nada al respecto. Es específico para el dispositivo final [módulo no enrutador] dependiendo de cómo lo configuró el fabricante (y no el complemento de Jeedom que no se ocupa de la parte de enrutamiento en absoluto))
 
 >**NOTA**
 >
@@ -169,7 +169,7 @@ Otro punto importante: las pasarelas zigbee en wifi son menos confiables que las
 
 >**LQI o RSSI es N / A
 >
->Normalmente es luego de un reinicio de las redes Zigbee los valores se vacían, es necesario esperar a que el módulo se vuelva a unir para que los valores regresen
+>Normalmente es luego de un reinicio de las redes Zigbee los valores se vacían, es necesario esperar a que el módulo se reactive para que los valores regresen
 
 >**Tengo problemas de inclusión o errores en los registros de tipos ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
 >
@@ -187,4 +187,4 @@ Otro punto importante: las pasarelas zigbee en wifi son menos confiables que las
 >
 > Hay 2 casos posibles :
 > - c'est un "vieux module" en ZLL (voir configuration de l'équipement Jeedom indique si c'est du ZHA ou ZLL), dans ce cas il faut absolument une commande "Rafraichir" pour que vous ou Jeedom force une mise à jour valores. Si no lo tiene, debe ponerse en contacto con el soporte técnico para que se pueda agregar a la próxima versión estable. Una vez que haya salido, tendrá que hacer clic en "volver a crear pedidos" sin eliminar
-> - el módulo está en ZHA, por lo que es una preocupación de inclusión  : en la pestaña de acciones de la configuración del equipo tienes un botón de reinicio para forzar acciones de inclusión posterior, recuerda mantener el módulo despierto si está en batería.
+> -	el módulo está en ZHA, por lo que es una preocupación de inclusión : en la pestaña de acciones de la configuración del equipo tienes un botón de reinicio para forzar acciones de inclusión posterior, recuerda mantener el módulo despierto si está en batería

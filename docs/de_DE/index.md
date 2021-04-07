@@ -2,16 +2,16 @@
 
 Mit dem ZigBee-Plugin können Sie mit den meisten vorhandenen ZigBee-Geräten kommunizieren. Es basiert auf dem (Super-) Zigpy-Projekt, das mit den folgenden ZigBee-Schlüsseln kompatibel ist :
 
-- Deconz. Vom Jeedom-Team getestet und validiert. Deconz muss nicht installiert sein
-- EZSP (Schlüssel basierend auf einem Silicon Labs-Chupset). Wird vom Jeedom-Team getestet
-- X-bee. Nicht vom Jeedom-Team getestet
-- Zigate. Nicht vom Team getestet, experimentell bei Zigpy markiert
-- ZNP (Texas Instrument, Z-Stapel 3.X.X). Nicht vom Team getestet, experimentell bei Zigpy markiert
-- CC (Texas Instrument, Z-Stapel 1.2.X). Nicht vom Team getestet, experimentell bei Zigpy markiert
+-	Deconz. Vom Jeedom-Team getestet und validiert. Deconz muss nicht installiert sein
+-	EZSP (Schlüssel basierend auf einem Silicon Labs-Chipsatz). Wird vom Jeedom-Team getestet
+-	X-bee. Nicht vom Jeedom-Team getestet
+-	Zigate. Nicht vom Team getestet, experimentell bei Zigpy markiert
+-	ZNP (Texas Instrument, Z-Stapel 3.X.X). Nicht vom Team getestet, experimentell bei Zigpy markiert
+-	CC (Texas Instrument, Z-Stapel 1.2.X). Nicht vom Team getestet, experimentell bei Zigpy markiert
 
 # Plugin Konfiguration
 
-Nach der Installation des Plugins müssen Sie nur die Abhängigkeiten installieren, Ihren Schlüsseltyp und den Port auswählen (achten Sie darauf, dass nur der Deconz-Schlüsseltyp den Port in Auto unterstützt) und den Daemon starten. Sie können auch den Kanal für den Zickzack auswählen.
+Nach der Installation des Plugins müssen Sie nur die Abhängigkeiten installieren, Ihren Schlüsseltyp und den Port auswählen (achten Sie darauf, dass nur der Deconz-Schlüsseltyp den Port in Auto unterstützt) und den Daemon starten. Sie können auch den Kanal für den Zickzack auswählen
 
 >**Wichtig**
 >
@@ -41,7 +41,7 @@ Von Jeedom aus ist es möglich, die Firmware des ZigBee-Schlüssels zu aktualisi
 
 ## Zigpy-spezifische Parameter (Experten vorbehalten !!!!)
 
-Es ist möglich, bestimmte Parameter für das ZigBee-Subsystem (Zigpy) festzulegen). Dieser Teil ist wirklich Experten vorbehalten und Jeedom bietet keine Liste möglicher Parameter (es gibt Hunderte, die von der Art des Schlüssels abhängen). Das Feld wird als Eingabe aus dem json-Beispiel verwendet : 
+Es ist möglich, bestimmte Parameter für das ZigBee-Subsystem (Zigpy) festzulegen). Dieser Teil ist wirklich Experten vorbehalten und Jeedom bietet keine Liste möglicher Parameter (es gibt Hunderte, die von der Art des Schlüssels abhängen). Das Feld wird als Eingabe aus dem json-Beispiel verwendet :
 
 ````
 {
@@ -58,7 +58,7 @@ Es ist möglich, bestimmte Parameter für das ZigBee-Subsystem (Zigpy) festzuleg
 
 # Moduleinschluss
 
-Inklusion ist der schwierigste Teil in ZigBee. Obwohl einfach, wird die Operation oft mehrmals durchgeführt. Auf der Plugin-Seite ist es einfach, klicken Sie einfach auf die Schaltfläche "Einschlussmodus". Sobald Sie fertig sind, haben Sie 3 Minuten Zeit, um Ihre Ausrüstung einzuschließen.
+Inklusion ist der schwierigste Teil in ZigBee. Obwohl einfach, wird die Operation oft mehrmals durchgeführt. Coté plugin c'est facile il suffit de cliquer sur le bouton “Mode inclusion”, une fois fait vous avez 3minutes pour inclure votre équipement.
 
 Die Ausrüstungsseite ändert sich je nach Modul. Es ist erforderlich, jedes Mal auf die Dokumentation dieses Moduls zu verweisen.
 
@@ -68,7 +68,7 @@ Die Ausrüstungsseite ändert sich je nach Modul. Es ist erforderlich, jedes Mal
 
 # Equipement
 
-Einmal enthalten, muss Jeedom Ihr Modul automatisch erkennen (falls dies nicht der Fall ist, siehe nächstes Kapitel) und daher die Befehle erstellen, die gut funktionieren. Beachten Sie, dass es aufgrund eines Fehlers in einer bestimmten Firmware (Ikea, Sonoff ...) manchmal erforderlich ist, den Modultyp direkt in der Liste "Ausrüstung" auszuwählen und dann zu speichern, um die richtigen Befehle zu erhalten.
+Einmal enthalten, muss Jeedom Ihr Modul automatisch erkennen (falls dies nicht der Fall ist, siehe nächstes Kapitel) und daher die Befehle erstellen, die gut funktionieren. A noter qu'a cause de bug dans certain firmware (Ikea, Sonoff…) il est parfois nécessaire de choisir le type de module directement dans la liste “Equipement” puis de sauvegarder pour avoir les bonnes commandes.
 
 Sie haben auf der Registerkarte Ausrüstung die folgenden Parameter :
 
@@ -134,7 +134,7 @@ Dies ist der komplizierte Teil (wie immer in Zigbee ist das Zurücksetzen / Asso
 
 # OTA-Update 
 
-OTA-Updates sind Modul-Firmware-Updates. Sie dauern sehr lange (mehrere Stunden), ermöglichen Ihnen jedoch im Allgemeinen weniger Sorgen. Um ein Modul aktualisieren zu können, muss der Hersteller die Firmware mitteilen : 
+Die OTA-Updates sind die Updates der Firmware der Module. Sie dauern sehr, sehr lange (mehrere Stunden), ermöglichen aber im Allgemeinen weniger Sorgen. Um ein Modul aktualisieren zu können, muss der Hersteller die Firmware mitteilen :
 
 - Für Ikea und Ledavance keine Sorge, es wird online direkt von Ikea bereitgestellt, das Plugin wird es direkt von ihnen abholen 
 - Für andere (siehe [Hier](https://github.com/Koenkk/zigbee-OTA/tree/master/images)) Der Hersteller stellt manchmal inoffiziell ein Update zur Verfügung 
@@ -142,7 +142,7 @@ OTA-Updates sind Modul-Firmware-Updates. Sie dauern sehr lange (mehrere Stunden)
 
 Um OTA-Updates zu aktivieren, aktivieren Sie einfach das Kontrollkästchen in der Plugin-Konfiguration, speichern Sie und klicken Sie auf die Schaltfläche, um die OTA-Dateien zu aktualisieren. Starten Sie dann einfach die ZigBee-Dämonen neu.
 
-Die Updates werden gestartet, wenn es eines gibt, und danach fragt das Modul, ob es eines gibt (Sie können dies auf der Registerkarte Aktion in der Konfiguration des Moduls / Knotens erzwingen). Leider gibt es keinen einfachen Indikator, um den Fortschritt des Updates zu sehen. Die einzige Lösung besteht darin, in den zigbee_X-Protokollen (wenn das Protokoll debuggt ist) nach ota zu suchen und zu sehen, ob sich ein Modul mit Protokollen des Typs selbst aktualisiert : 
+Die Updates werden gestartet, wenn es eines gibt, und nachdem das Modul gefragt hat, ob es eines gibt (Sie können dies auf der Registerkarte Aktion in der Konfiguration des Moduls / Knotens erzwingen). Leider gibt es keinen einfachen Indikator, um den Fortschritt des Updates zu sehen. Die einzige Lösung besteht darin, im zigbee_X-Protokoll (wenn sich das Protokoll im Debug befindet) nach ota zu suchen und dort zu sehen, ob sich ein Modul mit Protokollen von aktualisiert der Typ :
 
 ````
 2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA query_next_image handler for 'IKEA of Sweden TRADFRI control outlet': field_control=1, manufacture_id=4476, image_type=4353, current_file_version=536974883, hardware_version=60
@@ -154,9 +154,9 @@ Die Updates werden gestartet, wenn es eines gibt, und danach fragt das Modul, ob
 
 # Ratschläge, um ZigBee-Netzwerke zuverlässiger zu machen 
 
-Um ein zuverlässiges ZigBee-Netzwerk zu haben, wird mehr als empfohlen, mindestens 3 Routermodule permanent mit Strom zu versorgen und zu vermeiden, dass sie vom Stromnetz getrennt werden. Tatsächlich haben wir während unserer Tests eine große Verbesserung der Zuverlässigkeit und Ausfallsicherheit der ZigBee-Netzwerke beim Hinzufügen eines Routermoduls festgestellt. Es ist auch ratsam, sie zuerst einzuschließen (andernfalls dauert es zwischen 24 und 48 Stunden, bis das Endgerät [Nicht-Router-Modul] dies herausgefunden hat).
+Um ein zuverlässiges ZigBee-Netzwerk zu haben, wird mehr als empfohlen, mindestens 3 Routermodule permanent mit Strom zu versorgen und zu vermeiden, dass sie vom Stromnetz getrennt werden. Tatsächlich haben wir bei unseren Tests beim Hinzufügen des Routermoduls eine große Verbesserung der Zuverlässigkeit und Ausfallsicherheit des ZigBee-Netzwerks festgestellt. Es ist auch ratsam, sie zuerst einzuschließen (andernfalls dauert es zwischen 24 und 48 Stunden, bis das Endgerät [Nicht-Router-Modul] dies herausgefunden hat).
 
-Ein weiterer wichtiger Punkt ist, dass beim Entfernen eines Routermoduls ein Teil des Endgeräts [Nicht-Routermodul] für mehr oder weniger Zeit (zehn Stunden oder mehr) oder sogar endgültig verloren geht und Sie diese wieder einschließen müssen. Leider kann das Jeedom-Team nichts dagegen tun. Es hängt vom Endgerät [Nicht-Router-Modul] ab, je nachdem, wie der Hersteller es konfiguriert hat (und nicht vom Jeedom-Plugin, das sich absolut nicht um den Routing-Teil kümmert)
+Ein weiterer wichtiger Punkt ist, dass beim Entfernen eines Routermoduls ein Teil des Endgeräts [Nicht-Routermodul] für mehr oder weniger Zeit (zehn Stunden oder mehr) oder sogar endgültig verloren geht und Sie diese wieder einschließen müssen. Leider kann das Jeedom-Team nichts dagegen tun. Es ist spezifisch für das Endgerät [kein Router-Modul], je nachdem, wie der Hersteller es konfiguriert hat (und nicht für das Jeedom-Plugin, das sich überhaupt nicht um den Routing-Teil kümmert)
 
 >**HINWEIS**
 >
@@ -169,7 +169,7 @@ Ein weiterer wichtiger Punkt: ZigBee-Gateways über WLAN sind weniger zuverläss
 
 >**LQI oder RSSI ist N / A
 >
->Normalerweise werden nach einem Neustart der ZigBee-Netzwerke die Werte geleert. Es muss gewartet werden, bis das Modul erneut angezeigt wird, damit die Werte zurückkehren
+>Normalerweise werden nach einem Neustart der ZigBee-Netzwerke die Werte geleert. Es muss gewartet werden, bis das Modul wieder aktiviert wird, damit die Werte zurückkehren
 
 >**Ich habe Einschlussprobleme oder Fehler in den Typprotokollen ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
 >
@@ -187,4 +187,4 @@ Ein weiterer wichtiger Punkt: ZigBee-Gateways über WLAN sind weniger zuverläss
 >
 > Es gibt 2 mögliche Fälle :
 > - Es ist ein "altes Modul" in ZLL (siehe Konfiguration der Jeedom-Ausrüstung gibt an, ob es sich um ZHA oder ZLL handelt). In diesem Fall benötigen Sie unbedingt einen "Aktualisieren" -Befehl für Sie oder Jeedom, um eine Aktualisierung der Werte zu erzwingen. Wenn Sie es nicht haben, müssen Sie sich an den Support wenden, damit es zur nächsten stabilen Version hinzugefügt werden kann. Nach dem Beenden müssen Sie auf "Bestellungen neu erstellen" klicken, ohne sie zu löschen
-> - Das Modul befindet sich in ZHA, daher ist es ein Anliegen der Inklusion  : Auf der Registerkarte "Aktion" der Gerätekonfiguration befindet sich eine Schaltfläche zum Zurücksetzen, um Aktionen nach dem Einschluss zu erzwingen. Denken Sie daran, das Modul wach zu halten, wenn es im Akkubetrieb ist.
+> -	Das Modul befindet sich in ZHA, daher ist es ein Anliegen der Inklusion : Auf der Registerkarte "Aktion" der Gerätekonfiguration befindet sich eine Schaltfläche zum Zurücksetzen, um Aktionen nach dem Einschluss zu erzwingen. Denken Sie daran, das Modul wach zu halten, wenn es im Akkubetrieb ist
