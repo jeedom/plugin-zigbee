@@ -47,6 +47,15 @@ foreach ($node_data['endpoints'] as $endpoint) {
     }
   }
 }
+$endpoint_ota = -1;
+foreach ($node_data['endpoints'] as $endpoint_id => $endpoint) {
+  foreach ($endpoint['output_clusters'] as $cluster) {
+    if($cluster['id'] == 25){
+      $endpoint_ota = $endpoint['id'];
+      break;
+    }
+  }
+}
 ?>
 <div id='div_nodeDeconzAlert' style="display: none;"></div>
 <ul class="nav nav-tabs" role="tablist">
@@ -392,11 +401,11 @@ foreach ($node_data['endpoints'] as $endpoint) {
       <br/>
       <form class="form-horizontal">
         <fieldset>
-          <?php if(config::byKey('allowOTA', 'zigbee') == 1){ ?>
+          <?php if(config::byKey('allowOTA', 'zigbee') == 1 && $endpoint_ota != -1){ ?>
             <div class="form-group">
               <label class="col-sm-3 control-label">{{Forcer la mise à jour du module}}</label>
               <div class="col-sm-2">
-                <a class="btn btn-warning bt_forceOTA"><i class="fa fa-trash"></i> {{OTA}}</a>
+                <a class="btn btn-warning bt_forceOTA" data-enpointOta="<?php echo $endpoint_ota; ?>"><i class="fas fa-sync"></i> {{OTA}}</a>
               </div>
             </div>
           <?php } ?>
@@ -774,7 +783,7 @@ foreach ($node_data['endpoints'] as $endpoint) {
     jeedom.zigbee.device.command({
       instance : zigbeeNodeInstance,
       ieee : zigbeeNodeIeee,
-      endpoint : 1,
+      endpoint : $(this).attr('data-enpointOta'),
       cluster_type : 'out',
       cluster : 25,
       command : 'image_notify',
