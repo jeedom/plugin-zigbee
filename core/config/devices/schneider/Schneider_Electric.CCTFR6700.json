@@ -4,6 +4,14 @@
   "buylink" : "https://www.domadoo.fr/fr/chauffage-clim/5498-schneider-electric-actionneur-pour-radiateur-electrique-fil-pilote-zigbee-30-wiser-3606481914705.html",
   "reset": "Appuyer sur le bouton et le maintenir enfoncé pendant plus de 20 secondes jusqu'à ce que la LED arrête de clignoter rouge",
   "pairing": "Appuyer sur le bouton pendant plus de 2 secondes",
+  "config" : [
+    {"endpoint" : 1,"cluster":65315,"attribute":49, "name":"Command Type","type":"select","values":
+      [
+        {"value":1,"name":"Contactor"},
+        {"value":3,"name":"Fil Pilot"}
+      ] 
+    } 
+  ],
   "commands": [
     {
       "name": "Température",
