@@ -1,0 +1,21 @@
+{
+  "name": "AQARA - Capteur de luminosité",
+  "ref" : "GZCGQ01LM",
+  "reset" : "Il faut presser pendant 10s le bouton du module",
+  "pairing":"Il faut presser pendant 5s le bouton du module",
+  "commands": [
+    {
+      "name": "Luminosité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1024::0",
+      "generic_type": "BRIGHTNESS",
+      "configuration":{
+        "historizeRound" : 2,
+        "calculValueOffset":"10**((#value#-1)/10000)"
+      }
+    }
+  ]
+}
