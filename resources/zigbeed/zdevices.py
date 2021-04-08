@@ -35,7 +35,7 @@ async def command(_data):
 		raise Exception("Device not found")
 	for cmd in _data['cmd']:
 		if not cmd['endpoint'] in device.endpoints:
-			raise Exception("Endpoint not found : "+str(cmd['endpoint']))
+			raise Exception("["+str(device._ieee)+"][zdevices.command] Endpoint not found : "+str(cmd['endpoint']))
 		endpoint = device.endpoints[cmd['endpoint']]
 		cluster = None
 		if 'cluster_type' in cmd :
@@ -46,7 +46,7 @@ async def command(_data):
 		elif hasattr(endpoint,cmd['cluster']):
 			cluster = getattr(endpoint, cmd['cluster'])
 		if cluster is None:
-			raise Exception("Cluster not found : "+str(cmd['cluster']))
+			raise Exception("["+str(device._ieee)+"][zdevices.command] Cluster not found : "+str(cmd['cluster']))
 		if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],cmd['command']):
 			logging.info("["+str(device._ieee)+"][zdevices.command] Use specific command action")
 			command = getattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], cmd['command'])
@@ -64,6 +64,7 @@ async def command(_data):
 				try:
 					await command(*args)
 				except Exception as e:
+					logging.error("["+str(device._ieee)+"][zdevices.command] Command failed retry in 1s : "+str(e))
 					await asyncio.sleep(1)
 					await command(*args)
 			else:
@@ -73,6 +74,7 @@ async def command(_data):
 				try:
 					await command()
 				except Exception as e:
+					logging.error("["+str(device._ieee)+"][zdevices.command] Command failed retry in 1s : "+str(e))
 					await asyncio.sleep(1)
 					await command(*args)
 			else:
@@ -84,15 +86,15 @@ async def write_attributes(_data):
 		raise Exception("Device not found")
 	for attribute in _data['attributes']:
 		if not attribute['endpoint'] in device.endpoints:
-			raise Exception("Endpoint not found : "+str(attribute['endpoint']))
+			raise Exception("["+str(device._ieee)+"][zdevices.write_attributes] Endpoint not found : "+str(attribute['endpoint']))
 		endpoint = device.endpoints[attribute['endpoint']]
 		if attribute['cluster_type'] == 'in':
 			if not attribute['cluster'] in endpoint.in_clusters:
-				raise Exception("Cluster not found : "+str(attribute['cluster']))
+				raise Exception("["+str(device._ieee)+"][zdevices.write_attributes] Cluster not found : "+str(attribute['cluster']))
 			cluster = endpoint.in_clusters[attribute['cluster']]
 		else:
 			if not attribute['cluster'] in endpoint.out_clusters:
-				raise Exception("Cluster not found : "+str(attribute['cluster']))
+				raise Exception("["+str(device._ieee)+"][zdevices.write_attributes] Cluster not found : "+str(attribute['cluster']))
 			cluster = endpoint.out_clusters[attribute['cluster']]
 		attributes = {}
 		for i in attribute['attributes']:
@@ -103,6 +105,7 @@ async def write_attributes(_data):
 		try:
 			await cluster.write_attributes(attributes,manufacturer=manufacturer)
 		except Exception as e:
+			logging.error("["+str(device._ieee)+"][zdevices.write_attributes] Write attribut retry in 1s : "+str(e))
 			await asyncio.sleep(1)
 			await cluster.write_attributes(attributes,manufacturer=manufacturer)
 		asyncio.ensure_future(check_write_attributes(_data))
