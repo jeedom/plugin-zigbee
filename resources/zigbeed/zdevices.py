@@ -61,12 +61,20 @@ async def command(_data):
 		if 'args' in cmd:
 			args = cmd['args']
 			if 'await' in cmd:
-				await command(*args)
+				try:
+					await command(*args)
+				except Exception as e:
+					await asyncio.sleep(1)
+					await command(*args)
 			else:
 				asyncio.ensure_future(command(*args))
 		else:
 			if 'await' in cmd:
-				await command()
+				try:
+					await command()
+				except Exception as e:
+					await asyncio.sleep(1)
+					await command(*args)
 			else:
 				asyncio.ensure_future(command())
 
@@ -92,7 +100,11 @@ async def write_attributes(_data):
 		manufacturer = None
 		if 'manufacturer' in attribute and attribute['manufacturer'] != '' :
 			manufacturer = attribute['manufacturer']
-		await cluster.write_attributes(attributes,manufacturer=manufacturer)
+		try:
+			await cluster.write_attributes(attributes,manufacturer=manufacturer)
+		except Exception as e:
+			await asyncio.sleep(1)
+			await cluster.write_attributes(attributes,manufacturer=manufacturer)
 		asyncio.ensure_future(check_write_attributes(_data))
 
 async def check_write_attributes(_data):
