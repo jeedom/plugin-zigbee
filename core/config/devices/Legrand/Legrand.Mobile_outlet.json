@@ -25,7 +25,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::on"
+      "logicalId": "1::on_off::on",
+       "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
     },
     {
       "name": "Off",
@@ -49,11 +53,7 @@
       "isVisible": 1,
       "isHistorized": 1,
       "unite":"W",
-      "logicalId": "1::2820::1291",
-      "template":{
-        "dashboard" : "prise",
-        "mobile" : "prise"
-      }
+      "logicalId": "1::2820::1291"
     }
   ]
 }
