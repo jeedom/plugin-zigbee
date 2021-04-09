@@ -6,8 +6,8 @@
   "reset" : "Appuyer pendant 10s le sur bouton du module",
   "pairing":"Appuyer pendant 5s le sur bouton du module",
   "configuration" : {
-     "battery_type" : "1x3V CR2032"
-    },
+    "battery_type" : "1x3V CR2032"
+  },
   "commands": [
     {
       "name": "Etat",
@@ -25,8 +25,8 @@
       "isHistorized": 0,
       "logicalId": "1::6::32768",
       "configuration": {
-                "repeatEventManagement": "always"
-       }
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }
