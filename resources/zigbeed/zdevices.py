@@ -76,7 +76,7 @@ async def command(_data):
 				except Exception as e:
 					logging.error("["+str(device._ieee)+"][zdevices.command] Command failed retry in 1s : "+str(e))
 					await asyncio.sleep(1)
-					await command(*args)
+					await command()
 			else:
 				asyncio.ensure_future(command())
 
