@@ -9,7 +9,7 @@
       "name": "Bouton 1",
       "type": "info",
       "subtype": "numeric",
-      "isVisible": 0,
+      "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::6::cmd::1"
     },
@@ -17,7 +17,7 @@
       "name": "Bouton 2",
       "type": "info",
       "subtype": "numeric",
-      "isVisible": 0,
+      "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "2::6::cmd::1"
     },
@@ -25,7 +25,7 @@
       "name": "Bouton 3",
       "type": "info",
       "subtype": "numeric",
-      "isVisible": 0,
+      "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "3::6::cmd::1"
     }
