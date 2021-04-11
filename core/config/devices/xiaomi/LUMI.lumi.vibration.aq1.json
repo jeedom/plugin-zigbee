@@ -9,7 +9,7 @@
     "battery_type" : "1x3V CR2032"
   },
   "config" : [
-    {"endpoint" : 1,"cluster":0,"attribute":65293,"manufacturer":4447,"name":"Sensibilité","type":"number","min" : 0 ,"max":10]},
+    {"endpoint" : 1,"cluster":0,"attribute":65293,"manufacturer":4447,"name":"Sensibilité","type":"number","min" : 0 ,"max":21]},
   ],
   "commands": [
     {

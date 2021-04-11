@@ -3,6 +3,10 @@
   "remark" : "Ne peut etre appairé que sur le canal 11",
   "ref" : "064887",
   "buylink" : "",
+  "config" : [
+    {"endpoint" : 1,"cluster":64513,"attribute":1,"manufacturer":64513,"name":"Led if on","type":"select","values":[{"value":0,"name":"Off"},{"value":1,"name":"On"}]},
+    {"endpoint" : 1,"cluster":64513,"attribute":2,"manufacturer":64513,"name":"Led if off","type":"select","values":[{"value":0,"name":"Off"},{"value":1,"name":"On"}]}
+   ],
   "commands": [
     {
       "name": "Etat",
@@ -21,7 +25,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::on"
+      "logicalId": "1::on_off::on",
+       "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
     },
     {
       "name": "Off",
@@ -45,11 +53,7 @@
       "isVisible": 1,
       "isHistorized": 1,
       "unite":"W",
-      "logicalId": "1::2820::1291",
-      "template":{
-        "dashboard" : "prise",
-        "mobile" : "prise"
-      }
+      "logicalId": "1::2820::1291"
     }
   ]
 }
