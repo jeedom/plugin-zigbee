@@ -5,13 +5,21 @@
   "buylink" : "",
   "commands": [
     {
-      "name": "Etat",
+      "name": "Vitesse",
       "type": "info",
       "subtype": "binary",
       "generic_type": "ENERGY_STATE",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::6::0"
+      "logicalId": "1::6::cmd::0"
+    },
+    {
+      "name": "Appui long",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::8::cmd::1"
     }
   ]
 }
