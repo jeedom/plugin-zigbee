@@ -3,6 +3,9 @@
   "ref" : "412171",
   "remark" : "Ne peut etre appairé que sur le canal 11",
   "buylink" : "",
+  "config" : [
+    {"endpoint" : 1,"cluster":64513,"attribute":0,"manufacturer":64513,"name":"Mode","type":"select","values":[{"value":3,"name":"on/off"},{"value":4,"name":"hp/hc"}]},
+  ],
   "commands": [
     {
       "name": "Etat",
