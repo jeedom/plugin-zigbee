@@ -1,5 +1,6 @@
 {
   "name": "Bouton SOS",
+  "ref" : "CPB-206",
   "reset" : "",
   "commands": [
     {
