@@ -1,5 +1,6 @@
 {
-  "name": "Capteur de température",
+  "name": "Sonde de température déportée sur câble",
+  "ref" : "CTHS-317-ET",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5572-casaia-sonde-de-temperature-deportee-sur-cable-zigbee-3770021021052.html",
   "commands": [
     {
