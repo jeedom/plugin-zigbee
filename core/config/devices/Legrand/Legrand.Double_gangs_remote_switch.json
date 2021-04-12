@@ -1,7 +1,7 @@
 {
-  "name": "Interrupteur double sans fil",
+  "name": "Commande double sans fil",
   "buylink" : "",
-  "ref" : "067722/067772/064895",
+  "ref" : "067724/067774/064894",
   "remark" : "Ne peut etre appairé que sur le canal 11",
   "commands": [
     {
