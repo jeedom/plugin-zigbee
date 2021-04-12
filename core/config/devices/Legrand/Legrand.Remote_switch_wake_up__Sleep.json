@@ -1,14 +1,14 @@
 {
-  "name": "Commande scène",
-  "remark" : "Ne peut etre appairé que sur le canal 11",
+  "name": "Commande bascule",
   "buylink" : "",
-  "ref" : "064884",
+  "ref" : "067694",
+  "remark" : "Ne peut etre appairé que sur le canal 11",
   "commands": [
     {
       "name": "Scène",
       "type": "info",
       "subtype": "numeric",
-      "isVisible": 1,
+      "isVisible": 0,
       "isHistorized": 0,
       "logicalId": "1::5::cmd::5"
     }

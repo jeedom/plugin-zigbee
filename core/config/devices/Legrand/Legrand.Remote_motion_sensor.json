@@ -1,0 +1,24 @@
+{
+  "name": "Detecteur de mouvement",
+  "remark" : "Ne peut etre appairé que sur le canal 11",
+  "buylink" : "",
+  "ref" : "064875",
+  "commands": [
+    {
+      "name": "Présence",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::0",
+      "generic_type": "PRESENCE",
+      "display": {
+        "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "presence",
+        "mobile" : "presence"
+      }
+    }
+  ]
+}
