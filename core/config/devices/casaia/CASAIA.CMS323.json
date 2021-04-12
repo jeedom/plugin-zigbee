@@ -1,5 +1,6 @@
 {
-  "name": "Multi sensor",
+  "name": "Multi-sensor mouvements/vibrations/température/humidité",
+  "ref" : "CMS-323",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5571-casaia-multi-sensor-zigbee-mouvements-vibrations-temperature-humidite-3770021021045.html",
   "commands": [
     {

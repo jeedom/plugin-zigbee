@@ -1,5 +1,6 @@
 {
   "name": "Sirène intelligente",
+  "ref" : "20205500",
   "commands": [
     {
       "name": "Etat durée",
