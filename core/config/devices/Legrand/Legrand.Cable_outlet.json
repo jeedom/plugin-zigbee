@@ -4,7 +4,7 @@
   "remark" : "Ne peut etre appairé que sur le canal 11",
   "ref" : "064879",
   "config" : [
-    {"endpoint" : 1,"cluster":64513,"attribute":0,"manufacturer":64513,"name":"Mode","type":"select","values":[{"value":1,"name":"on/off"},{"value":2,"name":"Fil pilote"}]},
+    {"endpoint" : 1,"cluster":64513,"attribute":0,"manufacturer":64513,"name":"Mode","type":"select","values":[{"value":1,"name":"on/off"},{"value":2,"name":"Fil pilote"}]}
   ],
   "commands": [
     {
