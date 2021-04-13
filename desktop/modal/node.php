@@ -632,7 +632,14 @@ foreach ($node_data['endpoints'] as $endpoint_id => $endpoint) {
     let tr = $(this).closest('tr');
     tr.find('.configLoadIcon').show();
     let attributes = {}
-    attributes[parseInt(tr.attr('data-attribute'))] = parseInt(tr.find('.configAttrValue').value())
+    value = tr.find('.configAttrValue').value();
+    if(jeedom.zigbee.util.isNumeric(value)){
+      attributes[parseInt(tr.attr('data-attribute'))] = parseInt(value)
+    }else if(jeedom.zigbee.util.isJson(value)){
+      attributes[parseInt(tr.attr('data-attribute'))] = JSON.parse(value)
+    }else{
+      attributes[parseInt(tr.attr('data-attribute'))] = value
+    }
     jeedom.zigbee.device.setAttributes({
       instance : zigbeeNodeInstance,
       ieee : zigbeeNodeIeee,
@@ -681,7 +688,13 @@ foreach ($node_data['endpoints'] as $endpoint_id => $endpoint) {
   $('#actionNodeTab').off('click','#bt_nodeSetAttr').on('click','#bt_nodeSetAttr',function(){
     let infos = $('#actionNodeTab').getValues('.setNodeAttr')[0]
     let attributes = {}
-    attributes[parseInt(infos.attributes)] = parseInt(infos.value)
+    if(jeedom.zigbee.util.isNumeric(infos.value)){
+      attributes[parseInt(infos.attributes)] = parseInt(infos.value)
+    }else if(jeedom.zigbee.util.isJson(infos.value)){
+      attributes[parseInt(infos.attributes)] = JSON.parse(infos.value)
+    }else{
+      attributes[parseInt(infos.attributes)] = infos.value
+    }
     jeedom.zigbee.device.setAttributes({
       instance : zigbeeNodeInstance,
       ieee : zigbeeNodeIeee,

@@ -670,7 +670,7 @@ jeedom.zigbee.util.displayAsTable = function(_data){
   return table;
 }
 
-jeedom.zigbee.util.timestampConverter = function (time) {
+jeedom.zigbee.util.timestampConverter = function(time) {
   if (time == "None"){
     return "N/A";
   }
@@ -701,3 +701,16 @@ jeedom.zigbee.util.timestampConverter = function (time) {
   var formattedDate = num + "/" + month + "/" + year;
   return formattedDate + ' ' + formattedTime;
 };
+
+jeedom.zigbee.util.isNumeric = function(value) {
+  return /^-?\d+$/.test(value);
+}
+
+jeedom.zigbee.util.isJson = function(str) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}

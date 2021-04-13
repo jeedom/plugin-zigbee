@@ -4,7 +4,7 @@
   "buylink" : "",
   "remark" : "Ne peut etre appairé que sur le canal 11, 13 ou 15",
   "config" : [
-    {"endpoint" : 1,"cluster":64513,"attribute":0,"manufacturer":64513,"name":"Dimmer","type":"select","values":[{"value":0,"name":"Off"},{"value":257,"name":"On"}]},
+    {"endpoint" : 1,"cluster":64513,"attribute":0,"manufacturer":64513,"name":"Dimmer","type":"select","values":[{"value":"[0,0]","name":"Off"},{"value":"[0,1]","name":"On"}]},
     {"endpoint" : 1,"cluster":64513,"attribute":1,"manufacturer":64513,"name":"Led dark","type":"select","values":[{"value":0,"name":"Off"},{"value":1,"name":"On"}]},
     {"endpoint" : 1,"cluster":64513,"attribute":2,"manufacturer":64513,"name":"Led if on","type":"select","values":[{"value":0,"name":"Off"},{"value":1,"name":"On"}]}
   ],
