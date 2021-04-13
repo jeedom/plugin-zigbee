@@ -1,6 +1,6 @@
 {
   "name": "AQARA - Interrupteur sans fil intelligent (REV1)",
-  "ref" : "WXKG11LM",
+  "ref" : "WXKG11LM Rev.1",
   "type": "Télécommande,Interrupteur",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/4669-aqara-interrupteur-sans-fil-intelligent-zigbee-192784000052.html",
   "reset" : "Appuyer pendant 10s sur le bouton du module",
