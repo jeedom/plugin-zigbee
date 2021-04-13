@@ -1,0 +1,105 @@
+{
+  "name": "Interrupteur intelligent simple charge sans neutre",
+  "ref" : "TS0011",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Etat 1",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "LIGHT_STATE",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "1::6::0"
+    },
+    {
+      "name": "On 1",
+      "generic_type": "LIGHT_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 1",
+      "logicalId": "1::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Off 1",
+      "generic_type": "LIGHT_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 1",
+      "logicalId": "1::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Toggle 1",
+      "generic_type": "LIGHT_TOGGLE",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
+    },
+    {
+      "name": "Etat 2",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "LIGHT_STATE",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "2::6::0"
+    },
+    {
+      "name": "On 2",
+      "generic_type": "LIGHT_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 2",
+      "logicalId": "2::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Off 2",
+      "generic_type": "LIGHT_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 2",
+      "logicalId": "2::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Toggle 2",
+      "generic_type": "LIGHT_TOGGLE",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "2::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
+    }
+  ]
+}
