@@ -189,7 +189,6 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
 								</div>
 							</div>
-							<br>
 
 							<legend><i class="fas fa-cogs"></i> {{Paramètres spécifiques}}</legend>
 							<div class="form-group">
