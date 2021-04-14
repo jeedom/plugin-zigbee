@@ -83,6 +83,12 @@ Vous avez dans l’onglet équipement les paramètres suivants :
 
 Dans l'onglet commande vous retrouvez les commandes de votre module (si celui-ci a bien été reconnu)
 
+## Binding 
+
+Le binding permet de lier 2 modules entre eux directement (les ordres ne passe pas par Jeedom). Le lien se fait d'un cluster vers le meme cluster d'un autre module. Il faut toujours faire le lien depuis la commande (type télécommande) vers l'actionneur.
+
+Attention certain module ne sont pas compatible avec le binding ou d'autre (comme les modules Ikea) ne supporte le binding que de la commande vers un groupe (il faut donc d'abord faire un groupe dans lequel vous devez mettre l'actionneur)
+
 ## Commande pour les experts
 
 Pour les experts voici comment marche les commandes :
