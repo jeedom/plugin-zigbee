@@ -210,13 +210,17 @@ foreach ($node_data['endpoints'] as $endpoint_id => $endpoint) {
             echo '<p>';
             echo  '{{Cluster sortant :}}';
             foreach ($endpoint['out_cluster'] as $out_cluster) {
-              echo ' <span class="label label-info">'.$out_cluster['name'].' ('. $out_cluster['id'].')</span>';
+              if(in_array($out_cluster['id'],array(3,7,25,4096))){
+                echo ' <span class="label label-info">'.$out_cluster['name'].' ('. $out_cluster['id'].')</span>';
+              }else{
+                echo ' <span class="label label-info"><i class="fas fa-link bt_bindCluster cursor" title="{{Bind}}" data-endpoint="'.$endpoint_id.'" data-cluster="'.$out_cluster['id'].'"></i> '.$out_cluster['name'].' ('. $out_cluster['id'].') <i class="fas fa-unlink bt_unbindCluster cursor" title="{{Unbind}}" data-endpoint="'.$endpoint_id.'" data-cluster="'.$out_cluster['id'].'"></i></span>';
+              }
             }
             echo '<p>';
             echo '</p>';
             echo  '{{Cluster entrant :}}';
-            foreach ($endpoint['in_cluster'] as $out_cluster) {
-              echo ' <span class="label label-primary">'.$out_cluster['name'].' ('. $out_cluster['id'].')</span>';
+            foreach ($endpoint['in_cluster'] as $in_cluster) {
+              echo ' <span class="label label-primary">'.$in_cluster['name'].' ('. $in_cluster['id'].')</span>';
             }
             echo '</p>';
             echo  '</div>';
@@ -823,4 +827,91 @@ foreach ($node_data['endpoints'] as $endpoint_id => $endpoint) {
   });
   
   
-</script>
+  $('.bt_bindCluster').off('click').on('click',function(){
+    let src = {
+      ieee : zigbeeNodeIeee,
+      cluster_type : 'out',
+      endpoint : parseInt($(this).attr('data-endpoint')),
+      cluster : parseInt($(this).attr('data-cluster'))
+    }
+    let select_list = []
+    for(var i in zigbee_devices){
+      if(zigbee_devices[i].instance != zigbeeNodeInstance || i == zigbeeNodeIeee){
+        continue;
+      }
+      select_list.push({value:i,text:zigbee_devices[i].HumanName})
+    }
+    bootbox.prompt({
+      title: "{{A quel module/groupe voulez vous lier le cluster ?}}",
+      value : select_list[0].value,
+      inputType: 'select',
+      inputOptions:select_list,
+      callback: function (device_result) {
+        if(device_result === null){
+          return;
+        }
+        if(device_result.indexOf('group') != -1){
+          var dest = {type : 'group',group_id:device_result.split('|')[1]}
+        }else{
+          var dest = {ieee:device_result}
+        }
+        jeedom.zigbee.device.bind({
+          instance : zigbeeNodeInstance,
+          src : src,
+          dest : dest,
+          error: function (error) {
+            $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+          },
+          success: function (data) {
+            $('#div_nodeDeconzAlert').showAlert({message: '{{Binding réussi}}', level: 'success'});
+          }
+        })
+      }
+    });
+  })
+  
+  $('.bt_unbindCluster').off('click').on('click',function(){
+    let src = {
+      ieee : zigbeeNodeIeee,
+      cluster_type : 'out',
+      endpoint : parseInt($(this).attr('data-endpoint')),
+      cluster : parseInt($(this).attr('data-cluster'))
+    }
+    let select_list = []
+    for(var i in zigbee_devices){
+      if(zigbee_devices[i].instance != zigbeeNodeInstance || i == zigbeeNodeIeee){
+        continue;
+      }
+      select_list.push({value:i,text:zigbee_devices[i].HumanName})
+    }
+    bootbox.prompt({
+      title: "{{A quel module/groupe voulez vous délier le cluster ?}}",
+      value : select_list[0].value,
+      inputType: 'select',
+      inputOptions:select_list,
+      callback: function (device_result) {
+        if(device_result === null){
+          return;
+        }
+        if(device_result.indexOf('group') != -1){
+          var dest = {type : 'group',group_id:device_result.split('|')[1]}
+        }else{
+          var dest = {ieee:device_result}
+        }
+        jeedom.zigbee.device.unbind({
+          instance : zigbeeNodeInstance,
+          src : src,
+          dest : dest,
+          error: function (error) {
+            $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+          },
+          success: function (data) {
+            $('#div_nodeDeconzAlert').showAlert({message: '{{Binding réussi}}', level: 'success'});
+          }
+        })
+      }
+    });
+  })
+  
+  </script>
+  

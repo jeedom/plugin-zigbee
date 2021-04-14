@@ -129,7 +129,7 @@ $('.bt_addToZigbeeGroup').off('click').on('click',function(){
     return;
   }
   bootbox.prompt({
-    title: "Quel module voulez vous ajouter au groupe ?",
+    title: "{{Quel module voulez vous ajouter au groupe ?}}",
     value : inputOptions[0].value,
     inputType: 'select',
     inputOptions:inputOptions,
@@ -156,7 +156,7 @@ $('.bt_addToZigbeeGroup').off('click').on('click',function(){
 
 $('.bt_removeFromZigbeeGroup').off('click').on('click',function(){
   var tr = $(this).closest('tr');
-  bootbox.confirm("Etês vous sur de vouloir supprimer ce noeud du groupe ?", function(result){
+  bootbox.confirm("{{Etês vous sur de vouloir supprimer ce noeud du groupe ?}}", function(result){
     if(result){
       jeedom.zigbee.group.delete_device({
         instance : zigbeeNodeInstance,

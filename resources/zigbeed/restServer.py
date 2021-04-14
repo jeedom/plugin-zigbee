@@ -275,7 +275,7 @@ class DeviceHandler(RequestHandler):
 						raise Exception("Cluster not found : "+str(self.json_args['src']['cluster']))
 					src_cluster = src_endpoint.out_clusters[self.json_args['src']['cluster']]
 				if 'type' in self.json_args['dest'] and self.json_args['dest']['type'] == 'group':
-					await zgroups.group_binding(src_device,self.json_args['dest']['group_id'],zdo_types.ZDOCmd.Bind_req,[src_cluster]);
+					await zgroups.binding(src_device,self.json_args['dest']['group_id'],zdo_types.ZDOCmd.Bind_req,[src_cluster]);
 				else:
 					dest_device = zdevices.find(self.json_args['dest']['ieee'])
 					if dest_device == None :
@@ -298,7 +298,7 @@ class DeviceHandler(RequestHandler):
 						raise Exception("Cluster not found : "+str(self.json_args['src']['cluster']))
 					src_cluster = src_endpoint.out_clusters[self.json_args['src']['cluster']]
 				if 'type' in self.json_args['dest'] and self.json_args['dest']['type'] == 'group':
-					await zgroups.group_binding(src_device,self.json_args['dest']['group_id'],zdo_types.ZDOCmd.Unbind_req,src_cluster);
+					await zgroups.binding(src_device,self.json_args['dest']['group_id'],zdo_types.ZDOCmd.Unbind_req,[src_cluster]);
 				else:
 					dest_device = zdevices.find(self.json_args['dest']['ieee'])
 					if dest_device == None :

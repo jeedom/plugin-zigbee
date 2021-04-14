@@ -15,6 +15,7 @@ foreach ($eqLogics as $eqLogic) {
 	$eqLogicArray['HumanNameFull'] = $eqLogic->getHumanName(true);
 	$eqLogicArray['HumanName'] = $eqLogic->getHumanName();
 	$eqLogicArray['id'] = $eqLogic->getId();
+	$eqLogicArray['instance'] = $eqLogic->getConfiguration('instance',1);
 	$eqLogicArray['img'] = 'plugins/zigbee/core/config/devices/'.zigbee::getImgFilePath($eqLogic->getConfiguration('device'));
 	$devices[$eqLogic->getLogicalId()] = $eqLogicArray;
 	$deviceAttr[$eqLogic->getId()] = array('canbesplit' => $eqLogic->getConfiguration('canbesplit',0),'ischild' => $eqLogic->getConfiguration('ischild',0),'isgroup' => $eqLogic->getConfiguration('isgroup',0));
