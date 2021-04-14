@@ -34,7 +34,7 @@ if (!isConnect('admin')) {
   </select>
 </div>
 <br>
-<div id="group_table" class="row tab-pane">
+<div id="group_table" class="tab-pane">
   <table class="table col-md-10 col-md-offset-1">
     <thead style="font-weight:bold;">
       <tr>
