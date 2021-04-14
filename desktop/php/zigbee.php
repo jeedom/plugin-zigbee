@@ -245,7 +245,9 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 						<div class="col-lg-6">
 							<legend><i class="fas fa-info"></i> {{Informations}}</legend>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Fabricant}}</label>
+								<label class="col-md-3 control-label">{{Fabricant}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le fabricant du module Zigbee}}"></i></sup>
+								</label>
 								<div class="col-md-7">
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="manufacturer">
 										<option value="">{{Aucun}}</option>
@@ -269,7 +271,9 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Equipement}}</label>
+								<label class="col-md-3 control-label">{{Equipement}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le type d'équipement Zigbee}}"></i></sup>
+								</label>
 								<div class="col-md-7">
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="device">
 										<option value="" data-manufacturer="all">{{Inconnu}}</option>
@@ -306,7 +310,9 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 							</div>
 							<div class="form-group visual" style="display: none;">
-								<label class="col-md-3 control-label">{{Visuel}}</label>
+								<label class="col-md-3 control-label">{{Visuel}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner un visuel alternatif}}"></i></sup>
+								</label>
 								<div class="col-md-7">
 									<select class="eqLogicAttr form-control listVisual" data-l1key="configuration" data-l2key="visual">
 										<option value="">{{Par défaut}}</option>
@@ -316,20 +322,20 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 							<div class="form-group">
 								<label class="col-md-3 control-label"></label>
 								<div class="col-md-7">
-							<div id="div_instruction"></div>
-							<div style="height:220px;display:flex;justify-content:center;align-items:center;">
-								<img src="plugins/zigbee/plugin_info/zigbee_icon.png" data-original=".jpg" id="img_device" class="img-responsive" style="max-height:200px;max-width:200px;"  onerror="this.src='plugins/zigbee/plugin_info/zigbee_icon.png'"/>
+									<div id="div_instruction"></div>
+									<div style="height:220px;display:flex;justify-content:center;align-items:center;">
+										<img src="plugins/zigbee/plugin_info/zigbee_icon.png" data-original=".jpg" id="img_device" class="img-responsive" style="max-height:200px;max-width:200px;"  onerror="this.src='plugins/zigbee/plugin_info/zigbee_icon.png'"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label"></label>
+								<div class="col-md-7">
+									<a class="btn btn-danger" id="bt_autoDetectModule"><i class="fas fa-search" title="{{Recréer les commandes}}"></i>  {{Recréer les commandes}}</a>
+									<a id="bt_showZigbeeDevice" class="btn btn-primary"><i class="fas fa-wrench"></i> {{Configuration du module}}</a>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-3 control-label"></label>
-						<div class="col-md-7">
-							<a class="btn btn-danger" id="bt_autoDetectModule"><i class="fas fa-search" title="{{Recréer les commandes}}"></i>  {{Recréer les commandes}}</a>
-							<a id="bt_showZigbeeDevice" class="btn btn-primary"><i class="fas fa-wrench"></i> {{Configuration du module}}</a>
-						</div>
-					</div>
-				</div>
 					</fieldset>
 				</form>
 				<hr>
