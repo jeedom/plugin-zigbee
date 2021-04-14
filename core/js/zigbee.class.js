@@ -434,15 +434,8 @@ jeedom.zigbee.device.bind = function(_params){
     instance : _params.instance || 1,
     request: '/device/bind',
     data : json_encode({
-      src :{
-        ieee : _params.src.ieee,
-        endpoint : _params.src.endpoint,
-        cluster : _params.src.cluster,
-        cluster_type : _params.src.cluster_type || 'in',
-      },
-      dest : {
-        ieee : _params.dest.ieee
-      }
+      src : _params.src,
+      dest : _params.dest
     }),
     type : 'PUT'
   };
@@ -465,15 +458,8 @@ jeedom.zigbee.device.unbind = function(_params){
     instance : _params.instance || 1,
     request: '/device/unbind',
     data : json_encode({
-      src :{
-        ieee : _params.src.ieee,
-        endpoint : _params.src.endpoint,
-        cluster : _params.src.cluster,
-        cluster_type : _params.src.cluster_type || 'in',
-      },
-      dest : {
-        ieee : _params.dest.ieee
-      }
+      src : _params.src,
+      dest : _params.dest
     }),
     type : 'PUT'
   };

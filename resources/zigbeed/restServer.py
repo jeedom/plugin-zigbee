@@ -28,6 +28,7 @@ import zdevices
 import zgroups
 import zqueue
 import zigpy
+import zigpy.zdo.types as zdo_types
 
 from map import *
 try:
@@ -273,10 +274,13 @@ class DeviceHandler(RequestHandler):
 					if not self.json_args['src']['cluster'] in src_endpoint.out_clusters:
 						raise Exception("Cluster not found : "+str(self.json_args['src']['cluster']))
 					src_cluster = src_endpoint.out_clusters[self.json_args['src']['cluster']]
-				dest_device = zdevices.find(self.json_args['dest']['ieee'])
-				if dest_device == None :
-					raise Exception("Device destination not found")
-				await dest_device.zdo.bind(src_cluster)
+				if 'type' in self.json_args['dest'] and self.json_args['dest']['type'] == 'group':
+					await zgroups.group_binding(src_device,self.json_args['dest']['group_id'],zdo_types.ZDOCmd.Bind_req,[src_cluster]);
+				else:
+					dest_device = zdevices.find(self.json_args['dest']['ieee'])
+					if dest_device == None :
+						raise Exception("Device destination not found")
+					await dest_device.zdo.bind(src_cluster)
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'unbind':
 				src_device = zdevices.find(self.json_args['src']['ieee'])
@@ -293,10 +297,13 @@ class DeviceHandler(RequestHandler):
 					if not self.json_args['src']['cluster'] in src_endpoint.out_clusters:
 						raise Exception("Cluster not found : "+str(self.json_args['src']['cluster']))
 					src_cluster = src_endpoint.out_clusters[self.json_args['src']['cluster']]
-				dest_device = zdevices.find(self.json_args['dest']['ieee'])
-				if dest_device == None :
-					raise Exception("Device destination not found")
-				await dest_device.zdo.unbind(src_cluster)
+				if 'type' in self.json_args['dest'] and self.json_args['dest']['type'] == 'group':
+					await zgroups.group_binding(src_device,self.json_args['dest']['group_id'],zdo_types.ZDOCmd.Unbind_req,src_cluster);
+				else:
+					dest_device = zdevices.find(self.json_args['dest']['ieee'])
+					if dest_device == None :
+						raise Exception("Device destination not found")
+					await dest_device.zdo.unbind(src_cluster)
 				return self.write(utils.format_json_result(success=True))
 		except Exception as e:
 			logging.debug(traceback.format_exc())

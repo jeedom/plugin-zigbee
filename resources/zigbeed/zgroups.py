@@ -101,3 +101,25 @@ def find(group_id):
 		if group._group_id == int(group_id):
 			return group
 	return None
+	
+async def group_binding(device, group_id, operation, clusters):
+		"""Create or remove a direct zigbee binding between a device and a group."""
+		zdo = device.zdo
+		op_msg = "0x%04x: %s %s, ep: %s, cluster: %s to group: 0x%04x"
+		destination_address = zdo_types.MultiAddress()
+		destination_address.addrmode = types.uint8_t(1)
+		destination_address.nwk = types.uint16_t(group_id)
+		tasks = []
+		for cluster in clusters:
+			if cluster.endpoint._endpoint_id == 0:
+				continue
+			op_params = (device.nwk,operation.name,str(device.ieee),cluster.endpoint._endpoint_id,cluster.cluster_id,group_id,)
+			zdo.debug(f"processing {op_msg}", *op_params)
+			tasks.append((zdo.request(operation,device.ieee,cluster.endpoint._endpoint_id,cluster.cluster_id,destination_address,),op_msg,op_params,))
+		res = await asyncio.gather(*(t[0] for t in tasks), return_exceptions=True)
+		for outcome, log_msg in zip(res, tasks):
+			if isinstance(outcome, Exception):
+				fmt = f"{log_msg[1]} failed: %s"
+			else:
+				fmt = f"{log_msg[1]} completed: %s"
+			logging.debug(fmt, *(log_msg[2] + (outcome,)))
