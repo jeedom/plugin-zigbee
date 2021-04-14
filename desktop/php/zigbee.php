@@ -200,8 +200,8 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">{{Démon}}
-									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le démon du contrôleur en communication avec ce module}}"></i></sup>
+								<label class="col-sm-3 control-label">{{Contrôleur Zigbee}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le contrôleur en communication avec ce module}}"></i></sup>
 								</label>
 								<div class="col-sm-7">
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="instance">
