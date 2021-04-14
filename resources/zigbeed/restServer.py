@@ -258,6 +258,46 @@ class DeviceHandler(RequestHandler):
 				shared.DEVICE_SPECIFIC.pop(ieee, None)
 				logging.debug('[DeviceHandler.put/delete_specific] Delete specific configuration for '+str(ieee))
 				return self.write(utils.format_json_result(success=True))
+			if arg1 == 'bind':
+				src_device = zdevices.find(self.json_args['src']['ieee'])
+				if src_device == None :
+					raise Exception("Device source not found")
+				if not self.json_args['src']['endpoint'] in src_device.endpoints:
+					raise Exception("Endpoint not found : "+str(self.json_args['src']['endpoint']))
+				src_endpoint = src_device.endpoints[self.json_args['src']['endpoint']]
+				if self.json_args['src']['cluster_type'] == 'in':
+					if not self.json_args['src']['cluster'] in src_endpoint.in_clusters:
+						raise Exception("Cluster not found : "+str(self.json_args['src']['cluster']))
+					src_cluster = src_endpoint.in_clusters[self.json_args['src']['cluster']]
+				else:
+					if not self.json_args['src']['cluster'] in src_endpoint.out_clusters:
+						raise Exception("Cluster not found : "+str(self.json_args['src']['cluster']))
+					src_cluster = src_endpoint.out_clusters[self.json_args['src']['cluster']]
+				dest_device = zdevices.find(self.json_args['dest']['ieee'])
+				if dest_device == None :
+					raise Exception("Device destination not found")
+				await dest_device.zdo.bind(src_cluster)
+				return self.write(utils.format_json_result(success=True))
+			if arg1 == 'unbind':
+				src_device = zdevices.find(self.json_args['src']['ieee'])
+				if src_device == None :
+					raise Exception("Device source not found")
+				if not self.json_args['src']['endpoint'] in src_device.endpoints:
+					raise Exception("Endpoint not found : "+str(self.json_args['src']['endpoint']))
+				src_endpoint = src_device.endpoints[self.json_args['src']['endpoint']]
+				if self.json_args['src']['cluster_type'] == 'in':
+					if not self.json_args['src']['cluster'] in src_endpoint.in_clusters:
+						raise Exception("Cluster not found : "+str(self.json_args['src']['cluster']))
+					src_cluster = src_endpoint.in_clusters[self.json_args['src']['cluster']]
+				else:
+					if not self.json_args['src']['cluster'] in src_endpoint.out_clusters:
+						raise Exception("Cluster not found : "+str(self.json_args['src']['cluster']))
+					src_cluster = src_endpoint.out_clusters[self.json_args['src']['cluster']]
+				dest_device = zdevices.find(self.json_args['dest']['ieee'])
+				if dest_device == None :
+					raise Exception("Device destination not found")
+				await dest_device.zdo.unbind(src_cluster)
+				return self.write(utils.format_json_result(success=True))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))

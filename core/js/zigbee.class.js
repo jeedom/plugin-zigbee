@@ -418,6 +418,68 @@ jeedom.zigbee.device.setAttributes = function(_params){
   $.ajax(paramsAJAX);
 }
 
+jeedom.zigbee.device.bind = function(_params){
+  var paramsRequired = ['src','dest'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    instance : _params.instance || 1,
+    request: '/device/bind',
+    data : json_encode({
+      src :{
+        ieee : _params.src.ieee,
+        endpoint : _params.src.endpoint,
+        cluster : _params.src.cluster,
+        cluster_type : _params.src.cluster_type || 'in',
+      },
+      dest : {
+        ieee : _params.dest.ieee
+      }
+    }),
+    type : 'PUT'
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.zigbee.device.unbind = function(_params){
+  var paramsRequired = ['src','dest'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
+  paramsAJAX.data = {
+    instance : _params.instance || 1,
+    request: '/device/unbind',
+    data : json_encode({
+      src :{
+        ieee : _params.src.ieee,
+        endpoint : _params.src.endpoint,
+        cluster : _params.src.cluster,
+        cluster_type : _params.src.cluster_type || 'in',
+      },
+      dest : {
+        ieee : _params.dest.ieee
+      }
+    }),
+    type : 'PUT'
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.zigbee.device.setReportConfig = function(_params){
   var paramsRequired = ['ieee','cluster','endpoint','attributes'];
   var paramsSpecifics = {};
