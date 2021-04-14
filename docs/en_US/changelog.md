@@ -7,6 +7,7 @@
 - Adding Philips Hue LBW006
 - Addition of the Legrand Télérupteur module
 - Addition of power for the Legrand contactor
+- Addition of the binding (between group or module)
 
 # 04/07/2021
 

@@ -83,6 +83,12 @@ Você tem na guia de equipamentos os seguintes parâmetros :
 
 Na página de comandos iráencontrar os comandos do seu módulo (se tiver sido reconhecido)
 
+## Obrigatório 
+
+A ligação permite ligar 2 módulos entre eles diretamente (os pedidos não passam pelo Jeedom). O link é feito de um cluster para o mesmo cluster de outro módulo. A ligação deve ser sempre feita do controle (tipo de controle remoto) para o atuador.
+
+Atenção alguns módulos não são compatíveis com a ligação ou outros (como os módulos Ikea) só suportam a ligação do comando a um grupo (você deve primeiro fazer um grupo no qual você deve colocar o atuador)
+
 ## Pedido para especialistas
 
 Para os especialistas, aqui está como funcionam os controles :

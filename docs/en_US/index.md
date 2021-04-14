@@ -83,6 +83,12 @@ You have in the equipment tab the following parameters :
 
 In the command tab you will find the commands of your module (if it has been recognized)
 
+## Binding 
+
+The binding allows to link 2 modules between them directly (the orders do not go through Jeedom). The link is made from a cluster to the same cluster of another module. The link must always be made from the control (remote control type) to the actuator.
+
+Attention some module are not compatible with the binding or other (like the Ikea modules) only supports the binding of the command to a group (you must first make a group in which you must put the actuator)
+
 ## Order for experts
 
 For the experts here is how the controls work :

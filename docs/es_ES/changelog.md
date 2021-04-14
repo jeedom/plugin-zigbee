@@ -7,6 +7,7 @@
 - Adición de Philips Hue LBW006
 - Adición del módulo Legrand Télérupteur
 - Adición de potencia para el contactor Legrand
+- Adición de la vinculación (entre grupo o módulo)
 
 # 07/04/2021
 
