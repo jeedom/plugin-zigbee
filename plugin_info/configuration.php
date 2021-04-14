@@ -179,9 +179,9 @@ if (!isConnect('admin')) {
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-5 control-label">{{Action}}</label>
+                <label class="col-md-5 control-label"></label>
                 <div class="col-md-6">
-                  <a class="btn btn-warning bt_zigbeeRestartDeamon" data-deamon="<?php echo $i ?>"><i class="fas fa-redo-alt"></i> {{Redémarrer le démon}}</a>
+                  <a class="form-control btn btn-warning bt_zigbeeRestartDeamon" data-deamon="<?php echo $i ?>" title="Cliquer sur le bouton pour redémarrer le démon"><i class="fas fa-redo-alt"></i> {{Redémarrer le démon}}</a>
                 </div>
               </div>
             </div>
