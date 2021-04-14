@@ -218,7 +218,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Vérification de communication}}
+								<label class="col-md-3 control-label">{{Contrôle communication}}
 									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le mode de vérification de la bonne communication avec le module}}"></i></sup>
 								</label>
 								<div class="col-md-7">
