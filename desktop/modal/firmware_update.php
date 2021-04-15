@@ -62,6 +62,7 @@ if (!isConnect('admin')) {
           <option value="v6">6.0.3 Elelabs {{officiel}}</option>
           <option value="v8">6.7 Elelabs {{officiel}}</option>
           <option value="efr32mg13p-v8-6820-115200.gbl">6.8.2-42 {{non officiel}}</option>
+          <option value="efr32mg13p-v8-6910-115200.gbl">6.9.1 {{non officiel}}</option>
         </select>
       </div>
     </div>
