@@ -56,6 +56,26 @@ foreach ($node_data['endpoints'] as $endpoint_id => $endpoint) {
     }
   }
 }
+
+$binding_device = array('device' => array(),'group' => array());
+foreach (eqLogic::byType('zigbee') as $eqLogic2) {
+  if($eqLogic2->getConfiguration('instance') != $eqLogic->getConfiguration('instance',1) || $eqLogic2->getConfiguration('isgroup',0) != 1){
+    continue;
+  }
+  $binding_device['group'][$eqLogic2->getId()] = array('ieee'=>$eqLogic2->getLogicalId(),'humanName' => $eqLogic2->getHumanName());
+}
+foreach ($node_data['endpoints'] as $endpoint) {
+  foreach ($endpoint['output_clusters'] as $cluster) {
+    $eqLogics = zigbee::getDeviceWithCluster('in',$cluster['id'],$eqLogic->getConfiguration('instance'));
+    foreach ($eqLogics as $eqLogic2) {
+      if($eqLogic2->getId() == $eqLogic->getId()){
+        continue;
+      }
+      $binding_device['device'][$cluster['id']][$eqLogic2->getId()] = array('ieee'=>$eqLogic2->getLogicalId(),'humanName' => $eqLogic2->getHumanName());
+    }
+  }
+}
+sendVarToJS('zigbee_binding_device',$binding_device);
 ?>
 <div id='div_nodeDeconzAlert' style="display: none;"></div>
 <ul class="nav nav-tabs" role="tablist">
@@ -210,7 +230,7 @@ foreach ($node_data['endpoints'] as $endpoint_id => $endpoint) {
             echo '<p>';
             echo  '{{Cluster sortant :}}';
             foreach ($endpoint['out_cluster'] as $out_cluster) {
-              if(in_array($out_cluster['id'],array(3,7,25,4096))){
+              if(in_array($out_cluster['id'],array(0,3,7,25,4096,4,10))){
                 echo ' <span class="label label-info">'.$out_cluster['name'].' ('. $out_cluster['id'].')</span>';
               }else{
                 echo ' <span class="label label-info"><i class="fas fa-link bt_bindCluster cursor" title="{{Bind}}" data-endpoint="'.$endpoint_id.'" data-cluster="'.$out_cluster['id'].'"></i> '.$out_cluster['name'].' ('. $out_cluster['id'].') <i class="fas fa-unlink bt_unbindCluster cursor" title="{{Unbind}}" data-endpoint="'.$endpoint_id.'" data-cluster="'.$out_cluster['id'].'"></i></span>';
@@ -835,11 +855,13 @@ foreach ($node_data['endpoints'] as $endpoint_id => $endpoint) {
       cluster : parseInt($(this).attr('data-cluster'))
     }
     let select_list = []
-    for(var i in zigbee_devices){
-      if(zigbee_devices[i].instance != zigbeeNodeInstance || i == zigbeeNodeIeee){
-        continue;
+    for(var i in zigbee_binding_device['group']){
+      select_list.push({value:zigbee_binding_device['group'][i].ieee,text:zigbee_binding_device['group'][i].humanName})
+    }
+    if(zigbee_binding_device['device'][src.cluster]){
+      for(var i in zigbee_binding_device['device'][src.cluster]){
+        select_list.push({value:zigbee_binding_device['device'][src.cluster][i].ieee,text:zigbee_binding_device['device'][src.cluster][i].humanName})
       }
-      select_list.push({value:i,text:zigbee_devices[i].HumanName})
     }
     bootbox.prompt({
       title: "{{A quel module/groupe voulez vous lier le cluster ?}}",
@@ -878,11 +900,13 @@ foreach ($node_data['endpoints'] as $endpoint_id => $endpoint) {
       cluster : parseInt($(this).attr('data-cluster'))
     }
     let select_list = []
-    for(var i in zigbee_devices){
-      if(zigbee_devices[i].instance != zigbeeNodeInstance || i == zigbeeNodeIeee){
-        continue;
+    for(var i in zigbee_binding_device['group']){
+      select_list.push({value:zigbee_binding_device['group'][i].ieee,text:zigbee_binding_device['group'][i].humanName})
+    }
+    if(zigbee_binding_device['device'][src.cluster]){
+      for(var i in zigbee_binding_device['device'][src.cluster]){
+        select_list.push({value:zigbee_binding_device['device'][src.cluster][i].ieee,text:zigbee_binding_device['device'][src.cluster][i].humanName})
       }
-      select_list.push({value:i,text:zigbee_devices[i].HumanName})
     }
     bootbox.prompt({
       title: "{{A quel module/groupe voulez vous délier le cluster ?}}",

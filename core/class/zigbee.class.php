@@ -427,6 +427,20 @@ class zigbee extends eqLogic {
     return $return;
   }
   
+  public static function getDeviceWithCluster($_type,$_cluster,$_instance = null){
+    $return = array();
+    foreach (self::byType('zigbee') as $eqLogic) {
+      if($_instance != null && $_instance != $eqLogic->getConfiguration('instance',1)){
+        continue;
+      }
+      $clusters = ($_type == 'in') ? $eqLogic->getConfiguration('input_clusters') : $eqLogic->getConfiguration('output_clusters');
+      if(in_array($_cluster,$clusters)){
+        $return[] = $eqLogic;
+      }
+    }
+    return $return;
+  }
+  
   public static function sync(){
     $new = null;
     for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
@@ -460,6 +474,19 @@ class zigbee extends eqLogic {
           $eqLogic->setEqType_name('zigbee');
           $eqLogic->setConfiguration('device',$device_type);
           $new = true;
+        }
+        foreach ($device['endpoints'] as $endpoint) {
+          $out_cluster = array();
+          foreach ($endpoint['output_clusters'] as $cluster) {
+            $out_cluster[$cluster['id']] = $cluster['id'];
+          }
+          $eqLogic->setConfiguration('output_clusters',array_values($out_cluster));
+          
+          $in_cluster = array();
+          foreach ($endpoint['input_clusters'] as $cluster) {
+            $in_cluster[$cluster['id']] = $cluster['id'];
+          }
+          $eqLogic->setConfiguration('input_clusters',array_values($in_cluster));
         }
         $eqLogic->setConfiguration('instance',$i);
         $eqLogic->save();
