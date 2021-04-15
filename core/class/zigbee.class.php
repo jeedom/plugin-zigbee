@@ -1037,7 +1037,7 @@ class zigbeeCmd extends cmd {
       $info = explode('::',str_replace(array_keys($replace),$replace,$information));
       if($info[0] == 'attributes'){
         $value = evaluate($info[5]);
-        if(is_float($value)){
+        if(is_numeric($value)){
           $value = intval($value);
         }
         $attributes[] = array('endpoint' => intval($info[1]),'cluster_type'=> $info[2],'cluster'=>intval($info[3]),'attributes'=>array(intval($info[4])=>$value));
@@ -1049,7 +1049,7 @@ class zigbeeCmd extends cmd {
         if (count($info) > 3){
           $command['args'] = array_slice($info,3);
           foreach ($command['args'] as &$value) {
-            if(is_float($value)){
+            if(is_numeric($value)){
               $value = intval($value);
             }
           }
