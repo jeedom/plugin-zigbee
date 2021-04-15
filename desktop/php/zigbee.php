@@ -101,7 +101,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 		<legend><i class="far fa-object-group"></i>  {{Mes groupes Zigbee}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<?php
-			$child = '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green far fa-object-group" title="Groupe"></i>';
+			$child = '<i style="position:relative;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green far fa-object-group" title="Groupe"></i>';
 			foreach ($eqLogics as $eqLogic) {
 				if ($eqLogic->getConfiguration('isgroup',0) == 1) {
 					echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '" >';
@@ -126,7 +126,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 			?>
 		</div>
 	</div>
-
+	
 	<div class="col-xs-12 eqLogic" style="display: none;">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
@@ -189,7 +189,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
 								</div>
 							</div>
-
+							
 							<legend><i class="fas fa-cogs"></i> {{Paramètres spécifiques}}</legend>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Identification}}
@@ -240,7 +240,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 							</div>
 						</div>
-
+						
 						<div class="col-lg-6">
 							<legend><i class="fas fa-info"></i> {{Informations}}</legend>
 							<div class="form-group">
@@ -339,7 +339,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 				</form>
 				<hr>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="commandtab">
 				<a class="btn btn-success btn-sm cmdAction pull-right" data-action="add" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter une commande}}</a><br/><br/>
 				<table id="table_cmd" class="table table-bordered table-condensed">
@@ -358,7 +358,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 				</table>
 			</div>
 		</div>
-
+		
 	</div>
 </div>
 <?php include_file('core', 'zigbee', 'class.js', 'zigbee');?>
