@@ -149,15 +149,15 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 						<div class="col-lg-6">
 							<legend><i class="fas fa-wrench"></i> {{Paramètres généraux}}</legend>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Nom de l'équipement}}</label>
-								<div class="col-md-7">
+								<label class="col-sm-3 control-label">{{Nom de l'équipement}}</label>
+								<div class="col-sm-7">
 									<input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
 									<input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="Nom de l'équipement Zigbee"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Objet parent}}</label>
-								<div class="col-md-7">
+								<label class="col-sm-3 control-label">{{Objet parent}}</label>
+								<div class="col-sm-7">
 									<select class="eqLogicAttr form-control" data-l1key="object_id">
 										<option value="">{{Aucun}}</option>
 										<?php
@@ -171,8 +171,8 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Catégorie}}</label>
-								<div class="col-md-7">
+								<label class="col-sm-3 control-label">{{Catégorie}}</label>
+								<div class="col-sm-7">
 									<?php
 									foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
 										echo '<label class="checkbox-inline">';
@@ -183,28 +183,27 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Options}}</label>
-								<div class="col-md-7">
+								<label class="col-sm-3 control-label">{{Options}}</label>
+								<div class="col-sm-7">
 									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
 									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
 								</div>
 							</div>
-							<br>
 
 							<legend><i class="fas fa-cogs"></i> {{Paramètres spécifiques}}</legend>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Identification}}
+								<label class="col-sm-3 control-label">{{Identification}}
 									<sup><i class="fas fa-question-circle tooltips" title="{{Identifiant du module}}"></i></sup>
 								</label>
-								<div class="col-md-7">
+								<div class="col-sm-7">
 									<input type="text" class="eqLogicAttr form-control" data-l1key="logicalId" placeholder="Logical ID"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Démon}}
-									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le démon du contrôleur en communication avec ce module}}"></i></sup>
+								<label class="col-sm-3 control-label">{{Contrôleur Zigbee}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le contrôleur en communication avec ce module}}"></i></sup>
 								</label>
-								<div class="col-md-7">
+								<div class="col-sm-7">
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="instance">
 										<?php
 										foreach($zigbee_instances as $zigbee_instance) {
@@ -218,10 +217,10 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Contrôle communication}}
+								<label class="col-sm-3 control-label">{{Contrôle communication}}
 									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le mode de vérification de la bonne communication avec le module}}"></i></sup>
 								</label>
-								<div class="col-md-7">
+								<div class="col-sm-7">
 									<select class="eqLogicAttr" data-l1key="configuration" data-l2key="last_seen::check_mode">
 										<option value="auto">{{Automatique}}</option>
 										<option value="ignore_poll_control">{{Ignorer le poll control}}</option>
@@ -230,8 +229,8 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Options avancées}}</label>
-								<div class="col-md-7">
+								<label class="col-sm-3 control-label">{{Options avancées}}</label>
+								<div class="col-sm-7">
 									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="dontAwaitCmd"/>{{Ignorer la confirmation d'exécution}}
 										<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour ignorer la confirmation de la bonne exécution de la commande par le contrôleur}}"></i></sup>
 									</label>
@@ -245,8 +244,10 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 						<div class="col-lg-6">
 							<legend><i class="fas fa-info"></i> {{Informations}}</legend>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Fabricant}}</label>
-								<div class="col-md-7">
+								<label class="col-sm-3 control-label">{{Fabricant}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le fabricant du module Zigbee}}"></i></sup>
+								</label>
+								<div class="col-sm-7">
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="manufacturer">
 										<option value="">{{Aucun}}</option>
 										<?php
@@ -269,8 +270,10 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 control-label">{{Equipement}}</label>
-								<div class="col-md-7">
+								<label class="col-sm-3 control-label">{{Equipement}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le type d'équipement Zigbee}}"></i></sup>
+								</label>
+								<div class="col-sm-7">
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="device">
 										<option value="" data-manufacturer="all">{{Inconnu}}</option>
 										<?php
@@ -306,30 +309,32 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								</div>
 							</div>
 							<div class="form-group visual" style="display: none;">
-								<label class="col-md-3 control-label">{{Visuel}}</label>
-								<div class="col-md-7">
+								<label class="col-sm-3 control-label">{{Visuel}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner un visuel alternatif}}"></i></sup>
+								</label>
+								<div class="col-sm-7">
 									<select class="eqLogicAttr form-control listVisual" data-l1key="configuration" data-l2key="visual">
 										<option value="">{{Par défaut}}</option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 control-label"></label>
-								<div class="col-md-7">
-							<div id="div_instruction"></div>
-							<div style="height:220px;display:flex;justify-content:center;align-items:center;">
-								<img src="plugins/zigbee/plugin_info/zigbee_icon.png" data-original=".jpg" id="img_device" class="img-responsive" style="max-height:200px;max-width:200px;"  onerror="this.src='plugins/zigbee/plugin_info/zigbee_icon.png'"/>
+								<label class="col-sm-3 control-label"></label>
+								<div class="col-sm-7">
+									<div id="div_instruction"></div>
+									<div style="height:220px;display:flex;justify-content:center;align-items:center;">
+										<img src="plugins/zigbee/plugin_info/zigbee_icon.png" data-original=".jpg" id="img_device" class="img-responsive" style="max-height:200px;max-width:200px;"  onerror="this.src='plugins/zigbee/plugin_info/zigbee_icon.png'"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"></label>
+								<div class="col-sm-7">
+									<a class="btn btn-danger" id="bt_autoDetectModule"><i class="fas fa-search" title="{{Recréer les commandes}}"></i>  {{Recréer les commandes}}</a>
+									<a id="bt_showZigbeeDevice" class="btn btn-primary"><i class="fas fa-wrench"></i> {{Configuration du module}}</a>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-3 control-label"></label>
-						<div class="col-md-7">
-							<a class="btn btn-danger" id="bt_autoDetectModule"><i class="fas fa-search" title="{{Recréer les commandes}}"></i>  {{Recréer les commandes}}</a>
-							<a id="bt_showZigbeeDevice" class="btn btn-primary"><i class="fas fa-wrench"></i> {{Configuration du module}}</a>
-						</div>
-					</div>
-				</div>
 					</fieldset>
 				</form>
 				<hr>

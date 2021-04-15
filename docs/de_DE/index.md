@@ -83,6 +83,12 @@ Sie haben auf der Registerkarte Ausrüstung die folgenden Parameter :
 
 Auf der Befehlsregisterkarte finden Sie die Befehle Ihres Moduls (sofern es erkannt wurde)
 
+## Bindung 
+
+Die Bindung ermöglicht es, 2 Module direkt miteinander zu verbinden (die Bestellungen gehen nicht über Jeedom). Die Verknüpfung wird von einem Cluster zu demselben Cluster eines anderen Moduls hergestellt. Die Verbindung muss immer von der Steuerung (Fernbedienungstyp) zum Stellantrieb hergestellt werden.
+
+Achtung, einige Module sind nicht mit der Bindung kompatibel oder andere (wie die Ikea-Module) unterstützen nur die Bindung des Befehls an eine Gruppe (Sie müssen zuerst eine Gruppe erstellen, in die Sie den Aktuator einfügen müssen)
+
 ## Bestellung für Experten
 
 Für die Experten ist hier, wie die Kontrollen funktionieren :

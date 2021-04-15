@@ -19,127 +19,145 @@ if (!isConnect('admin')) {
 }
 ?>
 <div id='div_alertBackupRestore' style="display: none;"></div>
-<legend>{{Backup}}</legend>
-<div class="alert alert-info">{{IMPORTANT : seul les clefs de type EZSP et ZNP peuvent etre backupée pour le moment. Durant le backup tous les démons zigbee sont coupés}}</div>
-<form class="form-horizontal">
-  <fieldset>
-    <div class="form-group">
-      <label class="col-sm-4 control-label">{{Type de controlleur}}</label>
-      <div class="col-sm-2">
-        <select class="backupAttr form-control" data-l1key="controller">
-          <option value="ezsp">{{EZSP}}</option>
-          <option value="znp">{{ZNP}}</option>
-        </select>
-      </div>
+<div class="col-lg-6">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title"><i class="fas fa-download"></i> {{Sauvegarde}}</h4>
     </div>
-    <div class="form-group">
-      <label class="col-sm-4 control-label">{{Type de clef}}</label>
-      <div class="col-sm-2">
-        <select class="backupAttr form-control" data-l1key="sub_controller">
-          <option value="auto" data-controller="auto">{{Auto}}</option>
-          <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
-        </select>
-      </div>
+    <div class="panel-body">
+      <div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> {{IMPORTANT : seules les clés de type EZSP et ZNP peuvent être sauvegardées pour le moment. Durant la sauvegarde tous les démons Zigbee sont stoppés.}}</div>
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">{{Type de contrôleur}}</label>
+            <div class="col-sm-7">
+              <select class="backupAttr form-control" data-l1key="controller">
+                <option value="ezsp">{{EZSP}}</option>
+                <option value="znp">{{ZNP}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">{{Type de clé}}</label>
+            <div class="col-sm-7">
+              <select class="backupAttr form-control" data-l1key="sub_controller">
+                <option value="auto" data-controller="auto">{{Auto}}</option>
+                <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">{{Port du contrôleur}}</label>
+            <div class="col-sm-7">
+              <select class="backupAttr form-control" data-l1key="port">
+                <option value="">{{Aucun}}</option>
+                <option value="gateway">{{Passerelle distante}}</option>
+                <?php
+                foreach (jeedom::getUsbMapping() as $name => $value) {
+                  echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
+                }
+                foreach (ls('/dev/', 'tty*') as $value) {
+                  echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
+                }
+                ?>
+              </select>
+            </div>
+          </div>
+          <div class="form-group zigbee_backup_portConf gateway" style="display:none;">
+            <label class="col-sm-4 control-label">{{Passerelle distante}} <sub>(IP:PORT)</sub></label>
+            <div class="col-sm-7">
+              <input class="backupAttr form-control" data-l1key="gateway" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label"></label>
+            <div class="col-sm-7">
+              <a class="form-control btn btn-success" id="bt_launchBackup" title="Cliquer sur le bouton pour initier le processus de sauvegarde du contrôleur"><i class="far fa-save"></i> {{Démarrer la sauvegarde}}</a>
+            </div>
+          </div>
+        </fieldset>
+      </form>
     </div>
-    <div class="form-group">
-      <label class="col-sm-4 control-label">{{Port Zigbee}}</label>
-      <div class="col-sm-2">
-        <select class="backupAttr form-control" data-l1key="port">
-          <option value="">{{Aucun}}</option>
-          <option value="gateway">{{Passerelle distante}}</option>
-          <?php
-          foreach (jeedom::getUsbMapping() as $name => $value) {
-            echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
-          }
-          foreach (ls('/dev/', 'tty*') as $value) {
-            echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
-          }
-          ?>
-        </select>
-      </div>
-    </div>
-    <div class="form-group zigbee_backup_portConf gateway" style="display:none;">
-      <label class="col-sm-4 control-label">{{Passerelle distante IP:PORT}}</label>
-      <div class="col-sm-2">
-        <input class="backupAttr form-control" data-l1key="gateway" />
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-lg-4 control-label">{{Lancer le backup}}</label>
-      <div class="col-lg-2">
-        <a class="form-control btn btn-default" id="bt_launchBackup"><i class="far fa-save"></i> {{Lancer}}</a>
-      </div>
-    </div>
-  </fieldset>
-</form>
+    <br>
+  </div>
+</div>
 
-<legend>{{Restore}}</legend>
-<div class="alert alert-info">{{IMPORTANT : seul les clefs de type EZSP et ZNP peuvent etre restorée pour le moment}}</div>
-<div class="alert alert-info">{{IMPORTANT : Vous ne pouvez restorer un backup d'un type de clef que sur le meme type de clef}}</div>
-<div class="alert alert-danger">{{IMPORTANT : il n'est possible de restorer que UNE SEUL FOIS un backup sur les clef de type EZSP}}</div>
-<form class="form-horizontal">
-  <fieldset>
-    <div class="form-group">
-      <label class="col-sm-4 control-label">{{Type de controlleur}}</label>
-      <div class="col-sm-2">
-        <select class="restoreAttr form-control" data-l1key="controller">
-          <option value="ezsp">{{EZSP}}</option>
-          <option value="znp">{{ZNP}}</option>
-        </select>
-      </div>
+<div class="col-lg-6">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title"><i class="fas fa-upload"></i> {{Restauration}}</h4>
     </div>
-    <div class="form-group">
-      <label class="col-sm-4 control-label">{{Type de clef}}</label>
-      <div class="col-sm-2">
-        <select class="restoreAttr form-control" data-l1key="sub_controller">
-          <option value="auto" data-controller="auto">{{Auto}}</option>
-          <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
-        </select>
+    <div class="panel-body">
+      <div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> {{IMPORTANT : Le fichier de sauvegarde doit correspondre au même type de contrôleur pour pouvoir être restauré.}}
+        <strong class="text-danger">{{Les contrôleurs EZSP ne permettent qu'une seule restauration durant toute la vie de la clé.}}</strong>
       </div>
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">{{Type de contrôleur}}</label>
+            <div class="col-sm-7">
+              <select class="restoreAttr form-control" data-l1key="controller">
+                <option value="ezsp">{{EZSP}}</option>
+                <option value="znp">{{ZNP}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">{{Type de clé}}</label>
+            <div class="col-sm-7">
+              <select class="restoreAttr form-control" data-l1key="sub_controller">
+                <option value="auto" data-controller="auto">{{Auto}}</option>
+                <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">{{Port du contrôleur}}</label>
+            <div class="col-sm-7">
+              <select class="restoreAttr form-control" data-l1key="port">
+                <option value="">{{Aucun}}</option>
+                <option value="gateway">{{Passerelle distante}}</option>
+                <?php
+                foreach (jeedom::getUsbMapping() as $name => $value) {
+                  echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
+                }
+                foreach (ls('/dev/', 'tty*') as $value) {
+                  echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
+                }
+                ?>
+              </select>
+            </div>
+          </div>
+          <div class="form-group zigbee_restore_portConf gateway" style="display:none;">
+            <label class="col-sm-4 control-label">{{Passerelle distante IP:PORT}}</label>
+            <div class="col-sm-7">
+              <input class="restoreAttr form-control" data-l1key="gateway" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">{{Sauvegarde à restaurer}}</label>
+            <div class="col-sm-7">
+              <select class="restoreAttr form-control" data-l1key="backup" >
+                <?php
+                foreach (ls(__DIR__.'/../../data/backup') as $file) {
+                  echo '<option value="'.$file.'">'.$file.'</option>';
+                }
+                ?>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label"></label>
+            <div class="col-sm-7">
+              <a class="form-control btn btn-success" id="bt_launchRestore" title="Cliquer sur le bouton pour initier le processus de restauration du contrôleur"><i class="far fa-save"></i> {{Démarrer la restauration}}</a>
+            </div>
+          </div>
+        </fieldset>
+      </form>
     </div>
-    <div class="form-group">
-      <label class="col-sm-4 control-label">{{Port Zigbee}}</label>
-      <div class="col-sm-2">
-        <select class="restoreAttr form-control" data-l1key="port">
-          <option value="">{{Aucun}}</option>
-          <option value="gateway">{{Passerelle distante}}</option>
-          <?php
-          foreach (jeedom::getUsbMapping() as $name => $value) {
-            echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
-          }
-          foreach (ls('/dev/', 'tty*') as $value) {
-            echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
-          }
-          ?>
-        </select>
-      </div>
-    </div>
-    <div class="form-group zigbee_restore_portConf gateway" style="display:none;">
-      <label class="col-sm-4 control-label">{{Passerelle distante IP:PORT}}</label>
-      <div class="col-sm-2">
-        <input class="restoreAttr form-control" data-l1key="gateway" />
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-4 control-label">{{Backup}}</label>
-      <div class="col-sm-2">
-        <select class="restoreAttr form-control" data-l1key="backup" >
-          <?php 
-          foreach (ls(__DIR__.'/../../data/backup') as $file) {
-            echo '<option value="'.$file.'">'.$file.'</option>';
-          }
-          ?>
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-lg-4 control-label">{{Lancer la restauration}}</label>
-      <div class="col-lg-2">
-        <a class="form-control btn btn-default" id="bt_launchRestore"><i class="far fa-save"></i> {{Lancer}}</a>
-      </div>
-    </div>
-  </fieldset>
-</form>
+    <br>
+  </div>
+</div>
 <script>
 $('.backupAttr[data-l1key="port"]').off('change').on('change',function(){
   $('.zigbee_backup_portConf').hide();
@@ -174,7 +192,7 @@ $('#bt_launchBackup').off('click').on('click',function(){
       $('#div_alertBackupRestore').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      $('#md_modal2').dialog({title: "{{Backup zigbee}}"}).load('index.php?v=d&modal=log.display&log=zigbee_backup').dialog('open');
+      $('#md_modal2').dialog({title: "{{Sauvegarde contrôleur Zigbee}}"}).load('index.php?v=d&modal=log.display&log=zigbee_backup').dialog('open');
     }
   });
 })
@@ -190,7 +208,7 @@ $('#bt_launchRestore').off('click').on('click',function(){
       $('#div_alertBackupRestore').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      $('#md_modal2').dialog({title: "{{Restauration zigbee}}"}).load('index.php?v=d&modal=log.display&log=zigbee_restore').dialog('open');
+      $('#md_modal2').dialog({title: "{{Restauration contrôleur Zigbee}}"}).load('index.php?v=d&modal=log.display&log=zigbee_restore').dialog('open');
     }
   });
 })

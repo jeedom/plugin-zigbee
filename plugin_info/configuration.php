@@ -70,7 +70,7 @@ if (!isConnect('admin')) {
     </div>
     <?php for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){ ?>
       <div class="col-lg-6">
-        <legend><i class="icon loisir-darth"></i> {{Démon du contrôleur }}<?php echo $i ?></legend>
+        <legend><i class="fas fa-broadcast-tower"></i> {{Contrôleur }}<?php echo $i ?></legend>
         <div class="form-group">
           <label class="col-md-3 control-label">{{Activer}}
             <sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour activer le démon du contrôleur}} <?php echo $i ?>"></i></sup>
@@ -83,7 +83,7 @@ if (!isConnect('admin')) {
         <div id="zigbee_deamon_<?php echo $i ?>" style="display:none;">
             <div class="col-md-7">
               <div class="form-group">
-                <label class="col-md-5 control-label">{{Nom du démon}}
+                <label class="col-md-5 control-label">{{Nom du contrôleur}}
                   <sup><i class="fas fa-question-circle tooltips" title="{{Renseigner le nom permettant d'identifier le démon du contrôleur}} <?php echo $i ?>"></i></sup>
                 </label>
                 <div class="col-md-6">
@@ -138,13 +138,17 @@ if (!isConnect('admin')) {
                 </div>
               </div>
               <div class="form-group zigbee_portConf_<?php echo $i ?> pizigate_<?php echo $i ?>" style="display:none;">
-                <label class="col-md-5 control-label">{{Pizigate}}</label>
+                <label class="col-md-5 control-label">{{Pizigate}}
+                  <sup><i class="fas fa-question-circle tooltips" title="{{Renseigner l'adresse de la Pizigate}}"></i></sup>
+                </label>
                 <div class="col-md-6">
                   <input type="number" class="configKey form-control" data-l1key="pizigate_<?php echo $i ?>" />
                 </div>
               </div>
               <div class="form-group zigbee_portConf_<?php echo $i ?> gateway_<?php echo $i ?>" style="display:none;">
-                <label class="col-md-5 control-label">{{Passerelle distante IP:PORT}}</label>
+                <label class="col-md-5 control-label">{{Passerelle distante}} <sub>(IP:PORT)</sub>
+                  <sup><i class="fas fa-question-circle tooltips" title="{{Renseigner l'adresse de la passerelle distante}}"></i></sup>
+                </label>
                 <div class="col-md-6">
                   <input class="configKey form-control" data-l1key="gateway_<?php echo $i ?>" />
                 </div>
@@ -179,15 +183,17 @@ if (!isConnect('admin')) {
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-5 control-label">{{Action}}</label>
+                <label class="col-md-5 control-label"></label>
                 <div class="col-md-6">
-                  <a class="btn btn-warning bt_zigbeeRestartDeamon" data-deamon="<?php echo $i ?>"><i class="fas fa-redo-alt"></i> {{Redémarrer le démon}}</a>
+                  <a class="form-control btn btn-warning bt_zigbeeRestartDeamon" data-deamon="<?php echo $i ?>" title="Cliquer sur le bouton pour redémarrer le démon"><i class="fas fa-redo-alt"></i> {{Redémarrer le démon}}</a>
                 </div>
               </div>
             </div>
             <div class="col-md-5">
               <div class="form-group has-error">
-                <label class="control-label">{{Configuration avancée de Zigpy au format json}} <sub>({{experts}})</sub> </label>
+                <label class="control-label">{{Configuration avancée Zigpy}} <sub>({{json}})</sub>
+                  <sup><i class="fas fa-question-circle tooltips" title="{{Réservé aux experts}} !"></i></sup>
+                </label>
               </div>
               <div class="form-group">
                 <div class="col-sm-12">

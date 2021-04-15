@@ -83,6 +83,12 @@ Tienes en la pestaña de equipos los siguientes parámetros :
 
 En la pestaña de comandos encontrarás los comandos de tu módulo (si ha sido reconocido)
 
+## Unión 
+
+El enlace permite enlazar 2 módulos entre ellos directamente (los pedidos no pasan por Jeedom). El enlace se realiza desde un clúster al mismo clúster de otro módulo. El enlace siempre debe realizarse desde el control (tipo de control remoto) al actuador.
+
+Atención algunos módulos no son compatibles con la vinculación u otros (como los módulos de Ikea) solo admiten la vinculación del comando a un grupo (primero debes hacer un grupo en el que debes poner el actuador)
+
 ## Pedido de expertos
 
 Para los expertos, así es como funcionan los controles :

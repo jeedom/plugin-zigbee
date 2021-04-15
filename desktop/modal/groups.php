@@ -19,8 +19,10 @@ if (!isConnect('admin')) {
 }
 ?>
 <div id='div_groupZigbeeAlert' style="display: none;"></div>
+<a class="btn btn-success bt_addZigbeeGroup pull-right"><i class="fa fa-plus"></i> {{Ajouter un groupe}}</a>
 <div id="div_templateGroupZigbee">
-  <select class="pull-right form-control" id="sel_groupZigbeeInstance" style="width:250px;">
+  <label>{{Contrôleur}} : </label>
+  <select id="sel_groupZigbeeInstance" style="width:250px;max-width:50%;">
     <?php
     foreach(zigbee::getDeamonInstanceDef() as $zigbee_instance) {
       if($zigbee_instance['enable'] != 1){
@@ -30,106 +32,104 @@ if (!isConnect('admin')) {
     }
     ?>
   </select>
-  
-  <div class="tab-pane active" id="application_network"></div>
-  <a class="btn btn-success bt_addZigbeeGroup pull-right"><i class="fa fa-plus"></i> {{Ajouter}}</a>
-  <div id="group_table" class="tab-pane">
-    <table class="table">
-      <thead>
-        <tr>
-          <td>{{Id}}</td>
-          <td>{{Nom Jeedom}}</td>
-          <td>{{Membres}}</td>
-          <td>{{Nom}}</td>
-          <td>{{Actions}}</td>
-        </tr>
-      </thead>
-      <tbody>
-        
-      </tbody>
-    </table>
-  </div>
-  <script>
-  $('#sel_groupZigbeeInstance').off('change').on('change',function(){
-    refreshGroupsData();
-  })
-  
-  function refreshGroupsData(){
-    jeedom.zigbee.group.all({
-      global:false,
-      instance : $('#sel_groupZigbeeInstance').value(),
-      type : 'GET',
-      error: function (error) {
-        $('#div_groupZigbeeAlert').showAlert({message: error.message, level: 'danger'});
-      },
-      success: function (data) {
-        tr = '';
-        for(var i in data){
-          tr += '<tr data-id="'+data[i].id+'">';
-          tr += '<td style="font-size:0.8em !important;">';
-          tr += data[i].id;
-          tr += '</td>';
-          tr += '<td>';
-          if (zigbee_devices['group|'+data[i].id]){
-            tr += zigbee_devices['group|'+data[i].id].HumanNameFull;
-          }
-          tr += '</td>';
-          tr += '<td>';
-          tr += data[i].members.length;
-          tr += '</td>';
-          tr += '<td>';
-          tr += data[i].name;
-          tr += '</td>';
-          tr += '<td>';
-          tr += '<a class="btn btn-danger btn-xs bt_removeZigbeeGroup"><i class="fa fa-trash"></i> {{Supprimer}}</a> ';
-          tr += '</td>';
-          tr += '</tr>';
-        }
-        $('#group_table tbody').empty().append(tr)
-      }
-    });
-  }
-  
-  $('#group_table').off('click','.bt_removeZigbeeGroup').on('click','.bt_removeZigbeeGroup',function(){
-    var tr = $(this).closest('tr');
-    bootbox.confirm("{{Etês vous sur de vouloir supprimer ce groupe ?}}", function(result){
-      if(result){
-        jeedom.zigbee.group.delete({
-          instance : $('#sel_groupZigbeeInstance').value(),
-          id : tr.attr('data-id'),
-          error: function (error) {
-            $('#div_groupZigbeeAlert').showAlert({message: error.message, level: 'danger'});
-          },
-          success: function (data) {
-            tr.remove();
-          }
-        });
-      }
-    });
-  });
-  
-  $('.bt_addZigbeeGroup').off('click').on('click',function(){
-    bootbox.prompt("{{Vous voulez créer un groupe quel sera son nom ?}}", function(name){
-      if (name) {
-        jeedom.zigbee.group.create({
-          instance : $('#sel_groupZigbeeInstance').value(),
-          name : name,
-          error: function (error) {
-            $('#div_groupZigbeeAlert').showAlert({message: error.message, level: 'danger'});
-          },
-          success: function () {
-            $('#div_groupZigbeeAlert').showAlert({message: '{{Groupe créé avec succès}}', level: 'success'});
-            refreshGroupsData();
-            sync();
-          }
-        });
-      }
-    });
-  })
-  
+</div>
+<br>
+<div id="group_table" class="tab-pane">
+  <table class="table col-md-10 col-md-offset-1">
+    <thead style="font-weight:bold;">
+      <tr>
+        <td>{{Id}}</td>
+        <td>{{Nom Jeedom}}</td>
+        <td>{{Membres}}</td>
+        <td>{{Nom}}</td>
+        <td>{{Actions}}</td>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+<script>
+$('#sel_groupZigbeeInstance').off('change').on('change',function(){
   refreshGroupsData();
-  
-  $('#div_routingTable').off('click','.deviceConfigure').on('click','.deviceConfigure',function(){
-    loadPage('index.php?v=d&m=zigbee&p=zigbee&id='+$(this).attr('data-id'))
-  })
+})
+
+function refreshGroupsData(){
+  jeedom.zigbee.group.all({
+    global:false,
+    instance : $('#sel_groupZigbeeInstance').value(),
+    type : 'GET',
+    error: function (error) {
+      $('#div_groupZigbeeAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      tr = '';
+      for(var i in data){
+        tr += '<tr data-id="'+data[i].id+'">';
+        tr += '<td style="font-size:0.8em !important;">';
+        tr += data[i].id;
+        tr += '</td>';
+        tr += '<td>';
+        if (zigbee_devices['group|'+data[i].id]){
+          tr += zigbee_devices['group|'+data[i].id].HumanNameFull;
+        }
+        tr += '</td>';
+        tr += '<td>';
+        tr += data[i].members.length;
+        tr += '</td>';
+        tr += '<td>';
+        tr += data[i].name;
+        tr += '</td>';
+        tr += '<td>';
+        tr += '<a class="btn btn-danger btn-xs bt_removeZigbeeGroup"><i class="fa fa-trash"></i> {{Supprimer}}</a> ';
+        tr += '</td>';
+        tr += '</tr>';
+      }
+      $('#group_table tbody').empty().append(tr)
+    }
+  });
+}
+
+$('#group_table').off('click','.bt_removeZigbeeGroup').on('click','.bt_removeZigbeeGroup',function(){
+  var tr = $(this).closest('tr');
+  bootbox.confirm("{{Confirmer la suppression de }} <strong>" + tr.children('td').eq(1).html() + '</strong> ?', function(result){
+    if(result){
+      jeedom.zigbee.group.delete({
+        instance : $('#sel_groupZigbeeInstance').value(),
+        id : tr.attr('data-id'),
+        error: function (error) {
+          $('#div_groupZigbeeAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+          tr.remove();
+        }
+      });
+    }
+  });
+});
+
+$('.bt_addZigbeeGroup').off('click').on('click',function(){
+  bootbox.prompt("{{Quel est le nom du nouveau groupe Zigbee à créer ?}}", function(name){
+    if (name) {
+      jeedom.zigbee.group.create({
+        instance : $('#sel_groupZigbeeInstance').value(),
+        name : name,
+        error: function (error) {
+          $('#div_groupZigbeeAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+          $('#div_groupZigbeeAlert').showAlert({message: '{{Groupe Zigbee créé avec succès}}', level: 'success'});
+          refreshGroupsData();
+          sync();
+        }
+      });
+    }
+  });
+})
+
+refreshGroupsData();
+
+$('#div_routingTable').off('click','.deviceConfigure').on('click','.deviceConfigure',function(){
+  loadPage('index.php?v=d&m=zigbee&p=zigbee&id='+$(this).attr('data-id'))
+})
 </script>

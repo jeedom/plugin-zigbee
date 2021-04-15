@@ -7,6 +7,7 @@
 - Hinzufügen von Philips Hue LBW006
 - Ergänzung des Moduls Legrand Télérupteur
 - Leistungszusatz für das Legrand-Schütz
+- Hinzufügen der Bindung (zwischen Gruppe oder Modul)
 
 # 04/07/2021
 
