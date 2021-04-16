@@ -281,7 +281,7 @@ class DeviceHandler(RequestHandler):
 					if not self.json_args['src']['cluster'] in dest_endpoint.in_clusters:
 						raise Exception("Cluster not found : "+str(self.json_args['src']['cluster']))
 					dest_cluster = dest_endpoint.in_clusters[self.json_args['src']['cluster']]
-					await dest_device.zdo.Bind_req(dest_device.ieee,src_cluster.endpoint.endpoint_id,src_cluster.cluster_id,dest_device.application.get_dst_address(dest_cluster))
+					await dest_device.zdo.Bind_req(src_device.ieee,src_cluster.endpoint.endpoint_id,src_cluster.cluster_id,dest_device.application.get_dst_address(dest_cluster))
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'unbind':
 				src_device = zdevices.find(self.json_args['src']['ieee'])
@@ -308,7 +308,7 @@ class DeviceHandler(RequestHandler):
 					if not self.json_args['src']['cluster'] in dest_endpoint.in_clusters:
 						raise Exception("Cluster not found : "+str(self.json_args['src']['cluster']))
 					dest_cluster = dest_endpoint.in_clusters[self.json_args['src']['cluster']]
-					await dest_device.zdo.Unbind_req(dest_device.ieee,src_cluster.endpoint.endpoint_id,src_cluster.cluster_id,dest_device.application.get_dst_address(dest_cluster))
+					await dest_device.zdo.Unbind_req(src_device.ieee,src_cluster.endpoint.endpoint_id,src_cluster.cluster_id,dest_device.application.get_dst_address(dest_cluster))
 				return self.write(utils.format_json_result(success=True))
 		except Exception as e:
 			logging.debug(traceback.format_exc())
