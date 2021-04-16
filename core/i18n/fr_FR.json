@@ -157,9 +157,9 @@
         "Module reinitialisé": "Module reinitialisé",
         "Mise à jour OTA forcée envoyée avec succes": "Mise à jour OTA forcée envoyée avec succes",
         "Mise à jour de l\\'heure réussie": "Mise à jour de l\\'heure réussie",
-        "A quel module\/groupe voulez vous lier le cluster ?": "A quel module\/groupe voulez vous lier le cluster ?",
         "Binding réussi": "Binding réussi",
-        "A quel module\/groupe voulez vous délier le cluster ?": "A quel module\/groupe voulez vous délier le cluster ?"
+        "A quel module\/groupe voulez vous délier le cluster ?": "A quel module\/groupe voulez vous délier le cluster ?",
+        "A quel endpoint voulez vous lier le cluster ?": "A quel endpoint voulez vous lier le cluster ?"
     },
     "plugins\/zigbee\/desktop\/modal\/groups.php": {
         "Ajouter un groupe": "Ajouter un groupe",

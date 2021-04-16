@@ -2,10 +2,9 @@
     "changelog.md": {
         "Changelog Zigbee": "Changelog Zigbee",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt",
-        "Ajout de Philips Hue LBW006": "Hinzufügen von Philips Hue LBW006",
-        "Ajout du module Legrand Télérupteur": "Ergänzung des Moduls Legrand Télérupteur",
-        "Ajout de la puissance pour le contacteur Legrand": "Leistungszusatz für das Legrand-Schütz",
+        "Ajout de nouveau module": "Hinzufügen eines neuen Moduls",
         "Ajout du binding (entre groupe ou module": "Hinzufügen der Bindung (zwischen Gruppe oder Modul",
+        "Correction de bugs": "Fehlerbehebung",
         "07\/04\/2021": "04\/07\/2021",
         "Correction d'un soucis sur le bouton pour forcer la mise à jour OTA sur certain module": "Es wurde ein Problem auf der Schaltfläche behoben, mit dem das OTA-Update für ein bestimmtes Modul erzwungen wurde",
         " IMPORTANT.": " Wichtig.",
