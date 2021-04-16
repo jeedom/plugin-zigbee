@@ -434,6 +434,9 @@ class zigbee extends eqLogic {
         continue;
       }
       $clusters = ($_type == 'in') ? $eqLogic->getConfiguration('input_clusters') : $eqLogic->getConfiguration('output_clusters');
+      if(!is_array($clusters)){
+        continue;
+      }
       if(in_array($_cluster,$clusters)){
         $return[] = $eqLogic;
       }

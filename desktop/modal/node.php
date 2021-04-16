@@ -21,6 +21,7 @@ $eqLogic = zigbee::byId(init('id'));
 if(!is_object($eqLogic)){
   throw new \Exception(__('Equipement introuvable : ',__FILE__).init('id'));
 }
+$disallow_binding_cluster=array(0,3,7,25,4096,4,10);
 sendVarToJS('zigbeeNodeDevice',utils::o2a($eqLogic));
 sendVarToJS('zigbeeNodeId',$eqLogic->getId());
 sendVarToJS('zigbeeNodeIeee',explode('|',$eqLogic->getLogicalId())[0]);
@@ -66,6 +67,12 @@ foreach (eqLogic::byType('zigbee') as $eqLogic2) {
 }
 foreach ($node_data['endpoints'] as $endpoint) {
   foreach ($endpoint['output_clusters'] as $cluster) {
+    if(in_array($cluster['id'],$disallow_binding_cluster)){
+      continue;
+    }
+    if(isset($binding_device['device'][$cluster['id']])){
+      continue;
+    }
     $eqLogics = zigbee::getDeviceWithCluster('in',$cluster['id'],$eqLogic->getConfiguration('instance'));
     foreach ($eqLogics as $eqLogic2) {
       if($eqLogic2->getId() == $eqLogic->getId()){
@@ -230,7 +237,7 @@ sendVarToJS('zigbee_binding_device',$binding_device);
             echo '<p>';
             echo  '{{Cluster sortant :}}';
             foreach ($endpoint['out_cluster'] as $out_cluster) {
-              if(in_array($out_cluster['id'],array(0,3,7,25,4096,4,10))){
+              if(in_array($out_cluster['id'],$disallow_binding_cluster)){
                 echo ' <span class="label label-info">'.$out_cluster['name'].' ('. $out_cluster['id'].')</span>';
               }else{
                 echo ' <span class="label label-info"><i class="fas fa-link bt_bindCluster cursor" title="{{Bind}}" data-endpoint="'.$endpoint_id.'" data-cluster="'.$out_cluster['id'].'"></i> '.$out_cluster['name'].' ('. $out_cluster['id'].') <i class="fas fa-unlink bt_unbindCluster cursor" title="{{Unbind}}" data-endpoint="'.$endpoint_id.'" data-cluster="'.$out_cluster['id'].'"></i></span>';
@@ -294,7 +301,7 @@ sendVarToJS('zigbee_binding_device',$binding_device);
             if(count($device['config']) > 0){
               foreach ($device['config'] as &$config) {
                 if(!isset($config['manufacturer'])){
-                  $config['manufacturer'] = None;
+                  $config['manufacturer'] = 'None';
                 }
                 if (strpos($config['endpoint'],'multiple')!== false) {
                   $endpointString = explode('|',$config['endpoint'])[1];
