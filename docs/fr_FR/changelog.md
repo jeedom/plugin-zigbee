@@ -4,10 +4,9 @@
 >
 >Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
-- Ajout de Philips Hue LBW006
-- Ajout du module Legrand Télérupteur
-- Ajout de la puissance pour le contacteur Legrand
+- Ajout de nouveau module
 - Ajout du binding (entre groupe ou module)
+- Correction de bugs
 
 # 07/04/2021
 
