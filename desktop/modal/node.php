@@ -78,7 +78,7 @@ foreach ($node_data['endpoints'] as $endpoint) {
       if($eqLogic2->getId() == $eqLogic->getId()){
         continue;
       }
-      $binding_device['device'][$cluster['id']][$eqLogic2->getId()] = array('ieee'=>$eqLogic2->getLogicalId(),'humanName' => $eqLogic2->getHumanName());
+      $binding_device['device'][$cluster['id']][$eqLogic2->getId()] = array('ieee'=>$eqLogic2->getLogicalId(),'humanName' => $eqLogic2->getHumanName(),'endpoints' => $eqLogic2->getConfiguration('input_clusters')[$cluster['id']]);
     }
   }
 }
@@ -857,62 +857,53 @@ sendVarToJS('zigbee_binding_device',$binding_device);
   $('.bt_bindCluster').off('click').on('click',function(){
     let src = {
       ieee : zigbeeNodeIeee,
-      cluster_type : 'out',
       endpoint : parseInt($(this).attr('data-endpoint')),
       cluster : parseInt($(this).attr('data-cluster'))
     }
-    let select_list = []
-    for(var i in zigbee_binding_device['group']){
-      select_list.push({value:zigbee_binding_device['group'][i].ieee,text:zigbee_binding_device['group'][i].humanName})
-    }
-    if(zigbee_binding_device['device'][src.cluster]){
-      for(var i in zigbee_binding_device['device'][src.cluster]){
-        select_list.push({value:zigbee_binding_device['device'][src.cluster][i].ieee,text:zigbee_binding_device['device'][src.cluster][i].humanName})
-      }
-    }
-    bootbox.prompt({
-      title: "{{A quel module/groupe voulez vous lier le cluster ?}}",
-      value : select_list[0].value,
-      inputType: 'select',
-      inputOptions:select_list,
-      callback: function (device_result) {
-        if(device_result === null){
-          return;
+    zigbee_node_binding_prompt(src.cluster,function(dest){
+      jeedom.zigbee.device.bind({
+        instance : zigbeeNodeInstance,
+        src : src,
+        dest : dest,
+        error: function (error) {
+          $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+          $('#div_nodeDeconzAlert').showAlert({message: '{{Binding réussi}}', level: 'success'});
         }
-        if(device_result.indexOf('group') != -1){
-          var dest = {type : 'group',group_id:device_result.split('|')[1]}
-        }else{
-          var dest = {ieee:device_result}
-        }
-        jeedom.zigbee.device.bind({
-          instance : zigbeeNodeInstance,
-          src : src,
-          dest : dest,
-          error: function (error) {
-            $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
-          },
-          success: function (data) {
-            $('#div_nodeDeconzAlert').showAlert({message: '{{Binding réussi}}', level: 'success'});
-          }
-        })
-      }
-    });
+      })
+    })
   })
   
   $('.bt_unbindCluster').off('click').on('click',function(){
     let src = {
       ieee : zigbeeNodeIeee,
-      cluster_type : 'out',
       endpoint : parseInt($(this).attr('data-endpoint')),
       cluster : parseInt($(this).attr('data-cluster'))
     }
+    zigbee_node_binding_prompt(src.cluster,function(dest){
+      jeedom.zigbee.device.unbind({
+        instance : zigbeeNodeInstance,
+        src : src,
+        dest : dest,
+        error: function (error) {
+          $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+          $('#div_nodeDeconzAlert').showAlert({message: '{{Binding réussi}}', level: 'success'});
+        }
+      })
+    })
+  })
+  
+  function zigbee_node_binding_prompt(_cluster,_callback){
     let select_list = []
     for(var i in zigbee_binding_device['group']){
       select_list.push({value:zigbee_binding_device['group'][i].ieee,text:zigbee_binding_device['group'][i].humanName})
     }
-    if(zigbee_binding_device['device'][src.cluster]){
-      for(var i in zigbee_binding_device['device'][src.cluster]){
-        select_list.push({value:zigbee_binding_device['device'][src.cluster][i].ieee,text:zigbee_binding_device['device'][src.cluster][i].humanName})
+    if(zigbee_binding_device['device'][_cluster]){
+      for(var i in zigbee_binding_device['device'][_cluster]){
+        select_list.push({value:zigbee_binding_device['device'][_cluster][i].ieee,text:zigbee_binding_device['device'][_cluster][i].humanName})
       }
     }
     bootbox.prompt({
@@ -925,24 +916,40 @@ sendVarToJS('zigbee_binding_device',$binding_device);
           return;
         }
         if(device_result.indexOf('group') != -1){
-          var dest = {type : 'group',group_id:device_result.split('|')[1]}
+          _callback({type : 'group',group_id:device_result.split('|')[1]});
         }else{
           var dest = {ieee:device_result}
-        }
-        jeedom.zigbee.device.unbind({
-          instance : zigbeeNodeInstance,
-          src : src,
-          dest : dest,
-          error: function (error) {
-            $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
-          },
-          success: function (data) {
-            $('#div_nodeDeconzAlert').showAlert({message: '{{Binding réussi}}', level: 'success'});
+          let select_list = []
+          for(var i in zigbee_binding_device['device'][_cluster]){
+            if(zigbee_binding_device['device'][_cluster][i].ieee != dest.ieee){
+              continue;
+            }
+            if(zigbee_binding_device['device'][_cluster][i].endpoints.length == 1){
+              dest.endpoint = zigbee_binding_device['device'][_cluster][i].endpoints[0]
+              _callback(dest);
+            }else{
+              for(j in zigbee_binding_device['device'][_cluster][i].endpoints){
+                select_list.push({value:j,text:'Endpoint '.j})
+              }
+              bootbox.prompt({
+                title: "{{A quel endpoint voulez vous lier le cluster ?}}",
+                value : select_list[0].value,
+                inputType: 'select',
+                inputOptions:select_list,
+                callback: function (endpoint_result) {
+                  if(endpoint_result === null){
+                    return;
+                  }
+                  dest.endpoint=endpoint_result
+                  _callback(dest)
+                }
+              });    
+            }
           }
-        })
+        }
       }
     });
-  })
+  }
   
   </script>
   

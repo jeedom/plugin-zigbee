@@ -437,7 +437,7 @@ class zigbee extends eqLogic {
       if(!is_array($clusters)){
         continue;
       }
-      if(in_array($_cluster,$clusters)){
+      if(isset($clusters[$_cluster])){
         $return[] = $eqLogic;
       }
     }
@@ -482,14 +482,20 @@ class zigbee extends eqLogic {
           $out_cluster = array();
           foreach ($endpoint['output_clusters'] as $cluster) {
             $out_cluster[$cluster['id']] = $cluster['id'];
+            if(!isset($out_cluster[$cluster['id']])){
+              $out_cluster[$cluster['id']] = $endpoint['id'];
+            }
           }
-          $eqLogic->setConfiguration('output_clusters',array_values($out_cluster));
+          $eqLogic->setConfiguration('output_clusters',$out_cluster);
           
           $in_cluster = array();
           foreach ($endpoint['input_clusters'] as $cluster) {
-            $in_cluster[$cluster['id']] = $cluster['id'];
+            if(!isset($in_cluster[$cluster['id']])){
+              $in_cluster[$cluster['id']] = array();
+            }
+            $in_cluster[$cluster['id']][] = $endpoint['id'];
           }
-          $eqLogic->setConfiguration('input_clusters',array_values($in_cluster));
+          $eqLogic->setConfiguration('input_clusters',$in_cluster);
         }
         $eqLogic->setConfiguration('instance',$i);
         $eqLogic->save();
@@ -887,7 +893,7 @@ class zigbee extends eqLogic {
       $allendpoints =array();
       try {
         $details = zigbee::request($this->getConfiguration('instance',1),'/device/info',array(
-          'ieee'=>$this->getLogicalId()
+        'ieee'=>$this->getLogicalId()
         ),'GET');
         foreach ($details['endpoints'] as $endpoint) {
           $allendpoints[] = $endpoint['id'];
@@ -939,12 +945,12 @@ class zigbee extends eqLogic {
       foreach ($data as $cluster => $attributes) {
         try {
           zigbee::request($this->getConfiguration('instance',1),'/device/attributes',array(
-            'ieee'=>$ieee,
-            'endpoint' => $endpoint,
-            'cluster' => $cluster,
-            'cluster_type' => 'in',
-            'attributes' => $attributes,
-            'allowCache' => 0
+          'ieee'=>$ieee,
+          'endpoint' => $endpoint,
+          'cluster' => $cluster,
+          'cluster_type' => 'in',
+          'attributes' => $attributes,
+          'allowCache' => 0
           ),'POST');
         } catch (\Exception $e) {
           log::add('zigbee','info',$this->getHumanName().' '.$e->getMessage());
@@ -986,9 +992,9 @@ class zigbeeCmd extends cmd {
       $y = $xyz['y'] / array_sum($xyz);
     }
     return array(
-      'x' => $x,
-      'y' => $y,
-      'bri' => round($xyz['y'] * 255),
+    'x' => $x,
+    'y' => $y,
+    'bri' => round($xyz['y'] * 255),
     );
   }
   
