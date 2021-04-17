@@ -157,9 +157,9 @@
         "Module reinitialisé": "Module reinitialisé",
         "Mise à jour OTA forcée envoyée avec succes": "Erzwungenes OTA-Update erfolgreich gesendet",
         "Mise à jour de l\\'heure réussie": "Zeitaktualisierung erfolgreich",
-        "A quel module\/groupe voulez vous lier le cluster ?": "Mit welchem Modul \/ welcher Gruppe möchten Sie den Cluster verknüpfen?",
         "Binding réussi": "Bindung erfolgreich",
-        "A quel module\/groupe voulez vous délier le cluster ?": "Mit welchem Modul \/ welcher Gruppe möchten Sie die Verknüpfung des Clusters aufheben?"
+        "A quel module\/groupe voulez vous délier le cluster ?": "Mit welchem Modul \/ welcher Gruppe möchten Sie die Verknüpfung des Clusters aufheben?",
+        "A quel endpoint voulez vous lier le cluster ?": "Mit welchem Endpunkt möchten Sie den Cluster verknüpfen?"
     },
     "plugins\/zigbee\/desktop\/modal\/groups.php": {
         "Ajouter un groupe": "Gruppe hinzufügen",

@@ -4,10 +4,9 @@
 >
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text.
 
-- Adding Philips Hue LBW006
-- Addition of the Legrand Télérupteur module
-- Addition of power for the Legrand contactor
+- Addition of new module
 - Addition of the binding (between group or module)
+- Bugfix
 
 # 04/07/2021
 

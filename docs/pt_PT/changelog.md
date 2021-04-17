@@ -4,10 +4,9 @@
 >
 >Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto.
 
-- Adicionando Philips Hue LBW006
-- Adição do módulo Legrand Télérupteur
-- Adição de energia para o contator Legrand
+- Adição de novo módulo
 - Adição da ligação (entre grupo ou módulo)
+- Bugfix
 
 # 07/04/2021
 
