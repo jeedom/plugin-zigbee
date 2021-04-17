@@ -73,6 +73,7 @@ foreach ($node_data['endpoints'] as $endpoint) {
     if(isset($binding_device['device'][$cluster['id']])){
       continue;
     }
+    $binding_device['device'][$cluster['id']] = array();
     $eqLogics = zigbee::getDeviceWithCluster('in',$cluster['id'],$eqLogic->getConfiguration('instance'));
     foreach ($eqLogics as $eqLogic2) {
       if($eqLogic2->getId() == $eqLogic->getId()){
