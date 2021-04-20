@@ -57,11 +57,7 @@
       "isVisible": 1,
       "isHistorized": 1,
       "unite":"W",
-      "logicalId": "1::2820::1291",
-      "template":{
-        "dashboard" : "prise",
-        "mobile" : "prise"
-      }
+      "logicalId": "1::2820::1291"
     }
   ]
 }

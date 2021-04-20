@@ -21,7 +21,7 @@ $eqLogic = zigbee::byId(init('id'));
 if(!is_object($eqLogic)){
   throw new \Exception(__('Equipement introuvable : ',__FILE__).init('id'));
 }
-$disallow_binding_cluster=array(0,3,7,25,4096,4,10);
+$disallow_binding_cluster=array(0,3,7,25,4096,4,10,33);
 sendVarToJS('zigbeeNodeDevice',utils::o2a($eqLogic));
 sendVarToJS('zigbeeNodeId',$eqLogic->getId());
 sendVarToJS('zigbeeNodeIeee',explode('|',$eqLogic->getLogicalId())[0]);

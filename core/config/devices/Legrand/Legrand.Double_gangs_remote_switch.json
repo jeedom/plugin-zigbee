@@ -5,6 +5,14 @@
   "remark" : "Ne peut etre appairé que sur le canal 11",
   "commands": [
     {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    },
+    {
       "name": "Etat 1",
       "type": "info",
       "subtype": "binary",
