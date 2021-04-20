@@ -2,7 +2,7 @@
     "id": "zigbee",
     "name": "Zigbee",
     "description": {
-        "fr_FR": "Plugin zigbee pouvant etre utilisé avec les Zigbee  : deconz, ezsp (Silicon labs) et en support beta avec Zigate, Texas Instrument. IMPORTANT : bien lire la documentation avant tout achat",
+        "fr_FR": "Plugin offrant une compatibilité généralisée avec différents types de contrôleurs Zigbee tels que deCONZ et EZSP (Silicon labs), et en support beta : Zigate, XBee et Texas Instruments. \n\n Il est important de bien lire la documentation du plugin avant tout achat.",
         "es_ES": "Complemento de Zigbee que se puede usar con Zigbee: deconz, ezsp (Silicon labs) y en soporte beta con Zigate, Texas Instrument. IMPORTANTE: lea la documentación detenidamente antes de realizar cualquier compra",
         "de_DE": "ZigBee-Plugin, das mit ZigBee verwendet werden kann: Deconz, EZsp (Silicon Labs) und Beta-Unterstützung mit Zigate, Texas Instrument. WICHTIG: Lesen Sie die Dokumentation vor dem Kauf sorgfältig durch",
         "pt_PT": "Plugin Zigbee que pode ser usado com Zigbee: deconz, ezsp (Silicon labs) e em suporte beta com Zigate, Texas Instrument. IMPORTANTE: leia a documentação com atenção antes de qualquer compra",
@@ -16,6 +16,7 @@
     "licence": "AGPL",
     "author": "Jeedom SAS",
     "require": "4.0",
+    "utilization": "Installez les dépendances du plugin puis configurez votre type de contrôleur Zigbee avant de démarrer le démon.",
     "category": "automation protocol",
     "hasDependency": true,
     "hasOwnDeamon": true,
