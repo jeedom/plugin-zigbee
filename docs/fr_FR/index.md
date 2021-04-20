@@ -87,17 +87,17 @@ Dans l'onglet **Commandes**, nous retrouvons, comme à l'accoutumée, les comman
 
 ### Module non reconnu
 
-Si votre module n’est pas reconnu automatiquement par Jeedom *(pas de commandes créées)* mais bien inclus, alors il faut en demander l'ajout auprès l’équipe Jeedom.
+Si votre module n’est pas reconnu automatiquement par Jeedom *(pas de commandes créées)* mais bien inclus, alors il faut en demander l'ajout auprès de l’équipe Jeedom.
 
 >**INFORMATION**
 >
 >L’équipe Jeedom se réserve le droit de refuser toute demande d’intégration. Il est toujours préférable d'opter pour un équipement dont la compatibilité est déjà confirmée.
 
-Pour solliciter l'ajout d'un nouveau matériel, il est nécessaire de fournir les éléments suivant :
+Pour solliciter l'ajout d'un nouveau matériel, il est nécessaire de fournir les éléments suivants :
 
 - **le modèle exact** du module avec un lien vers le site d'achat,
 - Sur la page de l'équipement, cliquer sur le bouton bleu **Configuration du module** puis onglet **Informations brutes**. Copier le contenu pour le transmettre à l'équipe Jeedom,
-- Mettre le démon en `debug` dans la configuration du plugin et le redémarrer. Effectuer des actions sur l'équipement *(si c'est un capteur de température faire varier la température par exemple, si c'est une vanne faire varier la consigne, etc...)* et envoyer le log `zigbee` *(pas `zigbeed`)*.
+- Mettre le démon en `debug` depuis la page de configuration du plugin et le redémarrer. Effectuer des actions sur l'équipement *(si c'est un capteur de température faire varier la température par exemple, si c'est une vanne faire varier la consigne, etc...)* et envoyer le log `zigbee` *(pas `zigbeed`)*.
 
 >**INFORMATION**
 >
@@ -107,7 +107,7 @@ Pour solliciter l'ajout d'un nouveau matériel, il est nécessaire de fournir le
 
 Nous expliquons ci-après le fonctionnement des commandes dans le plugin à l'attention des utilisateurs les plus avancés :
 
-- ``attributes::ENDPOINT::CLUSTER_TYPE::CLUSTER::ATTRIBUT::VALUE``, permet d’écrire la valeur d’un attribut *(attention tous les attributs ne peuvent pas être changés)* avec :
+- ``attributes::ENDPOINT::CLUSTER_TYPE::CLUSTER::ATTRIBUT::VALUE`` permet d’écrire la valeur d’un attribut *(attention tous les attributs ne peuvent pas être changés)* avec :
   - ``ENDPOINT`` : numéro du endpoint,
   - ``CLUSTER_TYPE`` : type de cluster *(IN \| OUT)*,
   - ``CLUSTER`` : numéro du cluster,
@@ -115,7 +115,7 @@ Nous expliquons ci-après le fonctionnement des commandes dans le plugin à l'at
   - ``VALUE`` : valeur à écrire,     
 **Exemple** : ``attributes::1::in::513::18::#slider#*100`` qui va écrire l'attribut dans l'endpoint `1`, cluster entrant (``in``) `513`, attribut `18` avec pour valeur celle du ``slider*100``.
 
-- ``ENDPOINT::CLUSTER:COMMAND::PARAMS``, permet d'exécuter une commande serveur avec :
+- ``ENDPOINT::CLUSTER:COMMAND::PARAMS`` permet d'exécuter une commande serveur avec :
   - ``ENDPOINT`` : numéro du endpoint,
   - ``CLUSTER`` : nom du cluster,
   - ``COMMAND`` : nom de la commande,
@@ -135,7 +135,7 @@ Il est possible de réaliser une sauvegarde du réseau Zigbee depuis les contrô
 
 >**IMPORTANT**
 >
-> Sur les clés de type EZSP *(Elelabs)*, il n’est possible de procéder qu’à une seule restauration de sauvegarde en tout et pour tout durant toute la vie de la clé !
+> Sur les clés de type EZSP *(Elelabs)*, il n’est possible de procéder qu’à une seule restauration de sauvegarde en tout et pour tout durant toute la vie de la clé.
 
 La sauvegarde ne contient pas la liste des modules mais seulement les informations de base du réseau Zigbee. Il n’est donc pas nécessaire d’en réaliser régulièrement, une seule sauvegarde est souvent suffisante car ces informations ne changent pas durant la vie du contrôleur.
 
