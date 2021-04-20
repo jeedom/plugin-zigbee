@@ -1,0 +1,35 @@
+{
+  "name": "DIN power consumption module",
+  "ref" : "412015",
+  "remark" : "Ne peut etre appairé que sur le canal 11",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    },
+    {
+      "name": "Puissance",
+      "generic_type": "POWER",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"W",
+      "logicalId": "1::2820::1291"
+    },
+    {
+      "name": "Puissance apparente",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"W",
+      "logicalId": "1::2820::1295"
+    }
+  ]
+}
