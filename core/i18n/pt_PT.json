@@ -440,6 +440,6 @@
         "Le message et le sujet ne peuvent pas être vide": "A mensagem e o assunto não podem estar em branco"
     },
     "info.json": {
-        "Plugin zigbee pouvant etre utilisé avec les Zigbee  : deconz, ezsp (Silicon labs) et en support beta avec Zigate, Texas Instrument. IMPORTANT : bien lire la documentation avant tout achat": "Plugin Zigbee que pode ser usado com Zigbee: deconz, ezsp (Silicon labs) e em suporte beta com Zigate, Texas Instrument. IMPORTANTE: leia a documentação com atenção antes de qualquer compra"
+        "Plugin offrant une compatibilité généralisée avec différents types de contrôleurs Zigbee tels que deCONZ et EZSP (Silicon labs), et en support beta : Zigate, XBee et Texas Instruments. \n\n Il est important de bien lire la documentation du plugin avant tout achat.": "Plugin que oferece compatibilidade geral com diferentes tipos de controladores Zigbee, como deCONZ e EZSP (Silicon labs), e em suporte beta: Zigate, XBee e Texas Instruments. É importante ler a documentação do plugin com atenção antes de qualquer compra"
     }
 }
