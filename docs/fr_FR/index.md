@@ -202,7 +202,7 @@ La constitution d'un réseau Zigbee de bonne qualité est grandement aidée par 
 
 ## Graphique du réseau
 
-Le graphique du réseau permet d'avoir une vision d'ensemble du réseau Zigbee et de la qualité des comminucations avec les différents modules.
+Le graphique du réseau permet d'avoir une vision d'ensemble du réseau Zigbee et de la qualité des communications avec les différents modules.
 
 >**INFORMATION**
 >
