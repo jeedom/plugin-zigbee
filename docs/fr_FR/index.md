@@ -112,15 +112,17 @@ Nous expliquons ci-après le fonctionnement des commandes dans le plugin à l'at
   - ``CLUSTER_TYPE`` : type de cluster *(IN \| OUT)*,
   - ``CLUSTER`` : numéro du cluster,
   - ``ATTRIBUT`` : numéro de l'attribut,
-  - ``VALUE`` : valeur à écrire,     
+  - ``VALUE`` : valeur à écrire.
+
 **Exemple** : ``attributes::1::in::513::18::#slider#*100`` qui va écrire l'attribut dans l'endpoint `1`, cluster entrant (``in``) `513`, attribut `18` avec pour valeur celle du ``slider*100``.
 
 - ``ENDPOINT::CLUSTER:COMMAND::PARAMS`` permet d'exécuter une commande serveur avec :
   - ``ENDPOINT`` : numéro du endpoint,
   - ``CLUSTER`` : nom du cluster,
   - ``COMMAND`` : nom de la commande,
-  - ``PARAMS`` paramètre dans le bon ordre séparé par des `::`,     
-**Exemple** : ``1::on_off::on``, exécute la commande ``on`` sur l'endpoint `1` du cluster ``on_off`` sans paramètres.     
+  - ``PARAMS`` paramètre dans le bon ordre séparé par des `::`.
+
+**Exemple** : ``1::on_off::on``, exécute la commande ``on`` sur l'endpoint `1` du cluster ``on_off`` sans paramètres.        
 **Exemple** : ``1::level::move_to_level::#slider#::0``, exécute la commande ``move_to_level`` sur l'endpoint `1` du cluster ``level`` avec les paramètres ``#slider#`` et ``0``.
 
 # Outils
