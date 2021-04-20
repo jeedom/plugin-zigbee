@@ -61,7 +61,7 @@ La procédure d'inclusion est propre à chaque module. Veuillez vous référer �
 
 >**ASTUCE**
 >
->Ne surtout pas oublier de faire une remise à zéro *(reset)* du module avant tout inclusion.
+>Ne surtout pas oublier de faire une remise à zéro *(reset)* du module avant toute inclusion.
 
 ### Paramétrage d'un module Zigbee
 
@@ -219,21 +219,25 @@ Pour finir et même si cela peut paraître évident pour certains, nous rappelon
 
 # FAQ
 
->**Le LQI ou le RSSI est à N/A
+>**Le LQI ou le RSSI est à N/A**
 >
->C’est normalement suite à un redémarrage du réseaux Zigbee que les valeurs sont vidées. Il faut attendre que le module communique à nouveau pour que les valeurs soient renseignées.
+>C’est normalement suite au redémarrage du réseau Zigbee que les valeurs sont vidées. Il faut attendre que le module communique à nouveau pour que les valeurs soient renseignées.
+
 
 >**J'ai des soucis d'inclusion ou  des erreurs dans les logs de type ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
 >
 >Il faut essayer de supprimer ou de changer la rallonge USB si vous en utilisez une ou d'en mettre une si vous n'en utilisez pas.
 
+
 >**J'ai des erreurs ``can not send to device`` ou ``send error`` ou ``Message send failure``**
 >
 >C’est en général dû à un souci de routage. le routage est plus ou moins fixe en Zigbee et non symétrique, un module peut utiliser une route différente pour répondre que celle utilisée pour lui parler. Souvent l’arrêt électrique *(retrait des piles par exemple)* et remise du courant *(ou remise des piles)* suffit à régler le problème.
 
+
 >**J’ai des erreurs bizarres sur des modules sur piles ou des soucis d’inclusion**
 >
 >Nous avons remarqué qu’une bonne partie des problèmes en Zigbee sur des modules sur batterie sont dûs aux piles ou éventuellement des problèmes de remise à zéro des modules avant inclusion. Même si celles-ci semblent neuves, il est conseillé de tester avec de nouvelles piles pour écarter cette hypothèse.
+
 
 >**J'ai des soucis de mise à jour des valeurs de l'équipement**
 >
