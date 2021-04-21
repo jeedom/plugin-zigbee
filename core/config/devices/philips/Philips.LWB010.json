@@ -7,6 +7,23 @@
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule (un on/off sera peut être nécessaire)",
   "commands": [
     {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    },
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "LIGHT_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "11::6::0"
+    },
+    {
       "name": "On",
       "generic_type": "LIGHT_ON",
       "type": "action",
@@ -14,7 +31,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "11::on_off::on"
+      "logicalId": "11::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
     },
     {
       "name": "Off",
@@ -24,7 +45,11 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "11::on_off::off"
+      "logicalId": "11::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
     },
     {
       "name": "Toggle",
@@ -36,6 +61,19 @@
       "logicalId": "11::on_off::toggle",
       "display": {
         "icon": "<i class=\"fas fa-random\"></i>"
+      }
+    },
+    {
+      "name": "Etat Luminosité",
+      "generic_type": "LIGHT_BRIGHTNESS",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "11::8::0",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
       }
     },
     {
