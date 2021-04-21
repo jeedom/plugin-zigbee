@@ -78,16 +78,16 @@ D'autres paramètres plus spécifiques sont également accessibles :
 - **Identification** : identifiant unique de l'équipement. Même lors d'une ré-inclusion ou si vous changez de type de contrôleur Zigbee.
 - **Contrôleur Zigbee** : permet de sélectionner le contrôleur Zigbee en communication avec l'équipement.
 - **Contrôle de la communication** : permet de sélectionner le mode de vérification de la bonne communication entre le contrôleur et le module.
-- **Ignorer la confirmation d'exécution** : cocher la case pour ignorer la bonne exécution de la commande. Cela permet de reprendre la main plus rapidement mais ne garantie pas que l'ordre est bien passé.
-- **Autoriser la mise en file d'attente** : cocher la case pour autoriser la mise en file d'attente des commandes. Cela permet de réessayer au cas où l'ordre n'aurait pas été exécuté.
+- **Ignorer la confirmation d'exécution** : cocher la case pour ignorer la bonne exécution de la commande. Cela permet de reprendre la main plus rapidement mais ne garantit pas que l'ordre soit bien passé.
+- **Autoriser la mise en file d'attente** : cocher la case pour autoriser la mise en file d'attente des commandes. Cela permet de réexécuter la commande au cas où l'ordre n'aurait pas été pris en compte par le module.
 
-La partie **Informations** permet la sélection manuelle du fabricant et de l'équipement. On y retrouve également le visuel de l'équipement ainsi que deux boutons permettant la régénération des commandes ou l'accès aux options de configuration du module.
+La partie **Informations** permet la sélection manuelle du fabricant et de l'équipement. On y retrouve également le visuel de l'équipement ainsi que deux boutons permettant la **régénération des commandes** ou l'accès aux options de **configuration du module**.
 
-Dans l'onglet **Commandes**, nous retrouvons, comme à l'accoutumée, les commandes permettant l'interaction avec le module.
+Dans l'onglet **Commandes**, nous retrouvons, comme à l'accoutumée, les commandes permettant d'interagir avec le module.
 
 ### Module non reconnu
 
-Si votre module n’est pas reconnu automatiquement par Jeedom *(pas de commandes créées)* mais bien inclus, alors il faut en demander l'ajout auprès de l’équipe Jeedom.
+Si votre module est bien inclus mais pas reconnu automatiquement par Jeedom *(pas de commandes créées)*, alors il faut en demander l'ajout auprès de l’équipe Jeedom.
 
 >**INFORMATION**
 >
@@ -97,7 +97,7 @@ Pour solliciter l'ajout d'un nouveau matériel, il est nécessaire de fournir le
 
 - **le modèle exact** du module avec un lien vers le site d'achat,
 - Sur la page de l'équipement, cliquer sur le bouton bleu **Configuration du module** puis onglet **Informations brutes**. Copier le contenu pour le transmettre à l'équipe Jeedom,
-- Mettre le démon en `debug` depuis la page de configuration du plugin et le redémarrer. Effectuer des actions sur l'équipement *(si c'est un capteur de température faire varier la température par exemple, si c'est une vanne faire varier la consigne, etc...)* et envoyer le log `zigbee` *(pas `zigbeed`)*.
+- Mettre le démon en `debug` depuis la page de configuration du plugin et le redémarrer. Effectuer des actions sur l'équipement *(si c'est un capteur de température faire varier la température, si c'est une vanne faire varier la consigne, etc...)* et envoyer le log `zigbee` *(pas `zigbeed`)*.
 
 >**INFORMATION**
 >
@@ -114,7 +114,7 @@ Nous expliquons ci-après le fonctionnement des commandes dans le plugin à l'at
   - ``ATTRIBUT`` : numéro de l'attribut,
   - ``VALUE`` : valeur à écrire.
 
-**Exemple** : ``attributes::1::in::513::18::#slider#*100`` qui va écrire l'attribut dans l'endpoint `1`, cluster entrant (``in``) `513`, attribut `18` avec pour valeur celle du ``slider*100``.
+**Exemple** : ``attributes::1::in::513::18::#slider#*100`` va écrire l'attribut dans l'endpoint `1`, cluster entrant (``in``) `513`, attribut `18` avec pour valeur celle du ``slider*100``.
 
 - ``ENDPOINT::CLUSTER:COMMAND::PARAMS`` permet d'exécuter une commande serveur avec :
   - ``ENDPOINT`` : numéro du endpoint,
@@ -155,7 +155,7 @@ Il est possible de mettre à jour le firmware du contrôleur Zigbee depuis Jeedo
 
 ## Mise à jour des modules OTA
 
-Les mises à jour OTA *(Over-The-Air)* sont les mises à jour des firmwares des modules. Le processus peut prendre un certain temps (plusieurs heures selon le nombre de modules) mais permet une meilleure fiabilité du réseau Zigbee en général. Pour être en mesure de mettre à jour un module, il faut que le fabricant communique le firmware :
+Les mises à jour OTA *(Over-The-Air)* sont les mises à jour des firmwares des modules. Le processus peut prendre un certain temps (plusieurs heures selon le nombre de modules) mais permet une meilleure fiabilité du réseau Zigbee en général. Pour être en mesure de mettre à jour un module, il faut que le fabricant communique le firmware de celui-ci :
 
 - Concernant **Ikea** et **Ledavance**, les firmwares sont directement mis à disposition en ligne où le plugin va les récupérer.
 - Pour d'autres (voir [ici](https://github.com/Koenkk/zigbee-OTA/tree/master/images)), le fabricant fournit officieusement une mise à jour dans certains cas.
@@ -184,8 +184,8 @@ Cette fonction est disponible sur les ampoules Zigbee type **Philips Hue, Ikea, 
 
 Comme souvent en Zigbee, les difficultés peuvent intervenir lors du processus de remise à zéro ou d'association. Plusieurs méthodes s'offrent à vous pour y parvenir :
 
-- **Effectuer rapidement 5/6 cycles d'allumage/extinction** *(on/off)*. L'ampoule doit clignoter à l'issue de la procédure pour indiquer la bonne prise en compte.
-- **Utiliser une télécommande zigbee**, et :
+- **Effectuer rapidement 5 ou 6 cycles d'allumage/extinction** *(on/off)*. L'ampoule doit clignoter à l'issue de la procédure pour indiquer la bonne prise en compte.
+- **Utiliser une télécommande Zigbee**, et :
   - **pour les télécommandes Philips Hue**, appuyer en même temps sur les boutons ON et OFF pendant 5 à 10 secondes près de l'ampoule alimentée *(il faut parfois éteindre/allumer l'ampoule juste avant sur certains modèles)*,
   - **pour les télécommandes Ikea**, appuyer sur le bouton "reset" *(a côté de la batterie)* pendant 5 à 10 secondes près de l'ampoule alimentée *(il faut parfois éteindre/allumer l'ampoule juste avant sur certains modèles)*.
 - Concernant les **ampoules Philips Hue**, vous pouvez également les inclure sur le pont Hue puis les supprimer de celui-ci.
@@ -198,7 +198,7 @@ Vous retrouverez les éléments de gestion du binding, s'il est pris en charge p
 
 Certains modules ne sont pas compatibles avec le binding et d'autres *(tels que les modules Ikea)* ne supportent le binding que de la commande vers un groupe, il est donc nécessaire de commencer par faire un groupe dans lequel il faudra mettre l'actionneur.
 
-# Réseau Zigbee
+# Réseaux Zigbee
 
 La constitution d'un réseau Zigbee de bonne qualité est grandement aidée par les outils mis à disposition dans le plugin. Dirigez-vous vers la page générale du plugin listant l'ensemble des équipements et cliquez sur le bouton **Réseaux Zigbee** pour accéder à différentes informations et actions autour du réseau Zigbee ainsi qu'au graphique représentatif de celui-ci.
 
@@ -212,9 +212,9 @@ Le graphique du réseau permet d'avoir une vision d'ensemble du réseau Zigbee e
 
 ## Optimiser le réseau
 
-Afin d'optimiser la fiabilité de votre réseau Zigbee, il est plus que recommandé d’avoir au minimum 3 modules routeurs alimentés en permanence et d’éviter de les débrancher. En effet, lors de nos tests nous avons remarqué une nette amélioration de la fiabilité et la résilience du réseau Zigbee lors de l’ajout de modules routeurs. Il est d’ailleurs conseillé de les inclure en premier sinon il faudra entre 24h à 48h pour que les "end-device" *(modules non routeurs)* les découvrent.
+Afin d'optimiser la fiabilité de votre réseau Zigbee, **il est plus que recommandé d’avoir au minimum 3 modules routeurs alimentés en permanence et d’éviter de les débrancher**. En effet, lors de nos tests nous avons remarqué une nette amélioration de la fiabilité et de la résilience du réseau Zigbee lors de l’ajout de modules routeurs. Il est d’ailleurs conseillé de les inclure en premier lieu, autrement il faudra attendre 24h à 48h pour que les "end-device" *(modules non routeurs)* les découvrent.
 
-Autre point important, il se peut, lors de la suppression d’un module routeur, qu’une partie des "end-device" *(modules non routeurs)* soit perdue pendant un temps plus ou moins long *(en dizaine d’heure voire plus)* ou même définitivement et que vous ayez à les ré-inclure.
+Autre point important, il se peut, lors de la suppression d’un module routeur, qu’une partie des "end-device" *(modules non routeurs)* soit perdue pendant un temps plus ou moins long *(en dizaine d’heures voire plus)* ou même définitivement et que vous ayez à les ré-inclure.
 Malheureusement cela est dû à la manière dont la fabricant a prévu l'intégration de son matériel au sein d'un réseau Zigbee et ne peut donc pas être corrigé par le plugin qui ne gère pas la partie routage.
 
 Pour finir et même si cela peut paraître évident pour certains, nous rappelons que les passerelles Zigbee en Wifi sont moins fiables que les passerelles USB. L'équipe Jeedom conseille donc l'utilisation d'une passerelle Zigbee en USB.  
@@ -223,26 +223,26 @@ Pour finir et même si cela peut paraître évident pour certains, nous rappelon
 
 >**Le LQI ou le RSSI est à N/A**
 >
->C’est normalement suite au redémarrage du réseau Zigbee que les valeurs sont vidées. Il faut attendre que le module communique à nouveau pour que les valeurs soient renseignées.
+>Les valeurs sont normalement vidées après le redémarage du démon zigbee. Il faut attendre que le module communique à nouveau pour que les valeurs soient renseignées.
 
 
 >**J'ai des soucis d'inclusion ou  des erreurs dans les logs de type ``TXStatus.MAC_CHANNEL_ACCESS_FAILURE``**
 >
->Il faut essayer de supprimer ou de changer la rallonge USB si vous en utilisez une ou d'en mettre une si vous n'en utilisez pas.
+>Il faut essayer de supprimer ou de changer la rallonge USB si vous en utilisez une ou d'en installer une si vous n'en utilisez pas.
 
 
 >**J'ai des erreurs ``can not send to device`` ou ``send error`` ou ``Message send failure``**
 >
->C’est en général dû à un souci de routage. le routage est plus ou moins fixe en Zigbee et non symétrique, un module peut utiliser une route différente pour répondre que celle utilisée pour lui parler. Souvent l’arrêt électrique *(retrait des piles par exemple)* et remise du courant *(ou remise des piles)* suffit à régler le problème.
+>C’est en général dû à un souci de routage. le routage est plus ou moins fixe en Zigbee mais non symétrique, un module peut utiliser une route différente pour répondre que celle utilisée pour lui parler. Souvent l’arrêt électrique *(retrait des piles par exemple)* et remise du courant *(ou remise des piles)* suffit à régler le problème.
 
 
 >**J’ai des erreurs bizarres sur des modules sur piles ou des soucis d’inclusion**
 >
->Nous avons remarqué qu’une bonne partie des problèmes en Zigbee sur des modules sur batterie sont dûs aux piles ou éventuellement des problèmes de remise à zéro des modules avant inclusion. Même si celles-ci semblent neuves, il est conseillé de tester avec de nouvelles piles pour écarter cette hypothèse.
+>Nous avons remarqué qu’une bonne partie des problèmes des modules sur batterie sont dûs aux piles ou éventuellement des problèmes de remise à zéro des modules avant inclusion. Même si celles-ci semblent neuves, il est conseillé de tester avec de nouvelles piles pour écarter cette hypothèse.
 
 
 >**J'ai des soucis de mise à jour des valeurs de l'équipement**
 >
 > 2 possibilités :
-> - il s'agit d'un "vieux module" en ZLL *(voir la configuration de l'équipement Jeedom qui indique si c'est du ZHA ou ZLL)*. Dans ce cas il faut absolument une commande "Rafraîchir" pour que vous ou Jeedom force la mise à jour des valeurs. Si cette commande n'existe pas dans l'équipement, il faut contacter le support Jeedom pour la faire ajouter dans la prochaine version stable. Une fois sortie, il faudra cliquer sur le bouton **Recréer les commandes** sans suppression.
+> - il s'agit d'un module en ZLL *(voir la configuration de l'équipement Jeedom qui indique si c'est du ZHA ou ZLL)*. Dans ce cas il faut absolument une commande "Rafraîchir" pour que vous ou Jeedom force la mise à jour des valeurs. Si cette commande n'existe pas dans l'équipement, il faut contacter le support Jeedom pour la faire ajouter dans la prochaine version stable. Une fois sortie, il faudra cliquer sur le bouton **Recréer les commandes** sans suppression.
 > -	le module est en ZHA, alors c’est un souci d’inclusion. Dans l’onglet **Action** de la configuration du module, il y a un bouton **Réinitialiser le module** permettant de forcer les actions post-inclusion. Il faut bien veiller à garder le module éveillé s’il est sur batterie.
