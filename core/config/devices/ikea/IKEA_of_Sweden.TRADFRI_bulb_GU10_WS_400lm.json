@@ -83,7 +83,6 @@
       "subtype": "string",
       "isVisible": 0,
       "isHistorized": 0,
-      "value" : "Etat couleur",
       "logicalId": "1::768::color",
       "generic_type": "LIGHT_COLOR"
     },
