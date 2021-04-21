@@ -4,9 +4,12 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto.
 
+# 21/04/2021
+
 - Adición de nuevo módulo
 - Adición de la vinculación (entre grupo o módulo)
 - Arreglo del fallo
+- Rediseño del doc
 
 # 07/04/2021
 

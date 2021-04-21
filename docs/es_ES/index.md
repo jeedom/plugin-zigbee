@@ -78,16 +78,16 @@ También se pueden acceder a otros parámetros más específicos :
 - **Identificación** : identificador único del equipo. Incluso durante una reincorporación o si cambia el tipo de controlador Zigbee.
 - **Controlador Zigbee** : utilizado para seleccionar el controlador Zigbee en comunicación con el equipo.
 - **Control de comunicación** : le permite seleccionar el modo de verificación de la buena comunicación entre el controlador y el módulo.
-- **Ignorar la confirmación de ejecución** : marque la casilla para ignorar la ejecución correcta del comando. Esto le permite recuperar el control más rápidamente, pero no garantiza que el pedido se haya realizado correctamente.
-- **Permitir hacer cola** : marque la casilla para permitir la cola de pedidos. Esto le permite volver a intentarlo en caso de que la orden no se haya ejecutado.
+- **Ignorar la confirmación de ejecución** : marque la casilla para ignorar la ejecución correcta del comando. Esto le permite recuperar el control más rápidamente, pero no garantiza que el pedido esté bien colocado.
+- **Permitir hacer cola** : marque la casilla para permitir la cola de pedidos. Esto permite volver a ejecutar el comando en caso de que el módulo no haya tenido en cuenta la orden.
 
-La parte **Información** permite la selección manual de fabricante y equipo. También está la visualización del equipo así como dos botones que permiten la regeneración de los comandos o el acceso a las opciones de configuración del módulo.
+La parte **Información** permite la selección manual de fabricante y equipo. También existe la visual del equipo así como dos botones que permiten la **regeneración de órdenes** o acceso a opciones **Configuración del módulo**.
 
-En la pestaña **Pedidos**, encontramos, como es habitual, los comandos que permiten la interacción con el módulo.
+En la pestaña **Pedidos**, encontramos, como es habitual, los comandos que permiten interactuar con el módulo.
 
 ### Módulo no reconocido
 
-Si Jeedom no reconoce automáticamente su módulo *(no se crearon pedidos)* pero bien incluido, por lo que tienes que pedir que lo agreguen al equipo de Jeedom.
+Si su módulo está incluido pero Jeedom no lo reconoce automáticamente *(no se crearon pedidos)*, así que tienes que pedir que se añada al equipo de Jeedom.
 
 >**INFORMACIÓN**
 >
@@ -97,7 +97,7 @@ Para solicitar la incorporación de nuevos equipos, es necesario aportar los sig
 
 - **el modelo exacto** del módulo con un enlace al sitio de compra,
 - En la página del equipo, haga clic en el botón azul **Configuración del módulo** luego tabula **Información en bruto**. Copia el contenido para transmitirlo al equipo de Jeedom,
-- Ponga el demonio en `debug` desde la página de configuración del complemento y reinícielo. Realizar acciones en el equipo *(si es un sensor de temperatura, variar la temperatura por ejemplo, si es una válvula, variar el setpoint, etc...)* y envía el registro `zigbee` *(no `zigbeed`)*.
+- Ponga el demonio en `debug` desde la página de configuración del complemento y reinícielo. Realizar acciones en el equipo *(si es un sensor de temperatura, variar la temperatura, si es una válvula, variar el setpoint, etc...)* y envía el registro `zigbee` *(no `zigbeed`)*.
 
 >**INFORMACIÓN**
 >
@@ -114,7 +114,7 @@ Explicamos a continuación cómo funcionan los comandos en el complemento para l
   - ''''ATTRIBUT'''' : número de atributo,
   - ''''VALUE'''' : valor para escribir.
 
-**Ejemplo** : ''''attributes::1::in::513::18::#slider#*100'''' que escribirá el atributo en el punto final `1`, clúster entrante (''''in'''') `513`, atributo` 18` con el valor del ''''slider*100''''.
+**Ejemplo** : ''''attributes::1::in::513::18::#slider#*100'''' escribirá el atributo en el punto final `1`, clúster entrante (''''in'''') `513`, atributo` 18` con el valor del ''''slider*100''''.
 
 - ''''ENDPOINT::CLUSTER:COMMAND::PARAMS'''' le permite ejecutar un comando de servidor con :
   - ''''ENDPOINT'''' : número de punto final,
@@ -155,7 +155,7 @@ Es posible actualizar el firmware del controlador Zigbee desde Jeedom *(actualme
 
 ## Actualización de módulos OTA
 
-Actualizaciones de OTA *(Over-The-Air)* son las actualizaciones de firmware de los módulos. El proceso puede llevar un tiempo determinado (varias horas dependiendo de la cantidad de módulos) pero permite una mayor confiabilidad de la red Zigbee en general. Para poder actualizar un módulo, el fabricante debe comunicar el firmware :
+Actualizaciones de OTA *(Over-The-Air)* son las actualizaciones de firmware de los módulos. El proceso puede llevar un tiempo determinado (varias horas dependiendo de la cantidad de módulos) pero permite una mayor confiabilidad de la red Zigbee en general. Para poder actualizar un módulo, el fabricante debe comunicar su firmware :
 
 - Con respecto a **Ikea** y **El avance**, los firmwares están disponibles directamente en línea donde el complemento los recuperará.
 - Para otros (ver [aquí](https://github.com/Koenkk/zigbee-OTA/tree/master/images)), el fabricante proporciona informalmente una actualización en algunos casos.
@@ -184,7 +184,7 @@ Esta función está disponible en bombillas tipo Zigbee **Philips Hue, Ikea, Osr
 
 Como suele ocurrir en Zigbee, pueden surgir dificultades durante el proceso de reinicio o asociación. Hay varios métodos disponibles para lograr esto :
 
-- **Realice rápidamente 5/6 ciclos de encendido / apagado** *(encendido apagado)*. La bombilla debe parpadear al final del procedimiento para indicar el reconocimiento correcto.
+- **Realice rápidamente 5 o 6 ciclos de encendido / apagado** *(encendido apagado)*. La bombilla debe parpadear al final del procedimiento para indicar el reconocimiento correcto.
 - **Usa un control remoto zigbee**, y :
   - **para mandos a distancia Philips Hue**, presione simultáneamente los botones de ENCENDIDO y APAGADO durante 5 a 10 segundos cerca de la bombilla encendida *(a veces tienes que apagar / encender la bombilla justo antes en algunos modelos)*,
   - **para mandos a distancia de Ikea**, presione el botón de reinicio" *(al lado de la batería)* durante 5 a 10 segundos cerca de la bombilla encendida *(a veces tienes que apagar / encender la bombilla justo antes en algunos modelos)*.
@@ -194,11 +194,11 @@ Como suele ocurrir en Zigbee, pueden surgir dificultades durante el proceso de r
 
 El enlace le permite vincular 2 módulos directamente entre sí sin que las órdenes pasen por Jeedom. El enlace se realiza desde un clúster al mismo clúster de otro módulo. El enlace siempre debe realizarse desde el control (tipo de control remoto) al actuador.
 
-Encontrará los elementos de gestión de enlaces, si es compatible con su módulo, en la pestaña **Información** desde la ventana de configuración del módulo.
+Encontrará los elementos de gestión de enlaces, si es compatible con su módulo, en la pestaña **INFORMACIÓN** desde la ventana de configuración del módulo.
 
 Algunos módulos no son compatibles con la encuadernación y otros *(como los módulos de Ikea)* Solo soporta la vinculación del comando a un grupo, por lo tanto, es necesario comenzar por hacer un grupo en el que tendrás que poner el actuador.
 
-# Red Zigbee
+# Redes Zigbee
 
 La constitución de una red Zigbee de buena calidad es de gran ayuda gracias a las herramientas disponibles en el complemento. Vaya a la página general del complemento que enumera todos los equipos y haga clic en el botón **Redes Zigbee** para acceder a diversas informaciones y acciones en torno a la red Zigbee así como a la gráfica representativa de la misma.
 
@@ -212,7 +212,7 @@ El gráfico de red proporciona una descripción general de la red Zigbee y la ca
 
 ## Optimizando la red
 
-Para optimizar la confiabilidad de su red Zigbee, es más que recomendable tener al menos 3 módulos de enrutador permanentemente alimentados y evitar desenchufarlos. De hecho, durante nuestras pruebas notamos una clara mejora en la confiabilidad y resistencia de la red Zigbee al agregar módulos de enrutador. También es aconsejable incluirlos primero, de lo contrario, el "dispositivo final" tardará entre 24 y 48 horas" *(módulos sin enrutador)* descúbrelos.
+Para optimizar la confiabilidad de su red Zigbee, **es más que recomendable tener al menos 3 módulos de enrutador permanentemente alimentados y evitar desenchufarlos**. De hecho, durante nuestras pruebas notamos una clara mejora en la confiabilidad y resistencia de la red Zigbee al agregar módulos de enrutador. También es recomendable incluirlos primero, de lo contrario tendrá que esperar de 24 a 48 horas para que aparezcan los "dispositivos finales" *(módulos sin enrutador)* descúbrelos.
 
 Otro punto importante, es posible, al retirar un módulo de enrutador, que parte del "dispositivo final" *(módulos sin enrutador)* ya sea perdido por un tiempo más largo o más corto *(en diez horas o más)* o incluso definitivamente y tienes que volver a incluirlos.
 Desafortunadamente, esto se debe a la forma en que el fabricante ha planeado la integración de su equipo dentro de una red Zigbee y, por lo tanto, no puede ser corregido por el complemento que no gestiona la parte de enrutamiento.
@@ -223,26 +223,26 @@ Finalmente, y aunque pueda parecer obvio para algunos, te recordamos que las pas
 
 >**LQI o RSSI es N / A**
 >
->Normalmente es después de reiniciar la red Zigbee que se vacían los valores. Tienes que esperar a que el módulo se comunique nuevamente para que se ingresen los valores.
+>Los valores normalmente se vacían después de reiniciar el demonio zigbee. Tienes que esperar a que el módulo se comunique nuevamente para que se ingresen los valores.
 
 
 >**Tengo problemas de inclusión o errores en los registros de tipos ''''TXStatus.MAC_CHANNEL_ACCESS_FAILURE''''**
 >
->Debe intentar quitar o cambiar la extensión USB si usa una o poner una si no usa una.
+>Debe intentar quitar o cambiar la extensión USB si está usando una o instalar una si no está usando una.
 
 
 >**Tengo errores ''''can not send to device'''' o ''''send error'''' o ''''Message send failure''''**
 >
->Por lo general, esto se debe a un problema de enrutamiento. el enrutamiento es más o menos fijo en Zigbee y no simétrico, un módulo puede usar una ruta diferente para responder a la que se usa para hablar con él. A menudo, el corte eléctrico *(quitar las pilas, por ejemplo)* y enciende la energía *(o reemplazo de baterías)* es suficiente para solucionar el problema.
+>Por lo general, esto se debe a un problema de enrutamiento. el enrutamiento es más o menos fijo en Zigbee pero no simétrico, un módulo puede usar una ruta diferente para responder a la que se usa para hablar con él. A menudo, el corte eléctrico *(quitar las pilas, por ejemplo)* y enciende la energía *(o reemplazo de baterías)* es suficiente para solucionar el problema.
 
 
 >**Tengo errores extraños en los módulos de batería o problemas de inclusión**
 >
->Hemos notado que una buena parte de los problemas de Zigbee en los módulos de batería se deben a las baterías o posiblemente a problemas al restablecer los módulos antes de su inclusión. Aunque parezcan nuevas, es recomendable probarlas con baterías nuevas para descartar esta hipótesis.
+>Notamos que buena parte de los problemas de los módulos en batería se deben a las baterías o posiblemente problemas de resetear los módulos a cero antes de su inclusión. Aunque parezcan nuevas, es recomendable probarlas con baterías nuevas para descartar esta hipótesis.
 
 
 >**Me preocupa actualizar los valores del equipo**
 >
 > 2 posibilidades :
-> - este es un "módulo antiguo" en ZLL *(ver la configuración del equipo Jeedom que indica si es ZHA o ZLL)*. En este caso, es absolutamente necesario un comando "Actualizar" para que usted o Jeedom fuercen la actualización de los valores. Si este comando no existe en el equipo, debe comunicarse con el soporte de Jeedom para que se agregue en la próxima versión estable. Una vez fuera, haga clic en el botón **Recrear comandos** sin borrar.
+> - es un módulo ZLL *(ver la configuración del equipo Jeedom que indica si es ZHA o ZLL)*. En este caso, es absolutamente necesario un comando "Actualizar" para que usted o Jeedom fuercen la actualización de los valores. Si este comando no existe en el equipo, debe comunicarse con el soporte de Jeedom para que se agregue en la próxima versión estable. Una vez fuera, haga clic en el botón **Recrear comandos** sin borrar.
 > -	el módulo está en ZHA, por lo que es una preocupación de inclusión. En la pestaña **Acción** de la configuración del módulo, hay un botón **Restablecer módulo** permitiendo forzar acciones posteriores a la inclusión. Se debe tener cuidado para mantener el módulo activo si está en batería.
