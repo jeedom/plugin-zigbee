@@ -206,7 +206,7 @@ Vous retrouverez les éléments de gestion du binding, s'il est pris en charge p
 
 ![Binding Zigbee](../images/zigbee_binding.png)
 
-Certains modules ne sont pas compatibles avec le binding et d'autres *(tels que les modules Ikea)* ne supportent le binding que de la commande vers un groupe, il est donc nécessaire de commencer par faire un groupe dans lequel il faudra mettre l'actionneur.
+Certains modules ne sont pas compatibles avec le binding et d'autres *(tels que les modules Ikea)* ne supportent le binding que de la commande vers un groupe, il est donc nécessaire de commencer par créer un nouveau groupe dans lequel il faudra placer l'actionneur.
 
 # Réseaux Zigbee
 
