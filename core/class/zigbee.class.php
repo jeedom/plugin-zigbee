@@ -41,7 +41,7 @@ class zigbee extends eqLogic {
     shell_exec($cmd.' >> '.$log.' 2>&1');
     config::save('deamonAutoMode', 0, 'zigbee');
     self::deamon_start();
-    log::add('zigbee_firmware','debug',__('Fin de la mise à jour du firmware de la clef',__FILE__));
+    log::add('zigbee_firmware','info',__('Fin de la mise à jour du firmware de la clef',__FILE__));
   }
   
   public static function updateOTA($_options = array()){
@@ -893,7 +893,7 @@ class zigbee extends eqLogic {
       $allendpoints =array();
       try {
         $details = zigbee::request($this->getConfiguration('instance',1),'/device/info',array(
-        'ieee'=>$this->getLogicalId()
+          'ieee'=>$this->getLogicalId()
         ),'GET');
         foreach ($details['endpoints'] as $endpoint) {
           $allendpoints[] = $endpoint['id'];
@@ -945,12 +945,12 @@ class zigbee extends eqLogic {
       foreach ($data as $cluster => $attributes) {
         try {
           zigbee::request($this->getConfiguration('instance',1),'/device/attributes',array(
-          'ieee'=>$ieee,
-          'endpoint' => $endpoint,
-          'cluster' => $cluster,
-          'cluster_type' => 'in',
-          'attributes' => $attributes,
-          'allowCache' => 0
+            'ieee'=>$ieee,
+            'endpoint' => $endpoint,
+            'cluster' => $cluster,
+            'cluster_type' => 'in',
+            'attributes' => $attributes,
+            'allowCache' => 0
           ),'POST');
         } catch (\Exception $e) {
           log::add('zigbee','info',$this->getHumanName().' '.$e->getMessage());
@@ -992,9 +992,9 @@ class zigbeeCmd extends cmd {
       $y = $xyz['y'] / array_sum($xyz);
     }
     return array(
-    'x' => $x,
-    'y' => $y,
-    'bri' => round($xyz['y'] * 255),
+      'x' => $x,
+      'y' => $y,
+      'bri' => round($xyz['y'] * 255),
     );
   }
   
