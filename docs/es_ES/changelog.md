@@ -6,11 +6,19 @@
 
 # 21/04/2021
 
-- Adición de nuevo módulo
-- Adición de la vinculación (entre grupo o módulo)
+- Integración de nuevos módulos
+- Soporte para encuadernación *(entre grupos o módulos)*
+- Rediseño de documentación
 - Arreglo del fallo
-- Rediseño del doc
 
 # 07/04/2021
 
-- Se solucionó un problema en el botón para forzar la actualización OTA en cierto módulo
+- Se corrigió un problema en el botón para forzar la actualización OTA de ciertos módulos
+
+# 06/04/2021
+
+- Cambiando a estable
+
+# 25/09/2020
+
+- 1er lanzamiento en beta

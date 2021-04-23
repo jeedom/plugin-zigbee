@@ -6,11 +6,19 @@
 
 # 21.04.2021
 
-- Hinzufügen eines neuen Moduls
-- Hinzufügen der Bindung (zwischen Gruppe oder Modul)
+- Integration neuer Module
+- Unterstützung für die Bindung *(zwischen Gruppen oder Modulen)*
+- Neugestaltung der Dokumentation
 - Fehlerbehebung
-- Neugestaltung des Dokuments
 
 # 04/07/2021
 
-- Es wurde ein Problem auf der Schaltfläche behoben, mit dem das OTA-Update für ein bestimmtes Modul erzwungen wurde
+- Es wurde ein Problem auf der Schaltfläche behoben, mit dem die OTA-Aktualisierung bestimmter Module erzwungen wurde
+
+# 04/06/2021
+
+- Umstellung auf Stall
+
+# 25.09.2020
+
+- 1. Veröffentlichung in der Beta

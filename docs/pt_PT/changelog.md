@@ -6,11 +6,19 @@
 
 # 21/04/2021
 
-- Adição de novo módulo
-- Adição da ligação (entre grupo ou módulo)
+- Integração de novos módulos
+- Suporte para vinculação *(entre grupos ou módulos)*
+- Reformulação da documentação
 - Bugfix
-- Redesenho do doc
 
 # 07/04/2021
 
-- Corrigido um problema no botão para forçar a atualização OTA em determinado módulo
+- Corrigido um problema no botão para forçar a atualização OTA de certos módulos
+
+# 06/04/2021
+
+- Mudando para estável
+
+# 25/09/2020
+
+- 1º lançamento em beta
