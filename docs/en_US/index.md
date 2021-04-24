@@ -3,13 +3,13 @@
 **The Zigbee plugin for Jeedom** builds on the excellent work done around **the open-source Zigpy library** to offer a **general compatibility with different Zigbee hardware**. It allows communication with the following Zigbee controllers :
 
 -	**Deconz** : Tested and validated by the Jeedom team. *(It is not necessary to install the deCONZ application)*
--	**EZSP (Silicon Labs)** : Tested and validated by the Jeedom team.
+-	**EZSP (Silicon Labs)** : Tested, validated and recommended by the Jeedom team.
 -	**XBee** : Not tested by the Jeedom team.
 -	**Zigate** : Not tested by the team. *(in experimental in Zigpy)*
 -	**ZNP (Texas Instruments, Z-stack 3.X.X)** : Not tested by the team. *(in experimental in Zigpy)*
 -	**CC (Texas Instruments, Z-stack 1.2.X)** : Not tested by the team. *(in experimental in Zigpy)*
 
-In addition, the plugin contains many tools allowing :
+In addition, the plugin is equipped with many tools allowing :
 
 - taking charge of **several controllers at the same time**,
 - the **backup and restore** a controller,
@@ -33,7 +33,8 @@ In addition, the plugin contains many tools allowing :
 >
 >Any change of channel will require a restart of the daemon. A change of channel may also require the re-inclusion of certain modules.
 
-### Zigpy advanced configuration (reserved for experts !)
+### Zigpy advanced configuration
+>**Reserved for experts !**
 
 It is possible to set up specific parameters for the Zigbee subsystem *(Zigpy)*. This part is strictly reserved for experts, which is why the Jeedom team does not provide the list of possible parameters *(there are hundreds of them depending on the type of controller)*.
 
@@ -103,7 +104,8 @@ To request the addition of new equipment, it is necessary to provide the followi
 >
 >Any incomplete request will be refused without a response from the Jeedom team.
 
-### How controls work for experts
+### Operation of controls
+>**Reserved for experts !**
 
 We explain below how the commands work in the plugin for the most advanced users :
 
@@ -174,7 +176,7 @@ Unfortunately, there is no simple indicator to follow the progress of the update
 2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
 ````````
 
-# Touchlink
+# Touchlink / Lightlink
 
 **Touchlink** *(or Lightlink)* is a particular function of Zigbee which allows the controller to send management orders to a module on condition of being very close to it *(less than 50 centimeters)*. This is useful, for example, to reset bulbs that do not have a physical button.
 
@@ -190,13 +192,21 @@ As often in Zigbee, difficulties can arise during the reset or association proce
   - **for Ikea remotes**, press the reset button" *(next to the battery)* for 5 to 10 seconds near the powered bulb *(sometimes you have to turn off / turn on the bulb just before on some models)*.
 - About the **Philips Hue bulbs**, you can also include them on Hue Bridge and then remove them from it.
 
+# Group management
+
+A group can be related to a kind of virtual remote control allowing the controller to act on several modules in order to make them perform the same actions simultaneously.
+
+The procedure is simple : create a new group and add or delete member devices within it.
+
 # Binding
 
-The binding allows you to link 2 modules directly to each other without the orders passing through Jeedom. The link is made from a cluster to the same cluster of another module. The link must always be made from the control (remote control type) to the actuator.
+The binding makes it possible to link modules directly to each other without the orders passing through the controller. The link is made from a cluster *(enter exit)* to the same cluster of another module. The link must always be made from the control (remote control type) to the actuator.
 
 You will find the binding management elements, if it is supported by your module, in the tab **INFORMATION** from the module configuration window.
 
-Some modules are not compatible with the binding and others *(such as Ikea modules)* only support the binding of the command to a group, it is therefore necessary to start by making a group in which you will have to put the actuator.
+![Binding Zigbee](../images/zigbee_binding.png)
+
+Some modules are not compatible with the binding and others *(such as Ikea modules)* only support the binding of the command to a group, it is therefore necessary to start by creating a new group in which the actuator must be placed.
 
 # Zigbee Networks
 
@@ -208,7 +218,7 @@ The network graph provides an overview of the Zigbee network and the quality of 
 
 >**INFORMATION**
 >
->The Zigbee network graph is indicative and is based on the neighbors that the modules declare. This does not necessarily represent the real routing but a possible routing.
+>The Zigbee network graph is indicative and is based on the neighbors that the modules declare. This does not necessarily represent the real routing but the possible routes.
 
 ## Optimizing the network
 
@@ -217,7 +227,7 @@ To optimize the reliability of your Zigbee network, **it is more than recommende
 Another important point, it is possible, when removing a router module, that part of the "end-device" *(non-router modules)* either lost for a longer or shorter time *(in ten hours or more)* or even definitely and you have to re-include them.
 Unfortunately this is due to the way in which the manufacturer has planned the integration of its equipment within a Zigbee network and therefore cannot be corrected by the plugin which does not manage the routing part.
 
-Finally, and even if it may seem obvious to some, we remind you that Zigbee gateways in Wifi are less reliable than USB gateways. The Jeedom team therefore recommends the use of a Zigbee gateway in USB.  
+Finally, and even if it may seem obvious to some, we remind you that Zigbee gateways in Wifi or remote are by definition less reliable than USB gateways. The Jeedom team therefore recommends the use of a Zigbee gateway in USB.  
 
 # FAQ
 
@@ -225,21 +235,17 @@ Finally, and even if it may seem obvious to some, we remind you that Zigbee gate
 >
 >Values are normally emptied after restarting the zigbee daemon. You have to wait for the module to communicate again for the values to be entered.
 
-
 >**I have inclusion issues or errors in the type logs ````TXStatus.MAC_CHANNEL_ACCESS_FAILURE````**
 >
 >You should try to remove or change the USB extension if you are using one or install one if you are not using one.
-
 
 >**I have errors ````can not send to device```` or ````send error```` or ````Message send failure````**
 >
 >This is usually due to a routing issue. the routing is more or less fixed in Zigbee but not symmetrical, a module can use a different route to respond than the one used to talk to it. Often the electric shutdown *(removing batteries for example)* and turn on the power *(or replacement of batteries)* is enough to solve the problem.
 
-
 >**I have weird errors on battery modules or inclusion issues**
 >
 >We noticed that a good part of the problems of the modules on battery are due to the batteries or possibly problems of resetting the modules to zero before inclusion. Even if these appear to be new, it is advisable to test with new batteries to rule out this hypothesis.
-
 
 >**I have concerns updating the values of the equipment**
 >

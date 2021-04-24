@@ -3,13 +3,13 @@
 **Das ZigBee-Plugin für Jeedom** baut auf der hervorragenden Arbeit auf **die Open-Source-Zigpy-Bibliothek** ein anbieten **Allgemeine Kompatibilität mit verschiedenen ZigBee-Hardware**. Es ermöglicht die Kommunikation mit den folgenden ZigBee-Controllern :
 
 -	**Deconz** : Vom Jeedom-Team getestet und validiert. *(Es ist nicht erforderlich, die deCONZ-Anwendung zu installieren)*
--	**EZSP (Silicon Labs)** : Vom Jeedom-Team getestet und validiert.
+-	**EZSP (Silicon Labs)** : Vom Jeedom-Team getestet, validiert und empfohlen.
 -	**XBee** : Nicht vom Jeedom-Team getestet.
 -	**Zigate** : Nicht vom Team getestet. *(im Experiment in Zigpy)*
 -	**ZNP (Texas Instruments, Z-Stapel 3.X.X)** : Nicht vom Team getestet. *(im Experiment in Zigpy)*
 -	**CC (Texas Instruments, Z-Stapel 1.2.X)** : Nicht vom Team getestet. *(im Experiment in Zigpy)*
 
-Darüber hinaus enthält das Plugin viele Tools, die dies ermöglichen :
+Darüber hinaus ist das Plugin mit vielen Tools ausgestattet, die es ermöglichen :
 
 - die Verantwortung übernehmen **mehrere Controller gleichzeitig**,
 - das **sichern und Wiederherstellen** eine Steuerung,
@@ -33,7 +33,8 @@ Darüber hinaus enthält das Plugin viele Tools, die dies ermöglichen :
 >
 >Jeder Kanalwechsel erfordert einen Neustart des Dämons. Ein Kanalwechsel kann auch die Wiedereingliederung bestimmter Module erfordern.
 
-### Erweiterte Zigpy-Konfiguration (für Experten reserviert !)
+### Erweiterte Zigpy-Konfiguration
+>**Für Experten reserviert !**
 
 Es ist möglich, bestimmte Parameter für das ZigBee-Subsystem einzurichten *(Zigpy)*. Dieser Teil ist ausschließlich Experten vorbehalten, weshalb das Jeedom-Team keine Liste möglicher Parameter bereitstellt *(Je nach Controller-Typ gibt es Hunderte davon)*.
 
@@ -103,7 +104,8 @@ Um die Hinzufügung neuer Geräte anzufordern, müssen die folgenden Elemente an
 >
 >Jede unvollständige Anfrage wird ohne Antwort des Jeedom-Teams abgelehnt.
 
-### Wie Kontrollen für Experten funktionieren
+### Bedienung der Bedienelemente
+>**Für Experten reserviert !**
 
 Im Folgenden wird erläutert, wie die Befehle im Plugin für die fortgeschrittensten Benutzer funktionieren :
 
@@ -174,7 +176,7 @@ Leider gibt es keinen einfachen Indikator, um den Fortschritt des Updates zu ver
 2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
 ````````
 
-# Touchlink
+# Touchlink / Lightlink
 
 **Touchlink** *(oder Lightlink)* ist eine spezielle Funktion von Zigbee, die es dem Controller ermöglicht, Verwaltungsaufträge an ein Modul zu senden, sofern es sich sehr nahe daran befindet *(weniger als 50 Zentimeter)*. Dies ist beispielsweise nützlich, um Lampen zurückzusetzen, die keine physische Taste haben.
 
@@ -190,13 +192,21 @@ Wie so oft in Zigbee können während des Zurücksetzens oder des Zuordnungsproz
   - **für Ikea-Fernbedienungen**, Drücken Sie die Reset-Taste" *(neben der Batterie)* für 5 bis 10 Sekunden in der Nähe der Glühbirne *(Manchmal muss bei einigen Modellen die Glühbirne kurz zuvor ein- und ausgeschaltet werden)*.
 - Über die **Philips Hue Glühbirnen**, Sie können sie auch in die Hue Bridge aufnehmen und dann daraus entfernen.
 
+# Gruppenmanagement
+
+Eine Gruppe kann einer Art virtueller Fernbedienung zugeordnet werden, die es der Steuerung ermöglicht, auf mehrere Module zu reagieren, damit diese dieselben Aktionen gleichzeitig ausführen.
+
+Das Verfahren ist einfach : Erstellen Sie eine neue Gruppe und fügen Sie darin Mitgliedergeräte hinzu oder löschen Sie sie.
+
 # Binding
 
-Die Bindung ermöglicht es Ihnen, 2 Module direkt miteinander zu verknüpfen, ohne dass die Befehle durch Jeedom gehen. Die Verknüpfung wird von einem Cluster zu demselben Cluster eines anderen Moduls hergestellt. Die Verbindung muss immer von der Steuerung (Fernbedienungstyp) zum Stellantrieb hergestellt werden.
+Die Bindung ermöglicht es, Module direkt miteinander zu verknüpfen, ohne dass die Befehle durch die Steuerung geleitet werden. Die Verknüpfung erfolgt aus einem Cluster *(Geben Sie den Ausgang ein)* zu demselben Cluster eines anderen Moduls. Die Verbindung muss immer von der Steuerung (Fernbedienungstyp) zum Stellantrieb hergestellt werden.
 
 Sie finden die Bindungsverwaltungselemente, sofern sie von Ihrem Modul unterstützt werden, auf der Registerkarte **INFORMATION** aus dem Modulkonfigurationsfenster.
 
-Einige Module sind nicht mit der Bindung kompatibel, andere *(wie Ikea-Module)* Unterstützen Sie nur die Bindung des Befehls an eine Gruppe. Daher müssen Sie zunächst eine Gruppe erstellen, in die Sie den Aktuator einfügen müssen.
+![Bindung Zigbee](../images/zigbee_binding.png)
+
+Einige Module sind nicht mit der Bindung kompatibel, andere *(wie Ikea-Module)* Unterstützen Sie nur die Bindung des Befehls an eine Gruppe. Daher müssen Sie zunächst eine neue Gruppe erstellen, in der der Aktuator platziert werden muss.
 
 # ZigBee-Netzwerke
 
@@ -208,7 +218,7 @@ Das Netzwerkdiagramm bietet einen Überblick über das ZigBee-Netzwerk und die Q
 
 >**INFORMATION**
 >
->Das ZigBee-Netzwerkdiagramm ist indikativ und basiert auf den Nachbarn, die die Module deklarieren. Dies stellt nicht unbedingt das tatsächliche Routing dar, sondern ein mögliches Routing.
+>Das ZigBee-Netzwerkdiagramm ist indikativ und basiert auf den Nachbarn, die die Module deklarieren. Dies stellt nicht unbedingt das tatsächliche Routing dar, sondern die möglichen Routen.
 
 ## Das Netzwerk optimieren
 
@@ -217,7 +227,7 @@ Optimieren Sie die Zuverlässigkeit Ihres ZigBee-Netzwerks, **Es wird mehr als e
 Ein weiterer wichtiger Punkt ist, dass beim Entfernen eines Routermoduls dieser Teil des "Endgeräts" möglich ist" *(Nicht-Router-Module)* entweder für eine längere oder kürzere Zeit verloren *(in zehn Stunden oder mehr)* oder sogar definitiv und Sie müssen sie wieder einschließen.
 Leider liegt dies an der Art und Weise, wie der Hersteller die Integration seiner Geräte in ein ZigBee-Netzwerk geplant hat und daher nicht durch das Plugin korrigiert werden kann, das den Routing-Teil nicht verwaltet.
 
-Schließlich und auch wenn es einigen offensichtlich erscheint, erinnern wir Sie daran, dass ZigBee-Gateways in Wifi weniger zuverlässig sind als USB-Gateways. Das Jeedom-Team empfiehlt daher die Verwendung eines ZigBee-Gateways in USB.  
+Schließlich und auch wenn es einigen offensichtlich erscheint, erinnern wir Sie daran, dass ZigBee-Gateways in Wifi oder Remote per Definition weniger zuverlässig sind als USB-Gateways. Das Jeedom-Team empfiehlt daher die Verwendung eines ZigBee-Gateways in USB.  
 
 # FAQ
 
@@ -225,21 +235,17 @@ Schließlich und auch wenn es einigen offensichtlich erscheint, erinnern wir Sie
 >
 >Die Werte werden normalerweise nach dem Neustart des ZigBee-Daemons geleert. Sie müssen warten, bis das Modul erneut kommuniziert, damit die Werte eingegeben werden können.
 
-
 >**Ich habe Einschlussprobleme oder Fehler in den Typprotokollen ````TXStatus.MAC_CHANNEL_ACCESS_FAILURE````**
 >
 >Sie sollten versuchen, die USB-Erweiterung zu entfernen oder zu ändern, wenn Sie eine verwenden, oder eine installieren, wenn Sie keine verwenden.
-
 
 >**Ich habe Fehler ````can not send to device```` oder ````send error```` oder ````Message send failure````**
 >
 >Dies ist normalerweise auf ein Routing-Problem zurückzuführen. Das Routing ist in ZigBee mehr oder weniger fest, aber nicht symmetrisch. Ein Modul kann eine andere Route verwenden, um zu antworten, als die, mit der es gesprochen hat. Oft die elektrische Abschaltung *(zum Beispiel Batterien entfernen)* und schalten Sie den Strom ein *(oder Austausch von Batterien)* ist genug, um das Problem zu lösen.
 
-
 >**Ich habe seltsame Fehler bei Batteriemodulen oder Einschlussprobleme**
 >
 >Wir haben festgestellt, dass ein großer Teil der Probleme der Module in der Batterie auf die Batterien oder möglicherweise auf Probleme beim Zurücksetzen der Module auf Null vor dem Einschluss zurückzuführen ist. Auch wenn diese neu erscheinen, ist es ratsam, mit neuen Batterien zu testen, um diese Hypothese auszuschließen.
-
 
 >**Ich habe Bedenken, die Werte der Ausrüstung zu aktualisieren**
 >

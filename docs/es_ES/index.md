@@ -3,13 +3,13 @@
 **El complemento Zigbee para Jeedom** se basa en el excelente trabajo realizado en torno a **la biblioteca Zigpy de código abierto** para ofrecer un **compatibilidad general con diferentes hardware Zigbee**. Permite la comunicación con los siguientes controladores Zigbee :
 
 -	**Deconz** : Probado y validado por el equipo de Jeedom. *(No es necesario instalar la aplicación deCONZ)*
--	**EZSP (laboratorios de silicio)** : Probado y validado por el equipo de Jeedom.
+-	**EZSP (laboratorios de silicio)** : Probado, validado y recomendado por el equipo de Jeedom.
 -	**XBee** : No probado por el equipo de Jeedom.
 -	**Zigate** : No probado por el equipo. *(en experimental en Zigpy)*
 -	**ZNP (Texas Instruments, pila Z 3.X.X)** : No probado por el equipo. *(en experimental en Zigpy)*
 -	**CC (Texas Instruments, pila Z 1.2.X)** : No probado por el equipo. *(en experimental en Zigpy)*
 
-Además, el complemento contiene muchas herramientas que permiten :
+Además, el complemento está equipado con muchas herramientas que permiten :
 
 - hacerse cargo de **varios controladores al mismo tiempo**,
 - la **copia de seguridad y restaurar** un controlador,
@@ -33,7 +33,8 @@ Además, el complemento contiene muchas herramientas que permiten :
 >
 >Cualquier cambio de canal requerirá un reinicio del demonio. Un cambio de canal también puede requerir la reincorporación de ciertos módulos.
 
-### Configuración avanzada de Zigpy (reservada para expertos !)
+### Configuración avanzada de Zigpy
+>**Reservado para expertos !**
 
 Es posible configurar parámetros específicos para el subsistema Zigbee *(Zigpy)*. Esta parte está estrictamente reservada para expertos, por lo que el equipo de Jeedom no proporciona la lista de posibles parámetros *(hay cientos de ellos dependiendo del tipo de controlador)*.
 
@@ -103,7 +104,8 @@ Para solicitar la incorporación de nuevos equipos, es necesario aportar los sig
 >
 >Cualquier solicitud incompleta será rechazada sin una respuesta del equipo de Jeedom.
 
-### Cómo funcionan los controles para los expertos
+### Operación de controles
+>**Reservado para expertos !**
 
 Explicamos a continuación cómo funcionan los comandos en el complemento para los usuarios más avanzados :
 
@@ -174,7 +176,7 @@ Desafortunadamente, no hay un indicador simple para seguir el progreso de la act
 2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
 ''''''''
 
-# Touchlink
+# Touchlink / Lightlink
 
 **Touchlink** *(o Lightlink)* es una función particular de Zigbee que permite al controlador enviar órdenes de gestión a un módulo con la condición de estar muy cerca de él *(menos de 50 centímetros)*. Esto es útil, por ejemplo, para restablecer bombillas que no tienen botón físico.
 
@@ -190,13 +192,21 @@ Como suele ocurrir en Zigbee, pueden surgir dificultades durante el proceso de r
   - **para mandos a distancia de Ikea**, presione el botón de reinicio" *(al lado de la batería)* durante 5 a 10 segundos cerca de la bombilla encendida *(a veces tienes que apagar / encender la bombilla justo antes en algunos modelos)*.
 - Acerca de **Bombillas Philips Hue**, también puede incluirlos en Hue Bridge y luego eliminarlos de él.
 
+# Manejo de grupo
+
+Un grupo puede relacionarse con una especie de control remoto virtual que permite al controlador actuar sobre varios módulos para que estos realicen las mismas acciones simultáneamente.
+
+El procedimiento es simple : crear un nuevo grupo y agregar o eliminar dispositivos miembros dentro de él.
+
 # Binding
 
-El enlace le permite vincular 2 módulos directamente entre sí sin que las órdenes pasen por Jeedom. El enlace se realiza desde un clúster al mismo clúster de otro módulo. El enlace siempre debe realizarse desde el control (tipo de control remoto) al actuador.
+El enlace permite vincular módulos directamente entre sí sin que las órdenes pasen por el controlador. El enlace se hace a partir de un clúster *(entrada salida)* al mismo clúster de otro módulo. El enlace siempre debe realizarse desde el control (tipo de control remoto) al actuador.
 
 Encontrará los elementos de gestión de enlaces, si es compatible con su módulo, en la pestaña **INFORMACIÓN** desde la ventana de configuración del módulo.
 
-Algunos módulos no son compatibles con la encuadernación y otros *(como los módulos de Ikea)* Solo soporta la vinculación del comando a un grupo, por lo tanto, es necesario comenzar por hacer un grupo en el que tendrás que poner el actuador.
+![Unión Zigbee](../images/zigbee_binding.png)
+
+Algunos módulos no son compatibles con la encuadernación y otros *(como los módulos de Ikea)* solo admite la vinculación del comando a un grupo, por lo tanto, es necesario comenzar creando un nuevo grupo en el que se debe colocar el actuador.
 
 # Redes Zigbee
 
@@ -208,7 +218,7 @@ El gráfico de red proporciona una descripción general de la red Zigbee y la ca
 
 >**INFORMACIÓN**
 >
->El gráfico de la red Zigbee es indicativo y se basa en los vecinos que declaran los módulos. Esto no representa necesariamente el enrutamiento real, sino un enrutamiento posible.
+>El gráfico de la red Zigbee es indicativo y se basa en los vecinos que declaran los módulos. Esto no representa necesariamente el enrutamiento real sino las rutas posibles.
 
 ## Optimizando la red
 
@@ -217,7 +227,7 @@ Para optimizar la confiabilidad de su red Zigbee, **es más que recomendable ten
 Otro punto importante, es posible, al retirar un módulo de enrutador, que parte del "dispositivo final" *(módulos sin enrutador)* ya sea perdido por un tiempo más largo o más corto *(en diez horas o más)* o incluso definitivamente y tienes que volver a incluirlos.
 Desafortunadamente, esto se debe a la forma en que el fabricante ha planeado la integración de su equipo dentro de una red Zigbee y, por lo tanto, no puede ser corregido por el complemento que no gestiona la parte de enrutamiento.
 
-Finalmente, y aunque pueda parecer obvio para algunos, te recordamos que las pasarelas Zigbee en Wifi son menos confiables que las pasarelas USB. Por lo tanto, el equipo de Jeedom recomienda el uso de una puerta de enlace Zigbee en USB.  
+Finalmente, e incluso si puede parecer obvio para algunos, te recordamos que las pasarelas Zigbee en Wifi o remotas son por definición menos confiables que las pasarelas USB. Por lo tanto, el equipo de Jeedom recomienda el uso de una puerta de enlace Zigbee en USB.  
 
 # FAQ
 
@@ -225,21 +235,17 @@ Finalmente, y aunque pueda parecer obvio para algunos, te recordamos que las pas
 >
 >Los valores normalmente se vacían después de reiniciar el demonio zigbee. Tienes que esperar a que el módulo se comunique nuevamente para que se ingresen los valores.
 
-
 >**Tengo problemas de inclusión o errores en los registros de tipos ''''TXStatus.MAC_CHANNEL_ACCESS_FAILURE''''**
 >
 >Debe intentar quitar o cambiar la extensión USB si está usando una o instalar una si no está usando una.
-
 
 >**Tengo errores ''''can not send to device'''' o ''''send error'''' o ''''Message send failure''''**
 >
 >Por lo general, esto se debe a un problema de enrutamiento. el enrutamiento es más o menos fijo en Zigbee pero no simétrico, un módulo puede usar una ruta diferente para responder a la que se usa para hablar con él. A menudo, el corte eléctrico *(quitar las pilas, por ejemplo)* y enciende la energía *(o reemplazo de baterías)* es suficiente para solucionar el problema.
 
-
 >**Tengo errores extraños en los módulos de batería o problemas de inclusión**
 >
 >Notamos que buena parte de los problemas de los módulos en batería se deben a las baterías o posiblemente problemas de resetear los módulos a cero antes de su inclusión. Aunque parezcan nuevas, es recomendable probarlas con baterías nuevas para descartar esta hipótesis.
-
 
 >**Me preocupa actualizar los valores del equipo**
 >

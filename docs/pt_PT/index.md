@@ -3,13 +3,13 @@
 **O plugin Zigbee para Jeedom** baseia-se no excelente trabalho feito em torno **a biblioteca Zigpy de código aberto** para oferecer um **compatibilidade geral com diferentes hardwares Zigbee**. Ele permite a comunicação com os seguintes controladores Zigbee :
 
 -	**Deconz** : Testado e validado pela equipe Jeedom. *(Não é necessário instalar o aplicativo deCONZ)*
--	**EZSP (Silicon Labs)** : Testado e validado pela equipe Jeedom.
+-	**EZSP (Silicon Labs)** : Testado, validado e recomendado pela equipe Jeedom.
 -	**XBee** : Não testado pela equipe Jeedom.
 -	**Zigate** : Não testado pela equipe. *(em experimental no Zigpy)*
 -	**ZNP (Texas Instruments, Z-stack 3.X.X)** : Não testado pela equipe. *(em experimental no Zigpy)*
 -	**CC (Texas Instruments, Z-stack 1.2.X)** : Não testado pela equipe. *(em experimental no Zigpy)*
 
-Além disso, o plugin contém muitas ferramentas que permitem :
+Além disso, o plugin está equipado com muitas ferramentas que permitem :
 
 - tomando conta de **vários controladores ao mesmo tempo**,
 - a **backup e restauração** um controlador,
@@ -33,7 +33,8 @@ Além disso, o plugin contém muitas ferramentas que permitem :
 >
 >Qualquer mudança de canal exigirá a reinicialização do daemon. Uma mudança de canal também pode exigir a reinclusão de certos módulos.
 
-### Configuração avançada Zigpy (reservada para especialistas !)
+### Configuração avançada Zigpy
+>**Reservado para especialistas !**
 
 É possível configurar parâmetros específicos para o subsistema Zigbee *(Zigpy)*. Esta parte é estritamente reservada a especialistas, por isso a equipe da Jeedom não fornece a lista de parâmetros possíveis *(existem centenas deles, dependendo do tipo de controlador)*.
 
@@ -103,7 +104,8 @@ Para solicitar a adição de novos equipamentos, é necessário fornecer os segu
 >
 >Qualquer solicitação incompleta será recusada sem uma resposta da equipe Jeedom.
 
-### Como os controles funcionam para os especialistas
+### Operação de controles
+>**Reservado para especialistas !**
 
 Explicamos a seguir como os comandos funcionam no plugin para os usuários mais avançados :
 
@@ -174,7 +176,7 @@ Infelizmente, não existe um indicador simples para acompanhar o progresso da at
 2020-02-27 15:51:18 [DEBUG][0x7813:1:0x0019] OTA upgrade progress: 0.0
 ````````
 
-# Touchlink
+# Touchlink / Lightlink
 
 **Touchlink** *(ou Lightlink)* é uma função particular do Zigbee que permite ao controlador enviar ordens de gestão para um módulo com a condição de estar muito próximo dele *(menos de 50 centímetros)*. Isso é útil, por exemplo, para reiniciar lâmpadas que não possuem um botão físico.
 
@@ -190,13 +192,21 @@ Como costuma acontecer no Zigbee, podem surgir dificuldades durante o processo d
   - **para controles remotos Ikea**, pressione o botão de reset" *(ao lado da bateria)* por 5 a 10 segundos perto da lâmpada alimentada *(às vezes você tem que desligar / ligar a lâmpada um pouco antes em alguns modelos)*.
 - Sobre a **Lâmpadas Philips Hue**, você também pode incluí-los no Hue Bridge e removê-los dele.
 
+# Gerenciamento de grupo
+
+Um grupo pode ser relacionado a uma espécie de controle remoto virtual que permite ao controlador atuar sobre vários módulos de forma a fazer com que executem as mesmas ações simultaneamente.
+
+O procedimento é simples : crie um novo grupo e adicione ou exclua dispositivos membros dentro dele.
+
 # Binding
 
-A ligação permite que você vincule 2 módulos diretamente entre si, sem que os pedidos passem pelo Jeedom. O link é feito de um cluster para o mesmo cluster de outro módulo. A ligação deve ser sempre feita do controle (tipo de controle remoto) para o atuador.
+A ligação torna possível vincular módulos diretamente entre si, sem que os pedidos passem pelo controlador. O link é feito a partir de um cluster *(entrada saida)* para o mesmo cluster de outro módulo. A ligação deve ser sempre feita do controle (tipo de controle remoto) para o atuador.
 
 Você encontrará os elementos de gerenciamento de vinculação, se for compatível com o seu módulo, na guia **EM FORMAÇÃO** da janela de configuração do módulo.
 
-Alguns módulos não são compatíveis com a ligação e outros *(como módulos Ikea)* só suportam a vinculação do comando a um grupo, portanto é necessário começar por fazer um grupo no qual terá que colocar o atuador.
+![Obrigatório Zigbee](../images/zigbee_binding.png)
+
+Alguns módulos não são compatíveis com a ligação e outros *(como módulos Ikea)* suportam apenas a vinculação do comando a um grupo, portanto é necessário começar criando um novo grupo no qual o atuador deve ser colocado.
 
 # Zigbee Networks
 
@@ -208,7 +218,7 @@ O gráfico da rede fornece uma visão geral da rede Zigbee e da qualidade das co
 
 >**EM FORMAÇÃO**
 >
->O gráfico da rede Zigbee é indicativo e é baseado nos vizinhos que os módulos declaram. Isso não representa necessariamente o roteamento real, mas um roteamento possível.
+>O gráfico da rede Zigbee é indicativo e é baseado nos vizinhos que os módulos declaram. Isso não representa necessariamente o roteamento real, mas as rotas possíveis.
 
 ## Otimizando a rede
 
@@ -217,7 +227,7 @@ Para otimizar a confiabilidade de sua rede Zigbee, **é mais do que recomendado 
 Outro ponto importante, é possível, ao remover um módulo roteador, aquela parte do "dispositivo final" *(módulos não roteadores)* ou perdido por um tempo maior ou menor *(em dez horas ou mais)* ou mesmo definitivamente e você tem que incluí-los novamente.
 Infelizmente, isso se deve à forma como o fabricante planejou a integração de seus equipamentos em uma rede Zigbee e, portanto, não pode ser corrigido pelo plugin que não gerencia a parte de roteamento.
 
-Finalmente, e mesmo que pareça óbvio para alguns, lembramos que os gateways Zigbee em Wifi são menos confiáveis do que os gateways USB. A equipe da Jeedom, portanto, recomenda o uso de um gateway Zigbee em USB.  
+Finalmente, e mesmo que pareça óbvio para alguns, lembramos que os gateways Zigbee em Wifi ou remoto são, por definição, menos confiáveis do que os gateways USB. A equipe da Jeedom, portanto, recomenda o uso de um gateway Zigbee em USB.  
 
 # FAQ
 
@@ -225,21 +235,17 @@ Finalmente, e mesmo que pareça óbvio para alguns, lembramos que os gateways Zi
 >
 >Os valores são normalmente esvaziados após reiniciar o zigbee daemon. Você tem que esperar que o módulo se comunique novamente para que os valores sejam inseridos.
 
-
 >**Tenho problemas de inclusão ou erros nos registros de tipo ````TXStatus.MAC_CHANNEL_ACCESS_FAILURE````**
 >
 >Você deve tentar remover ou alterar a extensão USB se estiver usando uma, ou instalar uma, se não estiver usando.
-
 
 >**Eu tenho erros ````can not send to device```` ou ````send error```` ou ````Message send failure````**
 >
 >Isso geralmente é devido a um problema de roteamento. o roteamento é mais ou menos fixo no Zigbee, mas não simétrico, um módulo pode usar uma rota diferente para responder do que aquela usada para falar com ele. Freqüentemente, o desligamento elétrico *(removendo baterias, por exemplo)* e ligue a energia *(ou substituição de baterias)* é o suficiente para resolver o problema.
 
-
 >**Tenho erros estranhos nos módulos da bateria ou problemas de inclusão**
 >
 >Percebemos que boa parte dos problemas dos módulos na bateria são devidos às baterias ou possivelmente problemas de zerar os módulos antes da inclusão. Mesmo que pareçam novos, é aconselhável testar com baterias novas para descartar essa hipótese.
-
 
 >**Tenho dúvidas em atualizar os valores do equipamento**
 >

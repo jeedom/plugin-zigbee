@@ -6,11 +6,19 @@
 
 # 04/21/2021
 
-- Addition of new module
-- Addition of the binding (between group or module)
+- Integration of new modules
+- Support for binding *(between groups or modules)*
+- Documentation redesign
 - Bugfix
-- Redesign of the doc
 
 # 04/07/2021
 
-- Fixed a problem on the button to force the OTA update on certain module
+- Fixed a problem on the button to force the OTA update of certain modules
+
+# 04/06/2021
+
+- Switching to stable
+
+# 09/25/2020
+
+- 1st release in beta
