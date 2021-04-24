@@ -51,6 +51,32 @@
       "display": {
         "icon": "<i class=\"fas fa-random\"></i>"
       }
+    },
+    {
+      "name": "Puissance",
+      "generic_type": "POWER",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"W",
+      "logicalId": "1::2820::1291",
+      "configuration":{
+        "historizeRound" : 2
+      }
+    },
+    {
+      "name": "Consommation",
+      "generic_type": "CONSUMPTION",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"W",
+      "logicalId": "1::1794::0",
+      "configuration":{
+        "historizeRound" : 2
+      }
     }
   ]
 }
