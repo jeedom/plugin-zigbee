@@ -1,5 +1,5 @@
 {
-  "name": "GU10 Philips HUE",
+  "name": "E27 Philps Hue 9W 806 lm Dimmable White Bulb",
   "ref" : "LWB004",
   "buylink" : "",
   "reset" : "Il faut utiliser la fonction reset touchlink. Voir <a target='_blank' href='https://doc.jeedom.com/fr_FR/plugins/automation%20protocol/zigbee/#Touchlink'>ici</a>",
