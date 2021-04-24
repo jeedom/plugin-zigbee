@@ -1,0 +1,40 @@
+{
+  "name": "MLI - ZBT remote all RGBW",
+  "ref" : "TINT 404010",
+  "pairing" : "appuyer sur le bouton sous le capeau à piles pendant 5sc",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::6::cmd::0"
+    },
+    {
+      "name": "Luminosité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::8::cmd::1"
+    },
+    {
+      "name": "Couleur",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::768::cmd::color"
+    },
+    {
+      "name": "Température couleur",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::768::cmd::colorTemperature"
+    }
+  ]
+}
