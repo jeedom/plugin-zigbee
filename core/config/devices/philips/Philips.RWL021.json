@@ -15,34 +15,12 @@
       }
     },
     {
-      "name": "Bouton",
-      "type": "info",
-      "subtype": "string",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "2::64512::event::button",
-      "configuration": {
-        "repeatEventManagement": "always"
-      }
-    },
-    {
       "name": "Type",
       "type": "info",
       "subtype": "string",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "2::64512::event::press_type",
-      "configuration": {
-        "repeatEventManagement": "always"
-      }
-    },
-    {
-      "name": "Event",
-      "type": "info",
-      "subtype": "string",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "2::64512::event::attribute",
+      "logicalId": "2::64512::cmd::1.2",
       "configuration": {
         "repeatEventManagement": "always"
       }
