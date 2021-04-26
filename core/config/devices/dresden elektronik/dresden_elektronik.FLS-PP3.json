@@ -145,24 +145,11 @@
       }
     },
     {
-      "name": "Etat Luminosité 2",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "logicalId": "11::8::0",
-      "configuration" : {
-        "minValue" : 0,
-        "maxValue" : 254
-      }
-    },
-    {
       "name": "Luminosité 2",
       "type": "action",
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
-      "value" : "Etat Luminosité 1",
       "logicalId": "11::level::move_to_level::#slider#::0",
       "generic_type": "LIGHT_SLIDER",
       "configuration" : {
