@@ -50,10 +50,10 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 			<div class="cursor logoSecondary" id="bt_zigbeeNetwork" >
 				<i class="fas fa-sitemap"></i>
 				<br>
-				<span>{{Réseau Zigbee}}</span>
+				<span>{{Réseaux Zigbee}}</span>
 			</div>
 			<div class="cursor logoSecondary" id="bt_zigbeeGroups" >
-				<i class="far fa-object-group"></i>
+				<i class="fas fa-object-group"></i>
 				<br>
 				<span>{{Groupes Zigbee}}</span>
 			</div>
@@ -98,10 +98,10 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 			}
 			?>
 		</div>
-		<legend><i class="far fa-object-group"></i>  {{Mes groupes Zigbee}}</legend>
+		<legend><i class="fas fa-object-group"></i>  {{Mes groupes Zigbee}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<?php
-			$child = '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green far fa-object-group" title="Groupe"></i>';
+			$child = '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green fas fa-object-group" title="Groupe"></i>';
 			foreach ($eqLogics as $eqLogic) {
 				if ($eqLogic->getConfiguration('isgroup',0) == 1) {
 					echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '" >';
