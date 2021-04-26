@@ -5,21 +5,13 @@
   "remark" : "Ne peut etre appairé que sur le canal 11",
   "commands": [
     {
-      "name": "Rafraîchir",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "refresh"
-    },
-    {
       "name": "Etat 1",
       "type": "info",
       "subtype": "binary",
       "generic_type": "ENERGY_STATE",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::6::0"
+      "logicalId": "1::6::cmd::0"
     },
     {
       "name": "Etat 2",
@@ -28,7 +20,7 @@
       "generic_type": "ENERGY_STATE",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "2::6::0"
+      "logicalId": "2::6::cmd::0"
     }
   ]
 }
