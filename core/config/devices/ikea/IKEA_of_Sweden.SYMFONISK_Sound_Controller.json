@@ -21,7 +21,10 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::6::cmd::0"
+      "logicalId": "1::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Sens rotation",
@@ -29,7 +32,10 @@
       "subtype": "binary",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::8::cmd::1"
+      "logicalId": "1::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Action",
@@ -37,7 +43,10 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::8::cmd::1.1"
+      "logicalId": "1::8::cmd::1.1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }

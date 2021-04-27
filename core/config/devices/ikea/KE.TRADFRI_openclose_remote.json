@@ -18,7 +18,10 @@
       "subtype": "binary",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::258::cmd::0"
+      "logicalId": "1::258::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }

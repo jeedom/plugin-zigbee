@@ -21,7 +21,10 @@
       "subtype": "string",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::6::cmd::0"
+      "logicalId": "1::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Bouton 2",
@@ -29,7 +32,10 @@
       "subtype": "string",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::8::cmd::1"
+      "logicalId": "1::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Bouton 2 mode",
@@ -37,7 +43,10 @@
       "subtype": "string",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::8::cmd::0"
+      "logicalId": "1::8::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Bouton 3",
@@ -45,7 +54,10 @@
       "subtype": "string",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::5::cmd::7"
+      "logicalId": "1::5::cmd::7",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Bouton 3 long press",
@@ -53,7 +65,10 @@
       "subtype": "string",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::5::cmd::8"
+      "logicalId": "1::5::cmd::8",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }
