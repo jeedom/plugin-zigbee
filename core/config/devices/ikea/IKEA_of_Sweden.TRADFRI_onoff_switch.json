@@ -1,6 +1,5 @@
 {
-  "name": "Ikea TRADFRI télécommande 2 boutons",
-  "ref" : "704.085.95",
+  "name": "Télécommande 2 boutons",
   "type" : "Télécommande",
   "reset" : "Appuyer sur le bouton de couplage 4 fois en moins de 5 secondes.",
   "pairing" : "Maintenez le bouton d'appariement enfoncé pendant au moins 10 seconde",

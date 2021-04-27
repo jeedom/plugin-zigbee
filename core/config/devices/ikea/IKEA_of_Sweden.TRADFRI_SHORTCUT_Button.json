@@ -1,6 +1,5 @@
 {
-  "name": "Ikea TRADFRI SHORTCUT Button",
-  "ref" : "",
+  "name": "SHORTCUT Button",
   "type" : "Télécommande",
   "reset" : "Appuyer sur le bouton de couplage 4 fois en moins de 5 secondes.",
   "pairing" : "Maintenez le bouton d'appariement enfoncé pendant au moins 10 seconde",

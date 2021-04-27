@@ -1,7 +1,6 @@
 {
-  "name": "Ikea TRADFRI Détecteur de mouvement sans fil blanc",
+  "name": "Détecteur de mouvement",
   "buylink" : "",
-  "ref" : "704.299.13",
   "reset" : "Appuyer sur le bouton de couplage 4 fois en moins de 5 secondes.",
   "pairing" : "Maintenez le bouton d'appariement enfoncé pendant au moins 10 seconde",
   "documentation" : "https:\/\/www.ikea.com\/fr\/fr\/manuals\/tradfri-wireless-motion-sensor__AA-2145280-2_pub.pdf",

@@ -53,6 +53,7 @@
     },
     {
       "name": "Etat Luminosité",
+      "generic_type": "LIGHT_BRIGHTNESS",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 0,
@@ -70,7 +71,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat Luminosité",
-      "logicalId": "1::level::move_to_level::#slider#::0",
+      "logicalId": "1::level::move_to_level::#slider#::#duration#",
       "generic_type": "LIGHT_SLIDER",
       "configuration" : {
         "minValue" : 0,
@@ -94,12 +95,38 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat température couleur",
-      "logicalId": "1::light_color::move_to_color_temp::#slider#::0",
+      "logicalId": "1::light_color::move_to_color_temp::#slider#::#duration#",
       "generic_type": "LIGHT_SET_COLOR_TEMP",
       "configuration" : {
         "minValue" : 250,
         "maxValue" : 454
       }
-    }
+    },   
+	{
+      "name": "Etat durée",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat durée",
+      "logicalId": "durationstate",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 100
+      }
+    },
+    {
+      "name": "Durée",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat durée",
+      "logicalId": "duration",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 100
+      }
+    }	  
   ]
 }

@@ -1,6 +1,5 @@
 {
-  "name": "Ikea TRADFRI télécommande 5 boutons",
-  "ref" : "304.431.24",
+  "name": "Télécommande 5 boutons",
   "reset" : "Appuyer sur le bouton de couplage 4 fois en moins de 5 secondes.",
   "pairing" : "Maintenez le bouton d'appariement enfoncé pendant au moins 10 seconde",
   "remark" : "",
