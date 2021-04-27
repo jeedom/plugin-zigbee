@@ -6,6 +6,14 @@
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule (un on/off sera peut être nécessaire)",
   "commands": [
     {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    },
+    {
       "name": "Etat",
       "type": "info",
       "subtype": "binary",
