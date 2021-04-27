@@ -17,7 +17,7 @@
       }
     },
     {
-      "name": "Consigne",
+      "name": "Consigne chaud",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 0,
@@ -30,14 +30,46 @@
       }
     },
     {
-      "name": "Thermostat",
+      "name": "Thermostat chaud",
       "type": "action",
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 1,
       "unite" : "°C",
-      "value": "Consigne",
+      "value": "Consigne chaud",
       "logicalId": "attributes::1::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"6",
+        "maxValue":"28"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne froid",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "1::513::17",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat froid",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne froid",
+      "logicalId": "attributes::1::in::513::17::#slider#*100",
       "generic_type" : "THERMOSTAT_SET_SETPOINT",
       "configuration" : {
         "minValue":"6",
@@ -58,12 +90,25 @@
       "logicalId": "1::513::28"
     },
     {
-      "name": "Etat",
-      "type": "info",
-      "subtype": "binary",
+      "name": "Off",
+      "type": "action",
+      "subtype": "other",
       "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "1::513::41"
+      "logicalId": "attributes::1::in::513::28::0"
+    },
+    {
+      "name": "Chauffage",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "logicalId": "attributes::1::in::513::28::4"
+    },
+    {
+      "name": "Refroidissement",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "logicalId": "attributes::1::in::513::28::3"
     }
   ]
 }
