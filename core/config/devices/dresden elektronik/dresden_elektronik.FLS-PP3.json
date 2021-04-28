@@ -1,6 +1,14 @@
 {
-  "name": "SFLS-PP lp wireless ballast",
+  "name": "FLS-PP lp wireless ballast",
   "commands": [
+    {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    },
     {
       "name": "Etat 1",
       "type": "info",
@@ -52,6 +60,7 @@
     },
     {
       "name": "Etat Luminosité 1",
+      "generic_type": "LIGHT_BRIGHTNESS",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 0,
@@ -69,7 +78,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat Luminosité 1",
-      "logicalId": "10::level::move_to_level::#slider#::0",
+      "logicalId": "10::level::move_to_level::#slider#::#duration#",
       "generic_type": "LIGHT_SLIDER",
       "configuration" : {
         "minValue" : 0,
@@ -92,8 +101,34 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat couleur 1",
-      "logicalId": "10::light_color::move_to_color::#color#::0",
+      "logicalId": "10::light_color::move_to_color::#color#::#duration#",
       "generic_type": "LIGHT_SET_COLOR"
+    },
+    {
+      "name": "Etat durée 1",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat durée 1",
+      "logicalId": "durationstate",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 100
+      }
+    },
+    {
+      "name": "Durée 1",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat durée 1",
+      "logicalId": "duration",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 100
+      }
     },
     {
       "name": "Etat 2",
@@ -145,16 +180,52 @@
       }
     },
     {
+      "name": "Etat Luminosité 2",
+      "generic_type": "LIGHT_BRIGHTNESS",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "11::8::0",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    },
+    {
       "name": "Luminosité 2",
       "type": "action",
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "11::level::move_to_level::#slider#::0",
+      "value" : "Etat Luminosité 2",
+      "logicalId": "11::level::move_to_level::#slider#::#duration#",
       "generic_type": "LIGHT_SLIDER",
       "configuration" : {
         "minValue" : 0,
         "maxValue" : 254
+      }
+    },
+    {
+      "name": "Loop",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "10::light_color::color_loop_start",
+      "display": {
+        "icon": "<i class=\"fas fa-spinner\"></i>"
+      }
+    },
+    {
+      "name": "Stop Loop",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "10::light_color::color_loop_stop",
+      "display": {
+        "icon": "<i class=\"fas fa-stop\"></i>"
       }
     }
   ]
