@@ -1,7 +1,7 @@
 {
-  "name": "Commande bascule",
+  "name": "Commande sans fil Lever Coucher",
   "buylink" : "",
-  "ref" : "067694",
+  "ref" : "064884",
   "remark" : "Ne peut etre appairé que sur le canal 11",
   "commands": [
     {
