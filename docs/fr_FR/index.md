@@ -241,7 +241,11 @@ Pour finir et même si cela peut paraître évident pour certains, nous rappelon
 
 >**J'ai des erreurs ``can not send to device`` ou ``send error`` ou ``Message send failure``**
 >
->C’est en général dû à un souci de routage. le routage est plus ou moins fixe en Zigbee mais non symétrique, un module peut utiliser une route différente pour répondre que celle utilisée pour lui parler. Souvent l’arrêt électrique *(retrait des piles par exemple)* et remise du courant *(ou remise des piles)* suffit à régler le problème.
+>C’est en général dû à un souci de routage. le routage est plus ou moins fixe en Zigbee mais non symétrique, un module peut utiliser une route différente pour répondre que celle utilisée pour lui parler. Souvent l’arrêt électrique *(retrait des piles par exemple)* et remise du courant *(ou remise des piles)* suffit à régler le problème. Le probleme peut aussi etre corrigé en : 
+>- mettant ou changeant la rallonge USB
+>- utilisant un autre ports USB (en particulier les ports USB des RPI semble poser des soucis)
+>- mettant un hub USB alimenté 
+>- deplaceant la clef pour eviter les interferance (le zigbee est très senssible aux interferance en particulier car il est sur les meme fréquences que le wifi...)
 
 >**J’ai des erreurs bizarres sur des modules sur piles ou des soucis d’inclusion**
 >
