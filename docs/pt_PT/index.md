@@ -96,7 +96,7 @@ Se o seu módulo está incluído, mas não é reconhecido automaticamente pela J
 
 Para solicitar a adição de novos equipamentos, é necessário fornecer os seguintes elementos :
 
-- **o modelo exato** do módulo com um link para o site de compra,
+- **o modelo exato** do módulo com um link para o site de compra e uma imagem representativa em um fundo transparente (`png`),
 - Na página de equipamentos, clique no botão azul **Configuração do módulo** então guia **Informação bruta**. Copie o conteúdo para transmiti-lo à equipe Jeedom,
 - Coloque o daemon em `debug` na página de configuração do plugin e reinicie-o. Executar ações no equipamento *(se for um sensor de temperatura, varie a temperatura, se for uma válvula, varie o setpoint, etc...)* e enviar o log `zigbee` *(não `zigbeed`)*.
 
@@ -241,7 +241,11 @@ Finalmente, e mesmo que pareça óbvio para alguns, lembramos que os gateways Zi
 
 >**Eu tenho erros ````can not send to device```` ou ````send error```` ou ````Message send failure````**
 >
->Isso geralmente é devido a um problema de roteamento. o roteamento é mais ou menos fixo no Zigbee, mas não simétrico, um módulo pode usar uma rota diferente para responder do que aquela usada para falar com ele. Freqüentemente, o desligamento elétrico *(removendo baterias, por exemplo)* e ligue a energia *(ou substituição de baterias)* é o suficiente para resolver o problema.
+>Isso geralmente é devido a um problema de roteamento. o roteamento é mais ou menos fixo no Zigbee, mas não simétrico, um módulo pode usar uma rota diferente para responder do que aquela usada para falar com ele. Freqüentemente, o desligamento elétrico *(removendo baterias, por exemplo)* e ligue a energia *(ou substituição de baterias)* é o suficiente para resolver o problema. Também pode ser corrigido por :
+>- colocar ou substituir a extensão USB,
+>- usando outra porta USB (especialmente as portas USB no Raspberry Pi que parecem estar tendo dificuldade),
+>- colocar um hub usb alimentado,
+>- movendo a chave para evitar interferência *(o Zigbee é muito sensível a interferências, principalmente porque usa a mesma frequência do wi-fi)*.
 
 >**Tenho erros estranhos nos módulos da bateria ou problemas de inclusão**
 >

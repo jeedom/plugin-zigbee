@@ -4,8 +4,9 @@
 >
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text.
 
-# 04/28/2021
+# 04/29/2021
 
+- Integration of new modules
 - Optimization of module images
 
 # 04/21/2021
