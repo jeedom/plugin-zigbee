@@ -1,9 +1,9 @@
 {
   "name": "Hue White E27 with Bluetooth",
-  "ref" : "LTA001",
-  "buylink" : "",
-  "reset" : "Il faut utiliser la fonction reset touchlink. Voir <a target='_blank' href='https://doc.jeedom.com/fr_FR/plugins/automation%20protocol/zigbee/#Touchlink'>ici</a>",
-  "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule (un on/off sera peut être nécessaire)",
+  "ref": "LTA001",
+  "buylink": "",
+  "reset": "Il faut utiliser la fonction reset touchlink. Voir <a target='_blank' href='https://doc.jeedom.com/fr_FR/plugins/automation%20protocol/zigbee/#Touchlink'>ici</a>",
+  "pairing": "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule (un on/off sera peut être nécessaire)",
   "commands": [
     {
       "name": "Etat",
@@ -21,11 +21,11 @@
       "subtype": "other",
       "isVisible": 1,
       "isHistorized": 0,
-      "value" : "Etat",
+      "value": "Etat",
       "logicalId": "11::on_off::on",
-      "template":{
-        "dashboard" : "light",
-        "mobile" : "light"
+      "template": {
+        "dashboard": "light",
+        "mobile": "light"
       }
     },
     {
@@ -35,11 +35,11 @@
       "subtype": "other",
       "isVisible": 1,
       "isHistorized": 0,
-      "value" : "Etat",
+      "value": "Etat",
       "logicalId": "11::on_off::off",
-      "template":{
-        "dashboard" : "light",
-        "mobile" : "light"
+      "template": {
+        "dashboard": "light",
+        "mobile": "light"
       }
     },
     {
@@ -62,9 +62,9 @@
       "isVisible": 0,
       "isHistorized": 0,
       "logicalId": "11::8::0",
-      "configuration" : {
-        "minValue" : 0,
-        "maxValue" : 254
+      "configuration": {
+        "minValue": 0,
+        "maxValue": 254
       }
     },
     {
@@ -73,33 +73,13 @@
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
-      "value" : "Etat Luminosité",
+      "value": "Etat Luminosité",
       "logicalId": "11::level::move_to_level::#slider#::#duration#",
       "generic_type": "LIGHT_SLIDER",
-      "configuration" : {
-        "minValue" : 0,
-        "maxValue" : 254
+      "configuration": {
+        "minValue": 0,
+        "maxValue": 254
       }
-    },
-    {
-      "name": "Etat couleur",
-      "type": "info",
-      "subtype": "string",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "value" : "Etat couleur",
-      "logicalId": "11::768::color",
-      "generic_type": "LIGHT_COLOR"
-    },
-    {
-      "name": "Couleur",
-      "type": "action",
-      "subtype": "color",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "value" : "Etat couleur",
-      "logicalId": "11::light_color::move_to_color::#color#::#duration#",
-      "generic_type": "LIGHT_SET_COLOR"
     },
     {
       "name": "Etat température couleur",
@@ -116,12 +96,12 @@
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
-      "value" : "Etat température couleur",
+      "value": "Etat température couleur",
       "logicalId": "11::light_color::move_to_color_temp::#slider#::#duration#",
       "generic_type": "LIGHT_SET_COLOR_TEMP",
-      "configuration" : {
-        "minValue" : 2200,
-        "maxValue" : 6500
+      "configuration": {
+        "minValue": 153,
+        "maxValue": 454
       }
     },
     {
@@ -130,33 +110,11 @@
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
-      "value" : "Etat durée",
+      "value": "Etat durée",
       "logicalId": "duration",
-      "configuration" : {
-        "minValue" : 0,
-        "maxValue" : 100
-      }
-    },
-    {
-      "name": "Loop",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "logicalId": "11::light_color::color_loop_start",
-      "display": {
-        "icon": "<i class=\"fas fa-spinner\"></i>"
-      }
-    },
-    {
-      "name": "Stop Loop",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "logicalId": "11::light_color::color_loop_stop",
-      "display": {
-        "icon": "<i class=\"fas fa-stop\"></i>"
+      "configuration": {
+        "minValue": 0,
+        "maxValue": 100
       }
     }
   ]
