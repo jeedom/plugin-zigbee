@@ -96,7 +96,7 @@ Si votre module est bien inclus mais pas reconnu automatiquement par Jeedom *(pa
 
 Pour solliciter l'ajout d'un nouveau matériel, il est nécessaire de fournir les éléments suivants :
 
-- **le modèle exact** du module avec un lien vers le site d'achat,
+- **le modèle exact** du module avec un lien vers le site d'achat et une image représentative sur fond transparent (`png`),
 - Sur la page de l'équipement, cliquer sur le bouton bleu **Configuration du module** puis onglet **Informations brutes**. Copier le contenu pour le transmettre à l'équipe Jeedom,
 - Mettre le démon en `debug` depuis la page de configuration du plugin et le redémarrer. Effectuer des actions sur l'équipement *(si c'est un capteur de température faire varier la température, si c'est une vanne faire varier la consigne, etc...)* et envoyer le log `zigbee` *(pas `zigbeed`)*.
 
