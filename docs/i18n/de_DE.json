@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Zigbee": "Changelog Zigbee",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt",
+        "28\/04\/2021": "28.04.2021",
+        "Optimisation des images de modules": "Optimierung von Modulbildern",
         "21\/04\/2021": "21.04.2021",
         "Intégration de nouveaux modules": "Integration neuer Module",
         "entre groupes ou modules": "zwischen Gruppen oder Modulen",
