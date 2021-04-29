@@ -200,6 +200,8 @@ class zigbee extends eqLogic {
         }
         if(self::getAttribute($endpoint_id,1,33,$device) != null){
           $zigbee->batteryStatus(self::getAttribute($endpoint_id,1,33,$device));
+          $zigbee->setConfiguration('maxBatteryVoltage',0);
+          $zigbee->save();
         }else if(self::getAttribute($endpoint_id,1,32,$device) != null && self::getAttribute($endpoint_id,1,32,$device) > 0){
           $battery_voltage = self::getAttribute($endpoint_id,1,32,$device);
           if(is_array($zigbee->getConfiguration('maxBatteryVoltage',0)) || $battery_voltage > $zigbee->getConfiguration('maxBatteryVoltage',0)){
