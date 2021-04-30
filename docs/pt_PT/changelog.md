@@ -4,8 +4,9 @@
 >
 >Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto.
 
-# 28/04/2021
+# 29/04/2021
 
+- Integração de novos módulos
 - Otimização de imagens do módulo
 
 # 21/04/2021

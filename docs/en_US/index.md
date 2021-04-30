@@ -96,7 +96,7 @@ If your module is included but not automatically recognized by Jeedom *(no order
 
 To request the addition of new equipment, it is necessary to provide the following elements :
 
-- **the exact model** of the module with a link to the purchase site,
+- **the exact model** of the module with a link to the purchase site and a representative image on a transparent background (`png`),
 - On the equipment page, click on the blue button **Module configuration** then tab **Raw information**. Copy the content to transmit it to the Jeedom team,
 - Put the daemon in `debug` from the plugin configuration page and restart it. Perform actions on the equipment *(if it is a temperature sensor, vary the temperature, if it is a valve, vary the setpoint, etc...)* and send the `zigbee` log *(not `zigbeed`)*.
 
@@ -241,7 +241,11 @@ Finally, and even if it may seem obvious to some, we remind you that Zigbee gate
 
 >**I have errors ````can not send to device```` or ````send error```` or ````Message send failure````**
 >
->This is usually due to a routing issue. the routing is more or less fixed in Zigbee but not symmetrical, a module can use a different route to respond than the one used to talk to it. Often the electric shutdown *(removing batteries for example)* and turn on the power *(or replacement of batteries)* is enough to solve the problem.
+>This is usually due to a routing issue. the routing is more or less fixed in Zigbee but not symmetrical, a module can use a different route to respond than the one used to talk to it. Often the electric shutdown *(removing batteries for example)* and turn on the power *(or replacement of batteries)* is enough to solve the problem. It can also be corrected by :
+>- putting or replacing the USB extension,
+>- using another USB port (especially the USB ports on Raspberry Pi which seem to be having difficulty),
+>- putting a powered usb hub,
+>- moving the key to avoid interference *(the Zigbee is very sensitive to interference, in particular because it uses the same frequency as the wifi)*.
 
 >**I have weird errors on battery modules or inclusion issues**
 >

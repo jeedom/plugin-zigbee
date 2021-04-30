@@ -96,7 +96,7 @@ Wenn Ihr Modul enthalten ist, aber von Jeedom nicht automatisch erkannt wird *(E
 
 Um die Hinzufügung neuer Geräte anzufordern, müssen die folgenden Elemente angegeben werden :
 
-- **das genaue Modell** des Moduls mit einem Link zur Kaufseite,
+- **das genaue Modell** des Moduls mit einem Link zur Kaufseite und einem repräsentativen Bild auf transparentem Hintergrund (`png`)),
 - Klicken Sie auf der Ausrüstungsseite auf die blaue Schaltfläche **Modulkonfiguration** dann tab **Rohdaten**. Kopieren Sie den Inhalt, um ihn an das Jeedom-Team zu übertragen,
 - Setzen Sie den Daemon auf der Plugin-Konfigurationsseite in "Debug" und starten Sie ihn neu. Führen Sie Aktionen am Gerät aus *(Wenn es sich um einen Temperatursensor handelt, ändern Sie die Temperatur, wenn es sich um ein Ventil handelt, ändern Sie den Sollwert usw...)* und senden Sie das ZigBee-Protokoll *(nicht "Zigbeed")*.
 
@@ -241,7 +241,11 @@ Schließlich und auch wenn es einigen offensichtlich erscheint, erinnern wir Sie
 
 >**Ich habe Fehler ````can not send to device```` oder ````send error```` oder ````Message send failure````**
 >
->Dies ist normalerweise auf ein Routing-Problem zurückzuführen. Das Routing ist in ZigBee mehr oder weniger fest, aber nicht symmetrisch. Ein Modul kann eine andere Route verwenden, um zu antworten, als die, mit der es gesprochen hat. Oft die elektrische Abschaltung *(zum Beispiel Batterien entfernen)* und schalten Sie den Strom ein *(oder Austausch von Batterien)* ist genug, um das Problem zu lösen.
+>Dies ist normalerweise auf ein Routing-Problem zurückzuführen. Das Routing ist in ZigBee mehr oder weniger fest, aber nicht symmetrisch. Ein Modul kann eine andere Route verwenden, um zu antworten, als die, mit der es gesprochen hat. Oft die elektrische Abschaltung *(zum Beispiel Batterien entfernen)* und schalten Sie den Strom ein *(oder Austausch von Batterien)* ist genug, um das Problem zu lösen. Es kann auch korrigiert werden durch :
+>- Setzen oder Ersetzen der USB-Erweiterung,
+>- Verwenden eines anderen USB-Anschlusses (insbesondere der USB-Anschlüsse am Raspberry Pi, die anscheinend Schwierigkeiten haben),
+>- Platzieren eines USB-Hubs mit Stromversorgung,
+>- Bewegen Sie den Schlüssel, um Störungen zu vermeiden *(Der ZigBee ist sehr störempfindlich, insbesondere weil er dieselbe Frequenz wie das WLAN verwendet)*.
 
 >**Ich habe seltsame Fehler bei Batteriemodulen oder Einschlussprobleme**
 >

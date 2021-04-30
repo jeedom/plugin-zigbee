@@ -4,8 +4,9 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto.
 
-# 28/04/2021
+# 29/04/2021
 
+- Integración de nuevos módulos
 - Optimización de imágenes de módulos
 
 # 21/04/2021
