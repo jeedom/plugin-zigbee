@@ -112,6 +112,6 @@ async def binding(device, group_id, operation, clusters):
 		for cluster in clusters:
 			if cluster.endpoint.endpoint_id == 0:
 				continue
-			logging.debug("[zgroups.binding] Processing "+str(device.ieee)+' endpoint '+str(cluster.endpoint.endpoint_id)+' cluster '+str(cluster.cluster_id)+' to group '+str(group_id))
+			logging.debug('[zgroups.binding] Processing '+str(operation)+' for '+str(device.ieee)+' endpoint '+str(cluster.endpoint.endpoint_id)+' cluster '+str(cluster.cluster_id)+' to group '+str(group_id))
 			await zdo.request(operation,device.ieee,cluster.endpoint.endpoint_id,cluster.cluster_id,destination_address)
-			logging.debug("[zgroups.binding] Competed for "+str(device.ieee)+' endpoint '+str(cluster.endpoint.endpoint_id)+' cluster '+str(cluster.cluster_id)+' to group '+str(group_id))
+			logging.debug('[zgroups.binding] Competed '+str(operation)+' for '+str(device.ieee)+' endpoint '+str(cluster.endpoint.endpoint_id)+' cluster '+str(cluster.cluster_id)+' to group '+str(group_id))

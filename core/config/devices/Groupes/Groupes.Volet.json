@@ -1,0 +1,45 @@
+{
+  "name": "Volet",
+  "ref" : "Groupes",
+  "commands": [
+    {
+      "name": "Position",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "gr::window_covering::go_to_lift_percentage::#slider#",
+      "generic_type": "FLAP_SLIDER"
+    },
+    {
+      "name": "Stop",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "gr::window_covering::stop"
+    },
+    {
+      "name": "Monter",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "gr::window_covering::up_open",
+      "generic_type": "FLAP_UP"
+    },
+    {
+      "name": "Descendre",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "gr::window_covering::down_close",
+      "generic_type": "FLAP_DOWN"
+    }
+  ]
+}
