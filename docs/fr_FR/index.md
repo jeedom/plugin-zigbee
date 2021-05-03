@@ -208,6 +208,10 @@ Vous retrouverez les éléments de gestion du binding, s'il est pris en charge p
 
 Certains modules ne sont pas compatibles avec le binding et d'autres *(tels que les modules Ikea)* ne supportent le binding que de la commande vers un groupe, il est donc nécessaire de commencer par créer un nouveau groupe dans lequel il faudra placer l'actionneur.
 
+>**IMPORTANT**
+>
+>Lors de la mise en place (ou suppression) d'un binding il faut absolument reveillé le module source (télécommande par exemple) pour que celui-ci prenne en compte l'information de binding
+
 # Réseaux Zigbee
 
 La constitution d'un réseau Zigbee de bonne qualité est grandement aidée par les outils mis à disposition dans le plugin. Dirigez-vous vers la page générale du plugin listant l'ensemble des équipements et cliquez sur le bouton **Réseaux Zigbee** pour accéder à différentes informations et actions autour du réseau Zigbee ainsi qu'au graphique représentatif de celui-ci.
