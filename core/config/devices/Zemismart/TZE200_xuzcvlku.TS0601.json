@@ -1,12 +1,8 @@
 {
-  "name": "SCHNEIDER WISER S520567W ODACE",
-  "ref" : "S520567W",
-  "manufacturer": "Schneider",
+  "name": "Store",
   "type": "Volets",
   "buylink" : "",
   "remark" : "",
-  "reset" : "Presser 3 fois en moins d'une seconde le bouton du haut puis le maintenir appuyé pendant 10s au moins (attention à ne pas dépasser 20s). La led doit clignoter rouge",
-  "pairing" : "Presser 3 fois le bouton",
   "commands":[
     {
       "name": "Etat",
@@ -14,7 +10,7 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "5::258::8",
+      "logicalId": "1::258::8",
       "generic_type": "FLAP_STATE"
     },
     {
@@ -24,7 +20,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "5::window_covering::go_to_lift_percentage::#slider#",
+      "logicalId": "1::window_covering::go_to_lift_percentage::#slider#",
       "generic_type": "FLAP_SLIDER"
     },
     {
@@ -33,7 +29,7 @@
       "subtype": "other",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "5::window_covering::stop",
+      "logicalId": "1::window_covering::stop",
       "generic_type": "FLAP_STOP"
     },
     {
@@ -43,7 +39,7 @@
       "isVisible": 0,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "5::window_covering::up_open",
+      "logicalId": "1::window_covering::up_open",
       "generic_type": "FLAP_UP"
     },
     {
@@ -53,7 +49,7 @@
       "isVisible": 0,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "5::window_covering::down_close",
+      "logicalId": "1::window_covering::down_close",
       "generic_type": "FLAP_DOWN"
     }
   ]
