@@ -4,6 +4,13 @@
 >
 >Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt.
 
+# 05/03/2021
+
+- Aktualisierung der Dokumentation
+- Fehlerbehebung
+- Integration neuer Module
+- Optimierung von Modulbildern
+
 # 29.04.2021
 
 - Integration neuer Module

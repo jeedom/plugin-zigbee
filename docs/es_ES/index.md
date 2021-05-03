@@ -5,9 +5,9 @@
 -	**Deconz** : Probado y validado por el equipo de Jeedom. *(No es necesario instalar la aplicación deCONZ)*
 -	**EZSP (laboratorios de silicio)** : Probado, validado y recomendado por el equipo de Jeedom.
 -	**XBee** : No probado por el equipo de Jeedom.
--	**Zigate** : No probado por el equipo. *(en experimental en Zigpy)*
--	**ZNP (Texas Instruments, pila Z 3.X.X)** : No probado por el equipo. *(en experimental en Zigpy)*
--	**CC (Texas Instruments, pila Z 1.2.X)** : No probado por el equipo. *(en experimental en Zigpy)*
+-	**Zigate** : No probado por el equipo. 
+-	**ZNP (Texas Instruments, pila Z 3.X.X)** : No probado por el equipo.
+-	**CC (Texas Instruments, pila Z 1.2.X)** : No probado por el equipo.
 
 Además, el complemento está equipado con muchas herramientas que permiten :
 
@@ -207,6 +207,10 @@ Encontrará los elementos de gestión de enlaces, si es compatible con su módul
 ![Unión Zigbee](../images/zigbee_binding.png)
 
 Algunos módulos no son compatibles con la encuadernación y otros *(como los módulos de Ikea)* solo admite la vinculación del comando a un grupo, por lo tanto, es necesario comenzar creando un nuevo grupo en el que se debe colocar el actuador.
+
+>**Importante**
+>
+>Al configurar (o eliminar) un enlace, el módulo de origen (control remoto, por ejemplo) debe activarse absolutamente para que tenga en cuenta la información de enlace
 
 # Redes Zigbee
 

@@ -5,9 +5,9 @@
 -	**Deconz** : Testado e validado pela equipe Jeedom. *(Não é necessário instalar o aplicativo deCONZ)*
 -	**EZSP (Silicon Labs)** : Testado, validado e recomendado pela equipe Jeedom.
 -	**XBee** : Não testado pela equipe Jeedom.
--	**Zigate** : Não testado pela equipe. *(em experimental no Zigpy)*
--	**ZNP (Texas Instruments, Z-stack 3.X.X)** : Não testado pela equipe. *(em experimental no Zigpy)*
--	**CC (Texas Instruments, Z-stack 1.2.X)** : Não testado pela equipe. *(em experimental no Zigpy)*
+-	**Zigate** : Não testado pela equipe. 
+-	**ZNP (Texas Instruments, Z-stack 3.X.X)** : Não testado pela equipe.
+-	**CC (Texas Instruments, Z-stack 1.2.X)** : Não testado pela equipe.
 
 Além disso, o plugin está equipado com muitas ferramentas que permitem :
 
@@ -207,6 +207,10 @@ Você encontrará os elementos de gerenciamento de vinculação, se for compatí
 ![Obrigatório Zigbee](../images/zigbee_binding.png)
 
 Alguns módulos não são compatíveis com a ligação e outros *(como módulos Ikea)* suportam apenas a vinculação do comando a um grupo, portanto é necessário começar criando um novo grupo no qual o atuador deve ser colocado.
+
+>**IMPORTANTE**
+>
+>Ao configurar (ou remover) uma vinculação, o módulo de origem (controle remoto, por exemplo) deve ser absolutamente ativado para que leve em consideração as informações de vinculação
 
 # Zigbee Networks
 

@@ -5,9 +5,9 @@
 -	**Deconz** : Tested and validated by the Jeedom team. *(It is not necessary to install the deCONZ application)*
 -	**EZSP (Silicon Labs)** : Tested, validated and recommended by the Jeedom team.
 -	**XBee** : Not tested by the Jeedom team.
--	**Zigate** : Not tested by the team. *(in experimental in Zigpy)*
--	**ZNP (Texas Instruments, Z-stack 3.X.X)** : Not tested by the team. *(in experimental in Zigpy)*
--	**CC (Texas Instruments, Z-stack 1.2.X)** : Not tested by the team. *(in experimental in Zigpy)*
+-	**Zigate** : Not tested by the team. 
+-	**ZNP (Texas Instruments, Z-stack 3.X.X)** : Not tested by the team.
+-	**CC (Texas Instruments, Z-stack 1.2.X)** : Not tested by the team.
 
 In addition, the plugin is equipped with many tools allowing :
 
@@ -207,6 +207,10 @@ You will find the binding management elements, if it is supported by your module
 ![Binding Zigbee](../images/zigbee_binding.png)
 
 Some modules are not compatible with the binding and others *(such as Ikea modules)* only support the binding of the command to a group, it is therefore necessary to start by creating a new group in which the actuator must be placed.
+
+>**Important**
+>
+>When setting up (or removing) a binding, the source module (remote control for example) must absolutely be awakened so that it takes into account the binding information
 
 # Zigbee Networks
 
