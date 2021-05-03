@@ -16,7 +16,7 @@
         "invertBinary" : 1
       },
       "configuration" : {
-        "returnStateValue" : 1,
+        "returnStateValue" : 0,
         "returnStateTime" : 1
       },
       "template" : {
