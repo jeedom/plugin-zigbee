@@ -4,6 +4,13 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto.
 
+# 05/03/2021
+
+- Actualización de documentación
+- Arreglo del fallo
+- Integración de nuevos módulos
+- Optimización de imágenes de módulos
+
 # 29/04/2021
 
 - Integración de nuevos módulos

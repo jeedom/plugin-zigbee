@@ -5,9 +5,9 @@
 -	**Deconz** : Vom Jeedom-Team getestet und validiert. *(Es ist nicht erforderlich, die deCONZ-Anwendung zu installieren)*
 -	**EZSP (Silicon Labs)** : Vom Jeedom-Team getestet, validiert und empfohlen.
 -	**XBee** : Nicht vom Jeedom-Team getestet.
--	**Zigate** : Nicht vom Team getestet. *(im Experiment in Zigpy)*
--	**ZNP (Texas Instruments, Z-Stapel 3.X.X)** : Nicht vom Team getestet. *(im Experiment in Zigpy)*
--	**CC (Texas Instruments, Z-Stapel 1.2.X)** : Nicht vom Team getestet. *(im Experiment in Zigpy)*
+-	**Zigate** : Nicht vom Team getestet. 
+-	**ZNP (Texas Instruments, Z-Stapel 3.X.X)** : Nicht vom Team getestet.
+-	**CC (Texas Instruments, Z-Stapel 1.2.X)** : Nicht vom Team getestet.
 
 Darüber hinaus ist das Plugin mit vielen Tools ausgestattet, die es ermöglichen :
 
@@ -207,6 +207,10 @@ Sie finden die Bindungsverwaltungselemente, sofern sie von Ihrem Modul unterstü
 ![Bindung Zigbee](../images/zigbee_binding.png)
 
 Einige Module sind nicht mit der Bindung kompatibel, andere *(wie Ikea-Module)* Unterstützen Sie nur die Bindung des Befehls an eine Gruppe. Daher müssen Sie zunächst eine neue Gruppe erstellen, in der der Aktuator platziert werden muss.
+
+>**Wichtig**
+>
+>Beim Einrichten (oder Entfernen) einer Bindung muss das Quellmodul (z. B. Fernbedienung) unbedingt aktiviert werden, damit es die Bindungsinformationen berücksichtigt
 
 # ZigBee-Netzwerke
 
