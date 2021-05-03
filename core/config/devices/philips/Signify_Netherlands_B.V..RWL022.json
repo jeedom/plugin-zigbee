@@ -4,9 +4,9 @@
   "buylink" : "",
   "commands": [
     {
-      "name": "Appui",
+      "name": "Appui on",
       "type": "info",
-      "subtype": "string",
+      "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::64512::event::on_press::button",
@@ -15,12 +15,78 @@
       }
     },
     {
-      "name": "Appui cours",
+      "name": "Appui cours on",
       "type": "info",
-      "subtype": "string",
+      "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::64512::event::on_short_release::button",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Appui off",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64512::event::off_press::button",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Appui cours off",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64512::event::off_short_release::button",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Appui haut",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64512::event::up_press::button",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Appui cours haut",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64512::event::up_short_release::button",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Appui bas",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64512::event::down_press::button",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Appui cours bas",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64512::event::down_press_release::button",
       "configuration": {
         "repeatEventManagement": "always"
       }
