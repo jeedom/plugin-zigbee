@@ -5,9 +5,9 @@
 -	**deCONZ** : Testé et validé par l’équipe Jeedom. *(Il n’est pas nécessaire d'installer l'application deCONZ)*
 -	**EZSP (Silicon Labs)** : Testé, validé et recommandé par l’équipe Jeedom.
 -	**XBee** : Non testé par l’équipe Jeedom.
--	**Zigate** : Non testé par l’équipe. *(en expérimental dans Zigpy)*
--	**ZNP (Texas Instruments, Z-stack 3.X.X)** : Non testé par l’équipe. *(en expérimental dans Zigpy)*
--	**CC (Texas Instruments, Z-stack 1.2.X)** : Non testé par l’équipe. *(en expérimental dans Zigpy)*
+-	**Zigate** : Non testé par l’équipe. 
+-	**ZNP (Texas Instruments, Z-stack 3.X.X)** : Non testé par l’équipe.
+-	**CC (Texas Instruments, Z-stack 1.2.X)** : Non testé par l’équipe.
 
 De plus, le plugin est doté de nombreux outils permettant :
 
