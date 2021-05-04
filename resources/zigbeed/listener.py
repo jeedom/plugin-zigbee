@@ -21,6 +21,8 @@ import asyncio
 import zdevices
 import time
 import specifics
+import zgp
+import zigpy
 
 class Listener:
 	"""
@@ -91,7 +93,6 @@ class Listener:
 		except Exception as e:
 			logging.error(traceback.format_exc())
 
-
 	def device_announce(self, cluster, command_id, *args):
 		device = cluster.endpoint.device
 		logging.info("["+str(device._ieee)+"][listener.device_announce] Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
@@ -111,7 +112,6 @@ class Listener:
 				shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::gcmd::'+str(j.attrid)+'-'+str(nb1)+'-'+str(nb2),infos)
 				nb2+=1
 			nb1+=1
-
 
 	def attribute_updated(self, cluster, attribute_id, value):
 		try:
@@ -134,5 +134,26 @@ class Listener:
 				return
 			#value['attribute'] = attribute_id
 			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::event::'+str(attribute_id),{"value" : value,"cluster_name" : cluster.name})
+		except Exception as e:
+			logging.error(traceback.format_exc())
+			
+	def zgp_frame(self,type,*args):
+		try:
+			logging.info("[listener.zgp_frame] Received zgp frame from %s  : %s",type,args)
+			if type == 'bellows':
+				gateway = shared.ZIGPY.get_device(nwk=0)
+				if not zgp.endpoint_id in gateway.endpoints:
+					ep = gateway.add_endpoint(zgp.endpoint_id)
+					ep.status =  zigpy.endpoint.Status.ZDO_INIT
+					ep.profile_id = zigpy.profiles.zha.PROFILE_ID
+					ep.device_type = zgp.device_type
+					ep.add_output_cluster(zgp.cluster_id)
+				(status,gpdLink,sequenceNumber,unknown1,addr,gpdfSecurityLevel,gpdfSecurityKeyType,counter,command_id,mic,proxyTableIndex,payload) = args
+				header = 0x308c
+				if command_id == 0xe0 :
+					LOGGER.info("GreenPower autoCommissioning frame")
+					zgp.create_device(addr)
+				else:
+					zgp.handle_notification(addr,header,counter,command_id,int.from_bytes(payload, byteorder="little"),len(payload),mic)
 		except Exception as e:
 			logging.error(traceback.format_exc())

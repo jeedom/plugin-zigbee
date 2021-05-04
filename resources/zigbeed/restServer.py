@@ -29,6 +29,7 @@ import zgroups
 import zqueue
 import zigpy
 import zigpy.zdo.types as zdo_types
+import zgp
 
 from map import *
 try:
@@ -64,8 +65,10 @@ class ApplicationHandler(RequestHandler):
 				await shared.ZIGPY.permit(self.json_args['duration'])
 				gateway = shared.ZIGPY.get_device(nwk=0)
 				try:
-					if zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id in gateway.endpoints and zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id in gateway.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id].out_clusters:
-						await gateway.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id].out_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].permit(self.json_args['duration'])
+					if zgp.endpoint_id in gateway.endpoints and zgp.cluster_id in gateway.endpoints[zgp.endpoint_id].out_clusters:
+						await zgp.permit(self.json_args['duration'])
+					else:
+						logging.debug('[ApplicationHandler.put.include] Not ZGP endpoint or cluster on this key')
 				except :
 					pass
 				return self.write(utils.format_json_result(success=True))
@@ -208,12 +211,12 @@ class DeviceHandler(RequestHandler):
 				if device == None :
 					if not 'type' in self.json_args or self.json_args['type'] == '' :
 						self.json_args['type'] = None
-					device = shared.ZIGPY.get_device(nwk=0).endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id].out_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].create_device(utils.convertStrToIEU64(self.json_args['ieee']),self.json_args['type'],True)
+					device = zgp.create_device(utils.convertStrToIEU64(self.json_args['ieee']),self.json_args['type'],True)
 					deviceAdded = True
 				if self.json_args['key'] == '':
-					device.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id].in_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].setKey(None)
+					zgp.setKey(device,None)
 				else:
-					device.endpoints[zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id].in_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].setKey(int(self.json_args['key'], 16))
+					zgp.setKey(device,int(self.json_args['key'], 16))
 				if deviceAdded:
 					shared.JEEDOM_COM.send_change_immediate({'device_initialized' : self.json_args['ieee']});
 				return self.write(utils.format_json_result(success=True))

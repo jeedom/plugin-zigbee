@@ -5,6 +5,7 @@ fi
 touch ${PROGRESS_FILE}
 echo 0 > ${PROGRESS_FILE}
 echo "Launch install of zigbee dependancy"
+BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 sudo apt-get clean
 echo 30 > ${PROGRESS_FILE}
 sudo apt-get update
@@ -36,5 +37,9 @@ echo 95 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade zigpy-cc
 echo 96 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade tornado
+
+patch /usr/local/lib/python3.7/dist-packages/bellows/zigbee/application.py ${BASEDIR}/misc/zgp.bellow.application.patch
+patch /usr/local/lib/python3.7/dist-packages/bellows/zigbee/application.py ${BASEDIR}/misc/zgp.bellow.v8.commands.patch
+
 rm ${PROGRESS_FILE}
 echo "Everything is successfully installed!"

@@ -1,0 +1,25 @@
+--- /usr/local/lib/python3.7/dist-packages/bellows/ezsp/v8/commands.py  2021-03-18 09:34:42.322028636 +0100
++++ commands.py 2021-05-04 17:46:55.921831239 +0200
+@@ -631,16 +631,15 @@
+             t.EmberStatus,
+             t.uint8_t,
+             t.uint8_t,
+-            t.EmberGpAddress,
+-            t.EmberGpSecurityLevel,
+-            t.EmberGpKeyType,
+-            t.Bool,
+-            t.Bool,
++            t.uint8_t,
++            t.EmberEUI64,
++            t.uint32_t,
++            t.uint8_t,
+             t.uint32_t,
+             t.uint8_t,
+             t.uint32_t,
+-            t.EmberGpSinkListEntry,
+-            t.LVBytes,
++            t.uint8_t,
++            t.LVBytes
+         ),
+     ),
+     "gpProxyTableGetEntry": (
