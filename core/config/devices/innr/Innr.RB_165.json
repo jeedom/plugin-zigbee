@@ -1,6 +1,6 @@
 {
-  "name": "INNR RF 263",
-  "ref" : "RF263",
+  "name": "INNR RB 165",
+  "ref" : "RB 165",
   "buylink" : "",
   "reset" : "ON/OFF 6x espacés de 0.5s",
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule",

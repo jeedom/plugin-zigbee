@@ -1,6 +1,6 @@
 {
-  "name": "INNR E27 Multicolor RGBW + Blanc",
-  "ref" : "RB285C",
+  "name": "RB278T",
+  "ref" : "RB278T",
   "buylink" : "",
   "reset" : "ON/OFF 6x espacés de 0.5s",
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule",
