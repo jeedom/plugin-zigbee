@@ -1,5 +1,5 @@
 {
-  "name": "AQARA - Interrupteur mural intelligent D1",
+  "name": "AQARA - Interrupteur double sans neutre",
   "buylink" : "",
   "commands": [
     {
@@ -9,7 +9,7 @@
       "generic_type": "LIGHT_STATE",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::6::0"
+      "logicalId": "2::6::0"
     },
     {
       "name": "On 1",
@@ -19,7 +19,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat 1",
-      "logicalId": "1::on_off::on"
+      "logicalId": "2::on_off::on"
     },
     {
       "name": "Off 1",
@@ -29,7 +29,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat 1",
-      "logicalId": "1::on_off::off"
+      "logicalId": "2::on_off::off"
     },
     {
       "name": "Toggle 1",
@@ -39,7 +39,7 @@
       "isVisible": 0,
       "isHistorized": 0,
       "value" : "Etat 1",
-      "logicalId": "1::on_off::toggle",
+      "logicalId": "2::on_off::toggle",
       "display": {
         "icon": "<i class=\"fas fa-random\"></i>"
       }
@@ -51,7 +51,7 @@
       "generic_type": "LIGHT_STATE",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "2::6::0"
+      "logicalId": "3::6::0"
     },
     {
       "name": "On 2",
@@ -61,7 +61,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat 2",
-      "logicalId": "2::on_off::on"
+      "logicalId": "3::on_off::on"
     },
     {
       "name": "Off 2",
@@ -71,7 +71,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat 2",
-      "logicalId": "2::on_off::off"
+      "logicalId": "3::on_off::off"
     },
     {
       "name": "Toggle 2",
@@ -80,8 +80,8 @@
       "subtype": "other",
       "isVisible": 0,
       "isHistorized": 0,
-      "value" : "Etat 1",
-      "logicalId": "2::on_off::toggle",
+      "value" : "Etat 2",
+      "logicalId": "3::on_off::toggle",
       "display": {
         "icon": "<i class=\"fas fa-random\"></i>"
       }
