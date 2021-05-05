@@ -1,0 +1,44 @@
+{
+  "name": "Vanne eau/gaz",
+  "ref" : "TS0111",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "1::6::0"
+    },
+    {
+      "name": "On",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::on"
+    },
+    {
+      "name": "Off",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::off"
+    },
+    {
+      "name": "Toggle",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
+    }
+  ]
+}
