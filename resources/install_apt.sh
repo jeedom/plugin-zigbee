@@ -38,8 +38,10 @@ sudo pip3 install --upgrade zigpy-cc
 echo 96 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade tornado
 
-patch /usr/local/lib/python3.7/dist-packages/bellows/zigbee/application.py ${BASEDIR}/misc/zgp.bellow.application.patch
-patch /usr/local/lib/python3.7/dist-packages/bellows/zigbee/application.py ${BASEDIR}/misc/zgp.bellow.v8.commands.patch
+if [ $(grep gpepIncomingMessageHandler /usr/local/lib/python3.7/dist-packages/bellows/zigbee/application.py -c) -eq 0 ]; then
+	patch /usr/local/lib/python3.7/dist-packages/bellows/zigbee/application.py ${BASEDIR}/misc/zgp.bellow.application.patch
+	patch /usr/local/lib/python3.7/dist-packages/bellows/zigbee/application.py ${BASEDIR}/misc/zgp.bellow.v8.commands.patch
+fi
 
 rm ${PROGRESS_FILE}
 echo "Everything is successfully installed!"
