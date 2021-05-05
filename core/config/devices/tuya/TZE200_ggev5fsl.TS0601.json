@@ -1,0 +1,17 @@
+{
+  "name" : "Capteur gaz",
+  "ref" : "TS0601",
+  "commands": [
+    {
+      "name": "Gaz",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::61184::cmd::0",
+      "display": {
+        "invertBinary" : 1
+      }
+    }
+  ]
+}
