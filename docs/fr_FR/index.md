@@ -192,6 +192,24 @@ Comme souvent en Zigbee, les difficultés peuvent intervenir lors du processus d
   - **pour les télécommandes Ikea**, appuyer sur le bouton "reset" *(a côté de la batterie)* pendant 5 à 10 secondes près de l'ampoule alimentée *(il faut parfois éteindre/allumer l'ampoule juste avant sur certains modèles)*.
 - Concernant les **ampoules Philips Hue**, vous pouvez également les inclure sur le pont Hue puis les supprimer de celui-ci.
 
+# Greenpower
+
+La technologie Greenpower est supportée par le plugin (patch de zigpy qui ne le supporte pas nativement encore...).
+
+>**IMPORTANT**
+>
+>Pour le moment le Greenpower ne marche qu'avec les clef de type EZSP (Elelabs, popp...). Le support de deconz arrivera plus tard 
+
+Pour ajouter un module Greenpower 2 possibilités : 
+
+- passer en mode inclusion, appuyer sur un bouton du module. Attention cela correspond à un ajout non securisé (n'importe qui qui intercept la trame du module peut la renvoyer à votre Jeedom)
+- lire le QRcode du module et recopier la chaine dans la partie "Commissioning" de Jeedom. Cela correspond à un ajout securisé (la clef de cryptage et dans le QRcode)
+
+
+>**IMPORTANT**
+>
+>Par defaut les interrupteurs sont sur le canal 11. Il faut absolument avoir la clef et l’interrupteur sur le meme canal. Je vous laisse consulter la documentation pour changer le canal des interrupeurs (perso je trouve la manipulation pas simple la moindre erreur oblige a tout recommancer, en général ca me prend une bonne heure…)
+
 # Gestion des groupes
 
 Un groupe peut être apparenté à une sorte de télécommande virtuelle permettant au contrôleur d'agir sur plusieurs modules afin de leur faire exécuter les mêmes actions simultanément.
