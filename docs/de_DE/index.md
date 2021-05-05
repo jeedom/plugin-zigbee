@@ -192,6 +192,24 @@ Wie so oft in Zigbee können während des Zurücksetzens oder des Zuordnungsproz
   - **für Ikea-Fernbedienungen**, Drücken Sie die Reset-Taste" *(neben der Batterie)* für 5 bis 10 Sekunden in der Nähe der Glühbirne *(Manchmal muss bei einigen Modellen die Glühbirne kurz zuvor ein- und ausgeschaltet werden)*.
 - Über die **Philips Hue Glühbirnen**, Sie können sie auch in die Hue Bridge aufnehmen und dann daraus entfernen.
 
+# Greenpower
+
+Die Greenpower-Technologie wird vom Plugin unterstützt (Zigpy-Patch, der sie noch nicht nativ unterstützt...).
+
+>**Wichtig**
+>
+>Im Moment funktioniert Greenpower nur mit EZSP-Schlüsseln (Elelabs, popp...). Deconz-Unterstützung wird später kommen 
+
+Hinzufügen eines Greenpower-Moduls 2 Möglichkeiten : 
+
+- Wechseln Sie in den Einschlussmodus und drücken Sie eine Taste am Modul. Bitte beachten Sie, dass dies einem ungesicherten Zusatz entspricht (jeder, der den Rahmen des Moduls abfängt, kann ihn an Ihr Jeedom zurücksenden)
+- Lesen Sie den QR-Code des Moduls und kopieren Sie die Zeichenfolge im Teil "Inbetriebnahme" von Jeedom. Dies entspricht einer sicheren Hinzufügung (dem Verschlüsselungsschlüssel und im QRcode))
+
+
+>**Wichtig**
+>
+>Standardmäßig befinden sich die Schalter auf Kanal 11. Es ist unbedingt erforderlich, dass sich der Schlüssel und der Schalter auf demselben Kanal befinden. Ich lasse Sie die Dokumentation konsultieren, um den Kanal der Schalter zu ändern (ich persönlich finde die Manipulation nicht einfach, der kleinste Fehler zwingt Sie, von vorne zu beginnen, im Allgemeinen dauert es eine gute Stunde)
+
 # Gruppenmanagement
 
 Eine Gruppe kann einer Art virtueller Fernbedienung zugeordnet werden, die es der Steuerung ermöglicht, auf mehrere Module zu reagieren, damit diese dieselben Aktionen gleichzeitig ausführen.
