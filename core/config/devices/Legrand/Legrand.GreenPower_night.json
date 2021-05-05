@@ -1,0 +1,16 @@
+{
+  "name": "GreenPower Day/Night",
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::5::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    }
+  ]
+}

@@ -543,6 +543,7 @@ jeedom.zigbee.device.childCreate = function(_params){
 jeedom.zigbee.device.remoteCommissioning = function(_params){
   let qrcode = _params.qrcode.split('+')
   if(qrcode.length != 5 || qrcode[0].indexOf('30S') == -1 || qrcode[1].indexOf('Z') == -1){
+    $('#div_alert').showAlert({message: '{{QRcode invalide}}', level: 'danger'});
     return
   }
   let ieee = qrcode[0].replace("30S", "");

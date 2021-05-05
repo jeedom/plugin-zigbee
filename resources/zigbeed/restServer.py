@@ -65,10 +65,13 @@ class ApplicationHandler(RequestHandler):
 				await shared.ZIGPY.permit(self.json_args['duration'])
 				gateway = shared.ZIGPY.get_device(nwk=0)
 				try:
-					if zgp.endpoint_id in gateway.endpoints and zgp.cluster_id in gateway.endpoints[zgp.endpoint_id].out_clusters:
-						await zgp.permit(self.json_args['duration'])
-					else:
-						logging.debug('[ApplicationHandler.put.include] Not ZGP endpoint or cluster on this key')
+					if not zgp.endpoint_id in gateway.endpoints:
+						ep = gateway.add_endpoint(zgp.endpoint_id)
+						ep.status =  zigpy.endpoint.Status.ZDO_INIT
+						ep.profile_id = zigpy.profiles.zha.PROFILE_ID
+						ep.device_type = zgp.device_type
+						ep.add_output_cluster(zgp.cluster_id)
+					await zgp.permit(self.json_args['duration'])
 				except :
 					pass
 				return self.write(utils.format_json_result(success=True))
@@ -167,6 +170,10 @@ class DeviceHandler(RequestHandler):
 					values = await cluster.read_attributes(self.json_args['attributes'],True,manufacturer=manufacturer)
 				else:
 					values = await cluster.read_attributes(self.json_args['attributes'],manufacturer=manufacturer)
+				for i in range(len(values)):
+					for j in values[i]:
+						if isinstance(values[i][j], (bytes)):
+							values[i][j] = values[i][j].hex()
 				logging.debug('[DeviceHandler.post] Attribute Value received : '+str(values))
 				return self.write(utils.format_json_result(success=True,data=values))
 		except Exception as e:
@@ -213,6 +220,8 @@ class DeviceHandler(RequestHandler):
 						self.json_args['type'] = None
 					device = zgp.create_device(utils.convertStrToIEU64(self.json_args['ieee']),self.json_args['type'],True)
 					deviceAdded = True
+				if device is None:
+					raise Exception("Can not create device")
 				if self.json_args['key'] == '':
 					zgp.setKey(device,None)
 				else:

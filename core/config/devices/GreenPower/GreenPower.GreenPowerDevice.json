@@ -1,0 +1,49 @@
+{
+  "name": "Equipement générique GreenPower",
+  "commands": [
+    {
+      "name": "Scène",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::5::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Position commande",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::8::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Position sens",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    }
+  ]
+}

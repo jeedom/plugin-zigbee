@@ -21,6 +21,8 @@ import json
 import time
 import zigpy
 import zigpy.types as t
+import zigpy.zdo as zdo
+
 
 from Crypto.Cipher import AES
 from Crypto.Util import Counter
@@ -112,20 +114,32 @@ def create_device(ieee, type=None, remoteCommissioning=False):
 	if ieee in application.devices:
 		return application.devices[ieee]
 	gateway = shared.ZIGPY.get_device(nwk=0)
-	if endpoint_id not in gateway.endpoints :
-		logging.debug("[zgp.create_device] Gateway key has not endpoint id "+str(endpoint_id))
-		return None
+	if not endpoint_id in gateway.endpoints:
+		ep = gateway.add_endpoint(endpoint_id)
+		ep.status =  zigpy.endpoint.Status.ZDO_INIT
+		ep.profile_id = zigpy.profiles.zha.PROFILE_ID
+		ep.device_type = device_type
+		ep.add_output_cluster(cluster_id)
 	if not remoteCommissioning and (0x9997 not in gateway.endpoints[endpoint_id].out_clusters[cluster_id]._attr_cache or gateway.endpoints[endpoint_id].out_clusters[cluster_id]._attr_cache[0x9997] < time.time()):
 		logging.debug("[zgp.create_device] Not in permit joining mode and not in remoteCommissioning")
 		return None
 	logging.debug("[zgp.create_device] Device %s not found, create it", ieee)
-	dev = application.add_device(ieee, 32766)
+	nwk = 32766
+	for i in range(32766, 65535):
+		nwk = i 
+		try:
+			shared.ZIGPY.get_device(nwk=i)
+		except KeyError:
+			break
+	dev = application.add_device(ieee, nwk)
 	dev.status = zigpy.device.Status.ENDPOINTS_INIT
 	dev._skip_configuration = True
+	dev.node_desc = zdo.types.NodeDescriptor(2, 64, 128, 4174, 82, 82, 0, 82, 0)
 	ep = dev.add_endpoint(1)
 	ep.status = zigpy.endpoint.Status.ZDO_INIT
 	ep.profile_id = zigpy.profiles.zha.PROFILE_ID
 	ep.device_type = device_type
+	application.device_initialized(dev)
 	ep.add_input_cluster(zigpy.zcl.clusters.general.Basic.cluster_id)
 	ep.in_clusters[zigpy.zcl.clusters.general.Basic.cluster_id]._update_attribute(0x0004, "GreenPower")
 	in_clusters = None
@@ -146,7 +160,6 @@ def create_device(ieee, type=None, remoteCommissioning=False):
 	ep.profile_id = zigpy.profiles.zha.PROFILE_ID
 	ep.device_type = device_type
 	ep.add_input_cluster(cluster_id)
-	application.device_initialized(dev)
 	return dev
 
 def handle_notification(ieee, header, counter, command_id, payload, payload_length, mic):
@@ -159,11 +172,17 @@ def handle_notification(ieee, header, counter, command_id, payload, payload_leng
 		logging.debug("[zgp.handle_notification] Unhandled command_id : %s", command_id)
 		return
 	expected_mic = calcul_mic(ieee,header,counter,command_id.to_bytes(1, "little")+ payload.to_bytes(payload_length, "little"),payload_length + 1,)
+	if expected_mic is not None :
+		logging.debug("[zgp.handle_notification] Mic : %s, expected mic %s : OK", hex(mic), hex(expected_mic))
 	if expected_mic is not None and expected_mic != mic:
-		logging.debug("[zgp.handle_notification] Wrong mic : %s, calcul mic %s, ignore frame", hex(mic), hex(calcul_mic))
+		logging.debug("[zgp.handle_notification] Wrong mic : %s, expected mic %s, ignore frame", hex(mic), hex(expected_mic))
 		return
 	(command,type,schema,clusterid,zcl_command_id,value) = commands[command_id]
-	payload, _ = t.deserialize(payload.to_bytes(payload_length, "little"), schema)
+	try:
+		payload, _ = t.deserialize(payload.to_bytes(payload_length, "little"), schema)
+	except Exception as e:
+		payload = ()
+		pass
 	logging.debug("[zgp.handle_notification] Green power frame ieee : %s, command_id : %s, payload : %s,counter : %s",ieee,command_id,payload,counter)
 	value = value + tuple(payload)
 	dev = application.devices[ieee]
@@ -233,11 +252,13 @@ def calcul_mic(ieee, header, counter, payload, payload_length):
 	
 def setKey(device, key):
 	if key is None:
-		del device._attr_cache[0x9998]
+		logging.debug("[zgp.setKey] Remove key for device "+str(device.ieee))
+		del device.endpoints[endpoint_id].in_clusters[cluster_id]._attr_cache[0x9998]
 		return
 	if not isinstance(key, (bytes)):
 		key = key.to_bytes(16, "big")
-		device._update_attribute(0x9998, key)
+	logging.debug("[zgp.setKey] Set key for device "+str(device.ieee)+' to '+str(key))
+	device.endpoints[endpoint_id].in_clusters[cluster_id]._update_attribute(0x9998, key)
 	
 async def permit(time_s=60):
 	assert 0 <= time_s <= 254

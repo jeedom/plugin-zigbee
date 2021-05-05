@@ -28,6 +28,7 @@ import zigpy
 from map import *
 import specifics
 from zigpy.zcl.clusters.general import Groups
+import zgp
 
 async def command(_data):
 	device = find(_data['ieee'])
@@ -145,9 +146,9 @@ async def check_write_attributes(_data):
 async def initialize(device):
 	logging.debug("["+str(device._ieee)+"][zdevices.initialize] Begin device initialize")
 	for ep_id, endpoint in device.endpoints.items():
-		if ep_id == 0 or (hasattr(zigpy.zcl.clusters.general.GreenPowerProxy,'endpoint_id') and ep_id == zigpy.zcl.clusters.general.GreenPowerProxy.endpoint_id): # Ignore ZDO and green power
+		if ep_id == 0 or  ep_id == zgp.endpoint_id: # Ignore ZDO and green power
 			continue
-		if hasattr(zigpy.profiles.zha.DeviceType,'GREEN_POWER') and endpoint.device_type == zigpy.profiles.zha.DeviceType.GREEN_POWER: # No binding for GreenPower device
+		if endpoint.device_type == zgp.device_type : # No binding for GreenPower device
 			continue
 		for cluster in endpoint.in_clusters.values():
 			if not hasattr(cluster,'ep_attribute') or (cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'NO_BINDING') and registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].NO_BINDING):
@@ -222,12 +223,14 @@ async def initialize(device):
 async def get_basic_info(device):
 	logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] Begin get basic info from device")
 	for ep_id, endpoint in device.endpoints.items():
-		if ep_id == 0: # Ignore ZDO
+		if ep_id == 0 or  ep_id == zgp.endpoint_id: # Ignore ZDO and green power
+			continue
+		if endpoint.device_type == zgp.device_type : # No binding for GreenPower device
 			continue
 		for cluster in endpoint.in_clusters.values():
 			if cluster.cluster_id != 0:
 				continue
-			logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] End point found")
+			logging.warning("["+str(device._ieee)+"][zdevices.get_basic_info] Endpoint found")
 			try:
 				await cluster.read_attributes([4,5],True)
 				await asyncio.sleep(1)
@@ -311,6 +314,13 @@ async def serialize_cluster(cluster,with_attributes = 1):
 		return obj
 	if with_attributes == 2 and cluster.cluster_id not in [0,1] :
 		return obj
+	if cluster.cluster_id == 33 :
+		value = await cluster.read_attributes([39320],True,True)
+		if 39320 in value[0]:
+			value = value[0][39320]
+			if isinstance(value, (bytes, bytearray)):
+				value = value.hex()
+			obj['attributes'].append({'id' : 39320,'name' : 'ZGP_key','value':value})
 	for attribute in cluster.attributes:
 		value = await cluster.read_attributes([attribute],True,True)
 		if attribute in value[0]:
