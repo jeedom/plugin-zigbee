@@ -1,0 +1,96 @@
+{
+  "name": "Prise intelligente",
+  "ref" : "NIKO 170-33505",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::6::0"
+    },
+    {
+      "name": "On",
+      "generic_type": "ENERGY_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::on",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Off",
+      "generic_type": "ENERGY_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::off",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Puissance",
+      "generic_type": "POWER",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"W",
+      "logicalId": "1::2820::1291",
+      "configuration":{
+        "historizeRound" : 2
+      }
+    },
+    {
+      "name": "Consommation",
+      "generic_type": "CONSUMPTION",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"kWh",
+      "logicalId": "1::1794::0",
+      "configuration":{
+        "historizeRound" : 2
+      }
+    },
+    {
+      "name": "Courant",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"A",
+      "logicalId": "1::2820::1288",
+      "configuration":{
+        "historizeRound" : 2,
+        "calculValueOffset":"#value# / 1000"
+      }
+    },
+    {
+      "name": "Tension",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"V",
+      "logicalId": "1::2820::1285",
+      "configuration":{
+        "historizeRound" : 2,
+        "calculValueOffset":"#value# / 10"
+      }
+    }
+  ]
+}
