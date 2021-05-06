@@ -192,6 +192,24 @@ Como costuma acontecer no Zigbee, podem surgir dificuldades durante o processo d
   - **para controles remotos Ikea**, pressione o botão de reset" *(ao lado da bateria)* por 5 a 10 segundos perto da lâmpada alimentada *(às vezes você tem que desligar / ligar a lâmpada um pouco antes em alguns modelos)*.
 - Sobre a **Lâmpadas Philips Hue**, você também pode incluí-los no Hue Bridge e removê-los dele.
 
+# Greenpower
+
+A tecnologia Greenpower é suportada pelo plugin (patch zigpy que ainda não tem suporte nativo...).
+
+>**IMPORTANTE**
+>
+>No momento, Greenpower funciona apenas com chaves do tipo EZSP (Elelabs, popp...). O suporte Deconz virá mais tarde 
+
+Para adicionar um módulo Greenpower 2 possibilidades : 
+
+- mude para o modo de inclusão, pressione um botão no módulo. Por favor, note que isso corresponde a uma adição não segura (qualquer pessoa que interceptar o quadro do módulo pode enviá-lo de volta para o seu Jeedom)
+- leia o código QR do módulo e copie a string na parte "Comissionamento" do Jeedom. Isso corresponde a uma adição segura (a chave de criptografia e no QRcode)
+
+
+>**IMPORTANTE**
+>
+>Por padrão, os interruptores estão no canal 11. É absolutamente necessário ter a chave e o interruptor no mesmo canal. Deixo-vos consultar a documentação para mudar o canal dos interruptores (pessoalmente acho que a manipulação não é fácil, o mais ligeiro erro obriga-te a recomeçar, em geral leva-me uma boa hora)
+
 # Gerenciamento de grupo
 
 Um grupo pode ser relacionado a uma espécie de controle remoto virtual que permite ao controlador atuar sobre vários módulos de forma a fazer com que executem as mesmas ações simultaneamente.

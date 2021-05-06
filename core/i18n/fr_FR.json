@@ -387,6 +387,9 @@
         "Séchage": "Séchage",
         "En veille": "En veille"
     },
+    "plugins\/zigbee\/core\/js\/zigbee.class.js": {
+        "QRcode invalide": "QRcode invalide"
+    },
     "plugins\/zigbee\/core\/config\/devices\/tuya\/TZE200_dzuqwsyg.TS0601.php": {
         "Froid": "Froid",
         "Chaud": "Chaud",

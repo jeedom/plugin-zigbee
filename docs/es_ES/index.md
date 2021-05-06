@@ -192,6 +192,24 @@ Como suele ocurrir en Zigbee, pueden surgir dificultades durante el proceso de r
   - **para mandos a distancia de Ikea**, presione el botón de reinicio" *(al lado de la batería)* durante 5 a 10 segundos cerca de la bombilla encendida *(a veces tienes que apagar / encender la bombilla justo antes en algunos modelos)*.
 - Acerca de **Bombillas Philips Hue**, también puede incluirlos en Hue Bridge y luego eliminarlos de él.
 
+# Greenpower
+
+La tecnología Greenpower es compatible con el complemento (parche zigpy que aún no lo admite de forma nativa...).
+
+>**Importante**
+>
+>Por el momento, Greenpower solo funciona con llaves tipo EZSP (Elelabs, popp...). El soporte de Deconz llegará más tarde 
+
+Para agregar un módulo Greenpower 2 posibilidades : 
+
+- cambiar al modo de inclusión, presione un botón en el módulo. Tenga en cuenta que esto corresponde a una adición no segura (cualquiera que intercepte el marco del módulo puede enviarlo de vuelta a su Jeedom)
+- lea el código QR del módulo y copie la cadena en la parte "Puesta en servicio" de Jeedom. Esto corresponde a una adición segura (la clave de cifrado y en el código QR)
+
+
+>**Importante**
+>
+>Por defecto, los interruptores están en el canal 11. Es absolutamente necesario tener la llave y el interruptor en el mismo canal. Te dejo consultar la documentación para cambiar el canal de los interruptores (personalmente me parece que la manipulación no es fácil, el más mínimo error te obliga a empezar de nuevo, en general me lleva una buena hora)
+
 # Manejo de grupo
 
 Un grupo puede relacionarse con una especie de control remoto virtual que permite al controlador actuar sobre varios módulos para que estos realicen las mismas acciones simultáneamente.

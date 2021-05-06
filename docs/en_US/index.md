@@ -192,6 +192,24 @@ As often in Zigbee, difficulties can arise during the reset or association proce
   - **for Ikea remotes**, press the reset button" *(next to the battery)* for 5 to 10 seconds near the powered bulb *(sometimes you have to turn off / turn on the bulb just before on some models)*.
 - About the **Philips Hue bulbs**, you can also include them on Hue Bridge and then remove them from it.
 
+# Greenpower
+
+Greenpower technology is supported by the plugin (zigpy patch which does not support it natively yet...).
+
+>**Important**
+>
+>For the moment, Greenpower only works with EZSP type keys (Elelabs, popp...). Deconz support will come later 
+
+To add a Greenpower module 2 possibilities : 
+
+- switch to inclusion mode, press a button on the module. Please note that this corresponds to an unsecured addition (anyone who intercepts the frame of the module can send it back to your Jeedom)
+- read the module's QRcode and copy the string in the "Commissioning" part of Jeedom. This corresponds to a secure addition (the encryption key and in the QRcode)
+
+
+>**Important**
+>
+>By default the switches are on channel 11. It is absolutely necessary to have the key and the switch on the same channel. I let you consult the documentation to change the channel of the switches (I personally find the handling not easy, the slightest error forces you to start all over again, in general it takes me a good hour)
+
 # Group management
 
 A group can be related to a kind of virtual remote control allowing the controller to act on several modules in order to make them perform the same actions simultaneously.
