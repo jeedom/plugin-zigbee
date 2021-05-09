@@ -112,7 +112,7 @@ if (!isConnect('admin')) {
               <div class="col-md-6">
                 <select class="configKey form-control" data-l1key="sub_controller_<?php echo $i ?>">
                   <option value="auto" data-controller="auto">{{Default}}</option>
-                  <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
+                  <option value="elelabs" data-controller="ezsp">{{Elelabs/Popp}}</option>
                 </select>
               </div>
             </div>

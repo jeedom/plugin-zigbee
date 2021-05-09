@@ -42,7 +42,7 @@ if (!isConnect('admin')) {
             <div class="col-sm-7">
               <select class="backupAttr form-control" data-l1key="sub_controller">
                 <option value="auto" data-controller="auto">{{Auto}}</option>
-                <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
+                <option value="elelabs" data-controller="ezsp">{{Elelabs/Popp}}</option>
               </select>
             </div>
           </div>
