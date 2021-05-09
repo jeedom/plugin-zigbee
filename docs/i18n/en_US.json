@@ -2,6 +2,7 @@
     "changelog.md": {
         "Changelog Zigbee": "Changelog Zigbee",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text",
+        "Support du GreenPower en beta pour les clefs de type EZSP (Elelabs,Popp": "GreenPower support in beta for EZSP type keys (Elelabs, Popp",
         "03\/05\/2021": "05\/03\/2021",
         "Mise à jour de la documentation": "Documentation update",
         "Correction de bugs": "Bugfix",

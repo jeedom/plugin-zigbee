@@ -4,6 +4,9 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto.
 
+
+- Compatibilidad con GreenPower en versión beta para claves de tipo EZSP (Elelabs, Popp...)
+
 # 05/03/2021
 
 - Actualización de documentación

@@ -4,6 +4,9 @@
 >
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text.
 
+
+- GreenPower support in beta for EZSP type keys (Elelabs, Popp...)
+
 # 05/03/2021
 
 - Documentation update
