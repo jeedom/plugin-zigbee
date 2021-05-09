@@ -39,7 +39,11 @@ if ($eqLogic->getConfiguration('ischild',0) == 1){
 $endpoints_select = '';
 $clusters_select = '';
 $attribute_name_select = '';
+$isZGPDevice = false;
 foreach ($node_data['endpoints'] as $endpoint) {
+  if($endpoint['device_type'] == 41440){
+    $isZGPDevice = true;
+  }
   $endpoints_select .= '<option value="'.$endpoint['id'].'">Endpoint '.$endpoint['id'].'</option>';
   foreach ($endpoint['input_clusters'] as $cluster) {
     $clusters_select .= '<option data-endpoint="'.$endpoint['id'].'" value="'.$cluster['id'].'">'.$cluster['id'].' - '.$cluster['name'].'</option>';
@@ -137,21 +141,23 @@ sendVarToJS('zigbee_binding_device',$binding_device);
                 }
                 ?>
                 {{Etat :}} <b><span class="<?php echo $status_label; ?>" style="font-size : 1em;"><?php echo $infos['status'] ?></span></b>
-                {{Alimentation :}} <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['power_source'] ?></span></b>
-                <?php if($infos['power_source'] == __('Batterie',__FILE__) || $infos['power_source'] == __('Inconnue ()',__FILE__)){
-                  $battery_label = 'label label-success';
-                  if($infos['battery_percent'] < 30){
-                    $battery_label = 'label label-danger';
-                  }else if($infos['battery_percent'] < 60){
-                    $battery_label = 'label label-warning';
-                  }
-                  ?>
-                  <span class="node-battery-span">{{Batterie : }} <b><span class="<?php echo $battery_label; ?>" style="font-size : 1em;"><?php echo $infos['battery_percent']?>%</span></b> (<?php echo $infos['battery_voltage'] ?>v)</span>
-                <?php } ?>
-              </p>
-              <p>
-                {{Dernier message :}} <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['last_seen'] ?></span></b>
-              </p>
+                <?php if(!$isZGPDevice){ ?>
+                  {{Alimentation :}} <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['power_source'] ?></span></b>
+                  <?php if($infos['power_source'] == __('Batterie',__FILE__) || $infos['power_source'] == __('Inconnue ()',__FILE__)){
+                    $battery_label = 'label label-success';
+                    if($infos['battery_percent'] < 30){
+                      $battery_label = 'label label-danger';
+                    }else if($infos['battery_percent'] < 60){
+                      $battery_label = 'label label-warning';
+                    }
+                    ?>
+                    <span class="node-battery-span">{{Batterie : }} <b><span class="<?php echo $battery_label; ?>" style="font-size : 1em;"><?php echo $infos['battery_percent']?>%</span></b> (<?php echo $infos['battery_voltage'] ?>v)</span>
+                  <?php } ?>
+                </p>
+                <p>
+                  {{Dernier message :}} <b><span class="label label-default" style="font-size : 1em;"><?php echo $infos['last_seen'] ?></span></b>
+                </p>
+              <?php } ?>
             </div>
           </div>
           <div class="panel panel-primary">
@@ -196,25 +202,26 @@ sendVarToJS('zigbee_binding_device',$binding_device);
               </p>
             </div>
           </div>
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <?php if ($ischild) {
-                echo '<h4 class="panel-title"><i class="fab fa-microsoft"></i> {{Informations logiciel Père}}</h4>';
-              }else {
-                echo '<h4 class="panel-title"><i class="fab fa-microsoft"></i> {{Informations logiciel}}</h4>';
-              }?>
+          <?php if(!$isZGPDevice){ ?>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <?php if ($ischild) {
+                  echo '<h4 class="panel-title"><i class="fab fa-microsoft"></i> {{Informations logiciel Père}}</h4>';
+                }else {
+                  echo '<h4 class="panel-title"><i class="fab fa-microsoft"></i> {{Informations logiciel}}</h4>';
+                }?>
+              </div>
+              <div class="panel-body">
+                {{ZCL Version :}} <b><span class="label label-default"><?php echo $infos['zcl_version'] ?></span></b>
+                {{APP Version :}} <b><span class="label label-default"><?php echo $infos['app_version'] ?></span></b>
+                {{Stack Version :}} <b><span class="label label-default"><?php echo $infos['stack_version'] ?></span></b>
+                {{HW Version :}} <b><span class="label label-default"><?php echo $infos['hw_version'] ?></span></b>
+                {{Date code :}} <b><span class="label label-default"><?php echo $infos['date_code'] ?></span></b>
+                {{Software version :}} <b><span class="label label-default"><?php echo $infos['sw_build_id'] ?></span></b>
+              </div>
             </div>
-            <div class="panel-body">
-              {{ZCL Version :}} <b><span class="label label-default"><?php echo $infos['zcl_version'] ?></span></b>
-              {{APP Version :}} <b><span class="label label-default"><?php echo $infos['app_version'] ?></span></b>
-              {{Stack Version :}} <b><span class="label label-default"><?php echo $infos['stack_version'] ?></span></b>
-              {{HW Version :}} <b><span class="label label-default"><?php echo $infos['hw_version'] ?></span></b>
-              {{Date code :}} <b><span class="label label-default"><?php echo $infos['date_code'] ?></span></b>
-              {{Software version :}} <b><span class="label label-default"><?php echo $infos['sw_build_id'] ?></span></b>
-            </div>
-          </div>
+          <?php } ?>
           <?php
-          $isZGPDevice = false;
           foreach ($infos['endpoints'] as $endpoint_id => $endpoint) {
             if ($ischild) {
               if ($endpoint_id != $childendpoint) {
@@ -230,15 +237,12 @@ sendVarToJS('zigbee_binding_device',$binding_device);
             echo  '<div class="panel-body">';
             echo  '{{Status :}} <b><span class="label label-default">'.$endpoint['status'].'</span></b><br/>';
             echo  '{{Device type :}} <b><span class="label label-default">'.$endpoint['device_type'].'</span></b><br/>';
-            if($endpoint['device_type'] == 'GREEN_POWER'){
-              $isZGPDevice = true;
-            }
             echo  '{{Profile :}} <b><span class="label label-default">'.$endpoint['profile_id'].'</span></b><br/>';
             echo  '{{Modèle :}} <b><span class="label label-default">'.$endpoint['model'].'</span></b><br/>';
             echo '<p>';
             echo  '{{Cluster sortant :}}';
             foreach ($endpoint['out_cluster'] as $out_cluster) {
-              if(in_array($out_cluster['id'],$disallow_binding_cluster)){
+              if(in_array($out_cluster['id'],$disallow_binding_cluster) || $isZGPDevice){
                 echo ' <span class="label label-info">'.$out_cluster['name'].' ('. $out_cluster['id'].')</span>';
               }else{
                 echo ' <span class="label label-info"><i class="fas fa-link bt_bindCluster cursor" title="{{Bind}}" data-endpoint="'.$endpoint_id.'" data-cluster="'.$out_cluster['id'].'"></i> '.$out_cluster['name'].' ('. $out_cluster['id'].') <i class="fas fa-unlink bt_unbindCluster cursor" title="{{Unbind}}" data-endpoint="'.$endpoint_id.'" data-cluster="'.$out_cluster['id'].'"></i></span>';
@@ -441,30 +445,32 @@ sendVarToJS('zigbee_binding_device',$binding_device);
               </div>
             </div>
           <?php } ?>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">{{Mettre à jour l'heure}}</label>
-            <div class="col-sm-2">
-              <a class="btn btn-success bt_setTime"><i class="fas fa-hourglass-start"></i> {{Heure}}</a>
+          <?php if(!$isZGPDevice){ ?>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">{{Mettre à jour l'heure}}</label>
+              <div class="col-sm-2">
+                <a class="btn btn-success bt_setTime"><i class="fas fa-hourglass-start"></i> {{Heure}}</a>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">{{Rafraichir les informations}}</label>
-            <div class="col-sm-2">
-              <a class="btn btn-success bt_refreshZigbeeDeviceInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">{{Rafraichir les informations}}</label>
+              <div class="col-sm-2">
+                <a class="btn btn-success bt_refreshZigbeeDeviceInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">{{Réinitialiser le module}}</label>
-            <div class="col-sm-2">
-              <a class="btn btn-warning bt_initializeZigbeeDevice"><i class="fas fa-sync"></i> {{Réinitialiser}}</a>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">{{Réinitialiser le module}}</label>
+              <div class="col-sm-2">
+                <a class="btn btn-warning bt_initializeZigbeeDevice"><i class="fas fa-sync"></i> {{Réinitialiser}}</a>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">{{Redécouvrir le noeud}}</label>
-            <div class="col-sm-2">
-              <a class="btn btn-danger bt_rediscoverZigbeeDeviceInfo"><i class="fas fa-sync"></i> {{Redécouvrir}}</a>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">{{Redécouvrir le noeud}}</label>
+              <div class="col-sm-2">
+                <a class="btn btn-danger bt_rediscoverZigbeeDeviceInfo"><i class="fas fa-sync"></i> {{Redécouvrir}}</a>
+              </div>
             </div>
-          </div>
+          <?php } ?>
           <div class="form-group">
             <label class="col-sm-3 control-label">{{Supprimer le module de la base zigbee}}</label>
             <div class="col-sm-2">
@@ -473,59 +479,61 @@ sendVarToJS('zigbee_binding_device',$binding_device);
           </div>
         </fieldset>
       </form>
-      <hr/>
-      <form class="form-horizontal">
-        <fieldset>
-          <legend>{{Lecture d'un attribut}} <label class="checkbox-inline" style="margin-left:15px;"><input type="checkbox" class="getNodeAttr" data-l1key="allowCache" checked/>{{Autoriser le cache}}</label></legend>
-          <div class="form-group">
-            <div class="col-sm-12">
-              <input class="getNodeAttr from-control" data-l1key="manufacturer" placeholder="{{Code manufacturer}}"/>
-              <select class="getNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 150px">
-                <?php echo $endpoints_select;?>
-              </select>
-              <select class="getNodeAttr from-control" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 300px">
-                <?php echo $clusters_select;?>
-              </select>
-              <input class="getNodeAttr from-control" data-l1key="attributes" placeholder="{{Attribut}}"/>
-              <a class="btn btn-success btn-sm" id="bt_nodeGetAttr">{{Valider}}</a>
-              <span id="span_nodeGetAttrResult" style="margin-left:10px;"></span>
+      <?php if(!$isZGPDevice){ ?>
+        <hr/>
+        <form class="form-horizontal">
+          <fieldset>
+            <legend>{{Lecture d'un attribut}} <label class="checkbox-inline" style="margin-left:15px;"><input type="checkbox" class="getNodeAttr" data-l1key="allowCache" checked/>{{Autoriser le cache}}</label></legend>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input class="getNodeAttr from-control" data-l1key="manufacturer" placeholder="{{Code manufacturer}}"/>
+                <select class="getNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 150px">
+                  <?php echo $endpoints_select;?>
+                </select>
+                <select class="getNodeAttr from-control" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 300px">
+                  <?php echo $clusters_select;?>
+                </select>
+                <input class="getNodeAttr from-control" data-l1key="attributes" placeholder="{{Attribut}}"/>
+                <a class="btn btn-success btn-sm" id="bt_nodeGetAttr">{{Valider}}</a>
+                <span id="span_nodeGetAttrResult" style="margin-left:10px;"></span>
+              </div>
             </div>
-          </div>
-          <legend>{{Ecriture d'un attribut}}</legend>
-          <div class="form-group">
-            <div class="col-sm-12">
-              <input class="setNodeAttr from-control" data-l1key="manufacturer" placeholder="{{Code manufacturer}}"/>
-              <select class="setNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 150px">
-                <?php echo $endpoints_select;?>
-              </select>
-              <select class="setNodeAttr from-control sel_cluster" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 300px">
-                <?php echo $clusters_select;?>
-              </select>
-              <input class="setNodeAttr from-control" data-l1key="attributes" placeholder="{{Attribut}}"/>
-              <input class="setNodeAttr from-control" data-l1key="value" placeholder="{{Valeur}}"/>
-              <a class="btn btn-success btn-sm" id="bt_nodeSetAttr">{{Valider}}</a>
+            <legend>{{Ecriture d'un attribut}}</legend>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input class="setNodeAttr from-control" data-l1key="manufacturer" placeholder="{{Code manufacturer}}"/>
+                <select class="setNodeAttr from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 150px">
+                  <?php echo $endpoints_select;?>
+                </select>
+                <select class="setNodeAttr from-control sel_cluster" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 300px">
+                  <?php echo $clusters_select;?>
+                </select>
+                <input class="setNodeAttr from-control" data-l1key="attributes" placeholder="{{Attribut}}"/>
+                <input class="setNodeAttr from-control" data-l1key="value" placeholder="{{Valeur}}"/>
+                <a class="btn btn-success btn-sm" id="bt_nodeSetAttr">{{Valider}}</a>
+              </div>
             </div>
-          </div>
-          <legend>{{Configuration des rapports}}</legend>
-          <div class="form-group">
-            <div class="col-sm-12">
-              <select class="setConfigReport from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 150px">
-                <?php echo $endpoints_select;?>
-              </select>
-              <select class="setConfigReport from-control" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 300px">
-                <?php echo $clusters_select;?>
-              </select>
-              <select class="setConfigReport from-control" data-l1key="name" placeholder="{{Attribut (nom)}}" style="width : 300px">
-                <?php echo $attribute_name_select;?>
-              </select>
-              <input class="setConfigReport from-control" data-l1key="min_report_int" placeholder="{{Delai minimal}}"/>
-              <input class="setConfigReport from-control" data-l1key="max_report_int" placeholder="{{Delai maximal}}"/>
-              <input type="checkbox" class="setConfigReport from-control" data-l1key="reportable_change"/><label>{{Rapporter changement}}</label>
-              <a class="btn btn-success btn-sm" id="bt_nodeSetConfigReport">{{Valider}}</a>
+            <legend>{{Configuration des rapports}}</legend>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <select class="setConfigReport from-control" data-l1key="endpoint" placeholder="{{Endpoint}}" style="width : 150px">
+                  <?php echo $endpoints_select;?>
+                </select>
+                <select class="setConfigReport from-control" data-l1key="cluster" placeholder="{{Cluster}}" style="width : 300px">
+                  <?php echo $clusters_select;?>
+                </select>
+                <select class="setConfigReport from-control" data-l1key="name" placeholder="{{Attribut (nom)}}" style="width : 300px">
+                  <?php echo $attribute_name_select;?>
+                </select>
+                <input class="setConfigReport from-control" data-l1key="min_report_int" placeholder="{{Delai minimal}}"/>
+                <input class="setConfigReport from-control" data-l1key="max_report_int" placeholder="{{Delai maximal}}"/>
+                <input type="checkbox" class="setConfigReport from-control" data-l1key="reportable_change"/><label>{{Rapporter changement}}</label>
+                <a class="btn btn-success btn-sm" id="bt_nodeSetConfigReport">{{Valider}}</a>
+              </div>
             </div>
-          </div>
-        </fieldset>
-      </form>
+          </fieldset>
+        </form>
+      <?php } ?>
     </div>
     <div role="tabpanel" class="tab-pane" id="rawNodeTab">
       <pre><?php echo json_encode($node_data,JSON_PRETTY_PRINT);?></pre>
