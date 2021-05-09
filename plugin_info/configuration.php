@@ -81,126 +81,126 @@ if (!isConnect('admin')) {
         </div>
         <br>
         <div id="zigbee_deamon_<?php echo $i ?>" style="display:none;">
-            <div class="col-md-7">
-              <div class="form-group">
-                <label class="col-md-5 control-label">{{Nom du contrôleur}}
-                  <sup><i class="fas fa-question-circle tooltips" title="{{Renseigner le nom permettant d'identifier le démon du contrôleur}} <?php echo $i ?>"></i></sup>
-                </label>
-                <div class="col-md-6">
-                  <input class="configKey form-control" data-l1key="name_deamon_<?php echo $i ?>" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-5 control-label">{{Type de contrôleur}}
-                  <sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le type de contrôleur Zigbee à utiliser}}"></i></sup>
-                </label>
-                <div class="col-md-6">
-                  <select class="configKey form-control" data-l1key="controller_<?php echo $i ?>">
-                    <option value="ezsp">{{EZSP}}</option>
-                    <option value="deconz">{{Conbee}}</option>
-                    <option value="zigate">{{Zigate}}</option>
-                    <option value="cc">{{CC}}</option>
-                    <option value="xbee">{{Xbee}}</option>
-                    <option value="znp">{{ZNP}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-5 control-label">{{Type de clé}}
-                  <sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le type de clé Zigbee à utiliser}}"></i></sup>
-                </label>
-                <div class="col-md-6">
-                  <select class="configKey form-control" data-l1key="sub_controller_<?php echo $i ?>">
-                    <option value="auto" data-controller="auto">{{Auto}}</option>
-                    <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-5 control-label">{{Port du contrôleur}}
-                  <sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le port du contrôleur Zigbee. Le mode Auto ne fonctionne qu'avec les clés Deconz}}"></i></sup>
-                </label>
-                <div class="col-md-6">
-                  <select class="configKey form-control" data-l1key="port_<?php echo $i ?>">
-                    <option value="none">{{Aucun}}</option>
-                    <option value="auto">{{Auto}}</option>
-                    <option value="pizigate">{{Pizigate}}</option>
-                    <option value="gateway">{{Passerelle distante}}</option>
-                    <?php
-                    foreach (jeedom::getUsbMapping() as $name => $value) {
-                      echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
-                    }
-                    foreach (ls('/dev/', 'tty*') as $value) {
-                      echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
-                    }
-                    ?>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group zigbee_portConf_<?php echo $i ?> pizigate_<?php echo $i ?>" style="display:none;">
-                <label class="col-md-5 control-label">{{Pizigate}}
-                  <sup><i class="fas fa-question-circle tooltips" title="{{Renseigner l'adresse de la Pizigate}}"></i></sup>
-                </label>
-                <div class="col-md-6">
-                  <input type="number" class="configKey form-control" data-l1key="pizigate_<?php echo $i ?>" />
-                </div>
-              </div>
-              <div class="form-group zigbee_portConf_<?php echo $i ?> gateway_<?php echo $i ?>" style="display:none;">
-                <label class="col-md-5 control-label">{{Passerelle distante}} <sub>(IP:PORT)</sub>
-                  <sup><i class="fas fa-question-circle tooltips" title="{{Renseigner l'adresse de la passerelle distante}}"></i></sup>
-                </label>
-                <div class="col-md-6">
-                  <input class="configKey form-control" data-l1key="gateway_<?php echo $i ?>" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-5 control-label">{{Port du démon}}
-                  <sup><i class="fas fa-question-circle tooltips" title="{{Renseigner le port interne du démon. A ne modifier qu'en connaissance de cause}}"></i></sup>
-                </label>
-                <div class="col-md-6">
-                  <input class="configKey form-control" data-l1key="socketport_<?php echo $i ?>" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-5 control-label">{{Cycle}} <sub>({{secondes}})</sub>
-                  <sup><i class="fas fa-question-circle tooltips" title="{{Fréquence de mise à jour des données Zigbee en secondes}}"></i></sup>
-                </label>
-                <div class="col-md-6">
-                  <input class="configKey form-control" data-l1key="cycle_<?php echo $i ?>" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-5 control-label">{{Canal}}
-                  <sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le canal de communication à privilégier}}"></i></sup>
-                </label>
-                <div class="col-md-6">
-                  <select class="configKey form-control" data-l1key="channel_<?php echo $i ?>">
-                    <option value="11">{{11}}</option>
-                    <option value="15">{{15}}</option>
-                    <option value="20">{{20}}</option>
-                    <option value="25">{{25}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-5 control-label"></label>
-                <div class="col-md-6">
-                  <a class="form-control btn btn-warning bt_zigbeeRestartDeamon" data-deamon="<?php echo $i ?>" title="Cliquer sur le bouton pour redémarrer le démon"><i class="fas fa-redo-alt"></i> {{Redémarrer le démon}}</a>
-                </div>
+          <div class="col-md-7">
+            <div class="form-group">
+              <label class="col-md-5 control-label">{{Nom du contrôleur}}
+                <sup><i class="fas fa-question-circle tooltips" title="{{Renseigner le nom permettant d'identifier le démon du contrôleur}} <?php echo $i ?>"></i></sup>
+              </label>
+              <div class="col-md-6">
+                <input class="configKey form-control" data-l1key="name_deamon_<?php echo $i ?>" />
               </div>
             </div>
-            <div class="col-md-5">
-              <div class="form-group has-error">
-                <label class="control-label">{{Configuration avancée Zigpy}} <sub>({{json}})</sub>
-                  <sup><i class="fas fa-question-circle tooltips" title="{{Réservé aux experts}} !"></i></sup>
-                </label>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-12">
-                  <textarea class="configKey form-control" rows="10" data-l1key="advance_zigpy_config_<?php echo $i ?>" ><?php echo json_encode(config::byKey('advance_zigpy_config_'.$i, 'zigbee'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK); ?></textarea>
-                </div>
+            <div class="form-group">
+              <label class="col-md-5 control-label">{{Type de contrôleur}}
+                <sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le type de contrôleur Zigbee à utiliser}}"></i></sup>
+              </label>
+              <div class="col-md-6">
+                <select class="configKey form-control" data-l1key="controller_<?php echo $i ?>">
+                  <option value="ezsp">{{EZSP}}</option>
+                  <option value="deconz">{{Conbee}}</option>
+                  <option value="zigate">{{Zigate}}</option>
+                  <option value="cc">{{CC}}</option>
+                  <option value="xbee">{{Xbee}}</option>
+                  <option value="znp">{{ZNP}}</option>
+                </select>
               </div>
             </div>
+            <div class="form-group">
+              <label class="col-md-5 control-label">{{Type de clé}}
+                <sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le type de clé Zigbee à utiliser}}"></i></sup>
+              </label>
+              <div class="col-md-6">
+                <select class="configKey form-control" data-l1key="sub_controller_<?php echo $i ?>">
+                  <option value="auto" data-controller="auto">{{Default}}</option>
+                  <option value="elelabs" data-controller="ezsp">{{Elelabs}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-5 control-label">{{Port du contrôleur}}
+                <sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le port du contrôleur Zigbee. Le mode Auto ne fonctionne qu'avec les clés Deconz}}"></i></sup>
+              </label>
+              <div class="col-md-6">
+                <select class="configKey form-control" data-l1key="port_<?php echo $i ?>">
+                  <option value="none">{{Aucun}}</option>
+                  <option value="auto">{{Auto}}</option>
+                  <option value="pizigate">{{Pizigate}}</option>
+                  <option value="gateway">{{Passerelle distante}}</option>
+                  <?php
+                  foreach (jeedom::getUsbMapping() as $name => $value) {
+                    echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
+                  }
+                  foreach (ls('/dev/', 'tty*') as $value) {
+                    echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <div class="form-group zigbee_portConf_<?php echo $i ?> pizigate_<?php echo $i ?>" style="display:none;">
+              <label class="col-md-5 control-label">{{Pizigate}}
+                <sup><i class="fas fa-question-circle tooltips" title="{{Renseigner l'adresse de la Pizigate}}"></i></sup>
+              </label>
+              <div class="col-md-6">
+                <input type="number" class="configKey form-control" data-l1key="pizigate_<?php echo $i ?>" />
+              </div>
+            </div>
+            <div class="form-group zigbee_portConf_<?php echo $i ?> gateway_<?php echo $i ?>" style="display:none;">
+              <label class="col-md-5 control-label">{{Passerelle distante}} <sub>(IP:PORT)</sub>
+                <sup><i class="fas fa-question-circle tooltips" title="{{Renseigner l'adresse de la passerelle distante}}"></i></sup>
+              </label>
+              <div class="col-md-6">
+                <input class="configKey form-control" data-l1key="gateway_<?php echo $i ?>" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-5 control-label">{{Port du démon}}
+                <sup><i class="fas fa-question-circle tooltips" title="{{Renseigner le port interne du démon. A ne modifier qu'en connaissance de cause}}"></i></sup>
+              </label>
+              <div class="col-md-6">
+                <input class="configKey form-control" data-l1key="socketport_<?php echo $i ?>" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-5 control-label">{{Cycle}} <sub>({{secondes}})</sub>
+                <sup><i class="fas fa-question-circle tooltips" title="{{Fréquence de mise à jour des données Zigbee en secondes}}"></i></sup>
+              </label>
+              <div class="col-md-6">
+                <input class="configKey form-control" data-l1key="cycle_<?php echo $i ?>" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-5 control-label">{{Canal}}
+                <sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner le canal de communication à privilégier}}"></i></sup>
+              </label>
+              <div class="col-md-6">
+                <select class="configKey form-control" data-l1key="channel_<?php echo $i ?>">
+                  <option value="11">{{11}}</option>
+                  <option value="15">{{15}}</option>
+                  <option value="20">{{20}}</option>
+                  <option value="25">{{25}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-5 control-label"></label>
+              <div class="col-md-6">
+                <a class="form-control btn btn-warning bt_zigbeeRestartDeamon" data-deamon="<?php echo $i ?>" title="Cliquer sur le bouton pour redémarrer le démon"><i class="fas fa-redo-alt"></i> {{Redémarrer le démon}}</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group has-error">
+              <label class="control-label">{{Configuration avancée Zigpy}} <sub>({{json}})</sub>
+                <sup><i class="fas fa-question-circle tooltips" title="{{Réservé aux experts}} !"></i></sup>
+              </label>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <textarea class="configKey form-control" rows="10" data-l1key="advance_zigpy_config_<?php echo $i ?>" ><?php echo json_encode(config::byKey('advance_zigpy_config_'.$i, 'zigbee'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK); ?></textarea>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     <?php } ?>
@@ -243,7 +243,7 @@ if (!isConnect('admin')) {
     }
   });
   <?php } ?>
-
+  
   $('.bt_zigbeeRestartDeamon').off('click').on('click',function(){
     $.ajax({
       type: "POST",
@@ -264,15 +264,15 @@ if (!isConnect('admin')) {
       }
     });
   })
-
+  
   $('#bt_backupRestore').off('clic').on('click',function(){
     $('#md_modal').dialog({title: "{{Assistant de sauvegarde/restauration du contrôleur}}"}).load('index.php?v=d&plugin=zigbee&modal=backup_restore').dialog('open');
   })
-
+  
   $('#bt_UpdateFirmware').off('clic').on('click',function(){
     $('#md_modal').dialog({title: "{{Mise à jour du firmware du contrôleur}}"}).load('index.php?v=d&plugin=zigbee&modal=firmware_update').dialog('open');
   })
-
+  
   $('#bt_UpdateOta').off('clic').on('click',function(){
     jeedom.zigbee.updateOTA({
       error: function (error) {
@@ -284,3 +284,4 @@ if (!isConnect('admin')) {
     });
   })
   </script>
+  
