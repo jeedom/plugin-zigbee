@@ -3,6 +3,14 @@
   "buylink" : "",
   "commands": [
     {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    }, 
+    {
       "name": "Etat",
       "type": "info",
       "subtype": "binary",
@@ -98,34 +106,6 @@
       "logicalId": "2::light_color::move_to_color::#color#::#duration#",
       "generic_type": "LIGHT_SET_COLOR"
     },
-    {
-      "name": "Etat température couleur",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "value" : "Etat température couleur",
-      "logicalId": "2::768::7",
-      "generic_type": "LIGHT_COLOR_TEMP"
-    },
-    {
-      "name": "Température Couleur",
-      "type": "action",
-      "subtype": "slider",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "value" : "Etat température couleur",
-      "logicalId": "2::light_color::move_to_color_temp::#slider#::#duration#",
-      "generic_type": "LIGHT_SET_COLOR_TEMP"
-    },
-    {
-      "name": "Rafraîchir",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "refresh"
-    },   
     {
       "name": "Etat durée",
       "type": "info",
