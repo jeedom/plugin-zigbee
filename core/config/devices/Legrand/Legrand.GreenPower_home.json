@@ -1,5 +1,8 @@
 {
   "name": "GreenPower Home/Away",
+  "configuration" : {
+    "last_seen::check_mode" : "disable"
+  },
   "commands": [
     {
       "name": "Etat",

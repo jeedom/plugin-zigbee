@@ -1,5 +1,8 @@
 {
   "name": "Equipement générique GreenPower",
+  "configuration" : {
+    "last_seen::check_mode" : "disable"
+  },
   "commands": [
     {
       "name": "Scène",

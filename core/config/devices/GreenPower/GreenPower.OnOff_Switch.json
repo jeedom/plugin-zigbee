@@ -1,5 +1,8 @@
 {
   "name": "Equipement GreenPower On/Off",
+  "configuration" : {
+    "last_seen::check_mode" : "disable"
+  },
   "commands": [
     {
       "name": "Scène",
