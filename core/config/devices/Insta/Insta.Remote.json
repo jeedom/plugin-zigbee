@@ -1,0 +1,50 @@
+{
+  "name": "Télécommande",
+  "ref" : "ZLLLS5004M",
+  "commands": [
+    {
+      "name": "Scene",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::5::cmd::5",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Scene",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::5::cmd::5",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Luminosité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Luminosité type d'appui",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::8::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    }
+  ]
+}
