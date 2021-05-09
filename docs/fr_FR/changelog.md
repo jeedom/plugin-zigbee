@@ -4,6 +4,9 @@
 >
 >Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
+
+- Support du GreenPower en beta pour les clefs de type EZSP (Elelabs,Popp...)
+
 # 03/05/2021
 
 - Mise à jour de la documentation
