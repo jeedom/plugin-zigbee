@@ -9,10 +9,13 @@
     {
       "name": "Bouton",
       "type": "info",
-      "subtype": "string",
+      "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::5::cmd::7"
+      "logicalId": "1::64640::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }

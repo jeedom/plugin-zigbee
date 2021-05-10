@@ -11,7 +11,10 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::6::cmd::1"
+      "logicalId": "1::6::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Bouton 2",
@@ -19,7 +22,10 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "2::6::cmd::1"
+      "logicalId": "2::6::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Bouton 3",
@@ -27,7 +33,10 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "3::6::cmd::1"
+      "logicalId": "3::6::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }

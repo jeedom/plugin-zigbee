@@ -6,12 +6,26 @@
   "pairing" : "Maintenir appuyé 5 secondes le bouton reset jusqu'au clignotement de la LED",
   "commands": [
     {
-      "name": "Bouton",
+      "name": "Bouton 1",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 1,
-      "logicalId": "1::1280::cmd::1"
+      "logicalId": "1::1281::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Bouton 2",
+      "type": "info",
+      "subtype": "autre",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "1::1281::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }
