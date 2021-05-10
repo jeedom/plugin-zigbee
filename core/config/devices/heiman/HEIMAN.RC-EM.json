@@ -13,6 +13,17 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::1281::cmd::1"
+    },
+    {
+      "name": "Bouton bas",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1281::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }
