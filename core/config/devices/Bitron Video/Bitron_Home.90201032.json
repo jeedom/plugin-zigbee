@@ -8,7 +8,6 @@
       [
         {"value":0,"name":"Froid"},
         {"value":1,"name":"Froid et rechauffage"},
-        
         {"value":2,"name":"Chaud"},
         {"value":3,"name":"Chaud et rechauffage"},
         {"value":4,"name":"Chaud et froid"},
