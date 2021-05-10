@@ -181,6 +181,9 @@ if (!isConnect('admin')) {
   })
   
   $('#sel_networkZigbeeInstance').off('change').on('change',function(){
+    $('#span_zigbeeNodeNumber').empty().append('');
+    $('#table_networkDevice tbody').empty()
+    $('#graph_network svg').remove();
     refreshNetworkData();
     refreshDevicekData();
     refreshNetworkGraph();
