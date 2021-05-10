@@ -262,6 +262,7 @@ def is_groupable(device):
 	return False
 
 async def serialize(device,with_attributes = 1):
+	logging.debug("["+str(device._ieee)+'][zdevices.serialize] Serialize device with attributes : '+str(with_attributes))
 	obj = {
 		'ieee': str(device.ieee),
 		'nwk': device.nwk,
