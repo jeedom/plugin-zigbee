@@ -73,6 +73,7 @@ if (isset($result['device_initialized'])){
 		'level' => 'warning',
 		'page' => 'zigbee',
 		'message' => __('Un périphérique Zigbee a été inclus : ', __FILE__).$result['device_initialized'].'. '.__('Pause de 30s avant synchronisation', __FILE__),
+		'ttl' => 30000
 	));
 	sleep(30);
 	$id = zigbee::sync();
