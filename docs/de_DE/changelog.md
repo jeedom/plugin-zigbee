@@ -4,6 +4,9 @@
 >
 >Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt.
 
+
+- GreenPower-Unterstützung in der Beta für Schlüssel vom Typ EZSP (Elelabs, Popp...)
+
 # 05/03/2021
 
 - Aktualisierung der Dokumentation
