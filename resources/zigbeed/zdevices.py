@@ -275,8 +275,10 @@ async def serialize(device,with_attributes = 1):
 		'signature':device.get_signature(),
 		'class':device.__module__,
 	}
+	logging.debug("["+str(device._ieee)+'][zdevices.serialize] 1')
 	if obj['node_descriptor'] is not None:
 		obj['node_descriptor'] = ":".join("{:02x}".format(x) for x in obj['node_descriptor'])
+	logging.debug("["+str(device._ieee)+'][zdevices.serialize] 2')
 	for endpoint_id, endpoint in device.endpoints.items():
 		if endpoint_id == 0:
 			continue
@@ -285,24 +287,30 @@ async def serialize(device,with_attributes = 1):
 		endpoint_obj['status'] = endpoint.status
 		endpoint_obj['device_type'] = getattr(endpoint, 'device_type', None)
 		endpoint_obj['profile_id'] = getattr(endpoint, 'profile_id', None)
+		logging.debug("["+str(device._ieee)+'][zdevices.serialize] 3')
 		manufacturer = None
 		model = None
 		try: 
-			model,manufacturer = await endpoint.get_model_info()
+			model,manufacturer = await asyncio.wait_for(endpoint.get_model_info(), timeout=1.0)
 		except:
 			pass
+		logging.debug("["+str(device._ieee)+'][zdevices.serialize] 4')
 		endpoint_obj['manufacturer'] = manufacturer
 		endpoint_obj['model'] = model
 		endpoint_obj['output_clusters'] = []
 		endpoint_obj['input_clusters'] = []
 		endpoint_obj['output_clusters'] = []
+		logging.debug("["+str(device._ieee)+'][zdevices.serialize] 5')
 		for cluster in endpoint.out_clusters.values():
 			values = await serialize_cluster(cluster,with_attributes);
 			endpoint_obj['output_clusters'].append(values)
+		logging.debug("["+str(device._ieee)+'][zdevices.serialize] 6')
 		for cluster in endpoint.in_clusters.values():
 			values = await serialize_cluster(cluster,with_attributes);
 			endpoint_obj['input_clusters'].append(values)
+		logging.debug("["+str(device._ieee)+'][zdevices.serialize] 7')
 		obj['endpoints'].append(endpoint_obj)
+		logging.debug("["+str(device._ieee)+'][zdevices.serialize] 8')
 	return obj
 
 async def serialize_cluster(cluster,with_attributes = 1):
