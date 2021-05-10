@@ -32,30 +32,6 @@
       }
     },
     {
-      "name": "Armement",
-      "type": "action",
-      "subtype": "slider",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "1::ias_wd::squawk::#slider#::0::0",
-      "configuration" : {
-        "minValue":"1",
-        "maxValue":"9"
-      }
-    },
-    {
-      "name": "Desarmement",
-      "type": "action",
-      "subtype": "slider",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "1::ias_wd::squawk::#slider#::0::1",
-      "configuration" : {
-        "minValue":"1",
-        "maxValue":"9"
-      }
-    },
-    {
       "name": "Arret",
       "type": "action",
       "subtype": "other",
