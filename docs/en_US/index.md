@@ -278,3 +278,7 @@ Finally, and even if it may seem obvious to some, we remind you that Zigbee gate
 > 2 possibilities :
 > - it is a ZLL module *(see the configuration of the Jeedom equipment which indicates whether it is ZHA or ZLL)*. In this case you absolutely need a "Refresh" command so that you or Jeedom force the update of the values. If this command does not exist in the equipment, you must contact Jeedom support to have it added in the next stable version. Once out, click on the button **Recreate commands** without deletion.
 > -	the module is in ZHA, so it's a concern of inclusion. In the tab **Action** of the module configuration, there is a button **Reset module** allowing to force post-inclusion actions. Care must be taken to keep the module awake if it is on battery.
+
+>**My module drains its batteries very quickly**
+>
+>Check that you are on an up-to-date firmware on your zigbee key. In 90% of cases, excessive battery consumption comes from the firmware of the key which has a problem.

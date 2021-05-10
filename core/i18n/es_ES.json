@@ -125,7 +125,6 @@
         "Attention la configuration du Poll control est complexe (et volontairement pas expliquée). La moindre erreur peut vous obliger a faire un reset du module voir le casser. Pour remettre les valeurs par defaut laisser les champs vides": "Tenga en cuenta que la configuración del control Poll es compleja (y no se explica intencionalmente). El más mínimo error puede obligarlo a restablecer el módulo o incluso a romperlo. Para restablecer los valores predeterminados, deje los campos vacíos",
         "Long pool (en 1\/4 de seconde)": "Piscina larga (en 1\/4 de segundo)",
         "Short pool (en 1\/4 de seconde)": "Piscina corta (en 1\/4 de segundo)",
-        "Fast pool timeout (en 1\/4 de seconde)": "Tiempo de espera rápido de la piscina (en 1\/4 de segundo)",
         "Forcer la mise à jour du module": "Forzar la actualización del módulo",
         "OTA": "OTA",
         "Mettre à jour l'heure": "Tiempo de actualizacion",
@@ -393,6 +392,11 @@
         "QRcode invalide": "QRcode inválido"
     },
     "plugins\/zigbee\/core\/config\/devices\/tuya\/TZE200_dzuqwsyg.TS0601.php": {
+        "Froid": "Frío",
+        "Chaud": "Caliente",
+        "Ventilation": "Ventilación"
+    },
+    "plugins\/zigbee\/core\/config\/devices\/tuya\/TZE200_aoclfnxz.TS0601.php": {
         "Froid": "Frío",
         "Chaud": "Caliente",
         "Ventilation": "Ventilación"

@@ -278,3 +278,7 @@ Finalmente, e mesmo que pareça óbvio para alguns, lembramos que os gateways Zi
 > 2 possibilidades :
 > - é um módulo ZLL *(veja a configuração do equipamento Jeedom que indica se é ZHA ou ZLL)*. Neste caso, você precisa absolutamente de um comando "Atualizar" para que você ou a Jeedom force a atualização dos valores. Se este comando não existir no equipamento, você deve entrar em contato com o suporte da Jeedom para que seja adicionado na próxima versão estável. Assim que sair, clique no botão **Recriar comandos** sem deleção.
 > -	o módulo está no ZHA, então é uma preocupação de inclusão. Na aba **Açao** da configuração do módulo, há um botão **Módulo de reinicialização** permitindo forçar ações pós-inclusão. Deve-se ter cuidado para manter o módulo acordado se estiver na bateria.
+
+>**Meu módulo esgota suas baterias muito rapidamente**
+>
+>Verifique se você está com um firmware atualizado em sua chave zigbee. Em 90% dos casos, o consumo excessivo de bateria vem do firmware da chave que apresenta o problema.

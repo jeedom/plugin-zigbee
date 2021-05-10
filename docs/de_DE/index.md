@@ -278,3 +278,7 @@ Schließlich und auch wenn es einigen offensichtlich erscheint, erinnern wir Sie
 > 2 Möglichkeiten :
 > - Es ist ein ZLL-Modul *(Siehe die Konfiguration der Jeedom-Ausrüstung, die angibt, ob es sich um ZHA oder ZLL handelt)*. In diesem Fall benötigen Sie unbedingt einen Befehl "Aktualisieren", damit Sie oder Jeedom die Aktualisierung der Werte erzwingen. Wenn dieser Befehl im Gerät nicht vorhanden ist, müssen Sie sich an den Jeedom-Support wenden, damit er in der nächsten stabilen Version hinzugefügt wird. Sobald Sie fertig sind, klicken Sie auf die Schaltfläche **Befehle neu erstellen** ohne Löschung.
 > -	Das Modul befindet sich in ZHA, daher ist es ein Anliegen der Inklusion. In der Registerkarte **Aktion** In der Modulkonfiguration befindet sich eine Schaltfläche **Modul zurücksetzen** Erlauben, Aktionen nach der Aufnahme zu erzwingen. Es muss darauf geachtet werden, dass das Modul wach bleibt, wenn es im Akkubetrieb ist.
+
+>**Mein Modul leert seine Batterien sehr schnell**
+>
+>Überprüfen Sie, ob sich auf Ihrem ZigBee-Schlüssel eine aktuelle Firmware befindet. In 90% der Fälle kommt ein übermäßiger Batterieverbrauch von der Firmware des Schlüssels, bei dem ein Problem auftritt.

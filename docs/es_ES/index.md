@@ -278,3 +278,7 @@ Finalmente, e incluso si puede parecer obvio para algunos, te recordamos que las
 > 2 posibilidades :
 > - es un módulo ZLL *(ver la configuración del equipo Jeedom que indica si es ZHA o ZLL)*. En este caso, es absolutamente necesario un comando "Actualizar" para que usted o Jeedom fuercen la actualización de los valores. Si este comando no existe en el equipo, debe comunicarse con el soporte de Jeedom para que se agregue en la próxima versión estable. Una vez fuera, haga clic en el botón **Recrear comandos** sin borrar.
 > -	el módulo está en ZHA, por lo que es una preocupación de inclusión. En la pestaña **Acción** de la configuración del módulo, hay un botón **Restablecer módulo** permitiendo forzar acciones posteriores a la inclusión. Se debe tener cuidado para mantener el módulo activo si está en batería.
+
+>**Mi módulo agota sus baterías muy rápidamente**
+>
+>Comprueba que tienes un firmware actualizado en tu zigbee key. En el 90% de los casos, el consumo excesivo de batería proviene del firmware de la clave que tiene un problema.
