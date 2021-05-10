@@ -267,6 +267,8 @@ if _device == 'auto':
 			_device = jeedom_utils.find_tty_usb('0403','6015')
 	if _controller == 'zigate' :
 		_device = jeedom_utils.find_tty_usb('067b','2303')
+		if _device is None:
+			_device = jeedom_utils.find_tty_usb('0403','6015')
 
 if _device is None:
 	logging.error('No device found')
