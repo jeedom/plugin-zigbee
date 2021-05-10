@@ -198,7 +198,6 @@ class PollControl():
 	CHECKIN_INTERVAL = 60 * 60 * 4  # 60min
 	CHECKIN_FAST_POLL_TIMEOUT = 10 * 4  # 10s
 	LONG_POLL = 5 * 4  # 5s
-	SHORT_POLL = 2  # 2 quarterseconds
 
 	async def initialize(cluster):
 		 try:
@@ -218,33 +217,28 @@ class PollControl():
 		if cmd_name == "checkin":
 			fast_poll_timeout = PollControl.CHECKIN_FAST_POLL_TIMEOUT
 			long_poll = PollControl.LONG_POLL
-			short_poll = PollControl.SHORT_POLL
 			ieee = str(cluster.endpoint.device._ieee)
 			if ieee in shared.DEVICE_SPECIFIC and 'poll_control' in shared.DEVICE_SPECIFIC[ieee]:
 				if 'long_poll' in shared.DEVICE_SPECIFIC[ieee]['poll_control'] and shared.DEVICE_SPECIFIC[ieee]['poll_control']['long_poll'] != '' :
 					long_poll = int(shared.DEVICE_SPECIFIC[ieee]['poll_control']['long_poll'])
 				if 'fast_poll_timeout' in shared.DEVICE_SPECIFIC[ieee]['poll_control'] and shared.DEVICE_SPECIFIC[ieee]['poll_control']['fast_poll_timeout'] != '' :
 					fast_poll_timeout = int(shared.DEVICE_SPECIFIC[ieee]['poll_control']['fast_poll_timeout'])
-				if 'short_poll' in shared.DEVICE_SPECIFIC[ieee]['poll_control'] and shared.DEVICE_SPECIFIC[ieee]['poll_control']['short_poll'] != '' :
-					short_poll = int(shared.DEVICE_SPECIFIC[ieee]['poll_control']['short_poll'])
-			utils.initSharedDeviceData(cluster,'long_poll')
-			utils.initSharedDeviceData(cluster,'short_poll')		
-			if shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['long_poll'] == long_poll and shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['short_poll'] == short_poll:
+			utils.initSharedDeviceData(cluster,'long_poll')	
+			if shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['long_poll'] == long_poll:
 				logging.debug("["+ieee+"][chanels.general.PollControl.cluster_command] No checkin update needed")
 				asyncio.ensure_future(cluster.checkin_response(False, fast_poll_timeout, tsn=tsn))
 				return True
 			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['long_poll'] = long_poll
-			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['short_poll'] = short_poll
-			asyncio.ensure_future(PollControl.set_poll_parameters(cluster,tsn,fast_poll_timeout,long_poll,short_poll))
+			asyncio.ensure_future(PollControl.set_poll_parameters(cluster,tsn,fast_poll_timeout,long_poll))
 			return True
 		return False
 		
-	async def set_poll_parameters(cluster,tsn,fast_poll_timeout,long_poll,short_poll):
+	async def set_poll_parameters(cluster,tsn,fast_poll_timeout,long_poll):
 		ieee = str(cluster.endpoint.device._ieee)
-		logging.debug("["+ieee+"][chanels.general.PollControl.set_poll_parameters] Send checkin response. Fastpoll timeout : %s s, long poll %s s, short poll %s s",(fast_poll_timeout/4),(long_poll/4),(short_poll/4))
+		logging.debug("["+ieee+"][chanels.general.PollControl.set_poll_parameters] Send checkin response. Fastpoll timeout : %s s, long poll %s s",(fast_poll_timeout/4),(long_poll/4))
 		await cluster.checkin_response(True, fast_poll_timeout, tsn=tsn)
-		await cluster.set_long_poll_interval(long_poll)
-		await cluster.set_short_poll_interval(short_poll)
+		if long_poll != -1 :
+			await cluster.set_long_poll_interval(long_poll)
 		await cluster.fast_poll_stop()
 		logging.debug("["+ieee+"][chanels.general.PollControl.set_poll_parameters] End of checkin response")
 

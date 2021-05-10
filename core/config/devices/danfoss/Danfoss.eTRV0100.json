@@ -10,8 +10,7 @@
   "configuration" :{
     "deviceSpecific":{
       "poll_control":{
-        "long_poll":"28",
-        "fast_poll_timeout":"40"
+        "long_poll":"28"
       }
     }
   },

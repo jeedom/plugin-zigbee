@@ -422,12 +422,6 @@ sendVarToJS('zigbee_binding_device',$binding_device);
                   <input type="number" class="deviceAttr form-control" data-l1key="poll_control" data-l2key="short_poll"/>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">{{Fast pool timeout (en 1/4 de seconde)}}</label>
-                <div class="col-sm-2">
-                  <input type="number" class="deviceAttr form-control" data-l1key="poll_control" data-l2key="fast_poll_timeout"/>
-                </div>
-              </div>
             <?php } ?>
           </fieldset>
         </form>
