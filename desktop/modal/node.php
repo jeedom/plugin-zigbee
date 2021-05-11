@@ -893,7 +893,7 @@ sendVarToJS('zigbee_binding_device',$binding_device);
           $('#div_nodeDeconzAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-          $('#div_nodeDeconzAlert').showAlert({message: '{{Binding réussi}}', level: 'success'});
+          $('#div_nodeDeconzAlert').showAlert({message: '{{Unbinding réussi}}', level: 'success'});
         }
       })
     })
@@ -910,7 +910,7 @@ sendVarToJS('zigbee_binding_device',$binding_device);
       }
     }
     bootbox.prompt({
-      title: "{{A quel module/groupe voulez vous délier le cluster ?}}",
+      title: "{{A quel module/groupe voulez vous lier/delier le cluster ?}}",
       value : select_list[0].value,
       inputType: 'select',
       inputOptions:select_list,
@@ -935,7 +935,7 @@ sendVarToJS('zigbee_binding_device',$binding_device);
                 select_list.push({value:j,text:'Endpoint '.j})
               }
               bootbox.prompt({
-                title: "{{A quel endpoint voulez vous lier le cluster ?}}",
+                title: "{{A quel endpoint voulez vous lier/delier le cluster ?}}",
                 value : select_list[0].value,
                 inputType: 'select',
                 inputOptions:select_list,
