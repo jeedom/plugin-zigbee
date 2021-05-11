@@ -13,7 +13,7 @@
         {"value":4,"name":"Chaud et froid"},
         {"value":5,"name":"Chaud, froid et rechauffage"}
       ]
-    },
+    }
   ],
   "commands": [
     {
