@@ -179,6 +179,7 @@ if (!isConnect('admin')) {
                   <option value="15">{{15}}</option>
                   <option value="20">{{20}}</option>
                   <option value="25">{{25}}</option>
+                  <option value="26">{{26}}</option>
                 </select>
               </div>
             </div>
