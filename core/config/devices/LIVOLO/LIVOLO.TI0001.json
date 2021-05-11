@@ -9,7 +9,7 @@
       "generic_type": "ENERGY_STATE",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::6::0"
+      "logicalId": "6::6::0"
     },
     {
       "name": "On",
@@ -19,7 +19,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::on",
+      "logicalId": "6::on_off::on",
       "template":{
         "dashboard" : "prise",
         "mobile" : "prise"
@@ -33,7 +33,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::off",
+      "logicalId": "6::on_off::off",
       "template":{
         "dashboard" : "prise",
         "mobile" : "prise"
