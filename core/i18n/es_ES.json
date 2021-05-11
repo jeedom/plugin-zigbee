@@ -60,6 +60,7 @@
         "15": "15",
         "20": "20",
         "25": "25",
+        "26": 26,
         "Redémarrer le démon": "Reinicia el demonio",
         "Configuration avancée Zigpy": "Configuración avanzada de Zigpy",
         "json": "json",
@@ -158,8 +159,9 @@
         "Mise à jour OTA forcée envoyée avec succes": "Actualización forzada de OTA enviada con éxito",
         "Mise à jour de l\\'heure réussie": "Actualización de hora exitosa",
         "Binding réussi": "Encuadernación exitosa",
-        "A quel module\/groupe voulez vous délier le cluster ?": "¿A qué módulo \/ grupo desea desvincular el clúster?",
-        "A quel endpoint voulez vous lier le cluster ?": "¿A qué punto final desea vincular el clúster?"
+        "Unbinding réussi": "Unbinding réussi",
+        "A quel module\/groupe voulez vous lier\/delier le cluster ?": "A quel module\/groupe voulez vous lier\/delier le cluster ?",
+        "A quel endpoint voulez vous lier\/delier le cluster ?": "A quel endpoint voulez vous lier\/delier le cluster ?"
     },
     "plugins\/zigbee\/desktop\/modal\/groups.php": {
         "Ajouter un groupe": "Añadir grupo",

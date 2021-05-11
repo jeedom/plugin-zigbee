@@ -44,7 +44,7 @@
         "Port du contrôleur": "Porta do controlador",
         "Sélectionner le port du contrôleur Zigbee. Le mode Auto ne fonctionne qu'avec les clés Deconz": "Selecione a porta do controlador Zigbee. O modo automático só funciona com as teclas Deconz",
         "Aucun": "Nemhum",
-        "Auto": "Auto",
+        "Auto": "Carro",
         "Pizigate": "Pizigate",
         "Passerelle distante": "Gateway remoto",
         "Renseigner l'adresse de la Pizigate": "Digite o endereço do Pizigate",
@@ -60,6 +60,7 @@
         "15": "15",
         "20": "20",
         "25": "25",
+        "26": 26,
         "Redémarrer le démon": "Reinicie o daemon",
         "Configuration avancée Zigpy": "Configuração avançada Zigpy",
         "json": "json",
@@ -158,8 +159,9 @@
         "Mise à jour OTA forcée envoyée avec succes": "Atualização forçada OTA enviada com sucesso",
         "Mise à jour de l\\'heure réussie": "Atualização de horário com sucesso",
         "Binding réussi": "Encadernação com sucesso",
-        "A quel module\/groupe voulez vous délier le cluster ?": "De qual módulo \/ grupo você deseja desvincular o cluster?",
-        "A quel endpoint voulez vous lier le cluster ?": "A qual endpoint você deseja vincular o cluster?"
+        "Unbinding réussi": "Unbinding réussi",
+        "A quel module\/groupe voulez vous lier\/delier le cluster ?": "A quel module\/groupe voulez vous lier\/delier le cluster ?",
+        "A quel endpoint voulez vous lier\/delier le cluster ?": "A quel endpoint voulez vous lier\/delier le cluster ?"
     },
     "plugins\/zigbee\/desktop\/modal\/groups.php": {
         "Ajouter un groupe": "Adicionar grupo",
@@ -392,7 +394,7 @@
         "QRcode invalide": "QRcode inválido"
     },
     "plugins\/zigbee\/core\/config\/devices\/tuya\/TZE200_dzuqwsyg.TS0601.php": {
-        "Froid": "Resfriado",
+        "Froid": "Frio",
         "Chaud": "Quente",
         "Ventilation": "Ventilação"
     },
