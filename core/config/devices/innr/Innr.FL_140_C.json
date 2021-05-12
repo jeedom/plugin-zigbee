@@ -1,7 +1,7 @@
 {
-  "name": "INNR E14 RGBW",
-  "ref" : "RS250C",
-  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5349-innr-ampoule-connectee-type-e14-zigbee-30-multicolor-rgbw-blanc-reglable-2200k-a-6500k-8718781552060.html",
+  "name": "INNR RUBAN FLEXIBLE INDOOR RGBW",
+  "ref" : "FL140C",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5455-innr-ruban-flexible-indoor-couleur-4m-couleur-et-blanc-variable-2000k-a-6500k-8718781552725.html",
   "reset" : "ON/OFF 6x espacés de 0.5s",
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule",
   "commands": [
