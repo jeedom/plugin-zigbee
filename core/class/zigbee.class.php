@@ -725,9 +725,24 @@ class zigbee extends eqLogic {
     return $return;
   }
   
+  public static function ciGlob($pat){
+    $p = '';
+    for($x=0; $x<strlen($pat); $x++){
+      $c = substr($pat, $x, 1);
+      if(preg_match("/[^A-Za-z]/", $c)){
+        $p .= $c;
+        continue;
+      }
+      $a = strtolower($c);
+      $b = strtoupper($c);
+      $p .= "[{$a}{$b}]";
+    }
+    return $p;
+  }
+  
   public static function getImgFilePath($_device) {
     foreach (ls(__DIR__ . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
-      foreach (ls(__DIR__ . '/../config/devices/' . $folder, $_device . '.{jpg,png}', false, array('files', 'quiet')) as $file) {
+      foreach (ls(__DIR__ . '/../config/devices/' . $folder, self::ciGlob($_device) . '.{jpg,png}', false, array('files', 'quiet')) as $file) {
         return $folder . $file;
       }
     }
