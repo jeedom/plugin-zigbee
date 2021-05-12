@@ -4,7 +4,7 @@
   "ref" : "SML001",
   "type": "Mouvement,Luminosité,Température",
   "config" : [
-    {"endpoint" : 2,"cluster":1030,"attribute":16,"name":"Délai","type":"number"},
+    {"endpoint" : 2,"cluster":1030,"attribute":16,"name":"Délai (seconde)","type":"number"},
     {"endpoint" : 2,"cluster":1030,"attribute":48,"name":"Sensibilité","type":"number"}
   ],
   "buylink" : "",
