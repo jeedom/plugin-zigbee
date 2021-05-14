@@ -4,6 +4,11 @@
   "buylink" : "",
   "reset" : "Il faut utiliser la fonction reset touchlink. Voir <a target='_blank' href='https://doc.jeedom.com/fr_FR/plugins/automation%20protocol/zigbee/#Touchlink'>ici</a>",
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule (un on/off sera peut être nécessaire)",
+  "config" : [
+    {"endpoint" : 11,"cluster":6,"attribute":16387,"manufacturer":4107,"name":"Lors de la mise sous tension","type":"select","values":[{"value":0,"name":"Eteindre la lumiere"},{"value":1,"name":"Allumer la lumiere"},{"value":255,"name":"Reprendre l'état précedent"}]},
+    {"endpoint" : 11,"cluster":8,"attribute":16384,"manufacturer":4107,"name":"Luminosité lors de la mise sous tension","type":"number","min" : 0,"max" : 255},
+    {"endpoint" : 11,"cluster":768,"attribute":16400,"manufacturer":4107,"name":"Température couleur lors de la mise sous tension","type":"number"}
+  ],
   "commands": [
     {
       "name": "Etat",
