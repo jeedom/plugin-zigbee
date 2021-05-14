@@ -720,6 +720,11 @@ class zigbee extends eqLogic {
       if (isset($return[$_device])) {
         return $return[$_device];
       }
+      foreach (($return as $device => $value) {
+        if(strtolower($device) == strtolower($_device)){
+          return $value;
+        }
+      }
       return array();
     }
     return $return;
