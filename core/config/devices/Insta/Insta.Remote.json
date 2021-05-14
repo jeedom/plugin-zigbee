@@ -14,12 +14,12 @@
       }
     },
     {
-      "name": "Scene",
+      "name": "Etat",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::5::cmd::5",
+      "logicalId": "1::6::cmd::0",
       "configuration": {
         "repeatEventManagement": "always"
       }
