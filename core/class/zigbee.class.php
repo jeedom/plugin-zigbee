@@ -751,6 +751,16 @@ class zigbee extends eqLogic {
         return $folder . $file;
       }
     }
+    foreach (ls(__DIR__ . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
+      foreach (ls(__DIR__ . '/../config/devices/' . $folder, '*.{jpg,png}', false, array('files', 'quiet')) as $file) {
+        if(strtolower($_device).'.png' == strtolower($file)){
+          return $file;
+        }
+        if(strtolower($_device).'.jpg' == strtolower($file)){
+          return $file;
+        }
+      }
+    }
     return false;
   }
   
