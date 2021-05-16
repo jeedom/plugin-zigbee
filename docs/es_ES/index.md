@@ -167,7 +167,7 @@ Para beneficiarse de las actualizaciones de OTA, debe marcar la casilla correspo
 
 Las actualizaciones se realizan automáticamente en caso de disponibilidad o si el módulo lo solicita. Es posible forzar la actualización de un módulo desde la pestaña **Comportamiento** desde la ventana de configuración del módulo en la página del dispositivo.
 
-Desafortunadamente, no hay un indicador simple para seguir el progreso de la actualización, la única solución es consultar los registros de `zigbee_X` en la depuración y buscar el término` OTA`. Podrá ver este tipo de registro cuando se actualice un módulo :
+Desafortunadamente, no existe un indicador simple para seguir el progreso de la actualización, la única solución es consultar los registros de `zigbeed_X` en la depuración y buscar el término` OTA`. Podrá ver este tipo de registro cuando se actualice un módulo :
 
 ''''''''
 2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA query_next_image handler for 'IKEA of Sweden TRADFRI control outlet': field_control=1, manufacture_id=4476, image_type=4353, current_file_version=536974883, hardware_version=60

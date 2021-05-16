@@ -184,7 +184,7 @@
         "Les mises à jour s'effectuent automatiquement en cas de disponibilité ou si le module en fait la demande": "Las actualizaciones se realizan automáticamente en caso de disponibilidad o si el módulo lo solicita",
         "Il est possible de forcer la mise à jour d'un module depuis l'onglet": "Es posible forzar la actualización de un módulo desde la pestaña",
         "de la fenêtre de configuration du module sur la page de l'équipement": "desde la ventana de configuración del módulo en la página del dispositivo",
-        "Il n'existe malheureusement pas d'indicateur simple permettant de suivre l'avancement de la mise à jour, la seule solution est de se référer aux log `zigbee_X` en debug et de chercher le terme `OTA`": "Desafortunadamente, no hay un indicador simple para seguir el progreso de la actualización, la única solución es consultar los registros de `zigbee_X` en la depuración y buscar el término` OTA`",
+        "Il n'existe malheureusement pas d'indicateur simple permettant de suivre l'avancement de la mise à jour, la seule solution est de se référer aux log `zigbeed_X` en debug et de chercher le terme `OTA`": "Desafortunadamente, no existe un indicador simple para seguir el progreso de la actualización, la única solución es consultar los registros de `zigbeed_X` en la depuración y buscar el término` OTA`",
         "Vous pourrez voir ce type de log lorsqu'un module se met à jour": "Podrá ver este tipo de registro cuando se actualice un módulo",
         "Touchlink\/Lightlink": "Touchlink \/ Lightlink",
         "ou Lightlink": "o Lightlink",

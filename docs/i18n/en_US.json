@@ -184,7 +184,7 @@
         "Les mises à jour s'effectuent automatiquement en cas de disponibilité ou si le module en fait la demande": "Updates are carried out automatically in the event of availability or if the module requests it",
         "Il est possible de forcer la mise à jour d'un module depuis l'onglet": "It is possible to force the update of a module from the tab",
         "de la fenêtre de configuration du module sur la page de l'équipement": "from the module configuration window on the device page",
-        "Il n'existe malheureusement pas d'indicateur simple permettant de suivre l'avancement de la mise à jour, la seule solution est de se référer aux log `zigbee_X` en debug et de chercher le terme `OTA`": "Unfortunately, there is no simple indicator to follow the progress of the update, the only solution is to refer to the `zigbee_X` logs in debug and look for the term` OTA`",
+        "Il n'existe malheureusement pas d'indicateur simple permettant de suivre l'avancement de la mise à jour, la seule solution est de se référer aux log `zigbeed_X` en debug et de chercher le terme `OTA`": "Unfortunately, there is no simple indicator to follow the progress of the update, the only solution is to refer to the `zigbeed_X` logs in debug and look for the term` OTA`",
         "Vous pourrez voir ce type de log lorsqu'un module se met à jour": "You will be able to see this type of log when a module updates",
         "Touchlink\/Lightlink": "Touchlink \/ Lightlink",
         "ou Lightlink": "or Lightlink",

@@ -167,7 +167,7 @@ Um von OTA-Updates zu profitieren, müssen Sie das entsprechende Kontrollkästch
 
 Aktualisierungen werden bei Verfügbarkeit oder auf Anforderung des Moduls automatisch durchgeführt. Es ist möglich, die Aktualisierung eines Moduls über die Registerkarte zu erzwingen **Aktionen** aus dem Modulkonfigurationsfenster auf der Geräteseite.
 
-Leider gibt es keinen einfachen Indikator, um den Fortschritt des Updates zu verfolgen. Die einzige Lösung besteht darin, auf die "zigbee_X" -Protokolle im Debug zu verweisen und nach dem Begriff "OTA" zu suchen. Sie können diesen Protokolltyp sehen, wenn ein Modul aktualisiert wird :
+Leider gibt es keinen einfachen Indikator, um den Fortschritt des Updates zu verfolgen. Die einzige Lösung besteht darin, beim Debuggen auf die "zigbeed_X" -Protokolle zu verweisen und nach dem Begriff "OTA" zu suchen. Sie können diesen Protokolltyp sehen, wenn ein Modul aktualisiert wird :
 
 ````````
 2020-02-27 15:51:10 [DEBUG][0x7813:1:0x0019] OTA query_next_image handler for 'IKEA of Sweden TRADFRI control outlet': field_control=1, manufacture_id=4476, image_type=4353, current_file_version=536974883, hardware_version=60
