@@ -17,10 +17,6 @@
       "logicalId": "1::1280::cmd::1",
       "generic_type": "OPENING",
       "template" : {
-        "dashboard" : "door",
-        "mobile" : "door"
-      },
-      "template" : {
         "dashboard" : "window",
         "mobile" : "window"
       }
