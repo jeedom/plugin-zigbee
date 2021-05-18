@@ -18,5 +18,8 @@
     "zigpy-zigate" : {"reinstall" : true},
     "zigpy-cc" : {"reinstall" : true},
     "bellows" : {"reinstall" : true}
+  },
+  "post-install" : {
+    "script" : "plugins/zigbee/resources/post-install.sh"
   }
 }
