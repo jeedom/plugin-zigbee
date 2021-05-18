@@ -2,7 +2,12 @@
     "changelog.md": {
         "Changelog Zigbee": "Changelog Zigbee",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto",
-        "Support du GreenPower en beta pour les clefs de type EZSP (Elelabs,Popp": "Suporte GreenPower em beta para chaves do tipo EZSP (Elelabs, Popp",
+        "Pour connaitre les nouveaux module compatible il faut aller": "Para conhecer o novo módulo compatível você tem que ir",
+        "c'est trié par date d'ajout\/modification": "é classificado pela data de adição \/ modificação",
+        "18\/05\/2021": "18\/05\/2021",
+        "Support du GreenPower en beta pour les clefs de type EZSP (Elelabs,Popp...), necessite une relance de l'installation des dépendances": "O suporte GreenPower em beta para chaves do tipo EZSP (Elelabs, Popp ...), requer o reinício da instalação de dependências",
+        "Ajout de nouveau module compatible": "Adição de novo módulo compatível",
+        "Correction de bug": "Correção de bug",
         "03\/05\/2021": "03\/05\/2021",
         "Mise à jour de la documentation": "Atualização de documentação",
         "Correction de bugs": "Bugfix",
@@ -25,7 +30,14 @@
         " IMPORTANT]": " IMPORTANTE]",
         "[IMPORTANT]": "[IMPORTANTE]",
         "*IMPORTANT*": "*IMPORTANTE*",
-        " IMPORTANT*": " IMPORTANTE*"
+        " IMPORTANT*": " IMPORTANTE*",
+        " la.": " a.",
+        " la?": " a?",
+        "la ": "a ",
+        " la]": " a]",
+        "[la]": "[a]",
+        "*la*": "*a*",
+        " la*": " a*"
     },
     "index.md": {
         "IN \\": "DENTRO \\",
