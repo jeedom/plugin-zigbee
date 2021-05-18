@@ -199,7 +199,11 @@ if (!isConnect('admin')) {
         $('#div_networkZigbeeAlert').showAlert({message: error.message, level: 'danger'});
       },
       success: function (data) {
-        $('#application_network').empty().html(jeedom.zigbee.util.displayAsTable(data));
+        $('#application_network').empty();
+        if(data.ezsp && data.ezsp.version && data.ezsp.version.substr(2, 1) < 7){
+          $('#application_network').append('<div class="alert alert-danger">{{Le firmware de votre clef Zigbee n\'est pas à jour. Merci de le mettre à jour pour éviter les soucis (probleme de communication, surconsommation de pile des modules...). Pour se faire aller sur "configuration" puis "mettre à jour le firmware", selectionnez votre type de clef puis le port : }}'+data.config.device.path+'{{ et la version du firmware voulue}}</div>')
+        }
+        $('#application_network').append(jeedom.zigbee.util.displayAsTable(data));
       }
     });
   }
