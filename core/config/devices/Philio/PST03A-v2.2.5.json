@@ -5,12 +5,28 @@
   "remark" : "",
   "commands": [
     {
+      "name": "Présence",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::0",
+      "generic_type": "PRESENCE",
+      "display": {
+        "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "presence",
+        "mobile" : "presence"
+      }
+    },
+    {
       "name": "Ouverture",
       "type": "info",
       "subtype": "binary",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::1280::cmd::1",
+      "logicalId": "2::1280::cmd::1",
       "generic_type": "OPENING",
       "template" : {
         "dashboard" : "window",
