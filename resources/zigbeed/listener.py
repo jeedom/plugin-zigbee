@@ -71,6 +71,10 @@ class Listener:
 		logging.info("["+str(cluster.endpoint.device._ieee)+"][listener.cluster_command] Cluster: %s ClusterId: 0x%04x tsn: %s args: %s" %(cluster, cluster.cluster_id, tsn, args))
 		try:
 			utils.initSharedDeviceData(cluster,'cmd')
+			if 'tsn' in shared.DEVICES_DATA[cluster.endpoint.device._ieee] and shared.DEVICES_DATA[cluster.endpoint.device._ieee]['tsn'] == tsn:
+				logging.info("["+str(cluster.endpoint.device._ieee)+"][listener.cluster_command] Ignoring already received this command last tsn="+str(shared.DEVICES_DATA[cluster.endpoint.device._ieee]['tsn'])+" received "+str(tsn))
+				return
+			shared.DEVICES_DATA[cluster.endpoint.device._ieee]['tsn'] = tsn
 			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['cmd'] = args
 			if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id],'cluster_command'):
 				logging.info("["+str(cluster.endpoint.device._ieee)+"][listener.cluster_command] Use specific decode funtion of cluster id "+str(cluster.cluster_id))
