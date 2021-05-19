@@ -10,7 +10,7 @@
     "last_seen::check_mode":"disable",
     "deviceSpecific":{
       "poll_control":{
-        "long_poll":"1160"
+        "long_poll":"-1"
       }
     }
   },

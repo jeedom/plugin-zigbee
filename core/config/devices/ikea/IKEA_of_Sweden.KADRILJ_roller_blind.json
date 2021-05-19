@@ -3,6 +3,14 @@
   "buylink" : "",
   "reset" : "Presser les 2 boutons jusqu'a ce que la diode s'allume",
   "pairing" : "Pour l'inclusion il est conseillé de faire une remise à zéro du store, puis mettre Jeedom en mode inclusion, retirer la betarie et remettre la batterie du store",
+  "configuration" :{
+    "last_seen::check_mode":"disable",
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"-1"
+      }
+    }
+  },
   "commands": [
     {
       "name": "Etat",

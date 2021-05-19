@@ -99,11 +99,17 @@ class Listener:
 
 	def device_announce(self, cluster, command_id, *args):
 		device = cluster.endpoint.device
-		logging.info("["+str(device._ieee)+"][listener.device_announce] Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
+		logging.info("["+str(device._ieee)+"][listener.device_announce] Cluster: %s cluster_id: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
 
 	def general_command(self, cluster, command_id, *args):
 		device = cluster.endpoint.device
-		logging.info("["+str(device._ieee)+"][listener.general_command] Cluster: %s ClusterId: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
+		logging.info("["+str(device._ieee)+"][listener.general_command] Cluster: %s cluster_id: 0x%04x command_id: %s args: %s" %(cluster, cluster.cluster_id, command_id, args))
+		if cluster.endpoint.device._ieee not in shared.DEVICES_DATA:
+			shared.DEVICES_DATA[cluster.endpoint.device._ieee] = {}
+		if 'tsn' in shared.DEVICES_DATA[cluster.endpoint.device._ieee] and shared.DEVICES_DATA[cluster.endpoint.device._ieee]['tsn'] == command_id.tsn:
+			logging.info("["+str(cluster.endpoint.device._ieee)+"][listener.general_command] Ignoring already received this command last tsn="+str(shared.DEVICES_DATA[cluster.endpoint.device._ieee]['tsn'])+" received "+str(command_id.tsn))
+			return
+		shared.DEVICES_DATA[cluster.endpoint.device._ieee]['tsn'] = command_id.tsn
 		nb1=0
 		nb2=0
 		for i in args[0]:
