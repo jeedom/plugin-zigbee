@@ -100,6 +100,10 @@ Para solicitar la incorporación de nuevos equipos, es necesario aportar los sig
 - En la página del equipo, haga clic en el botón azul **Configuración del módulo** luego tabula **Información en bruto**. Copia el contenido para transmitirlo al equipo de Jeedom,
 - Ponga el demonio en `debug` desde la página de configuración del complemento y reinícielo. Realizar acciones en el equipo *(si es un sensor de temperatura, variar la temperatura, si es una válvula, variar el setpoint, etc...)* y envía el registro `zigbee` *(no `zigbeed`)*.
 
+>**Importante**
+>
+>Antes de cualquier solicitud para agregar un módulo, verifique que su complemento esté actualizado y que el módulo no esté ya en la lista. A veces sucede que el reconocimiento automático no funciona (porque el módulo no da su identificación a tiempo) y que es necesario indicar manualmente a Jeedom el tipo de módulo
+
 >**INFORMACIÓN**
 >
 >Cualquier solicitud incompleta será rechazada sin una respuesta del equipo de Jeedom.
@@ -282,3 +286,9 @@ Finalmente, e incluso si puede parecer obvio para algunos, te recordamos que las
 >**Mi módulo agota sus baterías muy rápidamente**
 >
 >Comprueba que tienes un firmware actualizado en tu zigbee key. En el 90% de los casos, el consumo excesivo de batería proviene del firmware de la clave que tiene un problema.
+
+>**No puedo incluir nuevos módulos**
+>
+>Varias posibilidades para esto : 
+>- Ya tienes muchos mods y has excedido el límite del número de mods en vivo (31 en general). Debe poner otra clave Zigbee (el complemento administra hasta 3) o intentar agregar nodos de enrutador (tenga cuidado de que no haya un estándar claro en los nodos de enrutador, por lo que hay incompatibilidades entre los fabricantes...)
+>- Estás bajo Conbee : intente desconectar la clave durante 2 minutos, vuelva a colocarla y reinicie el demonio, es una enfermedad conocida de la clave Conbee (incluso bajo deconz) o necesita un reinicio en frío para que la inclusión funcione

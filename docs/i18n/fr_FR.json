@@ -149,6 +149,8 @@
         "Mettre le démon en `debug` depuis la page de configuration du plugin et le redémarrer": "Mettre le démon en `debug` depuis la page de configuration du plugin et le redémarrer",
         "Effectuer des actions sur l'équipement": "Effectuer des actions sur l'équipement",
         "et envoyer le log `zigbee`": "et envoyer le log `zigbee`",
+        "Avant toute demande d'ajout de module vérifiez bien que votre plugin est à jour et que le module n'est pas deja dans la liste": "Avant toute demande d'ajout de module vérifiez bien que votre plugin est à jour et que le module n'est pas deja dans la liste",
+        "Il arrive parfois que la reconnaissance automatique ne marche pas (car le module ne donne pas son identification dans les temps) et qu'il faille indiquer manuellement à Jeedom le type de module": "Il arrive parfois que la reconnaissance automatique ne marche pas (car le module ne donne pas son identification dans les temps) et qu'il faille indiquer manuellement à Jeedom le type de module",
         "Toute demande incomplète sera refusée sans réponse de la part de l'équipe Jeedom": "Toute demande incomplète sera refusée sans réponse de la part de l'équipe Jeedom",
         "Fonctionnement des commandes": "Fonctionnement des commandes",
         "Nous expliquons ci-après le fonctionnement des commandes dans le plugin à l'attention des utilisateurs les plus avancés": "Nous expliquons ci-après le fonctionnement des commandes dans le plugin à l'attention des utilisateurs les plus avancés",
@@ -333,6 +335,12 @@
         "Il faut bien veiller à garder le module éveillé s'il est sur batterie": "Il faut bien veiller à garder le module éveillé s'il est sur batterie",
         "Mon module vide ses batteries très vite": "Mon module vide ses batteries très vite",
         "Vérifiez que vous etes bien sur un firmware à jour sur votre clef zigbee": "Vérifiez que vous etes bien sur un firmware à jour sur votre clef zigbee",
-        "Dans 90% des cas une consommation excessive des piles vient du firmware de la clef qui a un soucis": "Dans 90% des cas une consommation excessive des piles vient du firmware de la clef qui a un soucis"
+        "Dans 90% des cas une consommation excessive des piles vient du firmware de la clef qui a un soucis": "Dans 90% des cas une consommation excessive des piles vient du firmware de la clef qui a un soucis",
+        "je n'arrive pas à inclure de nouveaux modules": "je n'arrive pas à inclure de nouveaux modules",
+        "Plusieurs possibilités pour cela": "Plusieurs possibilités pour cela",
+        "Vous avez deja beaucoup de module et avez dépassé la limite du nombre de module en direct (31 en général": "Vous avez deja beaucoup de module et avez dépassé la limite du nombre de module en direct (31 en général",
+        "Il faut soit mettre une autre clef Zigbee (le plugin en géere jusqu'a 3) soit essayé en ajoutant des noeud routeur (attention il n'y a pas de norme clair sur les noeuds routeur il y a donc des incompatibilité entre fabricant": "Il faut soit mettre une autre clef Zigbee (le plugin en géere jusqu'a 3) soit essayé en ajoutant des noeud routeur (attention il n'y a pas de norme clair sur les noeuds routeur il y a donc des incompatibilité entre fabricant",
+        "Vous etes sous Conbee": "Vous etes sous Conbee",
+        "essayez de debrancher la clef pendant 2 minutes, de la remettre et relancer le demon, c'est une maladie connu des clef Conbee (meme sous deconz) ou il faut un cold reboot pour que l'inclusion remarche": "essayez de debrancher la clef pendant 2 minutes, de la remettre et relancer le demon, c'est une maladie connu des clef Conbee (meme sous deconz) ou il faut un cold reboot pour que l'inclusion remarche"
     }
 }
