@@ -1,0 +1,50 @@
+{
+  "name": "Scene remote 4 boutons",
+  "ref": "TS0044",
+  "commands": [
+    {
+      "name": "Bouton 1",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Bouton 2",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::6::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Bouton 3",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "3::6::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Bouton 4",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "4::6::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    }
+  ]
+}
