@@ -100,6 +100,10 @@ Pour solliciter l'ajout d'un nouveau matériel, il est nécessaire de fournir le
 - Sur la page de l'équipement, cliquer sur le bouton bleu **Configuration du module** puis onglet **Informations brutes**. Copier le contenu pour le transmettre à l'équipe Jeedom,
 - Mettre le démon en `debug` depuis la page de configuration du plugin et le redémarrer. Effectuer des actions sur l'équipement *(si c'est un capteur de température faire varier la température, si c'est une vanne faire varier la consigne, etc...)* et envoyer le log `zigbee` *(pas `zigbeed`)*.
 
+>**IMPORTANT**
+>
+>Avant toute demande d'ajout de module vérifiez bien que votre plugin est à jour et que le module n'est pas deja dans la liste. Il arrive parfois que la reconnaissance automatique ne marche pas (car le module ne donne pas son identification dans les temps) et qu'il faille indiquer manuellement à Jeedom le type de module
+
 >**INFORMATION**
 >
 >Toute demande incomplète sera refusée sans réponse de la part de l’équipe Jeedom.
@@ -282,3 +286,9 @@ Pour finir et même si cela peut paraître évident pour certains, nous rappelon
 >**Mon module vide ses batteries très vite**
 >
 >Vérifiez que vous etes bien sur un firmware à jour sur votre clef zigbee. Dans 90% des cas une consommation excessive des piles vient du firmware de la clef qui a un soucis.
+
+>**je n'arrive pas à inclure de nouveaux modules**
+>
+>Plusieurs possibilités pour cela : 
+>- Vous avez deja beaucoup de module et avez dépassé la limite du nombre de module en direct (31 en général). Il faut soit mettre une autre clef Zigbee (le plugin en géere jusqu'a 3) soit essayé en ajoutant des noeud routeur (attention il n'y a pas de norme clair sur les noeuds routeur il y a donc des incompatibilité entre fabricant...)
+>- Vous etes sous Conbee : essayez de debrancher la clef pendant 2 minutes, de la remettre et relancer le demon, c'est une maladie connu des clef Conbee (meme sous deconz) ou il faut un cold reboot pour que l'inclusion remarche
