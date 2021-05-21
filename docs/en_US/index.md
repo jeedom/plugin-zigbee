@@ -100,6 +100,10 @@ To request the addition of new equipment, it is necessary to provide the followi
 - On the equipment page, click on the blue button **Module configuration** then tab **Raw information**. Copy the content to transmit it to the Jeedom team,
 - Put the daemon in `debug` from the plugin configuration page and restart it. Perform actions on the equipment *(if it is a temperature sensor, vary the temperature, if it is a valve, vary the setpoint, etc...)* and send the `zigbee` log *(not `zigbeed`)*.
 
+>**Important**
+>
+>Before any request to add a module, check that your plugin is up to date and that the module is not already in the list. It sometimes happens that the automatic recognition does not work (because the module does not give its identification in time) and that it is necessary to manually indicate to Jeedom the type of module
+
 >**INFORMATION**
 >
 >Any incomplete request will be refused without a response from the Jeedom team.
@@ -282,3 +286,9 @@ Finally, and even if it may seem obvious to some, we remind you that Zigbee gate
 >**My module drains its batteries very quickly**
 >
 >Check that you are on an up-to-date firmware on your zigbee key. In 90% of cases, excessive battery consumption comes from the firmware of the key which has a problem.
+
+>**I cannot include new modules**
+>
+>Several possibilities for this : 
+>- You already have a lot of mods and have exceeded the limit of the number of live mods (31 in general). You must either put another Zigbee key (the plugin manages up to 3) or try adding router nodes (be careful there is no clear standard on router nodes so there are incompatibilities between manufacturers...)
+>- You are under Conbee : try to unplug the key for 2 minutes, put it back and restart the daemon, it's a known disease of the Conbee key (even under deconz) or you need a cold reboot for the inclusion to work
