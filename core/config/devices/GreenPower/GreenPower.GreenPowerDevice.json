@@ -47,17 +47,6 @@
       "configuration": {
         "repeatEventManagement": "always"
       }
-    },
-    {
-      "name": "Ouverture",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "logicalId": "1::257::cmd::0",
-      "configuration": {
-        "repeatEventManagement": "always"
-      }
     }
   ]
 }
