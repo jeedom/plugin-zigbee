@@ -21,6 +21,9 @@
       "template":{
         "dashboard" : "heat",
         "mobile" : "heat"
+      },
+      "configuration": {
+        "repeatEventManagement": "always"
       }
     }
   ]

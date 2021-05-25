@@ -17,7 +17,10 @@
       "isVisible": 1,
       "isHistorized": 1,
       "logicalId": "1::1280::cmd::1",
-      "generic_type": "CO"
+      "generic_type": "CO",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }
