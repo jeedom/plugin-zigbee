@@ -203,10 +203,10 @@ sendVarToJS('zigbee_last_firmware',$last_firmware);
       success: function (data) {
         $('#application_network').empty();
         if(data.ezsp && data.ezsp.version && data.ezsp.version.substr(0, 7).replace(/\./g, '') < zigbee_last_firmware.ezsp){
-          $('#application_network').append('<div class="alert alert-danger">{{Le firmware de votre clef Zigbee n\'est pas à jour. Merci de le mettre à jour pour éviter les soucis (probleme de communication, surconsommation de pile des modules...). Pour se faire aller sur "configuration" puis "mettre à jour le firmware", selectionnez votre type de clef puis le port : }}'+data.config.device.path+'{{ et la version du firmware voulue}}</div>')
+          $('#application_network').append('<div class="alert alert-danger">{{Le firmware de votre clé Zigbee n\'est pas à jour. Merci de le mettre à jour pour éviter les soucis (problème de communication, surconsommation de pile des modules...). Pour se faire aller sur "configuration" puis "mettre à jour le firmware", selectionnez votre type de clef puis le port : }}'+data.config.device.path+'{{ et la version du firmware voulue}}</div>')
         }
         if(data.deconz && data.deconz.version && parseInt(data.deconz.version) < parseInt(zigbee_last_firmware.conbee)){
-          $('#application_network').append('<div class="alert alert-danger">{{Le firmware de votre clef Zigbee n\'est pas à jour. Merci de le mettre à jour pour éviter les soucis (probleme de communication, surconsommation de pile des modules...). Pour mettre à jour une clef Deconz il faut ABSOLUMENT passer par un pc (windows recommandé) et installé l\'application Deconz. Attention cette application est connu pour avoir des difficultés à voir les mise à jour de firmware...}}</div>')
+          $('#application_network').append('<div class="alert alert-danger">{{Le firmware de votre clé Zigbee n\'est pas à jour. Merci de le mettre à jour pour éviter les soucis (problème de communication, surconsommation de pile des modules...). Pour mettre à jour une clé Deconz il faut ABSOLUMENT passer par un PC (Windows recommandé) et installé l\'application Deconz. Attention cette application est connue pour avoir des difficultés à voir les mises à jour de firmware...}}</div>')
         }
         $('#application_network').append(jeedom.zigbee.util.displayAsTable(data));
       }
