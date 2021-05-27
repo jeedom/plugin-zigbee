@@ -55,6 +55,7 @@
       "name": "Etat Luminosité",
       "type": "info",
       "subtype": "numeric",
+      "generic_type": "LIGHT_BRIGHTNESS",
       "isVisible": 0,
       "isHistorized": 0,
       "logicalId": "1::8::0",
@@ -105,7 +106,11 @@
       "isHistorized": 0,
       "value" : "Etat température couleur",
       "logicalId": "1::768::7",
-      "generic_type": "LIGHT_COLOR_TEMP"
+      "generic_type": "LIGHT_COLOR_TEMP",
+      "configuration" : {
+        "minValue" : 250,
+        "maxValue" : 454
+      }
     },
     {
       "name": "Température Couleur",

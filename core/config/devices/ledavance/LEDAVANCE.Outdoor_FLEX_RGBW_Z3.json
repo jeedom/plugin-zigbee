@@ -55,6 +55,7 @@
       "name": "Etat Luminosité",
       "type": "info",
       "subtype": "numeric",
+      "generic_type": "LIGHT_BRIGHTNESS",
       "isVisible": 0,
       "isHistorized": 0,
       "logicalId": "1::8::0",
