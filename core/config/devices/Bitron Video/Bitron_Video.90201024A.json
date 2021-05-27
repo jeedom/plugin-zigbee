@@ -1,0 +1,31 @@
+{
+  "name": "SMABIT - Détecteur de fumée",
+  "ref":"902010\/24A",
+  "buylink":"https://www.domadoo.fr/fr/peripheriques/5555-smabit-detecteur-de-fumee-optique-zigbee-avec-fonction-sirene-8023874396644.html",
+  "pairing":"Appuyez sur les 2 boutons (avant et arriere) pendant 10s",
+  "configuration" :{
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160"
+      }
+    }
+  },
+  "commands": [
+    {
+      "name": "Fumée",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "SMOKE",
+      "template":{
+        "dashboard" : "heat",
+        "mobile" : "heat"
+      },
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    }
+  ]
+}
