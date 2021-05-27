@@ -1,7 +1,7 @@
 {
-  "name": "Sirène exterieure",
+  "name": "Sirène",
   "ref" : "",
-  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5564-smabit-sirene-exterieure-zigbee-104-db-8023874397641.html",
+  "buylink" : "",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "commands": [
