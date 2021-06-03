@@ -1,0 +1,15 @@
+{
+  "name": "Capteur de vibration",
+  "ref" : "TS0210",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Vibration",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd::1"
+    }
+  ]
+}
