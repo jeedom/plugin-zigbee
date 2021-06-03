@@ -16,7 +16,6 @@
     "zigpy-xbee" : {"reinstall" : true},
     "zigpy-deconz" : {"reinstall" : true},
     "zigpy-zigate" : {"reinstall" : true},
-    "zigpy-cc" : {"reinstall" : true},
     "bellows" : {"reinstall" : true}
   },
   "post-install" : {

@@ -33,8 +33,6 @@ echo 85 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade zigpy-deconz
 echo 90 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade zigpy-zigate
-echo 95 > ${PROGRESS_FILE}
-sudo pip3 install --upgrade zigpy-cc
 echo 96 > ${PROGRESS_FILE}
 sudo pip3 install --upgrade tornado
 
