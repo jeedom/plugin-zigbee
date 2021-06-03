@@ -6,8 +6,7 @@
 -	**EZSP (laboratorios de silicio)** : Probado, validado y recomendado por el equipo de Jeedom.
 -	**XBee** : No probado por el equipo de Jeedom.
 -	**Zigate** : No probado por el equipo. 
--	**ZNP (Texas Instruments, pila Z 3.X.X)** : No probado por el equipo.
--	**CC (Texas Instruments, pila Z 1.2.X)** : No probado por el equipo.
+-	**ZNP (Texas Instruments)** : No probado por el equipo.
 
 Además, el complemento está equipado con muchas herramientas que permiten :
 

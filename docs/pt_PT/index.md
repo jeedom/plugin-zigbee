@@ -6,8 +6,7 @@
 -	**EZSP (Silicon Labs)** : Testado, validado e recomendado pela equipe Jeedom.
 -	**XBee** : Não testado pela equipe Jeedom.
 -	**Zigate** : Não testado pela equipe. 
--	**ZNP (Texas Instruments, Z-stack 3.X.X)** : Não testado pela equipe.
--	**CC (Texas Instruments, Z-stack 1.2.X)** : Não testado pela equipe.
+-	**ZNP (Texas Instruments)** : Não testado pela equipe.
 
 Além disso, o plugin está equipado com muitas ferramentas que permitem :
 
