@@ -99,7 +99,6 @@ if (!isConnect('admin')) {
                   <option value="ezsp">{{EZSP}}</option>
                   <option value="deconz">{{Conbee}}</option>
                   <option value="zigate">{{Zigate}}</option>
-                  <option value="cc">{{CC}}</option>
                   <option value="xbee">{{Xbee}}</option>
                   <option value="znp">{{ZNP}}</option>
                 </select>
@@ -285,4 +284,5 @@ if (!isConnect('admin')) {
     });
   })
   </script>
+  
   
