@@ -1,17 +1,9 @@
 {
-  "name": "INNR Outdoor Flex Light Colour",
-  "ref" : "OFL 140 C",
+  "name": "OSL 130 C",
+  "buylink" : "",
   "reset" : "ON/OFF 6x espacés de 0.5s",
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule",
   "commands": [
-    {
-      "name": "Rafraîchir",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "refresh"
-    },
     {
       "name": "Etat",
       "type": "info",
@@ -143,28 +135,6 @@
       "configuration" : {
         "minValue" : 0,
         "maxValue" : 1000
-      }
-    },
-    {
-      "name": "Loop",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "logicalId": "1::light_color::color_loop_start",
-      "display": {
-        "icon": "<i class=\"fas fa-spinner\"></i>"
-      }
-    },
-    {
-      "name": "Stop Loop",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "logicalId": "1::light_color::color_loop_stop",
-      "display": {
-        "icon": "<i class=\"fas fa-stop\"></i>"
       }
     }
   ]

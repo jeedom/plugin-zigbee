@@ -1,0 +1,19 @@
+{
+  "name": "Friends of huer 4 boutons",
+  "configuration" : {
+    "last_seen::check_mode" : "disable"
+  },
+  "commands": [
+    {
+      "name": "Scène",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::5::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    }
+  ]
+}
