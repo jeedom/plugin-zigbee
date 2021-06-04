@@ -1,5 +1,5 @@
 {
-  "name": "AQARA - Interrupteur sans fil intelligent (REV3)",
+  "name": "AQARA - Interrupteur sans fil intelligent",
   "ref" : "WXKG12LM",
   "type": "Télécommande,Interrupteur",
   "reset" : "Appuyer pendant 10s le sur bouton du module",
