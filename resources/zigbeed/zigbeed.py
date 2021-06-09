@@ -80,7 +80,7 @@ async def start_zigbee():
 			zigpy_config[zigpy.config.CONF_OTA] = {
 				zigpy.config.CONF_OTA_DIR  : _folder_OTA,
 				zigpy.config.CONF_OTA_IKEA : True,
-				zigpy.config.CONF_OTA_IKEA_URL : "http://fw.test.ota.homesmart.ikea.net/feed/version_info.json",
+				zigpy.config.CONF_OTA_IKEA_URL : "http://fw.ota.homesmart.ikea.net/feed/version_info.json",
 				zigpy.config.CONF_OTA_LEDVANCE : True
 			}
 		if shared.CONTROLLER == 'ezsp' :
