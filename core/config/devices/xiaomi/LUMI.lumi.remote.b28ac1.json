@@ -1,6 +1,6 @@
 {
   "name": "AQARA - Interrupteur simple sans fil intelligent",
-  "ref" : "WXKG03LM",
+  "ref" : "WRS-R02",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5725-xiaomi-aqara-interrupteur-mural-double-sans-fil-h1-zigbee-30-6970504215023.html",
   "configuration" : {
     "battery_type" : "1x3V CR2032"
