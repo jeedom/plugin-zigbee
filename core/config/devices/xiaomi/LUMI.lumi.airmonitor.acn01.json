@@ -1,0 +1,39 @@
+{
+  "name": "AQARA - AQARA - MONITEUR DE QUALITÉ D'AIR ZIGBEE 3.0 (TEMPÉRATURE, HUMIDITÉ, COVT)",
+  "ref" : "WSDCGQ11LM",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5751-xiaomi-aqara-moniteur-de-qualite-d-air-zigbee-30-temp-hum-covt-6970504214644.html",
+  "remark" : "Attention pour le moment il n'y a pas de retour COVT sur Jeedom",
+  "reset" : "Il faut presser pendant 10s le bouton du module",
+  "pairing":"Il faut presser pendant 5s le bouton du module",
+  "configuration" : {
+    "battery_type" : "2xCR2450"
+  },
+  "commands": [
+    {
+      "name": "Humidité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1029::0",
+      "unite" : "%",
+      "generic_type": "HUMIDITY",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1026::0",
+      "unite" : "°C",
+      "generic_type": "TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    }
+  ]
+}
