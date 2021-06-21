@@ -1,0 +1,51 @@
+{
+  "name": "Télécommande STYRBAR",
+  "reset" : "Appuyer sur le bouton de couplage 4 fois en moins de 5 secondes.",
+  "pairing" : "Maintenez le bouton d'appariement enfoncé pendant au moins 10 seconde",
+  "remark" : "",
+  "type" : "Télécommande",
+  "buylink" : "",
+  "configuration" :{
+    "last_seen::check_mode":"disable",
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"-1"
+      }
+    }
+  },
+  "commands": [
+    {
+      "name": "Bouton 1",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Bouton 2",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Bouton 2 mode",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::8::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    }
+  ]
+}
