@@ -1,0 +1,118 @@
+{
+  "name": "MODULE TRIPLE RELAIS",
+  "ref" : "CSLC631-3",
+  "reset" : "",
+  "commands": [
+    {
+      "name": "Etat 1",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "16::6::0"
+    },
+    {
+      "name": "On 1",
+      "generic_type": "ENERGY_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 1",
+      "logicalId": "16::on_off::on",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Off 1",
+      "generic_type": "ENERGY_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 1",
+      "logicalId": "16::on_off::off",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Etat 2",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "17::6::0"
+    },
+    {
+      "name": "On 2",
+      "generic_type": "ENERGY_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 2",
+      "logicalId": "17::on_off::on",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Off 2",
+      "generic_type": "ENERGY_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 2",
+      "logicalId": "17::on_off::off",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Etat 3",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "18::6::0"
+    },
+    {
+      "name": "On 3",
+      "generic_type": "ENERGY_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 3",
+      "logicalId": "18::on_off::on",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Off 3",
+      "generic_type": "ENERGY_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 3",
+      "logicalId": "18::on_off::off",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    }
+  ]
+}
