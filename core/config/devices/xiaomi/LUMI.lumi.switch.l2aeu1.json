@@ -34,7 +34,7 @@
       "logicalId": "1::on_off::off"
     },
     {
-      "name": "Toggle",
+      "name": "Toggle 1",
       "generic_type": "LIGHT_TOGGLE",
       "type": "action",
       "subtype": "other",
@@ -75,7 +75,7 @@
       "logicalId": "2::on_off::off"
     },
     {
-      "name": "Toggle",
+      "name": "Toggle 2",
       "generic_type": "LIGHT_TOGGLE",
       "type": "action",
       "subtype": "other",
