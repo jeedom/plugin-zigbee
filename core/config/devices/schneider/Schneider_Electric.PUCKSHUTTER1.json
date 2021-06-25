@@ -3,11 +3,11 @@
   "ref":"CCT5015-0002W",
   "manufacturer": "Schneider",
   "type": "Volets",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5724-schneider-electric-micromodule-volet-roulant-connecte-zigbee-30-wiser-3606481048189.html",
   "remark" : "",
   "reset" : "Presser 3 fois en moins d'une seconde le bouton du haut puis le maintenir appuyé pendant 10s au moins (attention à ne pas dépasser 20s). La led doit clignoter rouge",
   "pairing" : "Presser 3 fois le bouton",
-  "documentation": "https:\/\/download.schneider-electric.com\/files?p_enDocType=System+user+guide&p_File_Name=Merten_PL_Wiser_TIs_DE.pdf&p_Doc_Ref=Merten_PL_Wiser_TIs_DE",
+  "documentation": "https://download.schneider-electric.com/files?p_enDocType=Instruction+sheet&p_File_Name=CCT5xx5-xxx2_2W_HW.pdf&p_Doc_Ref=CCT5xx5-xxx2_2W_HW",
   "commands":[
     {
       "name": "Etat",
