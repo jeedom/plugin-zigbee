@@ -1,12 +1,12 @@
 {
-  "name": "INTERRUPTEUR CONNECTÉ ZIGBEE 3.0 WISER ODACE",
-  "ref" : "SCHS520530W",
+  "name": "Interrupteur connecté Zigbee 3.0 Wiser Odace",
+  "ref" : "S520530W",
   "manufacturer" : "Schneider",
-  "buylink" : "",
   "remark" : "",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5719-schneider-electric-interrupteur-connecte-zigbee-30-wiser-odace-blanc-3606481019578.html",
   "reset" : "Presser 3 fois en moins d'une seconde le bouton du haut puis le maintenir appuyé pendant 10s au moins (attention à ne pas dépasser 20s). La led doit clignoter rouge",
   "pairing" : "Presser 3 fois le bouton",
+  "documentation": "https://download.schneider-electric.com/files?p_enDocType=Instruction+sheet&p_File_Name=S5x0530W_HW.pdf&p_Doc_Ref=S5x0530W_HW",
   "commands":[
     {
       "name": "Etat",
