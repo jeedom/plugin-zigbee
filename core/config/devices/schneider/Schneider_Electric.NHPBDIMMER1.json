@@ -1,11 +1,13 @@
 {
-  "name": "Wiser dimmer",
+  "name": "Variateur poussoir connecté Zigbee 3.0 Wiser Odace",
+  "ref": "S520522W",
   "manufacturer" : "Schneider",
-  "type": "Variateur",
-  "buylink" : "",
+  "type": "Interrupteur,Variateur",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5716-schneider-electric-interrupteur-sans-fil-sans-pile-pour-eclairage-odace-sfsp-3606481019561.html",
   "remark" : "",
   "reset" : "Presser 3 fois en moins d'une seconde le bouton du haut puis le maintenir appuyé pendant 10s au moins (attention à ne pas dépasser 20s). La led doit clignoter rouge",
   "pairing" : "Presser 3 fois le bouton",
+  "documentation": "https://download.schneider-electric.com/files?p_enDocType=Instruction+sheet&p_File_Name=S5x0522W_HW.pdf&p_Doc_Ref=S5x0522W_HW",
   "commands":[
     {
       "name": "Etat",
