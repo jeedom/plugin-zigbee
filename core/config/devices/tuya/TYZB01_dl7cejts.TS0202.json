@@ -1,0 +1,24 @@
+{
+  "name": "Mini capteur de mouvement",
+  "ref" : "TYZB01-TS0202",
+  "buylink" : "",
+  "remark" : "",
+  "commands": [
+    {
+      "name": "Présence",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "PRESENCE",
+      "display": {
+        "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "presence",
+        "mobile" : "presence"
+      }
+    }
+  ]
+}
