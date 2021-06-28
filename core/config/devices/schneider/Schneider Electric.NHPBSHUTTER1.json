@@ -1,12 +1,13 @@
 {
-  "name": "SCHNEIDER WISER S520567W ODACE",
+  "name": "Interrupteur volet roulant connecté Zigbee 3.0 Wiser Odace",
   "ref" : "S520567W",
   "manufacturer": "Schneider",
-  "type": "Volets",
-  "buylink" : "",
+  "type": "Interrupteur,Volets",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5723-schneider-electric-interrupteur-volet-roulant-connecte-zigbee-30-wiser-odace-blanc-3606481019585.html",
   "remark" : "",
   "reset" : "Presser 3 fois en moins d'une seconde le bouton du haut puis le maintenir appuyé pendant 10s au moins (attention à ne pas dépasser 20s). La led doit clignoter rouge",
   "pairing" : "Presser 3 fois le bouton",
+  "documentation": "https://download.schneider-electric.com/files?p_enDocType=Instruction+sheet&p_File_Name=S5x0567W_HW.pdf&p_Doc_Ref=S5x0567W_HW",
   "commands":[
     {
       "name": "Etat",

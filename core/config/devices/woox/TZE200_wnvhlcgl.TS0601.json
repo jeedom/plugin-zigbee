@@ -1,5 +1,7 @@
 {
   "name": "Tete thermostatique intelligente avec écran",
+  "manufacturer": "Woox",
+  "type": "Tête thermostatique",
   "buylink" : "",
   "ref" : "R7067",
   "pairing" : "Maintenir appuyé 5 secondes le bouton reset jusqu'au clignotement de la LED",
