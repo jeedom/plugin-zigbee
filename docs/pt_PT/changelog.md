@@ -8,6 +8,11 @@
 >
 >Para conhecer o novo módulo compatível você tem que ir [a](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=zigbee) (é classificado pela data de adição / modificação)
 
+# 01/07/2021
+
+- Adição de novo módulo compatível
+- Otimização das configurações existentes no gerenciamento de repetições
+
 # 09/06/2021
 
 - Mudança da fonte de atualização OTA para Ikea (mudar para o ramo estável)
