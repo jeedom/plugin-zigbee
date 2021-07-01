@@ -11,6 +11,9 @@
       "isHistorized": 0,
       "logicalId": "1::1280::cmd::1",
       "generic_type": "PRESENCE",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
       "display": {
         "invertBinary" : 1
       },
@@ -26,6 +29,9 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "4::1280::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
       "display": {
         "invertBinary" : 1
       }

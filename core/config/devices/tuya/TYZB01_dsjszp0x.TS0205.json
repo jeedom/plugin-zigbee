@@ -12,12 +12,15 @@
       "isHistorized": 0,
       "logicalId": "1::1280::cmd::1",
       "generic_type": "SMOKE",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
       "display": {
         "invertBinary" : 1
       },
       "template":{
-        "dashboard" : "smoke",
-        "mobile" : "smoke"
+        "dashboard" : "heat",
+        "mobile" : "heat"
       }
     }
   ]

@@ -16,6 +16,9 @@
       "isHistorized": 0,
       "logicalId": "1::1280::cmd::1",
       "generic_type": "FLOOD",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
       "display": {
         "invertBinary" : 1
       },
