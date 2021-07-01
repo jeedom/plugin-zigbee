@@ -16,6 +16,9 @@
       "isHistorized": 0,
       "logicalId": "1::6::0",
       "generic_type": "OPENING",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
       "display": {
         "invertBinary" : 1
       },

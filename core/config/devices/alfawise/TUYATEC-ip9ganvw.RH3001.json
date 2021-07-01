@@ -22,6 +22,9 @@
       "isHistorized": 0,
       "logicalId": "1::1280::cmd::1",
       "generic_type": "OPENING",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
       "display": {
         "invertBinary" : 1
       },

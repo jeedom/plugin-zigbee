@@ -39,7 +39,7 @@
       "template": {
         "dashboard": "line",
         "mobile": "line"
-      }	  
+      }
     },
     {
       "name": "Orientation",
@@ -51,7 +51,7 @@
       "template": {
         "dashboard": "line",
         "mobile": "line"
-      },  
+      },
       "configuration" : {
         "calculValueOffset":"#value# / 10000000000",
         "historizeRound":""
@@ -67,7 +67,7 @@
       "template": {
         "dashboard": "line",
         "mobile": "line"
-      },  
+      },
       "configuration" : {
         "calculValueOffset":"#value# / 65536"
       }
@@ -80,6 +80,9 @@
       "isHistorized": 0,
       "logicalId": "1::1280::cmd::1",
       "generic_type": "OPENING",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
       "template" : {
         "dashboard" : "window",
         "mobile" : "window"
