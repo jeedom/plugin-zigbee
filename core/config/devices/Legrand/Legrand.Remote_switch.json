@@ -18,7 +18,10 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::8::cmd::0"
+      "logicalId": "1::8::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Direction appui long",
@@ -26,7 +29,10 @@
       "subtype": "binary",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::8::cmd::1"
+      "logicalId": "1::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }

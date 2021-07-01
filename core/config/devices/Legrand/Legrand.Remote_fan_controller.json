@@ -11,7 +11,10 @@
       "generic_type": "ENERGY_STATE",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::6::cmd::0"
+      "logicalId": "1::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Appui long",
@@ -19,7 +22,10 @@
       "subtype": "binary",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::8::cmd::1"
+      "logicalId": "1::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }

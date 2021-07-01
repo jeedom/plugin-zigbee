@@ -7,10 +7,13 @@
     {
       "name": "Bouton luminosité",
       "type": "info",
-      "subtype": "binary",
+      "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::8::cmd::1"
+      "logicalId": "1::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Bouton on off",
@@ -18,23 +21,32 @@
       "subtype": "binary",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::6::cmd::0"
+      "logicalId": "1::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Bouton couleur",
       "type": "info",
-      "subtype": "binary",
+      "subtype": "string",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::768::cmd::color"
+      "logicalId": "1::768::cmd::color",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Bouton température couleur",
       "type": "info",
-      "subtype": "binary",
+      "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::768::cmd::colorTemperature"
+      "logicalId": "1::768::cmd::colorTemperature",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }

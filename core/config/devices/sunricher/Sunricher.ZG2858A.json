@@ -12,7 +12,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::6::cmd::0"
+      "logicalId": "1::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "On Off 2",
@@ -20,7 +23,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "2::6::cmd::0"
+      "logicalId": "2::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "On Off 3",
@@ -28,7 +34,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "3::6::cmd::0"
+      "logicalId": "3::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Scène 1",
@@ -36,7 +45,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::5::cmd::5"
+      "logicalId": "1::5::cmd::5",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Scène 2",
@@ -44,7 +56,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "2::5::cmd::5"
+      "logicalId": "2::5::cmd::5",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Scène 3",
@@ -52,7 +67,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "3::5::cmd::5"
+      "logicalId": "3::5::cmd::5",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Luminosité 1",
@@ -60,7 +78,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::8::cmd::1"
+      "logicalId": "1::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Luminosité 2",
@@ -68,7 +89,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "2::8::cmd::1"
+      "logicalId": "2::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Luminosité 3",
@@ -76,7 +100,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "3::8::cmd::1"
+      "logicalId": "3::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Couleur 1",
@@ -84,7 +111,10 @@
       "subtype": "string",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::768::cmd::color"
+      "logicalId": "1::768::cmd::color",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Couleur 2",
@@ -92,7 +122,10 @@
       "subtype": "string",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "2::768::cmd::color"
+      "logicalId": "2::768::cmd::color",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Couleur 3",
@@ -100,7 +133,10 @@
       "subtype": "string",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "3::768::cmd::color"
+      "logicalId": "3::768::cmd::color",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Température couleur 1",
@@ -108,7 +144,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::768::cmd::colorTemperature"
+      "logicalId": "1::768::cmd::colorTemperature",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Température couleur 2",
@@ -116,7 +155,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "2::768::cmd::colorTemperature"
+      "logicalId": "2::768::cmd::colorTemperature",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Température couleur 3",
@@ -124,7 +166,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "3::768::cmd::colorTemperature"
+      "logicalId": "3::768::cmd::colorTemperature",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Commande général 1",
@@ -132,7 +177,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::0::gcmd::16389-0-0"
+      "logicalId": "1::0::gcmd::16389-0-0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Commande général 2",
@@ -140,7 +188,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "2::0::gcmd::16389-0-0"
+      "logicalId": "2::0::gcmd::16389-0-0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Commande général 3",
@@ -148,7 +199,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "3::0::gcmd::16389-0-0"
+      "logicalId": "3::0::gcmd::16389-0-0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }

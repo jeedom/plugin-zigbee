@@ -17,7 +17,10 @@
       "subtype": "binary",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::8::cmd::1"
+      "logicalId": "1::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Bouton 2 et 3",
@@ -25,7 +28,10 @@
       "subtype": "binary",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::6::cmd::0"
+      "logicalId": "1::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }
