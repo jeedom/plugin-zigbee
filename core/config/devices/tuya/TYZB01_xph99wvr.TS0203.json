@@ -1,0 +1,26 @@
+{
+  "name": "Capteur d'ouverture de porte ou fenêtre intelligent",
+  "ref" : "TS0203",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Ouverture",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "OPENING",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
+      "display": {
+        "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "window",
+        "mobile" : "window"
+      }
+    }
+  ]
+}
