@@ -11,6 +11,14 @@
   ],
   "commands": [
     {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    },
+    {
       "name": "Etat",
       "type": "info",
       "subtype": "binary",
