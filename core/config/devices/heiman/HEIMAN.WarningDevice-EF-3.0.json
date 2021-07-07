@@ -1,7 +1,7 @@
 {
   "name": "Sirène intelligente",
-  "ref" : "AQSZB-110",
-  "manufacturer" : "Develco",
+  "ref" : "WarningDevice-EF-3.0",
+  "manufacturer" : "Heiman",
   "pairing": "Branchez la sirène",
   "reset": "Appuyez sur le bouton jusqu'à ce que la led clignote rouge",
   "commands": [
