@@ -1,10 +1,10 @@
 {
-  "name": "Module variateur 2-fils",
-  "ref": "SR-ZG9040A (2)",
+  "name": "Interrupteur variateur rotatif",
+  "ref": "SR-ZG2835RAC",
   "type": "Variateur,Lumière,Puissance,Comptage",
   "reset": "Appuyer 5 fois rapidement sur le bouton Reset",
   "pairing": "Couper l'alimentation du module, puis le ré-alimenter pour qu'il entre en mode appairage",
-  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5244-sunricher-module-variateur-2-fils-zigbee-30.html",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5736-sunricher-interrupteur-variateur-rotatif-500w-zigbee-dimmer.html",
   "commands": [
     {
       "name": "Etat",
