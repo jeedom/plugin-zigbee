@@ -1,7 +1,12 @@
 {
   "name": "MODULE RELAIS CONTACT SEC ZIGBEE (230V - 10A)",
-  "ref" : "CSLC601-D",
-  "reset" : "",
+  "ref" : "CSLC-601-R",
+  "type": "Contacteur",
+  "reset": "Appuyez sur le bouton “Reset” et maintenez-le enfoncé pendant dix secondes (Le voyant LED clignotera trois fois à la troisième seconde et clignotera à nouveau à la dixième seconde.) Après 10 secondes, le module aura restauré les paramètres d'usine par défaut.",
+  "pairing": "Automatique à la mise sous tension, ou appui de 3 secondes sur le bouton reset.",
+  "remark": "",
+  "documentation": "https://casaia.fr/product/module-relais-contact-sec-zigbee-2/?attachment_id=2531&download_file=sot05ddz1k2wn",
+  "buylink": "https://www.domadoo.fr/fr/peripheriques/5573-casaia-module-relais-contact-sec-zigbee-230v-10a-3770021021113.html",
   "commands": [
     {
       "name": "Etat",

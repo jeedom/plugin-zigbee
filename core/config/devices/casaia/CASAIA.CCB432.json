@@ -1,7 +1,12 @@
 {
-  "name": "RELAIS RAIL-DIN 32A ET COMPTEUR D'ÉNERGIE",
+  "name": "Relais Rail-Din 32A et compteur d'énergie Zigbee",
   "ref" : "CCB432",
-  "reset" : "",
+  "type": "Contacteur,Compteur",
+  "reset": "Appuyez sur le bouton “Reset” et maintenez-le enfoncé pendant dix secondes (Le voyant LED clignotera trois fois à la troisième seconde et clignotera à nouveau à la dixième seconde.) Après 10 secondes, le module aura restauré les paramètres d'usine par défaut.",
+  "pairing": "Automatique dès la mise sous tension ou appui de 3 secondes sur le bouton reset",
+  "remark": "",
+  "documentation": "https://casaia.fr/product/relais-rail-din-et-compteur-denergie-zigbee/?attachment_id=2554&download_file=pciir2fcqcjiz",
+  "buylink": "https://www.domadoo.fr/fr/peripheriques/5578-casaia-relais-rail-din-32a-et-compteur-d-energie-zigbee-3770021021175.html",
   "commands": [
     {
       "name": "Etat",

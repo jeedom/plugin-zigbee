@@ -1,7 +1,12 @@
 {
-  "name": "MODULE DE CONTRÔLE D'ACCÈS (6-24V DC) - CONTACT SEC ET TEMPORISÉ À 2 SECONDES",
-  "ref" : "CSAC451",
-  "reset" : "",
+  "name": "Module de contrôle d'accès Zigbee (6-24V DC) - Contact sec et temporisé à 2 secondes",
+  "ref" : "CSAC-451-AC",
+  "type": "Contacteur",
+  "reset": "Appuyez sur le bouton “Reset” et maintenez-le enfoncé pendant dix secondes (Le voyant LED clignotera trois fois à la troisième seconde et clignotera à nouveau à la dixième seconde.) Après 10 secondes, le module aura restauré les paramètres d'usine par défaut.",
+  "pairing": "Automatique à la mise sous tension, ou maintenez le bouton reset enfoncé pendant 3 secondes",
+  "remark": "",
+  "documentation": "https://casaia.fr/product/module-de-controle-dacces-zigbee/?attachment_id=2539&download_file=nalg5m9bkxv0a",
+  "buylink": "https://www.domadoo.fr/fr/peripheriques/5574-casaia-module-de-controle-d-acces-zigbee-6-24v-dc-contact-sec-et-temporise-a-2-secondes-3770021021120.html",
   "commands": [
     {
       "name": "Etat",
