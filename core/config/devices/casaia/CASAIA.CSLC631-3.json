@@ -1,7 +1,12 @@
 {
-  "name": "MODULE TRIPLE RELAIS",
-  "ref" : "CSLC631-3",
-  "reset" : "",
+  "name": "Module triple relais Zigbee",
+  "ref" : "CSLC-631-3",
+  "type": "Contacteur",
+  "reset": "Appuyez sur le bouton “Reset” et maintenez-le enfoncé pendant six à dix secondes. Le voyant LED clignotera trois fois pour signaler que le module aura restauré les paramètres d'usine par défaut.",
+  "pairing": "Automatique à la mise sous tension, ou appui de 3 secondes sur le bouton reset",
+  "remark": "",
+  "documentation": "https://casaia.fr/product/module-triple-relais-zigbee/?attachment_id=2518&download_file=c2digfwrhtylk",
+  "buylink": "https://www.domadoo.fr/fr/peripheriques/5577-casaia-module-triple-relais-zigbee-3770021021151.html",
   "commands": [
     {
       "name": "Etat 1",
