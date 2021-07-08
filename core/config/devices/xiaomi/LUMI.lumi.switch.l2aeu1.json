@@ -1,8 +1,11 @@
 {
-  "name": "AQARA - NTERRUPTEUR MURAL DOUBLE INTELLIGENT H1 ZIGBEE 3.0 (SANS NEUTRE)",
+  "name": "XIAOMI AQARA - Interrupteur mural double intelligent H1 ZigBee 3.0 (sans neutre)",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5727-xiaomi-aqara-interrupteur-mural-double-intelligent-h1-zigbee-30-sans-neutre-6970504214781.html",
   "ref" : "WS-EUK02",
-  "buylink" : "",
+  "type": "Interrupteur,Lumière",
+  "reset": "Appui long sur le bouton de droite pendant 10 secondes",
+  "pairing": "Appui long sur le bouton de droite pendant 5 secondes",
+  "documentation": "https://www.aqara.com/userfiles/fileupload/202105/1392376227816738818.pdf",
   "commands": [
     {
       "name": "Rafraîchir",
