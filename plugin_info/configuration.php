@@ -185,7 +185,13 @@ if (!isConnect('admin')) {
             <div class="form-group">
               <label class="col-md-5 control-label"></label>
               <div class="col-md-6">
-                <a class="form-control btn btn-warning bt_zigbeeRestartDeamon" data-deamon="<?php echo $i ?>" title="Cliquer sur le bouton pour redémarrer le démon"><i class="fas fa-redo-alt"></i> {{Redémarrer le démon}}</a>
+                <a class="form-control btn btn-warning bt_zigbeeRestartDeamon" data-deamon="<?php echo $i ?>" title="{{Cliquer sur le bouton pour redémarrer le démon}}"><i class="fas fa-redo-alt"></i> {{Redémarrer le démon}}</a>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-5 control-label"></label>
+              <div class="col-md-6">
+                <a class="form-control btn btn-danger bt_zigbeeDeleteDeamonData" data-deamon="<?php echo $i ?>" title="{{Supprimer toute les données du démons, à faire lors d'un changement de clef sans backup/restore}}"><i class="fas fa-trash"></i> {{Supprimer les données}}</a>
               </div>
             </div>
           </div>
@@ -243,7 +249,7 @@ if (!isConnect('admin')) {
     }
   });
   <?php } ?>
-  
+
   $('.bt_zigbeeRestartDeamon').off('click').on('click',function(){
     $.ajax({
       type: "POST",
@@ -264,15 +270,40 @@ if (!isConnect('admin')) {
       }
     });
   })
-  
+
+  $('.bt_zigbeeDeleteDeamonData').off('click').on('click',function(){
+    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer toute les données pour ce démon ?}}', function(result) {
+      if (result) {
+        $.ajax({
+          type: "POST",
+          url: "plugins/zigbee/core/ajax/zigbee.ajax.php",
+          data: {
+            action: "deleteDeamonData",
+            deamon : $(this).attr('data-deamon')
+          },
+          dataType: 'json',
+          error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+          },
+          success: function (data) {
+            if (data.state != 'ok') {
+              $('#div_alert').showAlert({message: data.result, level: 'danger'});
+              return;
+            }
+          }
+        });
+      }
+    })
+  })
+
   $('#bt_backupRestore').off('clic').on('click',function(){
     $('#md_modal').dialog({title: "{{Assistant de sauvegarde/restauration du contrôleur}}"}).load('index.php?v=d&plugin=zigbee&modal=backup_restore').dialog('open');
   })
-  
+
   $('#bt_UpdateFirmware').off('clic').on('click',function(){
     $('#md_modal').dialog({title: "{{Mise à jour du firmware du contrôleur}}"}).load('index.php?v=d&plugin=zigbee&modal=firmware_update').dialog('open');
   })
-  
+
   $('#bt_UpdateOta').off('clic').on('click',function(){
     jeedom.zigbee.updateOTA({
       error: function (error) {
@@ -284,5 +315,3 @@ if (!isConnect('admin')) {
     });
   })
   </script>
-  
-  

@@ -19,18 +19,24 @@
 try {
   require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
   include_file('core', 'authentification', 'php');
-  
+
   if (!isConnect('admin')) {
     throw new Exception(__('401 - Accès non autorisé', __FILE__));
   }
-  
+
   ajax::init();
-  
+
   if (init('action') == 'sync') {
     zigbee::sync();
     ajax::success();
   }
-  
+
+  if(init('action') == 'deleteDeamonData'){
+    zigbee::deamon_stop_instance(init('deamon'));
+    shell_exec('rm -rf '.__DIR__ . '/../../data/'.init('deamon'));
+    ajax::success();
+  }
+
   if (init('action') == 'autoDetectModule') {
     $eqLogic = zigbee::byId(init('id'));
     if (!is_object($eqLogic)) {
@@ -44,7 +50,7 @@ try {
     $eqLogic->applyModuleConfiguration();
     ajax::success();
   }
-  
+
   if (init('action') == 'setTime') {
     $eqLogic = zigbee::byId(init('id'));
     if (!is_object($eqLogic)) {
@@ -53,13 +59,13 @@ try {
     $eqLogic->setTime();
     ajax::success();
   }
-  
+
   if(init('action') == 'restartDeamon'){
     zigbee::deamon_stop_instance(init('deamon'));
     zigbee::deamon_start_instance(init('deamon'));
     ajax::success();
   }
-  
+
   if(init('action') == 'childCreate'){
     $eqLogic = zigbee::byId(init('id'));
     if (!is_object($eqLogic)) {
@@ -72,7 +78,7 @@ try {
     $eqLogic->childCreate(init('endpoint'));
     ajax::success();
   }
-  
+
   if(init('action') == 'getVisualList'){
     $eqLogic = zigbee::byId(init('id'));
     if (!is_object($eqLogic)) {
@@ -80,12 +86,12 @@ try {
     }
     ajax::success($eqLogic->getVisualList());
   }
-  
+
   if(init('action') == 'deamonInstanceDef'){
     ajax::success(zigbee::getDeamonInstanceDef());
   }
-  
-  
+
+
   if(init('action') == 'backup'){
     if (init('port') == 'gateway') {
       $port = 'socket://'.init('gateway');
@@ -102,7 +108,7 @@ try {
     $cron->run();
     ajax::success();
   }
-  
+
   if(init('action') == 'restore'){
     if (init('port') == 'gateway') {
       $port = 'socket://'.init('gateway');
@@ -119,7 +125,7 @@ try {
     $cron->run();
     ajax::success();
   }
-  
+
   if(init('action') == 'updateOTA'){
     $cron = new cron();
     $cron->setClass('zigbee');
@@ -130,7 +136,7 @@ try {
     $cron->run();
     ajax::success();
   }
-  
+
   if(init('action') == 'firmwareUpdate'){
     if (init('port') == 'gateway') {
       $port = 'socket://'.init('gateway');
@@ -147,7 +153,7 @@ try {
     $cron->run();
     ajax::success();
   }
-  
+
   throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
   /*     * *********Catch exeption*************** */
 } catch (Exception $e) {

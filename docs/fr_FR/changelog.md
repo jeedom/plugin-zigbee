@@ -8,6 +8,10 @@
 >
 >Pour connaitre les nouveaux module compatible il faut aller [la](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=zigbee) (c'est trié par date d'ajout/modification)
 
+- Ajout de nouveau module compatible
+- Ajout d'un bouton pour supprimer toute les données d'un demon (voir documentation)
+
+
 # 01/07/2021
 
 - Ajout de nouveau module compatible
