@@ -12,3 +12,4 @@ docs/Gemfile.lock
 docs/.sass-cache/
 .remote-sync.json
 data/config.json
+/.vscode
