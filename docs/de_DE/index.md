@@ -5,7 +5,7 @@
 -	**Deconz** : Vom Jeedom-Team getestet und validiert. *(Es ist nicht erforderlich, die deCONZ-Anwendung zu installieren)*
 -	**EZSP (Silicon Labs)** : Vom Jeedom-Team getestet, validiert und empfohlen.
 -	**XBee** : Nicht vom Jeedom-Team getestet.
--	**Zigate** : Nicht vom Team getestet. 
+-	**Zigate** : Nicht vom Team getestet.
 -	**ZNP (Texas Instruments))** : Nicht vom Team getestet.
 
 Darüber hinaus ist das Plugin mit vielen Tools ausgestattet, die es ermöglichen :
@@ -201,9 +201,9 @@ Die Greenpower-Technologie wird vom Plugin unterstützt (Zigpy-Patch, der sie no
 
 >**Wichtig**
 >
->Im Moment funktioniert Greenpower nur mit EZSP-Schlüsseln (Elelabs, popp...). Deconz-Unterstützung wird später kommen 
+>Im Moment funktioniert Greenpower nur mit EZSP-Schlüsseln (Elelabs, popp...). Deconz-Unterstützung wird später kommen
 
-Hinzufügen eines Greenpower-Moduls 2 Möglichkeiten : 
+Hinzufügen eines Greenpower-Moduls 2 Möglichkeiten :
 
 - Wechseln Sie in den Einschlussmodus und drücken Sie eine Taste am Modul. Bitte beachten Sie, dass dies einem ungesicherten Zusatz entspricht (jeder, der den Rahmen des Moduls abfängt, kann ihn an Ihr Jeedom zurücksenden)
 - Lesen Sie den QR-Code des Moduls und kopieren Sie die Zeichenfolge im Teil "Inbetriebnahme" von Jeedom. Dies entspricht einer sicheren Hinzufügung (dem Verschlüsselungsschlüssel und im QRcode))
@@ -254,6 +254,10 @@ Leider liegt dies an der Art und Weise, wie der Hersteller die Integration seine
 
 Schließlich und auch wenn es einigen offensichtlich erscheint, erinnern wir Sie daran, dass ZigBee-Gateways in Wifi oder Remote per Definition weniger zuverlässig sind als USB-Gateways. Das Jeedom-Team empfiehlt daher die Verwendung eines ZigBee-Gateways in USB.  
 
+# Zigbee-Schlüsselwechsel
+
+Wenn Sie für einen bestimmten Daemon (1, 2 oder 3) den Zigbee-Schlüssel ändern, ohne ein Backup des alten auf dem neuen wiederherzustellen, dann ist es notwendig, die Daten auf der Ebene des Daemons zu löschen (Button"). Dadurch wird Jeedoms Ausrüstung nicht gelöscht, sondern nur die Zigbee-Datenbank des Dämons geleert. Bitte beachten Sie, dass dieser Vorgang irreversibel ist
+
 # FAQ
 
 >**LQI oder RSSI ist N / A**
@@ -288,6 +292,6 @@ Schließlich und auch wenn es einigen offensichtlich erscheint, erinnern wir Sie
 
 >**Ich kann keine neuen Module aufnehmen**
 >
->Dafür gibt es mehrere Möglichkeiten : 
+>Dafür gibt es mehrere Möglichkeiten :
 >- Du hast bereits viele Mods und hast das Limit der Anzahl der Live-Mods überschritten (31 im Allgemeinen). Sie müssen entweder einen anderen ZigBee-Schlüssel eingeben (das Plugin verwaltet bis zu 3) oder versuchen, Routerknoten hinzuzufügen (achten Sie darauf, dass es keinen klaren Standard für Routerknoten gibt, sodass Inkompatibilitäten zwischen Herstellern bestehen...)
 >- Sie sind unter Conbee : Versuchen Sie, den Schlüssel für 2 Minuten abzuziehen, ihn zurückzusetzen und den Daemon neu zu starten. Es handelt sich um eine bekannte Erkrankung des Conbee-Schlüssels (auch unter Dekonz), oder Sie benötigen einen Kaltstart, damit die Aufnahme funktioniert

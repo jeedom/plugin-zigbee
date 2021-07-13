@@ -8,6 +8,10 @@
 >
 >To know the new compatible module you have to go [the](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=zigbee) (it is sorted by date added / modified)
 
+- Addition of new compatible module
+- Addition of a button to delete all the data of a daemon (see documentation)
+
+
 # 07/01/2021
 
 - Addition of new compatible module
