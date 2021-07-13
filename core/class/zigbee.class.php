@@ -21,251 +21,250 @@ require_once __DIR__  . '/../../../../core/php/core.inc.php';
 
 class zigbee extends eqLogic {
   /*     * *************************Attributs****************************** */
-  
+
   /*     * ***********************Methode static*************************** */
-  
-  public static function firmwareUpdate($_options = array()){
+
+  public static function firmwareUpdate($_options = array()) {
     config::save('deamonAutoMode', 0, 'zigbee');
     log::clear(__CLASS__ . '_firmware');
     $log = log::getPathToLog(__CLASS__ . '_firmware');
     self::deamon_stop();
-    if($_options['sub_controller'] == 'elelabs'){
-      $cmd = 'sudo chmod +x '.__DIR__.'/../../resources/misc/update-firmware-elelabs.sh;';
-      $cmd .= 'sudo '.__DIR__.'/../../resources/misc/update-firmware-elelabs.sh '.$_options['port'].' '.$_options['firmware'];
-      log::add('zigbee_firmware','info',__('Lancement de la mise à jour du firmware pour : ',__FILE__).$_options['port'].' => '.$cmd);
-    }else{
-      log::add('zigbee_firmware','info',__('Pas de mise à jour possible du firmware pour : ',__FILE__).$_options['port']);
+    if ($_options['sub_controller'] == 'elelabs') {
+      $cmd = 'sudo chmod +x ' . __DIR__ . '/../../resources/misc/update-firmware-elelabs.sh;';
+      $cmd .= 'sudo ' . __DIR__ . '/../../resources/misc/update-firmware-elelabs.sh ' . $_options['port'] . ' ' . $_options['firmware'];
+      log::add('zigbee_firmware', 'info', __('Lancement de la mise à jour du firmware pour : ', __FILE__) . $_options['port'] . ' => ' . $cmd);
+    } else {
+      log::add('zigbee_firmware', 'info', __('Pas de mise à jour possible du firmware pour : ', __FILE__) . $_options['port']);
       return;
     }
-    shell_exec('sudo kill 9 $(lsof -t '.$_options['port'].') >> '.$log.' 2>&1');
-    shell_exec($cmd.' >> '.$log.' 2>&1');
+    shell_exec('sudo kill 9 $(lsof -t ' . $_options['port'] . ') >> ' . $log . ' 2>&1');
+    shell_exec($cmd . ' >> ' . $log . ' 2>&1');
     config::save('deamonAutoMode', 0, 'zigbee');
     self::deamon_start();
-    log::add('zigbee_firmware','info',__('Fin de la mise à jour du firmware de la clef',__FILE__));
+    log::add('zigbee_firmware', 'info', __('Fin de la mise à jour du firmware de la clef', __FILE__));
   }
-  
-  public static function updateOTA($_options = array()){
+
+  public static function updateOTA($_options = array()) {
     log::clear(__CLASS__ . '_ota');
     $log = log::getPathToLog(__CLASS__ . '_ota');
-    log::add('zigbee_ota','debug',__('Début de la mise à jour du répertoire OTA',__FILE__));
-    $ota_dir = __DIR__.'/../../data/ota';
-    if(!file_exists($ota_dir)){
-      mkdir($ota_dir,0777,true);
+    log::add('zigbee_ota', 'debug', __('Début de la mise à jour du répertoire OTA', __FILE__));
+    $ota_dir = __DIR__ . '/../../data/ota';
+    if (!file_exists($ota_dir)) {
+      mkdir($ota_dir, 0777, true);
     }
     $request_http = new com_http('https://raw.githubusercontent.com/Koenkk/zigbee-OTA/master/index.json');
     $ota_zigbee = is_json($request_http->exec(30), true);
     foreach ($ota_zigbee as $ota) {
-      if(strpos($ota['url'],'Ledvance') !== false){
+      if (strpos($ota['url'], 'Ledvance') !== false) {
         continue;
       }
-      shell_exec('wget -N -P '.  $ota_dir.' '.$ota['url'].' >> '.$log.' 2>&1');
+      shell_exec('wget -N -P ' .  $ota_dir . ' ' . $ota['url'] . ' >> ' . $log . ' 2>&1');
     }
-    log::add('zigbee_ota','debug',__('Fin de la mise à jour du répertoire OTA',__FILE__));
-    log::add('zigbee_ota','debug',__('Pensez bien à redemarrer le(s) démon(s) zigbee pour la prise en compte des nouvelles maj OTA',__FILE__));
+    log::add('zigbee_ota', 'debug', __('Fin de la mise à jour du répertoire OTA', __FILE__));
+    log::add('zigbee_ota', 'debug', __('Pensez bien à redemarrer le(s) démon(s) zigbee pour la prise en compte des nouvelles maj OTA', __FILE__));
   }
-  
-  public static function backup_coordinator($_options = array()){
+
+  public static function backup_coordinator($_options = array()) {
     log::clear(__CLASS__ . '_backup');
     $log = log::getPathToLog(__CLASS__ . '_backup');
-    log::add('zigbee_backup','debug',__('Début du backup',__FILE__));
+    log::add('zigbee_backup', 'debug', __('Début du backup', __FILE__));
     config::save('deamonAutoMode', 0, 'zigbee');
     self::deamon_stop();
-    $path = __DIR__.'/../../data/backup';
-    if(!file_exists($path)){
+    $path = __DIR__ . '/../../data/backup';
+    if (!file_exists($path)) {
       mkdir($path);
     }
-    if($_options['controller'] == 'ezsp'){
+    if ($_options['controller'] == 'ezsp') {
       $bauderate = '';
-      if($_options['sub_controller'] == 'elelabs'){
+      if ($_options['sub_controller'] == 'elelabs') {
         $bauderate = '-b 115200';
       }
-      $cmd = 'sudo timeout 5m bellows '.$bauderate.' -d '.$_options['port'].' backup > '.$path.'/ezsp-'.date('Y-m-d_H:i:s').'.txt';
-      log::add('zigbee_backup','info',__('Lancement du backup ezsp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
-    }elseif($_options['controller'] == 'znp'){
-      $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_read '.$_options['port'].' -o '.$path.'/znp-'.date('Y-m-d_H:i:s').'.json';
-      log::add('zigbee_backup','info',__('Lancement du backup znp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
-    }else{
-      log::add('zigbee_backup','info',__('Pas de backup possible pour : ',__FILE__).$_options['port']);
+      $cmd = 'sudo timeout 5m bellows ' . $bauderate . ' -d ' . $_options['port'] . ' backup > ' . $path . '/ezsp-' . date('Y-m-d_H:i:s') . '.txt';
+      log::add('zigbee_backup', 'info', __('Lancement du backup ezsp de la clef : ', __FILE__) . $_options['port'] . ' => ' . $cmd);
+    } elseif ($_options['controller'] == 'znp') {
+      $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_read ' . $_options['port'] . ' -o ' . $path . '/znp-' . date('Y-m-d_H:i:s') . '.json';
+      log::add('zigbee_backup', 'info', __('Lancement du backup znp de la clef : ', __FILE__) . $_options['port'] . ' => ' . $cmd);
+    } else {
+      log::add('zigbee_backup', 'info', __('Pas de backup possible pour : ', __FILE__) . $_options['port']);
       return;
     }
-    shell_exec('sudo kill 9 $(lsof -t '.$_options['port'].') >> '.$log.' 2>&1');
+    shell_exec('sudo kill 9 $(lsof -t ' . $_options['port'] . ') >> ' . $log . ' 2>&1');
     shell_exec($cmd);
     config::save('deamonAutoMode', 0, 'zigbee');
     self::deamon_start();
-    log::add('zigbee_backup','debug',__('Fin du backup',__FILE__));
+    log::add('zigbee_backup', 'debug', __('Fin du backup', __FILE__));
   }
-  
-  public static function restore_coordinator($_options = array()){
+
+  public static function restore_coordinator($_options = array()) {
     log::clear(__CLASS__ . '_restore');
     $log = log::getPathToLog(__CLASS__ . '_restore');
-    log::add('zigbee_restore','debug',__('Début de la restoration',__FILE__));
+    log::add('zigbee_restore', 'debug', __('Début de la restoration', __FILE__));
     config::save('deamonAutoMode', 0, 'zigbee');
     self::deamon_stop();
-    $path = __DIR__.'/../../data/backup';
-    if(!file_exists($path)){
+    $path = __DIR__ . '/../../data/backup';
+    if (!file_exists($path)) {
       mkdir($path);
     }
-    $backup = $path.'/'.$_options['backup'];
-    if(!file_exists($backup)){
-      throw new \Exception(__('Erreur fichier de backup introuvable : ',__FILE__).$backup);
+    $backup = $path . '/' . $_options['backup'];
+    if (!file_exists($backup)) {
+      throw new \Exception(__('Erreur fichier de backup introuvable : ', __FILE__) . $backup);
     }
-    if(strpos($backup,$_options['controller']) === false){
-      throw new \Exception(__('Le fichier de backup ne semble pas etre du type du controller : ',__FILE__));
+    if (strpos($backup, $_options['controller']) === false) {
+      throw new \Exception(__('Le fichier de backup ne semble pas etre du type du controller : ', __FILE__));
     }
-    if($_options['controller'] == 'ezsp'){
+    if ($_options['controller'] == 'ezsp') {
       $bauderate = '';
-      if($_options['sub_controller'] == 'elelabs'){
+      if ($_options['sub_controller'] == 'elelabs') {
         $bauderate = '-b 115200';
       }
-      $cmd = 'sudo bellows '.$bauderate.' -d '.$_options['port'].' leave;';
-      $cmd .= 'sudo bellows '.$bauderate.' -d '.$_options['port'].' restore --i-understand-i-can-update-eui64-only-once-and-i-still-want-to-do-it -B '.$backup;
-      log::add('zigbee_restore','info',__('Lancement du backup ezsp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
-    }elseif($_options['controller'] == 'znp'){
-      $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_write '.$_options['port'].' -i '.$backup;
-      log::add('zigbee_restore','info',__('Lancement du backup znp de la clef : ',__FILE__).$_options['port'].' => '.$cmd);
-    }else{
-      log::add('zigbee_restore','info',__('Pas de backup possible pour : ',__FILE__).$_options['port']);
+      $cmd = 'sudo bellows ' . $bauderate . ' -d ' . $_options['port'] . ' leave;';
+      $cmd .= 'sudo bellows ' . $bauderate . ' -d ' . $_options['port'] . ' restore --i-understand-i-can-update-eui64-only-once-and-i-still-want-to-do-it -B ' . $backup;
+      log::add('zigbee_restore', 'info', __('Lancement du backup ezsp de la clef : ', __FILE__) . $_options['port'] . ' => ' . $cmd);
+    } elseif ($_options['controller'] == 'znp') {
+      $cmd = 'sudo python3 -m zigpy_znp.tools.nvram_write ' . $_options['port'] . ' -i ' . $backup;
+      log::add('zigbee_restore', 'info', __('Lancement du backup znp de la clef : ', __FILE__) . $_options['port'] . ' => ' . $cmd);
+    } else {
+      log::add('zigbee_restore', 'info', __('Pas de backup possible pour : ', __FILE__) . $_options['port']);
       return;
     }
-    shell_exec('sudo kill 9 $(lsof -t '.$_options['port'].') >> '.$log.' 2>&1');
-    shell_exec($cmd.' >> '.$log.' 2>&1');
+    shell_exec('sudo kill 9 $(lsof -t ' . $_options['port'] . ') >> ' . $log . ' 2>&1');
+    shell_exec($cmd . ' >> ' . $log . ' 2>&1');
     config::save('deamonAutoMode', 0, 'zigbee');
     self::deamon_start();
-    log::add('zigbee_restore','debug',__('Fin de la restoration',__FILE__));
+    log::add('zigbee_restore', 'debug', __('Fin de la restoration', __FILE__));
   }
-  
-  public static function getDeamonInstanceDef(){
+
+  public static function getDeamonInstanceDef() {
     $return = array();
-    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
+    for ($i = 1; $i <= config::byKey('max_instance_number', "zigbee"); $i++) {
       $return[$i] = array(
         'id' => $i,
-        'enable' => config::byKey('enable_deamon_'.$i,'zigbee'),
-        'name' => config::byKey('name_deamon_'.$i,'zigbee',__('Démon',__FILE__).' '.$i)
+        'enable' => config::byKey('enable_deamon_' . $i, 'zigbee'),
+        'name' => config::byKey('name_deamon_' . $i, 'zigbee', __('Démon', __FILE__) . ' ' . $i)
       );
     }
     return $return;
   }
-  
-  public static function request($_instance,$_request = '',$_data = null,$_type='GET'){
-    $url = 'http://127.0.0.1:'.config::byKey('socketport_'.$_instance, 'zigbee').$_request;
-    if($_type=='GET' && is_array($_data) && count($_data) > 0){
+
+  public static function request($_instance, $_request = '', $_data = null, $_type = 'GET') {
+    $url = 'http://127.0.0.1:' . config::byKey('socketport_' . $_instance, 'zigbee') . $_request;
+    if ($_type == 'GET' && is_array($_data) && count($_data) > 0) {
       $url .= '?';
       foreach ($_data as $key => $value) {
-        $url .= $key.'='.urlencode($value).'&';
+        $url .= $key . '=' . urlencode($value) . '&';
       }
-      $url = trim($url,'&');
+      $url = trim($url, '&');
     }
-    log::add('zigbee','debug',$url.' type : '.$_type);
-    log::add('zigbee','debug',json_encode($_data));
+    log::add('zigbee', 'debug', $url . ' type : ' . $_type);
+    log::add('zigbee', 'debug', json_encode($_data));
     $request_http = new com_http($url);
     $request_http->setHeader(array(
-      'Autorization: '.jeedom::getApiKey('zigbee'),
+      'Autorization: ' . jeedom::getApiKey('zigbee'),
       'Content-Type: application/json'
     ));
-    if($_data !== null){
-      if($_type == 'POST'){
+    if ($_data !== null) {
+      if ($_type == 'POST') {
         $request_http->setPost(json_encode($_data));
-      }elseif($_type == 'PUT'){
+      } elseif ($_type == 'PUT') {
         $request_http->setPut(json_encode($_data));
-      }elseif($_type == 'DELETE'){
+      } elseif ($_type == 'DELETE') {
         $request_http->setDelete(json_encode($_data));
       }
     }
-    $result = $request_http->exec(60,1);
+    $result = $request_http->exec(60, 1);
     $result = is_json($result, $result);
-    if(!isset($result['state']) || $result['state'] != 'ok'){
-      throw new \Exception(__('Erreur lors de la requete : ',__FILE__).$url.'('.$_type.'), data : '.json_encode($_data).' erreur : '.json_encode($result));
+    if (!isset($result['state']) || $result['state'] != 'ok') {
+      throw new \Exception(__('Erreur lors de la requete : ', __FILE__) . $url . '(' . $_type . '), data : ' . json_encode($_data) . ' erreur : ' . json_encode($result));
     }
     return isset($result['result']) ? $result['result'] : $result;
   }
-  
-  public static function cronDaily(){
-    for($i=1;$i<=config::byKey('max_instance_number','zigbee');$i++){
-      if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
+
+  public static function cronDaily() {
+    for ($i = 1; $i <= config::byKey('max_instance_number', 'zigbee'); $i++) {
+      if (config::byKey('enable_deamon_' . $i, 'zigbee') != 1) {
         continue;
       }
-      $devices = self::request($i,'/device/all');
+      $devices = self::request($i, '/device/all');
       foreach ($devices as $device) {
-        if($device['nwk'] == 0){
+        if ($device['nwk'] == 0) {
           continue;
         }
         $zigbee = zigbee::byLogicalId($device['ieee'], 'zigbee');
-        if(!is_object($zigbee)){
+        if (!is_object($zigbee)) {
           continue;
         }
-        if(isset(array_values($device['endpoints'])[0]['input_clusters'][0]['id']) && array_values($device['endpoints'])[0]['input_clusters'][0]['id'] == 0){
+        if (isset(array_values($device['endpoints'])[0]['input_clusters'][0]['id']) && array_values($device['endpoints'])[0]['input_clusters'][0]['id'] == 0) {
           $endpoint_id = array_values($device['endpoints'])[0]['id'];
-        }else{
+        } else {
           $endpoint_id = array_values($device['endpoints'])[1]['id'];
         }
-        if(self::getAttribute($endpoint_id,1,33,$device) != null){
-          $zigbee->batteryStatus(self::getAttribute($endpoint_id,1,33,$device));
-          $zigbee->setConfiguration('maxBatteryVoltage',0);
+        if (self::getAttribute($endpoint_id, 1, 33, $device) != null) {
+          $zigbee->batteryStatus(self::getAttribute($endpoint_id, 1, 33, $device));
+          $zigbee->setConfiguration('maxBatteryVoltage', 0);
           $zigbee->save();
-        }else if(self::getAttribute($endpoint_id,1,32,$device) != null && self::getAttribute($endpoint_id,1,32,$device) > 0){
-          $battery_voltage = self::getAttribute($endpoint_id,1,32,$device);
-          if(is_array($zigbee->getConfiguration('maxBatteryVoltage',0)) || $battery_voltage > $zigbee->getConfiguration('maxBatteryVoltage',0)){
-            $zigbee->setConfiguration('maxBatteryVoltage',$battery_voltage);
+        } else if (self::getAttribute($endpoint_id, 1, 32, $device) != null && self::getAttribute($endpoint_id, 1, 32, $device) > 0) {
+          $battery_voltage = self::getAttribute($endpoint_id, 1, 32, $device);
+          if (is_array($zigbee->getConfiguration('maxBatteryVoltage', 0)) || $battery_voltage > $zigbee->getConfiguration('maxBatteryVoltage', 0)) {
+            $zigbee->setConfiguration('maxBatteryVoltage', $battery_voltage);
             $zigbee->save();
           }
-          if($zigbee->getConfiguration('maxBatteryVoltage',0) != 0){
-            $zigbee->batteryStatus($battery_voltage/$zigbee->getConfiguration('maxBatteryVoltage',0) * 100);
+          if ($zigbee->getConfiguration('maxBatteryVoltage', 0) != 0) {
+            $zigbee->batteryStatus($battery_voltage / $zigbee->getConfiguration('maxBatteryVoltage', 0) * 100);
           }
         }
         try {
           $zigbee->setTime($device);
         } catch (\Exception $e) {
-          
         }
       }
     }
   }
-  
-  public static function cronHourly(){
-    for($i=1;$i<=config::byKey('max_instance_number','zigbee');$i++){
-      if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
+
+  public static function cronHourly() {
+    for ($i = 1; $i <= config::byKey('max_instance_number', 'zigbee'); $i++) {
+      if (config::byKey('enable_deamon_' . $i, 'zigbee') != 1) {
         continue;
       }
       try {
-        $last_launch_deamon = strtotime(config::byKey('lastDeamonLaunchTime_'.$i,'zigbee'));
-        $devices = self::request($i,'/device/all');
+        $last_launch_deamon = strtotime(config::byKey('lastDeamonLaunchTime_' . $i, 'zigbee'));
+        $devices = self::request($i, '/device/all');
         foreach ($devices as $device) {
-          if($device['nwk'] == 0){
+          if ($device['nwk'] == 0) {
             continue;
           }
           $zigbee = zigbee::byLogicalId($device['ieee'], 'zigbee');
-          if(!is_object($zigbee)){
+          if (!is_object($zigbee)) {
             continue;
           }
-          
-          if($zigbee->getConfiguration('last_seen::check_mode','auto') != 'disable'){
-            $max_duration_last_seen = config::byKey('max_duration_last_seen','zigbee') * 60;
-            if($zigbee->getConfiguration('last_seen::check_mode','auto') == 'auto'){
+
+          if ($zigbee->getConfiguration('last_seen::check_mode', 'auto') != 'disable') {
+            $max_duration_last_seen = config::byKey('max_duration_last_seen', 'zigbee') * 60;
+            if ($zigbee->getConfiguration('last_seen::check_mode', 'auto') == 'auto') {
               foreach ($device['endpoints'] as $endpoint) {
                 foreach ($endpoint['input_clusters'] as $input_cluster) {
-                  if($input_cluster['id'] == 32){ //Poll control cluster
-                    $max_duration_last_seen = 2*60*60;
+                  if ($input_cluster['id'] == 32) { //Poll control cluster
+                    $max_duration_last_seen = 2 * 60 * 60;
                     break;
                   }
                 }
               }
             }
-            if(($last_launch_deamon + $max_duration_last_seen) > strtotime('now')){
+            if (($last_launch_deamon + $max_duration_last_seen) > strtotime('now')) {
               continue;
             }
-            if($device['last_seen'] == 'None'){
-              log::add('zigbee', 'error', __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __(' n\'a pas de date connu de derniere communication', __FILE__), 'device_dead_' . $zigbee->getId());
-            }else if((strtotime('now') - $device['last_seen']) >= $max_duration_last_seen){
-              log::add('zigbee', 'error', __('Le module', __FILE__) . ' ' . $zigbee->getHumanName(). __(' n\'a pas envoyé de message depuis plus de ', __FILE__).($max_duration_last_seen/60).' min', 'device_dead_' . $zigbee->getId());
+            if ($device['last_seen'] == 'None') {
+              log::add('zigbee', 'error', __('Le module', __FILE__) . ' ' . $zigbee->getHumanName() . __(' n\'a pas de date connu de derniere communication', __FILE__), 'device_dead_' . $zigbee->getId());
+            } else if ((strtotime('now') - $device['last_seen']) >= $max_duration_last_seen) {
+              log::add('zigbee', 'error', __('Le module', __FILE__) . ' ' . $zigbee->getHumanName() . __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . ($max_duration_last_seen / 60) . ' min', 'device_dead_' . $zigbee->getId());
             }
           }
         }
       } catch (\Exception $e) {
-        log::add('zigbee', 'error',$e->getMessage());
+        log::add('zigbee', 'error', $e->getMessage());
       }
     }
   }
-  
+
   public static function dependancy_info() {
     $return = array();
     $return['progress_file'] = jeedom::getTmpFolder('zigbee') . '/dependance';
@@ -278,38 +277,38 @@ class zigbee extends eqLogic {
     }
     return $return;
   }
-  
+
   public static function dependancy_install() {
     log::remove(__CLASS__ . '_update');
     return array('script' => __DIR__ . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('zigbee') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
   }
-  
+
   public static function deamon_info() {
     $return = array();
     $return['log'] = 'zigbee';
     $return['state'] = 'ok';
     $return['launchable'] = 'ok';
-    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
-      if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
+    for ($i = 1; $i <= config::byKey('max_instance_number', "zigbee"); $i++) {
+      if (config::byKey('enable_deamon_' . $i, 'zigbee') != 1) {
         continue;
       }
       $info = self::deamon_info_instance($i);
-      if($info['state'] != 'ok'){
+      if ($info['state'] != 'ok') {
         $return['state'] = $info['state'];
       }
-      if($info['launchable'] != 'ok'){
+      if ($info['launchable'] != 'ok') {
         $return['launchable'] = $info['launchable'];
         $return['launchable_message'] = $info['launchable_message'];
       }
     }
     return $return;
   }
-  
+
   public static function deamon_info_instance($_instance) {
     $return = array();
     $return['log'] = 'zigbee';
     $return['state'] = 'nok';
-    $pid_file = jeedom::getTmpFolder('zigbee') . '/deamon_'.$_instance.'.pid';
+    $pid_file = jeedom::getTmpFolder('zigbee') . '/deamon_' . $_instance . '.pid';
     if (file_exists($pid_file)) {
       $pid = trim(file_get_contents($pid_file));
       if (is_numeric($pid) && posix_getsid($pid)) {
@@ -319,22 +318,22 @@ class zigbee extends eqLogic {
       }
     }
     $return['launchable'] = 'ok';
-    $port = config::byKey('port_'.$_instance, 'zigbee');
+    $port = config::byKey('port_' . $_instance, 'zigbee');
     if ($port == 'none') {
       $return['launchable'] = 'nok';
       $return['launchable_message'] = __('Le port n\'est pas configuré', __FILE__);
     }
     return $return;
   }
-  
+
   public static function deamon_start($_auto = false) {
-    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
-      if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
+    for ($i = 1; $i <= config::byKey('max_instance_number', "zigbee"); $i++) {
+      if (config::byKey('enable_deamon_' . $i, 'zigbee') != 1) {
         continue;
       }
-      if($_auto){
+      if ($_auto) {
         $infos = self::deamon_info_instance($i);
-        if($infos['state'] == 'ok'){
+        if ($infos['state'] == 'ok') {
           continue;
         }
       }
@@ -342,215 +341,215 @@ class zigbee extends eqLogic {
     }
     return true;
   }
-  
+
   public static function deamon_start_instance($_instance) {
     self::deamon_stop_instance($_instance);
     $deamon_info = self::deamon_info_instance($_instance);
     if ($deamon_info['launchable'] != 'ok') {
       throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
     }
-    $port = config::byKey('port_'.$_instance, 'zigbee');
+    $port = config::byKey('port_' . $_instance, 'zigbee');
     if ($port == 'pizigate') {
-      $port = 'pizigate:/dev/serial'.config::byKey('pizigate_'.$_instance, 'zigbee');
-    }else if ($port == 'gateway') {
-      $port = 'socket://'.config::byKey('gateway_'.$_instance, 'zigbee');
-    }else if ($port != 'auto') {
+      $port = 'pizigate:/dev/serial' . config::byKey('pizigate_' . $_instance, 'zigbee');
+    } else if ($port == 'gateway') {
+      $port = 'socket://' . config::byKey('gateway_' . $_instance, 'zigbee');
+    } else if ($port != 'auto') {
       $port = jeedom::getUsbMapping($port);
     }
-    if(!file_exists(__DIR__ . '/../../data/'.$_instance)){
-      mkdir(__DIR__ . '/../../data/'.$_instance,0777,true);
+    if (!file_exists(__DIR__ . '/../../data/' . $_instance)) {
+      mkdir(__DIR__ . '/../../data/' . $_instance, 0777, true);
     }
-    if(!file_exists(__DIR__ . '/../../data/device')){
+    if (!file_exists(__DIR__ . '/../../data/device')) {
       mkdir(__DIR__ . '/../../data/device');
     }
     $zigbee_path = realpath(__DIR__ . '/../../resources/zigbeed');
     $cmd = '/usr/bin/python3 ' . $zigbee_path . '/zigbeed.py';
     $cmd .= ' --device ' . $port;
     $cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('zigbee'));
-    $cmd .= ' --socketport ' . config::byKey('socketport_'.$_instance, 'zigbee');
+    $cmd .= ' --socketport ' . config::byKey('socketport_' . $_instance, 'zigbee');
     $cmd .= ' --callback ' . network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/zigbee/core/php/jeeZigbee.php';
     $cmd .= ' --apikey ' . jeedom::getApiKey('zigbee');
-    $cmd .= ' --cycle ' . config::byKey('cycle_'.$_instance, 'zigbee');
-    $cmd .= ' --pid ' . jeedom::getTmpFolder('zigbee') . '/deamon_'.$_instance.'.pid';
-    $cmd .= ' --data_folder '. realpath(__DIR__ . '/../../data/'.$_instance.'/');
-    $cmd .= ' --device_folder '. realpath(__DIR__ . '/../../data/device');
-    $cmd .= ' --controller '. config::byKey('controller_'.$_instance, 'zigbee');
-    $cmd .= ' --sub_controller '. config::byKey('sub_controller_'.$_instance, 'zigbee','auto');
-    $cmd .= ' --channel '. config::byKey('channel_'.$_instance, 'zigbee');
-    if(config::byKey('allowOTA', 'zigbee') == 1){
-      if(!file_exists(__DIR__ . '/../../data/ota')){
-        mkdir(__DIR__ . '/../../data/ota',0777,true);
+    $cmd .= ' --cycle ' . config::byKey('cycle_' . $_instance, 'zigbee');
+    $cmd .= ' --pid ' . jeedom::getTmpFolder('zigbee') . '/deamon_' . $_instance . '.pid';
+    $cmd .= ' --data_folder ' . realpath(__DIR__ . '/../../data/' . $_instance . '/');
+    $cmd .= ' --device_folder ' . realpath(__DIR__ . '/../../data/device');
+    $cmd .= ' --controller ' . config::byKey('controller_' . $_instance, 'zigbee');
+    $cmd .= ' --sub_controller ' . config::byKey('sub_controller_' . $_instance, 'zigbee', 'auto');
+    $cmd .= ' --channel ' . config::byKey('channel_' . $_instance, 'zigbee');
+    if (config::byKey('allowOTA', 'zigbee') == 1) {
+      if (!file_exists(__DIR__ . '/../../data/ota')) {
+        mkdir(__DIR__ . '/../../data/ota', 0777, true);
       }
-      $cmd .= ' --folder_OTA '. realpath(__DIR__ . '/../../data/ota');
+      $cmd .= ' --folder_OTA ' . realpath(__DIR__ . '/../../data/ota');
     }
-    if(config::byKey('advance_zigpy_config_'.$_instance, 'zigbee') != '' && is_array(config::byKey('advance_zigpy_config_'.$_instance, 'zigbee'))){
-      file_put_contents(__DIR__ . '/../../data/'.$_instance.'/advance_zigpy_config.json',json_encode(config::byKey('advance_zigpy_config_'.$_instance, 'zigbee'),JSON_NUMERIC_CHECK));
-      $cmd .= ' --zigpy_advance_config '. realpath(__DIR__ . '/../../data/'.$_instance.'/advance_zigpy_config.json');
+    if (config::byKey('advance_zigpy_config_' . $_instance, 'zigbee') != '' && is_array(config::byKey('advance_zigpy_config_' . $_instance, 'zigbee'))) {
+      file_put_contents(__DIR__ . '/../../data/' . $_instance . '/advance_zigpy_config.json', json_encode(config::byKey('advance_zigpy_config_' . $_instance, 'zigbee'), JSON_NUMERIC_CHECK));
+      $cmd .= ' --zigpy_advance_config ' . realpath(__DIR__ . '/../../data/' . $_instance . '/advance_zigpy_config.json');
     }
     log::add('zigbee', 'info', 'Lancement démon zigbeed : ' . $cmd);
-    exec($cmd . ' >> ' . log::getPathToLog('zigbeed_'.$_instance) . ' 2>&1 &');
-    config::save('lastDeamonLaunchTime_'.$_instance, date('Y-m-d H:i:s'), 'zigbee');
+    exec($cmd . ' >> ' . log::getPathToLog('zigbeed_' . $_instance) . ' 2>&1 &');
+    config::save('lastDeamonLaunchTime_' . $_instance, date('Y-m-d H:i:s'), 'zigbee');
     return true;
   }
-  
+
   public static function deamon_stop() {
-    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
+    for ($i = 1; $i <= config::byKey('max_instance_number', "zigbee"); $i++) {
       self::deamon_stop_instance($i);
     }
     system::kill('zigbeed.py');
   }
-  
+
   public static function deamon_stop_instance($_instance) {
-    $pid_file = jeedom::getTmpFolder('zigbee') . '/deamon'.$_instance.'.pid';
+    $pid_file = jeedom::getTmpFolder('zigbee') . '/deamon' . $_instance . '.pid';
     if (file_exists($pid_file)) {
       $pid = intval(trim(file_get_contents($pid_file)));
       system::kill($pid);
     }
-    system::fuserk(config::byKey('socketport_'.$_instance, 'zigbee'));
-    $port = config::byKey('port_'.$_instance, 'zigbee');
+    system::fuserk(config::byKey('socketport_' . $_instance, 'zigbee'));
+    $port = config::byKey('port_' . $_instance, 'zigbee');
     if ($port != 'auto') {
       system::fuserk(jeedom::getUsbMapping($port));
     }
     sleep(1);
   }
-  
-  public static function getGroupable($_instance){
-    if(config::byKey('enable_deamon_'.$_instance,'zigbee') != 1){
+
+  public static function getGroupable($_instance) {
+    if (config::byKey('enable_deamon_' . $_instance, 'zigbee') != 1) {
       return array();
     }
     $return = array();
-    $groupable = self::request($_instance,'/device/groupable');
+    $groupable = self::request($_instance, '/device/groupable');
     foreach ($groupable as $device) {
-      $ieee=  $device['ieee'];
+      $ieee =  $device['ieee'];
       $eqLogic = self::byLogicalId($ieee, 'zigbee');
-      if (is_object($eqLogic)){
-        $info=array();
-        $info['ieee'] =$ieee;
+      if (is_object($eqLogic)) {
+        $info = array();
+        $info['ieee'] = $ieee;
         $info['name'] = $eqLogic->getHumanName();
-        $return[]=$info;
+        $return[] = $info;
       }
     }
     return $return;
   }
-  
-  public static function getDeviceWithCluster($_type,$_cluster,$_instance = null){
+
+  public static function getDeviceWithCluster($_type, $_cluster, $_instance = null) {
     $return = array();
     foreach (self::byType('zigbee') as $eqLogic) {
-      if($_instance != null && $_instance != $eqLogic->getConfiguration('instance',1)){
+      if ($_instance != null && $_instance != $eqLogic->getConfiguration('instance', 1)) {
         continue;
       }
       $clusters = ($_type == 'in') ? $eqLogic->getConfiguration('input_clusters') : $eqLogic->getConfiguration('output_clusters');
-      if(!is_array($clusters)){
+      if (!is_array($clusters)) {
         continue;
       }
-      if(isset($clusters[$_cluster])){
+      if (isset($clusters[$_cluster])) {
         $return[] = $eqLogic;
       }
     }
     return $return;
   }
-  
-  public static function sync(){
+
+  public static function sync() {
     $new = null;
-    for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){
-      if(config::byKey('enable_deamon_'.$i,'zigbee') != 1){
+    for ($i = 1; $i <= config::byKey('max_instance_number', "zigbee"); $i++) {
+      if (config::byKey('enable_deamon_' . $i, 'zigbee') != 1) {
         continue;
       }
-      $devices = self::request($i,'/device/all',array('with_attributes' => 2));
+      $devices = self::request($i, '/device/all', array('with_attributes' => 2));
       foreach ($devices as $device) {
-        if($device['nwk'] == 0){
+        if ($device['nwk'] == 0) {
           continue;
         }
-        $eqLogic = self::byLogicalId($device['ieee'],'zigbee');
+        $eqLogic = self::byLogicalId($device['ieee'], 'zigbee');
         $replace_device_type = array(
           ' ' => '_',
           '/' => '',
           '\\' => ''
         );
-        if(isset($device['endpoints'])){
+        if (isset($device['endpoints'])) {
           $endpoint_id = array_values($device['endpoints'])[0]['id'];
-          $device_type = trim(str_replace(array_keys($replace_device_type),$replace_device_type,trim(trim(self::getAttribute($endpoint_id,0,4,$device).'.'.trim(self::getAttribute($endpoint_id,0,5,$device)),'_'))),'.');
-          if($device_type == ''){
+          $device_type = trim(str_replace(array_keys($replace_device_type), $replace_device_type, trim(trim(self::getAttribute($endpoint_id, 0, 4, $device) . '.' . trim(self::getAttribute($endpoint_id, 0, 5, $device)), '_'))), '.');
+          if ($device_type == '') {
             $endpoint_id = array_values($device['endpoints'])[1]['id'];
-            $device_type = trim(str_replace(array_keys($replace_device_type),$replace_device_type,trim(trim(self::getAttribute($endpoint_id,0,4,$device).'.'.trim(self::getAttribute($endpoint_id,0,5,$device)),'_'))),'.');
+            $device_type = trim(str_replace(array_keys($replace_device_type), $replace_device_type, trim(trim(self::getAttribute($endpoint_id, 0, 4, $device) . '.' . trim(self::getAttribute($endpoint_id, 0, 5, $device)), '_'))), '.');
           }
         }
-        if(!is_object($eqLogic)){
+        if (!is_object($eqLogic)) {
           $eqLogic = new self();
           $eqLogic->setLogicalId($device['ieee']);
-          $eqLogic->setName($device_type.' '.$device['ieee']);
+          $eqLogic->setName($device_type . ' ' . $device['ieee']);
           $eqLogic->setIsEnable(1);
           $eqLogic->setEqType_name('zigbee');
-          $eqLogic->setConfiguration('device',$device_type);
+          $eqLogic->setConfiguration('device', $device_type);
           $new = true;
         }
         foreach ($device['endpoints'] as $endpoint) {
           $out_cluster = array();
           foreach ($endpoint['output_clusters'] as $cluster) {
             $out_cluster[$cluster['id']] = $cluster['id'];
-            if(!isset($out_cluster[$cluster['id']])){
+            if (!isset($out_cluster[$cluster['id']])) {
               $out_cluster[$cluster['id']] = $endpoint['id'];
             }
           }
-          $eqLogic->setConfiguration('output_clusters',$out_cluster);
-          
+          $eqLogic->setConfiguration('output_clusters', $out_cluster);
+
           $in_cluster = array();
           foreach ($endpoint['input_clusters'] as $cluster) {
-            if(!isset($in_cluster[$cluster['id']])){
+            if (!isset($in_cluster[$cluster['id']])) {
               $in_cluster[$cluster['id']] = array();
             }
             $in_cluster[$cluster['id']][] = $endpoint['id'];
           }
-          $eqLogic->setConfiguration('input_clusters',$in_cluster);
+          $eqLogic->setConfiguration('input_clusters', $in_cluster);
         }
-        $eqLogic->setConfiguration('instance',$i);
+        $eqLogic->setConfiguration('instance', $i);
         $eqLogic->save();
-        if($new === true){
+        if ($new === true) {
           $new = $eqLogic->getId();
         }
-        $battery = self::getAttribute(1,1,33,$device);
-        if($battery !== null && trim($battery) !== '' && is_numeric($battery)){
+        $battery = self::getAttribute(1, 1, 33, $device);
+        if ($battery !== null && trim($battery) !== '' && is_numeric($battery)) {
           $eqLogic->batteryStatus($battery);
         }
       }
-      $groups = self::request($i,'/group/all');
+      $groups = self::request($i, '/group/all');
       foreach ($groups as $group) {
-        $eqLogic = self::byLogicalId('group|'.$group['id'],'zigbee');
+        $eqLogic = self::byLogicalId($i . '|group|' . $group['id'], 'zigbee');
         $replace_device_type = array(
           ' ' => '_',
           '/' => '',
           '\\' => ''
         );
-        if(!is_object($eqLogic)){
+        if (!is_object($eqLogic)) {
           $eqLogic = new self();
-          $eqLogic->setLogicalId('group|'.$group['id']);
-          $eqLogic->setName('Groupe '.$group['id'] . ' : ' . $group['name']);
+          $eqLogic->setLogicalId($i . '|group|' . $group['id']);
+          $eqLogic->setName('Groupe ' . $group['id'] . ' : ' . $group['name']);
           $eqLogic->setIsEnable(1);
           $eqLogic->setEqType_name('zigbee');
-          $eqLogic->setConfiguration('device','group');
-          $eqLogic->setConfiguration('isgroup',1);
+          $eqLogic->setConfiguration('device', 'group');
+          $eqLogic->setConfiguration('isgroup', 1);
           $new = true;
         }
-        $eqLogic->setConfiguration('instance',$i);
+        $eqLogic->setConfiguration('instance', $i);
         $eqLogic->save();
-        if($new === true){
+        if ($new === true) {
           $new = $eqLogic->getId();
         }
       }
     }
     return $new;
   }
-  
-  public static function getAttribute($_endpoint_id,$_cluster_id,$_attribut_id,$_device){
-    if(!isset($_device['endpoints'])){
+
+  public static function getAttribute($_endpoint_id, $_cluster_id, $_attribut_id, $_device) {
+    if (!isset($_device['endpoints'])) {
       return null;
     }
     foreach ($_device['endpoints'] as $endpoint) {
-      if($endpoint['id'] == $_endpoint_id){
+      if ($endpoint['id'] == $_endpoint_id) {
         foreach ($endpoint['input_clusters'] as $cluster) {
-          if($cluster['id'] == $_cluster_id){
+          if ($cluster['id'] == $_cluster_id) {
             foreach ($cluster['attributes'] as $attribute) {
-              if($attribute['id'] == $_attribut_id){
+              if ($attribute['id'] == $_attribut_id) {
                 return $attribute['value'];
               }
             }
@@ -560,83 +559,83 @@ class zigbee extends eqLogic {
     }
     return null;
   }
-  
-  public static function parseDeviceInformation($_data){
+
+  public static function parseDeviceInformation($_data) {
     $return = array();
     $return['ieee'] = $_data['ieee'];
     $return['nwk'] = $_data['nwk'];
     $return['class'] = $_data['class'];
     $return['lqi'] = $_data['lqi'];
     $return['rssi'] = $_data['rssi'];
-    if($_data['last_seen'] == 'None'){
+    if ($_data['last_seen'] == 'None') {
       $return['last_seen'] = 'N/A';
-    }else{
-      $return['last_seen'] = date('Y-m-d H:i:s',$_data['last_seen']);
+    } else {
+      $return['last_seen'] = date('Y-m-d H:i:s', $_data['last_seen']);
     }
     $return['node_descriptor'] = $_data['node_descriptor'];
     switch ($_data['status']) {
       case 0:
-      $return['status'] = __('Non initialisé',__FILE__);
-      break;
+        $return['status'] = __('Non initialisé', __FILE__);
+        break;
       case 1:
-      $return['status'] = __('Découverte des endpoints OK',__FILE__);
-      break;
+        $return['status'] = __('Découverte des endpoints OK', __FILE__);
+        break;
       case 2:
-      $return['status'] = __('OK',__FILE__);
-      break;
+        $return['status'] = __('OK', __FILE__);
+        break;
       default:
-      $return['status'] = __('Inconnue',__FILE__).' ('.$_data['status'].')';
-      break;
+        $return['status'] = __('Inconnue', __FILE__) . ' (' . $_data['status'] . ')';
+        break;
     }
-    if(count($_data['endpoints']) == 0){
-      $return['alert_message'] = __('Aucun endpoints sur le module. Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\'inclusion)',__FILE__);
+    if (count($_data['endpoints']) == 0) {
+      $return['alert_message'] = __('Aucun endpoints sur le module. Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\'inclusion)', __FILE__);
       return $return;
     }
-    if(isset(array_values($_data['endpoints'])[0]['input_clusters'][0]['id']) && array_values($_data['endpoints'])[0]['input_clusters'][0]['id'] == 0){
+    if (isset(array_values($_data['endpoints'])[0]['input_clusters'][0]['id']) && array_values($_data['endpoints'])[0]['input_clusters'][0]['id'] == 0) {
       $endpoint_id = array_values($_data['endpoints'])[0]['id'];
-    }else{
+    } else {
       $endpoint_id = array_values($_data['endpoints'])[1]['id'];
     }
-    $return['zcl_version'] = self::getAttribute($endpoint_id,0,0,$_data);
-    $return['app_version'] = self::getAttribute($endpoint_id,0,1,$_data);
-    $return['stack_version'] = self::getAttribute($endpoint_id,0,2,$_data);
-    $return['hw_version'] = self::getAttribute($endpoint_id,0,3,$_data);
-    $return['manufacturer'] = self::getAttribute($endpoint_id,0,4,$_data);
-    $return['model'] = self::getAttribute($endpoint_id,0,5,$_data);
-    $return['date_code'] = self::getAttribute($endpoint_id,0,6,$_data);
-    $return['power_source'] = self::getAttribute($endpoint_id,0,7,$_data);
+    $return['zcl_version'] = self::getAttribute($endpoint_id, 0, 0, $_data);
+    $return['app_version'] = self::getAttribute($endpoint_id, 0, 1, $_data);
+    $return['stack_version'] = self::getAttribute($endpoint_id, 0, 2, $_data);
+    $return['hw_version'] = self::getAttribute($endpoint_id, 0, 3, $_data);
+    $return['manufacturer'] = self::getAttribute($endpoint_id, 0, 4, $_data);
+    $return['model'] = self::getAttribute($endpoint_id, 0, 5, $_data);
+    $return['date_code'] = self::getAttribute($endpoint_id, 0, 6, $_data);
+    $return['power_source'] = self::getAttribute($endpoint_id, 0, 7, $_data);
     switch ($return['power_source']) {
       case 1:
-      $return['power_source'] = __('Secteur monophasée',__FILE__);
-      break;
+        $return['power_source'] = __('Secteur monophasée', __FILE__);
+        break;
       case 2:
-      $return['power_source'] = __('Secteur triphasée',__FILE__);
-      break;
+        $return['power_source'] = __('Secteur triphasée', __FILE__);
+        break;
       case 3:
-      $return['power_source'] = __('Batterie',__FILE__);
-      break;
+        $return['power_source'] = __('Batterie', __FILE__);
+        break;
       case 4:
-      $return['power_source'] = __('Courant continue',__FILE__);
-      break;
+        $return['power_source'] = __('Courant continue', __FILE__);
+        break;
       case 5:
-      $return['power_source'] = __('Secteur d\'urgence toujours activée',__FILE__);
-      break;
+        $return['power_source'] = __('Secteur d\'urgence toujours activée', __FILE__);
+        break;
       case 6:
-      $return['power_source'] = __('Commutateur de transfert secteur d\'urgence',__FILE__);
-      break;
+        $return['power_source'] = __('Commutateur de transfert secteur d\'urgence', __FILE__);
+        break;
       default:
-      $return['power_source'] = __('Inconnue',__FILE__).' ('.$return['power_source'].')';
-      break;
+        $return['power_source'] = __('Inconnue', __FILE__) . ' (' . $return['power_source'] . ')';
+        break;
     }
-    $return['sw_build_id'] = self::getAttribute($endpoint_id,0,16384,$_data);
-    
-    $return['battery_voltage'] = self::getAttribute($endpoint_id,1,32,$_data)/10;
-    $return['battery_percent'] = self::getAttribute($endpoint_id,1,33,$_data);
-    if($return['battery_percent'] > 100){
+    $return['sw_build_id'] = self::getAttribute($endpoint_id, 0, 16384, $_data);
+
+    $return['battery_voltage'] = self::getAttribute($endpoint_id, 1, 32, $_data) / 10;
+    $return['battery_percent'] = self::getAttribute($endpoint_id, 1, 33, $_data);
+    if ($return['battery_percent'] > 100) {
       $return['battery_percent'] = 100;
     }
     $return['endpoints'] = array();
-    $profile_convertion = json_decode(file_get_contents(__DIR__.'/../config/profiles.json'),true);
+    $profile_convertion = json_decode(file_get_contents(__DIR__ . '/../config/profiles.json'), true);
     $found_basic_cluster = false;
     foreach ($_data['endpoints'] as $endpoint) {
       $return['endpoints'][$endpoint['id']] = array(
@@ -650,52 +649,52 @@ class zigbee extends eqLogic {
       );
       switch ($return['endpoints'][$endpoint['id']]['status']) {
         case 0:
-        $return['endpoints'][$endpoint['id']]['status'] = __('Non initialisé',__FILE__);
-        break;
+          $return['endpoints'][$endpoint['id']]['status'] = __('Non initialisé', __FILE__);
+          break;
         case 1:
-        $return['endpoints'][$endpoint['id']]['status'] = __('Ok',__FILE__);
-        break;
+          $return['endpoints'][$endpoint['id']]['status'] = __('Ok', __FILE__);
+          break;
         case 3:
-        $return['endpoints'][$endpoint['id']]['status'] = __('Inactive',__FILE__);
-        break;
+          $return['endpoints'][$endpoint['id']]['status'] = __('Inactive', __FILE__);
+          break;
         default:
-        $return['endpoints'][$endpoint['id']]['status'] = __('Inconnue',__FILE__).' ('.$return['endpoints'][$endpoint['id']]['status'].')';
-        break;
+          $return['endpoints'][$endpoint['id']]['status'] = __('Inconnue', __FILE__) . ' (' . $return['endpoints'][$endpoint['id']]['status'] . ')';
+          break;
       }
       switch ($return['endpoints'][$endpoint['id']]['profile_id']) {
         case 260:
-        $return['endpoints'][$endpoint['id']]['profile_id'] = __('ZHA',__FILE__);
-        if(isset($profile_convertion['zha'][$endpoint['device_type']])){
-          $return['endpoints'][$endpoint['id']]['device_type'] = $profile_convertion['zha'][$endpoint['device_type']];
-        }
-        break;
+          $return['endpoints'][$endpoint['id']]['profile_id'] = __('ZHA', __FILE__);
+          if (isset($profile_convertion['zha'][$endpoint['device_type']])) {
+            $return['endpoints'][$endpoint['id']]['device_type'] = $profile_convertion['zha'][$endpoint['device_type']];
+          }
+          break;
         case 49246:
-        $return['endpoints'][$endpoint['id']]['profile_id'] = __('ZLL',__FILE__);
-        if(isset($profile_convertion['zll'][$endpoint['device_type']])){
-          $return['endpoints'][$endpoint['id']]['device_type'] = $profile_convertion['zll'][$endpoint['device_type']];
-        }
-        break;
+          $return['endpoints'][$endpoint['id']]['profile_id'] = __('ZLL', __FILE__);
+          if (isset($profile_convertion['zll'][$endpoint['device_type']])) {
+            $return['endpoints'][$endpoint['id']]['device_type'] = $profile_convertion['zll'][$endpoint['device_type']];
+          }
+          break;
         default:
-        $return['endpoints'][$endpoint['id']]['profile_id'] = __('Inconnue',__FILE__).' ('.$return['endpoints'][$endpoint['id']]['profile_id'].')';
-        break;
+          $return['endpoints'][$endpoint['id']]['profile_id'] = __('Inconnue', __FILE__) . ' (' . $return['endpoints'][$endpoint['id']]['profile_id'] . ')';
+          break;
       }
       foreach ($endpoint['output_clusters'] as $cluster) {
-        $return['endpoints'][$endpoint['id']]['out_cluster'][] = array('id'=>$cluster['id'],'name'=>$cluster['name']);
+        $return['endpoints'][$endpoint['id']]['out_cluster'][] = array('id' => $cluster['id'], 'name' => $cluster['name']);
       }
       foreach ($endpoint['input_clusters'] as $cluster) {
-        if($cluster['id'] == 0){
+        if ($cluster['id'] == 0) {
           $found_basic_cluster = true;
         }
-        $return['endpoints'][$endpoint['id']]['in_cluster'][] = array('id'=>$cluster['id'],'name'=>$cluster['name']);
+        $return['endpoints'][$endpoint['id']]['in_cluster'][] = array('id' => $cluster['id'], 'name' => $cluster['name']);
       }
     }
-    if(!$found_basic_cluster){
-      $return['alert_message'] = __('Aucun cluster basic trouvé sur le module.Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\'inclusion)',__FILE__);
+    if (!$found_basic_cluster) {
+      $return['alert_message'] = __('Aucun cluster basic trouvé sur le module.Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\'inclusion)', __FILE__);
     }
     return $return;
   }
-  
-  
+
+
   public static function devicesParameters($_device = '') {
     $return = array();
     foreach (ls(__DIR__ . '/../config/devices', '*') as $dir) {
@@ -706,13 +705,12 @@ class zigbee extends eqLogic {
       $files = ls($path, '*.json', false, array('files', 'quiet'));
       foreach ($files as $file) {
         try {
-          $content = is_json(file_get_contents($path . '/' . $file),false);
+          $content = is_json(file_get_contents($path . '/' . $file), false);
           if ($content != false) {
-            $content['manufacturer'] = ucfirst(trim($dir,'/'));
-            $return[str_replace('.json','',$file)] = $content;
+            $content['manufacturer'] = ucfirst(trim($dir, '/'));
+            $return[str_replace('.json', '', $file)] = $content;
           }
         } catch (Exception $e) {
-          
         }
       }
     }
@@ -721,7 +719,7 @@ class zigbee extends eqLogic {
         return $return[$_device];
       }
       foreach ($return as $device => $value) {
-        if(strtolower($device) == strtolower($_device)){
+        if (strtolower($device) == strtolower($_device)) {
           return $value;
         }
       }
@@ -729,12 +727,12 @@ class zigbee extends eqLogic {
     }
     return $return;
   }
-  
-  public static function ciGlob($pat){
+
+  public static function ciGlob($pat) {
     $p = '';
-    for($x=0; $x<strlen($pat); $x++){
+    for ($x = 0; $x < strlen($pat); $x++) {
       $c = substr($pat, $x, 1);
-      if(preg_match("/[^A-Za-z]/", $c)){
+      if (preg_match("/[^A-Za-z]/", $c)) {
         $p .= $c;
         continue;
       }
@@ -744,7 +742,7 @@ class zigbee extends eqLogic {
     }
     return $p;
   }
-  
+
   public static function getImgFilePath($_device) {
     foreach (ls(__DIR__ . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
       foreach (ls(__DIR__ . '/../config/devices/' . $folder, self::ciGlob($_device) . '.{jpg,png}', false, array('files', 'quiet')) as $file) {
@@ -753,69 +751,69 @@ class zigbee extends eqLogic {
     }
     foreach (ls(__DIR__ . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
       foreach (ls(__DIR__ . '/../config/devices/' . $folder, '*.{jpg,png}', false, array('files', 'quiet')) as $file) {
-        if(strtolower($_device).'.png' == strtolower($file)){
+        if (strtolower($_device) . '.png' == strtolower($file)) {
           return $file;
         }
-        if(strtolower($_device).'.jpg' == strtolower($file)){
+        if (strtolower($_device) . '.jpg' == strtolower($file)) {
           return $file;
         }
       }
     }
     return false;
   }
-  
-  
+
+
   /*     * *********************Méthodes d'instance************************* */
-  
-  public function setTime($_node_data = null){
-    $ieee=explode('|',$this->getLogicalId())[0];
-    if($_node_data == null){
-      $_node_data = zigbee::request($this->getConfiguration('instance',1),'/device/info',array('ieee'=>$ieee));
+
+  public function setTime($_node_data = null) {
+    $ieee = explode('|', $this->getLogicalId())[0];
+    if ($_node_data == null) {
+      $_node_data = zigbee::request($this->getConfiguration('instance', 1), '/device/info', array('ieee' => $ieee));
     }
     foreach ($_node_data['endpoints'] as $endpoint) {
       foreach ($endpoint['input_clusters'] as $cluster) {
-        if($cluster['id'] != 10){
+        if ($cluster['id'] != 10) {
           continue;
         }
         $timestamp = strtotime('now') - strtotime('1st January 2000 UTC 00:00:00');
-        $attributes = array(array('endpoint' => $endpoint['id'],'cluster_type'=> 'in','cluster'=>10,'attributes'=> (object)array(0=>$timestamp,1=>1)));
-        zigbee::request($this->getConfiguration('instance',1),'/device/attributes',array('ieee'=>$ieee,'attributes' => $attributes,'allowQueue' => false),'PUT');
+        $attributes = array(array('endpoint' => $endpoint['id'], 'cluster_type' => 'in', 'cluster' => 10, 'attributes' => (object)array(0 => $timestamp, 1 => 1)));
+        zigbee::request($this->getConfiguration('instance', 1), '/device/attributes', array('ieee' => $ieee, 'attributes' => $attributes, 'allowQueue' => false), 'PUT');
       }
     }
   }
-  
+
   public function getImage() {
     $file = 'plugins/zigbee/core/config/devices/' . self::getImgFilePath($this->getConfiguration('device'));
-    if ($this->getConfiguration('ischild',0) == 1) {
-      $childfile = 'plugins/zigbee/core/config/device/' . $this->getConfiguration('visual','none');
-      if(file_exists(__DIR__.'/../../../../'.$childfile)){
+    if ($this->getConfiguration('ischild', 0) == 1) {
+      $childfile = 'plugins/zigbee/core/config/device/' . $this->getConfiguration('visual', 'none');
+      if (file_exists(__DIR__ . '/../../../../' . $childfile)) {
         return $childfile;
       }
     }
-    if(!file_exists(__DIR__.'/../../../../'.$file)){
+    if (!file_exists(__DIR__ . '/../../../../' . $file)) {
       return 'plugins/zigbee/plugin_info/zigbee_icon.png';
     }
     return $file;
   }
-  
+
   public function getVisualList() {
-    $device = $this->getConfiguration('device','');
-    $visual = str_replace('\/','/',$this->getConfiguration('visual',''));
+    $device = $this->getConfiguration('device', '');
+    $visual = str_replace('\/', '/', $this->getConfiguration('visual', ''));
     $files = array();
-    $files[] = array('path'=>'','name'=> 'Par défaut','selected' => 0);
+    $files[] = array('path' => '', 'name' => 'Par défaut', 'selected' => 0);
     foreach (ls(__DIR__ . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
       foreach (ls(__DIR__ . '/../config/devices/' . $folder, $device . '_child_*.{jpg,png}', false, array('files', 'quiet')) as $file) {
-        $fileEl['path'] = $folder.$file;
-        $cleanName = explode('_child_',$file)[1];
-        foreach (array('.jpg','.png') as $clean){
-          $cleanName = str_replace($clean,'',$cleanName);
+        $fileEl['path'] = $folder . $file;
+        $cleanName = explode('_child_', $file)[1];
+        foreach (array('.jpg', '.png') as $clean) {
+          $cleanName = str_replace($clean, '', $cleanName);
         }
         $fileEl['selected'] = 0;
-        if ($visual == $folder.$file){
-          $fileEl['selected'] =1;
+        if ($visual == $folder . $file) {
+          $fileEl['selected'] = 1;
         }
-        $fileEl['name'] = ucfirst(str_replace('.',' ',$cleanName));
-        $files[]=$fileEl;
+        $fileEl['name'] = ucfirst(str_replace('.', ' ', $cleanName));
+        $files[] = $fileEl;
       }
     }
     if (count($files) > 0) {
@@ -823,86 +821,83 @@ class zigbee extends eqLogic {
     }
     return False;
   }
-  
+
   public function childCreate($_endpoint) {
-    log::add('zigbee','debug','Child Create For : ' . $_endpoint);
+    log::add('zigbee', 'debug', 'Child Create For : ' . $_endpoint);
     $ieee = $this->getLogicalId();
-    $eqLogic = self::byLogicalId($ieee.'|'.$_endpoint,'zigbee');
-    if(!is_object($eqLogic)){
+    $eqLogic = self::byLogicalId($ieee . '|' . $_endpoint, 'zigbee');
+    if (!is_object($eqLogic)) {
       $eqLogic = new self();
-      $eqLogic->setLogicalId($ieee.'|'.$_endpoint);
-      $eqLogic->setName($this->getName().'-EP'.$_endpoint);
+      $eqLogic->setLogicalId($ieee . '|' . $_endpoint);
+      $eqLogic->setName($this->getName() . '-EP' . $_endpoint);
       $eqLogic->setIsEnable(1);
       $eqLogic->setEqType_name('zigbee');
-      $eqLogic->setConfiguration('device',$this->getConfiguration('device',''));
-      $eqLogic->setConfiguration('ischild',1);
+      $eqLogic->setConfiguration('device', $this->getConfiguration('device', ''));
+      $eqLogic->setConfiguration('ischild', 1);
       $eqLogic->save();
     }
   }
-  
-  public function preSave(){
+
+  public function preSave() {
     $decode_file = null;
     foreach (ls(__DIR__ . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
-      if(file_exists(__DIR__ . '/../config/devices/' . $folder.'/'.$this->getConfiguration('device') . '.php')){
-        $decode_file = 'config/devices/' . $folder.'/'.$this->getConfiguration('device') . '.php';
+      if (file_exists(__DIR__ . '/../config/devices/' . $folder . '/' . $this->getConfiguration('device') . '.php')) {
+        $decode_file = 'config/devices/' . $folder . '/' . $this->getConfiguration('device') . '.php';
       }
     }
-    $this->setConfiguration('decode_file',$decode_file);
+    $this->setConfiguration('decode_file', $decode_file);
   }
-  
+
   public function postSave() {
     if ($this->getConfiguration('applyDevice') != $this->getConfiguration('device')) {
       $this->applyModuleConfiguration();
       $this->refreshValue();
     }
-    if($this->getConfiguration('deviceSpecific') != '' && is_array($this->getConfiguration('deviceSpecific'))){
+    if ($this->getConfiguration('deviceSpecific') != '' && is_array($this->getConfiguration('deviceSpecific'))) {
       $deviceSpecific = array();
       foreach ($this->getConfiguration('deviceSpecific') as $key => $datas) {
         foreach ($datas as $key2 => $value) {
-          if(trim($value) == ''){
+          if (trim($value) == '') {
             continue;
           }
-          if(!isset($deviceSpecific[$key])){
+          if (!isset($deviceSpecific[$key])) {
             $deviceSpecific[$key] = array();
           }
           $deviceSpecific[$key][$key2] = $value;
         }
       }
-      if(count($deviceSpecific) > 0){
-        $deviceSpecificPath = __DIR__.'/../../data/device';
-        if(!file_exists($deviceSpecificPath)){
+      if (count($deviceSpecific) > 0) {
+        $deviceSpecificPath = __DIR__ . '/../../data/device';
+        if (!file_exists($deviceSpecificPath)) {
           mkdir($deviceSpecificPath);
         }
-        $deviceSpecificPath .= '/'.$this->getLogicalId().'.json';
-        file_put_contents($deviceSpecificPath,json_encode($deviceSpecific));
+        $deviceSpecificPath .= '/' . $this->getLogicalId() . '.json';
+        file_put_contents($deviceSpecificPath, json_encode($deviceSpecific));
         try {
-          zigbee::request($this->getConfiguration('instance',1),'/device/update_specific',array('ieee'=>$this->getLogicalId()),'PUT');
+          zigbee::request($this->getConfiguration('instance', 1), '/device/update_specific', array('ieee' => $this->getLogicalId()), 'PUT');
         } catch (\Exception $e) {
-          
         }
-      }elseif(file_exists(__DIR__.'/../../data/device/'.$this->getLogicalId().'.json')){
-        unlink(__DIR__.'/../../data/device/'.$this->getLogicalId().'.json');
+      } elseif (file_exists(__DIR__ . '/../../data/device/' . $this->getLogicalId() . '.json')) {
+        unlink(__DIR__ . '/../../data/device/' . $this->getLogicalId() . '.json');
         try {
-          zigbee::request($this->getConfiguration('instance',1),'/device/delete_specific',array('ieee'=>$this->getLogicalId()),'PUT');
+          zigbee::request($this->getConfiguration('instance', 1), '/device/delete_specific', array('ieee' => $this->getLogicalId()), 'PUT');
         } catch (\Exception $e) {
-          
         }
       }
     }
   }
-  
-  public function preRemove(){
-    $deviceSpecificPath = __DIR__.'/../../data/device/'.$this->getLogicalId().'.json';
-    if(file_exists($deviceSpecificPath)){
+
+  public function preRemove() {
+    $deviceSpecificPath = __DIR__ . '/../../data/device/' . $this->getLogicalId() . '.json';
+    if (file_exists($deviceSpecificPath)) {
       unlink($deviceSpecificPath);
       try {
-        zigbee::request($this->getConfiguration('instance',1),'/device/delete_specific',array('ieee'=>$this->getLogicalId()),'PUT');
+        zigbee::request($this->getConfiguration('instance', 1), '/device/delete_specific', array('ieee' => $this->getLogicalId()), 'PUT');
       } catch (\Exception $e) {
-        
       }
     }
   }
-  
+
   public function applyModuleConfiguration() {
     $this->setConfiguration('applyDevice', $this->getConfiguration('device'));
     $this->save();
@@ -913,99 +908,98 @@ class zigbee extends eqLogic {
     if (!is_array($device)) {
       return true;
     }
-    $this->import($device,true);
-    if ($this->getConfiguration('ischild',0) == 1){
-      $endpoint = explode('|',$this->getLogicalId())[1];
+    $this->import($device, true);
+    if ($this->getConfiguration('ischild', 0) == 1) {
+      $endpoint = explode('|', $this->getLogicalId())[1];
       foreach ($this->getCmd() as $cmd) {
         $cmdLogical = $cmd->getLogicalId();
-        $elements = explode('::',$cmdLogical);
-        if ($elements[0] == $endpoint || ($elements[0] == 'attributes' && $elements[1] == $endpoint)){
+        $elements = explode('::', $cmdLogical);
+        if ($elements[0] == $endpoint || ($elements[0] == 'attributes' && $elements[1] == $endpoint)) {
           continue;
         } else {
           $cmd->remove();
         }
       }
-    } else if ($this->getConfiguration('canbesplit',0) == 1){
-      $allendpoints =array();
+    } else if ($this->getConfiguration('canbesplit', 0) == 1) {
+      $allendpoints = array();
       try {
-        $details = zigbee::request($this->getConfiguration('instance',1),'/device/info',array(
-          'ieee'=>$this->getLogicalId()
-        ),'GET');
+        $details = zigbee::request($this->getConfiguration('instance', 1), '/device/info', array(
+          'ieee' => $this->getLogicalId()
+        ), 'GET');
         foreach ($details['endpoints'] as $endpoint) {
           $allendpoints[] = $endpoint['id'];
         }
         foreach ($this->getCmd() as $cmd) {
           $cmdLogical = $cmd->getLogicalId();
-          $elements = explode('::',$cmdLogical);
-          if (in_array($elements[0],$allendpoints)|| ($elements[0] == 'attributes' && in_array($elements[1],$allendpoints))){
+          $elements = explode('::', $cmdLogical);
+          if (in_array($elements[0], $allendpoints) || ($elements[0] == 'attributes' && in_array($elements[1], $allendpoints))) {
             continue;
           } else {
             $cmd->remove();
           }
         }
       } catch (\Exception $e) {
-        log::add('zigbee','info',$this->getHumanName().' '.$e->getMessage());
+        log::add('zigbee', 'info', $this->getHumanName() . ' ' . $e->getMessage());
       }
     }
   }
-  
-  public function refreshValue(){
-    $ieee=explode('|',$this->getLogicalId())[0];
+
+  public function refreshValue() {
+    $ieee = explode('|', $this->getLogicalId())[0];
     if ($ieee == 'group') {
       return;
     }
     $datas = array();
     foreach ($this->getCmd('info') as $cmd) {
-      $infos = explode('::',$cmd->getLogicalId());
-      if(count($infos) != 3){
+      $infos = explode('::', $cmd->getLogicalId());
+      if (count($infos) != 3) {
         continue;
       }
-      if(!isset($datas[$infos[0]])){
+      if (!isset($datas[$infos[0]])) {
         $datas[$infos[0]] = array();
       }
-      if(!isset($datas[$infos[0]][$infos[1]])){
+      if (!isset($datas[$infos[0]][$infos[1]])) {
         $datas[$infos[0]][$infos[1]] = array();
       }
-      if($infos[2] == 'color'){
+      if ($infos[2] == 'color') {
         $datas[$infos[0]][$infos[1]][] = 3;
         $datas[$infos[0]][$infos[1]][] = 4;
         continue;
       }
       $datas[$infos[0]][$infos[1]][] = intval($infos[2]);
     }
-    
-    if(count($datas) == 0){
+
+    if (count($datas) == 0) {
       return;
     }
     foreach ($datas as $endpoint => $data) {
       foreach ($data as $cluster => $attributes) {
         try {
-          zigbee::request($this->getConfiguration('instance',1),'/device/attributes',array(
-            'ieee'=>$ieee,
+          zigbee::request($this->getConfiguration('instance', 1), '/device/attributes', array(
+            'ieee' => $ieee,
             'endpoint' => $endpoint,
             'cluster' => $cluster,
             'cluster_type' => 'in',
             'attributes' => $attributes,
             'allowCache' => 0
-          ),'POST');
+          ), 'POST');
         } catch (\Exception $e) {
-          log::add('zigbee','info',$this->getHumanName().' '.$e->getMessage());
+          log::add('zigbee', 'info', $this->getHumanName() . ' ' . $e->getMessage());
         }
       }
     }
-    
   }
-  
-  
+
+
   /*     * **********************Getteur Setteur*************************** */
 }
 
 class zigbeeCmd extends cmd {
   /*     * *************************Attributs****************************** */
-  
-  
+
+
   /*     * ***********************Methode static*************************** */
-  
+
   public static function convertRGBToXY($red, $green, $blue) {
     $normalizedToOne['red'] = $red / 255;
     $normalizedToOne['green'] = $green / 255;
@@ -1033,7 +1027,7 @@ class zigbeeCmd extends cmd {
       'bri' => round($xyz['y'] * 255),
     );
   }
-  
+
   public static function convertXYToRGB($x, $y, $bri = 255) {
     $z = 1.0 - $x - $y;
     $xyz['y'] = $bri / 255;
@@ -1062,66 +1056,66 @@ class zigbeeCmd extends cmd {
     }
     return $color;
   }
-  
-  
-  
+
+
+
   /*     * *********************Methode d'instance************************* */
-  
+
   public function execute($_options = array()) {
-    if($this->getType() == 'info'){
+    if ($this->getType() == 'info') {
       return;
     }
     $eqLogic = $this->getEqLogic();
-    if($this->getLogicalId() == 'refresh'){
+    if ($this->getLogicalId() == 'refresh') {
       return $eqLogic->refreshValue();
     }
-    if($this->getLogicalId() == 'duration'){
-      $eqLogic->setCache('duration',round($_options['slider']));
+    if ($this->getLogicalId() == 'duration') {
+      $eqLogic->setCache('duration', round($_options['slider']));
       $eqLogic->checkAndUpdateCmd('durationstate', round($_options['slider']));
       return;
     }
     $commands = array();
     $attributes = array();
-    $informations = explode('|',$this->getLogicalId());
+    $informations = explode('|', $this->getLogicalId());
     foreach ($informations as $information) {
       $replace = array();
       switch ($this->getSubType()) {
         case 'slider':
-        $replace['#slider#'] = round(floatval($_options['slider']),2);
-        break;
+          $replace['#slider#'] = round(floatval($_options['slider']), 2);
+          break;
         case 'color':
-        list($r, $g, $b) = str_split(str_replace('#', '', $_options['color']), 2);
-        $info = self::convertRGBToXY(hexdec($r), hexdec($g), hexdec($b));
-        $replace['#color#'] = round($info['x']*65535).'::'.round($info['y']*65535);
-        break;
+          list($r, $g, $b) = str_split(str_replace('#', '', $_options['color']), 2);
+          $info = self::convertRGBToXY(hexdec($r), hexdec($g), hexdec($b));
+          $replace['#color#'] = round($info['x'] * 65535) . '::' . round($info['y'] * 65535);
+          break;
         case 'select':
-        $replace['#select#'] = $_options['select'];
-        break;
+          $replace['#select#'] = $_options['select'];
+          break;
         case 'message':
-        $replace['#title#'] = $_options['title'];
-        $replace['#message#'] = $_options['message'];
-        if ($_options['message'] == '' && $_options['title'] == '') {
-          throw new Exception(__('Le message et le sujet ne peuvent pas être vide', __FILE__));
-        }
-        break;
+          $replace['#title#'] = $_options['title'];
+          $replace['#message#'] = $_options['message'];
+          if ($_options['message'] == '' && $_options['title'] == '') {
+            throw new Exception(__('Le message et le sujet ne peuvent pas être vide', __FILE__));
+          }
+          break;
       }
-      $replace['#duration#'] = $eqLogic->getCache('duration',0);
-      $info = explode('::',str_replace(array_keys($replace),$replace,$information));
-      if($info[0] == 'attributes'){
+      $replace['#duration#'] = $eqLogic->getCache('duration', 0);
+      $info = explode('::', str_replace(array_keys($replace), $replace, $information));
+      if ($info[0] == 'attributes') {
         $value = evaluate($info[5]);
-        if(is_numeric($value)){
+        if (is_numeric($value)) {
           $value = intval($value);
         }
-        $attributes[] = array('endpoint' => intval($info[1]),'cluster_type'=> $info[2],'cluster'=>intval($info[3]),'attributes'=>array(intval($info[4])=>$value));
-      }else{
-        $command = array('endpoint' => intval($info[0]),'cluster'=>$info[1],'command'=>$info[2]);
-        if($this->getEqLogic()->getConfiguration('dontAwaitCmd',0) == 0){
+        $attributes[] = array('endpoint' => intval($info[1]), 'cluster_type' => $info[2], 'cluster' => intval($info[3]), 'attributes' => array(intval($info[4]) => $value));
+      } else {
+        $command = array('endpoint' => intval($info[0]), 'cluster' => $info[1], 'command' => $info[2]);
+        if ($this->getEqLogic()->getConfiguration('dontAwaitCmd', 0) == 0) {
           $command['await'] = 1;
         }
-        if (count($info) > 3){
-          $command['args'] = array_slice($info,3);
+        if (count($info) > 3) {
+          $command['args'] = array_slice($info, 3);
           foreach ($command['args'] as &$value) {
-            if(is_numeric($value)){
+            if (is_numeric($value)) {
               $value = intval($value);
             }
           }
@@ -1130,23 +1124,23 @@ class zigbeeCmd extends cmd {
       }
     }
     $type = 'device';
-    $ieee=explode('|',$eqLogic->getLogicalId())[0];
+    $ieee = explode('|', $eqLogic->getLogicalId())[0];
     if ($ieee == 'group') {
-      $ieee = explode('|',$eqLogic->getLogicalId())[1];
+      $ieee = explode('|', $eqLogic->getLogicalId())[1];
       $type = 'group';
     }
-    if(count($commands) > 0){
-      zigbee::request($eqLogic->getConfiguration('instance',1),'/'.$type.'/command',array('ieee'=>$ieee,'cmd' => $commands,'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue',0) == 1)),'PUT');
+    if (count($commands) > 0) {
+      zigbee::request($eqLogic->getConfiguration('instance', 1), '/' . $type . '/command', array('ieee' => $ieee, 'cmd' => $commands, 'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue', 0) == 1)), 'PUT');
     }
-    if(count($attributes) > 0){
-      zigbee::request($eqLogic->getConfiguration('instance',1),'/'.$type.'/attributes',array('ieee'=>$ieee,'attributes' => $attributes,'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue',0) == 1)),'PUT');
+    if (count($attributes) > 0) {
+      zigbee::request($eqLogic->getConfiguration('instance', 1), '/' . $type . '/attributes', array('ieee' => $ieee, 'attributes' => $attributes, 'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue', 0) == 1)), 'PUT');
     }
-    $refresh = $eqLogic->getCmd('action','refresh');
-    if(is_object($refresh)){
+    $refresh = $eqLogic->getCmd('action', 'refresh');
+    if (is_object($refresh)) {
       sleep(1);
       $eqLogic->refreshValue();
     }
   }
-  
+
   /*     * **********************Getteur Setteur*************************** */
 }
