@@ -6,6 +6,7 @@
         "c'est trié par date d'ajout\/modification": "it is sorted by date added \/ modified",
         "Ajout de nouveau module compatible": "Addition of new compatible module",
         "Ajout d'un bouton pour supprimer toute les données d'un demon (voir documentation": "Addition of a button to delete all the data of a daemon (see documentation",
+        "Correction d'un bug sur la gestion des groupes lors de multiple clef zigbee": "Fixed a bug on group management when multiple zigbee keys",
         "01\/07\/2021": "07\/01\/2021",
         "Optimisation des configurations existante sur la gestion des repetitions": "Optimization of existing configurations on the management of repetitions",
         "09\/06\/2021": "06\/09\/2021",

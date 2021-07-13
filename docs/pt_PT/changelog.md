@@ -10,6 +10,7 @@
 
 - Adição de novo módulo compatível
 - Adição de um botão para deletar todos os dados de um daemon (veja a documentação)
+- Corrigido um bug no gerenciamento de grupo quando várias chaves zigbee
 
 
 # 01/07/2021

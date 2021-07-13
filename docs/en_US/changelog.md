@@ -10,6 +10,7 @@
 
 - Addition of new compatible module
 - Addition of a button to delete all the data of a daemon (see documentation)
+- Fixed a bug on group management when multiple zigbee keys
 
 
 # 07/01/2021

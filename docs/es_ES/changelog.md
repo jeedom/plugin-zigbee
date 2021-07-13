@@ -10,6 +10,7 @@
 
 - Adición de un nuevo módulo compatible
 - Adición de un botón para borrar todos los datos de un demonio (ver documentación)
+- Se corrigió un error en la administración de grupos cuando varias llaves zigbee
 
 
 # 01/07/2021
