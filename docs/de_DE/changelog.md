@@ -10,6 +10,7 @@
 
 - Hinzufügung eines neuen kompatiblen Moduls
 - Hinzufügen einer Schaltfläche zum Löschen aller Daten eines Daemons (siehe Dokumentation)
+- Fehler in der Gruppenverwaltung behoben, wenn mehrere Zigbee-Tasten vorhanden waren
 
 
 # 01.07.2021
