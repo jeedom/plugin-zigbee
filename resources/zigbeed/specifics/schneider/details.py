@@ -53,9 +53,7 @@ class SchneiderPilotModeCluster(CustomCluster):
 
 class SchneiderShutterCluster(CustomCluster, Basic):
 	"""Schneider shutter config cluster."""
-	cluster_id = 0xFF23
-	name = "Schneider Shutter Config"
-	ep_attribute = "shutter_config"
+	cluster_id = 0x0102
 	manufacturer_attributes = {
 		0xE014: ("LiftDriveUpTime", types.uint16_t),
 		0xE015: ("LiftDriveDownTime", types.uint16_t),
