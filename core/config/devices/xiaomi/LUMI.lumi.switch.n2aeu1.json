@@ -4,6 +4,7 @@
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5729-xiaomi-aqara-interrupteur-mural-double-intelligent-h1-zigbee-30-avec-neutre-ws-euk04-6970504214804.html",
   "reset" : "Appuie long de 10s sur le bouton droit",
   "pairing":"Appuie long de 5s sur le bouton droit",
+  "documentation": "https://cdn.aqara.com/cdn/website/mainland/static/docs/Smart-Wall-Switch-H1-With-Neutral_Manual_EN.pdf",
   "commands": [
      {
       "name": "Rafraîchir",
