@@ -9,9 +9,9 @@
   "pairing" : "Presser 3 fois le bouton",
   "documentation": "https://download.schneider-electric.com/files?p_enDocType=Instruction+sheet&p_File_Name=CCT5xx5-xxx2_2W_HW.pdf&p_Doc_Ref=CCT5xx5-xxx2_2W_HW",
   "config" : [
-    {"endpoint" : 5,"cluster":65315,"attribute":3000,"manufacturer":4190,"name":"Temps de montée en 1/10 secondes","type":"number"},
-    {"endpoint" : 5,"cluster":65315,"attribute":3001,"manufacturer":4190,"name":"Temps de descente en 1/10 secondes","type":"number"},
-    {"endpoint" : 5,"cluster":65315,"attribute":3002,"manufacturer":4190,"name":"Temps douverture et de fermeture pour les BSO en 1/100","type":"number"}
+    {"endpoint" : 5,"cluster":258,"attribute":57364,"manufacturer":4190,"name":"Temps de montée en 1/10 secondes","type":"number"},
+    {"endpoint" : 5,"cluster":258,"attribute":57365,"manufacturer":4190,"name":"Temps de descente en 1/10 secondes","type":"number"},
+    {"endpoint" : 5,"cluster":258,"attribute":57366,"manufacturer":4190,"name":"Temps douverture et de fermeture pour les BSO en 1/100","type":"number"}
   ],
   "commands":[
     {
