@@ -31,7 +31,7 @@ class SchneiderSpecifics():
 			endpoints = device.endpoints.items()
 			logging.debug('Found Schneider heater controller Specifics')
 			for endpoint_id, ep in device.endpoints.items():
-				if device.model == 'PUCK\/SHUTTER\/1' and endpoint_id == 5:
+				if device.model == 'NHPB/SHUTTER/1' and endpoint_id == 5:
 					cluster = details.SchneiderShutterCluster(ep, is_server=True)
 					for oldcluster in ep.in_clusters.values():
 						if oldcluster.cluster_id == cluster.cluster_id:
