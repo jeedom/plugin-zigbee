@@ -50,13 +50,3 @@ class SchneiderPilotModeCluster(CustomCluster):
 	manufacturer_attributes = {
 		0x0031: ("controller_pilot_mode", types.enum8)
 	}
-
-class SchneiderShutterCluster(CustomCluster, Basic):
-	"""Schneider shutter config cluster."""
-	cluster_id = 0x0102
-	manufacturer_attributes = {
-		0xE014: ("LiftDriveUpTime", types.uint16_t),
-		0xE015: ("LiftDriveDownTime", types.uint16_t),
-		0xE016: ("TiltOpenCloseAndStepTime", types.uint16_t),
-		0xE017: ("TiltPositionPercentageAfterMoveToLevel", types.uint8_t)
-	}

@@ -27,17 +27,10 @@ class SchneiderSpecifics():
 			return True
 
 	def init(self,device):
-		if (device.model in ['CCTFR6700','PUCK\/SHUTTER\/1']):
+		if (device.model in ['CCTFR6700']):
 			endpoints = device.endpoints.items()
 			logging.debug('Found Schneider heater controller Specifics')
 			for endpoint_id, ep in device.endpoints.items():
-				if device.model == 'NHPB/SHUTTER/1' and endpoint_id == 5:
-					cluster = details.SchneiderShutterCluster(ep, is_server=True)
-					for oldcluster in ep.in_clusters.values():
-						if oldcluster.cluster_id == cluster.cluster_id:
-							cluster._attr_cache=oldcluster._attr_cache
-							break
-					ep.add_input_cluster(cluster.cluster_id, cluster)
 				if device.model == 'CCTFR6700' and endpoint_id == 1:
 					cluster = details.SchneiderPilotModeCluster(ep, is_server=True)
 					for oldcluster in ep.in_clusters.values():
