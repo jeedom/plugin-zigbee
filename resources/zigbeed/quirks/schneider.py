@@ -60,7 +60,6 @@ class SchneiderShutter(CustomDevice):
                     Basic.cluster_id,
                     Identify.cluster_id,
                     Diagnostic.cluster_id,
-                    OnOff.cluster_id,
                     65303,
                 ],
                 OUTPUT_CLUSTERS: [
@@ -75,10 +74,8 @@ class SchneiderShutter(CustomDevice):
             242: {
                 PROFILE_ID: 41440,
                 DEVICE_TYPE: 97,
-                INPUT_CLUSTERS: [
-                    33
-                ],
-                OUTPUT_CLUSTERS: [],
+                INPUT_CLUSTERS: [],
+                OUTPUT_CLUSTERS: [33],
             }
         },
     }
@@ -95,6 +92,30 @@ class SchneiderShutter(CustomDevice):
                     Diagnostic,
                 ],
                 OUTPUT_CLUSTERS: [Ota],
+            },
+            21: {
+                PROFILE_ID: 260,
+                DEVICE_TYPE: 260,
+                INPUT_CLUSTERS: [
+                    Basic.cluster_id,
+                    Identify.cluster_id,
+                    Diagnostic.cluster_id,
+                    65303,
+                ],
+                OUTPUT_CLUSTERS: [
+                    Identify.cluster_id,
+                    Groups.cluster_id,
+                    Scenes.cluster_id,
+                    OnOff.cluster_id,
+                    LevelControl.cluster_id,
+                    WindowCovering.cluster_id,
+                ],
+            },
+            242: {
+                PROFILE_ID: 41440,
+                DEVICE_TYPE: 97,
+                INPUT_CLUSTERS: [],
+                OUTPUT_CLUSTERS: [33],
             }
         }
     }
