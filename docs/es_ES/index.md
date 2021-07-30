@@ -20,6 +20,13 @@ Además, el complemento está equipado con muchas herramientas que permiten :
 - hacerse cargo de **Touchlink**,
 - o incluso para integrar sus propias configuraciones para los más experimentados...
 
+>**MUY IMPORTANTE**
+>
+> Debido al vals del lado del fabricante del firmware / hardware y posibles bugs en su firmware (sin necesariamente tener la posibilidad de actualizarlo desde Jeedom porque la mayoría de los fabricantes no los comunican) es posible que un módulo marcado como compatible tampoco lo haga solo parcialmente (un botón que no funciona, o no hay diferencia entre el botón arriba y no, no hay aumento de CO2 o un sensor del módulo...). Desafortunadamente, no podemos advertirle con anticipación en la lista porque : 
+>- no necesariamente tenemos el módulo en cuestión, muchos módulos se agregan por comentarios de los usuarios
+>- de una semana a otra el módulo puede haber cambiado (nuevo hardware, nuevo firmware o incluso nuevo módulo que no ha cambiado de nombre)
+>En ningún caso Jeedom se hace responsable en el caso de que falte una función (o incluso un módulo que no funcione) cuando se indique como compatible, como lo hace, estamos sujetos a los cambios impuestos por el fabricante
+
 # Configuration
 
 ## Configuración del plugin

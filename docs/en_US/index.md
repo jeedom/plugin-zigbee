@@ -20,6 +20,13 @@ In addition, the plugin is equipped with many tools allowing :
 - taking charge of **Touchlink**,
 - or even to integrate its own configurations for the most seasoned...
 
+>**VERY IMPORTANT**
+>
+> Due to the waltz of firmware / hardware on the manufacturer's side and possible bugs in their firmware (without necessarily having the possibility of updating it from Jeedom because most of the manufacturers do not communicate them) it is possible that a module marked compatible does not either only partially (a button that does not work, or no difference between the up button and not, no CO2 rise or a sensor of the module...). Unfortunately, we cannot warn you in advance in the list because : 
+>- we do not necessarily have the module in question, many modules are added by user feedback
+>- from one week to another the module may have changed (new hardware, new firmware or even new module which has not changed its name)
+>Under no circumstances can Jeedom be held responsible in the event of a missing function (or even a module that does not work) when it is indicated as compatible, as you do, we are subject to the changes imposed by the manufacturer
+
 # Configuration
 
 ## Plugin configuration

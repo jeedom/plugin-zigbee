@@ -20,6 +20,13 @@ Darüber hinaus ist das Plugin mit vielen Tools ausgestattet, die es ermögliche
 - die Verantwortung übernehmen **Touchlink**,
 - oder sogar um seine eigenen Konfigurationen für die erfahrensten zu integrieren...
 
+>**SEHR WICHTIG**
+>
+> Aufgrund des Walzers der Firmware-/Hardwareherstellerseite und möglicher Fehler in deren Firmware (ohne unbedingt die Möglichkeit zu haben, diese von Jeedom zu aktualisieren, da die meisten Hersteller diese nicht kommunizieren) ist es möglich, dass ein als kompatibel gekennzeichnetes Modul auch nicht nur teilweise funktioniert (eine nicht funktionierende Taste oder kein Unterschied zwischen der Aufwärtstaste und nicht, kein CO2-Anstieg oder ein Sensor des Moduls...). Leider können wir Sie in der Liste nicht vorab warnen, weil : 
+>- wir haben nicht unbedingt das fragliche Modul, viele Module werden durch Benutzer-Feedback hinzugefügt
+>- von einer Woche zur anderen kann sich das Modul geändert haben (neue Hardware, neue Firmware oder sogar neues Modul, das seinen Namen nicht geändert hat))
+>Jeedom kann unter keinen Umständen für eine fehlende Funktion (oder sogar ein nicht funktionierendes Modul) verantwortlich gemacht werden, wenn diese als kompatibel angegeben ist, wie Sie es tun, wir unterliegen den Änderungen des Herstellers
+
 # Configuration
 
 ## Plugin Konfiguration
