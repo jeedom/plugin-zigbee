@@ -17,7 +17,7 @@
       "subtype": "string",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::6::0",
+      "logicalId": "1::6::cmd::0",
       "configuration": {
         "repeatEventManagement": "always"
       }
@@ -28,7 +28,7 @@
       "subtype": "string",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "3::6::0",
+      "logicalId": "3::6::cmd::0",
       "configuration": {
         "repeatEventManagement": "always"
       }
