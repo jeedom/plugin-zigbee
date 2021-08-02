@@ -4,6 +4,7 @@
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt",
         "Pour connaitre les nouveaux module compatible il faut aller": "Um das neue kompatible Modul zu kennen, müssen Sie gehen",
         "c'est trié par date d'ajout\/modification": "Es ist nach dem Datum sortiert, an dem es hinzugefügt \/ geändert wurde",
+        "02\/08\/2021": "08.02.2021",
         "Ajout de nouveau module compatible": "Hinzufügung eines neuen kompatiblen Moduls",
         "Ajout d'un bouton pour supprimer toute les données d'un demon (voir documentation": "Hinzufügen einer Schaltfläche zum Löschen aller Daten eines Daemons (siehe Dokumentation",
         "Correction d'un bug sur la gestion des groupes lors de multiple clef zigbee": "Fehler in der Gruppenverwaltung behoben, wenn mehrere Zigbee-Tasten vorhanden waren",
