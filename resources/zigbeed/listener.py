@@ -161,7 +161,7 @@ class Listener:
 				(status,gpdLink,sequenceNumber,unknown1,addr,gpdfSecurityLevel,gpdfSecurityKeyType,counter,command_id,mic,proxyTableIndex,payload) = args
 				header = 0x308c
 				if command_id == 0xe0 :
-					LOGGER.info("GreenPower autoCommissioning frame")
+					logging.info("GreenPower autoCommissioning frame")
 					zgp.create_device(addr)
 				else:
 					zgp.handle_notification(addr,header,counter,command_id,int.from_bytes(payload, byteorder="little"),len(payload),mic)
