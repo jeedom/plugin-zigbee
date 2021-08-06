@@ -23,7 +23,7 @@ if (!is_object($eqLogic)) {
 }
 sendVarToJS('zigbeeNodeInstance', $eqLogic->getConfiguration('instance', 1));
 $group_data = zigbee::request($eqLogic->getConfiguration('instance', 1), '/group/info', array('id' => explode('|', $eqLogic->getLogicalId())[2]));
-sendVarToJS('group_id', explode('|', $eqLogic->getLogicalId())[1]);
+sendVarToJS('group_id', explode('|', $eqLogic->getLogicalId())[2]);
 $groupableEqlogics = zigbee::getGroupable($eqLogic->getConfiguration('instance', 1));
 $devices = array();
 $eqLogics = eqLogic::byType('zigbee');

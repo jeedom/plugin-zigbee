@@ -1126,7 +1126,7 @@ class zigbeeCmd extends cmd {
     $type = 'device';
     $ieee = explode('|', $eqLogic->getLogicalId())[0];
     if ($ieee == 'group') {
-      $ieee = explode('|', $eqLogic->getLogicalId())[1];
+      $ieee = explode('|', $eqLogic->getLogicalId())[2];
       $type = 'group';
     }
     if (count($commands) > 0) {
