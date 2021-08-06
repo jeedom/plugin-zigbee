@@ -1123,11 +1123,13 @@ class zigbeeCmd extends cmd {
         $commands[] = $command;
       }
     }
-    $type = 'device';
-    $ieee = explode('|', $eqLogic->getLogicalId())[0];
-    if ($ieee == 'group') {
+
+    if (explode('|', $eqLogic->getLogicalId())[1] == 'group') {
       $ieee = explode('|', $eqLogic->getLogicalId())[2];
       $type = 'group';
+    } else {
+      $type = 'device';
+      $ieee = explode('|', $eqLogic->getLogicalId())[0];
     }
     if (count($commands) > 0) {
       zigbee::request($eqLogic->getConfiguration('instance', 1), '/' . $type . '/command', array('ieee' => $ieee, 'cmd' => $commands, 'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue', 0) == 1)), 'PUT');
