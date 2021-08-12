@@ -919,7 +919,7 @@ sendVarToJS('zigbee_binding_device',$binding_device);
           return;
         }
         if(device_result.indexOf('group') != -1){
-          _callback({type : 'group',group_id:device_result.split('|')[1]});
+          _callback({type : 'group',group_id:device_result.split('|')[2]});
         }else{
           var dest = {ieee:device_result}
           let select_list = []
