@@ -34,7 +34,10 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "44::1281::cmd::0"
+      "logicalId": "44::1281::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
     }
   ]
 }
