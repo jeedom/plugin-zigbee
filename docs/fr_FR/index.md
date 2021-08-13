@@ -44,6 +44,7 @@ Vous trouverez [ici](https://compatibility.jeedom.com/index.php?v=d&p=home&searc
 >Tout changement de canal nécessitera un redémarrage du démon. Un changement de canal peut également nécessiter la ré-inclusion de certains modules.
 
 ### Configuration avancée Zigpy
+
 >**Réservé aux experts !**
 
 Il est possible de mettre en place des paramètres spécifiques pour le sous-système Zigbee *(Zigpy)*. Cette partie est strictement réservée aux experts, c'est pourquoi l'équipe Jeedom ne fournit pas la liste des paramètres possibles *(il en existe des centaines dépendants du type de contrôleur)*.
