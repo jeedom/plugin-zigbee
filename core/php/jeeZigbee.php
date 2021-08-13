@@ -90,6 +90,7 @@ if (isset($result['device_initialized'])) {
 
 $CONVERT_VALUE = array(
 	'ZoneStatus.Alarm_1' => 1,
+	'ZoneStatus.Restore_reports' => 0,
 	'ZoneStatus.0' => 0,
 	'bitmap8.1' => 1,
 	'bitmap8.0' => 0,

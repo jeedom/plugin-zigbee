@@ -1,0 +1,25 @@
+{
+    "name": "Trust ZPIR-8000",
+    "commands": [
+      {
+        "name": "Présence",
+        "type": "info",
+        "subtype": "binary",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "logicalId": "1::1280::cmd::1",
+        "generic_type": "PRESENCE",
+        "configuration": {
+          "repeatEventManagement": "always"
+        },
+        "display": {
+          "invertBinary" : 1
+        },
+        "template" : {
+          "dashboard" : "presence",
+          "mobile" : "presence"
+        }
+      }
+    ]
+  }
+  
