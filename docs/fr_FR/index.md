@@ -306,3 +306,7 @@ Si pour un démon donné (1,2 ou 3) vous changer la clef Zigbee sans restaurer u
 >**Je vois dans les logs des erreurs "No cluster ID XXXXX"**
 >
 >Il s'agit d'une inclusion incomplete il faut supprimer le module du réseaux zigbee (par le bouton réseaux zigbee => Noeuds), faire un reset du module puis le reinclure en faisant bien attention de le maintenir eveillé pendant tous les processus de l'inclusion
+
+>**Ma commande de capteur de mouvement/d'ouverture/interrupteur reste toujours à 1**
+>
+>C'est courant en zigbee le module envoi la valeur un lors d'une action (mouvement,ouverture,appui sur le bouton) mais ne renvoi pas 0 quand c'est fini (fin de mouvement par exemple). Vous pouvez mettre en place un retour d'état à 0 après 1min (par exemple) dans la configuration de l'équipement onglet commande puis sur la ligne de la commande en question.
