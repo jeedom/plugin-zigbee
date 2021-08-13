@@ -1,0 +1,18 @@
+{
+  "name": "Hue Module interrupteur Mural",
+  "ref" : "RDM001",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Appui",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64512::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    }
+  ]
+}
