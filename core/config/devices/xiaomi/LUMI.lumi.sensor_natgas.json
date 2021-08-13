@@ -1,0 +1,28 @@
+{
+    "name": "Honeywell Gas Alarm",
+    "ref" : "JTQJ-BF-01LM/BW",
+    "reset" : "Appuyer pendant 10s sur le bouton du module",
+    "pairing":"Appuyer pendant 5s sur le bouton du module",
+    "configuration" : {
+       "battery_type" : "1x3V CR123A"
+      },
+    "commands": [
+      {
+        "name": "Fumée",
+        "type": "info",
+        "subtype": "binary",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "logicalId": "1::1280::cmd::1",
+        "generic_type": "SMOKE",
+        "configuration": {
+          "repeatEventManagement": "always"
+        },
+        "template":{
+          "dashboard" : "heat",
+          "mobile" : "heat"
+        }
+      }
+    ]
+  }
+  

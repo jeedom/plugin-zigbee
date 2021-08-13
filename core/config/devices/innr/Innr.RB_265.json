@@ -1,9 +1,9 @@
 {
-  "name": "Contrôleur intelligent ruban de LED blanc chaud et froid",
-  "ref" : "GL-C-006P",
+  "name": "Innr RB 265",
+  "ref" : "RB265",
   "buylink" : "",
-  "reset" : "",
-  "pairing" : "",
+  "reset" : "ON/OFF 6x espacés de 0.5s",
+  "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule",
   "commands": [
     {
       "name": "Etat",
@@ -12,7 +12,7 @@
       "generic_type": "LIGHT_STATE",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "11::6::0"
+      "logicalId": "1::6::0"
     },
     {
       "name": "On",
@@ -22,7 +22,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "11::on_off::on",
+      "logicalId": "1::on_off::on",
       "template":{
         "dashboard" : "light",
         "mobile" : "light"
@@ -36,22 +36,10 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "11::on_off::off",
+      "logicalId": "1::on_off::off",
       "template":{
         "dashboard" : "light",
         "mobile" : "light"
-      }
-    },
-    {
-      "name": "Toggle",
-      "generic_type": "LIGHT_TOGGLE",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "logicalId": "11::on_off::toggle",
-      "display": {
-        "icon": "<i class=\"fas fa-random\"></i>"
       }
     },
     {
@@ -61,7 +49,7 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "11::8::0",
+      "logicalId": "1::8::0",
       "configuration" : {
         "minValue" : 0,
         "maxValue" : 254
@@ -74,7 +62,7 @@
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat Luminosité",
-      "logicalId": "11::level::move_to_level::#slider#::0",
+      "logicalId": "1::level::move_to_level::#slider#::#duration#",
       "generic_type": "LIGHT_SLIDER",
       "configuration" : {
         "minValue" : 0,
@@ -82,46 +70,29 @@
       }
     },
     {
-      "name": "Etat couleur",
-      "type": "info",
-      "subtype": "string",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "value" : "Etat couleur",
-      "logicalId": "11::768::color",
-      "generic_type": "LIGHT_COLOR"
-    },
-    {
-      "name": "Couleur",
-      "type": "action",
-      "subtype": "color",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "value" : "Etat couleur",
-      "logicalId": "11::light_color::move_to_color::#color#::0",
-      "generic_type": "LIGHT_SET_COLOR"
-    },
-    {
-      "name": "Etat température couleur",
+      "name": "Etat durée",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "11::768::7",
-      "generic_type": "LIGHT_COLOR_TEMP"
+      "value" : "Etat durée",
+      "logicalId": "durationstate",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 1000
+      }
     },
     {
-      "name": "Température couleur",
+      "name": "Durée",
       "type": "action",
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
-      "value" : "Etat température couleur",
-      "logicalId": "11::light_color::move_to_color_temp::#slider#::0",
-      "generic_type": "LIGHT_SET_COLOR_TEMP",
+      "value" : "Etat durée",
+      "logicalId": "duration",
       "configuration" : {
-        "minValue" : 154,
-        "maxValue" : 454
+        "minValue" : 0,
+        "maxValue" : 1000
       }
     }
   ]

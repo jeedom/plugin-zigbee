@@ -119,13 +119,13 @@
       "generic_type": "LIGHT_SET_COLOR_TEMP"
     },
 	{
-      "name": "Rafraîchir",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "refresh"
-    },   
+    "name": "Rafraîchir",
+    "type": "action",
+    "subtype": "other",
+    "isVisible": 1,
+    "isHistorized": 0,
+    "logicalId": "refresh"
+  },   
 	{
       "name": "Etat durée",
       "type": "info",
