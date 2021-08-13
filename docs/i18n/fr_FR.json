@@ -79,6 +79,10 @@
         "nous n'avons pas forcement le module en question, beaucoup de module sont ajouter par les retours utilisateurs": "nous n'avons pas forcement le module en question, beaucoup de module sont ajouter par les retours utilisateurs",
         "d'une semaine à l'autre le module peut avoir changé (nouveau hardware, nouveau firmware ou meme nouveau module qui n'a pas changé de nom": "d'une semaine à l'autre le module peut avoir changé (nouveau hardware, nouveau firmware ou meme nouveau module qui n'a pas changé de nom",
         "En aucun cas Jeedom ne pourra etre tenu responsable en cas de fonction manquante (ou meme de module ne marchant pas) alors qu'il est indiqué compatible, nous subissons comme vous les changements imposé par le fabricant": "En aucun cas Jeedom ne pourra etre tenu responsable en cas de fonction manquante (ou meme de module ne marchant pas) alors qu'il est indiqué compatible, nous subissons comme vous les changements imposé par le fabricant",
+        "Liste des modules compatible": "Liste des modules compatible",
+        "ici": "ici",
+        "Vous trouverez": "Vous trouverez",
+        "la liste des modules compatible avec le plugin Zigbee": "la liste des modules compatible avec le plugin Zigbee",
         "Configuration": "Configuration",
         "Configuration du plugin": "Configuration du plugin",
         "Le plugin Zigbee": "Le plugin Zigbee",
@@ -217,7 +221,6 @@
         "Ledavance": "Ledavance",
         "Concernant": "Concernant",
         "les firmwares sont directement mis à disposition en ligne où le plugin va les récupérer": "les firmwares sont directement mis à disposition en ligne où le plugin va les récupérer",
-        "ici": "ici",
         "Pour d'autres (voir": "Pour d'autres (voir",
         "le fabricant fournit officieusement une mise à jour dans certains cas": "le fabricant fournit officieusement une mise à jour dans certains cas",
         "Pour tous les autres, il n'est pas possible de mettre à jour le module depuis le plugin": "Pour tous les autres, il n'est pas possible de mettre à jour le module depuis le plugin",
@@ -354,11 +357,16 @@
         "Mon module vide ses batteries très vite": "Mon module vide ses batteries très vite",
         "Vérifiez que vous etes bien sur un firmware à jour sur votre clef zigbee": "Vérifiez que vous etes bien sur un firmware à jour sur votre clef zigbee",
         "Dans 90% des cas une consommation excessive des piles vient du firmware de la clef qui a un soucis": "Dans 90% des cas une consommation excessive des piles vient du firmware de la clef qui a un soucis",
-        "je n'arrive pas à inclure de nouveaux modules": "je n'arrive pas à inclure de nouveaux modules",
+        "Je n'arrive pas à inclure de nouveaux modules": "Je n'arrive pas à inclure de nouveaux modules",
         "Plusieurs possibilités pour cela": "Plusieurs possibilités pour cela",
         "Vous avez deja beaucoup de module et avez dépassé la limite du nombre de module en direct (31 en général": "Vous avez deja beaucoup de module et avez dépassé la limite du nombre de module en direct (31 en général",
         "Il faut soit mettre une autre clef Zigbee (le plugin en géere jusqu'a 3) soit essayé en ajoutant des noeud routeur (attention il n'y a pas de norme clair sur les noeuds routeur il y a donc des incompatibilité entre fabricant": "Il faut soit mettre une autre clef Zigbee (le plugin en géere jusqu'a 3) soit essayé en ajoutant des noeud routeur (attention il n'y a pas de norme clair sur les noeuds routeur il y a donc des incompatibilité entre fabricant",
         "Vous etes sous Conbee": "Vous etes sous Conbee",
-        "essayez de debrancher la clef pendant 2 minutes, de la remettre et relancer le demon, c'est une maladie connu des clef Conbee (meme sous deconz) ou il faut un cold reboot pour que l'inclusion remarche": "essayez de debrancher la clef pendant 2 minutes, de la remettre et relancer le demon, c'est une maladie connu des clef Conbee (meme sous deconz) ou il faut un cold reboot pour que l'inclusion remarche"
+        "essayez de debrancher la clef pendant 2 minutes, de la remettre et relancer le demon, c'est une maladie connu des clef Conbee (meme sous deconz) ou il faut un cold reboot pour que l'inclusion remarche": "essayez de debrancher la clef pendant 2 minutes, de la remettre et relancer le demon, c'est une maladie connu des clef Conbee (meme sous deconz) ou il faut un cold reboot pour que l'inclusion remarche",
+        "Je vois dans les logs des erreurs \"No cluster ID": "Je vois dans les logs des erreurs \"No cluster ID",
+        "Il s'agit d'une inclusion incomplete il faut supprimer le module du réseaux zigbee (par le bouton réseaux zigbee => Noeuds), faire un reset du module puis le reinclure en faisant bien attention de le maintenir eveillé pendant tous les processus de l'inclusion": "Il s'agit d'une inclusion incomplete il faut supprimer le module du réseaux zigbee (par le bouton réseaux zigbee => Noeuds), faire un reset du module puis le reinclure en faisant bien attention de le maintenir eveillé pendant tous les processus de l'inclusion",
+        "Ma commande de capteur de mouvement\/d'ouverture\/interrupteur reste toujours à 1": "Ma commande de capteur de mouvement\/d'ouverture\/interrupteur reste toujours à 1",
+        "C'est courant en zigbee le module envoi la valeur un lors d'une action (mouvement,ouverture,appui sur le bouton) mais ne renvoi pas 0 quand c'est fini (fin de mouvement par exemple": "C'est courant en zigbee le module envoi la valeur un lors d'une action (mouvement,ouverture,appui sur le bouton) mais ne renvoi pas 0 quand c'est fini (fin de mouvement par exemple",
+        "Vous pouvez mettre en place un retour d'état à 0 après 1min (par exemple) dans la configuration de l'équipement onglet commande puis sur la ligne de la commande en question": "Vous pouvez mettre en place un retour d'état à 0 après 1min (par exemple) dans la configuration de l'équipement onglet commande puis sur la ligne de la commande en question"
     }
 }
