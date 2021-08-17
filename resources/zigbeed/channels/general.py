@@ -39,10 +39,12 @@ import utils
 class Alarms():
 	"""Alarms channel."""
 
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(general.AnalogInput.cluster_id)
 class AnalogInput():
 	"""Analog Input channel."""
 	REPORT_CONFIG = [{"attr": "present_value", "config": REPORT_CONFIG_DEFAULT}]
 
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(general.AnalogOutput.cluster_id)
 class AnalogOutput():
 	"""Analog Output channel."""
 	REPORT_CONFIG = [{"attr": "present_value", "config": REPORT_CONFIG_DEFAULT}]
