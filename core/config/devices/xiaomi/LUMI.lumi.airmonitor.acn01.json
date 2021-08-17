@@ -2,7 +2,6 @@
   "name": "XIAOMI AQARA - Moniteur de qualité d'air Zigbee 3.0 (température, humidité, COVT)",
   "ref" : "AAQS-S01",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5751-xiaomi-aqara-moniteur-de-qualite-d-air-zigbee-30-temp-hum-covt-6970504214644.html",
-  "remark" : "Attention pour le moment il n'y a pas de retour COVT sur Jeedom (le fabricant refuse de nous communiquer les informations necessaire pour pouvoir l'ajouter)",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
   "type": "Température,Humidité,Qualité d'air",
