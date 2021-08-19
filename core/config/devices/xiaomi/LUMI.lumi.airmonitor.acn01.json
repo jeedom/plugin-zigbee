@@ -7,7 +7,8 @@
   "type": "Température,Humidité,Qualité d'air",
   "documentation": "https://cdn.aqara.com/cdn/website/mainland/static/docs/TVOC-Air-Quality-Monitor_Manual_EN.pdf",
   "configuration" : {
-    "battery_type" : "2xCR2450"
+    "battery_type" : "2xCR2450",
+    "last_seen::check_mode" : "disable"
   },
   "commands": [
     {
