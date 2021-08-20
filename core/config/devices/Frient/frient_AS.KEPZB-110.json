@@ -1,0 +1,43 @@
+{
+  "name": "Clavier intelligent",
+  "ref" : "KEPZB-110",
+  "manufacturer" : "Frient",
+  "pairing": "Inserez les piles",
+  "reset": "Appuyer sur le bouton jusqu'a ce que la led clignote rouge",
+  "configuration" :{
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160"
+      }
+    }
+  },
+  "commands": [
+    {
+      "name": "Code",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "44::1281::cmd::1.1"
+    },
+    {
+      "name": "Commande",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "44::1281::cmd::1"
+    },
+    {
+      "name": "SOS",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "44::1281::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
+    }
+  ]
+}
