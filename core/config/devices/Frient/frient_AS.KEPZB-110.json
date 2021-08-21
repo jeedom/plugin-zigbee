@@ -4,6 +4,7 @@
   "manufacturer" : "Frient",
   "pairing": "Inserez les piles",
   "reset": "Appuyer sur le bouton jusqu'a ce que la led clignote rouge",
+  "remark" : "Pour la commande Info SOS la signification est : 2 SOS (appui long sur le bouton), 7 quelqu'un a passé la devant le clavier",
   "configuration" :{
     "deviceSpecific":{
       "poll_control":{
