@@ -58,10 +58,10 @@ async def serialize_application():
 	if shared.CONTROLLER == 'deconz':
 		obj['deconz'] = {}
 		obj['deconz']['version'] = hex(shared.ZIGPY.version)
-		obj['deconz']['extendedPanId'] = ":".join("{:02x}".format(x) for x in shared.ZIGPY._ext_pan_id)
-		obj['deconz']['panId'] = hex(shared.ZIGPY._pan_id)
-		obj['deconz']['radioChannel'] = shared.ZIGPY._channel
-		obj['deconz']['nwkUpdateId'] = hex(shared.ZIGPY._nwk_update_id)
+		obj['deconz']['extendedPanId'] = ":".join("{:02x}".format(x) for x in shared.ZIGPY.state.network_information.extended_pan_id)
+		obj['deconz']['panId'] = hex(shared.ZIGPY.state.network_information.pan_id)
+		obj['deconz']['radioChannel'] = shared.ZIGPY.state.network_information.channel
+		obj['deconz']['nwkUpdateId'] = hex(shared.ZIGPY.state.network_information.nwk_update_id)
 	if shared.CONTROLLER == 'zigate':
 		obj['zigate'] = {}
 		obj['zigate']['version'] = str(shared.ZIGPY.version)
