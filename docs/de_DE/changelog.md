@@ -8,9 +8,9 @@
 >
 >Um das neue kompatible Modul zu kennen, müssen Sie gehen [das](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=zigbee) (Es ist nach dem Datum sortiert, an dem es hinzugefügt / geändert wurde)
 
-# XX/ 08/2021
+# 27.08.2021
 
-- Behebung des Problems mit der Nodon-Firmware
+- Problem mit Nodon-Firmware behoben
 - Korrektur des Fehlers "\_ext_pan_id" aufgrund eines Updates des Zigpy-Codes mit den Deconz-Schlüsseln
 
 >**Wichtig**
