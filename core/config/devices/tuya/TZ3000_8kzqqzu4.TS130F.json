@@ -2,6 +2,11 @@
   "name": "Interrupteur connecté pour rideau connecté",
   "ref" : "TS130F",
   "buylink" : "",
+  "config" : [
+    {"endpoint" : 1,"cluster":258,"attribute":61441,"name":"Calibration","type":"select","values":[{"value":0,"name":"Ok"},{"value":1,"name":"Nok"}]},
+    {"endpoint" : 1,"cluster":258,"attribute":61442,"name":"Inverser","type":"select","values":[{"value":0,"name":"Non"},{"value":1,"name":"Oui"}]},
+    {"endpoint" : 1,"cluster":258,"attribute":61443,"name":"Temps montée descente (dixième de secondes)","type":"number"}
+  ],
   "commands": [
     {
       "name": "Etat",
