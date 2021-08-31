@@ -10,6 +10,14 @@
       "isVisible": 1,
       "isHistorized": 1,
       "logicalId": "1::6::cmd::1"
+    },
+    {
+      "name": "Luminosité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "1::8::cmd::1"
     }
   ]
 }
