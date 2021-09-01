@@ -8,6 +8,10 @@
 >
 >Pour connaitre les nouveaux module compatible il faut aller [la](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=zigbee) (c'est trié par date d'ajout/modification)
 
+
+- Correction d'un soucis sur la creation de groupe dans certain cas
+- Correction de l'affichage de la liste des groupes
+
 # 27/08/2021
 
 - Correction du soucis avec les firmwares Nodon
