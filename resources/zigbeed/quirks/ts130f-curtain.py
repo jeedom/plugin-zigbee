@@ -3,7 +3,7 @@ from zigpy.profiles import zha
 from zigpy.quirks import CustomCluster, CustomDevice
 import zigpy.types as t
 from zigpy.zcl.clusters.closures import WindowCovering
-from zigpy.zcl.clusters.general import Basic, Groups, OnOff, Ota, Scenes
+from zigpy.zcl.clusters.general import Basic, Groups, OnOff, Ota, Scenes, Time
 
 from zhaquirks.const import (
     DEVICE_TYPE,
@@ -81,7 +81,7 @@ class TuyaTS130FTI(CustomDevice):
                     OnOff.cluster_id,
                     WindowCovering.cluster_id,
                 ],
-                OUTPUT_CLUSTERS: [Ota.cluster_id],
+                OUTPUT_CLUSTERS: [Time.cluster_id, Ota.cluster_id],
             },
         },
     }
@@ -97,7 +97,7 @@ class TuyaTS130FTI(CustomDevice):
                     TuyaWithBacklightOnOffCluster,
                     TuyaCoveringCluster,
                 ],
-                OUTPUT_CLUSTERS: [Ota.cluster_id],
+                OUTPUT_CLUSTERS: [Time.cluster_id, Ota.cluster_id],
             },
         },
     }
