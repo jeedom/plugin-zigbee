@@ -30,7 +30,7 @@
       "logicalId": "1::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 10"
       }
     },
     {
@@ -43,7 +43,7 @@
       "logicalId": "1::513::16384",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 10"
       }
     },
     {
@@ -56,7 +56,7 @@
       "logicalId": "1::513::16385",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 10"
       }
     },
     {
