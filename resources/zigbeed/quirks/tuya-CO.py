@@ -18,7 +18,7 @@ from zhaquirks.tuya.air import (
 )
 
 
-class TuyaCO2Sensor(CustomDevice):
+class TuyaCOSensor(CustomDevice):
     """Tuya Air quality device."""
 
     signature = {
