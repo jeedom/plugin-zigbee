@@ -1,0 +1,74 @@
+{
+  "name": "AQARA - INTERRUPTEUR MURAL INTELLIGENT H1 ZIGBEE 3.0",
+  "ref" : "WS-EUK03",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5728-xiaomi-aqara-interrupteur-mural-intelligent-h1-zigbee-30-avec-neutre-ws-euk03-6970504214798.html",
+  "commands": [
+    {
+      "name": "Etat 1",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "LIGHT_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "2::6::0"
+    },
+    {
+      "name": "On 1",
+      "generic_type": "LIGHT_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 1",
+      "logicalId": "2::on_off::on"
+    },
+    {
+      "name": "Off 1",
+      "generic_type": "LIGHT_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 1",
+      "logicalId": "2::on_off::off"
+    },
+    {
+      "name": "Toggle",
+      "generic_type": "LIGHT_TOGGLE",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
+    },
+    {
+     "name": "Consommation",
+     "generic_type": "CONSUMPTION",
+     "type": "info",
+     "subtype": "numeric",
+     "isVisible": 1,
+     "isHistorized": 1,
+     "unite":"kWh",
+     "logicalId": "1::1794::0",
+     "configuration":{
+       "historizeRound" : 2,
+       "calculValueOffset":"#value# / 1000"
+     }
+   },
+   {
+     "name": "Puissance",
+     "generic_type": "POWER",
+     "type": "info",
+     "subtype": "numeric",
+     "isVisible": 1,
+     "isHistorized": 1,
+     "unite":"W",
+     "logicalId": "1::2820::1291",
+     "configuration":{
+       "historizeRound" : 2
+     }
+  ]
+}
