@@ -10,10 +10,29 @@
       "isVisible": 1,
       "isHistorized": 1,
       "unite" : "°C",
-      "logicalId": "temperature",
+      "logicalId": "1::513::0",
       "generic_type" : "THERMOSTAT_TEMPERATURE",
       "configuration" : {
-        "calculValueOffset":"#value# / 10"
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne",
+      "logicalId": "attributes::1::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"6",
+        "maxValue":"28"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
       }
     },
     {
@@ -23,28 +42,20 @@
       "isVisible": 0,
       "isHistorized": 0,
       "unite" : "°C",
-      "logicalId": "target",
+      "logicalId": "1::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value#"
+        "calculValueOffset":"#value# / 100"
       }
     },
     {
       "name": "Mode",
       "type": "info",
-      "subtype": "string",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "generic_type" : "THERMOSTAT_STATE_NAME",
-      "logicalId": "mode"
-    },
-    {
-      "name": "Ventilation",
-      "type": "info",
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "ventilation"
+      "generic_type" : "THERMOSTAT_STATE_NAME",
+      "logicalId": "1::513::30"
     }
   ]
 }
