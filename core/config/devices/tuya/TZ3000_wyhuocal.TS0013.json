@@ -41,7 +41,7 @@
       }
     },
     {
-      "name": "Toggle",
+      "name": "Toggle 1",
       "generic_type": "LIGHT_TOGGLE",
       "type": "action",
       "subtype": "other",
