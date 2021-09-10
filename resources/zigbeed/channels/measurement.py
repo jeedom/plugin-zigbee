@@ -62,3 +62,168 @@ class RelativeHumidity():
 class TemperatureMeasurement():
 	"""Temperature measurement channel."""
 	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.CarbonDioxideConcentration.cluster_id)
+class CarbonDioxideConcentration():
+	"""CarbonDioxideConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.CarbonMonoxideConcentration.cluster_id)
+class CarbonMonoxideConcentration():
+	"""CarbonMonoxideConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.EthyleneConcentration.cluster_id)
+class EthyleneConcentration():
+	"""EthyleneConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.EthyleneOxideConcentration.cluster_id)
+class EthyleneOxideConcentration():
+	"""EthyleneOxideConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.HydrogenConcentration.cluster_id)
+class HydrogenConcentration():
+	"""HydrogenConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.NitricOxideConcentration.cluster_id)
+class NitricOxideConcentration():
+	"""NitricOxideConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.HydrogenSulfideConcentration.cluster_id)
+class HydrogenSulfideConcentration():
+	"""HydrogenSulfideConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.NitrogenDioxideConcentration.cluster_id)
+class NitrogenDioxideConcentration():
+	"""NitrogenDioxideConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.OxygenConcentration.cluster_id)
+class OxygenConcentration():
+	"""OxygenConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.OzoneConcentration.cluster_id)
+class OzoneConcentration():
+	"""OzoneConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.SulfurDioxideConcentration.cluster_id)
+class SulfurDioxideConcentration():
+	"""SulfurDioxideConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.DissolvedOxygenConcentration.cluster_id)
+class DissolvedOxygenConcentration():
+	"""DissolvedOxygenConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.BromateConcentration.cluster_id)
+class BromateConcentration():
+	"""BromateConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.BromateConcentration.cluster_id)
+class BromateConcentration():
+	"""BromateConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.ChloraminesConcentration.cluster_id)
+class ChloraminesConcentration():
+	"""ChloraminesConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.ChlorineConcentration.cluster_id)
+class ChlorineConcentration():
+	"""ChlorineConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.FecalColiformAndEColiFraction.cluster_id)
+class FecalColiformAndEColiFraction():
+	"""FecalColiformAndEColiFraction measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.FluorideConcentration.cluster_id)
+class FluorideConcentration():
+	"""FluorideConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.HaloaceticAcidsConcentration.cluster_id)
+class HaloaceticAcidsConcentration():
+	"""HaloaceticAcidsConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.TotalTrihalomethanesConcentration.cluster_id)
+class TotalTrihalomethanesConcentration():
+	"""TotalTrihalomethanesConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.TotalColiformBacteriaFraction.cluster_id)
+class TotalColiformBacteriaFraction():
+	"""TotalColiformBacteriaFraction measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.Turbidity.cluster_id)
+class Turbidity():
+	"""Turbidity measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.CopperConcentration.cluster_id)
+class CopperConcentration():
+	"""CopperConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.LeadConcentration.cluster_id)
+class LeadConcentration():
+	"""LeadConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.ManganeseConcentration.cluster_id)
+class ManganeseConcentration():
+	"""ManganeseConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.SulfateConcentration.cluster_id)
+class SulfateConcentration():
+	"""SulfateConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.BromodichloromethaneConcentration.cluster_id)
+class BromodichloromethaneConcentration():
+	"""BromodichloromethaneConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.BromoformConcentration.cluster_id)
+class BromoformConcentration():
+	"""BromoformConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.ChlorodibromomethaneConcentration.cluster_id)
+class ChlorodibromomethaneConcentration():
+	"""ChlorodibromomethaneConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.ChloroformConcentration.cluster_id)
+class ChloroformConcentration():
+	"""ChloroformConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.SodiumConcentration.cluster_id)
+class SodiumConcentration():
+	"""SodiumConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.SodiumConcentration.cluster_id)
+class SodiumConcentration():
+	"""SodiumConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.FormaldehydeConcentration.cluster_id)
+class FormaldehydeConcentration():
+	"""FormaldehydeConcentration measurement channel."""
+	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]

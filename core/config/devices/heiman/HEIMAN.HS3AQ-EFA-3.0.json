@@ -1,0 +1,52 @@
+{
+  "name": "Smart Air Quality Monitori",
+  "ref" : "HS3AQ",
+  "buylink" : "",
+  "documentation" : "",
+  "commands": [
+    {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "1::1026::0",
+      "generic_type" : "TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Humidité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "%",
+      "logicalId": "1::1029::0",
+      "generic_type" : "HUMIDITY",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "CO2",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "%",
+      "logicalId": "1::1037::0",
+      "generic_type" : "CO2"
+    }
+  ]
+}
