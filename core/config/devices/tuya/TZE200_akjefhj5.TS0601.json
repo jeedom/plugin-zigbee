@@ -1,5 +1,5 @@
 {
-    "name": "Interrupteur triple",
+    "name": "Vanne arrosage",
     "ref" : "TS0013",
     "buylink" : "",
     "remark" : "Il est pour le moment impossible de controller le timer correctement, lors d'une mise à On la vanne reste ouverte 10min puis se coupe",
@@ -8,14 +8,12 @@
         "name": "Etat",
         "type": "info",
         "subtype": "binary",
-        "generic_type": "POWER_STATE",
         "isVisible": 1,
         "isHistorized": 1,
         "logicalId": "1::6::0"
       },
       {
         "name": "On",
-        "generic_type": "POWER_ON",
         "type": "action",
         "subtype": "other",
         "isVisible": 1,
@@ -25,7 +23,6 @@
       },
       {
         "name": "Off",
-        "generic_type": "POWER_OFF",
         "type": "action",
         "subtype": "other",
         "isVisible": 1,
@@ -35,7 +32,6 @@
       },
       {
         "name": "Toggle",
-        "generic_type": "POWER_TOGGLE",
         "type": "action",
         "subtype": "other",
         "isVisible": 0,
