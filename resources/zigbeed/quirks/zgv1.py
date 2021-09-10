@@ -18,7 +18,7 @@ from zhaquirks.const import (
     PROFILE_ID,
 )
 
-from zhaquirks.tuya import DPToAttributeMapping, TuyaLocalCluster, TuyaNewManufCluster,TuyaCommand, TuyaData, Data
+from zhaquirks.tuya import DPToAttributeMapping, TuyaLocalCluster, TuyaNewManufCluster,TuyaCommand, TuyaData, Data,TuyaDPType
 _LOGGER = logging.getLogger(__name__)
 
 class ZGV1WaterConsumed(FlowMeasurement,TuyaLocalCluster):
@@ -44,6 +44,9 @@ class ZGV1Timer(TuyaLocalCluster):
         records = self._write_attr_records(attributes)
 
         for record in records:
+            if record.attrid not in (0x000B, 0x000C):
+                _LOGGER.debug("[0x%04x:%s:0x%04x] Unautorize write attribute : 0x%04x",self.endpoint.device.nwk,self.endpoint.endpoint_id,self.cluster_id,record.attrid)
+                continue
             attr_name = self.attributes[record.attrid][0]
             _LOGGER.debug(
                 "[0x%04x:%s:0x%04x] Mapping standard %s (0x%04x) with value %s",
@@ -59,11 +62,14 @@ class ZGV1Timer(TuyaLocalCluster):
             cmd_payload.tsn = self.endpoint.device.application.get_sequence()
             cmd_payload.dp = record.attrid
             cmd_payload.data = TuyaData()
-            #cmd_payload.data.dp_type = 4
-            cmd_payload.data.dp_type = 2
             cmd_payload.data.function = 0
-            cmd_payload.data.raw = record.value.value
-            #_LOGGER.debug("[0x%04x:%s:0x%04x] Tuya data : %s",self.endpoint.device.nwk,self.endpoint.endpoint_id,self.cluster_id,cmd_payload)
+            if record.attrid == 0x000B :
+                cmd_payload.data.dp_type = TuyaDPType.VALUE
+                cmd_payload.data.raw = record.value.value.to_bytes(4,byteorder='little')
+            else :
+                cmd_payload.data.dp_type = TuyaDPType.ENUM
+                cmd_payload.data.raw = record.value.value.to_bytes(1,byteorder='little')
+            _LOGGER.debug("[0x%04x:%s:0x%04x] Tuya data : %s",self.endpoint.device.nwk,self.endpoint.endpoint_id,self.cluster_id,repr(cmd_payload))
             await self.endpoint.tuya_manufacturer.set_data(cmd_payload)
         return [[foundation.WriteAttributesStatusRecord(foundation.Status.SUCCESS)]]
 
@@ -88,7 +94,7 @@ class ZGV1OnOff(OnOff, TuyaLocalCluster):
             cmd_payload.tsn = self.endpoint.device.application.get_sequence()
             cmd_payload.dp = 1
             cmd_payload.data = TuyaData()
-            cmd_payload.data.dp_type = 1
+            cmd_payload.data.dp_type = TuyaDPType.BOOL
             cmd_payload.data.function = 0
             cmd_payload.data.raw = 0x0001 - command_id
             return self.endpoint.tuya_manufacturer.set_data(cmd_payload)

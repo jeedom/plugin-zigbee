@@ -2,6 +2,7 @@
     "name": "Interrupteur triple",
     "ref" : "TS0013",
     "buylink" : "",
+    "remark" : "Il est pour le moment impossible de controller le timer correctement, lors d'une mise à On la vanne reste ouverte 10min puis se coupe",
     "commands": [
       {
         "name": "Etat",
