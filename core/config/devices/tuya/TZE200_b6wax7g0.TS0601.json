@@ -30,7 +30,7 @@
       "logicalId": "1::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 10"
+        "calculValueOffset":"#value# / 100"
       }
     },
     {
@@ -43,7 +43,7 @@
       "logicalId": "1::513::16384",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 10"
+        "calculValueOffset":"#value# / 100"
       }
     },
     {
@@ -56,7 +56,7 @@
       "logicalId": "1::513::16385",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 10"
+        "calculValueOffset":"#value# / 100"
       }
     },
     {
@@ -77,15 +77,6 @@
         "dashboard" : "button",
         "mobile" : "button"
       }
-    },
-    {
-      "name": "Mode",
-      "type": "info",
-      "subtype": "string",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "generic_type" : "THERMOSTAT_STATE_NAME",
-      "logicalId": "1::513::28"
     },
     {
       "name": "Ouverture vanne",
