@@ -182,7 +182,7 @@ async def initialize(device):
                     await cluster.bind()
                     logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
                         ep_id)+"] Bound '%s' input cluster", cluster.ep_attribute)
-                except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
+                except Exception as ex:
                     logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
                         ep_id)+"] Failed to bind '%s' input cluster: %s", cluster.ep_attribute, str(ex))
                 if cluster.is_server and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], 'REPORT_CONFIG'):
@@ -197,16 +197,22 @@ async def initialize(device):
                             logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(ep_id)+"] Reporting '%s' attr on '%s' input cluster: %d/%d/%d: For: '%s'",
                                           attr_name, cluster.ep_attribute, min_report_int, max_report_int, reportable_change, device.ieee)
                             await cluster.configure_reporting(attr, min_report_int, max_report_int, reportable_change, **kwargs)
-                        except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
+                        except Exception as ex:
                             logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
                                 ep_id)+"] Failed to set reporting for '%s' attr on '%s' input cluster: %s", attr_name, cluster.ep_attribute, str(ex),)
-                await specifics.reporting(device._manufacturer, device._model, cluster.cluster_id, ep_id, cluster)
+                try:
+                    logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
+                                ep_id)+"] Set specific reporting for '%s' attr on '%s' input cluster: %s", device._manufacturer, device._model)
+                    await specifics.reporting(device._manufacturer, device._model, cluster.cluster_id, ep_id, cluster)
+                except Exception as ex:
+                    logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
+                                ep_id)+"] Failed to set specific reporting for '%s' attr on '%s' input cluster: %s", device._manufacturer, device._model, str(ex),)
                 try:
                     if hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], 'initialize'):
                         logging.debug('['+str(device._ieee)+'][zdevices.initialize][Endpoint '+str(ep_id)+'] Intput cluster '+str(
                             cluster.cluster_id) + ' has specific function to initialize, I used it')
                         await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
-                except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
+                except Exception as ex:
                     logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
                         ep_id)+"] Failed to initialize '%s' input cluster: %s", cluster.ep_attribute, str(ex))
             logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
@@ -223,7 +229,7 @@ async def initialize(device):
                     await cluster.bind()
                     logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
                         ep_id)+"] Bound '%s' output cluster", cluster.ep_attribute)
-                except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
+                except Exception as ex:
                     logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
                         ep_id)+"] Failed to bind '%s' output cluster: %s", cluster.ep_attribute, str(ex))
                 if cluster.is_server and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], 'REPORT_CONFIG'):
@@ -238,7 +244,7 @@ async def initialize(device):
                             logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(ep_id)+"] reporting '%s' attr on '%s' output cluster: %d/%d/%d: For: '%s'",
                                           attr_name, cluster.ep_attribute, min_report_int, max_report_int, reportable_change, device.ieee)
                             await cluster.configure_reporting(attr, min_report_int, max_report_int, reportable_change, **kwargs)
-                        except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
+                        except Exception as ex:
                             logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
                                 ep_id)+"] failed to set reporting for '%s' attr on '%s' output cluster: %s", attr_name, cluster.ep_attribute, str(ex),)
                 try:
@@ -246,7 +252,7 @@ async def initialize(device):
                         logging.debug('['+str(device._ieee)+'][zdevices.initialize][Endpoint '+str(ep_id)+'] Output cluster '+str(
                             cluster.cluster_id) + ' has specific function to initialize, I used it')
                         await registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].initialize(cluster)
-                except (zigpy.exceptions.ZigbeeException, asyncio.TimeoutError) as ex:
+                except Exception as ex:
                     logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
                         ep_id)+"] Failed to initialize '%s' output cluster: %s", cluster.ep_attribute, str(ex))
             logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
