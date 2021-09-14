@@ -13,6 +13,17 @@
       "subtype": "string",
       "isVisible": 1,
       "isHistorized": 1,
+      "logicalId": "1::1281::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Bouton SOS",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 1,
       "logicalId": "1::1281::cmd::0",
       "configuration": {
         "repeatEventManagement": "always"
