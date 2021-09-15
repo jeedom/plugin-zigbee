@@ -202,7 +202,7 @@ async def initialize(device):
                                 ep_id)+"] Failed to set reporting for '%s' attr on '%s' input cluster: %s", attr_name, cluster.ep_attribute, str(ex),)
                 try:
                     logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
-                                ep_id)+"] Set specific reporting for '%s' attr on '%s' input cluster: %s", device._manufacturer, device._model)
+                                ep_id)+"] Set specific reporting for '%s' attr on '%s' input cluster: %s", device._manufacturer, device._model,cluster.cluster_id)
                     await specifics.reporting(device._manufacturer, device._model, cluster.cluster_id, ep_id, cluster)
                 except Exception as ex:
                     logging.debug("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
