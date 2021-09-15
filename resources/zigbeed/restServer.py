@@ -47,7 +47,7 @@ class ApplicationHandler(RequestHandler):
 				self.json_args = json.loads(self.request.body)
 		except Exception as e:
 			self.json_args = None
-		logging.debug('[ApplicationHandler.prepare] Json arg : '+str(self.json_args))
+		logging.info('[ApplicationHandler.prepare] Json arg : '+str(self.json_args))
 
 	async def get(self,arg1):
 		try:
@@ -56,7 +56,7 @@ class ApplicationHandler(RequestHandler):
 				return self.write(utils.format_json_result(success=True,data=info))
 			raise Exception("[ApplicationHandler.get] No method found for "+str(arg1))
 		except Exception as e:
-			logging.debug(traceback.format_exc())
+			logging.info(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 	async def put(self,arg1):
@@ -80,7 +80,7 @@ class ApplicationHandler(RequestHandler):
 				return self.write(utils.format_json_result(success=True))
 			raise Exception("[ApplicationHandler.put] No method found for "+str(arg1))
 		except Exception as e:
-			logging.debug(traceback.format_exc())
+			logging.info(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 class NetworkHandler(RequestHandler):
@@ -92,7 +92,7 @@ class NetworkHandler(RequestHandler):
 				self.json_args = json.loads(self.request.body)
 		except Exception as e:
 			self.json_args = None
-		logging.debug('[NetworkHandler.prepare] Json arg : '+str(self.json_args))
+		logging.info('[NetworkHandler.prepare] Json arg : '+str(self.json_args))
 
 	async def get(self,arg1):
 		try:
@@ -105,7 +105,7 @@ class NetworkHandler(RequestHandler):
 				return self.write(utils.format_json_result(success=True,data=result))
 			raise Exception("No method found for "+str(arg1))
 		except Exception as e:
-			logging.debug(traceback.format_exc())
+			logging.info(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 class DeviceHandler(RequestHandler):
@@ -117,7 +117,7 @@ class DeviceHandler(RequestHandler):
 				self.json_args = json.loads(self.request.body)
 		except Exception as e:
 			self.json_args = None
-		logging.debug('[DeviceHandler.prepare] Json arg : '+str(self.json_args))
+		logging.info('[DeviceHandler.prepare] Json arg : '+str(self.json_args))
 
 	async def get(self,arg1):
 		try:
@@ -143,7 +143,7 @@ class DeviceHandler(RequestHandler):
 				return self.write(utils.format_json_result(success=True,data=result))
 			raise Exception("No method found for "+str(arg1))
 		except Exception as e:
-			logging.debug(traceback.format_exc())
+			logging.info(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 	async def post(self,arg1):
@@ -174,10 +174,10 @@ class DeviceHandler(RequestHandler):
 					for j in values[i]:
 						if isinstance(values[i][j], (bytes)):
 							values[i][j] = values[i][j].hex()
-				logging.debug('[DeviceHandler.post] Attribute Value received : '+str(values))
+				logging.info('[DeviceHandler.post] Attribute Value received : '+str(values))
 				return self.write(utils.format_json_result(success=True,data=values))
 		except Exception as e:
-			logging.debug(traceback.format_exc())
+			logging.info(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 	async def put(self,arg1):
@@ -187,7 +187,7 @@ class DeviceHandler(RequestHandler):
 					await zdevices.write_attributes(self.json_args)
 				except Exception as e:
 					if 'allowQueue' in self.json_args and self.json_args['allowQueue'] :
-						logging.debug('[DeviceHandler.put/attributes] Failed on write attribute'+str(self.json_args)+' => '+str(e)+'. Replan write attribut later')
+						logging.info('[DeviceHandler.put/attributes] Failed on write attribute'+str(self.json_args)+' => '+str(e)+'. Replan write attribut later')
 						zqueue.add('write_attributes',10,self.json_args,3)
 					else:
 						raise
@@ -253,7 +253,7 @@ class DeviceHandler(RequestHandler):
 					await zdevices.command(self.json_args)
 				except Exception as e:
 					if 'allowQueue' in self.json_args and self.json_args['allowQueue']:
-						logging.debug('[DeviceHandler.put/command] Failed on command'+str(self.json_args)+' => '+str(e)+'. Replan command later')
+						logging.info('[DeviceHandler.put/command] Failed on command'+str(self.json_args)+' => '+str(e)+'. Replan command later')
 						zqueue.add('command',5,self.json_args,1)
 					else:
 						raise
@@ -264,12 +264,12 @@ class DeviceHandler(RequestHandler):
 					raise Exception("File not found "+str(shared.DEVICE_FOLDER+'/'+ieee+'.json'))
 				with open(shared.DEVICE_FOLDER+'/'+ieee+'.json') as specific_file:
 					shared.DEVICE_SPECIFIC[ieee] = json.load(specific_file)
-				logging.debug('[DeviceHandler.put/update_specific] Update specific configuration for '+str(ieee)+' to '+str(shared.DEVICE_SPECIFIC[ieee]))
+				logging.info('[DeviceHandler.put/update_specific] Update specific configuration for '+str(ieee)+' to '+str(shared.DEVICE_SPECIFIC[ieee]))
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'delete_specific':
 				ieee = self.json_args['ieee']
 				shared.DEVICE_SPECIFIC.pop(ieee, None)
-				logging.debug('[DeviceHandler.put/delete_specific] Delete specific configuration for '+str(ieee))
+				logging.info('[DeviceHandler.put/delete_specific] Delete specific configuration for '+str(ieee))
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'bind' or arg1 == 'unbind':
 				src_device = zdevices.find(self.json_args['src']['ieee'])
@@ -303,7 +303,7 @@ class DeviceHandler(RequestHandler):
 						await dest_device.zdo.Unbind_req(src_device.ieee,src_cluster.endpoint.endpoint_id,src_cluster.cluster_id,dstaddr)
 				return self.write(utils.format_json_result(success=True))
 		except Exception as e:
-			logging.debug(traceback.format_exc())
+			logging.info(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 	async def delete(self):
@@ -314,7 +314,7 @@ class DeviceHandler(RequestHandler):
 			await shared.ZIGPY.remove(device.ieee)
 			return self.write(utils.format_json_result(success=True))
 		except Exception as e:
-			logging.debug(traceback.format_exc())
+			logging.info(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 class GroupHandler(RequestHandler):
@@ -326,7 +326,7 @@ class GroupHandler(RequestHandler):
 				self.json_args = json.loads(self.request.body)
 		except Exception as e:
 			self.json_args = None
-		logging.debug('[GroupHandler.prepare] Json arg : '+str(self.json_args))
+		logging.info('[GroupHandler.prepare] Json arg : '+str(self.json_args))
 
 	async def get(self,arg1):
 		try:
@@ -345,14 +345,14 @@ class GroupHandler(RequestHandler):
 				return self.write(utils.format_json_result(success=True,data=values))
 			raise Exception("No method found for "+str(arg1))
 		except Exception as e:
-			logging.debug(traceback.format_exc())
+			logging.info(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 	async def post(self,arg1):
 		try:
 			True
 		except Exception as e:
-			logging.debug(traceback.format_exc())
+			logging.info(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 	async def put(self,arg1):
@@ -362,7 +362,7 @@ class GroupHandler(RequestHandler):
 					await zgroups.command(self.json_args)
 				except Exception as e:
 					if 'allowQueue' in self.json_args and self.json_args['allowQueue']:
-						logging.debug('[GroupHandler.put] Failed on command'+str(self.json_args)+' => '+str(e)+'. Replan group command later')
+						logging.info('[GroupHandler.put] Failed on command'+str(self.json_args)+' => '+str(e)+'. Replan group command later')
 						zqueue.add('command',5,self.json_args,1)
 					else:
 						raise
@@ -389,7 +389,7 @@ class GroupHandler(RequestHandler):
 			raise Exception("No method found for "+str(arg1))
 
 		except Exception as e:
-			logging.debug(traceback.format_exc())
+			logging.info(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 	
 	async def delete(self):
@@ -400,7 +400,7 @@ class GroupHandler(RequestHandler):
 			shared.ZIGPY.groups.pop(group._group_id)
 			return self.write(utils.format_json_result(success=True))
 		except Exception as e:
-			logging.debug(traceback.format_exc())
+			logging.info(traceback.format_exc())
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 

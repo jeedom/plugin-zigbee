@@ -29,7 +29,7 @@ class SchneiderSpecifics():
 	def init(self,device):
 		if (device.model in ['CCTFR6700']):
 			endpoints = device.endpoints.items()
-			logging.debug('Found Schneider heater controller Specifics')
+			logging.info('Found Schneider heater controller Specifics')
 			for endpoint_id, ep in device.endpoints.items():
 				if device.model == 'CCTFR6700' and endpoint_id == 1:
 					cluster = details.SchneiderPilotModeCluster(ep, is_server=True)
@@ -48,13 +48,13 @@ class SchneiderSpecifics():
 
 
 	async def reporting(self, model, cluster_id, ep_id, cluster):
-		logging.debug('Checking specific reporting for device '+str(model)+' '+str(cluster_id)+' '+str(ep_id))
+		logging.info('Checking specific reporting for device '+str(model)+' '+str(cluster_id)+' '+str(ep_id))
 		if model in details.REPORTING_SPECIFIC and cluster_id in details.REPORTING_SPECIFIC[model] and ep_id in details.REPORTING_SPECIFIC[model][cluster_id]:
-			logging.debug('Found specific reporting ' + str(details.REPORTING_SPECIFIC[model][cluster_id][ep_id]))
+			logging.info('Found specific reporting ' + str(details.REPORTING_SPECIFIC[model][cluster_id][ep_id]))
 			for reporting in details.REPORTING_SPECIFIC[model][cluster_id][ep_id]:
-				logging.debug('Setting specific reporting ' + str(reporting))
+				logging.info('Setting specific reporting ' + str(reporting))
 				await cluster.configure_reporting(reporting["attr"], reporting["min"],reporting["max"], reporting["report"])
 		else:
-			logging.debug('No specific reporting found')
+			logging.info('No specific reporting found')
 
 shared.JEEDOM_SPECIFIC.append(SchneiderSpecifics)

@@ -32,7 +32,7 @@ class DevelcoSpecific():
 	def init(self,device):
 		if (device.model in ['AQSZB-110']):
 			endpoints = device.endpoints.items()
-			logging.debug('Found endpoints : ' + str(endpoints))
+			logging.info('Found endpoints : ' + str(endpoints))
 			for endpoint_id, ep in device.endpoints.items():
 				if endpoint_id == 38:
 					cluster = details.JeedomDevelcoVOCCluster(ep, is_server=True)
@@ -41,18 +41,18 @@ class DevelcoSpecific():
 							cluster._attr_cache=oldcluster._attr_cache
 							break
 					ep.add_input_cluster(cluster.cluster_id, cluster)
-					logging.debug('Binding Manufacturer Cluster')
+					logging.info('Binding Manufacturer Cluster')
 					asyncio.ensure_future(cluster.bind())
 
 	async def reporting(self,model , cluster_id ,ep_id,cluster):
-		logging.debug('Checking specific reporting for device '+str(model)+' '+str(cluster_id)+' '+str(ep_id))
+		logging.info('Checking specific reporting for device '+str(model)+' '+str(cluster_id)+' '+str(ep_id))
 		if model in details.REPORTING_SPECIFIC and cluster_id in details.REPORTING_SPECIFIC[model] and ep_id in details.REPORTING_SPECIFIC[model][cluster_id]:
-			logging.debug('Found specific reporting ' + str(details.REPORTING_SPECIFIC[model][cluster_id][ep_id]))
+			logging.info('Found specific reporting ' + str(details.REPORTING_SPECIFIC[model][cluster_id][ep_id]))
 			for reporting in details.REPORTING_SPECIFIC[model][cluster_id][ep_id]:
-				logging.debug('Setting specific reporting ' + str(reporting))
+				logging.info('Setting specific reporting ' + str(reporting))
 				await cluster.configure_reporting(reporting["attr"], reporting["min"],reporting["max"], reporting["report"])
 		else:
-			logging.debug('No specific reporting found')
+			logging.info('No specific reporting found')
 
 
 shared.JEEDOM_SPECIFIC.append(DevelcoSpecific)

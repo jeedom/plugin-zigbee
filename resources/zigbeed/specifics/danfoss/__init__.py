@@ -32,7 +32,7 @@ class DanfossSpecific():
 	def init(self,device):
 		if (device.model in ['eTRV0100']):
 			endpoints = device.endpoints.items()
-			logging.debug('Found danfoss valve')
+			logging.info('Found danfoss valve')
 			for endpoint_id, ep in device.endpoints.items():
 				if endpoint_id == 1:
 					cluster = details.JeedomDanfossValveCluster(ep, is_server=True)
@@ -44,11 +44,11 @@ class DanfossSpecific():
 			
 		if (device.model in ['0x8020','0x8021','0x8030','0x8031','0x8034','0x8035','0x0200']):
 			endpoints = device.endpoints.items()
-			logging.debug('Found endpoints : ' + str(endpoints))
+			logging.info('Found endpoints : ' + str(endpoints))
 			for endpoint_id, ep in device.endpoints.items():
 				if endpoint_id == 232:
-					logging.debug('Found endpoint 232')
-					logging.debug('Setting Device Model')
+					logging.info('Found endpoint 232')
+					logging.info('Setting Device Model')
 					device.model = '0x0200'
 					shared.ZIGPY.devices[device.ieee] = device
 				if endpoint_id in range(1,15):
@@ -60,14 +60,14 @@ class DanfossSpecific():
 					ep.add_input_cluster(cluster.cluster_id, cluster)
 
 	async def reporting(self,model , cluster_id ,ep_id,cluster):
-		logging.debug('Checking specific reporting for device '+str(model)+' '+str(cluster_id)+' '+str(ep_id))
+		logging.info('Checking specific reporting for device '+str(model)+' '+str(cluster_id)+' '+str(ep_id))
 		if model in details.REPORTING_SPECIFIC and cluster_id in details.REPORTING_SPECIFIC[model] and ep_id in details.REPORTING_SPECIFIC[model][cluster_id]:
-			logging.debug('Found specific reporting ' + str(details.REPORTING_SPECIFIC[model][cluster_id][ep_id]))
+			logging.info('Found specific reporting ' + str(details.REPORTING_SPECIFIC[model][cluster_id][ep_id]))
 			for reporting in details.REPORTING_SPECIFIC[model][cluster_id][ep_id]:
-				logging.debug('Setting specific reporting ' + str(reporting))
+				logging.info('Setting specific reporting ' + str(reporting))
 				await cluster.configure_reporting(reporting["attr"], reporting["min"],reporting["max"], reporting["report"])
 		else:
-			logging.debug('No specific reporting found')
+			logging.info('No specific reporting found')
 
 
 shared.JEEDOM_SPECIFIC.append(DanfossSpecific)

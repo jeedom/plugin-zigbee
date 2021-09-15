@@ -95,7 +95,7 @@ async def start_zigbee():
 			with open(_zigpy_advance_config) as f:
   				advance_config = json.load(f)
 			zigpy_config = merge_dict(zigpy_config,advance_config)	
-		logging.debug('[start_zigbee] Init zigbee network with config : '+str(zigpy_config))
+		logging.info('[start_zigbee] Init zigbee network with config : '+str(zigpy_config))
 		shared.ZIGPY = await ControllerApplication.new(
 			config=ControllerApplication.SCHEMA(zigpy_config),
 			auto_form=True,
@@ -112,33 +112,33 @@ async def start_zigbee():
 		for device in shared.ZIGPY.devices.values():
 			listener.device_initialized(device, new=False)
 
-		logging.debug('[start_zigbee] Init and start http server : '+str(zigpy_config))
+		logging.info('[start_zigbee] Init and start http server : '+str(zigpy_config))
 		http_server = HTTPServer(shared.REST_SERVER)
 		http_server.listen(_socketport, address=_socket_host)
 		asyncio.create_task(zqueue.handle())
-		logging.debug('[start_zigbee] Start zigbee network')
+		logging.info('[start_zigbee] Start zigbee network')
 		await asyncio.get_running_loop().create_future()
 	except Exception as e:
 		logging.error('[start_zigbee] Fatal error : '+str(e))
-		logging.debug(traceback.format_exc())
+		logging.info(traceback.format_exc())
 		shutdown()
 
 def handler(signum=None, frame=None):
-	logging.debug("Signal %i caught, exiting..." % int(signum))
+	logging.info("Signal %i caught, exiting..." % int(signum))
 	shutdown()
 
 def shutdown():
-	logging.debug("Shutdown")
+	logging.info("Shutdown")
 	if shared.ZIGPY != None:
 		shared.ZIGPY.shutdown()
 		time.sleep(2)
 	IOLoop.instance().stop()
-	logging.debug("Removing PID file " + str(_pidfile))
+	logging.info("Removing PID file " + str(_pidfile))
 	try:
 		os.remove(_pidfile)
 	except:
 		pass
-	logging.debug("Exit 0")
+	logging.info("Exit 0")
 	sys.stdout.flush()
 	os._exit(0)
 
@@ -254,7 +254,7 @@ if os.path.exists(shared.DEVICE_FOLDER):
 			ieee = file.replace('.json','')
 			with open(shared.DEVICE_FOLDER+'/'+file) as specific_file:
 				shared.DEVICE_SPECIFIC[ieee] = json.load(specific_file)
-			logging.debug('Add specific configuration for '+str(ieee)+' to '+str(shared.DEVICE_SPECIFIC[ieee]))
+			logging.info('Add specific configuration for '+str(ieee)+' to '+str(shared.DEVICE_SPECIFIC[ieee]))
 
 if _device == 'auto':
 	if _controller == 'ezsp' :
@@ -292,5 +292,5 @@ try:
 	asyncio.run(start_zigbee())
 except Exception as e:
 	logging.error('Fatal error : '+str(e))
-	logging.debug(traceback.format_exc())
+	logging.info(traceback.format_exc())
 	shutdown()

@@ -121,9 +121,9 @@ def create_device(ieee, type=None, remoteCommissioning=False):
 		ep.device_type = device_type
 		ep.add_output_cluster(cluster_id)
 	if not remoteCommissioning and (0x9997 not in gateway.endpoints[endpoint_id].out_clusters[cluster_id]._attr_cache or gateway.endpoints[endpoint_id].out_clusters[cluster_id]._attr_cache[0x9997] < time.time()):
-		logging.debug("[zgp.create_device] Not in permit joining mode and not in remoteCommissioning")
+		logging.info("[zgp.create_device] Not in permit joining mode and not in remoteCommissioning")
 		return None
-	logging.debug("[zgp.create_device] Device %s not found, create it", ieee)
+	logging.info("[zgp.create_device] Device %s not found, create it", ieee)
 	nwk = 32766
 	for i in range(32766, 65535):
 		nwk = i 
@@ -148,10 +148,10 @@ def create_device(ieee, type=None, remoteCommissioning=False):
 		name, in_clusters, out_clusters = devices[type]
 		ep.in_clusters[zigpy.zcl.clusters.general.Basic.cluster_id]._update_attribute(0x0005, name)
 		for id in in_clusters:
-			logging.debug("[zgp.create_device] Add input cluster id %s on device %s", id, ieee)
+			logging.info("[zgp.create_device] Add input cluster id %s on device %s", id, ieee)
 			ep.add_input_cluster(id)
 		for id in out_clusters:
-			logging.debug("[zgp.create_device] Add output cluster id %s on device %s", id, ieee)
+			logging.info("[zgp.create_device] Add output cluster id %s on device %s", id, ieee)
 			ep.add_output_cluster(id)
 	else:
 		ep.in_clusters[zigpy.zcl.clusters.general.Basic.cluster_id]._update_attribute(0x0005, "GreenPowerDevice")
@@ -165,17 +165,17 @@ def create_device(ieee, type=None, remoteCommissioning=False):
 def handle_notification(ieee, header, counter, command_id, payload, payload_length, mic):
 	application = shared.ZIGPY
 	if ieee not in application.devices:
-		logging.debug("[zgp.handle_notification] Unkwonw device : %s try to create it if allow", ieee)
+		logging.info("[zgp.handle_notification] Unkwonw device : %s try to create it if allow", ieee)
 		if create_device(ieee) is None:
 			return
 	if command_id not in commands:
-		logging.debug("[zgp.handle_notification] Unhandled command_id : %s", command_id)
+		logging.info("[zgp.handle_notification] Unhandled command_id : %s", command_id)
 		return
 	expected_mic = calcul_mic(ieee,header,counter,command_id.to_bytes(1, "little")+ payload.to_bytes(payload_length, "little"),payload_length + 1,)
 	if expected_mic is not None :
-		logging.debug("[zgp.handle_notification] Mic : %s, expected mic %s : OK", hex(mic), hex(expected_mic))
+		logging.info("[zgp.handle_notification] Mic : %s, expected mic %s : OK", hex(mic), hex(expected_mic))
 	if expected_mic is not None and expected_mic != mic:
-		logging.debug("[zgp.handle_notification] Wrong mic : %s, expected mic %s, ignore frame", hex(mic), hex(expected_mic))
+		logging.info("[zgp.handle_notification] Wrong mic : %s, expected mic %s, ignore frame", hex(mic), hex(expected_mic))
 		return
 	(command,type,schema,clusterid,zcl_command_id,value) = commands[command_id]
 	try:
@@ -183,13 +183,13 @@ def handle_notification(ieee, header, counter, command_id, payload, payload_leng
 	except Exception as e:
 		payload = ()
 		pass
-	logging.debug("[zgp.handle_notification] Green power frame ieee : %s, command_id : %s, payload : %s,counter : %s",ieee,command_id,payload,counter)
+	logging.info("[zgp.handle_notification] Green power frame ieee : %s, command_id : %s, payload : %s,counter : %s",ieee,command_id,payload,counter)
 	value = value + tuple(payload)
 	dev = application.devices[ieee]
 	if counter is not None:
 		attributes = dev.endpoints[endpoint_id].in_clusters[cluster_id]._attr_cache
 		if 0x9999 in attributes and attributes[0x9999] >= counter:
-			logging.debug("[zgp.handle_notification] Already get this frame counter,I ignoring it")
+			logging.info("[zgp.handle_notification] Already get this frame counter,I ignoring it")
 			return
 		attributes[0x9999] = counter
 	if clusterid is not None and type == "CLUSTER_COMMAND":
@@ -230,7 +230,7 @@ def calcul_mic(ieee, header, counter, payload, payload_length):
 		counter = counter.to_bytes(4, "little")
 	if not isinstance(payload, (bytes)):
 		payload = payload.to_bytes(payload_length, "little")
-	logging.debug("[zgp.calcul_mic] Calcul mic of green power frame for %s on header : 0x%s, src_id : 0x%s, counter : 0x%s, payload : 0x%s, payload length : %s",ieee,header.hex(),src_id.hex(),counter.hex(),payload.hex(),payload_length,)
+	logging.info("[zgp.calcul_mic] Calcul mic of green power frame for %s on header : 0x%s, src_id : 0x%s, counter : 0x%s, payload : 0x%s, payload length : %s",ieee,header.hex(),src_id.hex(),counter.hex(),payload.hex(),payload_length,)
 	key = dev.endpoints[endpoint_id].in_clusters[cluster_id]._attr_cache[0x9998]
 	nonce = src_id + src_id + counter + (0x05).to_bytes(1, "little")
 	header = header + src_id + counter
@@ -252,17 +252,17 @@ def calcul_mic(ieee, header, counter, payload, payload_length):
 	
 def setKey(device, key):
 	if key is None:
-		logging.debug("[zgp.setKey] Remove key for device "+str(device.ieee))
+		logging.info("[zgp.setKey] Remove key for device "+str(device.ieee))
 		del device.endpoints[endpoint_id].in_clusters[cluster_id]._attr_cache[0x9998]
 		return
 	if not isinstance(key, (bytes)):
 		key = key.to_bytes(16, "big")
-	logging.debug("[zgp.setKey] Set key for device "+str(device.ieee)+' to '+str(key))
+	logging.info("[zgp.setKey] Set key for device "+str(device.ieee)+' to '+str(key))
 	device.endpoints[endpoint_id].in_clusters[cluster_id]._update_attribute(0x9998, key)
 	
 async def permit(time_s=60):
 	assert 0 <= time_s <= 254
 	application = shared.ZIGPY
-	logging.debug("[zgp.permit] Permit green power pairing for %s s", time_s)
+	logging.info("[zgp.permit] Permit green power pairing for %s s", time_s)
 	application.devices[application._ieee].endpoints[endpoint_id].out_clusters[cluster_id]._attr_cache[0x9997] = int(time.time() + time_s)
 	return

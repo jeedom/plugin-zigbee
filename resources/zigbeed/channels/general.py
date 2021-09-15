@@ -185,7 +185,7 @@ class Ota():
 
 	def cluster_command(cluster, tsn,command_id, *args):
 		cmd_name = cluster.server_commands.get(command_id, [command_id])[0]
-		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.Ota.cluster_command] Received command "+str(cmd_name))
+		logging.info("["+str(cluster.endpoint.device._ieee)+"][chanels.general.Ota.cluster_command] Received command "+str(cmd_name))
 		return False
 
 
@@ -204,18 +204,18 @@ class PollControl():
 	async def initialize(cluster):
 		 try:
 			 res = await cluster.write_attributes({"checkin_interval": PollControl.CHECKIN_INTERVAL})
-			 logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.initialize] %ss check-in interval set: %s", PollControl.CHECKIN_INTERVAL / 4, res)
+			 logging.info("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.initialize] %ss check-in interval set: %s", PollControl.CHECKIN_INTERVAL / 4, res)
 		 except (asyncio.TimeoutError, zigpy.exceptions.ZigbeeException) as ex:
-			 logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.initialize] Couldn't set check-in interval: %s", ex)
+			 logging.info("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.initialize] Couldn't set check-in interval: %s", ex)
 
 	def attribute_updated(cluster, attribute_id, value):
 		return False
 
 	def cluster_command(cluster, tsn, *args):
 		"""Handle commands received to this cluster."""
-		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Received %s tsn : %s", tsn, args)
+		logging.info("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Received %s tsn : %s", tsn, args)
 		cmd_name = cluster.client_commands.get(args[0], [])[0]
-		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Command %s", cmd_name)
+		logging.info("["+str(cluster.endpoint.device._ieee)+"][chanels.general.PollControl.cluster_command] Command %s", cmd_name)
 		if cmd_name == "checkin":
 			fast_poll_timeout = PollControl.CHECKIN_FAST_POLL_TIMEOUT
 			long_poll = PollControl.LONG_POLL
@@ -227,7 +227,7 @@ class PollControl():
 					fast_poll_timeout = int(shared.DEVICE_SPECIFIC[ieee]['poll_control']['fast_poll_timeout'])
 			utils.initSharedDeviceData(cluster,'long_poll')	
 			if long_poll == -1 or shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['long_poll'] == long_poll:
-				logging.debug("["+ieee+"][chanels.general.PollControl.cluster_command] No checkin update needed")
+				logging.info("["+ieee+"][chanels.general.PollControl.cluster_command] No checkin update needed")
 				asyncio.ensure_future(cluster.checkin_response(False, fast_poll_timeout, tsn=tsn))
 				return True
 			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]['long_poll'] = long_poll
@@ -237,11 +237,11 @@ class PollControl():
 		
 	async def set_poll_parameters(cluster,tsn,fast_poll_timeout,long_poll):
 		ieee = str(cluster.endpoint.device._ieee)
-		logging.debug("["+ieee+"][chanels.general.PollControl.set_poll_parameters] Send checkin response. Fastpoll timeout : %s s, long poll %s s",(fast_poll_timeout/4),(long_poll/4))
+		logging.info("["+ieee+"][chanels.general.PollControl.set_poll_parameters] Send checkin response. Fastpoll timeout : %s s, long poll %s s",(fast_poll_timeout/4),(long_poll/4))
 		await cluster.checkin_response(True, fast_poll_timeout, tsn=tsn)
 		await cluster.set_long_poll_interval(long_poll)
 		await cluster.fast_poll_stop()
-		logging.debug("["+ieee+"][chanels.general.PollControl.set_poll_parameters] End of checkin response")
+		logging.info("["+ieee+"][chanels.general.PollControl.set_poll_parameters] End of checkin response")
 
 @registries.DEVICE_TRACKER_CLUSTERS.register(general.PowerConfiguration.cluster_id)
 @registries.ZIGBEE_CHANNEL_REGISTRY.register(general.PowerConfiguration.cluster_id)

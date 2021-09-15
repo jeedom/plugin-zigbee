@@ -21,14 +21,14 @@ import shared
 async def reporting(manufacturer, model , cluster_id ,ep_id,cluster):
 	for specific in shared.JEEDOM_SPECIFIC:
 		if specific().isvalid(manufacturer) and 'reporting' in specific().specific:
-			logging.debug('Found specific Reporting')
+			logging.info('Found specific Reporting')
 			await specific().reporting(model,cluster_id,ep_id,cluster)
 			break
 
 def init(device):
 	for specific in shared.JEEDOM_SPECIFIC:
 		if specific().isvalid(device.manufacturer) and 'init' in specific().specific:
-			logging.debug('Found specific init')
+			logging.info('Found specific init')
 			specific().init(device)
 			break
 
@@ -38,4 +38,4 @@ for importer, modname, ispkg in pkgutil.walk_packages(path=__path__, prefix=__na
 	try:
 		importlib.import_module(modname)
 	except Exception as e:
-		logging.debug('Impossible d\'importer ' + modname + ' : ' + str(e))
+		logging.info('Impossible d\'importer ' + modname + ' : ' + str(e))

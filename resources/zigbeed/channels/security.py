@@ -86,18 +86,18 @@ class IASZoneChannel():
 
 	async def initialize(cluster):
 		ieee = cluster.endpoint.device.application.ieee
-		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Started IASZoneChannel specific configuration")
+		logging.info("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Started IASZoneChannel specific configuration")
 		try:
 			res = await cluster.write_attributes({"cie_addr": ieee})
-			logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Wrote cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,res[0],)
+			logging.info("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Wrote cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,res[0],)
 		except ZigbeeException as ex:
-			logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Failed to write cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,str(ex),)
-		logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Finished IASZoneChannel configuration")
+			logging.info("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Failed to write cie_addr: %s to '%s' cluster: %s",str(ieee),cluster.ep_attribute,str(ex),)
+		logging.info("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.initialize] Finished IASZoneChannel configuration")
 
 	def cluster_command(cluster, tsn, *args):
 		try:
 			if args[0] == 1:
-				logging.debug("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.cluster_command] Enroll requested")
+				logging.info("["+str(cluster.endpoint.device._ieee)+"][chanels.security.IASZoneChannel.cluster_command] Enroll requested")
 				asyncio.ensure_future(cluster.enroll_response(0, 0))
 				return True
 			changes = {'devices' : {str(cluster.endpoint.device._ieee) : {str(cluster.endpoint._endpoint_id) : {str(cluster.cluster_id) : {'cmd' : {}}}}}}

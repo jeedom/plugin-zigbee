@@ -42,7 +42,7 @@ class jeedom_com():
 		self.changes = {}
 		if cycle > 0 :
 			self.send_changes_async()
-		logging.debug('Init request module v%s' % (str(requests.__version__),))
+		logging.info('Init request module v%s' % (str(requests.__version__),))
 
 	def send_changes_async(self):
 		try:
@@ -53,7 +53,7 @@ class jeedom_com():
 			start_time = datetime.datetime.now()
 			changes = self.changes
 			self.changes = {}
-			logging.debug('Send to jeedom : '+str(changes))
+			logging.info('Send to jeedom : '+str(changes))
 			i=0
 			while i < self.retry:
 				try:
@@ -103,7 +103,7 @@ class jeedom_com():
 		threading.Thread( target=self.thread_change,args=(change,)).start()
 
 	def thread_change(self,change):
-		logging.debug('Send to jeedom :  %s' % (str(change),))
+		logging.info('Send to jeedom :  %s' % (str(change),))
 		i=0
 		while i < self.retry:
 			try:
@@ -211,7 +211,7 @@ class jeedom_utils():
 	@staticmethod
 	def write_pid(path):
 		pid = str(os.getpid())
-		logging.debug("Writing PID " + pid + " to " + str(path))
+		logging.info("Writing PID " + pid + " to " + str(path))
 		open(path, 'w').write("%s\n" % pid)
 
 	@staticmethod
@@ -234,15 +234,15 @@ class jeedom_serial():
 		self.port = None
 		self.rtscts = rtscts
 		self.xonxoff = xonxoff
-		logging.debug('Init serial module v%s' % (str(serial.VERSION),))
+		logging.info('Init serial module v%s' % (str(serial.VERSION),))
 
 	def open(self):
 		if self.device:
-			logging.debug("Open serial port on device: " + str(self.device)+', rate '+str(self.rate)+', timeout : '+str(self.timeout))
+			logging.info("Open serial port on device: " + str(self.device)+', rate '+str(self.rate)+', timeout : '+str(self.timeout))
 		else:
 			logging.error("Device name missing.")
 			return False
-		logging.debug("Open Serialport")
+		logging.info("Open Serialport")
 		try:
 			self.port = serial.Serial(
 			self.device,
@@ -263,25 +263,25 @@ class jeedom_serial():
 		return True
 
 	def close(self):
-		logging.debug("Close serial port")
+		logging.info("Close serial port")
 		try:
 			self.port.close()
-			logging.debug("Serial port closed")
+			logging.info("Serial port closed")
 			return True
 		except:
 			logging.error("Failed to close the serial port (" + self.device + ")")
 			return False
 
 	def write(self,data):
-		logging.debug("Write data to serial port : "+str(jeedom_utils.ByteToHex(data)))
+		logging.info("Write data to serial port : "+str(jeedom_utils.ByteToHex(data)))
 		self.port.write(data)
 
 	def flushOutput(self,):
-		logging.debug("flushOutput serial port ")
+		logging.info("flushOutput serial port ")
 		self.port.flushOutput()
 
 	def flushInput(self):
-		logging.debug("flushInput serial port ")
+		logging.info("flushInput serial port ")
 		self.port.flushInput()
 
 	def read(self):
@@ -308,12 +308,12 @@ JEEDOM_SOCKET_MESSAGE = Queue()
 class jeedom_socket_handler(StreamRequestHandler):
 	def handle(self):
 		global JEEDOM_SOCKET_MESSAGE
-		logging.debug("Client connected to [%s:%d]" % self.client_address)
+		logging.info("Client connected to [%s:%d]" % self.client_address)
 		lg = self.rfile.readline()
 		JEEDOM_SOCKET_MESSAGE.put(lg)
-		logging.debug("Message read from socket: " + str(lg.strip()))
+		logging.info("Message read from socket: " + str(lg.strip()))
 		self.netAdapterClientConnected = False
-		logging.debug("Client disconnected from [%s:%d]" % self.client_address)
+		logging.info("Client disconnected from [%s:%d]" % self.client_address)
 
 class jeedom_socket():
 
@@ -325,16 +325,16 @@ class jeedom_socket():
 	def open(self):
 		self.netAdapter = TCPServer((self.address, self.port), jeedom_socket_handler)
 		if self.netAdapter:
-			logging.debug("Socket interface started")
+			logging.info("Socket interface started")
 			threading.Thread(target=self.loopNetServer, args=()).start()
 		else:
-			logging.debug("Cannot start socket interface")
+			logging.info("Cannot start socket interface")
 
 	def loopNetServer(self):
-		logging.debug("LoopNetServer Thread started")
-		logging.debug("Listening on: [%s:%d]" % (self.address, self.port))
+		logging.info("LoopNetServer Thread started")
+		logging.info("Listening on: [%s:%d]" % (self.address, self.port))
 		self.netAdapter.serve_forever()
-		logging.debug("LoopNetServer Thread stopped")
+		logging.info("LoopNetServer Thread stopped")
 
 	def close(self):
 		self.netAdapter.shutdown()

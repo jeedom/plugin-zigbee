@@ -64,7 +64,7 @@ async def delete_device(_data):
 
 def get_member(_data):
     group = find(_data['group_id'])
-    logging.debug('group '+str(group.members))
+    logging.info('group '+str(group.members))
 
 
 async def command(_data):
@@ -130,8 +130,8 @@ async def binding(device, group_id, operation, clusters):
     for cluster in clusters:
         if cluster.endpoint.endpoint_id == 0:
             continue
-        logging.debug('[zgroups.binding] Processing '+str(operation)+' for '+str(device.ieee)+' endpoint ' +
+        logging.info('[zgroups.binding] Processing '+str(operation)+' for '+str(device.ieee)+' endpoint ' +
                       str(cluster.endpoint.endpoint_id)+' cluster '+str(cluster.cluster_id)+' to group '+str(group_id))
         await zdo.request(operation, device.ieee, cluster.endpoint.endpoint_id, cluster.cluster_id, destination_address)
-        logging.debug('[zgroups.binding] Competed '+str(operation)+' for '+str(device.ieee)+' endpoint ' +
+        logging.info('[zgroups.binding] Competed '+str(operation)+' for '+str(device.ieee)+' endpoint ' +
                       str(cluster.endpoint.endpoint_id)+' cluster '+str(cluster.cluster_id)+' to group '+str(group_id))
