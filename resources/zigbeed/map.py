@@ -139,7 +139,7 @@ class Neighbour():
         self.model = self.device.model
         self.rssi = self.device.rssi
         self.manufacturer = self.device.manufacturer
-        if self.device.node_desc is not None and self.device.node_desc.is_valid:
+        if self.device.node_desc is not None:
             self.device_type = self.device.node_desc.logical_type.name
         else:
             self.device_type = "unknown"

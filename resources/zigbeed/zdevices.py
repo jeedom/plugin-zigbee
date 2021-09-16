@@ -330,7 +330,7 @@ async def serialize(device, with_attributes=1):
         'lqi': str(device.lqi),
         'rssi': str(device.rssi),
         'last_seen': str(device.last_seen),
-        'node_descriptor': None if (device.node_desc is None or not device.node_desc.is_valid) else list(device.node_desc.serialize()),
+        'node_descriptor': None if device.node_desc is None else list(device.node_desc.serialize()),
         'endpoints': [],
         'signature': device.get_signature(),
         'class': device.__module__,
