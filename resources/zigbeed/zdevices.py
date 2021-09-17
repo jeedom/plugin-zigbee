@@ -129,7 +129,7 @@ async def check_write_attributes(_data):
     await asyncio.sleep(15)
     device = find(_data['ieee'])
     logging.info('['+str(device._ieee) +
-                  '][zdevices.check_write_attributes] Check write attribute for : '+str(_data))
+                 '][zdevices.check_write_attributes] Check write attribute for : '+str(_data))
     for attribute in _data['attributes']:
         if not attribute['endpoint'] in device.endpoints:
             return
@@ -153,7 +153,7 @@ async def check_write_attributes(_data):
                 continue
             if values[0][int(i)] != attribute['attributes'][i]:
                 logging.info('['+str(device._ieee)+'][zdevice.check_write_attributes] Attribute value issue for device : '+str(_data['ieee'])+' '+str(attribute['endpoint']) +
-                              '/'+str(attribute['cluster'])+'/'+str(int(i))+' expected value : '+str(attribute['attributes'][i])+' current value : '+str(values[0][int(i)]))
+                             '/'+str(attribute['cluster'])+'/'+str(int(i))+' expected value : '+str(attribute['attributes'][i])+' current value : '+str(values[0][int(i)]))
                 attributes[int(i)] = attribute['attributes'][i]
         if len(attributes) == 0:
             logging.info(
@@ -174,7 +174,7 @@ async def initialize(device):
             if not hasattr(cluster, 'ep_attribute') or (cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], 'NO_BINDING') and registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].NO_BINDING):
                 continue
             logging.info("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(ep_id) +
-                          "] Begin configuration of input cluster '%s', is_server '%s'", cluster.ep_attribute, cluster.is_server)
+                         "] Begin configuration of input cluster '%s', is_server '%s'", cluster.ep_attribute, cluster.is_server)
             if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY:
                 try:
                     logging.info("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
@@ -195,18 +195,18 @@ async def initialize(device):
                         min_report_int, max_report_int, reportable_change = report["config"]
                         try:
                             logging.info("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(ep_id)+"] Reporting '%s' attr on '%s' input cluster: %d/%d/%d: For: '%s'",
-                                          attr_name, cluster.ep_attribute, min_report_int, max_report_int, reportable_change, device.ieee)
+                                         attr_name, cluster.ep_attribute, min_report_int, max_report_int, reportable_change, device.ieee)
                             await cluster.configure_reporting(attr, min_report_int, max_report_int, reportable_change, **kwargs)
                         except Exception as ex:
                             logging.info("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
                                 ep_id)+"] Failed to set reporting for '%s' attr on '%s' input cluster: %s", attr_name, cluster.ep_attribute, str(ex),)
                 try:
                     logging.info("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
-                                ep_id)+"] Set specific reporting for '%s' attr on '%s' input cluster: %s", device._manufacturer, device._model,cluster.cluster_id)
+                        ep_id)+"] Set specific reporting for '%s' attr on '%s' input cluster: %s", device._manufacturer, device._model, cluster.cluster_id)
                     await specifics.reporting(device._manufacturer, device._model, cluster.cluster_id, ep_id, cluster)
                 except Exception as ex:
                     logging.info("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
-                                ep_id)+"] Failed to set specific reporting for '%s' attr on '%s' input cluster: %s", device._manufacturer, device._model, str(ex),)
+                        ep_id)+"] Failed to set specific reporting for '%s' attr on '%s' input cluster: %s", device._manufacturer, device._model, str(ex),)
                 try:
                     if hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], 'initialize'):
                         logging.info('['+str(device._ieee)+'][zdevices.initialize][Endpoint '+str(ep_id)+'] Intput cluster '+str(
@@ -221,7 +221,7 @@ async def initialize(device):
             if not hasattr(cluster, 'ep_attribute') or (cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], 'NO_BINDING') and registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id].NO_BINDING):
                 continue
             logging.info("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(ep_id) +
-                          "] Begin configuration of output cluster '%s', is_server '%s'", cluster.ep_attribute, cluster.is_server)
+                         "] Begin configuration of output cluster '%s', is_server '%s'", cluster.ep_attribute, cluster.is_server)
             if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY:
                 try:
                     logging.info("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
@@ -242,7 +242,7 @@ async def initialize(device):
                         min_report_int, max_report_int, reportable_change = report["config"]
                         try:
                             logging.info("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(ep_id)+"] reporting '%s' attr on '%s' output cluster: %d/%d/%d: For: '%s'",
-                                          attr_name, cluster.ep_attribute, min_report_int, max_report_int, reportable_change, device.ieee)
+                                         attr_name, cluster.ep_attribute, min_report_int, max_report_int, reportable_change, device.ieee)
                             await cluster.configure_reporting(attr, min_report_int, max_report_int, reportable_change, **kwargs)
                         except Exception as ex:
                             logging.info("["+str(device._ieee)+"][zdevices.initialize][Endpoint "+str(
@@ -322,7 +322,7 @@ def is_groupable(device):
 
 async def serialize(device, with_attributes=1):
     logging.info("["+str(device._ieee) +
-                  '][zdevices.serialize] Serialize device with attributes : '+str(with_attributes))
+                 '][zdevices.serialize] Serialize device with attributes : '+str(with_attributes))
     obj = {
         'ieee': str(device.ieee),
         'nwk': device.nwk,
@@ -330,7 +330,7 @@ async def serialize(device, with_attributes=1):
         'lqi': str(device.lqi),
         'rssi': str(device.rssi),
         'last_seen': str(device.last_seen),
-        'node_descriptor': None if not device.node_desc.is_valid else list(device.node_desc.serialize()),
+        'node_descriptor': None if device.node_desc is None else list(device.node_desc.serialize()),
         'endpoints': [],
         'signature': device.get_signature(),
         'class': device.__module__,
