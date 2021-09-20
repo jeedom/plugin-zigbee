@@ -96,7 +96,7 @@ if (!isConnect('admin')) {
               </label>
               <div class="col-md-6">
                 <select class="configKey form-control" data-l1key="controller_<?php echo $i ?>">
-                  <option value="ezsp">{{EZSP}}</option>
+                  <option value="ezsp">{{EZSP (Atlas)}}</option>
                   <option value="deconz">{{Conbee}}</option>
                   <option value="zigate">{{Zigate}}</option>
                   <option value="xbee">{{Xbee}}</option>
@@ -111,7 +111,7 @@ if (!isConnect('admin')) {
               <div class="col-md-6">
                 <select class="configKey form-control" data-l1key="sub_controller_<?php echo $i ?>">
                   <option value="auto" data-controller="auto">{{Default}}</option>
-                  <option value="elelabs" data-controller="ezsp">{{Elelabs/Popp}}</option>
+                  <option value="elelabs" data-controller="ezsp">{{Atlas/Elelabs/Popp}}</option>
                 </select>
               </div>
             </div>
@@ -125,6 +125,7 @@ if (!isConnect('admin')) {
                   <option value="auto">{{Auto}}</option>
                   <option value="pizigate">{{Pizigate}}</option>
                   <option value="gateway">{{Passerelle distante}}</option>
+                  <option value="/dev/ttyS2">{{Atlas}}</option>
                   <?php
                   foreach (jeedom::getUsbMapping() as $name => $value) {
                     echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
