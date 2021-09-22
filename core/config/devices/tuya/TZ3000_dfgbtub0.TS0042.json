@@ -9,7 +9,7 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::6::cmd::0",
+      "logicalId": "1::6::cmd::1",
       "configuration": {
         "repeatEventManagement": "always"
       }
@@ -20,7 +20,7 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "2::6::cmd::0",
+      "logicalId": "2::6::cmd::1",
       "configuration": {
         "repeatEventManagement": "always"
       }
