@@ -111,7 +111,7 @@ class TuyaTS130FTI2(CustomDevice):
         ENDPOINTS: {
             1: {
                 PROFILE_ID: zha.PROFILE_ID,
-                DEVICE_TYPE: 515,
+                DEVICE_TYPE: zha.DeviceType.WINDOW_COVERING_CONTROLLER,
                 INPUT_CLUSTERS: [
                     Basic.cluster_id,
                     Groups.cluster_id,
@@ -127,7 +127,7 @@ class TuyaTS130FTI2(CustomDevice):
         ENDPOINTS: {
             1: {
                 PROFILE_ID: zha.PROFILE_ID,
-                DEVICE_TYPE: zha.DeviceType.WINDOW_COVERING_DEVICE,
+                DEVICE_TYPE: zha.DeviceType.WINDOW_COVERING_CONTROLLER,
                 INPUT_CLUSTERS: [
                     Basic.cluster_id,
                     Groups.cluster_id,
