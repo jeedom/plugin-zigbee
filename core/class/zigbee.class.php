@@ -265,6 +265,22 @@ class zigbee extends eqLogic {
     }
   }
 
+  public static function cron() {
+    foreach (eqLogic::byType('zigbee', true) as $eqLogic) {
+      $autorefresh = $eqLogic->getConfiguration('autorefresh');
+      if ($autorefresh != '') {
+        try {
+          $c = new Cron\CronExpression(checkAndFixCron($autorefresh), new Cron\FieldFactory);
+          if ($c->isDue()) {
+            $eqLogic->refreshValue();
+          }
+        } catch (Exception $exc) {
+          log::add('virtual', 'error', __('Expression cron non valide pour ', __FILE__) . $eqLogic->getHumanName() . ' : ' . $autorefresh);
+        }
+      }
+    }
+  }
+
   public static function dependancy_info() {
     $return = array();
     $return['progress_file'] = jeedom::getTmpFolder('zigbee') . '/dependance';

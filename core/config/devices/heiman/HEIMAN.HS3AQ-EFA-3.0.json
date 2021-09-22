@@ -3,6 +3,9 @@
   "ref" : "HS3AQ",
   "buylink" : "",
   "documentation" : "",
+  "configuration":{
+    "autorefresh" : "*/5 * * * *",
+  },
   "commands": [
     {
       "name": "Rafraîchir",
