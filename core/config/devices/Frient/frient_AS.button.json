@@ -1,0 +1,27 @@
+{
+  "name": "Smart button",
+  "ref" : "20203200",
+  "manufacturer" : "Frient",
+  "pairing": "Inserez les piles",
+  "reset": "Appuyer sur le bouton jusqu'a ce que la led clignote rouge",
+  "configuration" :{
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160"
+      }
+    }
+  },
+  "commands": [
+    {
+      "name": "Bouton",
+      "type": "info",
+      "subtype": "binarry",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "32::15::85",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    }
+  ]
+}
