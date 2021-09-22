@@ -46,7 +46,11 @@
       "isHistorized": 1,
       "unite" : "%",
       "logicalId": "1::1037::0",
-      "generic_type" : "CO2"
+      "generic_type" : "CO2",
+      "configuration" : {
+        "calculValueOffset":"#value# * 100",
+        "historizeRound" : 2
+      }
     }
   ]
 }
