@@ -190,7 +190,7 @@ class zigbee extends eqLogic {
           continue;
         }
         $zigbee = zigbee::byLogicalId($device['ieee'], 'zigbee');
-        if (!is_object($zigbee)) {
+        if (!is_object($zigbee) || $zigbee->getIsEnable() == 0) {
           continue;
         }
         if (isset(array_values($device['endpoints'])[0]['input_clusters'][0]['id']) && array_values($device['endpoints'])[0]['input_clusters'][0]['id'] == 0) {
