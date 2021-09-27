@@ -3,6 +3,10 @@
   "ref":"TZ3000-TS130F",
   "type": "Volets",
   "buylink" : "",
+  "config" : [
+    {"endpoint" : 1,"cluster":258,"attribute":61442,"name":"Inverser","type":"select","values":[{"value":0,"name":"Non"},{"value":1,"name":"Oui"}]},
+    {"endpoint" : 1,"cluster":258,"attribute":61443,"name":"Temps montée descente (dixième de secondes)","type":"number"}
+  ],
   "remark" : "",
     "commands":[
     {
