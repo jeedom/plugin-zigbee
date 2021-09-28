@@ -275,7 +275,7 @@ class zigbee extends eqLogic {
             $eqLogic->refreshValue();
           }
         } catch (Exception $exc) {
-          log::add('virtual', 'error', __('Expression cron non valide pour ', __FILE__) . $eqLogic->getHumanName() . ' : ' . $autorefresh);
+          log::add('zigbee', 'error', __('Expression cron non valide pour ', __FILE__) . $eqLogic->getHumanName() . ' : ' . $autorefresh);
         }
       }
     }
