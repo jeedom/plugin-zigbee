@@ -11,18 +11,18 @@ function sortByOption($a, $b) {
 $devices = array();
 $deviceAttr = array();
 foreach ($eqLogics as $eqLogic) {
-	$eqLogicArray =array();
+	$eqLogicArray = array();
 	$eqLogicArray['HumanNameFull'] = $eqLogic->getHumanName(true);
 	$eqLogicArray['HumanName'] = $eqLogic->getHumanName();
 	$eqLogicArray['id'] = $eqLogic->getId();
-	$eqLogicArray['instance'] = $eqLogic->getConfiguration('instance',1);
-	$eqLogicArray['img'] = 'plugins/zigbee/core/config/devices/'.zigbee::getImgFilePath($eqLogic->getConfiguration('device'));
+	$eqLogicArray['instance'] = $eqLogic->getConfiguration('instance', 1);
+	$eqLogicArray['img'] = 'plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device'));
 	$devices[$eqLogic->getLogicalId()] = $eqLogicArray;
-	$deviceAttr[$eqLogic->getId()] = array('canbesplit' => $eqLogic->getConfiguration('canbesplit',0),'ischild' => $eqLogic->getConfiguration('ischild',0),'isgroup' => $eqLogic->getConfiguration('isgroup',0));
+	$deviceAttr[$eqLogic->getId()] = array('canbesplit' => $eqLogic->getConfiguration('canbesplit', 0), 'ischild' => $eqLogic->getConfiguration('ischild', 0), 'isgroup' => $eqLogic->getConfiguration('isgroup', 0));
 }
-$devices[0]=array('HumanNameFull'=>'Contrôleur','HumanName'=>'Contrôleur','id'=>0,'img'=>'plugins/zigbee/core/config/devices/coordinator.png');
-sendVarToJS('zigbee_devices',$devices);
-sendVarToJS('devices_attr',$deviceAttr);
+$devices[0] = array('HumanNameFull' => 'Contrôleur', 'HumanName' => 'Contrôleur', 'id' => 0, 'img' => 'plugins/zigbee/core/config/devices/coordinator.png');
+sendVarToJS('zigbee_devices', $devices);
+sendVarToJS('devices_attr', $deviceAttr);
 
 $zigbee_instances = zigbee::getDeamonInstanceDef();
 sendVarToJS('zigbee_instances', $zigbee_instances);
@@ -34,62 +34,62 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 		<div class="eqLogicThumbnailContainer">
 			<div class="cursor changeIncludeState include card logoPrimary" data-mode="1" data-state="1">
 				<i class="fas fa-sign-in-alt fa-rotate-90"></i>
-				<br/>
+				<br />
 				<span>{{Mode inclusion}}</span>
 			</div>
 			<div class="cursor changeIncludeState include card logoSecondary" id="bt_remoteCommissioning">
 				<i class="fas fa-plus"></i>
-				<br/>
+				<br />
 				<span>{{Commissioning}}</span>
 			</div>
-			<div class="cursor eqLogicAction logoSecondary" id="bt_syncEqLogic" >
+			<div class="cursor eqLogicAction logoSecondary" id="bt_syncEqLogic">
 				<i class="fas fa-sync-alt"></i>
 				<br>
 				<span>{{Synchronisation}}</span>
 			</div>
-			<div class="cursor logoSecondary" id="bt_zigbeeNetwork" >
+			<div class="cursor logoSecondary" id="bt_zigbeeNetwork">
 				<i class="fas fa-sitemap"></i>
 				<br>
 				<span>{{Réseaux Zigbee}}</span>
 			</div>
-			<div class="cursor logoSecondary" id="bt_zigbeeGroups" >
+			<div class="cursor logoSecondary" id="bt_zigbeeGroups">
 				<i class="fas fa-object-group"></i>
 				<br>
 				<span>{{Groupes Zigbee}}</span>
 			</div>
 			<div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
 				<i class="fas fa-wrench"></i>
-				<br/>
+				<br />
 				<span>{{Configuration}}</span>
 			</div>
 		</div>
 		<div class="input-group" style="margin:5px;">
-			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic"/>
+			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
 			<div class="input-group-btn">
 				<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i></a>
 			</div>
 		</div>
-		<legend><i class="fas fa-satellite-dish"></i>  {{Mes équipements Zigbee}}</legend>
+		<legend><i class="fas fa-satellite-dish"></i> {{Mes équipements Zigbee}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<?php
 			foreach ($eqLogics as $eqLogic) {
-				if ($eqLogic->getConfiguration('isgroup',0) == 0) {
+				if ($eqLogic->getConfiguration('isgroup', 0) == 0) {
 					$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
-					$child = ($eqLogic->getConfiguration('ischild',0) == 1) ? '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_orange fas fa-user" title="Ce device est un enfant"></i>' : '';
-					$child .= ($eqLogic->getConfiguration('canbesplit',0) == 1 && $eqLogic->getConfiguration('ischild',0)==0) ? '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green fas fa-random" title="Ce device peut être séparé en enfants"></i>' : '';
-					echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '" >';
-					if ($eqLogic->getConfiguration('device') != ""){
-						if (zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false && $eqLogic->getConfiguration('ischild',0) == 0) {
-							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
-						} else if ($eqLogic->getConfiguration('ischild',0) == 1 && file_exists(dirname(__FILE__) . '/../../core/config/devices/'.$eqLogic->getConfiguration('visual','none'))) {
-							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . $eqLogic->getConfiguration('visual') . '"/>'.$child;
-						} else if ($eqLogic->getConfiguration('ischild',0) == 1 && zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false) {
-							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
+					$child = ($eqLogic->getConfiguration('ischild', 0) == 1) ? '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_orange fas fa-user" title="Ce device est un enfant"></i>' : '';
+					$child .= ($eqLogic->getConfiguration('canbesplit', 0) == 1 && $eqLogic->getConfiguration('ischild', 0) == 0) ? '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green fas fa-random" title="Ce device peut être séparé en enfants"></i>' : '';
+					echo '<div class="eqLogicDisplayCard cursor ' . $opacity . '" data-eqLogic_id="' . $eqLogic->getId() . '" >';
+					if ($eqLogic->getConfiguration('device') != "") {
+						if (zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false && $eqLogic->getConfiguration('ischild', 0) == 0) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>' . $child;
+						} else if ($eqLogic->getConfiguration('ischild', 0) == 1 && file_exists(dirname(__FILE__) . '/../../core/config/devices/' . $eqLogic->getConfiguration('visual', 'none'))) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . $eqLogic->getConfiguration('visual') . '"/>' . $child;
+						} else if ($eqLogic->getConfiguration('ischild', 0) == 1 && zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>' . $child;
 						} else {
-							echo '<img src="' . $plugin->getPathImgIcon() . '" />'.$child;
+							echo '<img src="' . $plugin->getPathImgIcon() . '" />' . $child;
 						}
-					}else{
-						echo '<img src="' . $plugin->getPathImgIcon() . '" />'.$child;
+					} else {
+						echo '<img src="' . $plugin->getPathImgIcon() . '" />' . $child;
 					}
 					echo "<br/>";
 					echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
@@ -98,25 +98,25 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 			}
 			?>
 		</div>
-		<legend><i class="fas fa-object-group"></i>  {{Mes groupes Zigbee}}</legend>
+		<legend><i class="fas fa-object-group"></i> {{Mes groupes Zigbee}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<?php
 			$child = '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green fas fa-object-group" title="Groupe"></i>';
 			foreach ($eqLogics as $eqLogic) {
-				if ($eqLogic->getConfiguration('isgroup',0) == 1) {
-					echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '" >';
-					if ($eqLogic->getConfiguration('device') != ""){
-						if (zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false && $eqLogic->getConfiguration('ischild',0) == 0) {
-							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
-						} else if ($eqLogic->getConfiguration('ischild',0) == 1 && file_exists(dirname(__FILE__) . '/../../core/config/devices/'.$eqLogic->getConfiguration('visual','none'))) {
-							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . $eqLogic->getConfiguration('visual') . '"/>'.$child;
-						} else if ($eqLogic->getConfiguration('ischild',0) == 1 && zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false) {
-							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>'.$child;
+				if ($eqLogic->getConfiguration('isgroup', 0) == 1) {
+					echo '<div class="eqLogicDisplayCard cursor ' . $opacity . '" data-eqLogic_id="' . $eqLogic->getId() . '" >';
+					if ($eqLogic->getConfiguration('device') != "") {
+						if (zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false && $eqLogic->getConfiguration('ischild', 0) == 0) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>' . $child;
+						} else if ($eqLogic->getConfiguration('ischild', 0) == 1 && file_exists(dirname(__FILE__) . '/../../core/config/devices/' . $eqLogic->getConfiguration('visual', 'none'))) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . $eqLogic->getConfiguration('visual') . '"/>' . $child;
+						} else if ($eqLogic->getConfiguration('ischild', 0) == 1 && zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>' . $child;
 						} else {
-							echo '<img src="' . $plugin->getPathImgIcon() . '" />'.$child;
+							echo '<img src="' . $plugin->getPathImgIcon() . '" />' . $child;
 						}
-					}else{
-						echo '<img src="' . $plugin->getPathImgIcon() . '" />'.$child;
+					} else {
+						echo '<img src="' . $plugin->getPathImgIcon() . '" />' . $child;
 					}
 					echo "<br/>";
 					echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
@@ -152,7 +152,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								<label class="col-sm-3 control-label">{{Nom de l'équipement}}</label>
 								<div class="col-sm-7">
 									<input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
-									<input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="Nom de l'équipement Zigbee"/>
+									<input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="Nom de l'équipement Zigbee" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -185,8 +185,8 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Options}}</label>
 								<div class="col-sm-7">
-									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
-									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
+									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked />{{Activer}}</label>
+									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked />{{Visible}}</label>
 								</div>
 							</div>
 
@@ -196,7 +196,7 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 									<sup><i class="fas fa-question-circle tooltips" title="{{Identifiant du module}}"></i></sup>
 								</label>
 								<div class="col-sm-7">
-									<input type="text" class="eqLogicAttr form-control" data-l1key="logicalId" placeholder="Logical ID"/>
+									<input type="text" class="eqLogicAttr form-control" data-l1key="logicalId" placeholder="Logical ID" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -206,11 +206,11 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								<div class="col-sm-7">
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="instance">
 										<?php
-										foreach($zigbee_instances as $zigbee_instance) {
-											if($zigbee_instance['enable'] != 1){
+										foreach ($zigbee_instances as $zigbee_instance) {
+											if ($zigbee_instance['enable'] != 1) {
 												continue;
 											}
-											echo '<option value="'.$zigbee_instance['id'].'">'.$zigbee_instance['name'].'</option>';
+											echo '<option value="' . $zigbee_instance['id'] . '">' . $zigbee_instance['name'] . '</option>';
 										}
 										?>
 									</select>
@@ -231,12 +231,23 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Options avancées}}</label>
 								<div class="col-sm-7">
-									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="dontAwaitCmd"/>{{Ignorer la confirmation d'exécution}}
+									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="dontAwaitCmd" />{{Ignorer la confirmation d'exécution}}
 										<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour ignorer la confirmation de la bonne exécution de la commande par le contrôleur}}"></i></sup>
 									</label>
-									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="allowQueue"/>{{Autoriser la mise en file d'attente}}
+									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="allowQueue" />{{Autoriser la mise en file d'attente}}
 										<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour autoriser la mise en file d'attente des commandes afin de réessayer en cas d'erreur}}"></i></sup>
 									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Auto-actualisation (cron)}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Nous recommandons de ne jamais rien mettre ici de vous meme, une erreur et c'est tout votre réseaux zigbee qui est cassé !!!!}}"></i></sup>
+								</label>
+								<div class="col-sm-2">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="autorefresh" placeholder="{{Auto-actualisation (cron)}}" />
+								</div>
+								<div class="col-sm-1">
+									<i class="fas fa-question-circle cursor floatright" id="bt_cronGenerator"></i>
 								</div>
 							</div>
 						</div>
@@ -253,17 +264,17 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 										<?php
 										$manufacturers = array();
 										foreach (zigbee::devicesParameters() as $id => &$info) {
-											if(!isset($info['manufacturer'])){
-												$info['manufacturer'] = __('Aucun',__FILE__);
+											if (!isset($info['manufacturer'])) {
+												$info['manufacturer'] = __('Aucun', __FILE__);
 											}
-											if(!isset($manufacturers[$info['manufacturer']])){
+											if (!isset($manufacturers[$info['manufacturer']])) {
 												$manufacturers[$info['manufacturer']] = array();
 											}
 											$manufacturers[$info['manufacturer']][$id] = $info;
 										}
 										ksort($manufacturers);
 										foreach ($manufacturers as $manufacturer => $devices) {
-											echo '<option value="'.$manufacturer.'">' . $manufacturer . '</option>';
+											echo '<option value="' . $manufacturer . '">' . $manufacturer . '</option>';
 										}
 										?>
 									</select>
@@ -279,28 +290,28 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 										<?php
 										$manufacturers = array();
 										foreach (zigbee::devicesParameters() as $id => &$info) {
-											if(!isset($info['manufacturer'])){
-												$info['manufacturer'] = __('Aucun',__FILE__);
+											if (!isset($info['manufacturer'])) {
+												$info['manufacturer'] = __('Aucun', __FILE__);
 											}
-											if(!isset($manufacturers[$info['manufacturer']])){
+											if (!isset($manufacturers[$info['manufacturer']])) {
 												$manufacturers[$info['manufacturer']] = array();
 											}
 											$manufacturers[$info['manufacturer']][$id] = $info;
 										}
 										foreach ($manufacturers as $manufacturer => $devices) {
 											foreach ($devices as $id => $info) {
-												if(!isset($info['name'])){
+												if (!isset($info['name'])) {
 													continue;
 												}
-												if(isset($info['ref'])){
-													$name = '['.$info['ref'].'] '.$info['name'];
-												}else{
+												if (isset($info['ref'])) {
+													$name = '[' . $info['ref'] . '] ' . $info['name'];
+												} else {
 													$name = $info['name'];
 												}
-												if(isset($info['instruction'])){
-													echo '<option data-manufacturer="'.$manufacturer.'" value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'" data-instruction="'.$info['instruction'].'" style="display:none;">' . $name . '</option>';
-												}else{
-													echo '<option data-manufacturer="'.$manufacturer.'" value="' . $id . '" data-img="'.zigbee::getImgFilePath($id).'" style="display:none;">' . $name . '</option>';
+												if (isset($info['instruction'])) {
+													echo '<option data-manufacturer="' . $manufacturer . '" value="' . $id . '" data-img="' . zigbee::getImgFilePath($id) . '" data-instruction="' . $info['instruction'] . '" style="display:none;">' . $name . '</option>';
+												} else {
+													echo '<option data-manufacturer="' . $manufacturer . '" value="' . $id . '" data-img="' . zigbee::getImgFilePath($id) . '" style="display:none;">' . $name . '</option>';
 												}
 											}
 										}
@@ -323,14 +334,14 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 								<div class="col-sm-7">
 									<div id="div_instruction"></div>
 									<div style="height:220px;display:flex;justify-content:center;align-items:center;">
-										<img src="plugins/zigbee/plugin_info/zigbee_icon.png" data-original=".jpg" id="img_device" class="img-responsive" style="max-height:200px;max-width:200px;"  onerror="this.src='plugins/zigbee/plugin_info/zigbee_icon.png'"/>
+										<img src="plugins/zigbee/plugin_info/zigbee_icon.png" data-original=".jpg" id="img_device" class="img-responsive" style="max-height:200px;max-width:200px;" onerror="this.src='plugins/zigbee/plugin_info/zigbee_icon.png'" />
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label"></label>
 								<div class="col-sm-7">
-									<a class="btn btn-danger" id="bt_autoDetectModule"><i class="fas fa-search" title="{{Recréer les commandes}}"></i>  {{Recréer les commandes}}</a>
+									<a class="btn btn-danger" id="bt_autoDetectModule"><i class="fas fa-search" title="{{Recréer les commandes}}"></i> {{Recréer les commandes}}</a>
 									<a id="bt_showZigbeeDevice" class="btn btn-primary"><i class="fas fa-wrench"></i> {{Configuration du module}}</a>
 								</div>
 							</div>
@@ -341,14 +352,14 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 			</div>
 
 			<div role="tabpanel" class="tab-pane" id="commandtab">
-				<a class="btn btn-success btn-sm cmdAction pull-right" data-action="add" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter une commande}}</a><br/><br/>
+				<a class="btn btn-success btn-sm cmdAction pull-right" data-action="add" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter une commande}}</a><br /><br />
 				<table id="table_cmd" class="table table-bordered table-condensed">
 					<thead>
 						<tr>
 							<th style="width: 300px;">{{Nom}}</th>
 							<th style="width: 130px;">{{Type}}</th>
 							<th>{{Logical ID}}</th>
-							<th >{{Paramètres}}</th>
+							<th>{{Paramètres}}</th>
 							<th style="width:300px;">{{Options}}</th>
 							<th style="width: 150px;"></th>
 						</tr>
@@ -361,6 +372,6 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 
 	</div>
 </div>
-<?php include_file('core', 'zigbee', 'class.js', 'zigbee');?>
-<?php include_file('desktop', 'zigbee', 'js', 'zigbee');?>
-<?php include_file('core', 'plugin.template', 'js');?>
+<?php include_file('core', 'zigbee', 'class.js', 'zigbee'); ?>
+<?php include_file('desktop', 'zigbee', 'js', 'zigbee'); ?>
+<?php include_file('core', 'plugin.template', 'js'); ?>

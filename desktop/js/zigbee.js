@@ -23,6 +23,12 @@ $('#bt_zigbeeGroups').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Groupes zigbee}}"}).load('index.php?v=d&plugin=zigbee&modal=groups').dialog('open');
 });
 
+$('#bt_cronGenerator').on('click',function(){
+  jeedom.getCronSelectModal({},function (result) {
+    $('.eqLogicAttr[data-l1key=configuration][data-l2key=autorefresh]').value(result.value);
+  });
+});
+
 $('#bt_showZigbeeDevice').off('click').on('click', function () {
   if ($('.eqLogicAttr[data-l1key=id]').value() in devices_attr) {
     if (devices_attr[$('.eqLogicAttr[data-l1key=id]').value()]['isgroup']==0) {

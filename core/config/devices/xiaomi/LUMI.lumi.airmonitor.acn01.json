@@ -38,14 +38,13 @@
       }
     },
     {
-      "name": "CO2",
+      "name": "COVT",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::12::85",
-      "unite" : "ppb",
-      "generic_type": "C02"
+      "unite" : "ppb"
     }
   ]
 }

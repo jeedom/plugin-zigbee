@@ -24,7 +24,7 @@ ajax::init();
 try {
   $data = init('data',null);
   if($data != null){
-    $data = json_decode($data,true);
+    $data = json_decode($data);
   }
   $result = zigbee::request(init('instance',1),str_replace('//', '/', init('request')),$data,init('type','POST'));
   log::add('zigbee','debug',json_encode($result,true));

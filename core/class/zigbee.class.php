@@ -190,7 +190,7 @@ class zigbee extends eqLogic {
           continue;
         }
         $zigbee = zigbee::byLogicalId($device['ieee'], 'zigbee');
-        if (!is_object($zigbee)) {
+        if (!is_object($zigbee) || $zigbee->getIsEnable() == 0) {
           continue;
         }
         if (isset(array_values($device['endpoints'])[0]['input_clusters'][0]['id']) && array_values($device['endpoints'])[0]['input_clusters'][0]['id'] == 0) {
@@ -261,6 +261,22 @@ class zigbee extends eqLogic {
         }
       } catch (\Exception $e) {
         log::add('zigbee', 'error', $e->getMessage());
+      }
+    }
+  }
+
+  public static function cron() {
+    foreach (eqLogic::byType('zigbee', true) as $eqLogic) {
+      $autorefresh = $eqLogic->getConfiguration('autorefresh');
+      if ($autorefresh != '') {
+        try {
+          $c = new Cron\CronExpression(checkAndFixCron($autorefresh), new Cron\FieldFactory);
+          if ($c->isDue()) {
+            $eqLogic->refreshValue();
+          }
+        } catch (Exception $exc) {
+          log::add('zigbee', 'error', __('Expression cron non valide pour ', __FILE__) . $eqLogic->getHumanName() . ' : ' . $autorefresh);
+        }
       }
     }
   }
