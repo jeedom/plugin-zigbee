@@ -1,0 +1,185 @@
+{
+    "name": "TIC",
+    "ref" : "Zlinky_TIC",
+    "commands": [
+      {
+        "name": "Index Base",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::1794::0",
+        "unit" : "Wh"
+      },
+      {
+        "name": "Index HCHC/EJPHN/BBRHCJB",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::1794::258",
+        "unit" : "Wh"
+      },
+      {
+        "name": "Index HCHP/EJPHPM/BBRHPJB",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::1794::256",
+        "unit" : "Wh"
+      },
+      {
+        "name": "Index BBRHCJW",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::1794::260",
+        "unit" : "Wh"
+      }
+      ,
+      {
+        "name": "Index BBRHPJW",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::1794::262",
+        "unit" : "Wh"
+      },
+      {
+        "name": "Index BBRHCJR",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::1794::264",
+        "unit" : "Wh"
+      },
+      {
+        "name": "Index BBRHPJR",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::1794::266",
+        "unit" : "Wh"
+      },
+      {
+        "name": "Courant efficace phase 1",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::2820::1288",
+        "unit" : "A"
+      },
+      {
+        "name": "Courant efficace phase 2",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::2820::2312",
+        "unit" : "A"
+      },
+      {
+        "name": "Courant efficace phase 3",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::2820::2568",
+        "unit" : "A"
+      },
+      {
+        "name": "Intensité maximale phase 1",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::2820::1290",
+        "unit" : "A"
+      },
+      {
+        "name": "Intensité maximale phase 2",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::2820::2314",
+        "unit" : "A"
+      },
+      {
+        "name": "Intensité maximale phase 3",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::2820::2570",
+        "unit" : "A"
+      },
+      {
+        "name": "Puissance maximale triphasée atteinte",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::2820::1293",
+        "unit" : "A"
+      },
+      {
+        "name": "Puissance apparente",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::2820::1295",
+        "unit" : "A"
+      },
+      {
+        "name": "Periode tarifaire en cours",
+        "type": "info",
+        "subtype": "string",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::1794::32"
+      },
+      {
+        "name": "Couleur du lendemain",
+        "type": "info",
+        "subtype": "string",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::65382::1"
+      },
+      {
+        "name": "Horaire Heure Pleines Heures Creuses",
+        "type": "info",
+        "subtype": "string",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::65382::2"
+      },
+      {
+        "name": "Préavis début EJP",
+        "type": "info",
+        "subtype": "string",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::65382::4",
+        "unit":"min"
+      },
+      {
+        "name": "Avertissement de Dépassement De Puissance Souscrite",
+        "type": "info",
+        "subtype": "string",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::65382::5",
+        "unit":"A"
+      }
+    ]
+  }
+  
