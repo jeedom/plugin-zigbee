@@ -1,0 +1,45 @@
+{
+    "name": "AQARA - Motorisation intelligente pour store enrouleur a chaînette",
+    "ref" : "RSD-M01",
+    "buylink" : "https://www.domadoo.fr/fr/peripheriques/5892-xiaomi-aqara-motorisation-intelligente-pour-store-enrouleur-a-chainette-zigbee-30-rsd-m01-6970504215085.html",
+    "commands": [
+      {
+        "name": "Etat",
+        "type": "info",
+        "subtype": "binary",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::6::0"
+      },
+      {
+        "name": "On",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat 1",
+        "logicalId": "1::on_off::on"
+      },
+      {
+        "name": "Off",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat 1",
+        "logicalId": "1::on_off::off"
+      },
+      {
+        "name": "Toggle",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::on_off::toggle",
+        "display": {
+          "icon": "<i class=\"fas fa-random\"></i>"
+        }
+      }
+    ]
+  }
+  
