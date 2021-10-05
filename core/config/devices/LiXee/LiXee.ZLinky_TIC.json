@@ -20,7 +20,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::1794::0",
-        "unit" : "Wh"
+        "unite" : "Wh"
       },
       {
         "name": "Index HCHC/EJPHN/BBRHCJB",
@@ -28,8 +28,8 @@
         "subtype": "numeric",
         "isVisible": 0,
         "isHistorized": 0,
-        "logicalId": "1::1794::258",
-        "unit" : "Wh"
+        "logicalId": "1::1794::256",
+        "unite" : "Wh"
       },
       {
         "name": "Index HCHP/EJPHPM/BBRHPJB",
@@ -37,8 +37,8 @@
         "subtype": "numeric",
         "isVisible": 0,
         "isHistorized": 0,
-        "logicalId": "1::1794::256",
-        "unit" : "Wh"
+        "logicalId": "1::1794::258",
+        "unite" : "Wh"
       },
       {
         "name": "Index BBRHCJW",
@@ -47,7 +47,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::1794::260",
-        "unit" : "Wh"
+        "unite" : "Wh"
       }
       ,
       {
@@ -57,7 +57,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::1794::262",
-        "unit" : "Wh"
+        "unite" : "Wh"
       },
       {
         "name": "Index BBRHCJR",
@@ -66,7 +66,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::1794::264",
-        "unit" : "Wh"
+        "unite" : "Wh"
       },
       {
         "name": "Index BBRHPJR",
@@ -75,7 +75,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::1794::266",
-        "unit" : "Wh"
+        "unite" : "Wh"
       },
       {
         "name": "Courant efficace phase 1",
@@ -84,7 +84,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::2820::1288",
-        "unit" : "A"
+        "unite" : "A"
       },
       {
         "name": "Courant efficace phase 2",
@@ -93,7 +93,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::2820::2312",
-        "unit" : "A"
+        "unite" : "A"
       },
       {
         "name": "Courant efficace phase 3",
@@ -102,7 +102,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::2820::2568",
-        "unit" : "A"
+        "unite" : "A"
       },
       {
         "name": "Intensité maximale phase 1",
@@ -111,7 +111,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::2820::1290",
-        "unit" : "A"
+        "unite" : "A"
       },
       {
         "name": "Intensité maximale phase 2",
@@ -120,7 +120,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::2820::2314",
-        "unit" : "A"
+        "unite" : "A"
       },
       {
         "name": "Intensité maximale phase 3",
@@ -129,7 +129,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::2820::2570",
-        "unit" : "A"
+        "unite" : "A"
       },
       {
         "name": "Puissance maximale triphasée atteinte",
@@ -138,7 +138,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::2820::1293",
-        "unit" : "A"
+        "unite" : "A"
       },
       {
         "name": "Puissance apparente",
@@ -147,7 +147,7 @@
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::2820::1295",
-        "unit" : "A"
+        "unite" : "A"
       },
       {
         "name": "Periode tarifaire en cours",
@@ -168,7 +168,7 @@
       {
         "name": "Horaire Heure Pleines Heures Creuses",
         "type": "info",
-        "subtype": "string",
+        "subtype": "numeric",
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::65382::2"
@@ -176,20 +176,47 @@
       {
         "name": "Préavis début EJP",
         "type": "info",
-        "subtype": "string",
+        "subtype": "numeric",
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::65382::4",
-        "unit":"min"
+        "unite":"min"
       },
       {
         "name": "Avertissement de Dépassement De Puissance Souscrite",
         "type": "info",
-        "subtype": "string",
+        "subtype": "numeric",
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::65382::5",
-        "unit":"A"
+        "unite":"A"
+      },
+      {
+        "name": "Avertissement de Dépassement D'intensité phase 1",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::65382::6",
+        "unite":"A"
+      },
+      {
+        "name": "Avertissement de Dépassement D'intensité phase 2",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::65382::7",
+        "unite":"A"
+      },
+      {
+        "name": "Avertissement de Dépassement D'intensité phase 3",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::65382::8",
+        "unite":"A"
       }
     ]
   }
