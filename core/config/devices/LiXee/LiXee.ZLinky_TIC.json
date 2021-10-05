@@ -1,7 +1,18 @@
 {
     "name": "TIC",
     "ref" : "Zlinky_TIC",
+    "configuration":{
+      "autorefresh" : "*/5 * * * *"
+    },
     "commands": [
+      {
+        "name": "Rafraîchir",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "logicalId": "refresh"
+      },
       {
         "name": "Index Base",
         "type": "info",
