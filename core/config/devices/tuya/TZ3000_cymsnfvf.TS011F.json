@@ -1,0 +1,83 @@
+{
+    "name": "Prise connectée + USB",
+    "type": "Prise",
+    "ref":"ZP-LZ-EU2U",
+    "buylink":"https://www.domadoo.fr/fr/prises-connectees/5840-moes-prise-connectee-zigbee-30-2-ports-usb-pilotables-version-schuko.html",
+    "commands": [
+      {
+        "name": "Etat",
+        "type": "info",
+        "subtype": "binary",
+        "generic_type": "ENERGY_STATE",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::6::0"
+      },
+      {
+        "name": "On",
+        "generic_type": "ENERGY_ON",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat",
+        "logicalId": "1::on_off::on",
+        "template":{
+          "dashboard" : "prise",
+          "mobile" : "prise"
+        }
+      },
+      {
+        "name": "Off",
+        "generic_type": "ENERGY_OFF",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat",
+        "logicalId": "1::on_off::off",
+        "template":{
+          "dashboard" : "prise",
+          "mobile" : "prise"
+        }
+      },
+      {
+        "name": "Etat USB",
+        "type": "info",
+        "subtype": "binary",
+        "generic_type": "ENERGY_STATE",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "2::6::0"
+      },
+      {
+        "name": "On USB",
+        "generic_type": "ENERGY_ON",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat USB",
+        "logicalId": "2::on_off::on",
+        "template":{
+          "dashboard" : "prise",
+          "mobile" : "prise"
+        }
+      },
+      {
+        "name": "Off USB",
+        "generic_type": "ENERGY_OFF",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat USB",
+        "logicalId": "2::on_off::off",
+        "template":{
+          "dashboard" : "prise",
+          "mobile" : "prise"
+        }
+      }
+    ]
+  }
+  
