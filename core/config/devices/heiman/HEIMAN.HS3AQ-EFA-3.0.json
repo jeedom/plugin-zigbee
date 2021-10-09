@@ -4,7 +4,7 @@
   "buylink" : "",
   "documentation" : "",
   "configuration":{
-    "autorefresh" : "*/5 * * * *",
+    "autorefresh" : "*/5 * * * *"
   },
   "commands": [
     {
