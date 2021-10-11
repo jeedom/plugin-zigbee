@@ -38,7 +38,7 @@
         "logicalId": "1::1037::0",
         "unite" : "ppb",
         "configuration" : {
-          "calculValueOffset":"#value# * 1000"
+          "calculValueOffset":"#value# * 1000000"
         }
       }
     ]
