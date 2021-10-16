@@ -220,7 +220,7 @@ class zigbee extends eqLogic {
     }
   }
 
-  public static function cronHourly() {
+  public static function cron15() {
     for ($i = 1; $i <= config::byKey('max_instance_number', 'zigbee'); $i++) {
       if (config::byKey('enable_deamon_' . $i, 'zigbee') != 1) {
         continue;
