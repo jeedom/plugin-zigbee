@@ -38,6 +38,7 @@ if (!isConnect('admin')) {
         <select class="firmwareAttr form-control" data-l1key="port">
           <option value="none">{{Aucun}}</option>
           <option value="gateway">{{Passerelle distante}}</option>
+          <option value="/dev/ttyS2">{{Atlas}}</option>
           <?php
           foreach (jeedom::getUsbMapping() as $name => $value) {
             echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
@@ -76,30 +77,34 @@ if (!isConnect('admin')) {
 </form>
 
 <script>
-$('.firmwareAttr[data-l1key="port"]').off('change').on('change',function(){
-  $('.zigbee_firmware_portConf').hide();
-  if($(this).value() == 'pizigate' || $(this).value() == 'wifizigate' || $(this).value() == 'gateway'){
-    $('.zigbee_firmware_portConf.'+$(this).value()).show();
-  }
-});
-$('.firmwareAttr[data-l1key="sub_controller"]').off('change').on('change',function(){
-  $('.zigbee_firmware_sub_controller').hide();
-  $('.zigbee_firmware_sub_controller.'+$(this).value()).show();
-});
-
-$('#bt_launchFirmwareUpdate').off('click').on('click',function(){
-  jeedom.zigbee.firmwareUpdate({
-    port : $('.firmwareAttr[data-l1key=port]').value(),
-    sub_controller : $('.firmwareAttr[data-l1key=sub_controller]').value(),
-    gateway : $('.firmwareAttr[data-l1key=gateway]').value(),
-    firmware : $('.firmwareAttr[data-l1key=firmware]').value(),
-    error: function (error) {
-      $('#div_alertFirmwareUpdate').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-      $('#md_modal2').dialog({title: "{{Mise à jour du firmware de la clef}}"}).load('index.php?v=d&modal=log.display&log=zigbee_firmware').dialog('open');
+  $('.firmwareAttr[data-l1key="port"]').off('change').on('change', function() {
+    $('.zigbee_firmware_portConf').hide();
+    if ($(this).value() == 'pizigate' || $(this).value() == 'wifizigate' || $(this).value() == 'gateway') {
+      $('.zigbee_firmware_portConf.' + $(this).value()).show();
     }
   });
-})
+  $('.firmwareAttr[data-l1key="sub_controller"]').off('change').on('change', function() {
+    $('.zigbee_firmware_sub_controller').hide();
+    $('.zigbee_firmware_sub_controller.' + $(this).value()).show();
+  });
 
+  $('#bt_launchFirmwareUpdate').off('click').on('click', function() {
+    jeedom.zigbee.firmwareUpdate({
+      port: $('.firmwareAttr[data-l1key=port]').value(),
+      sub_controller: $('.firmwareAttr[data-l1key=sub_controller]').value(),
+      gateway: $('.firmwareAttr[data-l1key=gateway]').value(),
+      firmware: $('.firmwareAttr[data-l1key=firmware]').value(),
+      error: function(error) {
+        $('#div_alertFirmwareUpdate').showAlert({
+          message: error.message,
+          level: 'danger'
+        });
+      },
+      success: function() {
+        $('#md_modal2').dialog({
+          title: "{{Mise à jour du firmware de la clef}}"
+        }).load('index.php?v=d&modal=log.display&log=zigbee_firmware').dialog('open');
+      }
+    });
+  })
 </script>

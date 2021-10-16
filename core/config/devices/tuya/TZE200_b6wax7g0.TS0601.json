@@ -30,7 +30,7 @@
       "logicalId": "1::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 10"
       }
     },
     {
@@ -43,7 +43,7 @@
       "logicalId": "1::513::16384",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 10"
       }
     },
     {
@@ -56,7 +56,7 @@
       "logicalId": "1::513::16385",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 100"
+        "calculValueOffset":"#value# / 10"
       }
     },
     {
@@ -67,7 +67,7 @@
       "isHistorized": 1,
       "unite" : "°C",
       "value": "Consigne",
-      "logicalId": "attributes::1::in::513::18::#slider#*100",
+      "logicalId": "attributes::1::in::513::18::#slider#*10",
       "generic_type" : "THERMOSTAT_SET_SETPOINT",
       "configuration" : {
         "minValue":"6",
@@ -94,7 +94,7 @@
       "isHistorized": 1,
       "unite" : "°C",
       "value": "Consigne comfort",
-      "logicalId": "attributes::1::in::513::16384::#slider#*100",
+      "logicalId": "attributes::1::in::513::16384::#slider#*10",
       "configuration" : {
         "minValue":"6",
         "maxValue":"28"
@@ -112,7 +112,7 @@
       "isHistorized": 1,
       "unite" : "°C",
       "value": "Consigne eco",
-      "logicalId": "attributes::1::in::513::16385::#slider#*100",
+      "logicalId": "attributes::1::in::513::16385::#slider#*10",
       "configuration" : {
         "minValue":"6",
         "maxValue":"28"

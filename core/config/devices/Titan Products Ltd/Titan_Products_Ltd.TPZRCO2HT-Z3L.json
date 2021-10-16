@@ -36,9 +36,9 @@
         "isVisible": 1,
         "isHistorized": 0,
         "logicalId": "1::1037::0",
-        "unite" : "ppb",
+        "unite" : "ppm",
         "configuration" : {
-          "calculValueOffset":"#value# * 1000"
+          "calculValueOffset":"#value# * 1000000"
         }
       }
     ]
