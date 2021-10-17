@@ -1140,7 +1140,7 @@ class zigbeeCmd extends cmd {
       }
     }
 
-    if (explode('|', $eqLogic->getLogicalId())[1] == 'group') {
+    if (isset(explode('|', $eqLogic->getLogicalId())[1]) && explode('|', $eqLogic->getLogicalId())[1] == 'group') {
       $ieee = explode('|', $eqLogic->getLogicalId())[2];
       $type = 'group';
     } else {
