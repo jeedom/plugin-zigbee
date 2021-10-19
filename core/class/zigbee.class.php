@@ -233,7 +233,7 @@ class zigbee extends eqLogic {
             continue;
           }
           $zigbee = zigbee::byLogicalId($device['ieee'], 'zigbee');
-          if (!is_object($zigbee)) {
+          if (!is_object($zigbee) || $zigbee->getIsEnable() == 0) {
             continue;
           }
 
