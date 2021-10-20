@@ -1,6 +1,17 @@
 {
   "name": "Bulb GU10 W 400lm",
   "buylink" : "",
+  "config" : [
+    {
+      "endpoint" : 1,"cluster":6,"attribute":16387,"name":"Mode","type":"select","values":
+      [
+        {"value":0,"name":"Toujours allumé sur retour du courant"},
+        {"value":1,"name":"Toujours éteint sur retour du courant"},
+        {"value":2,"name":"Etat contraire de l’ampoule avant coupure sur retour du courant"},
+        {"value":3,"name":"Etat de l’ampoule avant coupure sur retour du courant"}
+      ]
+    }
+  ],
   "commands": [
     {
       "name": "Etat",
