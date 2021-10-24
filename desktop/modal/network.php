@@ -482,6 +482,7 @@ sendVarToJS('zigbee_last_firmware', $last_firmware);
               'manufacturer': devices_neighbours[z].manufacturer,
               'img': img,
               'offline': devices_neighbours[z].offline,
+              'neighbours_nb': devices_neighbours[z].neighbours.length
             }
             if (isset(zigbee_devices[devices_neighbours[z].ieee])) {
               data_node.name = zigbee_devices[devices_neighbours[z].ieee].HumanName
@@ -612,6 +613,8 @@ sendVarToJS('zigbee_last_firmware', $last_firmware);
               linkname += ' <span class="label label-primary" title="{{Type}}">' + node.data.type + '</span>'
               linkname += ' <span class="label label-primary" title="{{Modèle}}">' + node.data.manufacturer + ' ' + node.data.model + '</span>'
               linkname += ' <span class="label label-primary" title="{{NWK}}">' + node.data.nwk + '</span>'
+              linkname += ' <span class="label label-primary" title="{{Nombre voisin}}">{{Voisin :}} ' + node.data.neighbours_nb + '</span>'
+
               $('#graph-node-name').html(linkname);
               highlightRelatedNodes(node.id, true);
             }, function() {
