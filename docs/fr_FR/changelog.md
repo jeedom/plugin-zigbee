@@ -8,6 +8,10 @@
 >
 >Pour connaitre les nouveaux module compatible il faut aller [la](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=zigbee) (c'est trié par date d'ajout/modification)
 
+>**IMPORTANT**
+>
+>Pour profiter des dernieres integration de module n'hesitez pas a mettre à jour les dépendances
+
 # 25/10/2021
 
 - Ajout de nouvelle configuration
