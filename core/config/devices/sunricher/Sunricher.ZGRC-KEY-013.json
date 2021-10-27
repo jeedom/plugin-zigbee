@@ -12,7 +12,10 @@
       "subtype": "binary",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::6::cmd::0"
+      "logicalId": "1::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "On Off 2",
@@ -20,7 +23,10 @@
       "subtype": "binary",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "2::6::cmd::0"
+      "logicalId": "2::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "On Off 3",
@@ -28,7 +34,10 @@
       "subtype": "binary",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "3::6::cmd::0"
+      "logicalId": "3::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "On Off 4",
@@ -36,7 +45,10 @@
       "subtype": "binary",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "4::6::cmd::0"
+      "logicalId": "4::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Scene 1",
@@ -44,7 +56,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::5::cmd::5"
+      "logicalId": "1::5::cmd::5",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Scene 2",
@@ -52,7 +67,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "2::5::cmd::5"
+      "logicalId": "2::5::cmd::5",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Scene 3",
@@ -60,7 +78,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "3::5::cmd::5"
+      "logicalId": "3::5::cmd::5",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     },
     {
       "name": "Scene 4",
@@ -68,7 +89,10 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "4::5::cmd::5"
+      "logicalId": "4::5::cmd::5",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }
