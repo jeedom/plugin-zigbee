@@ -5,7 +5,7 @@
   "type": "Interrupteur,Télécommande",
   "reset": "Appui long de 10 secondes sur le bouton gauche",
   "pairing": "Appui long de 10 secondes sur le bouton gauche",
-  "remark": "Seul l'appairage est possible sur Jeedom. Le fabricant ne souhaitant pas communiquer les commandes, le produit ne peut être exploité dans des scénarios pour l'instant.",
+  "remark": "Le module ne permet de distinguer les clics droit et gauche, le 2eme bouton n'est donc pas exploitable",
   "documentation": "https://cdn.aqara.com/cdn/website/mainland/static/docs/Wireless-Remote-Switch-H1_Manual_EN.pdf",
   "configuration" : {
     "battery_type" : "1x3V CR2032"
