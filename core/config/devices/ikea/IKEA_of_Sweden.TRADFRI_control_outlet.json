@@ -4,6 +4,17 @@
   "reset" : "Appui long avec un trombone sur le petit bouton",
   "pairing" : "Appui long avec un trombone sur le petit bouton",
   "remark" : "",
+  "config" : [
+    {
+      "endpoint" : 1,"cluster":6,"attribute":16387,"name":"Mode","type":"select","values":
+      [
+        {"value":0,"name":"Toujours éteint sur retour du courant"},
+        {"value":1,"name":"Toujours allumé sur retour du courant"},
+        {"value":2,"name":"Etat contraire de l’ampoule avant coupure sur retour du courant"},
+        {"value":3,"name":"Etat de l’ampoule avant coupure sur retour du courant"}
+      ]
+    }
+  ],
   "documentation" : "https:\/\/www.ikea.com\/fr\/fr\/manuals\/tradfri-wireless-control-outlet__AA-2106602-1_pub.pdf",
   "commands": [
     {
