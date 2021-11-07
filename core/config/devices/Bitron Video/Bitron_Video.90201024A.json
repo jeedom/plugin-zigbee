@@ -19,10 +19,8 @@
       "isHistorized": 1,
       "logicalId": "1::1280::cmd::1",
       "generic_type": "SMOKE",
-      "configuration": {
-        "repeatEventManagement": "always"
-      },
       "template":{
+        "repeatEventManagement": "always",
         "dashboard" : "heat",
         "mobile" : "heat"
       },
