@@ -2,6 +2,9 @@
   "name": "Commande simple sans fil",
   "remark" : "Ne peut etre appairé que sur le canal 11",
   "ref" : "067723/067773/064893",
+  "configuration" : {
+    "last_seen::check_mode" : "disable"
+  },
   "buylink" : "",
   "commands": [
     {

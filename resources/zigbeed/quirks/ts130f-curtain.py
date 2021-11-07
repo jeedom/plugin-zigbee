@@ -40,9 +40,6 @@ class TuyaCoveringCluster(CustomCluster, WindowCovering):
     attributes.update({0xF003: ("calibration_time", t.uint16_t)})
 
     def _update_attribute(self, attrid, value):
-        if attrid == ATTR_CURRENT_POSITION_LIFT_PERCENTAGE:
-            # Invert the percentage value (cf https://github.com/dresden-elektronik/deconz-rest-plugin/issues/3757)
-            value = 100 - value
         super()._update_attribute(attrid, value)
 
     async def command(
@@ -51,8 +48,6 @@ class TuyaCoveringCluster(CustomCluster, WindowCovering):
         """Override default command to invert percent lift value."""
         if command_id == CMD_GO_TO_LIFT_PERCENTAGE:
             percent = args[0]
-            # Invert the percentage value (cf https://github.com/dresden-elektronik/deconz-rest-plugin/issues/3757)
-            percent = 100 - percent
             v = (percent,)
             return await super().command(command_id, *v)
         return await super().command(
