@@ -1093,28 +1093,28 @@ class zigbeeCmd extends cmd {
     $commands = array();
     $attributes = array();
     $informations = explode('|', $this->getLogicalId());
+    $replace = array();
+    switch ($this->getSubType()) {
+      case 'slider':
+        $replace['#slider#'] = round(floatval($_options['slider']), 2);
+        break;
+      case 'color':
+        list($r, $g, $b) = str_split(str_replace('#', '', $_options['color']), 2);
+        $info = self::convertRGBToXY(hexdec($r), hexdec($g), hexdec($b));
+        $replace['#color#'] = round($info['x'] * 65535) . '::' . round($info['y'] * 65535);
+        break;
+      case 'select':
+        $replace['#select#'] = $_options['select'];
+        break;
+      case 'message':
+        $replace['#title#'] = $_options['title'];
+        $replace['#message#'] = $_options['message'];
+        if ($_options['message'] == '' && $_options['title'] == '') {
+          throw new Exception(__('Le message et le sujet ne peuvent pas être vide', __FILE__));
+        }
+        break;
+    }
     foreach ($informations as $information) {
-      $replace = array();
-      switch ($this->getSubType()) {
-        case 'slider':
-          $replace['#slider#'] = round(floatval($_options['slider']), 2);
-          break;
-        case 'color':
-          list($r, $g, $b) = str_split(str_replace('#', '', $_options['color']), 2);
-          $info = self::convertRGBToXY(hexdec($r), hexdec($g), hexdec($b));
-          $replace['#color#'] = round($info['x'] * 65535) . '::' . round($info['y'] * 65535);
-          break;
-        case 'select':
-          $replace['#select#'] = $_options['select'];
-          break;
-        case 'message':
-          $replace['#title#'] = $_options['title'];
-          $replace['#message#'] = $_options['message'];
-          if ($_options['message'] == '' && $_options['title'] == '') {
-            throw new Exception(__('Le message et le sujet ne peuvent pas être vide', __FILE__));
-          }
-          break;
-      }
       $replace['#duration#'] = $eqLogic->getCache('duration', 0);
       $info = explode('::', str_replace(array_keys($replace), $replace, $information));
       if ($info[0] == 'attributes') {
