@@ -24,6 +24,28 @@
       "configuration": {
         "repeatEventManagement": "always"
       }
+    },
+    {
+      "name": "Double click Bouton 1",
+      "type": "info",
+      "subtype": "binaire",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Double click Bouton 2",
+      "type": "info",
+      "subtype": "binaire",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::6::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }
