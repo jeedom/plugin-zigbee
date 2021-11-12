@@ -30,7 +30,7 @@ class LegrandSpecific():
 			return True
 
 	def init(self,device):
-		if (device.model in [' Dimmer switch w/o neutral', ' Cable outlet']):
+		if (device.model in [' Dimmer switch w/o neutral', ' Cable outlet', ' Mobile outlet', ' Connected outlet']):
 			endpoints = device.endpoints.items()
 			logging.debug('Found endpoints : ' + str(endpoints))
 			for endpoint_id, ep in device.endpoints.items():

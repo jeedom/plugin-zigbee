@@ -3,6 +3,9 @@
   "ref" : "067725/067775/064895",
   "remark" : "Ne peut etre appairé que sur le canal 11",
   "buylink" : "",
+  "config" : [
+    {"endpoint" : 1,"cluster":64513,"attribute":2,"name":"Led if on","type":"select","values":[{"value":0,"name":"Off"},{"value":1,"name":"On"}]}
+   ],
   "commands": [
     {
       "name": "Etat",
