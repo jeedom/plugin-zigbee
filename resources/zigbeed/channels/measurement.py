@@ -227,3 +227,48 @@ class SodiumConcentration():
 class FormaldehydeConcentration():
 	"""FormaldehydeConcentration measurement channel."""
 	REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.LeafWetness.cluster_id)
+class LeafWetness():
+	"""LeafWetness measurement channel."""
+	REPORT_CONFIG = [
+		{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),},
+		{"attr": "min_measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),},
+		{"attr": "max_measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}
+	]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.SoilMoisture.cluster_id)
+class SoilMoisture():
+	"""SoilMoisture measurement channel."""
+	REPORT_CONFIG = [
+		{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),},
+		{"attr": "min_measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),},
+		{"attr": "max_measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}
+	]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.PH.cluster_id)
+class PH():
+	"""PH measurement channel."""
+	REPORT_CONFIG = [
+		{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),},
+		{"attr": "min_measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),},
+		{"attr": "max_measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}
+	]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.ElectricalConductivity.cluster_id)
+class ElectricalConductivity():
+	"""ElectricalConductivity measurement channel."""
+	REPORT_CONFIG = [
+		{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),},
+		{"attr": "min_measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),},
+		{"attr": "max_measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}
+	]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.WindSpeed.cluster_id)
+class WindSpeed():
+	"""WindSpeed measurement channel."""
+	REPORT_CONFIG = [
+		{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),},
+		{"attr": "min_measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),},
+		{"attr": "max_measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}
+	]
