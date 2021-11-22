@@ -22,6 +22,8 @@ require_once __DIR__  . '/../../../../core/php/core.inc.php';
 class zigbee extends eqLogic {
   /*     * *************************Attributs****************************** */
 
+  private static $_cache = array();
+
   /*     * ***********************Methode static*************************** */
 
   public static function firmwareUpdate($_options = array()) {
@@ -759,9 +761,18 @@ class zigbee extends eqLogic {
     return $p;
   }
 
-  public static function getImgFilePath($_device) {
+  public static function getImgFilePath($_device, $_manufacturer = null) {
+    if ($_manufacturer != null) {
+      if (file_exists(__DIR__ . '/../config/devices/' . $_manufacturer . '/' . $_device . '.png')) {
+        return $_manufacturer . '/' . $_device . '.png';
+      }
+      if (file_exists(__DIR__ . '/../config/devices/' . mb_strtolower($_manufacturer) . '/' . $_device . '.png')) {
+        return mb_strtolower($_manufacturer) . '/' . $_device . '.png';
+      }
+    }
+    $device = self::ciGlob($_device);
     foreach (ls(__DIR__ . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
-      foreach (ls(__DIR__ . '/../config/devices/' . $folder, self::ciGlob($_device) . '.{jpg,png}', false, array('files', 'quiet')) as $file) {
+      foreach (ls(__DIR__ . '/../config/devices/' . $folder, $device . '.{jpg,png}', false, array('files', 'quiet')) as $file) {
         return $folder . $file;
       }
     }

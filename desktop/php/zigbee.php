@@ -26,6 +26,17 @@ sendVarToJS('devices_attr', $deviceAttr);
 
 $zigbee_instances = zigbee::getDeamonInstanceDef();
 sendVarToJS('zigbee_instances', $zigbee_instances);
+$manufacturers = array();
+foreach (zigbee::devicesParameters() as $id => &$info) {
+	if (!isset($info['manufacturer'])) {
+		$info['manufacturer'] = __('Aucun', __FILE__);
+	}
+	if (!isset($manufacturers[$info['manufacturer']])) {
+		$manufacturers[$info['manufacturer']] = array();
+	}
+	$manufacturers[$info['manufacturer']][$id] = $info;
+}
+ksort($manufacturers);
 ?>
 
 <div class="row row-overflow">
@@ -79,12 +90,12 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 					$child .= ($eqLogic->getConfiguration('canbesplit', 0) == 1 && $eqLogic->getConfiguration('ischild', 0) == 0) ? '<i style="position:absolute;font-size:1.5rem!important;right:10px;top:10px;" class="icon_green fas fa-random" title="Ce device peut être séparé en enfants"></i>' : '';
 					echo '<div class="eqLogicDisplayCard cursor ' . $opacity . '" data-eqLogic_id="' . $eqLogic->getId() . '" >';
 					if ($eqLogic->getConfiguration('device') != "") {
-						if (zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false && $eqLogic->getConfiguration('ischild', 0) == 0) {
-							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>' . $child;
+						if (zigbee::getImgFilePath($eqLogic->getConfiguration('device'), $eqLogic->getConfiguration('manufacturer')) !== false && $eqLogic->getConfiguration('ischild', 0) == 0) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device'), $eqLogic->getConfiguration('manufacturer')) . '"/>' . $child;
 						} else if ($eqLogic->getConfiguration('ischild', 0) == 1 && file_exists(dirname(__FILE__) . '/../../core/config/devices/' . $eqLogic->getConfiguration('visual', 'none'))) {
 							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . $eqLogic->getConfiguration('visual') . '"/>' . $child;
-						} else if ($eqLogic->getConfiguration('ischild', 0) == 1 && zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false) {
-							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>' . $child;
+						} else if ($eqLogic->getConfiguration('ischild', 0) == 1 && zigbee::getImgFilePath($eqLogic->getConfiguration('device'), $eqLogic->getConfiguration('manufacturer')) !== false) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device'), $eqLogic->getConfiguration('manufacturer')) . '"/>' . $child;
 						} else {
 							echo '<img src="' . $plugin->getPathImgIcon() . '" />' . $child;
 						}
@@ -106,12 +117,12 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 				if ($eqLogic->getConfiguration('isgroup', 0) == 1) {
 					echo '<div class="eqLogicDisplayCard cursor ' . $opacity . '" data-eqLogic_id="' . $eqLogic->getId() . '" >';
 					if ($eqLogic->getConfiguration('device') != "") {
-						if (zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false && $eqLogic->getConfiguration('ischild', 0) == 0) {
-							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>' . $child;
+						if (zigbee::getImgFilePath($eqLogic->getConfiguration('device'), $eqLogic->getConfiguration('manufacturer')) !== false && $eqLogic->getConfiguration('ischild', 0) == 0) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device'), $eqLogic->getConfiguration('manufacturer')) . '"/>' . $child;
 						} else if ($eqLogic->getConfiguration('ischild', 0) == 1 && file_exists(dirname(__FILE__) . '/../../core/config/devices/' . $eqLogic->getConfiguration('visual', 'none'))) {
 							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . $eqLogic->getConfiguration('visual') . '"/>' . $child;
-						} else if ($eqLogic->getConfiguration('ischild', 0) == 1 && zigbee::getImgFilePath($eqLogic->getConfiguration('device')) !== false) {
-							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device')) . '"/>' . $child;
+						} else if ($eqLogic->getConfiguration('ischild', 0) == 1 && zigbee::getImgFilePath($eqLogic->getConfiguration('device'), $eqLogic->getConfiguration('manufacturer')) !== false) {
+							echo '<img class="lazy" src="plugins/zigbee/core/config/devices/' . zigbee::getImgFilePath($eqLogic->getConfiguration('device'), $eqLogic->getConfiguration('manufacturer')) . '"/>' . $child;
 						} else {
 							echo '<img src="' . $plugin->getPathImgIcon() . '" />' . $child;
 						}
@@ -262,17 +273,6 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="manufacturer">
 										<option value="">{{Aucun}}</option>
 										<?php
-										$manufacturers = array();
-										foreach (zigbee::devicesParameters() as $id => &$info) {
-											if (!isset($info['manufacturer'])) {
-												$info['manufacturer'] = __('Aucun', __FILE__);
-											}
-											if (!isset($manufacturers[$info['manufacturer']])) {
-												$manufacturers[$info['manufacturer']] = array();
-											}
-											$manufacturers[$info['manufacturer']][$id] = $info;
-										}
-										ksort($manufacturers);
 										foreach ($manufacturers as $manufacturer => $devices) {
 											echo '<option value="' . $manufacturer . '">' . $manufacturer . '</option>';
 										}
@@ -288,33 +288,21 @@ sendVarToJS('zigbee_instances', $zigbee_instances);
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="device">
 										<option value="" data-manufacturer="all">{{Inconnu}}</option>
 										<?php
-										$manufacturers = array();
-										foreach (zigbee::devicesParameters() as $id => &$info) {
-											if (!isset($info['manufacturer'])) {
-												$info['manufacturer'] = __('Aucun', __FILE__);
-											}
-											if (!isset($manufacturers[$info['manufacturer']])) {
-												$manufacturers[$info['manufacturer']] = array();
-											}
-											$manufacturers[$info['manufacturer']][$id] = $info;
-										}
+										$options = '';
 										foreach ($manufacturers as $manufacturer => $devices) {
 											foreach ($devices as $id => $info) {
 												if (!isset($info['name'])) {
 													continue;
 												}
-												if (isset($info['ref'])) {
-													$name = '[' . $info['ref'] . '] ' . $info['name'];
-												} else {
-													$name = $info['name'];
-												}
+												$name = (isset($info['ref'])) ? '[' . $info['ref'] . '] ' . $info['name'] : $info['name'];
 												if (isset($info['instruction'])) {
-													echo '<option data-manufacturer="' . $manufacturer . '" value="' . $id . '" data-img="' . zigbee::getImgFilePath($id) . '" data-instruction="' . $info['instruction'] . '" style="display:none;">' . $name . '</option>';
+													$options .= '<option data-manufacturer="' . $manufacturer . '" value="' . $id . '" data-img="' . zigbee::getImgFilePath($id, $manufacturer) . '" data-instruction="' . $info['instruction'] . '" style="display:none;">' . $name . '</option>';
 												} else {
-													echo '<option data-manufacturer="' . $manufacturer . '" value="' . $id . '" data-img="' . zigbee::getImgFilePath($id) . '" style="display:none;">' . $name . '</option>';
+													$options .= '<option data-manufacturer="' . $manufacturer . '" value="' . $id . '" data-img="' . zigbee::getImgFilePath($id, $manufacturer) . '" style="display:none;">' . $name . '</option>';
 												}
 											}
 										}
+										echo $options;
 										?>
 									</select>
 								</div>

@@ -18,30 +18,19 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
-// Fonction exécutée automatiquement après l'installation du plugin
 function zigbee_install() {
-  config::save('update_20201101', 1, 'zigbee');
 }
 
-// Fonction exécutée automatiquement après la mise à jour du plugin
+
 function zigbee_update() {
-  if (config::byKey('update_20201101', 'zigbee') != 1) {
-    config::save('controller_1', config::byKey('controller', 'zigbee'), 'zigbee');
-    config::save('port_1', config::byKey('port', 'zigbee'), 'zigbee');
-    config::save('pizigate_1', config::byKey('pizigate', 'zigbee'), 'zigbee');
-    config::save('wifizigate_1', config::byKey('wifizigate', 'zigbee'), 'zigbee');
-    config::save('socketport_1', config::byKey('socketport', 'zigbee'), 'zigbee');
-    config::save('cycle_1', config::byKey('cycle', 'zigbee'), 'zigbee');
-    config::save('channel_1', config::byKey('channel', 'zigbee'), 'zigbee');
-    zigbee::deamon_stop();
-    if (!file_exists(dirname(__FILE__) . '/../data/1')) {
-      mkdir(dirname(__FILE__) . '/../data/1', 0777, true);
+  try {
+    $plugin = plugin::byId('zigbee');
+    if (is_object($plugin)) {
+      $plugin->dependancy_install();
     }
-    shell_exec('mv ' . dirname(__FILE__) . '/../data/*.db ' . dirname(__FILE__) . '/../data/1/');
-    zigbee::deamon_start();
-    config::save('update_20201101', 1, 'zigbee');
+  } catch (\Throwable $th) {
   }
-  foreach (eqLogic::byType('zgibee') as $eqLogic) {
+  foreach (eqLogic::byType('zigbee') as $eqLogic) {
     if ($eqLogic->getConfiguration('device') != 'group') {
       continue;
     }
@@ -53,6 +42,6 @@ function zigbee_update() {
   }
 }
 
-// Fonction exécutée automatiquement après la suppression du plugin
+
 function zigbee_remove() {
 }
