@@ -1,6 +1,6 @@
 {
-  "name": "LORATAP - Télécommande 3 boutons",
-  "ref" : "TS0043",
+  "name": "LORATAP - Télécommande 4 boutons",
+  "ref" : "TS0044",
   "buylink" : "",
   "reset" : "",
   "pairing" : "",
@@ -67,6 +67,28 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "3::6::event::remote_button_double_press",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Bouton 4",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "4::6::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Bouton 4 double pression",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "4::6::event::remote_button_double_press",
       "configuration": {
         "repeatEventManagement": "always"
       }
