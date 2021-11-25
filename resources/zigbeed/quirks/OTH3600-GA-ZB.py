@@ -4,6 +4,7 @@ manufacturer specific attributes to control displaying and specific configuratio
 
 import zigpy.profiles.zha as zha_p
 from zigpy.quirks import CustomCluster, CustomDevice
+from zigpy.zcl.clusters.manufacturer_specific import ManufacturerSpecificCluster
 import zigpy.types as t
 
 from zhaquirks.const import (
@@ -15,8 +16,11 @@ from zhaquirks.const import (
     PROFILE_ID,
 )
 
-class OTH3600GAZBCluster(CustomCluster):
+class OTH3600GAZBCluster(CustomCluster,ManufacturerSpecificCluster):
     """OTH3600GAZB custom cluster."""
+    cluster_id = 65281
+    name = "OTH3600GAZBCluster"
+    ep_attribute = "OTH3600GAZBCluster"
     manufacturer_attributes = {
         0x0010: ("outdoorTempearature", t.uint16_t),
 		0x0011: ("OutdoorTempearatureTimeout", t.uint16_t)
