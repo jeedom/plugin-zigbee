@@ -29,17 +29,20 @@
       }
     },
     {
-      "name": "Température",
-      "type": "info",
-      "subtype": "numeric",
+      "name": "Sirene On",
+      "type": "action",
+      "subtype": "other",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "38::1026::0",
-      "unite" : "°C",
-      "generic_type": "TEMPERATURE",
-      "configuration" : {
-        "calculValueOffset":"#value# / 100"
-      }
+      "logicalId": "35::ias_wd::start_warning::1::0::3::240::0::0"
+    },
+    {
+      "name": "Sirene Off",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "35::ias_wd::start_warning::0::0::0::0::0::0"
     }
   ]
 }
