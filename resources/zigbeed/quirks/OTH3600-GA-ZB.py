@@ -22,7 +22,7 @@ class OTH3600GAZBCluster(CustomCluster,ManufacturerSpecificCluster):
     name = "OTH3600GAZBCluster"
     ep_attribute = "OTH3600GAZBCluster"
     manufacturer_attributes = {
-        0x0010: ("outdoorTempearature", t.uint16_t),
+        0x0010: ("outdoorTempearature", t.int16s),
 		0x0011: ("OutdoorTempearatureTimeout", t.uint16_t)
     }
 

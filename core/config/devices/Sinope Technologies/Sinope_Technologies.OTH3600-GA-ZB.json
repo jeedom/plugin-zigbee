@@ -59,6 +59,13 @@
         "isHistorized": 1,
         "unite" : "%",
         "logicalId": "1::513::8"
+      },
+      {
+        "name": "Temperature sonde ext",
+        "type": "action",
+        "subtype": "slider",
+        "isVisible": 1,
+        "logicalId": "attributes::1::in::65281::16::#slider#*100"
       }
     ]
   }
