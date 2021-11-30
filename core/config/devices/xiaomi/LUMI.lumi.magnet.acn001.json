@@ -1,0 +1,31 @@
+{
+  "name": "AQARA - Détecteur d'ouverture intelligent (3)",
+  "ref" : "MCCGQ14LM",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/4514-xiaomi-detecteur-d-ouverture-portefenetre-zigbee-aqara.html",
+  "reset" : "Il faut presser pendant 10s le bouton du module",
+  "pairing":"Il faut presser pendant 5s le bouton du module",
+  "configuration" : {
+    "battery_type" : "1x3V CR1632"
+  },
+  "commands": [
+    {
+      "name": "Ouverture",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "OPENING",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
+      "display": {
+        "invertBinary" : 1
+      },
+      "template" : {
+        "dashboard" : "window",
+        "mobile" : "window"
+      }
+    }
+  ]
+}
