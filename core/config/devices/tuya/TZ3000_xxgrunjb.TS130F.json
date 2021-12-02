@@ -1,0 +1,62 @@
+{
+  "name": "COMMANDE VOLET ZIGBEE DWF-0205ZB-PN-2",
+  "manufacturer" : "Doowifi",
+  "ref":"DWF-0205ZB-PN-2",
+  "type": "Volets",
+  "buylink" : "",
+  "config" : [
+    {"endpoint" : 1,"cluster":258,"attribute":61442,"name":"Inverser","type":"select","values":[{"value":0,"name":"Non"},{"value":1,"name":"Oui"}]},
+    {"endpoint" : 1,"cluster":258,"attribute":61443,"name":"Temps montée descente (dixième de secondes)","type":"number"}
+  ],
+  "remark" : "",
+    "commands":[
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::258::8",
+      "generic_type": "FLAP_STATE"
+    },
+    {
+      "name": "Position",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::window_covering::go_to_lift_percentage::#slider#",
+      "generic_type": "FLAP_SLIDER"
+    },
+    {
+      "name": "Stop",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::window_covering::stop",
+      "generic_type": "FLAP_STOP"
+    },
+    {
+      "name": "Monter",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::window_covering::up_open",
+      "generic_type": "FLAP_UP"
+    },
+    {
+      "name": "Descendre",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::window_covering::down_close",
+      "generic_type": "FLAP_DOWN"
+    }
+  ]
+}
