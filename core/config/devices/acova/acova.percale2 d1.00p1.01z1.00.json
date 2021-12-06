@@ -1,0 +1,164 @@
+{
+  "name": "ACOVA Percale2",
+  "ref" : "PERCALE2 D1.00P1.01Z1.00",
+  "type": "Chauffage",
+  "buylink": "https://www.leroymerlin.fr/produits/chauffage-plomberie/chauffage-electrique/radiateur-electrique/radiateur-a-inertie/radiateur-electrique-connecte-a-inertie-fluide-1000w-acova-percale2-horizontal-82646753.html",
+  "remark": "",
+  "documentation": "https://acova.fr/radiateur-electrique/percale-2-connecte-156865",
+  "reset": "Appui de 5 secondes sur le bouton Mode puis 2 secondes sur le bouton -",
+  "pairing": "Appui de 5 secondes sur le bouton Mode puis 2 secondes sur le bouton + puis encore le bouton +",
+  "commands": [
+    {
+      "name": "Local_temp",
+      "type": "info",
+      "subtype": "numeric",
+      "generic_type": "THERMOSTAT_TEMPERATURE",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "1::513::0",
+      "unite" : "°C",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100",
+        "minValue":"0",
+        "maxValue":"30"
+      }
+    },
+    {
+      "name": "occupancy",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::513::2"
+    },
+    {
+      "name": "Occupancy Sensing",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::1030::0"
+    },
+    {
+      "name": "system_mode",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::513::28"
+    },
+    {
+      "name": "running_mode",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::513::30"
+    },
+    {
+      "name": "running_state",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "1::513::41"
+    },    
+    {
+      "name": "occupied_heating_setpoint",
+      "type": "info",
+      "subtype": "numeric",
+      "generic_type": "THERMOSTAT_SETPOINT",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::513::18",
+      "unite" : "°C",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }    
+    },
+    {
+      "name": "Thermostat occupied_heating",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "occupied_heating_setpoint",
+      "logicalId": "attributes::1::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"7",
+        "maxValue":"24"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "unoccupied_heating_setpoint",
+      "type": "info",
+      "subtype": "numeric",
+      "generic_type": "THERMOSTAT_SETPOINT",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::513::20",
+      "unite" : "°C",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat unoccupied_heating",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "value": "unoccupied_heating_setpoint",
+      "logicalId": "attributes::1::in::513::20::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"7",
+        "maxValue":"24"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "occupied_cooling_setpoint",
+        "type": "info",
+      "subtype": "numeric",
+      "generic_type": "THERMOSTAT_SETPOINT",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::513::17",
+      "unite" : "°C",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat occupied_cooling",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "value": "occupied_cooling_setpoint",
+      "logicalId": "attributes::1::in::513::17::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"7",
+        "maxValue":"24"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    }
+    
+  ]
+}
