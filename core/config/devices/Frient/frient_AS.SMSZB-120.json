@@ -4,13 +4,6 @@
   "buylink":"https://www.domadoo.fr/fr/peripheriques/5409-frient-detecteur-de-fumee-intelligent-zigbee-30-5713594002330.html",
   "reset" : "Presser le bouton jusqu'a ce que le module clignote",
   "pairing":"Il faut enlever remettre la pile dans le module",
-  "configuration" :{
-    "deviceSpecific":{
-      "poll_control":{
-        "long_poll":"1160"
-      }
-    }
-  },
   "commands": [
     {
       "name": "Fumée",
