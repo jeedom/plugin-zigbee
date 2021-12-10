@@ -520,8 +520,8 @@ sendVarToJS('zigbee_binding_device', $binding_device);
               <select class="setConfigReport from-control" data-l1key="name" placeholder="{{Attribut (nom)}}" style="width : 300px">
                 <?php echo $attribute_name_select; ?>
               </select>
-              <input class="setConfigReport from-control" data-l1key="min_report_int" placeholder="{{Delai minimal}}" />
-              <input class="setConfigReport from-control" data-l1key="max_report_int" placeholder="{{Delai maximal}}" />
+              <input class="setConfigReport from-control" data-l1key="min_report_int" placeholder="{{Delai minimal (s)}}" />
+              <input class="setConfigReport from-control" data-l1key="max_report_int" placeholder="{{Delai maximal (s)}}" />
               <input class="setConfigReport from-control" data-l1key="reportable_change" placeholder="{{Changement}}" title="{{Valeur du changement déclenchant un rapport (attention à l'unitée)}}" />
               <a class="btn btn-success btn-sm" id="bt_nodeSetConfigReport">{{Valider}}</a>
             </div>
