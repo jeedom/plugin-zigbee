@@ -47,12 +47,12 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 1,
-      "unite" : "%",
+      "unite" : "ppm",
       "logicalId": "1::1037::0",
       "generic_type" : "CO2",
       "configuration" : {
-        "calculValueOffset":"#value# * 100",
-        "historizeRound" : 2
+        "calculValueOffset":"#value# * 1000000",
+        "historizeRound" : 0
       }
     }
   ]
