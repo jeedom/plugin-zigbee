@@ -54,7 +54,7 @@
       }
     },
     {
-      "name": "Etat",
+      "name": "Etat 2",
       "type": "info",
       "subtype": "binary",
       "generic_type": "ENERGY_STATE",
@@ -63,7 +63,7 @@
       "logicalId": "2::6::0"
     },
     {
-      "name": "On",
+      "name": "On 2",
       "generic_type": "ENERGY_ON",
       "type": "action",
       "subtype": "other",
@@ -77,7 +77,7 @@
       }
     },
     {
-      "name": "Off",
+      "name": "Off 2",
       "generic_type": "ENERGY_OFF",
       "type": "action",
       "subtype": "other",
@@ -91,7 +91,7 @@
       }
     },
     {
-      "name": "Etat",
+      "name": "Etat 3",
       "type": "info",
       "subtype": "binary",
       "generic_type": "ENERGY_STATE",
@@ -100,7 +100,7 @@
       "logicalId": "3::6::0"
     },
     {
-      "name": "On",
+      "name": "On 3",
       "generic_type": "ENERGY_ON",
       "type": "action",
       "subtype": "other",
@@ -114,7 +114,7 @@
       }
     },
     {
-      "name": "Off",
+      "name": "Off 3",
       "generic_type": "ENERGY_OFF",
       "type": "action",
       "subtype": "other",
@@ -128,7 +128,7 @@
       }
     },
     {
-      "name": "Etat",
+      "name": "Etat 4",
       "type": "info",
       "subtype": "binary",
       "generic_type": "ENERGY_STATE",
@@ -137,7 +137,7 @@
       "logicalId": "4::6::0"
     },
     {
-      "name": "On",
+      "name": "On 4",
       "generic_type": "ENERGY_ON",
       "type": "action",
       "subtype": "other",
@@ -151,7 +151,7 @@
       }
     },
     {
-      "name": "Off",
+      "name": "Off 4",
       "generic_type": "ENERGY_OFF",
       "type": "action",
       "subtype": "other",
@@ -165,7 +165,7 @@
       }
     },   
     {
-      "name": "Etat",
+      "name": "Etat 5",
       "type": "info",
       "subtype": "binary",
       "generic_type": "ENERGY_STATE",
@@ -174,7 +174,7 @@
       "logicalId": "5::6::0"
     },
     {
-      "name": "On",
+      "name": "On 5",
       "generic_type": "ENERGY_ON",
       "type": "action",
       "subtype": "other",
@@ -188,7 +188,7 @@
       }
     },
     {
-      "name": "Off",
+      "name": "Off 5",
       "generic_type": "ENERGY_OFF",
       "type": "action",
       "subtype": "other",
