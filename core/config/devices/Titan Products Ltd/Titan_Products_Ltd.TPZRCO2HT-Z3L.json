@@ -1,7 +1,7 @@
 {
     "name": "TPZ-Net Wireless CO2, Temperature & Humidity Sensors",
     "ref" : "TPZRCO2",
-    "type": "Température,Humidité,Qualité d'air",
+    "type": "Température,Humidité,Qualité d'air,CO2",
     "commands": [
       {
         "name": "Humidité",
