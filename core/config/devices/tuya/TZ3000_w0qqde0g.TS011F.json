@@ -1,0 +1,97 @@
+{
+  "name": "Plug connectée simple ON/OFF 16A",
+  "ref" : "PLUG 3680w - TS011F",
+  "type": "Prise,Consommation,Puissance,Répéteur",
+  "buylink": "https://fr.aliexpress.com/item/1005003444957152.html",
+  "remark": "",
+  "documentation": "",
+  "reset": "Appui de 5 secondes sur le bouton ON/OFF",
+  "pairing": "Appui de 5 secondes sur le bouton ON/OFF",    
+  "commands": [
+    {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    },  
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::6::0"
+    },
+    {
+      "name": "On",
+      "generic_type": "ENERGY_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::on",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Off",
+      "generic_type": "ENERGY_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::off",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Consommation",
+      "generic_type": "CONSUMPTION",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"kWh",
+      "logicalId": "1::1794::0",
+      "configuration":{
+        "historizeRound" : 2,
+        "calculValueOffset":"#value# / 100"        
+      }
+    },
+    {
+      "name": "Puissance",
+      "generic_type": "POWER",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"W",
+      "logicalId": "1::2820::1291",
+      "configuration":{
+        "historizeRound" : 2
+      }
+    },
+    {
+      "name": "Voyant",
+      "generic_type": "LIGHT_STATE",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "attributes::1::in::6::32769::#slider#",
+      "configuration":{
+        "minValue":"0",
+        "maxValue":"1"
+      }
+    }    
+  ]
+}
