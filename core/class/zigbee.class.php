@@ -1001,17 +1001,20 @@ class zigbee extends eqLogic {
     }
     foreach ($datas as $endpoint => $data) {
       foreach ($data as $cluster => $attributes) {
-        try {
-          zigbee::request($this->getConfiguration('instance', 1), '/device/attributes', array(
-            'ieee' => $ieee,
-            'endpoint' => $endpoint,
-            'cluster' => $cluster,
-            'cluster_type' => 'in',
-            'attributes' => $attributes,
-            'allowCache' => 0
-          ), 'POST');
-        } catch (\Exception $e) {
-          log::add('zigbee', 'info', $this->getHumanName() . ' ' . $e->getMessage());
+        foreach (array_chunk($attributes, 7) as $key => $chunk) {
+          try {
+            zigbee::request($this->getConfiguration('instance', 1), '/device/attributes', array(
+              'ieee' => $ieee,
+              'endpoint' => $endpoint,
+              'cluster' => $cluster,
+              'cluster_type' => 'in',
+              'attributes' => $chunk,
+              'allowCache' => 0
+            ), 'POST');
+            log::add('zigbee', 'debug', $this->getHumanName() . ' refresh');
+          } catch (\Exception $e) {
+            log::add('zigbee', 'info', $this->getHumanName() . ' ' . $e->getMessage());
+          }
         }
       }
     }
