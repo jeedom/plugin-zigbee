@@ -1,0 +1,51 @@
+{
+  "name": "Module de commutation ON/OFF 10A",
+  "ref" : "GIRIER  - TS0011",
+  "type": "Prise,Consommation,Puissance,Répéteur",
+  "buylink": "https://fr.aliexpress.com/item/1005003438720832.html",
+  "remark": "",
+  "documentation": "",
+  "reset": "Appui de 5 secondes sur le bouton ON/OFF",
+  "pairing": "Appui de 5 secondes sur le bouton ON/OFF",
+  "config" : [
+  ],  
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "LIGHT_STATE",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "logicalId": "1::6::0"
+    },
+    {
+      "name": "On",
+      "generic_type": "LIGHT_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Off",
+      "generic_type": "LIGHT_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    }  
+  ]
+}
