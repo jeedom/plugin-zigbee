@@ -126,7 +126,6 @@ async def binding(device, group_id, operation, clusters):
     destination_address = zdo_types.MultiAddress()
     destination_address.addrmode = types.uint8_t(1)
     destination_address.nwk = types.uint16_t(group_id)
-    tasks = []
     for cluster in clusters:
         if cluster.endpoint.endpoint_id == 0:
             continue
