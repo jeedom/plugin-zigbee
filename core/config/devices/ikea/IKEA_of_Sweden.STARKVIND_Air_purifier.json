@@ -1,0 +1,42 @@
+{
+  "name": "Purificateur d’air IKEA Starkvind",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Auto",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "attributes::1::514::0::0"
+    },
+    {
+      "name": "Bas",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "attributes::1::514::0::1"
+    },
+    {
+      "name": "Bas",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "attributes::1::514::0::2"
+    },
+    {
+      "name": "Rapide",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "attributes::1::514::0::3"
+    }
+  ]
+}
