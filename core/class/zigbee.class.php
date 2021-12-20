@@ -423,6 +423,9 @@ class zigbee extends eqLogic {
       $pid = intval(trim(file_get_contents($pid_file)));
       system::kill($pid);
     }
+    if (config::byKey('enable_deamon_' . $_instance, 'zigbee') != 1) {
+      return;
+    }
     system::fuserk(config::byKey('socketport_' . $_instance, 'zigbee'));
     $port = config::byKey('port_' . $_instance, 'zigbee');
     if ($port != 'auto') {
