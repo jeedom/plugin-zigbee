@@ -9,7 +9,7 @@
       "isVisible": 0,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "attributes::1::514::0::0"
+      "logicalId": "attributes::1::in::514::0::0"
     },
     {
       "name": "Bas",
@@ -18,7 +18,7 @@
       "isVisible": 0,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "attributes::1::514::0::1"
+      "logicalId": "attributes::1::in::514::0::1"
     },
     {
       "name": "Bas",
@@ -27,7 +27,7 @@
       "isVisible": 0,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "attributes::1::514::0::2"
+      "logicalId": "attributes::1::in::514::0::2"
     },
     {
       "name": "Rapide",
@@ -36,7 +36,7 @@
       "isVisible": 0,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "attributes::1::514::0::3"
+      "logicalId": "attributes::1::in::514::0::3"
     }
   ]
 }
