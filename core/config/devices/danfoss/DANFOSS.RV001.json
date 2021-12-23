@@ -1,5 +1,5 @@
 {
-  "name": "Danfoss Ally",
+  "name": "Danfoss Ally (2)",
   "ref" : "014G2461",
   "manufacturer" : "Danfoss",
   "type": "Tête thermostatique",
@@ -135,7 +135,14 @@
       "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 1,
-      "logicalId": "1::513::16384 "
+      "logicalId": "1::513::16384"
+    },
+    {
+      "name": "Temperature sonde déportée",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "logicalId": "attributes::1::in::513::16405::#slider#*100"
     }
   ]
 }

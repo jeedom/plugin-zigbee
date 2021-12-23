@@ -1,70 +1,8 @@
 {
-  "name": "Danfoss Ally",
-  "ref" : "014G2461",
-  "manufacturer" : "Danfoss",
+  "name": "Popp Valve",
+  "manufacturer" : "Popp",
   "type": "Tête thermostatique",
-  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5156-danfoss-tete-electronique-ally-zigbee-30-5702425245008.html",
-  "documentation" : "https://assets.danfoss.com/documents/DOC353849556547/DOC353849556547.pdf",
   "pairing": "",
-  "reset": "Pour réinitialiser la vanne, enlever les piles et les remettre en appuyant sur le bouton jusqu'au second rallumage de l'écran.",
-  "configuration" :{
-    "deviceSpecific":{
-      "poll_control":{
-        "long_poll":"28"
-      }
-    }
-  },
-  "config" : [
-    {"endpoint" : 1,"cluster":516,"attribute":16384,"manufacturer":4678,"name":"Direction de l'écran","type":"select","values":[{"value":0,"name":"Direction 1 (default)"},{"value":1,"name":"Direction 2"}]},
-    {"endpoint" : 1,"cluster":513,"attribute":16404,"manufacturer":4678,"name":"Orientation de la vanne","type":"select","values":[{"value":0,"name":"Horizontal (default)"},{"value":1,"name":"Vertical"}]},
-    {"endpoint" : 1,"cluster":513,"attribute":16416,"manufacturer":4678,"name":"Fréquence de l'algorithme","type":"select","values":
-      [
-        {"value":1,"name":"5min"},
-        {"value":5,"name":"30min"},
-        {"value":10,"name":"80min"}
-      ]
-    },
-    {"endpoint" : 1,"cluster":513,"attribute":21,"name":"Température minimal","type":"number","min":300,"max":2200},
-    {"endpoint" : 1,"cluster":513,"attribute":22,"name":"Température maximal","type":"number","min":2100,"max":3000},
-    {"endpoint" : 1,"cluster":513,"attribute":16384,"manufacturer":4678,"name":"Etat fênetre","type":"select","readonly":1,"values":
-      [
-        {"value":0,"name":"Quarantaine"},
-        {"value":1,"name":"Fênetre fermée"},
-        {"value":2,"name":"Fênetre peut etre ouverte"},
-        {"value":3,"name":"Fênetre ouverte"},
-        {"value":4,"name":"Sonde exterieure mais detecté fermée localement"}
-      ]
-    },
-    {"endpoint" : 1,"cluster":513,"attribute":16465,"manufacturer":4678,"name":"Detection fenêtre ouverte","type":"select","values":
-      [
-        {"value":0,"name":"Off"},
-        {"value":1,"name":"On"}
-      ]
-    },
-    {"endpoint" : 1,"cluster":513,"attribute":16459,"manufacturer":4678,"name":"Offset consigne","type":"number"},
-    {"endpoint" : 1,"cluster":513,"attribute":16458,"manufacturer":4678,"name":"Puissance estimée du radiateur","type":"number","readonly":1},
-    {"endpoint" : 1,"cluster":513,"attribute":16461,"manufacturer":4678,"name":"Status de l'apprentissage","type":"select","readonly":1,"values":
-      [
-        {"value":0,"name":"Aucun apprentissage trouvé"},
-        {"value":1,"name":"Apprentissage en cours"},
-        {"value":2,"name":"Apprentissage ok"},
-        {"value":3,"name":"Apprentissage ok et en cours"}
-      ]
-    },
-    {"endpoint" : 1,"cluster":513,"attribute":16460,"manufacturer":4678,"name":"Lancer un apprentissage","type":"select","values":
-      [
-        {"value":0,"name":""},
-        {"value":1,"name":"Lancer apprentissage"},
-        {"value":2,"name":"Annuler apprentissage"}
-      ]
-    },
-    {"endpoint" : 1,"cluster":513,"attribute":16402,"manufacturer":4678,"name":"Mode de montage actif","type":"select","readonly":1,"values":
-      [
-        {"value":0,"name":"Monté"},
-        {"value":1,"name":"Non monté"}
-      ]
-    }
-  ],
   "commands": [
     {
       "name": "Température",
