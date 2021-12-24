@@ -1139,7 +1139,7 @@ class zigbeeCmd extends cmd {
         if (is_numeric($value)) {
           $value = intval($value);
         }
-        $attributes[] = array('endpoint' => intval($info[1]), 'cluster_type' => $info[2], 'cluster' => intval($info[3]), 'attributes' => array(intval($info[4]) => $value));
+        $attributes[] = array('endpoint' => intval($info[1]), 'cluster_type' => $info[2], 'cluster' => intval($info[3]), 'attributes' => (object) array(intval($info[4]) => $value));
       } else {
         $command = array('endpoint' => intval($info[0]), 'cluster' => $info[1], 'command' => $info[2]);
         if ($this->getEqLogic()->getConfiguration('dontAwaitCmd', 0) == 0) {
