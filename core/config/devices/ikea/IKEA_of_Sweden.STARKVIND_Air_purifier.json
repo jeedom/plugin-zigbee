@@ -3,7 +3,7 @@
   "buylink" : "",
   "commands": [
     {
-      "name": "Auto",
+      "name": "Off",
       "type": "action",
       "subtype": "other",
       "isVisible": 0,
@@ -37,6 +37,16 @@
       "isHistorized": 0,
       "value" : "Etat",
       "logicalId": "attributes::1::in::514::0::3"
+    },
+    {
+      "name": "Auto",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "attributes::1::in::514::0::5"
     }
+
   ]
 }
