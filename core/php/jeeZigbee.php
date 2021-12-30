@@ -107,6 +107,8 @@ $CONVERT_VALUE = array(
 	'SystemMode.Fan_only' => __('Ventilation', __FILE__),
 	'SystemMode.Dry' => __('Séchage', __FILE__),
 	'SystemMode.Sleep' => __('En veille', __FILE__),
+	'KeypadLockout.Level_1_lockout' => 1,
+	'KeypadLockout.No_lockout' => 0
 );
 
 $FIND_VALUE = array(
