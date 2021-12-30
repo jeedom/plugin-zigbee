@@ -195,23 +195,27 @@ class zigbee extends eqLogic {
         if (!is_object($zigbee) || $zigbee->getIsEnable() == 0) {
           continue;
         }
-        if (isset(array_values($device['endpoints'])[0]['input_clusters'][0]['id']) && array_values($device['endpoints'])[0]['input_clusters'][0]['id'] == 0) {
-          $endpoint_id = array_values($device['endpoints'])[0]['id'];
-        } else {
-          $endpoint_id = array_values($device['endpoints'])[1]['id'];
-        }
-        if (self::getAttribute($endpoint_id, 1, 33, $device) != null) {
-          $zigbee->batteryStatus(self::getAttribute($endpoint_id, 1, 33, $device));
-          $zigbee->setConfiguration('maxBatteryVoltage', 0);
-          $zigbee->save();
-        } else if (self::getAttribute($endpoint_id, 1, 32, $device) != null && self::getAttribute($endpoint_id, 1, 32, $device) > 0) {
-          $battery_voltage = self::getAttribute($endpoint_id, 1, 32, $device);
-          if (is_array($zigbee->getConfiguration('maxBatteryVoltage', 0)) || $battery_voltage > $zigbee->getConfiguration('maxBatteryVoltage', 0)) {
-            $zigbee->setConfiguration('maxBatteryVoltage', $battery_voltage);
-            $zigbee->save();
-          }
-          if ($zigbee->getConfiguration('maxBatteryVoltage', 0) != 0) {
-            $zigbee->batteryStatus($battery_voltage / $zigbee->getConfiguration('maxBatteryVoltage', 0) * 100);
+        foreach ($device['endpoints'] as $endpoint) {
+          if (isset($endpoint['input_clusters'])) {
+            foreach ($endpoint['input_clusters'] as $cluster) {
+              if ($cluster['id'] == 1) {
+                if (self::getAttribute($endpoint['id'], 1, 33, $device) != null) {
+                  $zigbee->batteryStatus(self::getAttribute($endpoint['id'], 1, 33, $device));
+                  $zigbee->setConfiguration('maxBatteryVoltage', 0);
+                  $zigbee->save();
+                } else if (self::getAttribute($endpoint['id'], 1, 32, $device) != null && self::getAttribute($endpoint['id'], 1, 32, $device) > 0) {
+                  $battery_voltage = self::getAttribute($endpoint['id'], 1, 32, $device);
+                  if (is_array($zigbee->getConfiguration('maxBatteryVoltage', 0)) || $battery_voltage > $zigbee->getConfiguration('maxBatteryVoltage', 0)) {
+                    $zigbee->setConfiguration('maxBatteryVoltage', $battery_voltage);
+                    $zigbee->save();
+                  }
+                  if ($zigbee->getConfiguration('maxBatteryVoltage', 0) != 0) {
+                    $zigbee->batteryStatus($battery_voltage / $zigbee->getConfiguration('maxBatteryVoltage', 0) * 100);
+                  }
+                }
+                break (2);
+              }
+            }
           }
         }
         try {
