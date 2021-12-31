@@ -5,6 +5,7 @@
         "Pour connaitre les nouveaux module compatible il faut aller": "To know the new compatible module you have to go",
         "c'est trié par date d'ajout\/modification": "it is sorted by date added \/ modified",
         "Pour profiter des dernieres integration de module n'hesitez pas a mettre à jour les dépendances": "To take advantage of the latest module integration, don't hesitate to update the dependencies",
+        "Amélioration de la recuperation des batteries": "Improved battery recovery",
         "20\/12\/2021": "12\/20\/2021",
         "Correction d'un bug lors de la relance du démon lorsque les sous démons sont configurés mais désactivé": "Fixed a bug when restarting the daemon when the sub daemons are configured but disabled",
         "Correction d'un soucis lors de la demande de rafraichissement de plus de 7 valeurs d'attributs, merci @kaktusatomik": "Fixed an issue when requesting a refresh of more than 7 attribute values, thanks @kaktusatomik",

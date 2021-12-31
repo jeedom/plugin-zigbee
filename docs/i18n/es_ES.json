@@ -5,6 +5,7 @@
         "Pour connaitre les nouveaux module compatible il faut aller": "Para conocer el nuevo módulo compatible tienes que ir",
         "c'est trié par date d'ajout\/modification": "está ordenado por fecha de adición \/ modificación",
         "Pour profiter des dernieres integration de module n'hesitez pas a mettre à jour les dépendances": "Para aprovechar la última integración del módulo, no dude en actualizar las dependencias",
+        "Amélioration de la recuperation des batteries": "Recuperación de batería mejorada",
         "20\/12\/2021": "20\/12\/2021",
         "Correction d'un bug lors de la relance du démon lorsque les sous démons sont configurés mais désactivé": "Se corrigió un error al reiniciar el demonio cuando los sub demonios están configurados pero deshabilitados",
         "Correction d'un soucis lors de la demande de rafraichissement de plus de 7 valeurs d'attributs, merci @kaktusatomik": "Se solucionó un problema al solicitar una actualización de más de 7 valores de atributo, gracias @kaktusatomik",
