@@ -1,16 +1,18 @@
 {
-  "name": "Q-Orbit",
+  "name": "GUNNARP panel round",
   "buylink" : "",
-  "ref" : "NLG-CCT light",
-  "commands": [
+  "config" : [
     {
-      "name": "Rafraîchir",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "refresh"
-    }, 
+      "endpoint" : 1,"cluster":6,"attribute":16387,"name":"Mode","type":"select","values":
+      [
+        {"value":0,"name":"Toujours éteint sur retour du courant"},
+        {"value":1,"name":"Toujours allumé sur retour du courant"},
+        {"value":2,"name":"Etat contraire de l’ampoule avant coupure sur retour du courant"},
+        {"value":3,"name":"Etat de l’ampoule avant coupure sur retour du courant"}
+      ]
+    }
+  ],
+  "commands": [
     {
       "name": "Etat",
       "type": "info",
@@ -113,24 +115,29 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
+      "value" : "Etat température couleur",
       "logicalId": "1::768::7",
       "generic_type": "LIGHT_COLOR_TEMP"
     },
     {
-      "name": "Température couleur",
+      "name": "Température Couleur",
       "type": "action",
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat température couleur",
       "logicalId": "1::light_color::move_to_color_temp::#slider#::#duration#",
-      "generic_type": "LIGHT_SET_COLOR_TEMP",
-      "configuration" : {
-        "minValue" : 0,
-        "maxValue" : 500
-      }
-    },  
-    {
+      "generic_type": "LIGHT_SET_COLOR_TEMP"
+    },
+	{
+    "name": "Rafraîchir",
+    "type": "action",
+    "subtype": "other",
+    "isVisible": 1,
+    "isHistorized": 0,
+    "logicalId": "refresh"
+  },   
+	{
       "name": "Etat durée",
       "type": "info",
       "subtype": "numeric",
@@ -155,6 +162,6 @@
         "minValue" : 0,
         "maxValue" : 100
       }
-    }
+    }	
   ]
 }

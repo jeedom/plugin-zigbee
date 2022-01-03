@@ -19,7 +19,7 @@
       "logicalId": "1::514::0"
     },
     {
-      "name": "Auto",
+      "name": "Off",
       "type": "action",
       "subtype": "other",
       "isVisible": 1,
@@ -37,7 +37,7 @@
       "logicalId": "attributes::1::in::514::0::1"
     },
     {
-      "name": "Bas",
+      "name": "Moyen",
       "type": "action",
       "subtype": "other",
       "isVisible": 1,
@@ -53,6 +53,15 @@
       "isHistorized": 0,
       "value" : "Mode",
       "logicalId": "attributes::1::in::514::0::3"
+    },
+    {
+      "name": "Auto",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "attributes::1::in::514::0::5"
     },
     {
       "name": "Durée de fonctionnement du filtre",

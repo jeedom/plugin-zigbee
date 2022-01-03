@@ -1,0 +1,42 @@
+{
+  "name": "Telecommande 5 boutons couleur",
+  "buylink" : "",
+  "remark" : "",
+  "reset" : "",
+  "pairing" : "",
+  "commands": [
+    {
+      "name": "Bouton",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Luminosité",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::8::cmd::1",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Couleur",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::768::cmd::color",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    }
+  ]
+}

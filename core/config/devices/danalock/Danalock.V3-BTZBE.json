@@ -13,7 +13,7 @@
       "logicalId": "1::257::0"
     },
     {
-      "name": "Verouiller",
+      "name": "Verrouiller",
       "generic_type": "LOCK_OPEN",
       "type": "action",
       "subtype": "other",
@@ -23,7 +23,7 @@
       "logicalId": "1::door_lock::lock_door"
     },
     {
-      "name": "Deverouiller",
+      "name": "Deverrouiller",
       "generic_type": "LOCK_CLOSE",
       "type": "action",
       "subtype": "other",

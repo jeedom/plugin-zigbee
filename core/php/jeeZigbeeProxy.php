@@ -22,13 +22,13 @@ if (!isConnect('admin')) {
 }
 ajax::init();
 try {
-  $data = init('data',null);
-  if($data != null){
+  $data = init('data', null);
+  if ($data != null) {
     $data = json_decode($data);
   }
-  $result = zigbee::request(init('instance',1),str_replace('//', '/', init('request')),$data,init('type','POST'));
-  log::add('zigbee','debug',json_encode($result,true));
-  echo json_encode(array('state' => 'ok','result' => $result));
+  $result = zigbee::request(init('instance', 1), str_replace('//', '/', init('request')), $data, init('type', 'POST'));
+  log::add('zigbee', 'debug', json_encode($result, true));
+  echo json_encode(array('state' => 'ok', 'result' => $result));
 } catch (Exception $e) {
-  echo json_encode(array('state' => 'error','result' => $e->getMessage()));
+  echo json_encode(array('state' => 'error', 'result' => $e->getMessage()));
 }

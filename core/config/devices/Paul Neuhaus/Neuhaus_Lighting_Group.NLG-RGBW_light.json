@@ -1,6 +1,7 @@
 {
   "name": "Q-Miran",
   "buylink" : "",
+  "ref" : "NLG-RGB light",
   "commands": [
     {
       "name": "Rafraîchir",

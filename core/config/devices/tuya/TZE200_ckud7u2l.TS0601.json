@@ -70,7 +70,7 @@
       "logicalId": "1::61184::621"
     },
     {
-      "name": "Etat verouillage",
+      "name": "Etat verrouillage",
       "type": "info",
       "subtype": "binary",
       "isVisible": 1,
@@ -78,19 +78,19 @@
       "logicalId": "1::61184::263"
     },
     {
-      "name": "Verouiller",
+      "name": "Verrouiller",
       "type": "action",
       "subtype": "other",
-      "value": "Etat verouillage",
+      "value": "Etat verrouillage",
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "attributes::1::in::516::1::1"
     },
     {
-      "name": "Deverouiller",
+      "name": "Deverrouiller",
       "type": "action",
       "subtype": "other",
-      "value": "Etat verouillage",
+      "value": "Etat verrouillage",
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "attributes::1::in::516::1::0"
