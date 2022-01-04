@@ -148,7 +148,7 @@ class zigbee extends eqLogic {
     return $return;
   }
 
-  public static function request($_instance, $_request = '', $_data = null, $_type = 'GET') {
+  public static function request($_instance, $_request = '', $_data = null, $_type = 'GET', $_noError = false) {
     $url = 'http://127.0.0.1:' . config::byKey('socketport_' . $_instance, 'zigbee') . $_request;
     if ($_type == 'GET' && is_array($_data) && count($_data) > 0) {
       $url .= '?';
@@ -175,7 +175,7 @@ class zigbee extends eqLogic {
     }
     $result = $request_http->exec(60, 1);
     $result = is_json($result, $result);
-    if (!isset($result['state']) || $result['state'] != 'ok') {
+    if (!$_noError && (!isset($result['state']) || $result['state'] != 'ok')) {
       throw new \Exception(__('Erreur lors de la requete : ', __FILE__) . $url . '(' . $_type . '), data : ' . json_encode($_data) . ' erreur : ' . json_encode($result));
     }
     return isset($result['result']) ? $result['result'] : $result;
@@ -1168,11 +1168,12 @@ class zigbeeCmd extends cmd {
       $type = 'device';
       $ieee = explode('|', $eqLogic->getLogicalId())[0];
     }
+    $noError = ($this->getConfiguration('ignoreExecutionError', 0) == 1);
     if (count($commands) > 0) {
-      zigbee::request($eqLogic->getConfiguration('instance', 1), '/' . $type . '/command', array('ieee' => $ieee, 'cmd' => $commands, 'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue', 0) == 1)), 'PUT');
+      zigbee::request($eqLogic->getConfiguration('instance', 1), '/' . $type . '/command', array('ieee' => $ieee, 'cmd' => $commands, 'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue', 0) == 1)), 'PUT', $noError);
     }
     if (count($attributes) > 0) {
-      zigbee::request($eqLogic->getConfiguration('instance', 1), '/' . $type . '/attributes', array('ieee' => $ieee, 'attributes' => $attributes, 'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue', 0) == 1)), 'PUT');
+      zigbee::request($eqLogic->getConfiguration('instance', 1), '/' . $type . '/attributes', array('ieee' => $ieee, 'attributes' => $attributes, 'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue', 0) == 1)), 'PUT', $noError);
     }
     $refresh = $eqLogic->getCmd('action', 'refresh');
     if (is_object($refresh)) {
