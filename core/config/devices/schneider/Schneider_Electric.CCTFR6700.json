@@ -59,7 +59,7 @@
       }
     },
     {
-      "name": "Puissance",
+      "name": "Puissance chauffage",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 1,
@@ -78,6 +78,35 @@
       "isHistorized": 0,
       "generic_type" : "THERMOSTAT_STATE_NAME",
       "logicalId": "1::513::28"
+    },
+    {
+      "name": "Pilote mode",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::65315::49"
+    },
+    {
+      "name": "Puissance electrique",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "W",
+      "logicalId": "2::1794::1024"
+    },
+    {
+      "name": "Consommation electrique",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "kWh",
+      "logicalId": "2::1794::0",
+      "configuration" : {
+        "calculValueOffset":"#value# / 1000"
+      }
     }
   ]
 }
