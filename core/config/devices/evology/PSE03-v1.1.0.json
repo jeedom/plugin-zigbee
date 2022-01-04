@@ -1,6 +1,9 @@
 {
     "name": "Sirène intelligente",
     "ref" : "20205500",
+    "configuration" :{
+      "ignoreExecutionError" : 1
+    },
     "commands": [
       {
         "name": "Etat durée",
@@ -37,8 +40,7 @@
         "logicalId": "1::ias_wd::squawk::#slider#::0::0",
         "configuration" : {
           "minValue":"1",
-          "maxValue":"9",
-          "ignoreExecutionError" : 1
+          "maxValue":"9"
         }
       },
       {
@@ -50,8 +52,7 @@
         "logicalId": "1::ias_wd::squawk::#slider#::0::1",
         "configuration" : {
           "minValue":"1",
-          "maxValue":"9",
-          "ignoreExecutionError" : 1
+          "maxValue":"9"
         }
       },
       {
@@ -63,8 +64,7 @@
         "logicalId": "1::ias_wd::start_warning::#slider#::0::0::1::1::1",
         "configuration" : {
           "minValue":"1",
-          "maxValue":"9",
-          "ignoreExecutionError" : 1
+          "maxValue":"9"
         }
       },
       {
@@ -76,8 +76,7 @@
         "logicalId": "1::ias_wd::start_warning::#slider#::0::1::#duration#::1::1",
         "configuration" : {
           "minValue":"1",
-          "maxValue":"9",
-          "ignoreExecutionError" : 1
+          "maxValue":"9"
         }
       },
       {
@@ -89,8 +88,7 @@
         "logicalId": "1::ias_wd::start_warning::#slider#::0::2::#duration#::1::1",
         "configuration" : {
           "minValue":"1",
-          "maxValue":"9",
-          "ignoreExecutionError" : 1
+          "maxValue":"9"
         }
       },
       {
@@ -102,8 +100,7 @@
         "logicalId": "1::ias_wd::start_warning::#slider#::0::3::#duration#::1::1",
         "configuration" : {
           "minValue":"1",
-          "maxValue":"9",
-          "ignoreExecutionError" : 1
+          "maxValue":"9"
         }
       },
       {
@@ -115,8 +112,7 @@
         "logicalId": "1::ias_wd::start_warning::#slider#::0::5::#duration#::1::1",
         "configuration" : {
           "minValue":"1",
-          "maxValue":"9",
-          "ignoreExecutionError" : 1
+          "maxValue":"9"
         }
       },
       {
@@ -128,8 +124,7 @@
         "logicalId": "1::ias_wd::start_warning::#slider#::0::6::#duration#::1::1",
         "configuration" : {
           "minValue":"1",
-          "maxValue":"9",
-          "ignoreExecutionError" : 1
+          "maxValue":"9"
         }
       }
     ]

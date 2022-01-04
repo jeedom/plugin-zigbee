@@ -248,6 +248,11 @@ ksort($manufacturers);
 									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="allowQueue" />{{Autoriser la mise en file d'attente}}
 										<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour autoriser la mise en file d'attente des commandes afin de réessayer en cas d'erreur}}"></i></sup>
 									</label>
+									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="ignoreExecutionError" />{{Ignorer les erreurs sur les éxécutions de commandes}}
+										<sup><i class="fas fa-question-circle tooltips" title="{{Permet de désactive l\'alerte d\'erreur si l\'éxecution de la commande n\'a pas marché (ou renvoi une fausse erreur}}"></i></sup>
+									</label>
+
+
 								</div>
 							</div>
 							<div class="form-group">

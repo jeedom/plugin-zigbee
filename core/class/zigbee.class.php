@@ -1168,7 +1168,7 @@ class zigbeeCmd extends cmd {
       $type = 'device';
       $ieee = explode('|', $eqLogic->getLogicalId())[0];
     }
-    $noError = ($this->getConfiguration('ignoreExecutionError', 0) == 1);
+    $noError = ($eqLogic->getConfiguration('ignoreExecutionError', 0) == 1);
     if (count($commands) > 0) {
       zigbee::request($eqLogic->getConfiguration('instance', 1), '/' . $type . '/command', array('ieee' => $ieee, 'cmd' => $commands, 'allowQueue' => ($this->getEqLogic()->getConfiguration('allowQueue', 0) == 1)), 'PUT', $noError);
     }
