@@ -65,6 +65,11 @@ async def serialize_application():
 	if shared.CONTROLLER == 'zigate':
 		obj['zigate'] = {}
 		obj['zigate']['version'] = str(shared.ZIGPY.version)
+	if shared.CONTROLLER == 'znp':
+		obj['znp'] = {}
+		obj['znp']['z-stack version'] = str(shared.ZIGPY._znp.version)
+		obj['znp']['model'] = str(shared.ZIGPY.zigpy_device.model)
+		obj['znp']['z-stack build id'] = str(shared.ZIGPY._zstack_build_id)
 	return obj
 
 def initSharedDeviceData(cluster,attribute_id):
