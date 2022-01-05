@@ -52,9 +52,9 @@ if (!isConnect('admin')) {
         <sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour autoriser les mises à jour de modules OTA.}}"></i></sup>
       </label>
       <div class="col-md-1">
-        <input type="checkbox" class="configKey" data-l1key="allowOTA"/>
+        <input type="checkbox" class="configKey" data-l1key="allowOTA" />
       </div>
-      <?php if(config::byKey('allowOTA', 'zigbee') == 1){ ?>
+      <?php if (config::byKey('allowOTA', 'zigbee') == 1) { ?>
         <div class="col-md-3">
           <a class="form-control btn btn-danger" id="bt_UpdateOta" title="Le processus peut durer plusieurs heures et nécessite le redémarrage du démon"><i class="fas fa-sync-alt"></i> {{Mettre à jour les fichiers de modules}}</a>
         </div>
@@ -68,7 +68,7 @@ if (!isConnect('admin')) {
         <input type="checkbox" class="configKey" data-l1key="autoRemoveExcludeDevice" />
       </div>
     </div>
-    <?php for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++){ ?>
+    <?php for ($i = 1; $i <= config::byKey('max_instance_number', "zigbee"); $i++) { ?>
       <div class="col-lg-6">
         <legend><i class="fas fa-broadcast-tower"></i> {{Contrôleur }}<?php echo $i ?></legend>
         <div class="form-group">
@@ -204,7 +204,7 @@ if (!isConnect('admin')) {
             </div>
             <div class="form-group">
               <div class="col-sm-12">
-                <textarea class="configKey form-control" rows="10" data-l1key="advance_zigpy_config_<?php echo $i ?>" ><?php echo json_encode(config::byKey('advance_zigpy_config_'.$i, 'zigbee'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK); ?></textarea>
+                <textarea class="configKey form-control" rows="10" data-l1key="advance_zigpy_config_<?php echo $i ?>"><?php echo json_encode(config::byKey('advance_zigpy_config_' . $i, 'zigbee'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK); ?></textarea>
               </div>
             </div>
           </div>
@@ -213,66 +213,70 @@ if (!isConnect('admin')) {
     <?php } ?>
   </fieldset>
 </form>
-<?php include_file('core', 'zigbee', 'class.js', 'zigbee');?>
+<?php include_file('core', 'zigbee', 'class.js', 'zigbee'); ?>
 <script>
-<?php for($i=1;$i<=config::byKey('max_instance_number',"zigbee");$i++) { ?>
-  $('.configKey[data-l1key="enable_deamon_<?php echo $i ?>"]').off('change').on('change',function(){
-    if($(this).value() == 0){
-      $('#zigbee_deamon_<?php echo $i ?>').hide();
-    }else{
-      $('#zigbee_deamon_<?php echo $i ?>').show();
-    }
-  });
-  $('.configKey[data-l1key="controller_<?php echo $i ?>"]').off('change').on('change',function(){
-    $('.configKey[data-l1key="sub_controller_<?php echo $i ?>"] option').hide()
-    $('.configKey[data-l1key="sub_controller_<?php echo $i ?>"] option[data-controller=auto]').show()
-    $('.configKey[data-l1key="sub_controller_<?php echo $i ?>"] option[data-controller='+$(this).value()+']').show()
-  });
-  $('.configKey[data-l1key="port_<?php echo $i ?>"]').off('change').on('change',function(){
-    $('.zigbee_portConf_<?php echo $i ?>').hide();
-    if($(this).value() == 'pizigate' || $(this).value() == 'wifizigate' || $(this).value() == 'gateway'){
-      $('.zigbee_portConf_<?php echo $i ?>.'+$(this).value()+"_<?php echo $i ?>").show();
-    }
-  });
-  $(".configKey[data-l1key=advance_zigpy_config_<?php echo $i ?>]").keydown(function(e) {
-    if(e.keyCode === 9) { // tab was pressed
-      // get caret position/selection
-      var start = this.selectionStart;
-      var end = this.selectionEnd;
-      var $this = $(this);
-      var value = $this.val();
-      // set textarea value to: text before caret + tab + text after caret
-      $this.val(value.substring(0, start)+ "\t"+ value.substring(end));
-      // put caret at right position again (add one for the tab)
-      this.selectionStart = this.selectionEnd = start + 1;
-      // prevent the focus lose
-      e.preventDefault();
-    }
-  });
+  <?php for ($i = 1; $i <= config::byKey('max_instance_number', "zigbee"); $i++) { ?>
+    $('.configKey[data-l1key="enable_deamon_<?php echo $i ?>"]').off('change').on('change', function() {
+      if ($(this).value() == 0) {
+        $('#zigbee_deamon_<?php echo $i ?>').hide();
+      } else {
+        $('#zigbee_deamon_<?php echo $i ?>').show();
+      }
+    });
+    $('.configKey[data-l1key="controller_<?php echo $i ?>"]').off('change').on('change', function() {
+      $('.configKey[data-l1key="sub_controller_<?php echo $i ?>"] option').hide()
+      $('.configKey[data-l1key="sub_controller_<?php echo $i ?>"] option[data-controller=auto]').show()
+      $('.configKey[data-l1key="sub_controller_<?php echo $i ?>"] option[data-controller=' + $(this).value() + ']').show()
+    });
+    $('.configKey[data-l1key="port_<?php echo $i ?>"]').off('change').on('change', function() {
+      $('.zigbee_portConf_<?php echo $i ?>').hide();
+      if ($(this).value() == 'pizigate' || $(this).value() == 'wifizigate' || $(this).value() == 'gateway') {
+        $('.zigbee_portConf_<?php echo $i ?>.' + $(this).value() + "_<?php echo $i ?>").show();
+      }
+    });
+    $(".configKey[data-l1key=advance_zigpy_config_<?php echo $i ?>]").keydown(function(e) {
+      if (e.keyCode === 9) { // tab was pressed
+        // get caret position/selection
+        var start = this.selectionStart;
+        var end = this.selectionEnd;
+        var $this = $(this);
+        var value = $this.val();
+        // set textarea value to: text before caret + tab + text after caret
+        $this.val(value.substring(0, start) + "\t" + value.substring(end));
+        // put caret at right position again (add one for the tab)
+        this.selectionStart = this.selectionEnd = start + 1;
+        // prevent the focus lose
+        e.preventDefault();
+      }
+    });
   <?php } ?>
 
-  $('.bt_zigbeeRestartDeamon').off('click').on('click',function(){
+  $('.bt_zigbeeRestartDeamon').off('click').on('click', function() {
     $.ajax({
       type: "POST",
       url: "plugins/zigbee/core/ajax/zigbee.ajax.php",
       data: {
         action: "restartDeamon",
-        deamon : $(this).attr('data-deamon')
+        deamon: $(this).attr('data-deamon')
       },
       dataType: 'json',
-      error: function (request, status, error) {
+      error: function(request, status, error) {
         handleAjaxError(request, status, error);
       },
-      success: function (data) {
+      success: function(data) {
         if (data.state != 'ok') {
-          $('#div_alert').showAlert({message: data.result, level: 'danger'});
+          $('#div_alert').showAlert({
+            message: data.result,
+            level: 'danger'
+          });
           return;
         }
       }
     });
   })
 
-  $('.bt_zigbeeDeleteDeamonData').off('click').on('click',function(){
+  $('.bt_zigbeeDeleteDeamonData').off('click').on('click', function() {
+    let deamon = $(this).attr('data-deamon');
     bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer toute les données pour ce démon ?}}', function(result) {
       if (result) {
         $.ajax({
@@ -280,15 +284,18 @@ if (!isConnect('admin')) {
           url: "plugins/zigbee/core/ajax/zigbee.ajax.php",
           data: {
             action: "deleteDeamonData",
-            deamon : $(this).attr('data-deamon')
+            deamon: deamon
           },
           dataType: 'json',
-          error: function (request, status, error) {
+          error: function(request, status, error) {
             handleAjaxError(request, status, error);
           },
-          success: function (data) {
+          success: function(data) {
             if (data.state != 'ok') {
-              $('#div_alert').showAlert({message: data.result, level: 'danger'});
+              $('#div_alert').showAlert({
+                message: data.result,
+                level: 'danger'
+              });
               return;
             }
           }
@@ -297,22 +304,31 @@ if (!isConnect('admin')) {
     })
   })
 
-  $('#bt_backupRestore').off('clic').on('click',function(){
-    $('#md_modal').dialog({title: "{{Assistant de sauvegarde/restauration du contrôleur}}"}).load('index.php?v=d&plugin=zigbee&modal=backup_restore').dialog('open');
+  $('#bt_backupRestore').off('clic').on('click', function() {
+    $('#md_modal').dialog({
+      title: "{{Assistant de sauvegarde/restauration du contrôleur}}"
+    }).load('index.php?v=d&plugin=zigbee&modal=backup_restore').dialog('open');
   })
 
-  $('#bt_UpdateFirmware').off('clic').on('click',function(){
-    $('#md_modal').dialog({title: "{{Mise à jour du firmware du contrôleur}}"}).load('index.php?v=d&plugin=zigbee&modal=firmware_update').dialog('open');
+  $('#bt_UpdateFirmware').off('clic').on('click', function() {
+    $('#md_modal').dialog({
+      title: "{{Mise à jour du firmware du contrôleur}}"
+    }).load('index.php?v=d&plugin=zigbee&modal=firmware_update').dialog('open');
   })
 
-  $('#bt_UpdateOta').off('clic').on('click',function(){
+  $('#bt_UpdateOta').off('clic').on('click', function() {
     jeedom.zigbee.updateOTA({
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      error: function(error) {
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        });
       },
-      success: function () {
-        $('#md_modal').dialog({title: "{{Mise à jour des fichiers de modules}}"}).load('index.php?v=d&modal=log.display&log=zigbee_ota').dialog('open');
+      success: function() {
+        $('#md_modal').dialog({
+          title: "{{Mise à jour des fichiers de modules}}"
+        }).load('index.php?v=d&modal=log.display&log=zigbee_ota').dialog('open');
       }
     });
   })
-  </script>
+</script>
