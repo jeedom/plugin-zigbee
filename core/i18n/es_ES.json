@@ -334,6 +334,8 @@
         "Cocher la case pour ignorer la confirmation de la bonne exécution de la commande par le contrôleur": "Marque la casilla para ignorar la confirmación de la correcta ejecución del comando por parte del controlador",
         "Autoriser la mise en file d'attente": "Permitir hacer cola",
         "Cocher la case pour autoriser la mise en file d'attente des commandes afin de réessayer en cas d'erreur": "Marque la casilla para permitir que la cola de comandos vuelva a intentarlo en caso de error",
+        "Ignorer les erreurs sur les éxécutions de commandes": "Ignorar errores en la ejecución del comando",
+        "Permet de désactive l\\'alerte d\\'erreur si l\\'éxecution de la commande n\\'a pas marché (ou renvoi une fausse erreur": "Le permite desactivar la alerta de error si la ejecución del comando no funcionó (o devuelve un error falso",
         "Auto-actualisation (cron)": "Actualización automática (cron)",
         "Nous recommandons de ne jamais rien mettre ici de vous meme, une erreur et c'est tout votre réseaux zigbee qui est cassé !!!!": "Recomendamos que nunca pongas nada aquí, un error y toda tu red de zigbee está rota",
         "Informations": "Información",
