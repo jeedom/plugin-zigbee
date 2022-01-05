@@ -334,6 +334,8 @@
         "Cocher la case pour ignorer la confirmation de la bonne exécution de la commande par le contrôleur": "Cocher la case pour ignorer la confirmation de la bonne exécution de la commande par le contrôleur",
         "Autoriser la mise en file d'attente": "Autoriser la mise en file d'attente",
         "Cocher la case pour autoriser la mise en file d'attente des commandes afin de réessayer en cas d'erreur": "Cocher la case pour autoriser la mise en file d'attente des commandes afin de réessayer en cas d'erreur",
+        "Ignorer les erreurs sur les éxécutions de commandes": "Ignorer les erreurs sur les éxécutions de commandes",
+        "Permet de désactive l\\'alerte d\\'erreur si l\\'éxecution de la commande n\\'a pas marché (ou renvoi une fausse erreur": "Permet de désactive l\\'alerte d\\'erreur si l\\'éxecution de la commande n\\'a pas marché (ou renvoi une fausse erreur",
         "Auto-actualisation (cron)": "Auto-actualisation (cron)",
         "Nous recommandons de ne jamais rien mettre ici de vous meme, une erreur et c'est tout votre réseaux zigbee qui est cassé !!!!": "Nous recommandons de ne jamais rien mettre ici de vous meme, une erreur et c'est tout votre réseaux zigbee qui est cassé !!!!",
         "Informations": "Informations",
