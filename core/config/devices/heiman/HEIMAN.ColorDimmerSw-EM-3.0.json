@@ -30,7 +30,7 @@
     {
       "name": "Couleur",
       "type": "info",
-      "subtype": "numeric",
+      "subtype": "other",
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "1::768::cmd::color",
