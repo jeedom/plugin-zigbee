@@ -5,6 +5,11 @@ manufacturer specific attributes to control displaying and specific configuratio
 import zigpy.profiles.zha as zha_p
 from zigpy.quirks import CustomCluster, CustomDevice
 from zigpy.zcl.clusters.manufacturer_specific import ManufacturerSpecificCluster
+from zigpy.zcl.clusters.general import Basic, Groups, Scenes, Identify, Time, Ota
+from zigpy.zcl.clusters.hvac import Thermostat, UserInterface
+from zigpy.zcl.clusters.measurement import TemperatureMeasurement
+from zigpy.zcl.clusters.smartenergy import Metering
+from zigpy.zcl.clusters.homeautomation import ElectricalMeasurement,Diagnostic
 import zigpy.types as t
 
 from zhaquirks.const import (
@@ -35,19 +40,19 @@ class OTH3600GAZB(CustomDevice):
                 PROFILE_ID: 260,
                 DEVICE_TYPE: 769,
                 INPUT_CLUSTERS: [
-                    0,
-                    3,
-                    4,
-                    5,
-                    513,
-                    516,
-                    1026,
-                    1794,
-                    2820,
-                    2821,
+                    Basic.cluster_id,
+                    Identify.cluster_id,
+                    Groups.cluster_id,
+                    Scenes.cluster_id,
+                    Thermostat.cluster_id,
+                    UserInterface.cluster_id,
+                    TemperatureMeasurement.cluster_id,
+                    Metering.cluster_id,
+                    ElectricalMeasurement.cluster_id,
+                    Diagnostic.cluster_id,
                     65281
                 ],
-                OUTPUT_CLUSTERS: [10,65281,25],
+                OUTPUT_CLUSTERS: [Time.cluster_id, Ota.cluster_id,65281],
             }
         }
     }
@@ -58,19 +63,19 @@ class OTH3600GAZB(CustomDevice):
                 PROFILE_ID: 260,
                 DEVICE_TYPE: 769,
                 INPUT_CLUSTERS: [
-                    0,
-                    3,
-                    4,
-                    5,
-                    513,
-                    516,
-                    1026,
-                    1794,
-                    2820,
-                    2821,
+                    Basic.cluster_id,
+                    Identify.cluster_id,
+                    Groups.cluster_id,
+                    Scenes.cluster_id,
+                    Thermostat.cluster_id,
+                    UserInterface.cluster_id,
+                    TemperatureMeasurement.cluster_id,
+                    Metering.cluster_id,
+                    ElectricalMeasurement.cluster_id,
+                    Diagnostic.cluster_id,
                     OTH3600GAZBCluster
                 ],
-                OUTPUT_CLUSTERS: [10,65281,25],
+                OUTPUT_CLUSTERS: [Time.cluster_id, Ota.cluster_id,65281],
             }
         }
     }
