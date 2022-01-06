@@ -508,8 +508,11 @@ class zigbee extends eqLogic {
           $eqLogic->setConfiguration('device', $device_type);
           $new = true;
         }
+        echo $eqLogic->getName() . "\n";
+
+        $in_cluster = array();
+        $out_cluster = array();
         foreach ($device['endpoints'] as $endpoint) {
-          $out_cluster = array();
           foreach ($endpoint['output_clusters'] as $cluster) {
             $out_cluster[$cluster['id']] = $cluster['id'];
             if (!isset($out_cluster[$cluster['id']])) {
@@ -518,7 +521,6 @@ class zigbee extends eqLogic {
           }
           $eqLogic->setConfiguration('output_clusters', $out_cluster);
 
-          $in_cluster = array();
           foreach ($endpoint['input_clusters'] as $cluster) {
             if (!isset($in_cluster[$cluster['id']])) {
               $in_cluster[$cluster['id']] = array();
