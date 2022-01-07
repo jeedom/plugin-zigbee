@@ -1,0 +1,86 @@
+{
+    "name": "MOES - Module dimmer simple",
+    "ref" : "TZE200 TS0601",
+    "buylink" : "",
+    "reset" : "",
+    "pairing" : "",
+    "commands": [
+      {
+        "name": "Etat",
+        "type": "info",
+        "subtype": "binary",
+        "generic_type": "LIGHT_STATE",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::6::0"
+      },
+      {
+        "name": "On",
+        "generic_type": "LIGHT_ON",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat",
+        "logicalId": "1::on_off::on",
+        "template":{
+          "dashboard" : "light",
+          "mobile" : "light"
+        }
+      },
+      {
+        "name": "Off",
+        "generic_type": "LIGHT_OFF",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat",
+        "logicalId": "1::on_off::off",
+        "template":{
+          "dashboard" : "light",
+          "mobile" : "light"
+        }
+      },
+      {
+        "name": "Toggle",
+        "generic_type": "LIGHT_TOGGLE",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::on_off::toggle",
+        "display": {
+          "icon": "<i class=\"fas fa-random\"></i>"
+        }
+      },
+      {
+        "name": "Etat Luminosité",
+        "generic_type": "LIGHT_BRIGHTNESS",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::8::0",
+        "configuration" : {
+          "minValue" : 0,
+          "maxValue" : 254
+        }
+      },
+      {
+        "name": "Luminosité",
+        "type": "action",
+        "subtype": "slider",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat Luminosité",
+        "logicalId": "1::level::move_to_level::#slider#::#duration#",
+        "generic_type": "LIGHT_SLIDER",
+        "configuration" : {
+          "minValue" : 0,
+          "maxValue" : 254
+        }
+      }
+    ]
+  }
+  
