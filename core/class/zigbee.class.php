@@ -508,7 +508,6 @@ class zigbee extends eqLogic {
           $eqLogic->setConfiguration('device', $device_type);
           $new = true;
         }
-        echo $eqLogic->getName() . "\n";
 
         $in_cluster = array();
         $out_cluster = array();
