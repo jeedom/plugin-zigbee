@@ -272,6 +272,7 @@ class DeviceHandler(RequestHandler):
 				logging.info('[DeviceHandler.put/delete_specific] Delete specific configuration for '+str(ieee))
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'bind' or arg1 == 'unbind':
+				logging.info('[DeviceHandler.bind/unbind] '+str(arg1)+' device '+str(self.json_args['src']['ieee'])+' endpoint '+str(self.json_args['src']['endpoint'])+' cluster '+str(self.json_args['src']['cluster']))
 				src_device = zdevices.find(self.json_args['src']['ieee'])
 				if src_device == None :
 					raise Exception("Device source not found")
@@ -283,8 +284,10 @@ class DeviceHandler(RequestHandler):
 				src_cluster = src_endpoint.out_clusters[self.json_args['src']['cluster']]
 				if 'type' in self.json_args['dest'] and self.json_args['dest']['type'] == 'group':
 					if arg1 == 'unbind':
+						logging.info('[DeviceHandler.bind/unbind] Unbind group '+str(self.json_args['dest']['group_id']))
 						await zgroups.binding(src_device,self.json_args['dest']['group_id'],zdo_types.ZDOCmd.Unbind_req,[src_cluster]);
 					else:
+						logging.info('[DeviceHandler.bind/unbind] Bind group '+self.json_args['dest']['group_id'])
 						await zgroups.binding(src_device,self.json_args['dest']['group_id'],zdo_types.ZDOCmd.Bind_req,[src_cluster]);
 				else:
 					dest_device = zdevices.find(self.json_args['dest']['ieee'])
@@ -298,8 +301,10 @@ class DeviceHandler(RequestHandler):
 					dstaddr.ieee = dest_device.ieee
 					dstaddr.endpoint = dest_endpoint.endpoint_id
 					if arg1 == 'unbind':
+						logging.info('[DeviceHandler.bind/unbind] Unbind device '+str(dstaddr))
 						await dest_device.zdo.Unbind_req(src_device.ieee,src_cluster.endpoint.endpoint_id,src_cluster.cluster_id,dstaddr)
 					else:
+						logging.info('[DeviceHandler.bind/unbind] Bind device '+str(dstaddr))
 						await dest_device.zdo.Bind_req(src_device.ieee,src_cluster.endpoint.endpoint_id,src_cluster.cluster_id,dstaddr)
 				return self.write(utils.format_json_result(success=True))
 		except Exception as e:
