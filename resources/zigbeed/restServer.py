@@ -298,9 +298,9 @@ class DeviceHandler(RequestHandler):
 					dstaddr.ieee = dest_device.ieee
 					dstaddr.endpoint = dest_endpoint.endpoint_id
 					if arg1 == 'unbind':
-						await dest_device.zdo.Bind_req(src_device.ieee,src_cluster.endpoint.endpoint_id,src_cluster.cluster_id,dstaddr)
-					else:
 						await dest_device.zdo.Unbind_req(src_device.ieee,src_cluster.endpoint.endpoint_id,src_cluster.cluster_id,dstaddr)
+					else:
+						await dest_device.zdo.Bind_req(src_device.ieee,src_cluster.endpoint.endpoint_id,src_cluster.cluster_id,dstaddr)
 				return self.write(utils.format_json_result(success=True))
 		except Exception as e:
 			logging.info(traceback.format_exc())
