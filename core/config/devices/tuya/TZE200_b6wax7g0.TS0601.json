@@ -30,11 +30,11 @@
       "logicalId": "1::513::18",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 10"
+        "calculValueOffset":"#value# / 100"
       }
     },
     {
-      "name": "Consigne comfort",
+      "name": "Temperature mode eco",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 0,
@@ -43,11 +43,11 @@
       "logicalId": "1::513::16384",
       "generic_type" : "THERMOSTAT_SETPOINT",
       "configuration" : {
-        "calculValueOffset":"#value# / 10"
+        "calculValueOffset":"#value# / 100"
       }
     },
     {
-      "name": "Consigne eco",
+      "name": "Consigne maximum",
       "type": "info",
       "subtype": "numeric",
       "isVisible": 0,
@@ -67,7 +67,7 @@
       "isHistorized": 1,
       "unite" : "°C",
       "value": "Consigne",
-      "logicalId": "attributes::1::in::513::18::#slider#*10",
+      "logicalId": "attributes::1::in::513::18::#slider#*100",
       "generic_type" : "THERMOSTAT_SET_SETPOINT",
       "configuration" : {
         "minValue":"6",
@@ -79,49 +79,57 @@
       }
     },
     {
-      "name": "Ouverture vanne",
+      "name": "Thermostat mode eco",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Temperature mode eco",
+      "logicalId": "attributes::1::in::513::16384::#slider#*100",
+      "configuration" : {
+        "minValue":"6",
+        "maxValue":"28"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Thermostat maximum",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne maximum",
+      "logicalId": "attributes::1::in::513::16385::#slider#*100",
+      "configuration" : {
+        "minValue":"6",
+        "maxValue":"28"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Mode",
       "type": "info",
       "subtype": "numeric",
-      "isVisible": 1,
+      "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::513::16388"
+      "generic_type" : "THERMOSTAT_STATE_NAME",
+      "logicalId": "1::513::30"
     },
     {
-      "name": "Thermostat comfort",
-      "type": "action",
-      "subtype": "slider",
-      "isVisible": 1,
-      "isHistorized": 1,
-      "unite" : "°C",
-      "value": "Consigne comfort",
-      "logicalId": "attributes::1::in::513::16384::#slider#*10",
-      "configuration" : {
-        "minValue":"6",
-        "maxValue":"28"
-      },
-      "template" : {
-        "dashboard" : "button",
-        "mobile" : "button"
-      }
-    },
-    {
-      "name": "Thermostat eco",
-      "type": "action",
-      "subtype": "slider",
-      "isVisible": 1,
-      "isHistorized": 1,
-      "unite" : "°C",
-      "value": "Consigne eco",
-      "logicalId": "attributes::1::in::513::16385::#slider#*10",
-      "configuration" : {
-        "minValue":"6",
-        "maxValue":"28"
-      },
-      "template" : {
-        "dashboard" : "button",
-        "mobile" : "button"
-      }
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::513::41"
     }
-   
   ]
 }
