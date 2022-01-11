@@ -5,6 +5,8 @@
         "Pour connaitre les nouveaux module compatible il faut aller": "To know the new compatible module you have to go",
         "c'est trié par date d'ajout\/modification": "it is sorted by date added \/ modified",
         "Pour profiter des dernieres integration de module n'hesitez pas a mettre à jour les dépendances": "To take advantage of the latest module integration, don't hesitate to update the dependencies",
+        "10\/01\/2022": "01\/10\/2022",
+        "Correction d'un bug sur le binding direct entre 2 modules": "Correction of a bug on the direct binding between 2 modules",
         "06\/01\/2022": "01\/06\/2022",
         "Correction d'un bugs sur la liste des module pouvant etre bindé": "Fixed a bug on the list of modules that can be bound",
         "Amélioration de la recuperation des batteries": "Improved battery recovery",
