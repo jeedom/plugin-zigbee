@@ -10,7 +10,7 @@
       "subtype": "numeric",
       "isVisible": 0,
       "isHistorized": 0,
-      "logicalId": "1::258::8",
+      "logicalId": "1::258::cmd::0",
       "generic_type": "FLAP_STATE",
       "configuration": {
         "repeatEventManagement": "always"
