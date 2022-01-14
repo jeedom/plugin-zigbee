@@ -1,0 +1,76 @@
+{
+  "name": "Relais Rail-Din 32A et compteur d'énergie Zigbee",
+  "ref": "CB432",
+  "type": "Contacteur,Compteur",
+  "reset": "Appuyez sur le bouton “Reset” et maintenez-le enfoncé pendant dix secondes (Le voyant LED clignotera trois fois à la troisième seconde et clignotera à nouveau à la dixième seconde.) Après 10 secondes, le module aura restauré les paramètres d'usine par défaut.",
+  "pairing": "Appuyer sur le Reset button pendant 3 secondes jusqu'a ce que le voyant LED clignote 3 fois",
+  "remark": "",
+  "documentation": "https://www.owon-smart.com/uploads/Quick-Start-Guide-CB432-Din-Rail-Relay1.pdf",
+  "buylink": "",
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::6::0"
+    },
+    {
+      "name": "On",
+      "generic_type": "ENERGY_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value": "Etat",
+      "logicalId": "1::on_off::on",
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "Off",
+      "generic_type": "ENERGY_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value": "Etat",
+      "logicalId": "1::on_off::off",
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "Consommation",
+      "generic_type": "CONSUMPTION",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite": "kWh",
+      "logicalId": "1::1794::0",
+      "configuration": {
+        "historizeRound": 2,
+        "calculValueOffset": "#value# / 1000"
+      }
+    },
+    {
+      "name": "Puissance",
+      "generic_type": "POWER",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite": "W",
+      "logicalId": "1::1794::1024",
+      "configuration": {
+        "historizeRound": 2
+      }
+    }
+  ]
+}
