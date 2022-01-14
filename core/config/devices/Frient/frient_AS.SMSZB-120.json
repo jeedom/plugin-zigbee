@@ -36,6 +36,19 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "35::ias_wd::start_warning::0::0::0::0::0::0"
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "38::1026::0",
+      "unite" : "°C",
+      "generic_type": "TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
     }
   ]
 }
