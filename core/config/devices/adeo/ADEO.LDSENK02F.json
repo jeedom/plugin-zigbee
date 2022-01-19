@@ -1,6 +1,9 @@
 {
-  "name": "LEXMAN SMART PLUG - 16A",
+  "name": "LEXMAN ENKI - Prise connectée 16A",
   "ref" : "LDSENK02F",
+  "buylink" : "https://www.leroymerlin.fr/produits/electricite-domotique/domotique-et-objets-connectes/domotique/solutions-de-commande/prise-connectee-16a-3680w-repeteur-lexman-82428895.html",
+  "reset" : "Appui de 5 secondes sur le bouton ON/OFF",
+  "pairing" : "Faire un reset de la prise, puis passer votre réseaux Zigbee en mode inclusion la prise devrait s'appairer toute seule (un on/off sera peut être nécessaire)",
   "commands": [
     {
       "name": "Etat",
@@ -40,6 +43,38 @@
       }
     },
     {
+      "name": "Toggle",
+      "generic_type": "LIGHT_TOGGLE",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
+    },
+    {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    },
+    {
+      "name": "Puissance",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"W",
+      "logicalId": "1::2820::1291",
+      "configuration":{
+        "historizeRound" : 2
+      }
+    },
+    {
       "name": "Consommation",
       "generic_type": "CONSUMPTION",
       "type": "info",
@@ -50,21 +85,7 @@
       "logicalId": "1::1794::0",
       "configuration":{
         "historizeRound" : 2,
-        "calculValueOffset":"#value# / 1000"
-      }
-    },
-    {
-      "name": "Puissance",
-      "generic_type": "POWER",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 1,
-      "isHistorized": 1,
-      "unite":"W",
-      "logicalId": "1::2820::1291",
-      "configuration":{
-        "historizeRound" : 2,
-        "calculValueOffset":"#value# / 10"
+        "calculValueOffset":"#value# / 100"
       }
     }
   ]
