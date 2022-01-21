@@ -207,8 +207,7 @@ jeedom.zigbee.device.all = function(_params){
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
     instance : _params.instance || 1,
-    request: '/device/all',
-    data : json_encode({with_attributes : _params.with_attributes}),
+    request: '/device/all?with_attributes='+_params.with_attributes,
     type : 'GET'
   };
   $.ajax(paramsAJAX);
@@ -268,8 +267,7 @@ jeedom.zigbee.device.info = function(_params){
   paramsAJAX.url = 'plugins/zigbee/core/php/jeeZigbeeProxy.php';
   paramsAJAX.data = {
     instance : _params.instance || 1,
-    request: '/device/info',
-    data : json_encode({ieee : _params.ieee}),
+    request: '/device/info?ieee='+ _params.ieee,
     type : 'GET'
   };
   $.ajax(paramsAJAX);
