@@ -1,0 +1,92 @@
+{
+  "name": "LEXMAN ENKI - Prise connectée 16A",
+  "ref" : "LDSENK02F",
+  "buylink" : "https://www.leroymerlin.fr/produits/electricite-domotique/domotique-et-objets-connectes/domotique/solutions-de-commande/prise-connectee-16a-3680w-repeteur-lexman-82428895.html",
+  "reset" : "Appui de 5 secondes sur le bouton ON/OFF",
+  "pairing" : "Faire un reset de la prise, puis passer votre réseaux Zigbee en mode inclusion la prise devrait s'appairer toute seule (un on/off sera peut être nécessaire)",
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::6::0"
+    },
+    {
+      "name": "On",
+      "generic_type": "ENERGY_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::on",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Off",
+      "generic_type": "ENERGY_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::off",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Toggle",
+      "generic_type": "LIGHT_TOGGLE",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
+    },
+    {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    },
+    {
+      "name": "Puissance",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"W",
+      "logicalId": "1::2820::1291",
+      "configuration":{
+        "historizeRound" : 2
+      }
+    },
+    {
+      "name": "Consommation",
+      "generic_type": "CONSUMPTION",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"kWh",
+      "logicalId": "1::1794::0",
+      "configuration":{
+        "historizeRound" : 2,
+        "calculValueOffset":"#value# / 100"
+      }
+    }
+  ]
+}
