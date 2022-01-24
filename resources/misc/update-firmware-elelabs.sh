@@ -15,6 +15,8 @@ fi
 
 if [ "${FIRMWARE}" = "zigbee" ];then
   python3 Elelabs_EzspFwUtility.py ele_update -v zigbee -p ${DEVICE}
+elif [ "${FIRMWARE}" = "thread" ];then
+  python3 Elelabs_EzspFwUtility.py ele_update -v thread -p ${DEVICE}
 else
   wget https://github.com/zha-ng/EZSP-Firmware/raw/master/Elelabs-ELU013/${FIRMWARE}
   if [ $? -ne 0 ]; then
