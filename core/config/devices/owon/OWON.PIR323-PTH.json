@@ -1,5 +1,5 @@
 {
-    "name": "Multi-Sensor (Mouvement/Temperature/Humidite/Vibration)",
+    "name": "Multi-Sensor (Mouvement/Temperature/Humidite)",
     "ref" : "PIR323-PTH",
     "buylink" : "",
     "documentation":"https://www.owon-smart.com/uploads/Quick-Start-Guide-PIR323-ZigBee-Multi-Sensor.pdf",
