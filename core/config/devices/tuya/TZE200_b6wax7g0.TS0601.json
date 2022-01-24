@@ -1,8 +1,8 @@
 {
   "name": "MOES - Tête thermostatique intelligente (3)",
-  "ref" : "HY368",
+  "ref" : "ZTRV-BY-100-WH-FR",
   "manufacturer" : "Moes",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/tetes-thermostatiques/5783-moes-tete-thermostatique-intelligente-zigbee-30-blanc.html",
   "documentation" : "",
   "reset": "Pas besoin de reinitialisation sur ce module",
   "pairing": "Appuie long sur le bouton Maison jusqu'a avoir le menu, puis avec le plus aller sur l'icone wifi, validez avec le bouton home puis appuie long sur le bouton home jusqu'a avoir l'icone wifi qui clignote",
