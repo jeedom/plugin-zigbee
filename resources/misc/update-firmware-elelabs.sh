@@ -13,10 +13,8 @@ if [ $? -ne 0 ]; then
   exit 1
 fi 
 
-if [ "${FIRMWARE}" = "v8" ];then
-  python3 Elelabs_EzspFwUtility.py ele_update -v v8 -p ${DEVICE}
-elif [ "${FIRMWARE}" = "v6" ];then
-  python3 Elelabs_EzspFwUtility.py ele_update -v v6 -p ${DEVICE}
+if [ "${FIRMWARE}" = "zigbee" ];then
+  python3 Elelabs_EzspFwUtility.py ele_update -v zigbee -p ${DEVICE}
 else
   wget https://github.com/zha-ng/EZSP-Firmware/raw/master/Elelabs-ELU013/${FIRMWARE}
   if [ $? -ne 0 ]; then
