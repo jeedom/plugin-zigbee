@@ -1,0 +1,257 @@
+{
+  "name": "THERMOSTAT POUR VENTILO-CONVECTEUR ZIGBEE (100V-240V)",
+  "ref": "PCT504",
+  "type": "Thermostat",
+  "reset": "Mettre sur Off le Thermostat. Presser et maintenir Sleep Button et Eco Button simultanement pendant 5sec jusqu'a ce que l'ecran s'allume",
+  "pairing": "Allumer le Thermostat. Si le plugin Zigbee est en mode Inclusion, le thermostats sera automatiquement inclus ",
+  "remark": "",
+  "documentation": "https://www.owon-smart.com/uploads/Quick-Start-Guide-%E2%80%93-PCT504-ZigBee-Fan-coil-Thermostat.pdf",
+  "buylink": "https://www.domadoo.fr/fr/peripheriques/6056-owon-thermostat-de-ventilo-convecteur-zigbee-100v-240v.html",
+   "config" : [
+    {
+      "endpoint" : 1,"cluster":513,"attribute":27,"name":"Mode autorisé","type":"select","values":
+      [
+        {"value":0,"name":"Froid"},
+        {"value":1,"name":"Froid et rechauffage"},
+        {"value":2,"name":"Chaud"},
+        {"value":3,"name":"Chaud et rechauffage"},
+        {"value":4,"name":"Chaud et froid"},
+        {"value":5,"name":"Chaud, froid et rechauffage"}
+      ]
+    }
+  ],
+
+  "commands": [
+    {
+      "name": "Temperature Locale",
+      "type": "info",
+      "subtype": "numeric",
+      "generic_type": "THERMOSTAT_TEMPERATURE",
+      "unite": "°C",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::513::0",
+      "configuration": {
+        "calculValueOffset": "#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne Froid Présence",
+      "type": "info",
+      "subtype": "numeric",
+      "generic_type": "THERMOSTAT_SETPOINT",
+      "unite": "°C",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::513::17",
+      "configuration": {
+        "calculValueOffset": "#value# / 100"
+      }
+    },
+       {
+      "name": "Thermostat Froid",
+      "type": "action",
+      "subtype": "slider",
+      "generic_type": "THERMOSTAT_SET_SETPOINT",
+      "unite": "°C",
+      "isVisible": 1,
+      "isHistorized": 0,
+          "value" : "Consigne Froid Présence",
+      "logicalId": "attributes::1::in::513::17::#slider#*100",
+      "configuration": {
+         "minValue":"25",
+         "maxValue":"35"
+      },
+       "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Chaud Présence",
+      "type": "info",
+      "subtype": "numeric",
+      "generic_type": "THERMOSTAT_SETPOINT",
+      "unite": "°C",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::513::18",
+      "configuration": {
+        "calculValueOffset": "#value# / 100"
+      }
+    },
+      {
+      "name": "Thermostat Chaud",
+      "type": "action",
+      "subtype": "slider",
+      "generic_type": "THERMOSTAT_SET_SETPOINT",
+      "unite": "°C",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Consigne Chaud Présence",
+      "logicalId": "attributes::1::in::513::18::#slider#*100",
+      "configuration": {
+         "minValue":"5",
+         "maxValue":"18"
+      },
+       "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne Froid Absence",
+      "type": "info",
+      "subtype": "numeric",
+      "generic_type": "THERMOSTAT_SETPOINT",
+      "unite": "°C",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::513::19",
+      "configuration": {
+        "calculValueOffset": "#value# / 100"
+      }
+    },
+       {
+      "name": "Thermostat Froid Absence",
+      "type": "action",
+      "subtype": "slider",
+      "generic_type": "THERMOSTAT_SET_SETPOINT",
+      "unite": "°C",
+      "isVisible": 1,
+      "isHistorized": 0,
+       "value" : "Consigne Froid Absence",
+      "logicalId": "attributes::1::in::513::19::#slider#*100",
+      "configuration": {
+         "minValue":"25",
+         "maxValue":"35"
+      },
+       "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Mode Système",
+      "type": "info",
+      "subtype": "string",
+      "generic_type": "THERMOSTAT_STATE_NAME",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::513::28"
+    },
+       {
+      "name": "Off",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "logicalId": "attributes::1::in::513::28::0"
+    },
+      {
+      "name": "Chauffage",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "logicalId": "attributes::1::in::513::28::4"
+    },
+    {
+      "name": "Refroidissement",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "logicalId": "attributes::1::in::513::28::3"
+    },
+    {
+      "name": "Mode Actuel",
+      "type": "info",
+      "subtype": "string",
+      "generic_type": "THERMOSTAT_MODE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::513::30"
+    },
+    {
+      "name": "Temperature Consigne Hold",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::513::35"
+    },
+    {
+      "name": "Temperature Consigne Hold Durée",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::513::36",
+      "configuration": {
+        "calculValueOffset": "#value# / 10000"
+      }
+    },
+    {
+      "name": "Operation Mode programmé",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::513::37"
+    },
+    {
+      "name": "Etat en cours",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::513::41"
+    },
+    {
+      "name": "Humidité",
+      "generic_type": "THERMOSTAT_HUMIDITY",
+      "type": "info",
+      "subtype": "numeric",
+      "unite": "%",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1029::0",
+      "configuration": {
+        "calculValueOffset": "#value# / 100"
+      }
+    },
+    {
+      "name": "Display Mode Temperature",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::516::0"
+    },
+    {
+      "name": "KeyPad Lockout",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::516::1"
+    },
+    {
+      "name": "Presence",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::1030::0",
+         "generic_type": "PRESENCE",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
+      "display": {
+        "invertBinary" : 1
+      },
+         "template" : {
+        "dashboard" : "presence",
+        "mobile" : "presence"
+      }
+    }
+  ]
+}
