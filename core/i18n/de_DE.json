@@ -217,7 +217,8 @@
         "Firmware": "Firmware",
         "non officiel mais recommandé": "inoffiziell aber empfohlen",
         "non officiel": "inoffiziell",
-        "officiel": "offiziell",
+        "Dernier firmware zigbee officiel": "Neueste offizielle Zigbee-Firmware",
+        "Dernier firmware thread officiel": "Neueste offizielle Thread-Firmware",
         "Lancer la mise à jour": "Starten Sie das Update",
         "Lancer": "Starten",
         "Mise à jour du firmware de la clef": "Firmware-Update des Schlüssels"
