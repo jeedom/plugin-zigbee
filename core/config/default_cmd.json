@@ -1,0 +1,344 @@
+{
+    "6" : {
+        "commands" : [
+            {
+                "name": "Etat #endpoint_id#",
+                "type": "info",
+                "subtype": "binary",
+                "generic_type": "ENERGY_STATE",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "logicalId": "#endpoint_id#::6::0"
+            },
+            {
+                "name": "On #endpoint_id#",
+                "generic_type": "ENERGY_ON",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "value" : "Etat #endpoint_id#",
+                "logicalId": "#endpoint_id#::on_off::on",
+                "template":{
+                  "dashboard" : "prise",
+                  "mobile" : "prise"
+                }
+            },
+            {
+                "name": "Off #endpoint_id#",
+                "generic_type": "ENERGY_OFF",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "value" : "Etat #endpoint_id#",
+                "logicalId": "#endpoint_id#::on_off::off",
+                "template":{
+                  "dashboard" : "prise",
+                  "mobile" : "prise"
+                }
+            },
+            {
+                "name": "Toggle #endpoint_id#",
+                "generic_type": "LIGHT_TOGGLE",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "logicalId": "#endpoint_id#::on_off::toggle",
+                "display": {
+                  "icon": "<i class=\"fas fa-random\"></i>"
+                }
+            }
+        ]
+    },
+    "8" : {
+        "commands" : [
+            {
+                "name": "Etat Luminosité #endpoint_id#",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "logicalId": "#endpoint_id#::8::0",
+                "configuration" : {
+                  "minValue" : 0,
+                  "maxValue" : 254
+                }
+            },
+            {
+                "name": "Luminosité #endpoint_id#",
+                "type": "action",
+                "subtype": "slider",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "value" : "Etat Luminosité #endpoint_id#",
+                "logicalId": "#endpoint_id#::level::move_to_level::#slider#::0",
+                "generic_type": "LIGHT_SLIDER",
+                "configuration" : {
+                  "minValue" : 0,
+                  "maxValue" : 254
+                }
+            }
+        ]
+    },
+    "513" : {
+        "commands" : [
+            {
+                "name": "Température #endpoint_id#",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite" : "°C",
+                "logicalId": "#endpoint_id#::513::0",
+                "generic_type" : "THERMOSTAT_TEMPERATURE",
+                "configuration" : {
+                  "calculValueOffset":"#value# / 100"
+                }
+            },
+            {
+                "name": "Consigne #endpoint_id#",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite" : "°C",
+                "logicalId": "#endpoint_id#::513::18",
+                "generic_type" : "THERMOSTAT_SETPOINT",
+                "configuration" : {
+                  "calculValueOffset":"#value# / 100"
+                }
+            },
+            {
+                "name": "Thermostat #endpoint_id#",
+                "type": "action",
+                "subtype": "slider",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite" : "°C",
+                "value": "Consigne #endpoint_id#",
+                "logicalId": "attributes::#endpoint_id#::in::513::18::#slider#*100",
+                "generic_type" : "THERMOSTAT_SET_SETPOINT",
+                "configuration" : {
+                  "minValue":"6",
+                  "maxValue":"28"
+                },
+                "template" : {
+                  "dashboard" : "button",
+                  "mobile" : "button"
+                }
+            },
+            {
+                "name": "Puissance #endpoint_id#",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite" : "%",
+                "logicalId": "#endpoint_id#::513::8"
+            },
+            {
+                "name": "Mode #endpoint_id#",
+                "type": "info",
+                "subtype": "string",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "generic_type" : "THERMOSTAT_STATE_NAME",
+                "logicalId": "#endpoint_id#::513::28"
+            }
+        ]
+    },
+    "258" : {
+        "commands" : [
+            {
+                "name": "Etat #endpoint_id#",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "logicalId": "#endpoint_id#::258::8",
+                "generic_type": "FLAP_STATE"
+            },
+            {
+                "name": "Position #endpoint_id#",
+                "type": "action",
+                "subtype": "slider",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "value" : "Etat #endpoint_id#",
+                "logicalId": "#endpoint_id#::window_covering::go_to_lift_percentage::#slider#",
+                "generic_type": "FLAP_SLIDER"
+            },
+            {
+                "name": "Stop #endpoint_id#",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "logicalId": "#endpoint_id#::window_covering::stop",
+                "generic_type": "FLAP_STOP"
+            },
+            {
+                "name": "Monter #endpoint_id#",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "value" : "Etat #endpoint_id#",
+                "logicalId": "#endpoint_id#::window_covering::up_open",
+                "generic_type": "FLAP_UP"
+            },
+            {
+                "name": "Descendre #endpoint_id#",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "value" : "Etat #endpoint_id#",
+                "logicalId": "#endpoint_id#::window_covering::down_close",
+                "generic_type": "FLAP_DOWN"
+            }
+        ]
+    },
+    "768" : {
+        "commands" : [
+            {
+                "name": "Etat couleur #endpoint_id#",
+                "type": "info",
+                "subtype": "string",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "value" : "Etat couleur",
+                "logicalId": "#endpoint_id#::768::color",
+                "generic_type": "LIGHT_COLOR"
+            },
+            {
+                "name": "Couleur #endpoint_id#",
+                "type": "action",
+                "subtype": "color",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "value" : "Etat couleur #endpoint_id#",
+                "logicalId": "#endpoint_id#::light_color::move_to_color::#color#::#duration#",
+                "generic_type": "LIGHT_SET_COLOR"
+            },
+            {
+                "name": "Etat température couleur #endpoint_id#",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "value" : "Etat température couleur #endpoint_id#",
+                "logicalId": "#endpoint_id#::768::7",
+                "generic_type": "LIGHT_COLOR_TEMP"
+            },
+            {
+                "name": "Température Couleur #endpoint_id#",
+                "type": "action",
+                "subtype": "slider",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "value" : "Etat température couleur #endpoint_id#",
+                "logicalId": "#endpoint_id#::light_color::move_to_color_temp::#slider#::#duration#",
+                "generic_type": "LIGHT_SET_COLOR_TEMP"
+            },
+            {
+                "name": "Etat durée",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "value" : "Etat durée",
+                "logicalId": "durationstate",
+                "configuration" : {
+                  "minValue" : 0,
+                  "maxValue" : 100
+                }
+            },
+            {
+                "name": "Durée",
+                "type": "action",
+                "subtype": "slider",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "value" : "Etat durée",
+                "logicalId": "duration",
+                "configuration" : {
+                  "minValue" : 0,
+                  "maxValue" : 100
+                }
+            }	
+        ]
+    },
+    "1026" : {
+        "commands" : [
+            {
+                "name": "Température #endpoint_id#",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "#endpoint_id#::1026::0",
+                "unite" : "°C",
+                "generic_type": "TEMPERATURE",
+                "configuration" : {
+                  "calculValueOffset":"#value# / 100"
+                }
+            }
+        ]
+    },
+    "1029" : {
+        "commands" : [
+            {
+                "name": "Humidité #endpoint_id#",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "#endpoint_id#::1029::0",
+                "unite" : "%",
+                "generic_type": "HUMIDITY",
+                "configuration" : {
+                  "calculValueOffset":"#value# / 100"
+                }
+            }
+        ]
+    },
+    "1794" : {
+        "commands" : [
+            {
+                "name": "Consommation #endpoint_id#",
+                "generic_type": "CONSUMPTION",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite":"kWh",
+                "logicalId": "#endpoint_id#::1794::0",
+                "configuration":{
+                "historizeRound" : 2,
+                "calculValueOffset":"#value# / 1000"
+                }
+            }
+        ]
+    },
+    "2820" : {
+        "commands" : [
+            {
+                "name": "Puissance #endpoint_id#",
+                "generic_type": "POWER",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite":"W",
+                "logicalId": "#endpoint_id#::2820::1291",
+                "configuration":{
+                "historizeRound" : 2,
+                "calculValueOffset":"#value# / 10"
+                }
+            }
+        ]
+    }
+}

@@ -937,10 +937,12 @@ class zigbee extends eqLogic {
     $this->setConfiguration('applyDevice', $this->getConfiguration('device'));
     $this->save();
     if ($this->getConfiguration('device') == '') {
+      $this->autoGenerateCmd();
       return true;
     }
     $device = self::devicesParameters($this->getConfiguration('device'));
     if (!is_array($device)) {
+      $this->autoGenerateCmd();
       return true;
     }
     $this->import($device, true);
@@ -1026,6 +1028,27 @@ class zigbee extends eqLogic {
         }
       }
     }
+  }
+
+  public function autoGenerateCmd() {
+    $default_cmd = json_decode(file_get_contents(__DIR__ . '/../config/default_cmd.json'), true);
+    $node_data = zigbee::request($this->getConfiguration('instance', 1), '/device/info', array('ieee' => explode('|', $this->getLogicalId())[0]));
+    foreach ($node_data['endpoints'] as $endpoint) {
+      $endpoint_id = $endpoint['id'];
+      foreach ($endpoint['input_clusters'] as $in_cluster) {
+        if (isset($default_cmd[$in_cluster['id']])) {
+          $this->autoGenerateCmd_create($endpoint_id, $default_cmd[$in_cluster['id']]['commands']);
+        }
+      }
+    }
+  }
+
+  public function autoGenerateCmd_create($_endpoint_id, $_commands) {
+    $import = array('commands' => array());
+    foreach ($_commands as $command) {
+      $import['commands'][] = json_decode(str_replace(array('#endpoint_id#'), array($_endpoint_id), json_encode($command)), true);
+    }
+    $this->import($import, true);
   }
 
 
