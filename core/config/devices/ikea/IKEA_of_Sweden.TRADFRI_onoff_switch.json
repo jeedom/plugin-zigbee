@@ -16,7 +16,7 @@
   },
   "commands": [
     {
-      "name": "Bouton 1",
+      "name": "Bouton",
       "type": "info",
       "subtype": "binary",
       "isVisible": 1,
