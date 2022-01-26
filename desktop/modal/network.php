@@ -17,7 +17,7 @@
 if (!isConnect('admin')) {
   throw new Exception('401 Unauthorized');
 }
-$last_firmware = array('ezsp' => config::byKey('last_firmware_ezsp', 'zigbee'), 'conbee' => config::byKey('last_firmware_conbee', 'zigbee'));
+$last_firmware = array('ezsp' => config::byKey('last_firmware_ezsp', 'zigbee'), 'conbee' => config::byKey('last_firmware_conbee', 'zigbee'), 'zha' => config::byKey('last_zha_version', 'zigbee'), 'zigpy' => config::byKey('last_zigpy_version', 'zigbee'));
 sendVarToJS('zigbee_last_firmware', $last_firmware);
 ?>
 <script type="text/javascript" src="plugins/zigbee/3rdparty/vivagraph/vivagraph.min.js"></script>
@@ -251,6 +251,12 @@ sendVarToJS('zigbee_last_firmware', $last_firmware);
           }
           if (data.deconz && data.deconz.version && parseInt(data.deconz.version) < parseInt(zigbee_last_firmware.conbee)) {
             $('#application_network').append('<div class="alert alert-danger">{{Le firmware de votre clé Zigbee n\'est pas à jour (recommandé}} ' + zigbee_last_firmware.conbee + '{{. Merci de le mettre à jour pour éviter les soucis (problème de communication, surconsommation de pile des modules...). Pour mettre à jour une clé Deconz il faut ABSOLUMENT passer par un PC (Windows recommandé) et installé l\'application Deconz. Attention cette application est connue pour avoir des difficultés à voir les mises à jour de firmware...}}</div>')
+          }
+          if (data.zha_version && compareVersions(data.zha_version, '<', zigbee_last_firmware.zha)) {
+            $('#application_network').append('<div class="alert alert-danger">{{Vous n\'avez pas la derniere version de ZHA (recommandé}} ' + zigbee_last_firmware.zha + '{{). Merci de lancer l\'installation des dépendances pour avoir le support complet des derniers module Zigbee}}</div>')
+          }
+          if (data.zigpy_version && compareVersions(data.zigpy_version, '<', zigbee_last_firmware.zigpy)) {
+            $('#application_network').append('<div class="alert alert-danger">{{Vous n\'avez pas la derniere version de Zigpy (recommandé}} ' + zigbee_last_firmware.zigpy + '{{). Merci de lancer l\'installation des dépendances pour avoir le support complet des derniers module Zigbee}}</div>')
           }
           $('#application_network').append(jeedom.zigbee.util.displayAsTable(data));
         }
@@ -673,4 +679,27 @@ sendVarToJS('zigbee_last_firmware', $last_firmware);
     $('#div_routingTable').off('click', '.deviceConfigure').on('click', '.deviceConfigure', function() {
       loadPage('index.php?v=d&m=zigbee&p=zigbee&id=' + $(this).attr('data-id'))
     })
+
+
+    function compareVersions(v1, comparator, v2) {
+      "use strict";
+      var comparator = comparator == '=' ? '==' : comparator;
+      if (['==', '===', '<', '<=', '>', '>=', '!=', '!=='].indexOf(comparator) == -1) {
+        throw new Error('Invalid comparator. ' + comparator);
+      }
+      var v1parts = v1.split('.'),
+        v2parts = v2.split('.');
+      var maxLen = Math.max(v1parts.length, v2parts.length);
+      var part1, part2;
+      var cmp = 0;
+      for (var i = 0; i < maxLen && !cmp; i++) {
+        part1 = parseInt(v1parts[i], 10) || 0;
+        part2 = parseInt(v2parts[i], 10) || 0;
+        if (part1 < part2)
+          cmp = 1;
+        if (part1 > part2)
+          cmp = -1;
+      }
+      return eval('0' + comparator + cmp);
+    }
   </script>
