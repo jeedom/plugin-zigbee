@@ -21,6 +21,7 @@ import zigpy.exceptions
 import zigpy.types as t
 import registries
 import asyncio
+import pkg_resources
 
 def format_json_result(success='ok', data='', log_level=None, code=0):
 	if success == True or success == 'ok' :
@@ -35,7 +36,8 @@ def check_apikey(apikey):
 async def serialize_application():
 	obj = {
 		'ieee': str(shared.ZIGPY.ieee),
-		'version':zigpy.__version__,
+		'zigpy_version':zigpy.__version__,
+		'zha_version': pkg_resources.require("zha-quirks")[0].version,
 		'nwk': shared.ZIGPY.nwk,
 		'config': shared.ZIGPY._config
 	}
@@ -45,7 +47,9 @@ async def serialize_application():
 		pass
 
 	if shared.CONTROLLER == 'ezsp':
+		import bellows
 		obj['ezsp'] = {}
+		obj['ezsp']['zigpy_bellows_version'] = bellows.__version__
 		status, node_type, network_params = await shared.ZIGPY._ezsp.getNetworkParameters()
 		version = await shared.ZIGPY._ezsp.get_board_info()
 		obj['ezsp']['extendedPanId'] = ":".join("{:02x}".format(x) for x in network_params.extendedPanId)
@@ -56,17 +60,23 @@ async def serialize_application():
 		obj['ezsp']['nwkUpdateId'] = hex(network_params.nwkUpdateId)
 		obj['ezsp']['version'] = str(version[2])
 	if shared.CONTROLLER == 'deconz':
+		import zigpy_deconz
 		obj['deconz'] = {}
+		obj['deconz']['zigpy_deconz_version'] = zigpy_deconz.__version__
 		obj['deconz']['version'] = hex(shared.ZIGPY.version)
 		obj['deconz']['extendedPanId'] = ":".join("{:02x}".format(x) for x in shared.ZIGPY.state.network_information.extended_pan_id)
 		obj['deconz']['panId'] = hex(shared.ZIGPY.state.network_information.pan_id)
 		obj['deconz']['radioChannel'] = shared.ZIGPY.state.network_information.channel
 		obj['deconz']['nwkUpdateId'] = hex(shared.ZIGPY.state.network_information.nwk_update_id)
 	if shared.CONTROLLER == 'zigate':
+		import zigpy_zigate
 		obj['zigate'] = {}
+		obj['zigate']['zigpy_zigate_version'] = zigpy_zigate.__version__
 		obj['zigate']['version'] = str(shared.ZIGPY.version)
 	if shared.CONTROLLER == 'znp':
+		import zigpy_znp
 		obj['znp'] = {}
+		obj['znp']['zigpy_znp_version'] = zigpy_znp.__version__
 		obj['znp']['z-stack version'] = str(shared.ZIGPY._znp.version)
 		obj['znp']['model'] = str(shared.ZIGPY.zigpy_device.model)
 		obj['znp']['z-stack build id'] = str(shared.ZIGPY._zstack_build_id)
