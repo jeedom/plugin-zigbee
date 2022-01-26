@@ -1051,6 +1051,48 @@ class zigbee extends eqLogic {
     $this->import($import, true);
   }
 
+  public function generateConf() {
+    $return = $this->export();
+    $return['name'] = $this->getConfiguration('applyDevice');
+    unset($return['eqType_name']);
+    unset($return['category']);
+    unset($return['status']);
+    unset($return['cache']);
+    unset($return['configuration']['input_clusters']);
+    unset($return['configuration']['device']);
+    unset($return['configuration']['output_clusters']);
+    unset($return['configuration']['instance']);
+    unset($return['configuration']['createtime']);
+    unset($return['configuration']['applyDevice']);
+    unset($return['configuration']['updatetime']);
+    unset($return['configuration']['manufacturer']);
+    unset($return['configuration']['batterytime']);
+    unset($return['display']);
+    if (!isset($return['commands'])) {
+      $return['commands'] = $return['cmd'];
+      unset($return['cmd']);
+    }
+    foreach ($return['commands'] as &$command) {
+      unset($command['alert']);
+      unset($command['eqType']);
+      unset($command['configuration']['timeline::enable']);
+      unset($command['configuration']['interact::auto::disable']);
+      unset($command['configuration']['jeedomCheckCmdOperator']);
+      unset($command['configuration']['historizeMode']);
+      unset($command['configuration']['actionCheckCmd']);
+      unset($command['configuration']['jeedomPreExecCmd']);
+      unset($command['configuration']['jeedomPostExecCmd']);
+      unset($command['display']['showNameOndashboard']);
+      unset($command['display']['showNameOnmobile']);
+      unset($command['display']['showIconAndNamedashboard']);
+      unset($command['display']['showIconAndNamemobile']);
+      unset($command['display']['forceReturnLineBefore']);
+      unset($command['display']['forceReturnLineAfter']);
+      unset($command['display']['parameters']);
+    }
+    return $return;
+  }
+
 
   /*     * **********************Getteur Setteur*************************** */
 }

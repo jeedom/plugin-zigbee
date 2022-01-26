@@ -95,6 +95,7 @@ sendVarToJS('zigbee_binding_device', $binding_device);
   <li role="presentation"><a href="#configNodeTab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-cog"></i> {{Configuration}}</a></li>
   <li role="presentation"><a href="#actionNodeTab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Action}}</a></li>
   <li role="presentation"><a href="#rawNodeTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Informations brutes}}</a></li>
+  <li role="presentation"><a href="#jsonConfTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Configuration json}}</a></li>
 </ul>
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="infoNodeTab">
@@ -533,6 +534,12 @@ sendVarToJS('zigbee_binding_device', $binding_device);
   <div role="tabpanel" class="tab-pane" id="rawNodeTab">
     <pre><?php echo json_encode($node_data, JSON_PRETTY_PRINT); ?></pre>
   </div>
+  <div role="tabpanel" class="tab-pane" id="jsonConfTab">
+    <pre><?php echo json_encode($eqLogic->generateConf(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE); ?></pre>
+  </div>
+
+
+
 </div>
 
 <script>
