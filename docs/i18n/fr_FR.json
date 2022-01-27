@@ -7,6 +7,8 @@
         "Pour connaitre les nouveaux module compatible il faut aller": "Pour connaitre les nouveaux module compatible il faut aller",
         "c'est trié par date d'ajout\/modification": "c'est trié par date d'ajout\/modification",
         "Pour profiter des dernieres integration de module n'hesitez pas a mettre à jour les dépendances": "Pour profiter des dernieres integration de module n'hesitez pas a mettre à jour les dépendances",
+        "Mise en place d'un systeme de generation automatique de commandes si aucune configuration n'existe (dans la mesure du possible": "Mise en place d'un systeme de generation automatique de commandes si aucune configuration n'existe (dans la mesure du possible",
+        "Possibilité d'avoir la configuration json actuel du module (permettra d'integrer plus vite les modules": "Possibilité d'avoir la configuration json actuel du module (permettra d'integrer plus vite les modules",
         "21\/01\/2022": "21\/01\/2022",
         "Correction de bugs": "Correction de bugs",
         "Support de nouveau module": "Support de nouveau module",
