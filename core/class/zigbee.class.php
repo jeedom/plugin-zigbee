@@ -1082,13 +1082,38 @@ class zigbee extends eqLogic {
       unset($command['configuration']['actionCheckCmd']);
       unset($command['configuration']['jeedomPreExecCmd']);
       unset($command['configuration']['jeedomPostExecCmd']);
+      unset($command['configuration']['influx::enable']);
+      unset($command['configuration']['logicalId']);
       unset($command['display']['showNameOndashboard']);
       unset($command['display']['showNameOnmobile']);
       unset($command['display']['showIconAndNamedashboard']);
       unset($command['display']['showIconAndNamemobile']);
       unset($command['display']['forceReturnLineBefore']);
       unset($command['display']['forceReturnLineAfter']);
+      unset($command['display']['showStatsOndashboard']);
+      unset($command['display']['showStatsOnmobile']);
       unset($command['display']['parameters']);
+      if (isset($command['template']['dashboard']) && $command['template']['dashboard'] == 'default') {
+        unset($command['template']['dashboard']);
+      }
+      if (isset($command['template']['mobile']) && $command['template']['mobile'] == 'default') {
+        unset($command['template']['mobile']);
+      }
+      if (isset($command['display']['invertBinary']) && $command['display']['invertBinary'] == 0) {
+        unset($command['display']['invertBinary']);
+      }
+      if (isset($command['configuration']['repeatEventManagement']) && $command['configuration']['repeatEventManagement'] == 'auto') {
+        unset($command['configuration']['repeatEventManagement']);
+      }
+      if (count($command['display']) == 0) {
+        unset($command['display']);
+      }
+      if (count($command['template']) == 0) {
+        unset($command['template']);
+      }
+      if (count($command['configuration']) == 0) {
+        unset($command['configuration']);
+      }
     }
     return $return;
   }
