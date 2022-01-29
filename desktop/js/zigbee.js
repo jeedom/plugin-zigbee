@@ -15,6 +15,22 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+$('.eqLogicAction[data-action=allowAutoCreateCmd').off('click').on('click', function () {
+  bootbox.confirm("{{Dans ce mode Jeedom va automatiquement créer une commande pour chaque information renvoyé par le module pendant 3min. Si c'est une télécommande il faudra donc cliquer sur tous les boutons et type d'appuie possible pendant 3min}}", function(result){
+    if (result) {
+      jeedom.zigbee.allowAutoCreateCmd({
+        id : $('.eqLogicAttr[data-l1key=id]').value(),
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+          $('#div_alert').showAlert({message: '{{Mode auto decouvertes des commandes actif}}', level: 'success',ttl:180000});
+        }
+      });
+    }
+  });
+});
+
 $('#bt_zigbeeNetwork').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Réseaux zigbee}}"}).load('index.php?v=d&plugin=zigbee&modal=network').dialog('open');
 });
@@ -110,19 +126,20 @@ $('#bt_remoteCommissioning').off('click').on('click', function () {
 
 $('#bt_childCreate').off('click').on('click', function () {
   bootbox.prompt("{{Vous voulez créer un enfant sur quel endpoint ? (attention il ne faut jamais supprimer le device père)}}", function(endpoint){
-    if (endpoint) {jeedom.zigbee.device.childCreate({
-      id : $('.eqLogicAttr[data-l1key=id]').value(),
-      endpoint : endpoint,
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-      },
-      success: function () {
-        $('#div_alert').showAlert({message: '{{Enfant créé avec succès}}', level: 'success'});
-        window.location.href = 'index.php?v=d&p=zigbee&m=zigbee';
-      }
-    });
-  }
-});
+    if (endpoint) {
+      jeedom.zigbee.device.childCreate({
+        id : $('.eqLogicAttr[data-l1key=id]').value(),
+        endpoint : endpoint,
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+          $('#div_alert').showAlert({message: '{{Enfant créé avec succès}}', level: 'success'});
+          window.location.href = 'index.php?v=d&p=zigbee&m=zigbee';
+        }
+      });
+    }
+  });
 });
 
 

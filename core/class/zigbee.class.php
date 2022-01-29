@@ -1118,6 +1118,37 @@ class zigbee extends eqLogic {
     return $return;
   }
 
+  public function createCheckAndUpdateCmd($_logicalId, $_value) {
+    $cmd = is_object($_logicalId) ? $_logicalId : $this->getCmd('info', $_logicalId);
+    if (!is_object($cmd)) {
+      if (strpos($_logicalId, '::raw') !== false) {
+        return false;
+      }
+      $logicalIds = explode('::', $_logicalId);
+      if (!isset($logicalIds[1]) || in_array($logicalIds[1], array(0, 1, 2, 3, 4, 33))) {
+        return false;
+      }
+      if ($this->getCache('autocreateCmdTimestamp') == '' || (strtotime('now') - $this->getCache('autocreateCmdTimestamp')) > 180) {
+        $this->setCache('autocreateCmdTimestamp', null);
+        return false;
+      }
+      $cmd = new zigbeeCmd();
+      $cmd->setLogicalId($_logicalId);
+      $cmd->setName($_logicalId);
+      $cmd->setType('info');
+      $cmd->setSubType('numeric');
+      $cmd->setEqLogic_id($this->getId());
+      $cmd->save();
+      event::add('jeedom::alert', array(
+        'level' => 'success',
+        'page' => 'zigbee',
+        'message' => __('Création de la commande : ', __FILE__) . $_logicalId,
+        'ttl' => 2000
+      ));
+    }
+    $this->checkAndUpdateCmd($cmd, $_value);
+  }
+
 
   /*     * **********************Getteur Setteur*************************** */
 }
