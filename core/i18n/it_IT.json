@@ -310,6 +310,7 @@
         "Rechercher": "Ricercare",
         "Mes équipements Zigbee": "Mes équipements Zigbee",
         "Mes groupes Zigbee": "Mes groupes Zigbee",
+        "Auto decouverte des commandes d'information": "Auto decouverte des commandes d'information",
         "Configuration avancée": "Configurazione avanzata",
         "Créer un enfant": "Créer un enfant",
         "Dupliquer": "Duplicato",
@@ -360,6 +361,8 @@
         "Paramètres": "Impostazioni"
     },
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
+        "Dans ce mode Jeedom va automatiquement créer une commande pour chaque information renvoyé par le module pendant 3min. Si c'est une télécommande il faudra donc cliquer sur tous les boutons et type d'appuie possible pendant 3min": "Dans ce mode Jeedom va automatiquement créer une commande pour chaque information renvoyé par le module pendant 3min. Si c'est une télécommande il faudra donc cliquer sur tous les boutons et type d'appuie possible pendant 3min",
+        "Mode auto decouvertes des commandes actif": "Mode auto decouvertes des commandes actif",
         "Réseaux zigbee": "Réseaux zigbee",
         "Groupes zigbee": "Groupes zigbee",
         "Configuration du noeud": "Configuration du noeud",
@@ -466,6 +469,7 @@
         "ZHA": "ZHA",
         "ZLL": "ZLL",
         "Aucun cluster basic trouvé sur le module.Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\\'inclusion)": "Aucun cluster basic trouvé sur le module.Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\\'inclusion)",
+        "Création de la commande : ": "Création de la commande :",
         "Le message et le sujet ne peuvent pas être vide": "Le message et le sujet ne peuvent pas être vide"
     },
     "info.json": {
