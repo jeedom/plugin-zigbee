@@ -246,7 +246,7 @@ sendVarToJS('zigbee_last_firmware', $last_firmware);
         },
         success: function(data) {
           $('#application_network').empty();
-          if (data.ezsp && data.ezsp.version && data.ezsp.version.substr(0, 7).replace(/\./g, '') < zigbee_last_firmware.ezsp) {
+          if (data.ezsp && data.ezsp.version && compareVersions(data.ezsp.version, '<', zigbee_last_firmware.ezsp)) {
             $('#application_network').append('<div class="alert alert-danger">{{Le firmware de votre clé Zigbee n\'est pas à jour (recommandé}} ' + zigbee_last_firmware.ezsp + '{{). Merci de le mettre à jour pour éviter les soucis (problème de communication, surconsommation de pile des modules...). Pour se faire aller sur "configuration" puis "mettre à jour le firmware", selectionnez votre type de clef puis le port : }}' + data.config.device.path + '{{ et la version du firmware voulue.}}</div>')
           }
           if (data.deconz && data.deconz.version && parseInt(data.deconz.version) < parseInt(zigbee_last_firmware.conbee)) {

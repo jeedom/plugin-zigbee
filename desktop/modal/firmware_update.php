@@ -60,7 +60,7 @@ if (!isConnect('admin')) {
       <label class="col-lg-4 control-label">{{Firmware}}</label>
       <div class="col-lg-2">
         <select class="firmwareAttr form-control zigbee_firmware_sub_controller elelabs" data-l1key="firmware" style="display:none;">
-          <option value="efr32mg13p-v8-6910-115200.gbl">6.9.1 {{non officiel mais recommandé}}</option>
+          <option value="efr32mg13p-v8-6910-115200.gbl">6.9.1 {{non officiel}}</option>
           <option value="efr32mg13p-v8-6820-115200.gbl">6.8.2-42 {{non officiel}}</option>
           <option value="zigbee">{{Dernier firmware zigbee officiel}}</option>
           <!--<option value="thread">{{Dernier firmware thread officiel}}</option>-->
