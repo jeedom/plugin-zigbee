@@ -1,0 +1,25 @@
+{
+    "name": "Salus PS600 - Sonde appliquée connectée",
+    "ref" : "SS909ZB",
+    "buylink" : "",
+    "documentation":"https://salus-controls.com/fr/files/PS600-WE-QG-V003.pdf",
+    "pairing":"Passez en mode inclusion sous Jeedo. Retirez le ruban isolant, pour lancer le processus de synchronisation",
+    "reset":"Retirez le capot, la pile,appuyer sur bouton lateral pendant que vous reinserez la pile. Relachez le bouton quand le voyant clignote. Capteur reviendra aux parametres d usine, et entrera en mode de synchro",
+    "commands": [
+          {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "logicalId": "9::1026::0",
+            "unite" : "°C",  
+            "generic_type": "TEMPERATURE",
+            "configuration" : {
+              "calculValueOffset":"#value# / 100",
+              "minValue" : -5,
+              "maxValue" : 100
+            }
+          }
+    ]
+  }
