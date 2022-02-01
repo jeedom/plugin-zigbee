@@ -177,8 +177,8 @@ if (isset($result['devices'])) {
 									continue;
 								}
 								log::add('zigbee', 'debug', 'Search command for ' . $ieee . ' logicalId : ' . $endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . ' => ' . $cmd_value['value'] . ' convert to ' . convertValue($cmd_value['value']));
-								$zigbee->checkAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id, convertValue($cmd_value['value']));
-								$zigbee->checkAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::raw', $cmd_value['value']);
+								$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id, convertValue($cmd_value['value']));
+								$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::raw', $cmd_value['value']);
 							}
 						} else if (strcmp($attribut_id, 'gcmd') === 0) {
 							foreach ($value as $cmd_id => $cmd_value) {
@@ -186,8 +186,8 @@ if (isset($result['devices'])) {
 									continue;
 								}
 								log::add('zigbee', 'debug', 'Search general command for ' . $ieee . ' logicalId : ' . $endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . ' => ' . $cmd_value['value'] . ' convert to ' . convertValue($cmd_value['value']));
-								$zigbee->checkAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id, convertValue($cmd_value['value']));
-								$zigbee->checkAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::raw', $cmd_value['value']);
+								$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id, convertValue($cmd_value['value']));
+								$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::raw', $cmd_value['value']);
 							}
 						} else if (strcmp($attribut_id, 'event') === 0) {
 							foreach ($value as $cmd_id => $cmd_value) {
@@ -197,22 +197,22 @@ if (isset($result['devices'])) {
 											$sub_cmd_value = 1;
 										}
 										log::add('zigbee', 'debug', 'Search event command for ' . $ieee . ' logicalId : ' . $endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id . ' => ' . $sub_cmd_value . ' convert to ' . convertValue($sub_cmd_value));
-										$zigbee->checkAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id, convertValue($sub_cmd_value));
-										$zigbee->checkAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id . '::raw', $sub_cmd_value);
+										$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id, convertValue($sub_cmd_value));
+										$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id . '::raw', $sub_cmd_value);
 									}
 								} else {
 									if ($cmd_value === '[]') {
 										$cmd_value = 1;
 									}
 									log::add('zigbee', 'debug', 'Search event command for ' . $ieee . ' logicalId : ' . $endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . ' => ' . $cmd_value . ' convert to ' . convertValue($cmd_value));
-									$zigbee->checkAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id, convertValue($cmd_value));
-									$zigbee->checkAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::raw', $cmd_value);
+									$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id, convertValue($cmd_value));
+									$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::raw', $cmd_value);
 								}
 							}
 						} else {
 							log::add('zigbee', 'debug', 'Search attribut for ' . $ieee . ' logicalId : ' . $endpoint_id . '::' . $cluster_id . '::' . $attribut_id . ' => ' . $value['value'] . ' convert to ' . convertValue($value['value']));
-							$zigbee->checkAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id, convertValue($value['value']));
-							$zigbee->checkAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::raw', $value['value']);
+							$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id, convertValue($value['value']));
+							$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::raw', $value['value']);
 						}
 					}
 				}

@@ -310,6 +310,7 @@
         "Rechercher": "Pesquisa",
         "Mes équipements Zigbee": "Mes équipements Zigbee",
         "Mes groupes Zigbee": "Mes groupes Zigbee",
+        "Auto decouverte des commandes d'information": "Descoberta automática de comandos de informação",
         "Configuration avancée": "Configuração avançada",
         "Créer un enfant": "Créer un enfant",
         "Dupliquer": "Duplicar",
@@ -360,6 +361,8 @@
         "Paramètres": "Configurações"
     },
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
+        "Dans ce mode Jeedom va automatiquement créer une commande pour chaque information renvoyé par le module pendant 3min. Si c'est une télécommande il faudra donc cliquer sur tous les boutons et type d'appuie possible pendant 3min": "Neste modo o Jeedom criará automaticamente um pedido para cada informação retornada pelo módulo por 3min. Se for um controle remoto, será necessário clicar em todos os botões e tipo de suporte possível por 3min",
+        "Mode auto decouvertes des commandes actif": "Modo de descoberta automática de comandos ativo",
         "Réseaux zigbee": "Redes Zigbee",
         "Groupes zigbee": "Groupes zigbee",
         "Configuration du noeud": "Configuração do nó",
@@ -466,6 +469,7 @@
         "ZHA": "ZHA",
         "ZLL": "ZLL",
         "Aucun cluster basic trouvé sur le module.Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\\'inclusion)": "Nenhum cluster básico encontrado no módulo. Isso geralmente é devido a uma inclusão parcial, é aconselhável remover o módulo da rede zigbee e incluí-lo novamente (dependendo do módulo, pode ser necessário mantê-lo ativo por 2 minutos após o \\'inclusão)",
+        "Création de la commande : ": "Criação do pedido:",
         "Le message et le sujet ne peuvent pas être vide": "A mensagem e o assunto não podem estar em branco"
     },
     "info.json": {

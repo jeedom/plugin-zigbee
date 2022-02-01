@@ -310,6 +310,7 @@
         "Rechercher": "Buscar",
         "Mes équipements Zigbee": "Mis dispositivos Zigbee",
         "Mes groupes Zigbee": "Mis grupos Zigbee",
+        "Auto decouverte des commandes d'information": "Comandos de autodescubrimiento de información",
         "Configuration avancée": "Configuración avanzada",
         "Créer un enfant": "Crear un hijo",
         "Dupliquer": "Duplicar",
@@ -360,6 +361,8 @@
         "Paramètres": "Configuraciones"
     },
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
+        "Dans ce mode Jeedom va automatiquement créer une commande pour chaque information renvoyé par le module pendant 3min. Si c'est une télécommande il faudra donc cliquer sur tous les boutons et type d'appuie possible pendant 3min": "En este modo, Jeedom creará automáticamente un pedido para cada información devuelta por el módulo durante 3 minutos. Si se trata de un control remoto, será necesario hacer clic en todos los botones y tipos de soporte posibles durante 3 minutos",
+        "Mode auto decouvertes des commandes actif": "Modo de descubrimiento automático de comandos activo",
         "Réseaux zigbee": "Redes zigbee",
         "Groupes zigbee": "Grupos Zigbee",
         "Configuration du noeud": "Configuración del nodo",
@@ -466,6 +469,7 @@
         "ZHA": "ZHA",
         "ZLL": "ZLL",
         "Aucun cluster basic trouvé sur le module.Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\\'inclusion)": "No se ha encontrado ningún clúster básico en el módulo. Esto a menudo se debe a una inclusión parcial, se recomienda quitar el módulo de la red zigbee y volver a incluirlo (dependiendo del módulo, puede ser necesario mantenerlo activo durante 2 minutos después de la \\'inclusión)",
+        "Création de la commande : ": "Creación del pedido:",
         "Le message et le sujet ne peuvent pas être vide": "El mensaje y el asunto no pueden estar vacíos"
     },
     "info.json": {
