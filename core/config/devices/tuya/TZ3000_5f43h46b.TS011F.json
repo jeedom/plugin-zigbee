@@ -2,6 +2,10 @@
   "name": "QONTROLS Prise 16A avec mesure de consommation",
   "ref" : "TS0011F",
   "buylink" : "",
+  "config" : [
+    {"endpoint" : 1,"cluster":6,"attribute":32769,"name":"Etat du retro-eclairage","type":"select","values":[{"value":0,"name":"Eteint"},{"value":1,"name":"Allumé"}]},
+    {"endpoint" : 1,"cluster":6,"attribute":32770,"name":"Etat au retour du courant","type":"select","values":[{"value":0,"name":"Eteint"},{"value":1,"name":"Allumé"}]}
+  ],
   "commands": [
     {
       "name": "Etat",
@@ -64,16 +68,6 @@
         "historizeRound" : 2,
         "calculValueOffset":"#value# / 100"
       }
-    },
-    {
-      "name": "Puissance",
-      "generic_type": "POWER",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 1,
-      "isHistorized": 1,
-      "unite":"W",
-      "logicalId": "1::2820::1291"
     }
   ]
 }
