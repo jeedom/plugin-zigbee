@@ -10,7 +10,10 @@
       "isVisible": 0,
       "isHistorized": 0,
       "logicalId": "1::258::8",
-      "generic_type": "FLAP_STATE"
+      "generic_type": "FLAP_STATE",
+      "display" : {
+        "invert" : 1
+      }
     },
     {
       "name": "Position",
