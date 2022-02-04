@@ -1,0 +1,124 @@
+{
+    "name": "Sunricher thermostat",
+    "ref":"ZG9092",
+    "commands": [
+        {
+            "logicalId": "1::513::18",
+            "generic_type": "THERMOSTAT_SETPOINT",
+            "name": "Consigne ",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "unite": "°C",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 100"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::1794::0",
+            "generic_type": "CONSUMPTION",
+            "name": "Consommation",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "kWh",
+            "configuration": {
+                "historizeRound": 2,
+                "calculValueOffset": "#value# \/ 1000"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::513::0",
+            "generic_type": "THERMOSTAT_TEMPERATURE",
+            "name": "Température ",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "°C",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 100"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "attributes::1::in::513::18::#slider#*100",
+            "generic_type": "THERMOSTAT_SET_SETPOINT",
+            "name": "Thermostat ",
+            "type": "action",
+            "subType": "slider",
+            "isHistorized": "0",
+            "unite": "°C",
+            "configuration": {
+                "minValue": "6",
+                "maxValue": "28"
+            },
+            "template": {
+                "dashboard": "core::button",
+                "mobile": "core::button"
+            },
+            "value": "Consigne ",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::2820::1291",
+            "generic_type": "POWER",
+            "name": "Puissance ",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "W",
+            "configuration": {
+                "historizeRound": 2,
+                "calculValueOffset": "#value# \/ 10"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::513::28",
+            "generic_type": "THERMOSTAT_STATE_NAME",
+            "name": "Mode ",
+            "type": "info",
+            "subType": "string",
+            "isHistorized": "0",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "attributes::1::in::513::28::0",
+            "name": "Arrêt",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "value": "Mode ",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "attributes::1::in::513::28::1",
+            "name": "Auto",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "value": "Mode ",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "attributes::1::in::513::28::4",
+            "name": "Manu",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "value": "Mode ",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "attributes::1::in::513::28::8",
+            "name": "Séchage",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "value": "Mode ",
+            "isVisible": "1"
+        }
+    ]
+}

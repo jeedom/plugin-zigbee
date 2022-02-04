@@ -1053,7 +1053,7 @@ class zigbee extends eqLogic {
 
   public function generateConf() {
     $return = $this->export();
-    $return['name'] = $this->getConfiguration('applyDevice');
+    $return['name'] = $this->getConfiguration('device');
     unset($return['eqType_name']);
     unset($return['category']);
     unset($return['status']);
@@ -1067,6 +1067,18 @@ class zigbee extends eqLogic {
     unset($return['configuration']['updatetime']);
     unset($return['configuration']['manufacturer']);
     unset($return['configuration']['batterytime']);
+    if (isset($return['configuration']['last_seen::check_mode']) && $return['configuration']['last_seen::check_mode'] == 'auto') {
+      unset($return['configuration']['last_seen::check_mode']);
+    }
+    if (isset($return['configuration']['dontAwaitCmd']) && $return['configuration']['dontAwaitCmd'] == 0) {
+      unset($return['configuration']['dontAwaitCmd']);
+    }
+    if (isset($return['configuration']['ignoreExecutionError']) && $return['configuration']['ignoreExecutionError'] == 0) {
+      unset($return['configuration']['ignoreExecutionError']);
+    }
+    if (isset($return['configuration']['allowQueue']) && $return['configuration']['allowQueue'] == 0) {
+      unset($return['configuration']['allowQueue']);
+    }
     unset($return['display']);
     if (!isset($return['commands'])) {
       $return['commands'] = $return['cmd'];
@@ -1115,6 +1127,7 @@ class zigbee extends eqLogic {
         unset($command['configuration']);
       }
     }
+    $return['ref'] = $this->getConfiguration('device');
     return $return;
   }
 
