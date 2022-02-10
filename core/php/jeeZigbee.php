@@ -196,9 +196,17 @@ if (isset($result['devices'])) {
 										if ($sub_cmd_value === '[]') {
 											$sub_cmd_value = 1;
 										}
-										log::add('zigbee', 'debug', 'Search event command for ' . $ieee . ' logicalId : ' . $endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id . ' => ' . $sub_cmd_value . ' convert to ' . convertValue($sub_cmd_value));
-										$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id, convertValue($sub_cmd_value));
-										$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id . '::raw', $sub_cmd_value);
+										if (is_array($sub_cmd_value)) {
+											foreach ($sub_cmd_value as $sub_detail_id => $sub_detail_value) {
+												log::add('zigbee', 'debug', 'Search event detail command for ' . $ieee . ' logicalId : ' . $endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id . '::' . $sub_detail_id . ' => ' . $sub_detail_value . ' convert to ' . convertValue($sub_detail_value));
+												$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id . '::' . $sub_detail_id, convertValue($sub_detail_value));
+												$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id . '::' . $sub_detail_id . '::raw', $sub_detail_value);
+											}
+										} else {
+											log::add('zigbee', 'debug', 'Search event command for ' . $ieee . ' logicalId : ' . $endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id . ' => ' . $sub_cmd_value . ' convert to ' . convertValue($sub_cmd_value));
+											$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id, convertValue($sub_cmd_value));
+											$zigbee->createCheckAndUpdateCmd($endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . '::' . $sub_cmd_id . '::raw', $sub_cmd_value);
+										}
 									}
 								} else {
 									if ($cmd_value === '[]') {
