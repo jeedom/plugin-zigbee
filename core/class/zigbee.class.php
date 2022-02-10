@@ -1054,6 +1054,7 @@ class zigbee extends eqLogic {
   public function generateConf() {
     $return = $this->export();
     $return['name'] = $this->getConfiguration('device');
+    $return['ref'] = $this->getConfiguration('device');
     unset($return['eqType_name']);
     unset($return['category']);
     unset($return['status']);
@@ -1096,6 +1097,8 @@ class zigbee extends eqLogic {
       unset($command['configuration']['jeedomPostExecCmd']);
       unset($command['configuration']['influx::enable']);
       unset($command['configuration']['logicalId']);
+      unset($command['configuration']['lastCmdValue']);
+      unset($command['configuration']['actionConfirm']);
       unset($command['display']['showNameOndashboard']);
       unset($command['display']['showNameOnmobile']);
       unset($command['display']['showIconAndNamedashboard']);
@@ -1105,10 +1108,10 @@ class zigbee extends eqLogic {
       unset($command['display']['showStatsOndashboard']);
       unset($command['display']['showStatsOnmobile']);
       unset($command['display']['parameters']);
-      if (isset($command['template']['dashboard']) && $command['template']['dashboard'] == 'default') {
+      if (isset($command['template']['dashboard']) && $command['template']['dashboard'] == 'core::default') {
         unset($command['template']['dashboard']);
       }
-      if (isset($command['template']['mobile']) && $command['template']['mobile'] == 'default') {
+      if (isset($command['template']['mobile']) && $command['template']['mobile'] == 'core::default') {
         unset($command['template']['mobile']);
       }
       if (isset($command['display']['invertBinary']) && $command['display']['invertBinary'] == 0) {
@@ -1127,7 +1130,7 @@ class zigbee extends eqLogic {
         unset($command['configuration']);
       }
     }
-    $return['ref'] = $this->getConfiguration('device');
+
     return $return;
   }
 
