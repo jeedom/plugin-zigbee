@@ -35,7 +35,6 @@
         "subtype": "numeric",
         "isVisible": 1,
         "isHistorized": 1,
-        "unite" : "%",
         "logicalId": "1::1037::0",
         "generic_type" : "CO2"
       },
@@ -45,7 +44,6 @@
         "subtype": "numeric",
         "isVisible": 1,
         "isHistorized": 1,
-        "unite" : "%",
         "logicalId": "1::1067::0"
       },
       {
@@ -54,7 +52,6 @@
         "subtype": "numeric",
         "isVisible": 1,
         "isHistorized": 1,
-        "unite" : "%",
         "logicalId": "1::1070::0"
       }
     ]
