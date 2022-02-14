@@ -26,6 +26,19 @@
         "dashboard" : "window",
         "mobile" : "window"
       }
+    },
+    {
+      "name": "Température du module",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::2::0",
+      "unite" : "°C",
+      "generic_type": "TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
     }
   ]
 }
