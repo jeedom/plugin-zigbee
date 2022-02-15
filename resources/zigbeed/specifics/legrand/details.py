@@ -22,7 +22,12 @@ REPORTING_SPECIFIC = {" Dimmer switch w/o neutral" :
 							{38:[{"attr":"measured_value","min":60,"max":600,"report": 10}]
 							}
 						}
-					}
+					},{" Dimmer switch with neutral" :
+						{64513:
+							{38:[{"attr":"measured_value","min":60,"max":600,"report": 10}]
+							}
+						}
+					}	
 
 class JeedomLegrandCluster(CustomCluster):
 	cluster_id = 64513
