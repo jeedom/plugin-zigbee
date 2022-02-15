@@ -1,6 +1,6 @@
 {
   "name": "Module volet roulant",
-  "ref":"SIN-4-RS-VR",
+  "ref":"SIN-4-RS-20",
   "buylink" : "",
   "commands": [
     {
@@ -10,7 +10,10 @@
       "isVisible": 0,
       "isHistorized": 0,
       "logicalId": "1::258::8",
-      "generic_type": "FLAP_STATE"
+      "generic_type": "FLAP_STATE",
+      "display" : {
+        "invert" : 1
+      }
     },
     {
       "name": "Position",
@@ -50,6 +53,24 @@
       "value" : "Etat",
       "logicalId": "1::window_covering::down_close",
       "generic_type": "FLAP_DOWN"
+    },
+    {
+      "name": "Etat BSO",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::258::9",
+      "generic_type": "FLAP_STATE"
+    },
+    {
+      "name": "Position BSO",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::window_covering::go_to_tilt_percentage::#slider#"
     }
   ]
 }

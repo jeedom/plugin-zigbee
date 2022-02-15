@@ -1,20 +1,23 @@
 {
-  "name": "SIN-4-1-01",
-  "ref" : "SIN-4-1-01",
+  "name": "Commutateur ON/OFF simple charge 16A",
+  "ref" : "SIN-4-1-20",
   "buylink" : "",
+  "config" : [
+    {"endpoint" : "1","cluster":6,"attribute":1,"manufacturer":4747,"name":"Temps impulsion en ms","type":"number","min":0,"max":5000}
+  ],
   "commands": [
     {
       "name": "Etat",
       "type": "info",
       "subtype": "binary",
-      "generic_type": "LIGHT_STATE",
+      "generic_type": "ENERGY_STATE",
       "isVisible": 0,
       "isHistorized": 0,
       "logicalId": "1::6::0"
     },
     {
       "name": "On",
-      "generic_type": "LIGHT_ON",
+      "generic_type": "ENERGY_ON",
       "type": "action",
       "subtype": "other",
       "isVisible": 1,
@@ -28,7 +31,7 @@
     },
     {
       "name": "Off",
-      "generic_type": "LIGHT_OFF",
+      "generic_type": "ENERGY_OFF",
       "type": "action",
       "subtype": "other",
       "isVisible": 1,
@@ -39,15 +42,6 @@
         "dashboard" : "light",
         "mobile" : "light"
       }
-    },
-    {
-      "name": "Toggle",
-      "generic_type": "LIGHT_TOGGLE",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "logicalId": "1::on_off::toggle"
     }
   ]
 }
