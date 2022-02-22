@@ -1,0 +1,29 @@
+{
+    "name": "Xiaomi Mijia RTCGQ01LM",
+    "ref" : "RTCGQ01LM",
+    "configuration" : {
+      "battery_type" : "1x3V CR2032"
+    },
+    "commands": [
+      {
+        "name": "Présence",
+        "type": "info",
+        "subtype": "binary",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "logicalId": "1::6::0",
+        "generic_type": "PRESENCE",
+        "configuration": {
+          "repeatEventManagement": "always"
+        },
+        "display": {
+          "invertBinary" : 1
+        },
+        "template" : {
+          "dashboard" : "presence",
+          "mobile" : "presence"
+        }
+      }
+    ]
+  }
+  
