@@ -20,7 +20,8 @@
     "zigpy-xbee" : {"reinstall" : true},
     "zigpy-deconz" : {"reinstall" : true},
     "zigpy-zigate" : {"reinstall" : true},
-    "bellows" : {"reinstall" : true}
+    "bellows" : {"reinstall" : true},
+    "xmodem" : {"reinstall" : true}
   },
   "post-install" : {
     "script" : "plugins/zigbee/resources/post-install.sh"
