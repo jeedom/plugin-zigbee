@@ -1,0 +1,127 @@
+{
+  "name": "SMABIT - Thermostat intelligent avec relais intégré",
+  "ref" : "AV2010/32",
+  "buylink": "https://www.domadoo.fr/fr/peripheriques/5565-smabit-thermostat-intelligent-zigbee-avec-relais-8023874395883.html",
+  "config" : [
+    {
+      "endpoint" : 1,"cluster":513,"attribute":27,"name":"Mode autorisé","type":"select","values":
+      [
+        {"value":0,"name":"Froid"},
+        {"value":1,"name":"Froid et rechauffage"},
+        {"value":2,"name":"Chaud"},
+        {"value":3,"name":"Chaud et rechauffage"},
+        {"value":4,"name":"Chaud et froid"},
+        {"value":5,"name":"Chaud, froid et rechauffage"}
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "1::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne chaud",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "1::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat chaud",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne chaud",
+      "logicalId": "attributes::1::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"6",
+        "maxValue":"28"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Consigne froid",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "1::513::17",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat froid",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne froid",
+      "logicalId": "attributes::1::in::513::17::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"6",
+        "maxValue":"28"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Mode",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "generic_type" : "THERMOSTAT_STATE_NAME",
+      "logicalId": "1::513::28"
+    },
+    {
+      "name": "Off",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "logicalId": "attributes::1::in::513::28::0"
+    },
+    {
+      "name": "Chauffage",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "logicalId": "attributes::1::in::513::28::4"
+    },
+    {
+      "name": "Refroidissement",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "logicalId": "attributes::1::in::513::28::3"
+    }
+  ]
+}

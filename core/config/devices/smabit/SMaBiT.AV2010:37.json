@@ -1,0 +1,31 @@
+{
+  "name": "SMABIT - Detecteur inondation + sirene",
+  "ref":"AV2010/37",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5569-smabit-detecteur-de-fuite-d-eau-avec-sirene-zigbee-8021156063291.html",
+  "pairing":"Appuyez sur les 2 boutons (avant et arriere) pendant 10s",
+  "configuration" :{
+    "deviceSpecific":{
+      "poll_control":{
+        "long_poll":"1160"
+      }
+    }
+  },
+  "commands": [
+    {
+      "name": "Innondation",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "FLOOD",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
+      "template":{
+        "dashboard" : "flood",
+        "mobile" : "flood"
+      }
+    }
+  ]
+}
