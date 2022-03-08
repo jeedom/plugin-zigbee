@@ -1,0 +1,70 @@
+{
+    "name": "Multi-Sensor (Mouvement/Temperature/Humidite/Luminosite)",
+    "ref" : "PIR313",
+    "buylink" : "https://www.domadoo.fr/fr/peripheriques/6010-owon-capteur-de-mouvement-temperature-et-humidite-zigbee.html?domid=4&id_campaign=9",
+    "documentation":"https://www.owon-smart.com/uploads/Quick-Start-Guide-PIR313-Multisensor-V0.4.pdf",
+    "commands": [
+        {
+            "name": "Présence",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "logicalId": "1::1280::cmd::1",
+            "generic_type": "PRESENCE",
+            "configuration": {
+              "repeatEventManagement": "always"
+            },
+            "display": {
+              "invertBinary" : 1
+            },
+            "template" : {
+              "dashboard" : "presence",
+              "mobile" : "presence"
+            }
+          },
+        {
+            "name": "Humidité",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "logicalId": "3::1029::0",
+            "unite" : "%",
+            "generic_type": "HUMIDITY",
+            "configuration" : {
+              "calculValueOffset":"#value# / 100",
+              "minValue" : 0,
+              "maxValue" : 100
+            }
+          },
+          {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "logicalId": "3::1026::0",
+            "unite" : "°C",  
+            "generic_type": "TEMPERATURE",
+            "configuration" : {
+              "calculValueOffset":"#value# / 100",
+              "minValue" : -10,
+              "maxValue" : 50
+            }
+          },
+          {
+            "name": "Luminosite",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "logicalId": "2::1024::0",
+            "unite" : "Lux",
+            "generic_type": "LIGHT_BRIGHTNESS",
+            "configuration" : {
+              "calculValueOffset":"#value# / 100"
+            }
+          }
+    ]
+  }
