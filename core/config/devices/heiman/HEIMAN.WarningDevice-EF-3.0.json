@@ -1,6 +1,7 @@
 {
   "name": "Sirène intelligente",
   "ref" : "WarningDevice-EF-3.0",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5714-heiman-sirene-interieure-intelligente-zigbee-30.html?domid=4&id_campaign=9",
   "manufacturer" : "Heiman",
   "pairing": "Branchez la sirène",
   "reset": "Appuyez sur le bouton jusqu'à ce que la led clignote rouge",
