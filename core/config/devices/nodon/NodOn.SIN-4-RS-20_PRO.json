@@ -1,7 +1,7 @@
 {
   "name": "Module volet roulant PRO",
   "ref":"SIN-4-RS-20_PRO",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5587-nodon-pro-module-volet-roulant-zigbee-3700313925287.html?domid=4&id_campaign=9",
   "commands": [
     {
       "name": "Etat",
