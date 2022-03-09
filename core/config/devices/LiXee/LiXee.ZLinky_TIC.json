@@ -1,6 +1,7 @@
 {
     "name": "TIC",
     "ref" : "Zlinky_TIC",
+    "buylink" : "https://www.domadoo.fr/fr/box-domotique/5914-lixee-module-tic-vers-zigbee-30-pour-compteur-linky-3770014375148.html?domid=4&id_campaign=9",
     "configuration":{
       "autorefresh" : "*/5 * * * *"
     },
