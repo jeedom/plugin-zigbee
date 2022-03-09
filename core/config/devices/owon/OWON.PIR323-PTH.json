@@ -1,7 +1,7 @@
 {
     "name": "Multi-Sensor (Mouvement/Temperature/Humidite)",
     "ref" : "PIR323-PTH",
-    "buylink" : "",
+    "buylink" : "https://www.domadoo.fr/fr/peripheriques/6009-owon-capteur-de-mouvement-temperature-et-humidite-zigbee.html?domid=4&id_campaign=9",
     "documentation":"https://www.owon-smart.com/uploads/Quick-Start-Guide-PIR323-ZigBee-Multi-Sensor.pdf",
     "commands": [
         {
