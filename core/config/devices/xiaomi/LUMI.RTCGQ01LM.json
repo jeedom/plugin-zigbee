@@ -1,6 +1,7 @@
 {
     "name": "Xiaomi Mijia RTCGQ01LM",
     "ref" : "RTCGQ01LM",
+    "buylink" : "https://www.domadoo.fr/fr/peripheriques/4518-xiaomi-aqara-detecteur-de-mouvement-zigbee-rtcgq11lm-192784000090.html?domid=4&id_campaign=9",
     "configuration" : {
       "battery_type" : "1x3V CR2032"
     },
