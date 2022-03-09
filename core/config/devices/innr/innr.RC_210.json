@@ -1,7 +1,7 @@
 {
     "name": "INNR smart button",
     "ref" : "RC210",
-    "buylink" : "",
+    "buylink" : "https://www.domadoo.fr/fr/peripheriques/6055-innr-bouton-intelligent-sans-fil-zigbee-1-touche-smart-button-8718781553364.html?domid=4&id_campaign=9",
     "commands": [
       {
         "name": "Etat",
