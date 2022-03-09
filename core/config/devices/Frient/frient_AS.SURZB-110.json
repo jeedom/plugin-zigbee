@@ -1,6 +1,7 @@
 {
   "name": "Sirène intelligente",
   "ref" : "20205500",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5538-frient-sirene-intelligente-zigbee-30-5713594002422.html?domid=4&id_campaign=9",
   "commands": [
     {
       "name": "Etat durée",
