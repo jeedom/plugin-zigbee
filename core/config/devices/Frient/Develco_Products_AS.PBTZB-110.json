@@ -1,6 +1,7 @@
 {
   "name": "Panic button",
   "ref" : "PBTZB-110",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5808-frient-bouton-intelligent-zigbee-30.html?domid=4&id_campaign=9",
   "manufacturer" : "Develco",
   "pairing": "Inserez les piles",
   "reset": "Retirer et remetter les piles puis dans les 60s maintenir le bouton appuyé jusqu'a ce que la led flash",
