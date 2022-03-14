@@ -1,0 +1,48 @@
+{
+    "name": "PRISE INTELLIGENTE 16A US",
+    "ref" : "S31 Lite Zb",
+    "type": "Prise",
+    "buylink": "",
+    "remark": "",
+    "reset": "Appui maintenu de 5 secondes sur le bouton de configuration",
+    "pairing": "Une fois alimenté le module entre en mode appairage",
+    "commands": [
+      {
+        "name": "Etat",
+        "type": "info",
+        "subtype": "binary",
+        "generic_type": "ENERGY_STATE",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::6::0"
+      },
+      {
+        "name": "On",
+        "generic_type": "ENERGY_ON",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat",
+        "logicalId": "1::on_off::on",
+        "template":{
+          "dashboard" : "light",
+          "mobile" : "light"
+        }
+      },
+      {
+        "name": "Off",
+        "generic_type": "ENERGY_OFF",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat",
+        "logicalId": "1::on_off::off",
+        "template":{
+          "dashboard" : "light",
+          "mobile" : "light"
+        }
+      }
+    ]
+  }
