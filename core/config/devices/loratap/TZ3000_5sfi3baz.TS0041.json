@@ -1,0 +1,21 @@
+{
+    "name": "LORATAP - INTERRUPTEUR MURAL DE SCÈNE SANS FIL ZIGBEE 3.0 - 1 BOUTON",
+    "ref" : "TS0041",
+    "buylink" : "https://www.domadoo.fr/fr/peripheriques/6031-loratap-interrupteur-mural-de-scene-sans-fil-zigbee-30-1-bouton.html?domid=4&id_campaign=9",
+    "reset" : "",
+    "pairing" : "Appui sur bouton interne pendant 5 s",
+    "commands": [
+        {
+            "name": "Bouton 1",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "logicalId": "1::6::cmd::1",
+            "configuration": {
+              "repeatEventManagement": "always"
+            }
+          }
+    ]
+  }
+  
