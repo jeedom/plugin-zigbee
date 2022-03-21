@@ -1,0 +1,50 @@
+{
+  "name": "Détecteur de fumée",
+  "commands": [
+    {
+      "name": "Fumée",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "35::15::85",
+      "generic_type": "SMOKE",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
+      "template":{
+        "dashboard" : "heat",
+        "mobile" : "heat"
+      }
+    },
+    {
+      "name": "Sirene On",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "35::ias_wd::start_warning::1::0::3::240::0::0"
+    },
+    {
+      "name": "Sirene Off",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "35::ias_wd::start_warning::0::0::0::0::0::0"
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "38::1026::0",
+      "unite" : "°C",
+      "generic_type": "TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    }
+  ]
+}
