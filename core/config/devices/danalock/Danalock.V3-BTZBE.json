@@ -14,7 +14,7 @@
     },
     {
       "name": "Verrouiller",
-      "generic_type": "LOCK_OPEN",
+      "generic_type": "LOCK_CLOSE",
       "type": "action",
       "subtype": "other",
       "isVisible": 1,
@@ -24,7 +24,7 @@
     },
     {
       "name": "Deverrouiller",
-      "generic_type": "LOCK_CLOSE",
+      "generic_type": "LOCK_OPEN",
       "type": "action",
       "subtype": "other",
       "isVisible": 1,
