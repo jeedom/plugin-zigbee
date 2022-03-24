@@ -1,0 +1,119 @@
+{
+  "name": "Module IO Zigbee 3.0 - 4 entrées contact sec + 2 sorties contact sec NO/NC (ON/OFF ou impulsion)",
+  "ref" : "IOMZB-110",
+  "buylink" : "https://shop.smarthome-europe.com/fr/peripheriques/5238-domadoo-module-io-zigbee-30-4-entrees-contact-sec-2-sorties-nonc-onoff-ou-impulsion.html?search_query=DOMADOO+-+Module+IO+Zigbee+3.0+-+4+entrees+++2+sorties&results=593?domid=4&id_campaign=9",
+  "reset" : "Il faut presser pendant 10s le bouton du module",
+  "pairing":"Alimenter le module",
+  "commands": [
+    {
+      "name": "Etat 1",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "116::6::0"
+    },
+    {
+      "name": "On 1",
+      "generic_type": "ENERGY_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 1",
+      "logicalId": "116::on_off::on",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Off 1",
+      "generic_type": "ENERGY_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 1",
+      "logicalId": "116::on_off::off",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Etat 2",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "117::6::0"
+    },
+    {
+      "name": "On 2",
+      "generic_type": "ENERGY_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 2",
+      "logicalId": "117::on_off::on",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Off 2",
+      "generic_type": "ENERGY_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat 2",
+      "logicalId": "117::on_off::off",
+      "template":{
+        "dashboard" : "prise",
+        "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Entrée 1",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "112::15::85"
+    },
+    {
+      "name": "Entrée 2",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "113::15::85"
+    },
+    {
+      "name": "Entrée 3",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "114::15::85"
+    },
+    {
+      "name": "Entrée 4",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "115::15::85"
+    }
+  ]
+}
