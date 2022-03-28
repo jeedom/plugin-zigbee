@@ -1,0 +1,115 @@
+{
+  "name": "Purificateur d’air IKEA Starkvind table",
+  "buylink" : "",
+  "commands": [
+    {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
+    },
+    {
+      "name": "Mode",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::514::0"
+    },
+    {
+      "name": "Off",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Mode",
+      "logicalId": "attributes::1::in::514::0::0"
+    },
+    {
+      "name": "Bas",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Mode",
+      "logicalId": "attributes::1::in::514::0::1"
+    },
+    {
+      "name": "Moyen",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Mode",
+      "logicalId": "attributes::1::in::514::0::2"
+    },
+    {
+      "name": "Rapide",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Mode",
+      "logicalId": "attributes::1::in::514::0::3"
+    },
+    {
+      "name": "Auto",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "attributes::1::in::514::0::5"
+    },
+    {
+      "name": "Durée de fonctionnement du filtre",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64599::0"
+    },
+    {
+      "name": "Durée de vie restante du filtre",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64599::2"
+    },
+    {
+      "name": "Etat filtre",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64599::1"
+    },
+    {
+      "name": "Qualité de l'air",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64599::4"
+    },
+    {
+      "name": "Temps de fonctionnement",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64599::8"
+    },
+    {
+      "name": "Mode en cours",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::64599::7"
+    }
+  ]
+}
