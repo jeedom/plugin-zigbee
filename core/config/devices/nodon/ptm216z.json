@@ -1,7 +1,13 @@
 {
-  "name": "PTM 216 Z",
-  "ref" : "ptm216z",
-  "buylink" : "",
+  "name": "Interrupteur mural Zigbee compatible Philips Hue",
+  "ref" : "CWS-4-1-01_HUE",
+  "manufacturer": "NodOn",
+  "type": "Interrupteur",
+  "reset": "",
+  "pairing": "",
+  "remark": "",
+  "documentation": "",
+  "buylink": "https://www.domadoo.fr/fr/peripheriques/5922-nodon-interrupteur-mural-zigbee-compatible-philips-hue-3700313924723.html?domid=4&id_campaign=9",
   "commands": [
     {
       "name": "On Off",
