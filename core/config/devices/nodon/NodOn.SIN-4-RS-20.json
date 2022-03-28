@@ -1,7 +1,7 @@
 {
   "name": "Module volet roulant",
   "ref":"SIN-4-RS-20",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5690-nodon-module-volet-roulant-zigbee-3700313925201.html?domid=4&id_campaign=9",
   "commands": [
     {
       "name": "Etat",
