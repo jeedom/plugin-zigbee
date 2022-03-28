@@ -1,6 +1,8 @@
 {
     "name": "INTERRUPTEUR MURAL DE SCÈNE SANS FIL ZIGBEE 3.0 - 4 BOUTONS",
     "ref" : "TS0044",
+    "manufacturer": "Loratap",
+    "type": "Interrupteur,Télécommande",
     "buylink" : "https://www.domadoo.fr/fr/peripheriques/6040-loratap-interrupteur-mural-de-scene-sans-fil-zigbee-30-4-boutons.html?domid=4&id_campaign=9",
     "reset" : "",
     "pairing" : "Appui sur n'importe quel bouton pendant 5 s",
