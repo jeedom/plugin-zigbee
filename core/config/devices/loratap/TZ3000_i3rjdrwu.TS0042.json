@@ -1,6 +1,8 @@
 {
     "name": "LORATAP - INTERRUPTEUR MURAL DE SCÈNE SANS FIL ZIGBEE 3.0 - 2 BOUTON",
     "ref" : "TS0042",
+    "manufacturer": "Loratap",
+    "type": "Interrupteur,Télécommande",
     "buylink" : "https://www.domadoo.fr/fr/peripheriques/6038-loratap-interrupteur-mural-de-scene-sans-fil-zigbee-30-2-boutons.html?domid=4&id_campaign=9",
     "reset" : "",
     "pairing" : "Appui sur bouton interne pendant 5 s",
