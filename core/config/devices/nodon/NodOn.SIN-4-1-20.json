@@ -1,7 +1,9 @@
 {
   "name": "Commutateur ON/OFF simple charge 16A",
   "ref" : "SIN-4-1-20",
-  "buylink" : "",
+  "manufacturer": "NodOn",
+  "type": "Contacteur",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5688-nodon-module-multifonction-zigbee-3700313925188.html?domid=4&id_campaign=9",
   "config" : [
     {"endpoint" : "1","cluster":6,"attribute":1,"manufacturer":4747,"name":"Temps impulsion en ms","type":"number","min":0,"max":5000}
   ],
