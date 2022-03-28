@@ -1,6 +1,8 @@
 {
   "name": "Module commutateur double charge ON/OFF 2x3A PRO",
   "ref" : "SIN-4-2-20_PRO",
+  "manufacturer": "NodOn",
+  "type": "Contacteur",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5586-nodon-pro-module-eclairage-onoff-zigbee-3700313925317.html?domid=4&id_campaign=9",
   "commands": [
     {
