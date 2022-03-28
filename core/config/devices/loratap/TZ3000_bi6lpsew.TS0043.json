@@ -1,7 +1,9 @@
 {
   "name": "LORATAP - Télécommande 3 boutons",
+  "manufacturer": "Loratap",
+  "type": "Télécommande",
   "ref" : "TS0043",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5712-loratap-telecommande-zigbee-3-boutons.html?domid=4&id_campaign=9",
   "reset" : "",
   "pairing" : "",
   "commands": [
