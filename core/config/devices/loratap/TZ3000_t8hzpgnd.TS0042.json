@@ -1,5 +1,7 @@
 {
     "name": "LORATAP - Télécommande 2 boutons",
+    "manufacturer": "Loratap",
+    "type": "Télécommande",
     "ref" : "TS0041",
     "buylink" : "https://www.domadoo.fr/fr/peripheriques/6014-loratap-telecommande-zigbee-30-2-boutons.html?domid=4&id_campaign=9",
     "reset" : "",
