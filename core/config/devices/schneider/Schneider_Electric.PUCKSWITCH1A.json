@@ -2,8 +2,8 @@
   "name": "Module commutateur ON/OFF Wiser 2nd edition",
   "ref" : "CCT5011-0002W",
   "manufacturer": "Schneider",
-  "type": "Interrupteur",
-  "buylink" : "",
+  "type": "Contacteur",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5722-schneider-electric-micromodule-interrupteur-eclairage-connecte-zigbee-30-wiser-3606481048172.html?domid=4&id_campaign=9",
   "commands": [
     {
       "name": "Etat",
