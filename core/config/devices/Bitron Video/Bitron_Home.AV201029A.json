@@ -1,6 +1,8 @@
 {
   "name": "SMABIT - Sirène extérieure Zigbee 104 dB",
   "ref" : "AV2010/29A",
+  "manufacturer": "SMaBiT",
+  "type": "Sirène",
   "buylink" : "https://www.domadoo.fr/fr/peripheriques/5564-smabit-sirene-exterieure-zigbee-104-db-8023874397641.html?domid=4&id_campaign=9",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Il faut presser pendant 5s le bouton du module",
