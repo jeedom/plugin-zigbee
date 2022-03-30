@@ -1154,6 +1154,7 @@ class zigbee extends eqLogic {
       $cmd->setType('info');
       $cmd->setSubType('numeric');
       $cmd->setEqLogic_id($this->getId());
+      $cmd->setConfiguration('repeatEventManagement', 'always');
       $cmd->save();
       event::add('jeedom::alert', array(
         'level' => 'success',
