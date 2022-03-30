@@ -1,0 +1,111 @@
+{
+    "name": "OWON - COMPTEUR DE CONSOMMATION ÉLECTRIQUE - 3 PINCES AMPÈREMÉTRIQUES MONOPHASÉE / TRIPHASÉE ZIGBEE - 80A",
+    "ref": "PC321-80A",
+    "reset": "",
+    "pairing": "",
+    "remark": "",
+    "documentation": "https://www.owon-smart.com/uploads/Quick-Start-Guide-PC321-Power-Clamp.pdf",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/6057-owon-compteur-de-consommation-electrique-3-pinces-amperemetriques-monophasee-triphasee-zigbee-80a.html",
+    "commands": [
+      {
+        "name": "Consommation Cumulée Totale",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "unite" : "W",
+        "logicalId": "1::1794::0"
+      },
+      {
+        "name": "Puissance totale",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "unite" : "W",
+        "logicalId": "1::1794::1024"
+      },
+      {
+        "name": "Puissance 1",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "unite" : "W",
+        "logicalId": "1::1794::8192"
+      },
+      {
+        "name": "Puissance 2",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "unite" : "W",
+        "logicalId": "1::1794::8193"
+      },
+      {
+        "name": "Puissance 3",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "unite" : "W",
+        "logicalId": "1::1794::8194"
+      },
+      {
+        "name": "Tension 1",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "unite" : "V",
+        "logicalId": "1::1794::12288"
+      },
+      {
+        "name": "Tension 2",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "unite" : "V",
+        "logicalId": "1::1794::12289"
+      },
+      {
+        "name": "Tension 3",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "unite" : "V",
+        "logicalId": "1::1794::12290"
+      },
+      {
+        "name": "Consommation cumulée 1",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "unite" : "w",
+        "logicalId": "1::1794::16384"
+      },
+      {
+        "name": "Consommation cumulée 2",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "unite" : "W",
+        "logicalId": "1::1794::16385"
+      },
+      {
+        "name": "Consommation cumulée 3",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "unite" : "W",
+        "logicalId": "1::1794::16386"
+      }
+      
+    ]
+  }
