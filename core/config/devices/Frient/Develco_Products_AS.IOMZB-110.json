@@ -1,7 +1,7 @@
 {
   "name": "Module IO Zigbee 3.0 - 4 entrées contact sec + 2 sorties contact sec NO/NC (ON/OFF ou impulsion)",
   "ref" : "IOMZB-110",
-  "buylink" : "https://shop.smarthome-europe.com/fr/peripheriques/5238-domadoo-module-io-zigbee-30-4-entrees-contact-sec-2-sorties-nonc-onoff-ou-impulsion.html?search_query=DOMADOO+-+Module+IO+Zigbee+3.0+-+4+entrees+++2+sorties&results=593?domid=4&id_campaign=9",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/6148-domadoo-module-io-zigbee-30-4-entrees-contact-sec-2-sorties-nonc-onoff-ou-impulsion.html?domid=4&id_campaign=9",
   "reset" : "Il faut presser pendant 10s le bouton du module",
   "pairing":"Alimenter le module",
   "commands": [
