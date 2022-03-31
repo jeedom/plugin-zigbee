@@ -1,7 +1,7 @@
 {
   "name": "INNR E27 Multicolor RGBW + Blanc",
   "ref" : "RB285C",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5355-innr-ampoule-connectee-type-e27-zigbee-30-multicolor-rgbw-blanc-reglable-2200k-a-6500k-8718781552206.html?domid=4&id_campaign=9",
   "reset" : "ON/OFF 6x espacés de 0.5s",
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule",
   "commands": [
