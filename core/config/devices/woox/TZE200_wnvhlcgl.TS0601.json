@@ -2,7 +2,7 @@
   "name": "Tete thermostatique intelligente avec écran",
   "manufacturer": "Woox",
   "type": "Tête thermostatique",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/tetes-thermostatiques/5902-woox-tete-thermostatique-connectee-zigbee-30-8435606701761.html?domid=4&id_campaign=9",
   "ref" : "R7067",
   "pairing" : "Maintenir appuyé 5 secondes le bouton reset jusqu'au clignotement de la LED",
   "commands": [
