@@ -26,7 +26,7 @@
         "logicalId": "1::1794::1024"
       },
       {
-        "name": "Puissance 1",
+        "name": "Puissance L1",
         "type": "info",
         "subtype": "numeric",
         "isVisible": 1,
@@ -35,7 +35,7 @@
         "logicalId": "1::1794::8192"
       },
       {
-        "name": "Puissance 2",
+        "name": "Puissance L2",
         "type": "info",
         "subtype": "numeric",
         "isVisible": 1,
@@ -44,7 +44,7 @@
         "logicalId": "1::1794::8193"
       },
       {
-        "name": "Puissance 3",
+        "name": "Puissance L3",
         "type": "info",
         "subtype": "numeric",
         "isVisible": 1,
@@ -53,7 +53,7 @@
         "logicalId": "1::1794::8194"
       },
       {
-        "name": "Tension 1",
+        "name": "Tension L1",
         "type": "info",
         "subtype": "numeric",
         "isVisible": 1,
@@ -62,7 +62,7 @@
         "logicalId": "1::1794::12288"
       },
       {
-        "name": "Tension 2",
+        "name": "Tension L2",
         "type": "info",
         "subtype": "numeric",
         "isVisible": 1,
@@ -71,7 +71,7 @@
         "logicalId": "1::1794::12289"
       },
       {
-        "name": "Tension 3",
+        "name": "Tension L3",
         "type": "info",
         "subtype": "numeric",
         "isVisible": 1,
@@ -80,7 +80,7 @@
         "logicalId": "1::1794::12290"
       },
       {
-        "name": "Consommation cumulée 1",
+        "name": "Consommation cumulée L1",
         "type": "info",
         "subtype": "numeric",
         "isVisible": 1,
@@ -89,7 +89,7 @@
         "logicalId": "1::1794::16384"
       },
       {
-        "name": "Consommation cumulée 2",
+        "name": "Consommation cumulée L2",
         "type": "info",
         "subtype": "numeric",
         "isVisible": 1,
@@ -98,14 +98,58 @@
         "logicalId": "1::1794::16385"
       },
       {
-        "name": "Consommation cumulée 3",
+        "name": "Consommation cumulée L3",
         "type": "info",
         "subtype": "numeric",
         "isVisible": 1,
         "isHistorized": 0,
         "unite" : "W",
         "logicalId": "1::1794::16386"
+      },
+       {
+        "name": "Intensite L1",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "unite" : "A",
+        "logicalId": "1::1794::12544",
+         "configuration" : {
+        "calculValueOffset":"#value# / 1000"
+      }     
+      },
+       {
+        "name": "Intensite L2",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "unite" : "A",
+        "logicalId": "1::1794::12545",
+         "configuration" : {
+        "calculValueOffset":"#value# / 1000"
+        }
+      },
+       {
+        "name": "Intensite L3",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,     
+        "isHistorized": 0,
+        "unite" : "A",
+        "logicalId": "1::1794::12546",
+         "configuration" : {
+        "calculValueOffset":"#value# / 1000"
       }
-      
+       },
+        {
+        "name": "Courant Fuite",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "unite" : "V",
+        "logicalId": "1::1794::12548"
+      }   
     ]
   }
