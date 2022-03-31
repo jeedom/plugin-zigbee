@@ -1,7 +1,7 @@
 {
   "name": "INNR GU10 RGBW",
   "ref" : "RS230C",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5451-innr-ampoule-connectee-type-gu10-zigbee-30-multicolor-rgbw-blanc-reglable-1800-a-6500k-8718781552039.html?domid=4&id_campaign=9",
   "reset" : "ON/OFF 6x espacés de 0.5s",
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule",
   "commands": [
