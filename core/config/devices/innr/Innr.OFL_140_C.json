@@ -1,6 +1,7 @@
 {
   "name": "INNR Outdoor Flex Light Colour",
   "ref" : "OFL 140 C",
+  "buylink" :"https://www.domadoo.fr/fr/eclairage/5482-innr-ruban-flexible-outdoor-couleur-4m-zigbee-lightlink-8718781552527.html?domid=4&id_campaign=9"
   "reset" : "ON/OFF 6x espacés de 0.5s",
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule",
   "commands": [
