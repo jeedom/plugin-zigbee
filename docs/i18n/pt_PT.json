@@ -5,6 +5,8 @@
         "Pour connaitre les nouveaux module compatible il faut aller": "Para conhecer o novo módulo compatível você tem que ir",
         "c'est trié par date d'ajout\/modification": "é classificado pela data de adição \/ modificação",
         "Pour profiter des dernieres integration de module n'hesitez pas a mettre à jour les dépendances": "Para aproveitar as vantagens da integração do módulo mais recente, não hesite em atualizar as dependências",
+        "31\/03\/2022": "31\/03\/2022",
+        "Correction d'un soucis empechant le démon de démarrer du à la nouvelle version de zigpy": "Corrigido um problema que impedia o daemon de iniciar devido à nova versão do zigpy",
         "22\/03\/2022": "22\/03\/2022",
         "Support de nouveau module": "Suporte ao novo módulo",
         "Mise à jour de la documentation": "Atualização de documentação",
