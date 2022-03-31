@@ -1,6 +1,6 @@
 {
   "name": "OSL 130 C",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5793-innr-spot-led-connecte-pour-jardin-couleur-et-blanc-zigbee-8718781552541.html?domid=4&id_campaign=9",
   "reset" : "ON/OFF 6x espacés de 0.5s",
   "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule",
   "commands": [
