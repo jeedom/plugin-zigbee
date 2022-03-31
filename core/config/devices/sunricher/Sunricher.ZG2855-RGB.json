@@ -1,6 +1,6 @@
 {
   "name": "Sunricher RGB CCT Sun 3 in 1",
-  "buylink" : "",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5710-sunricher-telecommande-3-en-1-zigbee-30.html?domid=4&id_campaign=9",
   "reset" : "Appuyer sur le bouton principal On jusqu'a ce que la diode s'allume puis réappuyer 5 fois dessus de suite, la diode clignote au bout de quelques secondes 3 fois",
   "pairing" : "Appuyer sur le bouton principal On jusqu'a ce que la diode s'allume puis appuyer sur le bouton principal off une fois",
   "commands": [
