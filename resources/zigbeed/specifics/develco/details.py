@@ -28,7 +28,7 @@ class JeedomDevelcoVOCCluster(CustomCluster):
 	cluster_id = 64515
 	name = "Jeedom - Develco Voc Measurement"
 	ep_attribute = "voc"
-	manufacturer_attributes = {
+	attributes = {
 		0x0000: ("measured_value", types.uint16_t),
 		0x0001: ("min_measured_value", types.uint16_t),
 		0x0002: ("max_measured_value", types.uint16_t),

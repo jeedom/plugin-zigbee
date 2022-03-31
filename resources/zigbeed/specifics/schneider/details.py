@@ -37,7 +37,7 @@ REPORTING_SPECIFIC = {
 
 class SchneiderBasicCluster(CustomCluster, Basic):
 	"""Schneider basics cluster."""
-	manufacturer_attributes = {
+	attributes = {
 		0xE007: ("tb0", types.enum16),
 		0xE009: ("tb1", types.CharacterString)
 	}
@@ -47,6 +47,6 @@ class SchneiderPilotModeCluster(CustomCluster):
 	cluster_id = 0xFF23
 	name = "Schneider Pilot Mode"
 	ep_attribute = "pilot_mode"
-	manufacturer_attributes = {
+	attributes = {
 		0x0031: ("controller_pilot_mode", types.enum8)
 	}

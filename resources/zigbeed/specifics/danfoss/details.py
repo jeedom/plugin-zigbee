@@ -58,7 +58,7 @@ DANFOSS_THERMOSTAT_MANUFACTURER_ATTRIBUTES = {
 
 class JeedomDanfossThermostatCluster(CustomCluster, Thermostat):
 	"""Danfoss Thermostat cluster."""
-	manufacturer_attributes = DANFOSS_THERMOSTAT_MANUFACTURER_ATTRIBUTES
+	attributes = dict(list(Thermostat.attributes.items()) + list(DANFOSS_THERMOSTAT_MANUFACTURER_ATTRIBUTES.items()))
 	
 	
 DANFOSS_VALVE_MANUFACTURER_ATTRIBUTES = {
@@ -86,7 +86,7 @@ DANFOSS_VALVE_MANUFACTURER_ATTRIBUTES = {
 	
 class JeedomDanfossValveCluster(CustomCluster, Thermostat):
 	"""Danfoss Thermostat cluster."""
-	manufacturer_attributes = DANFOSS_VALVE_MANUFACTURER_ATTRIBUTES
+	attributes = dict(list(Thermostat.attributes.items()) + list(DANFOSS_VALVE_MANUFACTURER_ATTRIBUTES.items()))
 
 
 

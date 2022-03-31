@@ -33,7 +33,7 @@ class JeedomLegrandCluster(CustomCluster):
 	cluster_id = 64513
 	name = "Jeedom - Legrand Settings"
 	ep_attribute = "legrand_cluster"
-	manufacturer_attributes = {
+	attributes = {
       	0x0000: ("dimmer", types.data16),
         0x0001: ("led_dark", types.Bool),
         0x0002: ("led_on", types.Bool),
@@ -44,6 +44,6 @@ class LegrandPilotModeCluster(CustomCluster):
 	cluster_id = 0xfc40
 	name = "Legrand Pilot Mode"
 	ep_attribute = "pilot_mode"
-	manufacturer_attributes = {
+	attributes = {
 		0x0000: ("pilot_mode", types.enum8)
 	}

@@ -28,7 +28,7 @@ from zhaquirks.const import (
 
 class SchneiderShutterCluster(CustomCluster, WindowCovering):
     """Schneider custom cluster."""
-    manufacturer_attributes = {
+    attributes = {
         0xE014: ("LiftDriveUpTime", t.uint16_t),
 		0xE015: ("LiftDriveDownTime", t.uint16_t),
 		0xE016: ("TiltOpenCloseAndStepTime", t.uint16_t),
