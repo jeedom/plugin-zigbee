@@ -1,0 +1,105 @@
+{
+    "name": "NOUS - PRISE INTELLIGENTE ZIGBEE 3.0 + MESURE DE CONSOMMATION",
+    "ref":"NOUS-A1Z-1",
+    "documentation" : "https://nous.technology/product/a1z-1/fr.html",
+    "buylink":"https://www.domadoo.fr/fr/peripheriques/6165-nous-prise-intelligente-zigbee-30-mesure-de-consommation-5907772033517.html?domid=4&id_campaign=9",
+    "config": [
+        {"endpoint" : 1,"cluster":6,"attribute":32769,"name":"Configuration LED","type":"select","values":[{"value":0,"name":"LED Toujours OFF"},{"value":1,"name":"LED-On si alimenté"},{"value":2,"name":"LED-Off si alimenté"},{"value":3,"name":"LED Toujours ON"}]},
+        {"endpoint" : 1,"cluster":6,"attribute":32770,"name":"État après coupure de courant","type":"select","values":[{"value":0,"name":"OFF"},{"value":1,"name":"Même état"},{"value":2,"name":"ON"}]}
+      ],
+    "commands": [
+        {
+            "logicalId": "1::6::0",
+            "generic_type": "ENERGY_STATE",
+            "name": "Etat 1",
+            "type": "info",
+            "subType": "binary",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::1794::0",
+            "generic_type": "CONSUMPTION",
+            "name": "Consommation 1",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "kWh",
+            "configuration": {
+                "historizeRound": 2,
+                "calculValueOffset": "#value# \/ 1000"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::2820::1291",
+            "generic_type": "POWER",
+            "name": "Puissance 1",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "W",
+            "configuration": {
+                "historizeRound": 2,
+                "calculValueOffset": "#value# \/ 10"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::on",
+            "generic_type": "ENERGY_ON",
+            "name": "On 1",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "value": "Etat 1",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::toggle",
+            "generic_type": "LIGHT_TOGGLE",
+            "name": "Toggle 1",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "display": {
+                "icon": "<\/i>"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::on_off::off",
+            "generic_type": "ENERGY_OFF",
+            "name": "Off 1",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "value": "Etat 1",
+            "isVisible": "1"
+        }
+    ]
+}
