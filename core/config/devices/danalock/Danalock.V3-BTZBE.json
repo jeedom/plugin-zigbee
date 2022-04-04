@@ -39,6 +39,21 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "refresh"
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1::33",
+      "unite": "V",
+      "configuration" : {
+        "calculValueOffset":"#value# / 10",
+         "minValue":"0",
+        "maxValue":"12"
+        
+      }
     }
   ]
 }
