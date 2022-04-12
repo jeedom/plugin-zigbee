@@ -1,0 +1,142 @@
+{
+  "name": "RB278T",
+  "ref" : "RB278T",
+  "buylink" : "https://www.domadoo.fr/fr/peripheriques/5353-innr-ampoule-connectee-type-e27-zigbee-30-pack-de-2-ampoules-blanc-reglable-2200k-a-5000k-8718781552312.html?domid=4&id_campaign=9",
+  "reset" : "ON/OFF 6x espacés de 0.5s",
+  "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule",
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "LIGHT_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::6::0"
+    },
+    {
+      "name": "On",
+      "generic_type": "LIGHT_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Off",
+      "generic_type": "LIGHT_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Etat Luminosité",
+      "generic_type": "LIGHT_BRIGHTNESS",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::8::0",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    },
+    {
+      "name": "Luminosité",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat Luminosité",
+      "logicalId": "1::level::move_to_level::#slider#::#duration#",
+      "generic_type": "LIGHT_SLIDER",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    },
+    {
+      "name": "Etat couleur",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat couleur",
+      "logicalId": "1::768::color",
+      "generic_type": "LIGHT_COLOR"
+    },
+    {
+      "name": "Couleur",
+      "type": "action",
+      "subtype": "color",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat couleur",
+      "logicalId": "1::light_color::move_to_color::#color#::#duration#",
+      "generic_type": "LIGHT_SET_COLOR"
+    },
+    {
+      "name": "Etat température couleur",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::768::7",
+      "generic_type": "LIGHT_COLOR_TEMP"
+    },
+    {
+      "name": "Température couleur",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat température couleur",
+      "logicalId": "1::light_color::move_to_color_temp::#slider#::#duration#",
+      "generic_type": "LIGHT_SET_COLOR_TEMP",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 500
+      }
+    },
+    {
+      "name": "Etat durée",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "value" : "Etat durée",
+      "logicalId": "durationstate",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 1000
+      }
+    },
+    {
+      "name": "Durée",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat durée",
+      "logicalId": "duration",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 1000
+      }
+    }
+  ]
+}
