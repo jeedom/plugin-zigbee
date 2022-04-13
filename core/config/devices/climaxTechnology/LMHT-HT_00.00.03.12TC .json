@@ -1,0 +1,54 @@
+{
+    "name": "Capteur de température, humidité, luminosité",
+    "ref" : "LMHT-1ZBS",
+    "manufacturer" : "ClimaxTechnology",
+    "type": "Capteur,Humidité,Température, Luminosité",
+    "reset": "Appui et maintenir le bouton Function pendant 10s",
+    "pairing": "Appui et maintenir le bouton Function pendant 10s",
+    "informations": "Transmits temperature and Humidity signal to the ZigBee gateway in every 10-minute regularly / 30 minutes for Illuminance",
+    "buylink" : "",
+    "documentation": "https://www.climax.com.tw/new/downloads/LMHT-1ZBS_Product_News_20121-0512.pdf",
+    "configuration" : {
+      "battery_type" : "CR123A 3V lithium battery x 1"
+      },
+    "commands": [
+      {
+        "name": "Humidité",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "logicalId": "2::1029::0",
+        "unite" : "%",
+        "generic_type": "HUMIDITY",
+        "configuration" : {
+          "calculValueOffset":"#value# / 100",
+          "minValue" : 0,
+          "maxValue" : 100
+        }
+      },
+      {
+        "name": "Température",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "logicalId": "2::1026::0",
+        "unite" : "°C",  
+        "generic_type": "TEMPERATURE",
+        "configuration" : {
+          "calculValueOffset":"#value# / 100",
+          "minValue" : -10,
+          "maxValue" : 50
+        }
+      },
+      {
+        "name": "Luminosite",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "logicalId": "1::1024::0"
+      }
+    ]
+  }

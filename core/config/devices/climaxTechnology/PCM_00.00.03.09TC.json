@@ -1,0 +1,47 @@
+{
+    "name": "Energy Meter",
+    "ref" : "EMD-1ZBS",
+    "manufacturer" : "ClimaxTechnology",
+    "type": "Capteur,Consommation",
+    "reset": "Appui et maintenir le bouton Function pendant 10s",
+    "pairing": "Appui et maintenir le bouton Function pendant 10s",
+    "informations": "Transmits Power Data every 5 minutes",
+    "buylink" : "",
+    "documentation": "https://www.climax.com.tw/new/downloads/EMD-1ZBS_Product_News_2021_0423.pdf",
+    "configuration" : {
+      "battery_type" : "1.5V AA Alkaline Battery x 2"
+      },
+    "commands": [
+      {
+        "name": "Consommation Totale",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "logicalId": "1::1794::0",
+        "unite" : "KW",
+        "configuration" : {
+            "calculValueOffset":"#value# / 10000"
+          }
+      },
+      {
+        "name": "Consommation Instantanée",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "logicalId": "1::1794::1024",
+        "unite" : "W",
+        "configuration" : {
+            "calculValueOffset":"#value# / 10"
+          }
+      },
+      {
+        "name": "Batterie",
+        "type": "info",
+        "subtype": "binaire",
+        "isVisible": 0,
+        "logicalId": "1::1::53"
+      }
+    ]
+  }

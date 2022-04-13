@@ -1,0 +1,37 @@
+{
+    "name": "Input / Output Switch",
+    "ref" : "XE-11 Series",
+    "manufacturer" : "ClimaxTechnology",
+    "type": "Capteur,Humidité,Température",
+    "reset": "Appui et maintenir le bouton Function pendant 10s",
+    "pairing": "Appui et maintenir le bouton Function pendant 10s",
+    "buylink" : "",
+    "documentation": "https://www.climax.com.tw/new/downloads/XE-11_Product%20News_20210503.pdf",
+    "commands": [
+      {
+        "name": "Input",
+        "type": "info",
+        "subtype": "binary",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "logicalId": "1::6::0"
+      },
+      {
+        "name": "On",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "logicalId": "1::on_off::on"
+      },
+      {
+        "name": "Off",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "logicalId": "1::on_off::off"
+      }
+
+    ]
+  }
