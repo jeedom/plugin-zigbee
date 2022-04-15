@@ -1,5 +1,8 @@
 {   "name": "GR-SMARTHOME - MOTORISATION ZIGBEE 3.0 POUR VANNE 1/4 DE TOUR",
     "ref": "ZG-V01",
+    "pairing" : "Alimenté la valve, et appuyer sur le bouton pendant 5 s",
+    "reset" : "Pressez et maintenir le bouton pendant 10 s",
+    "documentation" : "https://www.domadoo.fr/fr/index.php?controller=attachment&id_attachment=2823",
     "buylink": "https://www.domadoo.fr/fr/peripheriques/5264-gr-smarthome-motorisation-zigbee-30-pour-vanne-14-de-tour.html?domid=4&id_campaign=9",
     "configuration": [
         {"endpoint" : 1,"cluster":6,"attribute":32769,"name":"Configuration LED","type":"select","values":[{"value":0,"name":"LED Toujours OFF"},{"value":1,"name":"LED-On si Vanne ouverte"},{"value":2,"name":"LED-Off si Vanne fermée"}]},
