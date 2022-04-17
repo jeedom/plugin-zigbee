@@ -149,6 +149,8 @@ class DeviceHandler(RequestHandler):
 	async def post(self,arg1):
 		try:
 			if arg1 == 'attributes':
+				if self.json_args == None :
+					raise Exception("No arg for post "+str(arg1))
 				device = zdevices.find(self.json_args['ieee'])
 				if device == None:
 					raise Exception("Device not found")
@@ -183,6 +185,8 @@ class DeviceHandler(RequestHandler):
 	async def put(self,arg1):
 		try:
 			if arg1 == 'attributes':
+				if self.json_args == None :
+					raise Exception("No arg for put "+str(arg1))
 				try:
 					await zdevices.write_attributes(self.json_args)
 				except Exception as e:
@@ -193,6 +197,8 @@ class DeviceHandler(RequestHandler):
 						raise
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'reportConfig':
+				if self.json_args == None :
+					raise Exception("No arg for put "+str(arg1))
 				device = zdevices.find(self.json_args['ieee'])
 				if device == None:
 					raise Exception("Device not found")
@@ -213,6 +219,8 @@ class DeviceHandler(RequestHandler):
 						await cluster.configure_reporting(attr['name'],attr['min_report_int'],attr['max_report_int'],attr['reportable_change'], **kwargs)
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'gpDevice':
+				if self.json_args == None :
+					raise Exception("No arg for put "+str(arg1))
 				deviceAdded = False
 				device = zdevices.find(self.json_args['ieee'])
 				if device == None :
@@ -230,12 +238,16 @@ class DeviceHandler(RequestHandler):
 					shared.JEEDOM_COM.send_change_immediate({'device_initialized' : self.json_args['ieee']});
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'initialize':
+				if self.json_args == None :
+					raise Exception("No arg for put "+str(arg1))
 				device = zdevices.find(self.json_args['ieee'])
 				if device == None :
 					raise Exception("Device not found")
 				await zdevices.initialize(device)
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'rediscover':
+				if self.json_args == None :
+					raise Exception("No arg for put "+str(arg1))
 				device = zdevices.find(self.json_args['ieee'])
 				if device == None :
 					raise Exception("Device not found")
@@ -243,12 +255,16 @@ class DeviceHandler(RequestHandler):
 				await device._initialize()
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'get_basic_info':
+				if self.json_args == None :
+					raise Exception("No arg for put "+str(arg1))
 				device = zdevices.find(self.json_args['ieee'])
 				if device == None :
 					raise Exception("Device not found")
 				await zdevices.get_basic_info(device)
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'command':
+				if self.json_args == None :
+					raise Exception("No arg for put "+str(arg1))
 				try:
 					await zdevices.command(self.json_args)
 				except Exception as e:
@@ -259,6 +275,8 @@ class DeviceHandler(RequestHandler):
 						raise
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'update_specific':
+				if self.json_args == None :
+					raise Exception("No arg for put "+str(arg1))
 				ieee = self.json_args['ieee']
 				if not os.path.exists(shared.DEVICE_FOLDER+'/'+ieee+'.json'):
 					raise Exception("File not found "+str(shared.DEVICE_FOLDER+'/'+ieee+'.json'))
@@ -267,11 +285,15 @@ class DeviceHandler(RequestHandler):
 				logging.info('[DeviceHandler.put/update_specific] Update specific configuration for '+str(ieee)+' to '+str(shared.DEVICE_SPECIFIC[ieee]))
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'delete_specific':
+				if self.json_args == None :
+					raise Exception("No arg for put "+str(arg1))
 				ieee = self.json_args['ieee']
 				shared.DEVICE_SPECIFIC.pop(ieee, None)
 				logging.info('[DeviceHandler.put/delete_specific] Delete specific configuration for '+str(ieee))
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'bind' or arg1 == 'unbind':
+				if self.json_args == None :
+					raise Exception("No arg for put "+str(arg1))
 				logging.info('[DeviceHandler.bind/unbind] '+str(arg1)+' device '+str(self.json_args['src']['ieee'])+' endpoint '+str(self.json_args['src']['endpoint'])+' cluster '+str(self.json_args['src']['cluster']))
 				src_device = zdevices.find(self.json_args['src']['ieee'])
 				if src_device == None :
@@ -312,6 +334,8 @@ class DeviceHandler(RequestHandler):
 			return self.write(utils.format_json_result(success="error",data=str(e)))
 
 	async def delete(self):
+		if self.json_args == None :
+			raise Exception("No arg for delete")
 		try:
 			device = zdevices.find(self.json_args['ieee'])
 			if device == None :
