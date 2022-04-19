@@ -54,11 +54,17 @@ async def add_endpoint(_data):
 
 async def add_device(_data):
     device = zdevices.find(_data['ieee'])
-    await device.add_to_group(_data['id'])
+    group = find(_data['id'])
+    if group is None :
+        raise Exception("Group not found")
+    await device.add_to_group(_data['id'],group._name)
 
 
 async def delete_device(_data):
     device = zdevices.find(_data['ieee'])
+    group = find(_data['id'])
+    if group is None :
+        raise Exception("Group not found")
     await device.remove_from_group(_data['id'])
 
 
