@@ -31,23 +31,12 @@
         "logicalId": "1::on_off::off"
       },
       {
-        "name": "Toggle",
-        "type": "action",
-        "subtype": "other",
-        "isVisible": 0,
-        "isHistorized": 0,
-        "logicalId": "1::on_off::toggle",
-        "display": {
-          "icon": "<i class=\"fas fa-random\"></i>"
-        }
-      },
-      {
         "name": "Consommation",
         "type": "info",
         "subtype": "numeric",
         "isVisible": 0,
         "isHistorized": 0,
-        "logicalId": "1::1070::0"
+        "logicalId": "1::1028::0"
       },
       {
         "name": "Timer",
