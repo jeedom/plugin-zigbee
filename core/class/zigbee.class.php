@@ -811,7 +811,7 @@ class zigbee extends eqLogic {
           continue;
         }
         $timestamp = strtotime('now') - strtotime('1st January 2000 UTC 00:00:00');
-        $attributes = array(array('endpoint' => $endpoint['id'], 'cluster_type' => 'in', 'cluster' => 10, 'attributes' => (object)array(0 => $timestamp, 1 => 1)));
+        $attributes = array(array('endpoint' => $endpoint['id'], 'cluster_type' => 'in', 'cluster' => 10, 'attributes' => (object)array(0 => $timestamp, 1 => 1, 2 => date('Z'))));
         zigbee::request($this->getConfiguration('instance', 1), '/device/attributes', array('ieee' => $ieee, 'attributes' => $attributes, 'allowQueue' => false), 'PUT');
       }
     }
