@@ -1,0 +1,71 @@
+{   "name": "GR-SMARTHOME - MOTORISATION ZIGBEE 3.0 POUR VANNE 1/4 DE TOUR",
+    "ref": "ZG-V01",
+    "pairing" : "Alimenté la valve, et appuyer sur le bouton pendant 5 s",
+    "reset" : "Pressez et maintenir le bouton pendant 10 s",
+    "documentation" : "https://www.domadoo.fr/fr/index.php?controller=attachment&id_attachment=2823",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/5264-gr-smarthome-motorisation-zigbee-30-pour-vanne-14-de-tour.html?domid=4&id_campaign=9",
+    "configuration": [
+        {"endpoint" : 1,"cluster":6,"attribute":32769,"name":"Configuration LED","type":"select","values":[{"value":0,"name":"LED Toujours OFF"},{"value":1,"name":"LED-On si Vanne ouverte"},{"value":2,"name":"LED-Off si Vanne fermée"}]},
+        {"endpoint" : 1,"cluster":6,"attribute":32770,"name":"État après coupure de courant","type":"select","values":[{"value":0,"name":"OFF"},{"value":1,"name":"ON"},{"value":2,"name":"Même état qu'avant coupure"}]},
+        {"endpoint" : 1,"cluster":57345,"attribute":53296,"name":"Type d'appui","type":"select","values":[{"value":0,"name":"Appui Simple"},{"value":1,"name":"Appui Simple OU Maintenu"},{"value":2,"name":"Appui maintenu (pour ouverture) ET fermeture auto si relachement du bouton"}]}
+    ],
+    "commands": [
+        {
+            "logicalId": "1::6::0",
+            "generic_type": "ENERGY_STATE",
+            "name": "Etat",
+            "type": "info",
+            "subType": "binary",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::on_off::on",
+            "generic_type": "ENERGY_ON",
+            "name": "On",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "value": "Etat",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::off",
+            "generic_type": "ENERGY_OFF",
+            "name": "Off",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "value": "Etat",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::toggle",
+            "generic_type": "LIGHT_TOGGLE",
+            "name": "Toggle 1",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "display": {
+                "icon": "<\/i>"
+            },
+            "isVisible": "0"
+        }
+    ]
+}
