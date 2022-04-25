@@ -184,6 +184,7 @@ $('.eqLogicAttr[data-l1key=configuration][data-l2key=device]').off('change').on(
   }
 });
 
+
 $('.eqLogicAttr[data-l1key=configuration][data-l2key=visual]').off('change').on('change', function () {
   if($(this).value() != '' && $(this).value() != null){
     $('#img_device').attr("src", 'plugins/zigbee/core/config/devices/'+$(this).value());

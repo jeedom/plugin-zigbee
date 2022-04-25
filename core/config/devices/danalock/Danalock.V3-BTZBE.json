@@ -4,7 +4,8 @@
   "buylink" : "https://www.domadoo.fr/fr/controle-acces/4540-danalock-serrure-connectee-bluetooth-et-zigbee-danalock-v3-5712560000493.html",
   "config" : [
     {"endpoint" : 1,"cluster":257,"attribute":34,"manufacturer":4678,"name":"LED","type":"select","values":[{"value":0,"name":"Désactivée"},{"value":2,"name":"Activée"}]},
-    {"endpoint" : 1,"cluster":257,"attribute":35,"manufacturer":4678,"name":"Temps avant fermeture auto (s)","type":"number","min":0,"max":3600}
+    {"endpoint" : 1,"cluster":257,"attribute":35,"manufacturer":4678,"name":"Temps avant fermeture auto (s)","type":"number","min":0,"max":3600},
+    {"endpoint" : 1,"cluster":64767,"attribute":35,"manufacturer":2,"name":"Hold Back Latch (s) - Non fonctionnel","type":"number","min":0,"max":3600}
   ],
   "commands": [
     {

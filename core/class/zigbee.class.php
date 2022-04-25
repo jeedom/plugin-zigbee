@@ -873,6 +873,15 @@ class zigbee extends eqLogic {
     }
   }
 
+  public function getSpecificConfigFile() {
+    foreach (ls(__DIR__ . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
+      if (file_exists(__DIR__ . '/../config/devices/' . $folder . '/' . $this->getConfiguration('device') . '.config.php')) {
+        return 'config/devices/' . $folder . '/' . $this->getConfiguration('device') . '.config.php';
+      }
+    }
+    return '';
+  }
+
   public function preSave() {
     $decode_file = null;
     foreach (ls(__DIR__ . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {

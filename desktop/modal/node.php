@@ -395,6 +395,11 @@ sendVarToJS('zigbee_binding_device', $binding_device);
         ?>
       </fieldset>
     </form>
+    <?php
+    if ($eqLogic->getSpecificConfigFile() != '') {
+      include __DIR__ . '/../../core/' . $eqLogic->getSpecificConfigFile();
+    }
+    ?>
     <div id="div_specificDeviceAttr">
       <form class="form-horizontal">
         <fieldset>
