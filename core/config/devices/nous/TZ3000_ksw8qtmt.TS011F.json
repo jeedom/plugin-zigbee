@@ -11,7 +11,7 @@
         {
             "logicalId": "1::6::0",
             "generic_type": "ENERGY_STATE",
-            "name": "Etat 1",
+            "name": "Etat",
             "type": "info",
             "subType": "binary",
             "isHistorized": "0",
@@ -24,7 +24,7 @@
         {
             "logicalId": "1::1794::0",
             "generic_type": "CONSUMPTION",
-            "name": "Consommation 1",
+            "name": "Consommation",
             "type": "info",
             "subType": "numeric",
             "isHistorized": "1",
@@ -47,10 +47,6 @@
             "subType": "numeric",
             "isHistorized": "1",
             "unite": "W",
-            "configuration": {
-                "historizeRound": 2,
-                "calculValueOffset": "#value# \/ 10"
-            },
             "template": {
                 "dashboard": "default",
                 "mobile": "default"

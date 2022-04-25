@@ -7,6 +7,8 @@
         "Pour profiter des dernieres integration de module n'hesitez pas a mettre à jour les dépendances": "To take advantage of the latest module integration, don't hesitate to update the dependencies",
         "Correction de bug": "Bug fix",
         "Support de nouveau module": "New module support",
+        "Correction d'un bug sur l'ajout d'un module à un groupe": "Fixed a bug on adding a module to a group",
+        "Ajout de l'envoi de la timezone lors de l'envoi de l'heure aux modules": "Added sending timezone when sending time to modules",
         "31\/03\/2022": "03\/31\/2022",
         "Correction d'un soucis empechant le démon de démarrer du à la nouvelle version de zigpy": "Fixed an issue preventing the daemon from starting due to the new version of zigpy",
         "22\/03\/2022": "03\/22\/2022",

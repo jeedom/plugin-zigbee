@@ -7,6 +7,8 @@
         "Pour profiter des dernieres integration de module n'hesitez pas a mettre à jour les dépendances": "Um die Vorteile der neuesten Modulintegration zu nutzen, zögern Sie nicht, die Abhängigkeiten zu aktualisieren",
         "Correction de bug": "Fehlerbehebung",
         "Support de nouveau module": "Neue Modulunterstützung",
+        "Correction d'un bug sur l'ajout d'un module à un groupe": "Fehler beim Hinzufügen eines Moduls zu einer Gruppe behoben",
+        "Ajout de l'envoi de la timezone lors de l'envoi de l'heure aux modules": "Sendezeitzone hinzugefügt, wenn Zeit an Module gesendet wird",
         "31\/03\/2022": "31.03.2022",
         "Correction d'un soucis empechant le démon de démarrer du à la nouvelle version de zigpy": "Es wurde ein Problem behoben, das den Start des Daemons aufgrund der neuen Version von zigpy verhinderte",
         "22\/03\/2022": "22.03.2022",
