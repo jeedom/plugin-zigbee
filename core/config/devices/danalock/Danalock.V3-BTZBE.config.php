@@ -16,8 +16,8 @@ if (!isConnect()) {
       <div class="col-sm-2">
         <select id="in_danalockCodeUser" class="form-control">
           <?php
-          for ($i = 1; $i < 16; $i++) {
-            echo '<option value="' . $i . '">' . $i . '</option>';
+          for ($i = 0; $i < 19; $i++) {
+            echo '<option value="' . $i . '">' . ($i + 1) . '</option>';
           }
           ?>
         </select>
