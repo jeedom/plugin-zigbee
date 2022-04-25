@@ -3,6 +3,7 @@
   "ref" : "DANA_277755",
   "buylink" : "https://www.domadoo.fr/fr/controle-acces/4540-danalock-serrure-connectee-bluetooth-et-zigbee-danalock-v3-5712560000493.html",
   "config" : [
+    {"endpoint" : 1,"cluster":257,"attribute":34,"manufacturer":4678,"name":"LED","type":"select","values":[{"value":0,"name":"Désactivée"},{"value":2,"name":"Activée"}]},
     {"endpoint" : 1,"cluster":257,"attribute":35,"manufacturer":4678,"name":"Temps avant fermeture auto (s)","type":"number","min":0,"max":3600}
   ],
   "commands": [
@@ -42,21 +43,6 @@
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "refresh"
-    },
-    {
-      "name": "Batterie",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "1::1::33",
-      "unite": "V",
-      "configuration" : {
-        "calculValueOffset":"#value# / 10",
-         "minValue":"0",
-        "maxValue":"12"
-        
-      }
     }
   ]
 }
