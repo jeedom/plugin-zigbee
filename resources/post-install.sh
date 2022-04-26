@@ -26,6 +26,7 @@ if [ $(grep gpepIncomingMessageHandler /usr/local/lib/python3.7/dist-packages/be
   patch -N /usr/local/lib/python3.7/dist-packages/bellows/ezsp/v8/commands.py ${BASEDIR}/misc/zgp.bellows.v8.commands.patch
 fi
 
-find ${BASEDIR}/zigbeed/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete 2>/dev/null
+find ${BASEDIR}/zigbeed/quirks/* -mtime +7 -type f -delete 2>/dev/null
+find ${BASEDIR}/zigbeed/specifics/* -mtime +7 -type f -delete 2>/dev/null
 
 echo "Everything is successfully installed!"
