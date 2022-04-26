@@ -74,7 +74,7 @@
     },
     "plugins\/zigbee\/desktop\/modal\/node.php": {
         "Equipement introuvable : ": "Equipo no encontrado:",
-        "OK": "Bueno",
+        "OK": "De acuerdo",
         "Batterie": "Batería",
         "Inconnue ()": "Inconnue ()",
         "Information": "Información",
@@ -260,7 +260,7 @@
         "N\/A": "N \/ A",
         "Non initialisé": "No inicializado",
         "Découverte des endpoints OK": "Descubrimiento de endpoint OK",
-        "OK": "Bueno",
+        "OK": "De acuerdo",
         "Inconnue": "Desconocido",
         "Info": "Información",
         "Rafraichir informations": "Rafraichir informations",
@@ -416,6 +416,15 @@
     "plugins\/zigbee\/core\/js\/zigbee.class.js": {
         "QRcode invalide": "QRcode inválido"
     },
+    "plugins\/zigbee\/core\/config\/devices\/danalock\/Danalock.V3-BTZBE.config.php": {
+        "Assistant code pin": "Ayudante de código PIN",
+        "Mémoire": "Memoria",
+        "Actif": "Activo",
+        "Inactif": "Inactivo",
+        "Code": "Codificado",
+        "OK": "De acuerdo",
+        "Code pin envoyé avec success": "Código PIN enviado con éxito"
+    },
     "plugins\/zigbee\/core\/config\/devices\/tuya\/TZE200_dzuqwsyg.TS0601.php": {
         "Froid": "Frío",
         "Chaud": "Caliente",
@@ -453,7 +462,7 @@
         "Veuillez vérifier la configuration": "Por favor verifique la configuración",
         "Non initialisé": "No inicializado",
         "Découverte des endpoints OK": "Descubrimiento de endpoint OK",
-        "OK": "Bueno",
+        "OK": "De acuerdo",
         "Inconnue": "Desconocido",
         "Aucun endpoints sur le module. Cela est souvent du à une inclusion partiel, il est conseillé de supprimer le module du réseaux zigbee et de la reinclure (en fonction du module il peut etre necessaire de la maintenir éveillé pendant 2 minutes suite à l\\'inclusion)": "No hay puntos finales en el módulo. Esto a menudo se debe a una inclusión parcial, es aconsejable quitar el módulo de la red zigbee y volver a incluirlo (dependiendo del módulo, puede ser necesario mantenerlo despierto durante 2 minutos después de la inclusión)",
         "Secteur monophasée": "Sector monofásico",

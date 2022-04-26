@@ -416,6 +416,15 @@
     "plugins\/zigbee\/core\/js\/zigbee.class.js": {
         "QRcode invalide": "QRcode invalide"
     },
+    "plugins\/zigbee\/core\/config\/devices\/danalock\/Danalock.V3-BTZBE.config.php": {
+        "Assistant code pin": "Assistant code pin",
+        "Mémoire": "Mémoire",
+        "Actif": "Actif",
+        "Inactif": "Inactif",
+        "Code": "Code",
+        "OK": "OK",
+        "Code pin envoyé avec success": "Code pin envoyé avec success"
+    },
     "plugins\/zigbee\/core\/config\/devices\/tuya\/TZE200_dzuqwsyg.TS0601.php": {
         "Froid": "Froid",
         "Chaud": "Chaud",
