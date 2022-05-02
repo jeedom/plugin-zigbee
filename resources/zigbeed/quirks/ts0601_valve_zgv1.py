@@ -181,7 +181,10 @@ class TuyaZGV1(CustomDevice):
         # SizePrefixedSimpleDescriptor(endpoint=1, profile=260, device_type=81, device_version=1,
         # input_clusters=[0, 4, 5, 61184],
         # output_clusters=[25, 10])
-        MODELS_INFO: [("_TZE200_akjefhj5", "TS0601")],
+        MODELS_INFO: [
+            ("_TZE200_akjefhj5", "TS0601"),
+            ("_TZE200_81isopgh", "TS0601"),
+        ],
         ENDPOINTS: {
             1: {
                 PROFILE_ID: zha.PROFILE_ID,
