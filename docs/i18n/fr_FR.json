@@ -445,6 +445,10 @@
         "Le plus simple pour le voir et d'aller dans \"Configuration avancée\" (en haut a droite) puis \"Logs\" (en haut a droite aussi) et d'appuyer sur les boutons de la télécommandes pour voir les differentes valeurs des commandes": "Le plus simple pour le voir et d'aller dans \"Configuration avancée\" (en haut a droite) puis \"Logs\" (en haut a droite aussi) et d'appuyer sur les boutons de la télécommandes pour voir les differentes valeurs des commandes",
         "J'ai une erreur type \"base": "J'ai une erreur type \"base",
         "timeout\" lors du démarrage du démon sur une clef type EZSP": "timeout\" lors du démarrage du démon sur une clef type EZSP",
-        "Il est possible que la clef soit bloquée en mode bootloader, pour en sortir vous pouvez faire les lignes suivante (une à une) dans la console systeme de Jeedom": "Il est possible que la clef soit bloquée en mode bootloader, pour en sortir vous pouvez faire les lignes suivante (une à une) dans la console systeme de Jeedom"
+        "Il est possible que la clef soit bloquée en mode bootloader, pour en sortir vous pouvez faire les lignes suivante (une à une) dans la console systeme de Jeedom": "Il est possible que la clef soit bloquée en mode bootloader, pour en sortir vous pouvez faire les lignes suivante (une à une) dans la console systeme de Jeedom",
+        "Je n'arrive pas a installer les dépendances": "Je n'arrive pas a installer les dépendances",
+        "Cela peut venir d'un soucis avec la version de pip3, pour corriger il faut aller dans la configuration de Jeedom, onglet OS\/DB puis lancer la console OS et faire": "Cela peut venir d'un soucis avec la version de pip3, pour corriger il faut aller dans la configuration de Jeedom, onglet OS\/DB puis lancer la console OS et faire",
+        "`sudo pip3 install --upgrade pip` puis relancer l'installation des dépendances": "`sudo pip3 install --upgrade pip` puis relancer l'installation des dépendances",
+        "Si ca ne marche pas vous pouvez essayer de faire `sudo apt remove -y python3-openssl;sudo pip3 install --upgrade pip` et relancer l'installation des dépendances": "Si ca ne marche pas vous pouvez essayer de faire `sudo apt remove -y python3-openssl;sudo pip3 install --upgrade pip` et relancer l'installation des dépendances"
     }
 }
