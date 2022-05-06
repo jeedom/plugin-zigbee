@@ -54,6 +54,7 @@ class zigbee extends eqLogic {
     if (!file_exists($ota_dir)) {
       mkdir($ota_dir, 0777, true);
     }
+    shell_exec('rm -rf ' .  $ota_dir . '/* 2>&1');
     $request_http = new com_http('https://raw.githubusercontent.com/Koenkk/zigbee-OTA/master/index.json');
     $ota_zigbee = is_json($request_http->exec(30), true);
     foreach ($ota_zigbee as $ota) {
