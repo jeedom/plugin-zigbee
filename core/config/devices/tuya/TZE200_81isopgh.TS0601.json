@@ -34,7 +34,7 @@
         "name": "Consommation",
         "type": "info",
         "subtype": "numeric",
-        "isVisible": 0,
+        "isVisible": 1,
         "isHistorized": 0,
         "logicalId": "1::1028::0"
       },
@@ -42,7 +42,7 @@
         "name": "Timer",
         "type": "info",
         "subtype": "numeric",
-        "isVisible": 0,
+        "isVisible": 1,
         "isHistorized": 0,
         "logicalId": "1::1086::12"
       },
@@ -50,7 +50,7 @@
         "name": "Temps restant",
         "type": "info",
         "subtype": "numeric",
-        "isVisible": 0,
+        "isVisible": 1,
         "isHistorized": 0,
         "logicalId": "1::1086::11"
       },
