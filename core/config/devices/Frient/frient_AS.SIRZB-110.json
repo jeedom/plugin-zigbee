@@ -1,0 +1,106 @@
+{
+    "name": "FRIENT - SIRÈNE INTELLIGENTE ZIGBEE 3.0",
+    "ref": "SIRZB-110",
+    "buylink":"https://www.domadoo.fr/fr/peripheriques/5538-frient-sirene-intelligente-zigbee-30-5713594002422.html?domid=4&id_campaign=9",
+    "documentation": "https://www.domadoo.fr/fr/index.php?controller=attachment&id_attachment=2700",
+    "configuration": {
+        "maxBatteryVoltage": 41
+    },
+    "commands": [
+        {
+            "logicalId": "durationstate",
+            "name": "Etat durée",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "configuration": {
+                "minValue": "0",
+                "maxValue": "1800"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat durée",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "duration",
+            "name": "Durée",
+            "type": "action",
+            "subType": "slider",
+            "isHistorized": "0",
+            "configuration": {
+                "minValue": "0",
+                "maxValue": "1800"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat durée",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "43::ias_wd::squawk::0::0::0",
+            "name": "Armement",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "configuration": {
+                "minValue": "1",
+                "maxValue": "9"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "43::ias_wd::squawk::1::0::1",
+            "name": "Desarmement",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "configuration": {
+                "minValue": "1",
+                "maxValue": "9"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "#select#",
+            "name": "Mode",
+            "type": "action",
+            "subType": "select",
+            "isHistorized": "0",
+            "configuration": {
+                "minValue": "1",
+                "maxValue": "9",
+                "listValue": "43::ias_wd::start_warning::1::1::1::#duration#::1::1|Son BAS, Type URGENCE; 43::ias_wd::start_warning::5::1::1::#duration#::1::1|Son MOYEN, Type URGENCE; 43::ias_wd::start_warning::9::1::1::#duration#::1::1|Son FORT, Type URGENCE; 43::ias_wd::start_warning::1::1::2::#duration#::1::1|Son BAS, Type INCENDIE; 43::ias_wd::start_warning::5::1::2::#duration#::1::1|Son MOYEN, Type INCENDIE; 43::ias_wd::start_warning::9::1::2::#duration#::1::1|Son FORT, Type INCENDIE; 43::ias_wd::start_warning::1::1::4::#duration#::1::1|Son BAS, Type INTRUSION; 43::ias_wd::start_warning::5::1::4::#duration#::1::1|Son MOYEN, Type INTRUSION; 43::ias_wd::start_warning::9::1::4::#duration#::1::1|Son FORT, Type INTRUSION"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "43::ias_wd::start_warning::0::0::0::0::0::0",
+            "name": "Arret",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        }
+    ]
+}
