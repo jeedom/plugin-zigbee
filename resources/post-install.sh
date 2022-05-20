@@ -27,6 +27,6 @@ if [ $(grep gpepIncomingMessageHandler /usr/local/lib/python3.7/dist-packages/be
 fi
 
 find ${BASEDIR}/zigbeed/quirks/* -mtime +7 -type f -delete 2>/dev/null
-find ${BASEDIR}/zigbeed/specifics/* -mtime +7 -type f -delete 2>/dev/null
+find ${BASEDIR}/zigbeed/specifics/* -mtime +7 -type f ! -iname "*init*" -delete 2>/dev/null
 
 echo "Everything is successfully installed!"
