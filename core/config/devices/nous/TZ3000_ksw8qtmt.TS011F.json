@@ -2,13 +2,23 @@
     "name": "NOUS - PRISE INTELLIGENTE ZIGBEE 3.0 + MESURE DE CONSOMMATION",
     "ref":"NOUS-A1Z-1",
     "documentation" : "https://nous.technology/product/a1z-1/fr.html",
+    "configuration": { "autorefresh" : "*/5 * * * *"},
     "buylink":"https://www.domadoo.fr/fr/peripheriques/6165-nous-prise-intelligente-zigbee-30-mesure-de-consommation-5907772033517.html?domid=4&id_campaign=9",
     "config": [
         {"endpoint" : 1,"cluster":6,"attribute":32769,"name":"Configuration LED","type":"select","values":[{"value":0,"name":"LED Toujours OFF"},{"value":1,"name":"LED-On si alimenté"},{"value":2,"name":"LED-Off si alimenté"},{"value":3,"name":"LED Toujours ON"}]},
         {"endpoint" : 1,"cluster":6,"attribute":32770,"name":"État après coupure de courant","type":"select","values":[{"value":0,"name":"OFF"},{"value":1,"name":"Même état"},{"value":2,"name":"ON"}]},
         {"endpoint" : 1,"cluster":6,"attribute":32768,"name":"Protection Enfant","type":"select","values":[{"value":0,"name":"Desactivée"},{"value":1,"name":"Activée"}]}
       ],
+    
     "commands": [
+        {
+            "logicalId": "refresh",
+            "name": "Rafraichir",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "isVisible": "1"
+        },
         {
             "logicalId": "1::6::0",
             "generic_type": "ENERGY_STATE",
