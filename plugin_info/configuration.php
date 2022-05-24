@@ -68,6 +68,14 @@ if (!isConnect('admin')) {
         <input type="checkbox" class="configKey" data-l1key="autoRemoveExcludeDevice" />
       </div>
     </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">{{Exclure les péripheriques supprimé}}
+        <sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour exclure du contrôleur automatiquement les équipements Jeedom correspondant à des périphériques supprimé}}"></i></sup>
+      </label>
+      <div class="col-md-4">
+        <input type="checkbox" class="configKey" data-l1key="autoExcludeRemoveDevice" />
+      </div>
+    </div>
     <?php for ($i = 1; $i <= config::byKey('max_instance_number', "zigbee"); $i++) { ?>
       <div class="col-lg-6">
         <legend><i class="fas fa-broadcast-tower"></i> {{Contrôleur }}<?php echo $i ?></legend>
