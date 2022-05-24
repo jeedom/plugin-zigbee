@@ -24,6 +24,8 @@
         "Mettre à jour les fichiers de modules": "Mettre à jour les fichiers de modules",
         "Suppression automatique des périphériques exclus": "Suppression automatique des périphériques exclus",
         "Cocher la case pour supprimer automatiquement les équipements Jeedom correspondant à des périphériques exclus du contrôleur": "Cocher la case pour supprimer automatiquement les équipements Jeedom correspondant à des périphériques exclus du contrôleur",
+        "Exclure les péripheriques supprimé": "Exclure les péripheriques supprimé",
+        "Cocher la case pour exclure du contrôleur automatiquement les équipements Jeedom correspondant à des périphériques supprimé": "Cocher la case pour exclure du contrôleur automatiquement les équipements Jeedom correspondant à des périphériques supprimé",
         "Contrôleur ": "Contrôleur",
         "Activer": "Attivare",
         "Cocher la case pour activer le démon du contrôleur": "Cocher la case pour activer le démon du contrôleur",

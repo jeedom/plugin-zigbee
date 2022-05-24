@@ -5,6 +5,7 @@
         "Pour connaitre les nouveaux module compatible il faut aller": "Para conocer el nuevo módulo compatible tienes que ir",
         "c'est trié par date d'ajout\/modification": "está ordenado por fecha de adición \/ modificación",
         "Pour profiter des dernieres integration de module n'hesitez pas a mettre à jour les dépendances": "Para aprovechar la última integración del módulo, no dude en actualizar las dependencias",
+        "Ajout d'une option pour exclure automatiquement les péripherique supprimés": "Opción agregada para excluir automáticamente dispositivos eliminados",
         "20\/05\/2022": "20\/05\/2022",
         "Correction de l'erreur": "Corrigiendo el error",
         "module 'specifics' has no attribute 'init": "módulo 'específicos' no tiene atributo 'init",

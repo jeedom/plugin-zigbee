@@ -24,6 +24,8 @@
         "Mettre à jour les fichiers de modules": "Update module files",
         "Suppression automatique des périphériques exclus": "Automatic removal of excluded devices",
         "Cocher la case pour supprimer automatiquement les équipements Jeedom correspondant à des périphériques exclus du contrôleur": "Check the box to automatically delete Jeedom equipment corresponding to peripherals excluded from the controller",
+        "Exclure les péripheriques supprimé": "Exclude deleted devices",
+        "Cocher la case pour exclure du contrôleur automatiquement les équipements Jeedom correspondant à des périphériques supprimé": "Check the box to automatically exclude from the controller Jeedom equipment corresponding to deleted devices",
         "Contrôleur ": "Controller",
         "Activer": "Activate",
         "Cocher la case pour activer le démon du contrôleur": "Check the box to enable the controller daemon",

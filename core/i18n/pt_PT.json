@@ -24,6 +24,8 @@
         "Mettre à jour les fichiers de modules": "Atualizar arquivos de módulo",
         "Suppression automatique des périphériques exclus": "Remoção automática de dispositivos excluídos",
         "Cocher la case pour supprimer automatiquement les équipements Jeedom correspondant à des périphériques exclus du contrôleur": "Marque a caixa para excluir automaticamente o equipamento Jeedom correspondente aos periféricos excluídos do controlador",
+        "Exclure les péripheriques supprimé": "Excluir dispositivos excluídos",
+        "Cocher la case pour exclure du contrôleur automatiquement les équipements Jeedom correspondant à des périphériques supprimé": "Marque a caixa para excluir automaticamente do controlador Jeedom o equipamento correspondente aos dispositivos excluídos",
         "Contrôleur ": "Controlador",
         "Activer": "Ativar",
         "Cocher la case pour activer le démon du contrôleur": "Marque a caixa para habilitar o daemon do controlador",

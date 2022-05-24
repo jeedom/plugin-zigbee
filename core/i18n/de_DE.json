@@ -24,6 +24,8 @@
         "Mettre à jour les fichiers de modules": "Aktualisieren Sie die Moduldateien",
         "Suppression automatique des périphériques exclus": "Automatisches Entfernen ausgeschlossener Geräte",
         "Cocher la case pour supprimer automatiquement les équipements Jeedom correspondant à des périphériques exclus du contrôleur": "Aktivieren Sie das Kontrollkästchen, um Jeedom-Geräte für Peripheriegeräte, die von der Steuerung ausgeschlossen sind, automatisch zu löschen",
+        "Exclure les péripheriques supprimé": "Gelöschte Geräte ausschließen",
+        "Cocher la case pour exclure du contrôleur automatiquement les équipements Jeedom correspondant à des périphériques supprimé": "Aktivieren Sie das Kontrollkästchen, um Jeedom-Geräte, die gelöschten Geräten entsprechen, automatisch vom Controller auszuschließen",
         "Contrôleur ": "Regler",
         "Activer": "Aktivieren",
         "Cocher la case pour activer le démon du contrôleur": "Aktivieren Sie das Kontrollkästchen, um den Controller-Daemon zu aktivieren",
