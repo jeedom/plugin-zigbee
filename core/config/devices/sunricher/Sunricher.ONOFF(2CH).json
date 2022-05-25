@@ -1,0 +1,264 @@
+{
+    "name": "SUNRICHER - MODULE ON/OFF 2 SORTIES AVEC MESURE DE CONSOMMATION ZIGBEE 3.0",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/6163-sunricher-module-onoff-2-sorties-avec-mesure-de-consommation-zigbee-30.html?domid=4&id_campaign=9",
+    "documentation":"https://www.domadoo.fr/fr/index.php?controller=attachment&id_attachment=2820",
+    "commands": [
+        {
+            "logicalId": "1::1794::0",
+            "generic_type": "CONSUMPTION",
+            "name": "Consommation 1",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "kWh",
+            "configuration": {
+                "historizeRound": "2",
+                "calculValueOffset": "(#value# \/ 1000) \/ 3600",
+                "repeatEventManagement": "never"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "2::1794::0",
+            "generic_type": "CONSUMPTION",
+            "name": "Consommation 2",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "kWh",
+            "configuration": {
+                "historizeRound": "2",
+                "calculValueOffset": "(#value# \/ 1000) \/ 3600",
+                "repeatEventManagement": "never"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::6::0",
+            "generic_type": "ENERGY_STATE",
+            "name": "Etat 1",
+            "type": "info",
+            "subType": "binary",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "2::6::0",
+            "generic_type": "ENERGY_STATE",
+            "name": "Etat 2",
+            "type": "info",
+            "subType": "binary",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::2820::1291",
+            "generic_type": "POWER",
+            "name": "Puissance 1",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "W",
+            "configuration": {
+                "historizeRound": 2,
+                "calculValueOffset": "#value# \/ 10"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "2::2820::1291",
+            "generic_type": "POWER",
+            "name": "Puissance 2",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "W",
+            "configuration": {
+                "historizeRound": 2,
+                "calculValueOffset": "#value# \/ 10"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::on",
+            "generic_type": "ENERGY_ON",
+            "name": "On 1",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "value": "Etat 1",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "2::on_off::on",
+            "generic_type": "ENERGY_ON",
+            "name": "On 2",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "value": "Etat 2",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::off",
+            "generic_type": "ENERGY_OFF",
+            "name": "Off 1",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "value": "Etat 1",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "2::on_off::off",
+            "generic_type": "ENERGY_OFF",
+            "name": "Off 2",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "value": "Etat 2",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::2820::1285",
+            "name": "Tension 1",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "V",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 10",
+                "repeatEventManagement": "never"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "2::2820::1285",
+            "name": "Tension 2",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "V",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 10",
+                "repeatEventManagement": "never"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::toggle",
+            "generic_type": "LIGHT_TOGGLE",
+            "name": "Toggle 1",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "display": {
+                "icon": "<\/i>"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::2820::1288",
+            "name": "Courant 1",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "A",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 1000",
+                "repeatEventManagement": "never"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "2::on_off::toggle",
+            "generic_type": "LIGHT_TOGGLE",
+            "name": "Toggle 2",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "display": {
+                "icon": "<\/i>"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "2::2820::1288",
+            "name": "Courant 2",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "A",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 1000",
+                "repeatEventManagement": "never"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        }
+    ],
+    "ref": ""
+}
