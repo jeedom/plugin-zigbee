@@ -1,0 +1,136 @@
+{
+    "name": "SUNRICHER - MODULE ON/OFF 16A AVEC MESURE DE CONSOMMATION ZIGBEE 3.0",
+    "ref": "ON\/OFF -M",
+    "buylink":"https://www.domadoo.fr/fr/peripheriques/6162-sunricher-module-onoff-16a-avec-mesure-de-consommation-zigbee-30.html?domid=4&id_campaign=9",
+    "documentation":"",
+    "commands": [
+        {
+            "logicalId": "1::6::0",
+            "generic_type": "ENERGY_STATE",
+            "name": "Etat",
+            "type": "info",
+            "subType": "binary",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::1794::0",
+            "generic_type": "CONSUMPTION",
+            "name": "Consommation",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "kWh",
+            "configuration": {
+                "historizeRound": "2",
+                "calculValueOffset": "(#value# \/ 1000) \/ 3600",
+                "repeatEventManagement": "never"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::2820::1291",
+            "generic_type": "POWER",
+            "name": "Puissance",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "W",
+            "configuration": {
+                "historizeRound": 2,
+                "calculValueOffset": "#value# \/ 10"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::on",
+            "generic_type": "ENERGY_ON",
+            "name": "On ",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "value": "Etat",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::off",
+            "generic_type": "ENERGY_OFF",
+            "name": "Off ",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "value": "Etat",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::2820::1285",
+            "name": "Tension",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "V",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 10",
+                "repeatEventManagement": "never"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::toggle",
+            "generic_type": "LIGHT_TOGGLE",
+            "name": "Toggle ",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "display": {
+                "icon": "<\/i>"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::2820::1288",
+            "name": "Courant",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "A",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 1000",
+                "repeatEventManagement": "never"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        }
+    ]
+}
