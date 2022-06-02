@@ -5,6 +5,9 @@
     "type": "Tête thermostatique",
     "pairing": "",
     "reset": "",
+    "config" : [
+      {"endpoint" : 1,"cluster":65281,"attribute":261,"name":"Sonde de température","type":"select","values":[{"value":1,"name":"Ambiante"},{"value":2,"name":"Sol"}]}
+    ],
     "commands": [
       {
         "name": "Température",
