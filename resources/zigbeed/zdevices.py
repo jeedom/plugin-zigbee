@@ -76,7 +76,7 @@ async def command(_data):
                     await asyncio.sleep(1)
                     await command(*args)
             else:
-                asyncio.ensure_future(command(*args))
+                command(*args)
         else:
             if 'await' in cmd:
                 try:
@@ -87,7 +87,7 @@ async def command(_data):
                     await asyncio.sleep(1)
                     await command()
             else:
-                asyncio.ensure_future(command())
+                command()
 
 
 async def write_attributes(_data):
