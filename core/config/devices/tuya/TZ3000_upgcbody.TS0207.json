@@ -1,0 +1,28 @@
+{
+  "name" : "Detecteur d'inondation (3)",
+  "ref" : "TS0207",
+  "type" : "Fuite",
+  "buylink" : "",
+  "remark" : "",
+  "commands": [
+    {
+      "name": "Innondation",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::cmd::1",
+      "generic_type": "FLOOD",
+      "configuration": {
+        "repeatEventManagement": "always"
+      },
+      "display": {
+        "invertBinary" : 1
+      },
+      "template":{
+        "dashboard" : "flood",
+        "mobile" : "flood"
+      }
+    }
+  ]
+}

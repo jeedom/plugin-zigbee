@@ -1,0 +1,103 @@
+{
+  "name": "Projecteur extérieur Philips",
+  "ref" : "1743630P7",
+  "buylink" : "",
+  "reset" : "Il faut utiliser la fonction reset touchlink. Voir <a target='_blank' href='https://doc.jeedom.com/fr_FR/plugins/automation%20protocol/zigbee/#Touchlink'>ici</a>",
+  "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule (un on/off sera peut être nécessaire)",
+  "config" : [
+    {"endpoint" : 11,"cluster":6,"attribute":16387,"name":"Lors de la mise sous tension","type":"select","values":[{"value":0,"name":"Eteindre la lumiere"},{"value":1,"name":"Allumer la lumiere"},{"value":255,"name":"Reprendre l'état précedent"}]},
+    {"endpoint" : 11,"cluster":8,"attribute":16384,"name":"Luminosité lors de la mise sous tension","type":"number","min" : 0,"max" : 255},
+    {"endpoint" : 11,"cluster":768,"attribute":16400,"name":"Température couleur lors de la mise sous tension","type":"number"}
+  ],
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "LIGHT_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "11::6::0"
+    },
+    {
+      "name": "On",
+      "generic_type": "LIGHT_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "11::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Off",
+      "generic_type": "LIGHT_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "11::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Toggle",
+      "generic_type": "LIGHT_TOGGLE",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "11::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
+      }
+    },
+    {
+      "name": "Etat Luminosité",
+      "generic_type": "LIGHT_BRIGHTNESS",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "11::8::0",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    },
+    {
+      "name": "Luminosité",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat Luminosité",
+      "logicalId": "11::level::move_to_level::#slider#::#duration#",
+      "generic_type": "LIGHT_SLIDER",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      }
+    },
+    {
+      "name": "Durée",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat durée",
+      "logicalId": "duration",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 100
+      }
+    }
+  ]
+}

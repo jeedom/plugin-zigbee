@@ -1,0 +1,132 @@
+{
+  "name": "Tête thermostatique intelligente",
+  "buylink" : "",
+  "documentation" : "",
+  "reset": "Pas besoin de reinitialisation sur ce module",
+  "pairing": "Appuie long sur le bouton Maison jusqu'a avoir le menu, puis avec le plus aller sur l'icone wifi, validez avec le bouton home puis appuie long sur le bouton home jusqu'a avoir l'icone wifi qui clignote",
+  "commands": [
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "logicalId": "1::513::0",
+      "generic_type" : "THERMOSTAT_TEMPERATURE",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Consigne",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite" : "°C",
+      "logicalId": "1::513::18",
+      "generic_type" : "THERMOSTAT_SETPOINT",
+      "configuration" : {
+        "calculValueOffset":"#value# / 100"
+      }
+    },
+    {
+      "name": "Thermostat",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" : "°C",
+      "value": "Consigne",
+      "logicalId": "attributes::1::in::513::18::#slider#*100",
+      "generic_type" : "THERMOSTAT_SET_SETPOINT",
+      "configuration" : {
+        "minValue":"6",
+        "maxValue":"28"
+      },
+      "template" : {
+        "dashboard" : "button",
+        "mobile" : "button"
+      }
+    },
+    {
+      "name": "Mode",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "generic_type" : "THERMOSTAT_STATE_NAME",
+      "logicalId": "1::513::28"
+    },
+    {
+      "name": "Ouverture vanne",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::61184::621"
+    },
+    {
+      "name": "Etat verrouillage",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::61184::263"
+    },
+    {
+      "name": "Verrouiller",
+      "type": "action",
+      "subtype": "other",
+      "value": "Etat verrouillage",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "attributes::1::in::516::1::1"
+    },
+    {
+      "name": "Deverrouiller",
+      "type": "action",
+      "subtype": "other",
+      "value": "Etat verrouillage",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "attributes::1::in::516::1::0"
+    },
+    {
+      "name": "Mode",
+      "type": "info",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::513::16390"
+    },
+    {
+      "name": "Off",
+      "type": "action",
+      "subtype": "other",
+      "value": "Mode",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "attributes::1::in::61184::1130::2"
+    },
+    {
+      "name": "On",
+      "type": "action",
+      "subtype": "other",
+      "value": "Mode",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "attributes::1::in::61184::1130::1"
+    },
+    {
+      "name": "Auto",
+      "type": "action",
+      "subtype": "other",
+      "value": "Mode",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "attributes::1::in::61184::1130::0"
+    }
+  ]
+}
