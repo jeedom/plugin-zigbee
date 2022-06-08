@@ -2,6 +2,7 @@
   "name": "Interrupteur intelligent simple charge",
   "ref" : "TS0121",
   "buylink" : "",
+  "configuration": { "autorefresh" : "*/5 * * * *"},
   "commands": [
     {
       "name": "Etat",
@@ -77,6 +78,14 @@
       "configuration":{
         "historizeRound" : 2
       }
+    },
+    {
+      "name": "Rafraîchir",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "refresh"
     }
   ]
 }
