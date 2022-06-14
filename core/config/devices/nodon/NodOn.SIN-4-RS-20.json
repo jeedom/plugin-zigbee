@@ -69,7 +69,7 @@
       "subtype": "slider",
       "isVisible": 1,
       "isHistorized": 0,
-      "value" : "Etat",
+      "value" : "Etat BSO",
       "logicalId": "1::window_covering::go_to_tilt_percentage::#slider#"
     }
   ]
