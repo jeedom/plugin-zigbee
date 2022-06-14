@@ -1,0 +1,81 @@
+{
+  "name": "ECODIM - MODULE VARIATEUR INTELLIGENT ZIGBEE 3.0 250W ECO-DIM.10",
+  "ref" : "ECO-DIM.10ZB",
+  "type": "Interrupteur,Variateur",
+  "reset" : "Presser le bouton reset pendant 5s. La led doit s'allumer rouge",
+  "pairing":"Presser 2 fois le bouton reset. La led doit clignoter bleu",
+  "buylink" : "https://www.domadoo.fr/fr/eclairage/5372-ecodim-module-variateur-intelligent-zigbee-30-250w-eco-dim10-8719322371775.html?domid=4&id_campaign=9",
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "generic_type": "ENERGY_STATE",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::6::0"
+    },
+    {
+      "name": "On",
+      "generic_type": "ENERGY_ON",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::on",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Off",
+      "generic_type": "ENERGY_OFF",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat",
+      "logicalId": "1::on_off::off",
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Etat Luminosité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::8::0",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      },
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    },
+    {
+      "name": "Luminosité",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "value" : "Etat Luminosité",
+      "logicalId": "1::level::move_to_level::#slider#::0",
+      "generic_type": "LIGHT_SLIDER",
+      "configuration" : {
+        "minValue" : 0,
+        "maxValue" : 254
+      },
+      "template":{
+        "dashboard" : "light",
+        "mobile" : "light"
+      }
+    }
+  ]
+}
