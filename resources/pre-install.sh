@@ -17,16 +17,6 @@
 
 #set -x  # make sure each command is printed in the terminal
 
-echo "Launch post-install of zigbee dependancy"
+echo "Launch pre-install of zigbee dependancy"
 
-BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-
-if [ $(grep gpepIncomingMessageHandler /usr/local/lib/python3.7/dist-packages/bellows/zigbee/application.py -c) -eq 0 ]; then
-  patch -N /usr/local/lib/python3.7/dist-packages/bellows/zigbee/application.py ${BASEDIR}/misc/zgp.bellows.application.patch
-  patch -N /usr/local/lib/python3.7/dist-packages/bellows/ezsp/v8/commands.py ${BASEDIR}/misc/zgp.bellows.v8.commands.patch
-fi
-
-find ${BASEDIR}/zigbeed/quirks/* -mtime +7 -type f -delete 2>/dev/null
-find ${BASEDIR}/zigbeed/specifics/* -mtime +7 -type f ! -iname "*init*" -delete 2>/dev/null
-
-echo "Everything is successfully installed!"
+sudo rm -rf /usr/local/lib/python3.7/dist-packages/zhaquirks

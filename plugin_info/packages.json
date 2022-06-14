@@ -1,4 +1,7 @@
 {
+  "pre-install" : {
+    "script" : "plugins/zigbee/resources/pre-install.sh"
+  },
   "apt" : {
     "python3" : {},
     "python3-pip" : {},
