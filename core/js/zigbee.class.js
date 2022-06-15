@@ -620,7 +620,7 @@ jeedom.zigbee.group.create = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/group/create',
-    data : json_encode({name : _params.name}),
+    data : json_encode({name : _params.name.substring(0,16)}),
     type : 'PUT'
   };
   $.ajax(paramsAJAX);
