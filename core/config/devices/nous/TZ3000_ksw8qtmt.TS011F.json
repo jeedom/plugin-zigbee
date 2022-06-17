@@ -42,7 +42,7 @@
             "unite": "kWh",
             "configuration": {
                 "historizeRound": 2,
-                "calculValueOffset": "#value# \/ 1000"
+                "calculValueOffset": "#value# \/ 100"
             },
             "template": {
                 "dashboard": "default",
