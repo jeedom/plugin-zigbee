@@ -17,7 +17,7 @@
     "wheel" : {"reinstall" : true},
     "pyserial" : {"reinstall" : true},
     "tornado" : {"reinstall" : true},
-    "zigpy" : {"reinstall" : true},
+    "zigpy" : {"reinstall" : true,"version":"0.46.0"},
     "zha-quirks" : {"reinstall" : true},
     "zigpy-znp" : {"reinstall" : true},
     "zigpy-xbee" : {"reinstall" : true},
