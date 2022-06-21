@@ -21,6 +21,11 @@ echo "Launch post-install of zigbee dependancy"
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
+sudo pip3 install --force-reinstall  --upgrade zigpy-deconz==0.16.0
+sudo pip3 install --force-reinstall  --upgrade zigpy-znp==0.7.0
+sudo pip3 install --force-reinstall  --upgrade zigpy==0.46.0
+sudo rm -rf /usr/local/lib/python3.7/dist-packages/zigpy-0.47.0.dist-info
+
 if [ $(grep gpepIncomingMessageHandler /usr/local/lib/python3.7/dist-packages/bellows/zigbee/application.py -c) -eq 0 ]; then
   patch -N /usr/local/lib/python3.7/dist-packages/bellows/zigbee/application.py ${BASEDIR}/misc/zgp.bellows.application.patch
   patch -N /usr/local/lib/python3.7/dist-packages/bellows/ezsp/v8/commands.py ${BASEDIR}/misc/zgp.bellows.v8.commands.patch
