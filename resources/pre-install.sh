@@ -20,3 +20,4 @@
 echo "Launch pre-install of zigbee dependancy"
 
 sudo rm -rf /usr/local/lib/python3.7/dist-packages/zhaquirks
+sudo rm -rf /usr/local/lib/python3.7/dist-packages/zigpy*
