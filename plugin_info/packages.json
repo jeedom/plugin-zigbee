@@ -12,7 +12,6 @@
   "pip3" : {
     "six" : {"reinstall" : true},
     "pyudev" : {"reinstall" : true},
-    "charset-normalizer" : {"reinstall" : true,"version":"2.0.12"},
     "requests" : {"reinstall" : true},
     "setuptools" : {"reinstall" : true},
     "wheel" : {"reinstall" : true},
@@ -26,7 +25,8 @@
     "bellows" : {"reinstall" : true,"version":"0.30.0"},
     "zigpy" : {"reinstall" : true,"version":"0.46.0"},
     "xmodem" : {"reinstall" : true},
-    "pycrypto" : {"reinstall" : true}
+    "pycrypto" : {"reinstall" : true},
+    "charset-normalizer" : {"reinstall" : true,"version":"2.0.12"}
   },
   "post-install" : {
     "script" : "plugins/zigbee/resources/post-install.sh"
