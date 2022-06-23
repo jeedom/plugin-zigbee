@@ -12,6 +12,7 @@
   "pip3" : {
     "six" : {"reinstall" : true},
     "pyudev" : {"reinstall" : true},
+    "charset-normalizer" : {"reinstall" : true,"version":"2.0.12"},
     "requests" : {"reinstall" : true},
     "setuptools" : {"reinstall" : true},
     "wheel" : {"reinstall" : true},
