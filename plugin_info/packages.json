@@ -7,9 +7,7 @@
     "python3-pip" : {},
     "python3-pyudev" : {},
     "python3-dev" : {},
-    "python3-requests" : {},
-    "rustc" : {"optional" : true},
-    "cargo" : {"optional" : true}
+    "python3-requests" : {}
   },
   "pip3" : {
     "six" : {"reinstall" : true},
