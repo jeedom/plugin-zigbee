@@ -401,7 +401,7 @@
     "plugins\/zigbee\/core\/php\/jeeZigbee.php": {
         "Vous n\\'etes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",
         "Un périphérique Zigbee a quitté le réseaux": "Un périphérique Zigbee a quitté le réseaux",
-        "Un périphérique Zigbee a été supprimé du réseaux": "Un périphérique Zigbee a été supprimé du réseaux",
+        "Un périphérique Zigbee a été supprimé du réseaux": "Um dispositivo Zigbee foi removido das redes",
         "Un périphérique Zigbee est en cours d\\'inclusion : ": "Un périphérique Zigbee est en cours d\\'inclusion :",
         "Un périphérique Zigbee a été inclus : ": "Um dispositivo Zigbee foi incluído:",
         "Pause de 30s avant synchronisation": "Pausa de 30s antes da sincronização",
@@ -473,7 +473,7 @@
         "Courant continue": "Poder contínuo",
         "Secteur d\\'urgence toujours activée": "Setor de emergência sempre ativado",
         "Commutateur de transfert secteur d\\'urgence": "Chave de transferência de setor de emergência",
-        "Ok": "Ok",
+        "Ok": "OK",
         "Inactive": "Inativo",
         "ZHA": "ZHA",
         "ZLL": "ZLL",
