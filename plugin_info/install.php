@@ -23,13 +23,6 @@ function zigbee_install() {
 
 
 function zigbee_update() {
-  try {
-    $plugin = plugin::byId('zigbee');
-    if (is_object($plugin)) {
-      $plugin->dependancy_install();
-    }
-  } catch (\Throwable $th) {
-  }
   foreach (eqLogic::byType('zigbee') as $eqLogic) {
     if ($eqLogic->getConfiguration('device') != 'group') {
       continue;
