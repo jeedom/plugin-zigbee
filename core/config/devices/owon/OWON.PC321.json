@@ -59,7 +59,10 @@
         "isVisible": 1,
         "isHistorized": 0,
         "unite" : "V",
-        "logicalId": "1::1794::12288"
+        "logicalId": "1::1794::12288",
+        "configuration" : {
+          "calculValueOffset":"#value# / 10"
+        }
       },
       {
         "name": "Tension L2",
@@ -68,7 +71,10 @@
         "isVisible": 1,
         "isHistorized": 0,
         "unite" : "V",
-        "logicalId": "1::1794::12289"
+        "logicalId": "1::1794::12289",
+        "configuration" : {
+          "calculValueOffset":"#value# / 10"
+        }
       },
       {
         "name": "Tension L3",
@@ -77,7 +83,10 @@
         "isVisible": 1,
         "isHistorized": 0,
         "unite" : "V",
-        "logicalId": "1::1794::12290"
+        "logicalId": "1::1794::12290",
+        "configuration" : {
+          "calculValueOffset":"#value# / 10"
+        }
       },
       {
         "name": "Consommation cumulée L1",
@@ -114,9 +123,9 @@
         "isHistorized": 0,
         "unite" : "A",
         "logicalId": "1::1794::12544",
-         "configuration" : {
-        "calculValueOffset":"#value# / 1000"
-      }     
+        "configuration" : {
+          "calculValueOffset":"#value# / 1000"
+        }     
       },
        {
         "name": "Intensite L2",
@@ -126,11 +135,11 @@
         "isHistorized": 0,
         "unite" : "A",
         "logicalId": "1::1794::12545",
-         "configuration" : {
-        "calculValueOffset":"#value# / 1000"
+        "configuration" : {
+          "calculValueOffset":"#value# / 1000"
         }
       },
-       {
+      {
         "name": "Intensite L3",
         "type": "info",
         "subtype": "numeric",
@@ -138,17 +147,17 @@
         "isHistorized": 0,
         "unite" : "A",
         "logicalId": "1::1794::12546",
-         "configuration" : {
-        "calculValueOffset":"#value# / 1000"
-      }
-       },
-        {
+        "configuration" : {
+          "calculValueOffset":"#value# / 1000"
+        }
+      },
+      {
         "name": "Courant Fuite",
         "type": "info",
         "subtype": "numeric",
         "isVisible": 0,
         "isHistorized": 0,
-        "unite" : "V",
+        "unite" : "A",
         "logicalId": "1::1794::12548"
       }   
     ]
