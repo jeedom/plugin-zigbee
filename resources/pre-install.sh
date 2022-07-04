@@ -19,6 +19,8 @@
 
 echo "Launch pre-install of zigbee dependancy"
 
+sudo apt remove -y RPi.GPIO 2> /dev/null
+
 sudo rm -rf /usr/local/lib/python3.7/dist-packages/zhaquirks
 sudo rm -rf /usr/local/lib/python3.7/dist-packages/zigpy*
 sudo rm -rf /usr/local/lib/python3.7/dist-packages/bellows*
