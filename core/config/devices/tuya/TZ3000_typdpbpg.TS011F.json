@@ -1,24 +1,12 @@
 {
-  "name": "Plug connectée simple ON/OFF 16A",
-  "ref" : "PLUG 3680w - TS011F",
-  "type": "Prise,Consommation,Puissance,Répéteur",
-  "buylink": "https://fr.aliexpress.com/item/1005003444957152.html",
+  "name": "Prise intelligente avec mesure de puissance",
+  "ref" : "XH-002P TS011F",
+  "type": "Prise,Répéteur",
   "remark": "",
-  "documentation": "",
-  "reset": "Appui de 5 secondes sur le bouton ON/OFF",
-  "pairing": "Appui de 5 secondes sur le bouton ON/OFF",   
   "config" : [
     {"endpoint" : 1,"cluster":6,"attribute":32769,"manufacturer":4417,"name":"LED","type":"select","values":[{"value":0,"name":"Off"},{"value":1,"name":"On"}]}
-  ], 
+  ],
   "commands": [
-    {
-      "name": "Rafraîchir",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "refresh"
-    },  
     {
       "name": "Etat",
       "type": "info",
@@ -54,6 +42,17 @@
       "template":{
         "dashboard" : "prise",
         "mobile" : "prise"
+      }
+    },
+    {
+      "name": "Toggle",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "1::on_off::toggle",
+      "display": {
+        "icon": "<i class=\"fas fa-random\"></i>"
       }
     },
     {
