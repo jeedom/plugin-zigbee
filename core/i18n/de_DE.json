@@ -1,7 +1,7 @@
 {
     "plugins\/zigbee\/mobile\/js\/zigbee.js": {
         "Module ajouté avec succès. Qrcode lu :": "Module ajouté avec succès. Qrcode lu :",
-        "Mode inclusion actif pendant 3 minutes pour le démon": "Der Einschlussmodus ist für den Daemon 3 Minuten lang aktiv"
+        "Mode inclusion actif pendant 3 minutes pour le démon": "Mode inclusion actif pendant 3 minutes pour le démon"
     },
     "plugins\/zigbee\/mobile\/html\/zigbee.html": {
         "Nouveau module inclus, configuration : ": "Neues Modul enthalten, Konfiguration:",
@@ -58,11 +58,11 @@
         "Fréquence de mise à jour des données Zigbee en secondes": "Häufigkeit der Aktualisierung von ZigBee-Daten in Sekunden",
         "Canal": "Kanal",
         "Sélectionner le canal de communication à privilégier": "Wählen Sie den bevorzugten Kommunikationskanal",
-        "11": 11,
-        "15": 15,
-        "20": 20,
-        "25": 25,
-        "26": 26,
+        "11": "11",
+        "15": "15",
+        "20": "20",
+        "25": "25",
+        "26": "26",
         "Cliquer sur le bouton pour redémarrer le démon": "Klicken Sie auf die Schaltfläche, um den Daemon neu zu starten",
         "Redémarrer le démon": "Starten Sie den Daemon neu",
         "Supprimer toute les données du démons, à faire lors d'un changement de clef sans backup\/restore": "Alle Daten vom Daemon löschen, bei Schlüsselwechsel ohne Backup\/Restore durchzuführen",
@@ -295,7 +295,7 @@
         "Aucun module ne peut etre ajouté dans ce groupe": "Aucun module ne peut etre ajouté dans ce groupe",
         "Quel module voulez vous ajouter au groupe ?": "Welches Modul möchten Sie der Gruppe hinzufügen?",
         "Module ajouté avec succès au groupe": "Module ajouté avec succès au groupe",
-        "Configuration du groupe": "Gruppen-Setup",
+        "Configuration du groupe": "Configuration du groupe",
         "Etês vous sur de vouloir supprimer ce noeud du groupe ?": "Möchten Sie diesen Knoten wirklich aus der Gruppe entfernen?"
     },
     "plugins\/zigbee\/desktop\/php\/zigbee.php": {
@@ -366,12 +366,12 @@
         "Réseaux zigbee": "ZigBee-Netzwerke",
         "Groupes zigbee": "Groupes zigbee",
         "Configuration du noeud": "Knotenkonfiguration",
-        "Configuration du groupe": "Gruppen-Setup",
-        "Mode inclusion actif pendant 3 minutes pour le démon": "Der Einschlussmodus ist für den Daemon 3 Minuten lang aktiv",
+        "Configuration du groupe": "Configuration du groupe",
+        "Mode inclusion actif pendant 3 minutes pour le démon": "Mode inclusion actif pendant 3 minutes pour le démon",
         "Remote commissioning sur ?": "Ferninbetriebnahme ein?",
-        "Module ajouté avec succès": "Modul erfolgreich hinzugefügt",
+        "Module ajouté avec succès": "Module ajouté avec succès",
         "Vous voulez créer un enfant sur quel endpoint ? (attention il ne faut jamais supprimer le device père)": "Sie möchten ein Kind auf welchem Endpunkt erstellen? (Seien Sie vorsichtig, Sie dürfen das übergeordnete Gerät niemals löschen.)",
-        "Enfant créé avec succès": "Kind erfolgreich erstellt",
+        "Enfant créé avec succès": "Enfant créé avec succès",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Ein Gerät wurde gerade aufgenommen \/ ausgeschlossen. Bitte aktualisieren Sie die Seite",
         "Commande": "Befehl",
         "Valeur retour d\\'état": "Statusrückgabewert",
@@ -400,8 +400,8 @@
     },
     "plugins\/zigbee\/core\/php\/jeeZigbee.php": {
         "Vous n\\'etes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion auszuführen",
-        "Un périphérique Zigbee a quitté le réseaux": "Ein Zigbee-Gerät hat das Netzwerk verlassen",
-        "Un périphérique Zigbee a été supprimé du réseaux": "Ein Zigbee-Gerät wurde aus den Netzwerken entfernt",
+        "Un périphérique Zigbee a quitté le réseaux": "Un périphérique Zigbee a quitté le réseaux",
+        "Un périphérique Zigbee a été supprimé du réseaux": "Un périphérique Zigbee a été supprimé du réseaux",
         "Un périphérique Zigbee est en cours d\\'inclusion : ": "Un périphérique Zigbee est en cours d\\'inclusion :",
         "Un périphérique Zigbee a été inclus : ": "Ein ZigBee-Gerät wurde mitgeliefert:",
         "Pause de 30s avant synchronisation": "Pause von 30 Sekunden vor der Synchronisation",
@@ -424,7 +424,7 @@
         "Actif": "Anlage",
         "Inactif": "Leerlauf",
         "Code": "Codiert",
-        "OK": "OK",
+        "OK": "In Ordnung",
         "Code pin envoyé avec success": "PIN-Code erfolgreich gesendet"
     },
     "plugins\/zigbee\/core\/config\/devices\/tuya\/TZE200_dzuqwsyg.TS0601.php": {
