@@ -8,48 +8,44 @@
         {
             "name": "Bouton 1",
             "type": "info",
-            "subtype": "numeric",
+            "subtype": "binary",
             "isVisible": 1,
             "isHistorized": 0,
-            "logicalId": "1::6::cmd::1",
+            "logicalId": "1::6::cmd::0",
             "configuration": {
               "repeatEventManagement": "always"
             }
-          },
-          
+        },
         {  "name": "Bouton 2",
           "type": "info",
-          "subtype": "numeric",
+          "subtype": "binary",
           "isVisible": 1,
           "isHistorized": 0,
-          "logicalId": "2::6::cmd::1",
+          "logicalId": "2::6::cmd::0",
           "configuration": {
             "repeatEventManagement": "always"
           }
         },
-          
         {  "name": "Bouton 3",
           "type": "info",
-          "subtype": "numeric",
+          "subtype": "binary",
           "isVisible": 1,
           "isHistorized": 0,
-          "logicalId": "3::6::cmd::1",
+          "logicalId": "3::6::cmd::0",
           "configuration": {
             "repeatEventManagement": "always"
           }
         },
-          
         {  "name": "Bouton 4",
           "type": "info",
-          "subtype": "numeric",
+          "subtype": "binary",
           "isVisible": 1,
           "isHistorized": 0,
-          "logicalId": "4::6::cmd::1",
+          "logicalId": "4::6::cmd::0",
           "configuration": {
             "repeatEventManagement": "always"
           }
         }
-        
     ]
   }
   
