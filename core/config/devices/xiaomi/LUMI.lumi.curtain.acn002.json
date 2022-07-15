@@ -6,7 +6,7 @@
       {
         "name": "Etat",
         "type": "info",
-        "subtype": "numeric",
+        "subtype": "binary",
         "isVisible": 0,
         "isHistorized": 0,
         "logicalId": "1::258::8",
@@ -20,7 +20,7 @@
         "isHistorized": 0,
         "value" : "Etat",
         "logicalId": "1::window_covering::go_to_lift_percentage::0",
-        "generic_type": "FLAP_SLIDER"
+        "generic_type": "ENERGY_ON"
       },
       {
         "name": "Fermé",
@@ -30,7 +30,7 @@
         "isHistorized": 0,
         "value" : "Etat",
         "logicalId": "1::window_covering::go_to_lift_percentage::1",
-        "generic_type": "FLAP_SLIDER"
+        "generic_type": "ENERGY_OFF"
       }
     ]
   }
