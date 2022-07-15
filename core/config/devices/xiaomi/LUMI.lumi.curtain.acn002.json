@@ -13,43 +13,24 @@
         "generic_type": "FLAP_STATE"
       },
       {
-        "name": "Position",
+        "name": "Ouvert",
         "type": "action",
-        "subtype": "slider",
+        "subtype": "other",
         "isVisible": 1,
         "isHistorized": 0,
         "value" : "Etat",
-        "logicalId": "1::window_covering::go_to_lift_percentage::#slider#",
+        "logicalId": "1::window_covering::go_to_lift_percentage::0",
         "generic_type": "FLAP_SLIDER"
       },
       {
-        "name": "Stop",
+        "name": "Fermé",
         "type": "action",
         "subtype": "other",
-        "isVisible": 0,
+        "isVisible": 1,
         "isHistorized": 0,
         "value" : "Etat",
-        "logicalId": "1::window_covering::stop"
-      },
-      {
-        "name": "Monter",
-        "type": "action",
-        "subtype": "other",
-        "isVisible": 0,
-        "isHistorized": 0,
-        "value" : "Etat",
-        "logicalId": "1::window_covering::up_open",
-        "generic_type": "FLAP_UP"
-      },
-      {
-        "name": "Descendre",
-        "type": "action",
-        "subtype": "other",
-        "isVisible": 0,
-        "isHistorized": 0,
-        "value" : "Etat",
-        "logicalId": "1::window_covering::down_close",
-        "generic_type": "FLAP_DOWN"
+        "logicalId": "1::window_covering::go_to_lift_percentage::1",
+        "generic_type": "FLAP_SLIDER"
       }
     ]
   }
