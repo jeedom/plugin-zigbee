@@ -34,8 +34,8 @@ import json
 
 try:
 	from jeedom.jeedom import *
-except ImportError:
-	print("Error: importing module jeedom.jeedom")
+except ImportError as error :
+	print("Error: importing module jeedom.jeedom : " + error.message)
 	sys.exit(1)
 
 try:
