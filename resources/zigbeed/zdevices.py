@@ -60,7 +60,7 @@ async def command(_data):
             if 'await' in cmd:
                 await command(cluster, cmd)
             else:
-                asyncio.ensure_future(command(cluster, cmd))
+                command(cluster, cmd)
             continue
         if not hasattr(cluster, cmd['command']):
             raise Exception("Command not found : "+str(cmd['command']))
@@ -69,6 +69,7 @@ async def command(_data):
             args = cmd['args']
             if 'await' in cmd:
                 try:
+                    logging.debug("["+str(device._ieee)+"][zdevices.command] Execution await of "+str(cmd['command'])+" args : "+str(cmd['args']))
                     await command(*args)
                 except Exception as e:
                     logging.error(
@@ -76,10 +77,12 @@ async def command(_data):
                     await asyncio.sleep(1)
                     await command(*args)
             else:
+                logging.debug("["+str(device._ieee)+"][zdevices.command] Execution of "+str(cmd['command'])+" args : "+str(cmd['args']))
                 command(*args)
         else:
             if 'await' in cmd:
                 try:
+                    logging.debug("["+str(device._ieee)+"][zdevices.command] Execution await of "+str(cmd['command']))
                     await command()
                 except Exception as e:
                     logging.error(
@@ -87,6 +90,7 @@ async def command(_data):
                     await asyncio.sleep(1)
                     await command()
             else:
+                logging.debug("["+str(device._ieee)+"][zdevices.command] Execution of "+str(cmd['command']))
                 command()
 
 
