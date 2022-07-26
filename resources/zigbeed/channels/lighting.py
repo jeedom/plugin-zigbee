@@ -45,6 +45,21 @@ class ColorChannel():
 		{"attr": "current_y", "config": REPORT_CONFIG_DEFAULT},
 		{"attr": "color_temperature", "config": REPORT_CONFIG_DEFAULT},
 	)
+    
+	@staticmethod
+	def convert_xy_to_rgb(x_point,y_point,Y=255):
+		X = (Y / y_point) * x_point
+		Z = (Y / y_point) * (1 - x_point - y_point)
+		r = X * 1.656492 - Y * 0.354851 - Z * 0.255038
+		g = -X * 0.707196 + Y * 1.655397 + Z * 0.036152
+		b = X * 0.051713 - Y * 0.121364 + Z * 1.011530
+		r, g, b = map(lambda x: (12.92 * x) if (x <= 0.0031308) else ((1.0 + 0.055) * pow(x, (1.0 / 2.4)) - 0.055),[r, g, b])
+		r, g, b = map(lambda x: max(0, x), [r, g, b])
+		max_component = max(r, g, b)
+		if max_component > 1:
+			r, g, b = map(lambda x: x / max_component, [r, g, b])
+			r, g, b = map(lambda x: int(x * 255), [r, g, b])
+		return str('#%02x%02x%02x' % (r, g, b))
 
 	async def color_loop_stop(cluster,cmd):
 		await cluster.color_loop_set(0x1,0,0,0,0)
@@ -53,6 +68,7 @@ class ColorChannel():
 		await cluster.color_loop_set(0x1,0x2,0x1,7,0)
 
 	def attribute_updated(cluster, attribute_id, value):
+		logging.info("["+str(cluster.endpoint.device._ieee)+"][channel.lighting.ColorChannel.attribute_updated] Attribut : "+str(attribute_id)+", value : "+str(value))
 		if attribute_id != 3 and attribute_id != 4:
 			return None
 		if 3 in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id] and 4 in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id]:
@@ -64,24 +80,14 @@ class ColorChannel():
 			if 8 in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id] and 0 in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][8]:
 				Y = shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][8][0]
 			logging.info("["+str(cluster.endpoint.device._ieee)+"][channel.lighting.ColorChannel.attribute_updated] Convertion to rgb  x_point : "+str(x_point)+", y_point : "+str(y_point)+", Y : "+str(Y))
-			X = (Y / y_point) * x_point
-			Z = (Y / y_point) * (1 - x_point - y_point)
-			r = X * 1.656492 - Y * 0.354851 - Z * 0.255038
-			g = -X * 0.707196 + Y * 1.655397 + Z * 0.036152
-			b = X * 0.051713 - Y * 0.121364 + Z * 1.011530
-			r, g, b = map(lambda x: (12.92 * x) if (x <= 0.0031308) else ((1.0 + 0.055) * pow(x, (1.0 / 2.4)) - 0.055),[r, g, b])
-			r, g, b = map(lambda x: max(0, x), [r, g, b])
-			max_component = max(r, g, b)
-			if max_component > 1:
-				r, g, b = map(lambda x: x / max_component, [r, g, b])
-			r, g, b = map(lambda x: int(x * 255), [r, g, b])
-			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::color',{"value" : str('#%02x%02x%02x' % (r, g, b)),"cluster_name" : cluster.name})
+			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::color',{"value" : convert_xy_to_rgb(x_point,y_point,Y),"cluster_name" : cluster.name})
 			shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][cluster.cluster_id] = {}
 		return True
 
 	def cluster_command(cluster, tsn, *args):
+		logging.info("["+str(cluster.endpoint.device._ieee)+"][channel.lighting.ColorChannel.cluster_command] Args : "+str(args))
 		if args[0] == 7 :
-			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::color',{"value" : str('#%02x%02x%02x' % (int(args[1][0]/65535*255), int(args[1][1]/65535*255), int(args[1][2]/65535*255))),"cluster_name" : cluster.name})
+			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::color',{"value" : convert_xy_to_rgb(int(args[1][0]),int(args[1][1])),"cluster_name" : cluster.name})
 		if args[0] == 10 :
 			shared.JEEDOM_COM.add_changes('devices::'+str(cluster.endpoint.device._ieee)+'::'+str(cluster.endpoint._endpoint_id)+'::'+str(cluster.cluster_id)+'::cmd::colorTemperature',{"value" : args[1][0],"cluster_name" : cluster.name})
 		return True
