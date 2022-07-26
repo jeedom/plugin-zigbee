@@ -63,7 +63,7 @@ class ColorChannel():
 			Y = 255
 			if 8 in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id] and 0 in shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][8]:
 				Y = shared.DEVICES_DATA[cluster.endpoint.device._ieee][cluster.endpoint._endpoint_id][8][0]
-			logging.info("["+str(cluster.endpoint.device._ieee)+"][chanels.lighting.ColorChannel.attribute_updated] Convertion to rgb  x_point : "+str(x_point)+", y_point : "+str(y_point)+", Y : "+str(Y))
+			logging.info("["+str(cluster.endpoint.device._ieee)+"][channels.lighting.ColorChannel.attribute_updated] Convertion to rgb  x_point : "+str(x_point)+", y_point : "+str(y_point)+", Y : "+str(Y))
 			X = (Y / y_point) * x_point
 			Z = (Y / y_point) * (1 - x_point - y_point)
 			r = X * 1.656492 - Y * 0.354851 - Z * 0.255038
