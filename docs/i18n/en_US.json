@@ -6,6 +6,7 @@
         "c'est trié par date d'ajout\/modification": "it is sorted by date added \/ modified",
         "Pour profiter des dernieres integration de module n'hesitez pas a mettre à jour les dépendances": "To take advantage of the latest module integration, don't hesitate to update the dependencies",
         "Pour ceux n'ayant pas de soucis avec le demon il ne faut SURTOUT pas mettre à jour ca peut tout casser": "For those who don't have any problems with the demon, you MUST NOT update, it can break everything",
+        "Correction d'un soucis sur la remonter de la couleur de certaines télécommande zigbee": "Fixed an issue with the color feedback of some zigbee remotes",
         "27\/06\/2022": "27\/06\/2022",
         "Tentative de correction des soucis avec le démon": "Attempt to fix problems with the daemon",
         "23\/06\/2022": "06\/23\/2022",
