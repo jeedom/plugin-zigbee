@@ -72,8 +72,8 @@ class ApplicationHandler(RequestHandler):
 						ep.device_type = zgp.device_type
 						ep.add_output_cluster(zgp.cluster_id)
 					await zgp.permit(self.json_args['duration'])
-				except :
-					pass
+				except Exception as e:
+					logging.info(traceback.format_exc())
 				return self.write(utils.format_json_result(success=True))
 			if arg1 == 'neighbors_scan':
 				await shared.ZIGPY.get_device(ieee=shared.ZIGPY.ieee).neighbors.scan()
