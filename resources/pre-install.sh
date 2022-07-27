@@ -26,3 +26,15 @@ sudo rm -rf /usr/local/lib/python3.7/dist-packages/zigpy*
 sudo rm -rf /usr/local/lib/python3.7/dist-packages/bellows*
 sudo rm -rf /var/www/.local/lib/python3.7/site-packages/zigpy*
 sudo rm -rf /var/www/.local/lib/python3.7/site-packages/bellows*
+
+sudo rm -rf /usr/local/lib/python3.8/dist-packages/zhaquirks
+sudo rm -rf /usr/local/lib/python3.8/dist-packages/zigpy*
+sudo rm -rf /usr/local/lib/python3.8/dist-packages/bellows*
+sudo rm -rf /var/www/.local/lib/python3.8/site-packages/zigpy*
+sudo rm -rf /var/www/.local/lib/python3.8/site-packages/bellows*
+
+sudo rm -rf /usr/local/lib/python3.9/dist-packages/zhaquirks
+sudo rm -rf /usr/local/lib/python3.9/dist-packages/zigpy*
+sudo rm -rf /usr/local/lib/python3.9/dist-packages/bellows*
+sudo rm -rf /var/www/.local/lib/python3.9/site-packages/zigpy*
+sudo rm -rf /var/www/.local/lib/python3.9/site-packages/bellows*
