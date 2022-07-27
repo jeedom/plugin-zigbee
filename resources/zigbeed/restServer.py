@@ -66,11 +66,13 @@ class ApplicationHandler(RequestHandler):
 				gateway = shared.ZIGPY.get_device(nwk=0)
 				try:
 					if not zgp.endpoint_id in gateway.endpoints:
+						logging.info('[ApplicationHandler.put.include] No ZGP endpoint found, create it')
 						ep = gateway.add_endpoint(zgp.endpoint_id)
 						ep.status =  zigpy.endpoint.Status.ZDO_INIT
 						ep.profile_id = zigpy.profiles.zha.PROFILE_ID
 						ep.device_type = zgp.device_type
 						ep.add_output_cluster(zgp.cluster_id)
+					logging.info('[ApplicationHandler.put.include] Permit ZGP include')
 					await zgp.permit(self.json_args['duration'])
 				except Exception as e:
 					logging.info(traceback.format_exc())

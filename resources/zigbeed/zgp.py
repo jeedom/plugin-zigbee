@@ -262,7 +262,7 @@ def setKey(device, key):
 	
 async def permit(time_s=60):
 	assert 0 <= time_s <= 254
-	application = shared.ZIGPY
+	gateway = shared.ZIGPY.get_device(nwk=0)
 	logging.info("[zgp.permit] Permit green power pairing for %s s", time_s)
-	application.devices[application._ieee].endpoints[endpoint_id].out_clusters[cluster_id]._attr_cache[0x9997] = int(time.time() + time_s)
+	gateway.endpoints[endpoint_id].out_clusters[cluster_id]._attr_cache[0x9997] = int(time.time() + time_s)
 	return
