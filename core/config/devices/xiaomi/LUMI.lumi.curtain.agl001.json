@@ -1,0 +1,75 @@
+{
+    "name": "AQARA - MOTORISATION POUR RIDEAU ZIGBEE 3.0 AQARA CURTAIN DRIVER E1 (VERSION TRINGLE)",
+    "ref": "lumi.curtain.agl001",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/6250-aqara-motorisation-pour-rideau-zigbee-30-aqara-curtain-driver-e1-version-tringle-6970504216860.html?domid=4&id_campaign=9",
+    "commands": [
+        {
+            "logicalId": "1::258::8",
+            "generic_type": "FLAP_STATE",
+            "name": "Etat 1",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::window_covering::go_to_lift_percentage::#slider#",
+            "generic_type": "FLAP_SLIDER",
+            "name": "Position 1",
+            "type": "action",
+            "subType": "slider",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat 1",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::window_covering::stop",
+            "generic_type": "FLAP_STOP",
+            "name": "Stop 1",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::window_covering::up_open",
+            "generic_type": "FLAP_UP",
+            "name": "Gauche",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat 1",
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::window_covering::down_close",
+            "generic_type": "FLAP_DOWN",
+            "name": "Droite",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat 1",
+            "isVisible": "0"
+        }
+    ]
+}
