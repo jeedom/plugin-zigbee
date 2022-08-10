@@ -13,7 +13,7 @@
 - Correction de soucis d'inclusion pour les équipements GreenPower (compatible uniquement avec les clefs EZSP)
 - Correction d'un soucis sur la remonter de la couleur de certaines télécommande zigbee
 
-# 27/06/2022
+# 10/08/2022
 
 - Tentative de correction des soucis avec le démon
 
