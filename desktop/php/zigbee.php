@@ -37,6 +37,18 @@ foreach (zigbee::devicesParameters() as $id => &$info) {
 	$manufacturers[$info['manufacturer']][$id] = $info;
 }
 ksort($manufacturers);
+
+
+function sortDevice($a, $b) {
+	if ($a['name'] == $b['name']) {
+		return 0;
+	}
+	return ($a['name'] < $b['name']) ? -1 : 1;
+}
+
+foreach ($manufacturers as &$manufacturer) {
+	uasort($manufacturer, "sortDevice");
+}
 ?>
 
 <div class="row row-overflow">
