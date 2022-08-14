@@ -21,7 +21,7 @@
     {
       "name": "Bouton 2",
       "type": "info",
-      "subtype": "autre",
+      "subtype": "other",
       "isVisible": 1,
       "isHistorized": 1,
       "logicalId": "1::1281::cmd::1",
