@@ -313,7 +313,7 @@ foreach ($manufacturers as &$manufacturer) {
 												if (!isset($info['name'])) {
 													continue;
 												}
-												$name = (isset($info['ref'])) ? '[' . $info['ref'] . '] ' . $info['name'] : $info['name'];
+												$name = (isset($info['ref'])) ?  $info['name'] . ' [' . $info['ref'] . '] ' : $info['name'];
 												if (isset($info['instruction'])) {
 													$options .= '<option data-manufacturer="' . $manufacturer . '" value="' . $id . '" data-img="' . zigbee::getImgFilePath($id, $manufacturer) . '" data-instruction="' . $info['instruction'] . '" style="display:none;">' . $name . '</option>';
 												} else {
