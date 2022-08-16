@@ -368,7 +368,8 @@ foreach ($manufacturers as &$manufacturer) {
 							<th>{{Logical ID}}</th>
 							<th>{{Paramètres}}</th>
 							<th style="width:300px;">{{Options}}</th>
-							<th style="width: 150px;"></th>
+							<th>{{Etat}}</th>
+							<th style="width: 150px;">{{Action}}</th>
 						</tr>
 					</thead>
 					<tbody>
