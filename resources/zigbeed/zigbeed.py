@@ -255,9 +255,9 @@ if os.path.exists(shared.DEVICE_FOLDER):
 			with open(shared.DEVICE_FOLDER+'/'+file) as specific_file:
 				try:
 					shared.DEVICE_SPECIFIC[ieee] = json.load(specific_file)
+					logging.info('Add specific configuration for '+str(ieee)+' to '+str(shared.DEVICE_SPECIFIC[ieee]))
 				except Exception as e:
 					pass
-			logging.info('Add specific configuration for '+str(ieee)+' to '+str(shared.DEVICE_SPECIFIC[ieee]))
 
 if _device == 'auto':
 	if _controller == 'ezsp' :
