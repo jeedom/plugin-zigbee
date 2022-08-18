@@ -81,7 +81,7 @@
         "Inconnue ()": "Inconnue ()",
         "Information": "Informação",
         "Configuration": "Configuração",
-        "Action": "Ação",
+        "Action": "Ações",
         "Informations brutes": "Informação crua",
         "Configuration json": "Configuração json",
         "Attention": "Atenção",
@@ -229,7 +229,7 @@
         "Actions": "Estoque",
         "Noeuds": "Nós",
         "Graphique du réseau": "Gráfico de rede",
-        "Action": "Ação",
+        "Action": "Ações",
         "Description": "Descrição",
         "Rescan des voisins": "Verificar novamente de vizinhos",
         "Lancer un scan des voisins de la clef Zigbee": "Inicie uma varredura dos vizinhos da chave Zigbee",
@@ -290,7 +290,7 @@
         "Image": "Imagem",
         "IEEE": "IEEE",
         "Nom": "Nome",
-        "Action": "Ação",
+        "Action": "Ações",
         "Supprimer": "Remover",
         "Aucun module ne peut etre ajouté dans ce groupe": "Aucun module ne peut etre ajouté dans ce groupe",
         "Quel module voulez vous ajouter au groupe ?": "Qual módulo você deseja adicionar ao grupo?",
@@ -358,7 +358,9 @@
         "Nom": "Nome",
         "Type": "Tipo",
         "Logical ID": "ID lógico",
-        "Paramètres": "Configurações"
+        "Paramètres": "Configurações",
+        "Etat": "Estado",
+        "Action": "Ações"
     },
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
         "Dans ce mode Jeedom va automatiquement créer une commande pour chaque information renvoyé par le module pendant 3min. Si c'est une télécommande il faudra donc cliquer sur tous les boutons et type d'appuie possible pendant 3min": "Neste modo o Jeedom criará automaticamente um pedido para cada informação retornada pelo módulo por 3min. Se for um controle remoto, será necessário clicar em todos os botões e tipo de suporte possível por 3min",

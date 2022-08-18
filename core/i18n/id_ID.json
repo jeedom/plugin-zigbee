@@ -358,7 +358,9 @@
         "Nom": "Nama",
         "Type": "Jenis",
         "Logical ID": "Logical ID",
-        "Paramètres": "Parameter²"
+        "Paramètres": "Parameter²",
+        "Etat": "Etat",
+        "Action": "Action"
     },
     "plugins\/zigbee\/desktop\/js\/zigbee.js": {
         "Dans ce mode Jeedom va automatiquement créer une commande pour chaque information renvoyé par le module pendant 3min. Si c'est une télécommande il faudra donc cliquer sur tous les boutons et type d'appuie possible pendant 3min": "Dans ce mode Jeedom va automatiquement créer une commande pour chaque information renvoyé par le module pendant 3min. Si c'est une télécommande il faudra donc cliquer sur tous les boutons et type d'appuie possible pendant 3min",
