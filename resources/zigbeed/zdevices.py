@@ -78,7 +78,7 @@ async def command(_data):
                     await command(*args)
             else:
                 logging.debug("["+str(device._ieee)+"][zdevices.command] Execution of "+str(cmd['command'])+" args : "+str(cmd['args']))
-                command(*args)
+                asyncio.create_task(command(*args))
         else:
             if 'await' in cmd:
                 try:
@@ -91,7 +91,7 @@ async def command(_data):
                     await command()
             else:
                 logging.debug("["+str(device._ieee)+"][zdevices.command] Execution of "+str(cmd['command']))
-                command()
+                asyncio.create_task(command())
 
 
 async def write_attributes(_data):
