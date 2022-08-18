@@ -19,7 +19,10 @@ import logging
 import threading
 import requests
 import datetime
-import collections
+try:
+    from collections.abc import Mapping
+except ImportError:
+    from collections import Mapping
 import serial
 import os
 from os.path import join
@@ -121,13 +124,12 @@ class jeedom_com():
 		return self.changes
 
 	def merge_dict(self,d1, d2):
-	    for k,v2 in d2.items():
-	        v1 = d1.get(k) # returns None if v1 has no value for this key
-	        if ( isinstance(v1, collections.Mapping) and
-	             isinstance(v2, collections.Mapping) ):
-	            self.merge_dict(v1, v2)
-	        else:
-	            d1[k] = v2
+		for k,v2 in d2.items():
+			v1 = d1.get(k) # returns None if v1 has no value for this key
+			if isinstance(v1, Mapping) and isinstance(v2, Mapping):
+				self.merge_dict(v1, v2)
+			else:
+				d1[k] = v2
 
 	def test(self):
 		try:
@@ -147,12 +149,12 @@ class jeedom_utils():
 	@staticmethod
 	def convert_log_level(level = 'error'):
 		LEVELS = {'debug': logging.DEBUG,
-          'info': logging.INFO,
-          'notice': logging.WARNING,
-          'warning': logging.WARNING,
-          'error': logging.ERROR,
-          'critical': logging.CRITICAL,
-          'none': logging.CRITICAL}
+		  'info': logging.INFO,
+		  'notice': logging.WARNING,
+		  'warning': logging.WARNING,
+		  'error': logging.ERROR,
+		  'critical': logging.CRITICAL,
+		  'none': logging.CRITICAL}
 		return LEVELS.get(level, logging.CRITICAL)
 
 	@staticmethod
@@ -251,7 +253,7 @@ class jeedom_serial():
 			rtscts=self.rtscts,
 			xonxoff=self.xonxoff,
 			parity=serial.PARITY_NONE,
-	        stopbits=serial.STOPBITS_ONE
+			stopbits=serial.STOPBITS_ONE
 			)
 		except serial.SerialException as e:
 			logging.error("Error: Failed to connect on device " + self.device + " Details : " + str(e))
