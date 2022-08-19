@@ -67,7 +67,10 @@ async def command(_data):
         command = getattr(cluster, cmd['command'])
         if 'args' in cmd:
             args = cmd['args']
-            if 'await' in cmd:
+            if cmd['command'] == 'image_notify' :
+                command(*args)
+                return
+            if 'await' in cmd and cmd['await'] == 1 :
                 try:
                     logging.debug("["+str(device._ieee)+"][zdevices.command] Execution await of "+str(cmd['command'])+" args : "+str(cmd['args']))
                     await command(*args)

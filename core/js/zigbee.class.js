@@ -247,7 +247,7 @@ jeedom.zigbee.device.command = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/command',
-    data : json_encode({ieee : _params.ieee,'cmd':[{endpoint : _params.endpoint,cluster_type : _params.cluster_type,cluster : _params.cluster,command : _params.command,args : _params.args}]}),
+    data : json_encode({ieee : _params.ieee,'cmd':[{endpoint : _params.endpoint,cluster_type : _params.cluster_type,cluster : _params.cluster,command : _params.command,args : _params.args,await : _params.await || 0}]}),
     type : 'PUT'
   };
   $.ajax(paramsAJAX);
