@@ -184,6 +184,7 @@ class TuyaZGV1(CustomDevice):
         MODELS_INFO: [
             ("_TZE200_akjefhj5", "TS0601"),
             ("_TZE200_81isopgh", "TS0601"),
+            ("_TZE200_2wg5qrjy", "TS0601"),
         ],
         ENDPOINTS: {
             1: {

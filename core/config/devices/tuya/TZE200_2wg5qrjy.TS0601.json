@@ -1,0 +1,67 @@
+{
+    "name": "Vanne arrosage",
+    "ref" : "TS0013",
+    "buylink" : "https://www.domadoo.fr/fr/peripheriques/5886-saswell-electrovanne-et-programmateur-d-arrosage-connecte-zigbee-mesure-de-consommation.html?domid=4&id_campaign=9",
+    "remark" : "Il est pour le moment impossible de controller le timer correctement, lors d'une mise à On la vanne reste ouverte 10min puis se coupe",
+    "commands": [
+      {
+        "name": "Etat",
+        "type": "info",
+        "subtype": "binary",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "logicalId": "1::6::0"
+      },
+      {
+        "name": "On",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat",
+        "logicalId": "1::on_off::on"
+      },
+      {
+        "name": "Off",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "value" : "Etat",
+        "logicalId": "1::on_off::off"
+      },
+      {
+        "name": "Consommation",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::1028::0"
+      },
+      {
+        "name": "Timer",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::1086::12"
+      },
+      {
+        "name": "Temps restant",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::1086::11"
+      },
+      {
+        "name": "Derniere durée",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "1::1086::15"
+      }
+    ]
+  }
+  
