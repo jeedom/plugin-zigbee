@@ -192,7 +192,7 @@ if (isset($result['devices'])) {
 							}
 						} else if (strcmp($attribut_id, 'event') === 0) {
 							foreach ($value as $cmd_id => $cmd_value) {
-								if (is_array($cmd_value['value'])) {
+								if (is_array($cmd_value['value']) && count($cmd_value['value']) > 0) {
 									foreach ($cmd_value['value'] as $sub_cmd_id => $sub_cmd_value) {
 										if ($sub_cmd_value === '[]') {
 											$sub_cmd_value = 1;
@@ -210,7 +210,7 @@ if (isset($result['devices'])) {
 										}
 									}
 								} else {
-									if ($cmd_value === '[]') {
+									if ($cmd_value === '[]' || is_array($cmd_value)) {
 										$cmd_value = 1;
 									}
 									log::add('zigbee', 'debug', 'Search event command for ' . $ieee . ' logicalId : ' . $endpoint_id . '::' . $cluster_id . '::' . $attribut_id . '::' . $cmd_id . ' => ' . $cmd_value . ' convert to ' . convertValue($cmd_value));
