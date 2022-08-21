@@ -36,7 +36,7 @@ if (!isConnect('admin')) {
         <sup><i class="fas fa-question-circle tooltips" title="{{Cliquer sur le bouton pour ouvrir la fenêtre de sauvegarde/restauration des clés de type EZSP ou ZNP}}"></i></sup>
       </label>
       <div class="col-md-4">
-        <a class="form-control btn btn-default" id="bt_backupRestore"><i class="fas fa-window-restore"></i> {{Démarrer l'assistant de sauvegarde/restauration}}</a>
+        <a class="btn btn-default" id="bt_backupRestore"><i class="fas fa-window-restore"></i> {{Démarrer l'assistant de sauvegarde/restauration}}</a>
       </div>
     </div>
     <div class="form-group">
@@ -44,7 +44,7 @@ if (!isConnect('admin')) {
         <sup><i class="fas fa-question-circle tooltips" title="{{Cliquer sur le bouton pour mettre à jour le firmware du contrôleur. Le démon Zigbee est stoppé durant le processus}}"></i></sup>
       </label>
       <div class="col-md-4">
-        <a class="form-control btn btn-warning" id="bt_UpdateFirmware"><i class="fas fa-download"></i> {{Mettre à jour le firmware}}</a>
+        <a class="btn btn-warning" id="bt_UpdateFirmware"><i class="fas fa-download"></i> {{Mettre à jour le firmware}}</a>
       </div>
     </div>
     <div class="form-group">
@@ -56,7 +56,12 @@ if (!isConnect('admin')) {
       </div>
       <?php if (config::byKey('allowOTA', 'zigbee') == 1) { ?>
         <div class="col-md-3">
-          <a class="form-control btn btn-danger" id="bt_UpdateOta" title="Le processus peut durer plusieurs heures et nécessite le redémarrage du démon"><i class="fas fa-sync-alt"></i> {{Mettre à jour les fichiers de modules}}</a>
+          <div class="input-group" style="display:inline-flex">
+            <span class="input-group-btn">
+              <a class="btn btn-warning roundedLeft" id="bt_manageOTAFile" title="{{Permets d'ajouter et supprimer des firmware pour les modules zigbee}}"><i class="far fa-file"></i> {{Gérer les fichiers OTA}}</a>
+              <a class="btn btn-danger roundedRight" id="bt_UpdateOta" title="{{Le processus peut durer plusieurs heures et nécessite le redémarrage du démon}}"><i class="fas fa-sync-alt"></i> {{Mettre à jour les fichiers de modules}}</a>
+            </span>
+          </div>
         </div>
       <?php } ?>
     </div>
@@ -338,5 +343,9 @@ if (!isConnect('admin')) {
         }).load('index.php?v=d&modal=log.display&log=zigbee_ota').dialog('open');
       }
     });
+  })
+
+  $('#bt_manageOTAFile').off('click').on('click', function() {
+    jeedomUtils.loadPage('index.php?v=d&p=editor&root=plugins/zigbee/data/ota')
   })
 </script>
