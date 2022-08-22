@@ -309,6 +309,9 @@ foreach ($manufacturers as &$manufacturer) {
 										<?php
 										$options = '';
 										foreach ($manufacturers as $manufacturer => $devices) {
+											if (!is_array($devices) || count($devices) == 0) {
+												continue;
+											}
 											foreach ($devices as $id => $info) {
 												if (!isset($info['name'])) {
 													continue;
