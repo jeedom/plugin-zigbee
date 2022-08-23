@@ -61,7 +61,7 @@ if (!isConnect('admin')) {
       <div class="col-lg-2">
         <select class="firmwareAttr form-control zigbee_firmware_sub_controller elelabs" data-l1key="firmware" style="display:none;">
           <option value="zigbee">{{Dernier firmware zigbee officiel}}</option>
-          <!--<option value="thread">{{Dernier firmware thread officiel}}</option>-->
+          <option value="fix_bootloader">{{Correction bootloader}}</option>
         </select>
       </div>
     </div>
