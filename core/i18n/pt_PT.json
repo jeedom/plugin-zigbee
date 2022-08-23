@@ -222,7 +222,7 @@
         "Passerelle distante IP:PORT": "Gateway IP remoto: PORT",
         "Firmware": "Firmware",
         "Dernier firmware zigbee officiel": "Último firmware oficial do zigbee",
-        "Dernier firmware thread officiel": "Firmware de thread oficial mais recente",
+        "Correction bootloader": "Corrigir carregador de inicialização",
         "Lancer la mise à jour": "Comece a atualização",
         "Lancer": "Lançar",
         "Mise à jour du firmware de la clef": "Atualização de firmware da chave"
@@ -408,6 +408,7 @@
         "Un périphérique Zigbee a quitté le réseaux": "Un périphérique Zigbee a quitté le réseaux",
         "Un périphérique Zigbee a été supprimé du réseaux": "Un périphérique Zigbee a été supprimé du réseaux",
         "Un périphérique Zigbee est en cours d\\'inclusion : ": "Un périphérique Zigbee est en cours d\\'inclusion :",
+        "Maintenez bien le module eveillé pour que l\\'inclusion puisse être complète": "Mantenha o módulo acordado para que a inclusão possa ser concluída",
         "Un périphérique Zigbee a été inclus : ": "Um dispositivo Zigbee foi incluído:",
         "Pause de 30s avant synchronisation": "Pausa de 30s antes da sincronização",
         "Arrêt": "Parar",
