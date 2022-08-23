@@ -38,8 +38,7 @@ async def command(_data):
         raise Exception("Device not found")
     for cmd in _data['cmd']:
         if not cmd['endpoint'] in device.endpoints:
-            raise Exception(
-                "["+str(device._ieee)+"][zdevices.command] Endpoint not found : "+str(cmd['endpoint']))
+            raise Exception("["+str(device._ieee)+"][zdevices.command] Endpoint not found : "+str(cmd['endpoint']))
         endpoint = device.endpoints[cmd['endpoint']]
         cluster = None
         if 'cluster_type' in cmd:
@@ -50,17 +49,15 @@ async def command(_data):
         elif hasattr(endpoint, cmd['cluster']):
             cluster = getattr(endpoint, cmd['cluster'])
         if cluster is None:
-            raise Exception(
-                "["+str(device._ieee)+"][zdevices.command] Cluster not found : "+str(cmd['cluster']))
+            raise Exception("["+str(device._ieee)+"][zdevices.command] Cluster not found : "+str(cmd['cluster']))
         if cluster.cluster_id in registries.ZIGBEE_CHANNEL_REGISTRY and hasattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], cmd['command']):
-            logging.info(
-                "["+str(device._ieee)+"][zdevices.command] Use specific command action")
-            command = getattr(
-                registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], cmd['command'])
+            command = getattr(registries.ZIGBEE_CHANNEL_REGISTRY[cluster.cluster_id], cmd['command'])
             if 'await' in cmd:
+                logging.info("["+str(device._ieee)+"][zdevices.command] Use specific command action in await mode for"+str(cmd['command']))
                 await command(cluster, cmd)
             else:
-                command(cluster, cmd)
+                logging.info("["+str(device._ieee)+"][zdevices.command] Use specific command action for "+str(cmd['command']))
+                asyncio.create_task(command(cluster, cmd))
             continue
         if not hasattr(cluster, cmd['command']):
             raise Exception("Command not found : "+str(cmd['command']))
