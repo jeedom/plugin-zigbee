@@ -37,6 +37,17 @@
       "configuration": {
         "repeatEventManagement": "always"
       }
+    },
+    {
+      "name": "Press",
+      "type": "info",
+      "subtype": "string",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::6::event",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
     }
   ]
 }
