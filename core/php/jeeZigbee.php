@@ -63,7 +63,7 @@ if (isset($result['device_joined'])) {
 	event::add('jeedom::alert', array(
 		'level' => 'warning',
 		'page' => 'zigbee',
-		'message' => __('Un périphérique Zigbee est en cours d\'inclusion : ', __FILE__) . $result['device_joined'],
+		'message' => __('Un périphérique Zigbee est en cours d\'inclusion : ', __FILE__) . $result['device_joined'] . '. ' . __('Maintenez bien le module eveillé pour que l\'inclusion puisse être complète', __FILE__),
 	));
 	die();
 }
