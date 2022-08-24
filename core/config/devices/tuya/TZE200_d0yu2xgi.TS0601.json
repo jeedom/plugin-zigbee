@@ -1,46 +1,33 @@
 {
   "name": "Sirène intelligente avec capteur de température et humidité",
-  "ref" : "LCA001",
+  "ref" : "TS0601",
   "buylink" : "",
-  "reset" : "Il faut utiliser la fonction reset touchlink. Voir <a target='_blank' href='https://doc.jeedom.com/fr_FR/plugins/automation%20protocol/zigbee/#Touchlink'>ici</a>",
-  "pairing" : "Faire un reset de l'ampoule, puis passer votre réseaux Zigbee en mode inclusion l'ampoule devrait s'appairer toute seule (un on/off sera peut être nécessaire)",
   "commands": [
     {
       "name": "Etat",
       "type": "info",
       "subtype": "binary",
-      "generic_type": "LIGHT_STATE",
       "isVisible": 0,
       "isHistorized": 0,
       "logicalId": "1::6::0"
     },
     {
       "name": "On",
-      "generic_type": "LIGHT_ON",
       "type": "action",
       "subtype": "other",
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::on",
-      "template":{
-        "dashboard" : "light",
-        "mobile" : "light"
-      }
+      "logicalId": "1::on_off::on"
     },
     {
       "name": "Off",
-      "generic_type": "LIGHT_OFF",
       "type": "action",
       "subtype": "other",
       "isVisible": 1,
       "isHistorized": 0,
       "value" : "Etat",
-      "logicalId": "1::on_off::off",
-      "template":{
-        "dashboard" : "light",
-        "mobile" : "light"
-      }
+      "logicalId": "1::on_off::off"
     },
     {
       "name": "Toggle",

@@ -1,0 +1,35 @@
+{
+  "name": "Sirène intelligente avec LED",
+  "ref" : "MYQ-ZSA02",
+  "type": "Sirène",
+  "reset" : "",
+  "configuration" : {
+    "dontAwaitCmd" : 1
+  },
+  "commands": [
+    {
+      "name": "Off",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::ias_wd::start_warning::0::0::0::1::1::1",
+      "configuration" : {
+        "minValue":"1",
+        "maxValue":"9"
+      }
+    },
+    {
+      "name": "On",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::ias_wd::start_warning::1::1::1::1::1::1",
+      "configuration" : {
+        "minValue":"1",
+        "maxValue":"9"
+      }
+    }
+  ]
+}
