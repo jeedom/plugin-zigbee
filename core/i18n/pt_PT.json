@@ -344,7 +344,7 @@
         "Autoriser la mise en file d'attente": "Permitir fila",
         "Cocher la case pour autoriser la mise en file d'attente des commandes afin de réessayer en cas d'erreur": "Marque a caixa para permitir a fila de comandos para tentar novamente no caso de um erro",
         "Ignorer les erreurs sur les éxécutions de commandes": "Ignorar erros na execução do comando",
-        "Permet de désactive l\\'alerte d\\'erreur si l\\'éxecution de la commande n\\'a pas marché (ou renvoi une fausse erreur": "Permite-lhe desactivar o alerta de erro se a execução do comando não funcionar (ou devolver um erro falso",
+        "Permet de désactive l'alerte d'erreur si l'éxecution de la commande n'a pas marché (ou renvoi une fausse erreur)": "Permite desativar o alerta de erro se a execução do comando não funcionou (ou retorna um erro falso)",
         "Auto-actualisation (cron)": "Atualização automática (cron)",
         "Nous recommandons de ne jamais rien mettre ici de vous meme, une erreur et c'est tout votre réseaux zigbee qui est cassé !!!!": "Recomendamos nunca colocar nada aqui sozinho, um erro e toda a sua rede zigbee está quebrada !!!!",
         "Informations": "Em formação",
