@@ -344,7 +344,7 @@
         "Autoriser la mise en file d'attente": "Warteschlangen zulassen",
         "Cocher la case pour autoriser la mise en file d'attente des commandes afin de réessayer en cas d'erreur": "Aktivieren Sie das Kontrollkästchen, damit die Warteschlange von Befehlen im Fehlerfall erneut versucht werden kann",
         "Ignorer les erreurs sur les éxécutions de commandes": "Fehler bei der Befehlsausführung ignorieren",
-        "Permet de désactive l\\'alerte d\\'erreur si l\\'éxecution de la commande n\\'a pas marché (ou renvoi une fausse erreur": "Ermöglicht das Deaktivieren der Fehlerwarnung, wenn die Ausführung des Befehls nicht funktioniert hat (oder einen falschen Fehler zurückgibt",
+        "Permet de désactive l'alerte d'erreur si l'éxecution de la commande n'a pas marché (ou renvoi une fausse erreur)": "Ermöglicht das Deaktivieren der Fehlermeldung, wenn die Ausführung des Befehls nicht funktioniert hat (oder einen falschen Fehler zurückgibt)",
         "Auto-actualisation (cron)": "Automatische Aktualisierung (cron)",
         "Nous recommandons de ne jamais rien mettre ici de vous meme, une erreur et c'est tout votre réseaux zigbee qui est cassé !!!!": "Wir empfehlen, niemals selbst etwas hier einzustellen, ein Fehler und Ihr gesamtes Zigbee-Netzwerk ist kaputt !!!!",
         "Informations": "Information",
