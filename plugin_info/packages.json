@@ -29,7 +29,8 @@
     "zigpy" : {"reinstall" : true},
     "xmodem" : {"reinstall" : true},
     "pycrypto" : {"reinstall" : true},
-    "charset-normalizer" : {"reinstall" : true,"version":"2.0.12"}
+    "charset-normalizer" : {"reinstall" : true,"version":"2.0.12"},
+    "yarl" : {"reinstall" : true,"version":"1.4.2"}
   },
   "post-install" : {
     "script" : "plugins/zigbee/resources/post-install.sh"
