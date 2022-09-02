@@ -23,16 +23,16 @@
         }
       },
       {
-        "name": "Luminosité",
+        "name": "Température",
         "type": "info",
         "subtype": "numeric",
         "isVisible": 1,
         "isHistorized": 0,
-        "logicalId": "1::1024::0",
-        "generic_type": "BRIGHTNESS",
-        "configuration":{
-          "historizeRound" : 2,
-          "calculValueOffset":"10**((#value#-1)/10000)"
+        "logicalId": "1::2::0",
+        "unite" : "°C",
+        "generic_type": "TEMPERATURE",
+        "configuration" : {
+          "calculValueOffset":"#value# / 100"
         }
       }
     ]
