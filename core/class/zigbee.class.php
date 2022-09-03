@@ -34,7 +34,7 @@ class zigbee extends eqLogic {
     if ($_options['sub_controller'] == 'elelabs') {
       if ($_options['firmware'] == 'fix_bootloader') {
         $cmd = 'sudo chmod +x ' . __DIR__ . '/../../resources/misc/ezsp-fix-bootloader;';
-        $cmd .= 'sudo ' . __DIR__ . '/../../resources/misc/ezsp-fix-bootloader ' . $_options['port'];
+        $cmd .= 'sudo ' . __DIR__ . '/../../resources/misc/ezsp-fix-bootloader.sh ' . $_options['port'];
       } else {
         $cmd = 'sudo chmod +x ' . __DIR__ . '/../../resources/misc/update-firmware-elelabs.sh;';
         $cmd .= 'sudo ' . __DIR__ . '/../../resources/misc/update-firmware-elelabs.sh ' . $_options['port'] . ' ' . $_options['firmware'];
