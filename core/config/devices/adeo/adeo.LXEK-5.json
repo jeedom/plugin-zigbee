@@ -14,7 +14,7 @@
     {
       "name": "Luminosité",
       "type": "info",
-      "subtype": "numeric",
+      "subtype": "string",
       "isVisible": 0,
       "isHistorized": 0,
       "logicalId": "1::8::cmd::1"
