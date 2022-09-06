@@ -32,9 +32,9 @@ class zigbee extends eqLogic {
     $log = log::getPathToLog(__CLASS__ . '_firmware');
     self::deamon_stop();
     if ($_options['sub_controller'] == 'elelabs') {
-      if ($_options['firmware'] = 'fix_bootloader') {
-        $cmd = 'sudo chmod +x ' . __DIR__ . '/../../resources/misc/ezsp-fix-bootloader;';
-        $cmd .= 'sudo ' . __DIR__ . '/../../resources/misc/ezsp-fix-bootloader ' . $_options['port'];
+      if ($_options['firmware'] == 'fix_bootloader') {
+        $cmd = 'sudo chmod +x ' . __DIR__ . '/../../resources/misc/ezsp-fix-bootloader.sh;';
+        $cmd .= 'sudo ' . __DIR__ . '/../../resources/misc/ezsp-fix-bootloader.sh ' . $_options['port'];
       } else {
         $cmd = 'sudo chmod +x ' . __DIR__ . '/../../resources/misc/update-firmware-elelabs.sh;';
         $cmd .= 'sudo ' . __DIR__ . '/../../resources/misc/update-firmware-elelabs.sh ' . $_options['port'] . ' ' . $_options['firmware'];
