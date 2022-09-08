@@ -946,7 +946,7 @@ class zigbee extends eqLogic {
       } catch (\Exception $e) {
       }
     }
-    if (config::byKey('autoRemoveExcludeDevice', 'zigbee', 0) == 1) {
+    if (config::byKey('autoRemoveExcludeDevice', 'zigbee', 0) == 1 && $this->getConfiguration('device') != 'group') {
       zigbee::request($this->getConfiguration('instance', 1), '/device', array('ieee' => $this->getLogicalId()), 'DELETE');
     }
   }
