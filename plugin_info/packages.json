@@ -8,9 +8,7 @@
     "python3-pyudev" : {},
     "python3-dev" : {},
     "python3-requests" : {},
-    "libffi-dev" : {},
-    "rustc" : {"optional" : true},
-    "cargo" : {"optional" : true}
+    "libffi-dev" : {}
   },
   "pip3" : {
     "six" : {"reinstall" : true},

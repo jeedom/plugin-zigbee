@@ -38,3 +38,9 @@ sudo rm -rf /usr/local/lib/python3.9/dist-packages/zigpy*
 sudo rm -rf /usr/local/lib/python3.9/dist-packages/bellows*
 sudo rm -rf /var/www/.local/lib/python3.9/site-packages/zigpy*
 sudo rm -rf /var/www/.local/lib/python3.9/site-packages/bellows*
+
+sudo apt remove -y rustc
+sudo apt remove -y cargo
+sudo curl -sSf https://sh.rustup.rs | sh -s -y
+sudo ln -s /root/.cargo/bin/rustc /usr/bin/rustc
+sudo ln -s /root/.cargo/bin/cargo /usr/bin/cargo 
