@@ -3,8 +3,10 @@
   "ref" : "XH-002P TS011F",
   "type": "Prise,Répéteur",
   "remark": "",
-  "config" : [
-    {"endpoint" : 1,"cluster":6,"attribute":32769,"manufacturer":4417,"name":"LED","type":"select","values":[{"value":0,"name":"Off"},{"value":1,"name":"On"}]}
+  "config": [
+    {"endpoint" : 1,"cluster":6,"attribute":32769,"name":"Configuration LED","type":"select","values":[{"value":0,"name":"LED Toujours OFF"},{"value":1,"name":"LED-On si alimenté"},{"value":2,"name":"LED-Off si alimenté"},{"value":3,"name":"LED Toujours ON"}]},
+    {"endpoint" : 1,"cluster":6,"attribute":32770,"name":"État après coupure de courant","type":"select","values":[{"value":0,"name":"OFF"},{"value":1,"name":"Même état"},{"value":2,"name":"ON"}]},
+    {"endpoint" : 1,"cluster":6,"attribute":32768,"name":"Protection Enfant","type":"select","values":[{"value":0,"name":"Desactivée"},{"value":1,"name":"Activée"}]}
   ],
   "commands": [
     {
