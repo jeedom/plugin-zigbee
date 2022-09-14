@@ -34,6 +34,8 @@ from zigpy import types
 
 
 async def create_group(_name):
+    if len(_name) > 16 :
+        _name = _name[0:15]
     id = 1
     id_exist = True
     while id_exist:
@@ -53,10 +55,13 @@ async def add_endpoint(_data):
 
 
 async def add_device(_data):
+
     device = zdevices.find(_data['ieee'])
     group = find(_data['id'])
     if group is None :
         raise Exception("Group not found")
+    if len(group._name) > 16 :
+        raise Exception("Group name too long, max 16 characteres")
     await device.add_to_group(_data['id'],group._name)
 
 
