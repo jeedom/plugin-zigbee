@@ -12,9 +12,7 @@
       "logicalId": "1::1280::cmd::1",
       "generic_type": "PRESENCE",
       "configuration" : {
-        "repeatEventManagement": "always",
-        "returnStateValue" : 0,
-        "returnStateTime" : 1
+        "repeatEventManagement": "always"
       },
       "template":{
         "dashboard" : "presence",
