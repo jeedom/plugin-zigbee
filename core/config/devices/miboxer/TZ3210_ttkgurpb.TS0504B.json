@@ -1,0 +1,153 @@
+{
+    "name": "MIBOXER - LED Controller",
+    "ref": "FUT038Z",
+    "commands": [
+        {
+            "logicalId": "1::6::0",
+            "generic_type": "LIGHT_STATE",
+            "name": "Etat",
+            "type": "info",
+            "subType": "binary",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::on_off::on",
+            "generic_type": "LIGHT_ON",
+            "name": "On",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::light",
+                "mobile": "core::light"
+            },
+            "value": "Etat",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::off",
+            "generic_type": "LIGHT_OFF",
+            "name": "Off",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::light",
+                "mobile": "core::light"
+            },
+            "value": "Etat",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::level::move_to_level::#slider#::0",
+            "generic_type": "LIGHT_SLIDER",
+            "name": "Luminosité",
+            "type": "action",
+            "subType": "slider",
+            "isHistorized": "0",
+            "configuration": {
+                "minValue": "0",
+                "maxValue": "254"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat Luminosité",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::toggle",
+            "generic_type": "LIGHT_TOGGLE",
+            "name": "Toggle",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "display": {
+                "icon": "<\/i>"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::light_color::move_to_color::#color#::0",
+            "generic_type": "LIGHT_SET_COLOR",
+            "name": "Couleur",
+            "type": "action",
+            "subType": "color",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat couleur",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::8::0",
+            "name": "Etat Luminosité",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "configuration": {
+                "minValue": "0",
+                "maxValue": "254"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::light_color::move_to_color_temp::#slider#::0",
+            "generic_type": "LIGHT_SET_COLOR_TEMP",
+            "name": "Température Couleur",
+            "type": "action",
+            "subType": "slider",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat température couleur",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::768::color",
+            "generic_type": "LIGHT_COLOR",
+            "name": "Etat couleur",
+            "type": "info",
+            "subType": "string",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat couleur",
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::768::7",
+            "generic_type": "LIGHT_COLOR_TEMP",
+            "name": "Etat température couleur",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat température couleur",
+            "isVisible": "0"
+        }
+    ]
+}
