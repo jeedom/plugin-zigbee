@@ -1,0 +1,73 @@
+{
+    "name": "IMMAX - Multi Sensors (PIR, Temperature, Humidite, Luminosite",
+    "ref": "TS0202",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/6355-immax-detecteur-de-mouvement-pir-temperature-humidite-et-luminosite-zigbee-30-tuya.html?domid=4&id_campaign=9",
+    "commands": [
+        {
+            "logicalId": "2::1026::0",
+            "generic_type": "TEMPERATURE",
+            "name": "Temperature",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "unite": "°C",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 100"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "2::1029::0",
+            "generic_type": "HUMIDITY",
+            "name": "Humidite",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "°C",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 100"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "3::1024::00",
+            "name": "Luminosite",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "unite": "Lux",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 100"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            }, 
+            "isVisible": "1"               
+        },
+        {
+            "name": "Mouvement",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "logicalId": "1::1280::cmd::1",
+            "generic_type": "PRESENCE",
+            "configuration" : {
+              "repeatEventManagement": "always"
+            },
+            "template":{
+              "dashboard" : "presence",
+              "mobile" : "presence"
+            }
+        }
+    ]
+}
