@@ -1,0 +1,28 @@
+{
+    "name": "IMMAX - Sirene Intelligente Exterieure",
+    "ref": "TYZB01_ynsiasng.TS0219",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/6352-immax-sirene-intelligente-exterieure-zigbee-30-tuya-ip65.html?domid=4&id_campaign=9",
+    "config": [
+        {"endpoint" : 1,"cluster":1282,"attribute":0,"name":"Duree","type":"select","values":[{"value":60,"name":"1min"},{"value":120,"name":"2min"},{"value":240,"name":"4min"}]}
+    ],
+    "commands": [
+        {
+            "name": "On",
+            "generic_type": "LIGHT_ON",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "logicalId": "1::ias_wd::start_warning::1::1::1::1::1::1"
+        },
+        {
+            "name": "Off",
+            "logicalId": "1::ias_wd::start_warning::0::0::0::1::1::1",
+            "generic_type": "LIGHT_OFF",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "1",
+            "isVisible": "1"
+        }
+    ]
+}
