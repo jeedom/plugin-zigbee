@@ -4,6 +4,8 @@
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto",
         "Pour connaitre les nouveaux module compatible il faut aller": "Para conhecer o novo módulo compatível você tem que ir",
         "c'est trié par date d'ajout\/modification": "é classificado pela data de adição \/ modificação",
+        "03\/10\/2022": "10\/03\/2022",
+        "Les versions de zigpy sont maintenant fixée pour eviter des soucis sur l'installation des dépendances": "As versões Zigpy agora foram corrigidas para evitar problemas com a instalação de dependências",
         "13\/09\/2022": "13\/09\/2022",
         "Correction d'un bug sur l'installation des dépendances sur RPI": "Corrigido um bug na instalação de dependências no RPI",
         "Support de nouveaux modules": "Suporte para novos módulos",
