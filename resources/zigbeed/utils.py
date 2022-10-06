@@ -78,7 +78,6 @@ async def serialize_application():
 		obj['znp'] = {}
 		obj['znp']['zigpy_znp_version'] = zigpy_znp.__version__
 		obj['znp']['z-stack version'] = str(shared.ZIGPY._znp.version)
-		obj['znp']['model'] = str(shared.ZIGPY.zigpy_device.model)
 		obj['znp']['z-stack build id'] = str(shared.ZIGPY._zstack_build_id)
 	return obj
 
