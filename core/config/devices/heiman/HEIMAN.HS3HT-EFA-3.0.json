@@ -1,0 +1,35 @@
+{
+    "name": "HEIMAN - CAPTEUR DE TEMPERATURE ET HUMIDITÉ ZIGBEE 3.0 AVEC ÉCRAN",
+    "ref" : "HS3HT-EF",
+    "buylink" : "https://www.domadoo.fr/fr/peripheriques/6293-heiman-capteur-de-temperature-et-humidite-zigbee-30-avec-ecran.html?domid=4&id_campaign=9",
+    "commands": [
+        {
+            "name": "Humidité",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "logicalId": "2::1029::0",
+            "unite" : "%",
+            "generic_type": "HUMIDITY",
+            "configuration" : {
+              "calculValueOffset":"#value# / 100",
+              "minValue" : 0,
+              "maxValue" : 100
+            }
+          },
+          {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "logicalId": "1::1026::0",
+            "unite" : "°C",  
+            "generic_type": "TEMPERATURE",
+            "configuration" : {
+              "calculValueOffset":"#value# / 100"
+            }
+          }
+    ]
+  }
