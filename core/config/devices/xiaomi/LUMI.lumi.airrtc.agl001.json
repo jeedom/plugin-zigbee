@@ -57,19 +57,6 @@
             "isVisible": "1"
         },
         {
-            "logicalId": "1::513::8",
-            "name": "Puissance 1",
-            "type": "info",
-            "subType": "numeric",
-            "isHistorized": "1",
-            "unite": "%",
-            "template": {
-                "dashboard": "default",
-                "mobile": "default"
-            },
-            "isVisible": "1"
-        },
-        {
             "logicalId": "1::513::28",
             "generic_type": "THERMOSTAT_STATE_NAME",
             "name": "Mode 1",
