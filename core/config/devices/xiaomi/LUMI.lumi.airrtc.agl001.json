@@ -56,17 +56,12 @@
             "value": "Consigne 1",
             "isVisible": "1"
         },
-        {
-            "logicalId": "1::513::28",
-            "generic_type": "THERMOSTAT_STATE_NAME",
-            "name": "Mode 1",
+         {
+            "logicalId": "1::64704::626",
+            "name": "Mode",
             "type": "info",
             "subType": "string",
             "isHistorized": "0",
-            "template": {
-                "dashboard": "default",
-                "mobile": "default"
-            },
             "isVisible": "1"
         }
     ]
