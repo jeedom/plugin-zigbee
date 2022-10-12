@@ -11,11 +11,11 @@
     "libffi-dev" : {}
   },
   "pip3" : {
+    "setuptools" : {"reinstall" : true},
+    "wheel" : {"reinstall" : true},
     "six" : {"reinstall" : true},
     "pyudev" : {"reinstall" : true},
     "requests" : {"reinstall" : true},
-    "setuptools" : {"reinstall" : true},
-    "wheel" : {"reinstall" : true},
     "pyserial" : {"reinstall" : true},
     "tornado" : {"reinstall" : true},
     "zha-quirks" : {"reinstall" : true,"version" :"0.0.80"},
