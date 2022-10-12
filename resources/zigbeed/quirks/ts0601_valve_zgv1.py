@@ -1,23 +1,13 @@
-"""Tuya ZGV1."""
-
-import logging
-from typing import Dict, Optional, Union
+"""Collection of Tuya Valve devices e.g. water valves, gas valve etc."""
+from typing import Dict
 
 from zigpy.profiles import zha
 from zigpy.quirks import CustomDevice
 import zigpy.types as t
-from zigpy.zcl import foundation
-from zigpy.zcl.clusters.general import (
-    Basic,
-    Groups,
-    OnOff,
-    Ota,
-    PowerConfiguration,
-    Scenes,
-    Time,
-)
-from zigpy.zcl.clusters.measurement import FlowMeasurement
+from zigpy.zcl.clusters.general import Basic, Groups, Identify, OnOff, Ota, Scenes, Time
+from zigpy.zcl.clusters.smartenergy import Metering
 
+from zhaquirks import DoublingPowerConfigurationCluster
 from zhaquirks.const import (
     DEVICE_TYPE,
     ENDPOINTS,
@@ -26,151 +16,194 @@ from zhaquirks.const import (
     OUTPUT_CLUSTERS,
     PROFILE_ID,
 )
-from zhaquirks.tuya import (
+from zhaquirks.tuya import TuyaLocalCluster
+from zhaquirks.tuya.mcu import (
     DPToAttributeMapping,
-    TuyaCommand,
-    TuyaData,
+    EnchantedDevice,
     TuyaDPType,
-    TuyaLocalCluster,
-    TuyaNewManufCluster,
+    TuyaMCUCluster,
+    TuyaOnOff,
+    TuyaPowerConfigurationCluster,
 )
 
-_LOGGER = logging.getLogger(__name__)
+
+class TuyaValveWaterConsumed(Metering, TuyaLocalCluster):
+    """Tuya Valve Water consumed cluster."""
+
+    VOLUME_LITERS = 0x0007
+
+    """Setting unit of measurement."""
+    _CONSTANT_ATTRIBUTES = {0x0300: VOLUME_LITERS}
 
 
-class ZGV1WaterConsumed(FlowMeasurement, TuyaLocalCluster):
-    """Tuya Water consumed cluster."""
+class TuyaValveManufCluster(TuyaMCUCluster):
+    """On/Off Tuya cluster with extra device attributes."""
 
-
-class ZGV1Timer(TuyaLocalCluster):
-    """Tuya Timer cluster."""
-
-    cluster_id = 0x043E
-    name = "Timer"
-    ep_attribute = "timer"
-
-    attributes = {
-        0x000C: ("state", t.uint16_t),
-        0x000B: ("time_left", t.uint16_t),
-        0x000F: ("last_valve_open_duration", t.uint16_t),
-    }
-
-    async def write_attributes(self, attributes, manufacturer=None):
-        """Defer attributes writing to the set_data tuya command."""
-
-        records = self._write_attr_records(attributes)
-
-        for record in records:
-            if record.attrid not in (0x000B, 0x000C):
-                _LOGGER.debug(
-                    "[0x%04x:%s:0x%04x] Unautorize write attribute : 0x%04x",
-                    self.endpoint.device.nwk,
-                    self.endpoint.endpoint_id,
-                    self.cluster_id,
-                    record.attrid,
-                )
-                continue
-            attr_name = self.attributes[record.attrid][0]
-            _LOGGER.debug(
-                "[0x%04x:%s:0x%04x] Mapping standard %s (0x%04x) with value %s",
-                self.endpoint.device.nwk,
-                self.endpoint.endpoint_id,
-                self.cluster_id,
-                attr_name,
-                record.attrid,
-                repr(record.value.value),
-            )
-            cmd_payload = TuyaCommand()
-            cmd_payload.status = 0
-            cmd_payload.tsn = self.endpoint.device.application.get_sequence()
-            cmd_payload.dp = record.attrid
-            cmd_payload.data = TuyaData()
-            cmd_payload.data.function = 0
-            if record.attrid == 0x000B:
-                cmd_payload.data.dp_type = TuyaDPType.VALUE
-                cmd_payload.data.raw = record.value.value.to_bytes(
-                    4, byteorder="little"
-                )
-            else:
-                cmd_payload.data.dp_type = TuyaDPType.ENUM
-                cmd_payload.data.raw = record.value.value.to_bytes(
-                    1, byteorder="little"
-                )
-            _LOGGER.debug(
-                "[0x%04x:%s:0x%04x] Tuya data : %s",
-                self.endpoint.device.nwk,
-                self.endpoint.endpoint_id,
-                self.cluster_id,
-                repr(cmd_payload),
-            )
-            await self.endpoint.tuya_manufacturer.set_data(cmd_payload)
-        return [[foundation.WriteAttributesStatusRecord(foundation.Status.SUCCESS)]]
-
-    server_commands = {}
-    client_commands = {}
-
-
-class ZGV1OnOff(OnOff, TuyaLocalCluster):
-    """Tuya On Off."""
-
-    def command(
-        self,
-        command_id: Union[foundation.Command, int, t.uint8_t],
-        *args,
-        manufacturer: Optional[Union[int, t.uint16_t]] = None,
-        expect_reply: bool = True,
-        tsn: Optional[Union[int, t.uint8_t]] = None,
-    ):
-        """Override the default Cluster command."""
-
-        if command_id in (0x0000, 0x0001):
-            cmd_payload = TuyaCommand()
-            cmd_payload.status = 0
-            cmd_payload.tsn = self.endpoint.device.application.get_sequence()
-            cmd_payload.dp = 1
-            cmd_payload.data = TuyaData()
-            cmd_payload.data.dp_type = TuyaDPType.BOOL
-            cmd_payload.data.function = 0
-            cmd_payload.data.raw = 0x0001 - command_id
-            return self.endpoint.tuya_manufacturer.set_data(cmd_payload)
-
-        return foundation.Status.UNSUP_CLUSTER_COMMAND
-
-
-class ZGV1PowerConfiguration(PowerConfiguration, TuyaLocalCluster):
-    """Tuya PowerConfiguration."""
-
-
-class TuyaZGV1ManufCluster(TuyaNewManufCluster):
-    """Tuya with ZGV1."""
+    attributes = TuyaMCUCluster.attributes.copy()
+    attributes.update(
+        {
+            0xEF01: ("time_left", t.uint32_t, True),
+            0xEF02: ("state", t.enum8, True),
+            0xEF03: ("last_valve_open_duration", t.uint32_t, True),
+            0xEF04: ("dp_6", t.uint32_t, True),
+        }
+    )
 
     dp_to_attribute: Dict[int, DPToAttributeMapping] = {
-        1: DPToAttributeMapping(ZGV1OnOff.ep_attribute, "on_off"),
+        1: DPToAttributeMapping(
+            TuyaOnOff.ep_attribute,
+            "on_off",
+            dp_type=TuyaDPType.BOOL,
+        ),
         5: DPToAttributeMapping(
-            ZGV1WaterConsumed.ep_attribute,
-            "measured_value",
-            lambda x: x / 33.8140226,
+            TuyaValveWaterConsumed.ep_attribute,
+            "current_summ_delivered",
+            TuyaDPType.VALUE,
+        ),
+        6: DPToAttributeMapping(
+            TuyaMCUCluster.ep_attribute,
+            "dp_6",
+            TuyaDPType.VALUE,
         ),
         7: DPToAttributeMapping(
-            ZGV1PowerConfiguration.ep_attribute,
+            DoublingPowerConfigurationCluster.ep_attribute,
             "battery_percentage_remaining",
+            TuyaDPType.VALUE,
         ),
-        11: DPToAttributeMapping(ZGV1Timer.ep_attribute, "time_left", lambda x: x / 60),
-        12: DPToAttributeMapping(ZGV1Timer.ep_attribute, "state"),
+        11: DPToAttributeMapping(
+            TuyaMCUCluster.ep_attribute,
+            "time_left",
+            TuyaDPType.VALUE,
+        ),
+        12: DPToAttributeMapping(
+            TuyaMCUCluster.ep_attribute,
+            "state",
+            TuyaDPType.VALUE,
+        ),
         15: DPToAttributeMapping(
-            ZGV1Timer.ep_attribute, "last_valve_open_duration", lambda x: x / 60
+            TuyaMCUCluster.ep_attribute,
+            "last_valve_open_duration",
+            TuyaDPType.VALUE,
         ),
     }
 
     data_point_handlers = {
         1: "_dp_2_attr_update",
         5: "_dp_2_attr_update",
+        6: "_dp_2_attr_update",
         7: "_dp_2_attr_update",
         11: "_dp_2_attr_update",
         12: "_dp_2_attr_update",
         15: "_dp_2_attr_update",
     }
 
+
+class TuyaValve(CustomDevice):
+    """Tuya valve device."""
+
+    signature = {
+        MODELS_INFO: [("_TZE200_81isopgh", "TS0601")],
+        # SizePrefixedSimpleDescriptor(endpoint=1, profile=260, device_type=81, device_version=1,
+        # input_clusters=[0, 4, 5, 61184], output_clusters=[25, 10])
+        ENDPOINTS: {
+            1: {
+                PROFILE_ID: zha.PROFILE_ID,
+                DEVICE_TYPE: zha.DeviceType.SMART_PLUG,
+                INPUT_CLUSTERS: [
+                    Basic.cluster_id,
+                    Groups.cluster_id,
+                    Scenes.cluster_id,
+                    TuyaValveManufCluster.cluster_id,
+                ],
+                OUTPUT_CLUSTERS: [Time.cluster_id, Ota.cluster_id],
+            }
+        },
+    }
+
+    replacement = {
+        ENDPOINTS: {
+            1: {
+                DEVICE_TYPE: zha.DeviceType.SMART_PLUG,
+                INPUT_CLUSTERS: [
+                    Basic.cluster_id,
+                    Groups.cluster_id,
+                    Scenes.cluster_id,
+                    TuyaOnOff,
+                    TuyaValveWaterConsumed,
+                    DoublingPowerConfigurationCluster,
+                    TuyaValveManufCluster,
+                ],
+                OUTPUT_CLUSTERS: [Time.cluster_id, Ota.cluster_id],
+            }
+        }
+    }
+
+
+class ParksideTuyaValveManufCluster(TuyaMCUCluster):
+    """Manufacturer Specific Cluster for the _TZE200_htnnfasr water valve sold as PARKSIDE."""
+
+    attributes = TuyaMCUCluster.attributes.copy()
+    attributes.update(
+        {
+            0xEF11: ("timer_duration", t.uint32_t, True),
+            0xEF12: ("timer_time_left", t.uint32_t, True),
+            0xEF13: ("frost_lock", t.Bool, True),
+            0xEF14: ("frost_lock_reset", t.Bool, True),  # 0 resets frost lock
+        }
+    )
+
+    dp_to_attribute: Dict[int, DPToAttributeMapping] = {
+        1: DPToAttributeMapping(
+            TuyaOnOff.ep_attribute,
+            "on_off",
+            TuyaDPType.BOOL,
+        ),
+        5: DPToAttributeMapping(
+            TuyaMCUCluster.ep_attribute,
+            "timer_duration",
+            TuyaDPType.VALUE,
+        ),
+        6: DPToAttributeMapping(
+            TuyaMCUCluster.ep_attribute,
+            "timer_time_left",
+            TuyaDPType.VALUE,
+        ),
+        11: DPToAttributeMapping(
+            TuyaPowerConfigurationCluster.ep_attribute,
+            "battery_percentage_remaining",
+            TuyaDPType.VALUE,
+        ),
+        108: DPToAttributeMapping(
+            TuyaMCUCluster.ep_attribute,
+            "frost_lock",
+            TuyaDPType.BOOL,
+            lambda x: not x,  # invert for lock entity
+        ),
+        109: DPToAttributeMapping(
+            TuyaMCUCluster.ep_attribute,
+            "frost_lock_reset",
+            TuyaDPType.BOOL,
+        ),
+    }
+
+    data_point_handlers = {
+        1: "_dp_2_attr_update",
+        5: "_dp_2_attr_update",
+        6: "_dp_2_attr_update",
+        11: "_dp_2_attr_update",
+        108: "_dp_2_attr_update",
+        109: "_dp_2_attr_update",
+    }
+
+    async def bind(self):
+        """
+        Bind cluster.
+        When adding this device tuya gateway issues factory reset,
+        we just need to reset the frost lock, because its state is unknown to us.
+        """
+        result = await super().bind()
+        await self.write_attributes({self.attributes_by_name["frost_lock_reset"].id: 0})
+        return result
 
 class TuyaZGV1(CustomDevice):
     """Tuya Air quality device."""
@@ -194,7 +227,7 @@ class TuyaZGV1(CustomDevice):
                     Basic.cluster_id,
                     Groups.cluster_id,
                     Scenes.cluster_id,
-                    TuyaZGV1ManufCluster.cluster_id,
+                    ParksideTuyaValveManufCluster.cluster_id,
                 ],
                 OUTPUT_CLUSTERS: [Time.cluster_id, Ota.cluster_id],
             }
@@ -207,13 +240,12 @@ class TuyaZGV1(CustomDevice):
                 DEVICE_TYPE: zha.DeviceType.ON_OFF_LIGHT,
                 INPUT_CLUSTERS: [
                     Basic.cluster_id,
+                    Identify.cluster_id,
                     Groups.cluster_id,
                     Scenes.cluster_id,
-                    TuyaZGV1ManufCluster,
-                    ZGV1WaterConsumed,
-                    ZGV1OnOff,
-                    ZGV1PowerConfiguration,
-                    ZGV1Timer,
+                    TuyaOnOff,
+                    TuyaPowerConfigurationCluster,
+                    ParksideTuyaValveManufCluster,
                 ],
                 OUTPUT_CLUSTERS: [Time.cluster_id, Ota.cluster_id],
             }
