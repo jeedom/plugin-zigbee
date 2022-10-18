@@ -55,13 +55,12 @@ async def add_endpoint(_data):
 
 
 async def add_device(_data):
-
     device = zdevices.find(_data['ieee'])
     group = find(_data['id'])
     if group is None :
         raise Exception("Group not found")
     if len(group._name) > 16 :
-        raise Exception("Group name too long, max 16 characteres")
+        raise Exception("Group name too long, max 16 characteres : "+str(group._name))
     await device.add_to_group(_data['id'],group._name)
 
 
