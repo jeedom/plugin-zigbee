@@ -40,4 +40,10 @@ fi
 find ${BASEDIR}/zigbeed/quirks/* -mtime +7 -type f -delete 2>/dev/null
 find ${BASEDIR}/zigbeed/specifics/* -mtime +7 -type f ! -iname "*init*" -delete 2>/dev/null
 
+
+echo 'Cleaning rustc'
+sudo rm -rf /usr/bin/rustc
+sudo rm -rf /usr/bin/cargo 
+sudo rm -rf /root/.cargo
+
 echo "Everything is successfully installed!"
