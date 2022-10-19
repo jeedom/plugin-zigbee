@@ -1,0 +1,61 @@
+{
+    "name": "MOES - Détecteur de présence Zigbee Tuya (technologie radar)",
+    "ref" : "TS0601",
+    "buylink" : "https://www.domadoo.fr/fr/domotique/6328-moes-detecteur-de-presence-zigbee-tuya-technologie-radar.html?domid=4&id_campaign=9",
+    "pairing" : "",
+    "commands": [
+        {
+            "logicalId": "1::1030::0",
+            "generic_type": "PRESENCE",
+            "name": "Mouvement",
+            "type": "info",
+            "subType": "binary",
+            "isHistorized": "1",
+            "configuration": {
+                "repeatEventManagement": "always",
+                "returnStateValue": "1",
+                "returnStateTime": "1"
+            },
+            "template": {
+                "dashboard": "core::presence",
+                "mobile": "core::presence"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::12::85",
+            "name": "Distance personne détectée",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "m",
+            "configuration": {
+                "minValue": "0",
+                "maxValue": "6"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::1024::0",
+            "name": "Luminosité",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "Lux",
+            "configuration": {
+                "calculValueOffset": "#value# \/100",
+                "historizeRound": "0",
+                "repeatEventManagement": "never"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        }
+    ]
+  }
