@@ -1,0 +1,176 @@
+{
+    "name": "GLEDOPTO ZigBee Gateway 2.4G LED Controller",
+    "ref":"GL-H-001",
+    "commands": [
+
+        {
+            "logicalId": "11::light_color::move_to_color::#color#::#duration#",
+            "generic_type": "LIGHT_SET_COLOR",
+            "name": "Couleur",
+            "type": "action",
+            "subType": "color",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat couleur",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "11::768::color",
+            "generic_type": "LIGHT_COLOR",
+            "name": "Etat couleur",
+            "type": "info",
+            "subType": "string",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "11::8::0",
+            "name": "Etat Luminosité",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "configuration": {
+                "minValue": "0",
+                "maxValue": "254"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "11::level::move_to_level::#slider#::0",
+            "generic_type": "LIGHT_SLIDER",
+            "name": "Luminosité",
+            "type": "action",
+            "subType": "slider",
+            "isHistorized": "0",
+            "configuration": {
+                "minValue": "0",
+                "maxValue": "254"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat Luminosité",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "11::on_off::on",
+            "generic_type": "ENERGY_ON",
+            "name": "On",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "11::on_off::off",
+            "generic_type": "ENERGY_OFF",
+            "name": "Off",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "11::light_color::move_to_color_temp::#slider#::#duration#",
+            "generic_type": "LIGHT_SET_COLOR_TEMP",
+            "name": "Température Couleur",
+            "type": "action",
+            "subType": "slider",
+            "isHistorized": "0",
+            "configuration": {
+                "minValue": "0",
+                "maxValue": "500"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat température couleur",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "duration",
+            "name": "Durée",
+            "type": "action",
+            "subType": "slider",
+            "isHistorized": "0",
+            "configuration": {
+                "minValue": "0",
+                "maxValue": "100"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat durée",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "11::768::7",
+            "generic_type": "LIGHT_COLOR_TEMP",
+            "name": "Etat température couleur",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "configuration": {
+                "minValue": "0",
+                "maxValue": "500"
+            },
+            "value": "Etat température couleur",
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "durationstate",
+            "name": "Etat durée",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "configuration": {
+                "minValue": "0",
+                "maxValue": "100"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "value": "Etat durée",
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "11::on_off::toggle",
+            "name": "toggle",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        }
+    ]
+}
