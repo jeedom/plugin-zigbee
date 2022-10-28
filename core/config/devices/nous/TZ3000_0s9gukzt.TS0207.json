@@ -1,0 +1,28 @@
+{
+    "name": "NOUS - DÉTECTEUR D'INONDATION ZIGBEE 3.0 TUYA",
+    "ref":"NOUS-E4",
+    "type": "Capteur,Fuite,Inondation",
+    "buylink" : "https://www.domadoo.fr/fr/peripheriques/6201-nous-detecteur-d-inondation-zigbee-30-tuya-5907772033883.html?domid=4&id_campaign=9",
+    "pairing" : "Presser le bouton caché pendant 5 s",
+    "commands": [
+      {
+        "name": "Inondation",
+        "type": "info",
+        "subtype": "binary",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "logicalId": "1::1280::cmd::1",
+        "generic_type": "FLOOD",
+        "configuration": {
+          "repeatEventManagement": "always"
+        },
+        "display": {
+            "invertBinary" : 1
+          },
+        "template":{
+          "dashboard" : "flood",
+          "mobile" : "flood"
+        }
+      }
+    ]
+  }

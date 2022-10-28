@@ -1,0 +1,28 @@
+{
+    "name": "NOUS - Détecteur d'ouverture de porte ou fenêtre Zigbee 3.0 TUYA",
+    "ref" : "NOUS-E3",
+    "type": "Ouverture",
+    "buylink" : "https://www.domadoo.fr/fr/peripheriques/6193-nous-detecteur-d-ouverture-de-porte-ou-fenetre-zigbee-30-tuya-5907772033876.html?domid=4&id_campaign=9",
+    "pairing" : "Appuyer sur le bouton d'inclusion pendant 5 sec jusqu'au ce que la LED clignote",
+    "commands": [
+      {
+        "name": "Ouverture",
+        "type": "info",
+        "subtype": "binary",
+        "isVisible": 1,
+        "isHistorized": 0,
+        "logicalId": "1::1280::cmd::1",
+        "generic_type": "OPENING",
+        "configuration": {
+          "repeatEventManagement": "always"
+        },
+        "display": {
+           "invertBinary" : 1
+         },
+        "template" : {
+          "dashboard" : "door",
+          "mobile" : "door"
+        }
+      }
+    ]
+  }
