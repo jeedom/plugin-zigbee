@@ -1,0 +1,35 @@
+{
+    "name": "NOUS - Capteur de température et d'humidité intelligent Zigbee 3.0 TUYA",
+    "ref" : "NOUS-E5",
+    "buylink" : "https://www.domadoo.fr/fr/peripheriques/6197-nous-capteur-de-temperature-et-humidite-zigbee-30-tuya-5907772033890.html?domid=4&id_campaign=9",
+    "commands": [
+        {
+            "name": "Humidité",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "logicalId": "1::1029::0",
+            "unite" : "%",
+            "generic_type": "HUMIDITY",
+            "configuration" : {
+              "calculValueOffset":"#value# / 100",
+              "minValue" : 0,
+              "maxValue" : 100
+            }
+          },
+          {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "logicalId": "1::1026::0",
+            "unite" : "°C",  
+            "generic_type": "TEMPERATURE",
+            "configuration" : {
+              "calculValueOffset":"#value# / 100"
+            }
+          }
+    ]
+  }
