@@ -1,0 +1,61 @@
+{
+    "name": "MOES - TÊTE THERMOSTATIQUE INTELLIGENTE ZIGBEE 3.0 TUYA",
+    "buylink":"https://www.domadoo.fr/fr/peripheriques/6390-moes-tete-thermostatique-intelligente-zigbee-30-tuya.html?domid=4&id_campaign=9",
+    "ref": "ZTRV-ZX-TV01-MS",
+    "commands": [
+       
+        {
+            "logicalId": "1::513::0",
+            "generic_type": "THERMOSTAT_TEMPERATURE",
+            "name": "Température",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "°C",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 100"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::513::18",
+            "generic_type": "THERMOSTAT_SETPOINT",
+            "name": "Consigne",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "unite": "°C",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 100"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "attributes::1::in::513::18::#slider#*100",
+            "generic_type": "THERMOSTAT_SET_SETPOINT",
+            "name": "Thermostat",
+            "type": "action",
+            "subType": "slider",
+            "isHistorized": "0",
+            "unite": "°C",
+            "configuration": {
+                "minValue": "6",
+                "maxValue": "28"
+            },
+            "template": {
+                "dashboard": "core::button",
+                "mobile": "core::button"
+            },
+            "value": "Consigne",
+            "isVisible": "1"
+        }
+    ]
+}

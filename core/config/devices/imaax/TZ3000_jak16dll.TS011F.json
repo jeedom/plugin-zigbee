@@ -1,0 +1,114 @@
+{
+    "name": "IMMAX - Prise Double",
+    "ref": "07752L",
+    "configuration": {
+        "autorefresh": "*\/5 * * * *"
+    },
+    "commands": [
+        {
+            "logicalId": "1::6::0",
+            "generic_type": "ENERGY_STATE",
+            "name": "État",
+            "type": "info",
+            "subType": "binary",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "1::1794::0",
+            "generic_type": "CONSUMPTION",
+            "name": "Consommation ",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "kWh",
+            "configuration": {
+                "historizeRound": 2,
+                "calculValueOffset": "#value# \/ 1000"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::2820::1291",
+            "generic_type": "POWER",
+            "name": "Puissance",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "W",
+            "configuration": {
+                "historizeRound": 2,
+                "calculValueOffset": "#value# \/ 10"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::on",
+            "generic_type": "ENERGY_ON",
+            "name": "On",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "value": "État",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::off",
+            "generic_type": "ENERGY_OFF",
+            "name": "Off",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "core::prise",
+                "mobile": "core::prise"
+            },
+            "value": "État",
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::on_off::toggle",
+            "generic_type": "LIGHT_TOGGLE",
+            "name": "Toggle",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "display": {
+                "icon": "<\/i>"
+            },
+            "isVisible": "0"
+        },
+        {
+            "logicalId": "refresh",
+            "name": "Rafraîchir",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        }
+    ]
+}

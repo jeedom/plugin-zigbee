@@ -1,0 +1,22 @@
+{
+    "name": "OWON - INTERRUPTEUR MURAL ZIGBEE HA ON/OFF + FONCTION BINDING",
+    "buylink":"https://www.domadoo.fr/fr/peripheriques/6318-owon-interrupteur-zigbee-ha-onoff-fonction-binding-2-piles-aaa.html?domid=4&id_campaign=9",
+    "ref": "SLC602",
+    "commands": [
+        {
+            "logicalId": "1::6::cmd::0",
+            "name": "Etat",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "configuration": {
+                "repeatEventManagement": "always"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        }
+    ]
+}
