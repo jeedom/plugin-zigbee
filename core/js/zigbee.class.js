@@ -142,7 +142,7 @@ jeedom.zigbee.application.include = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/application/include',
-    data : json_encode({duration : _params.duration}),
+    data : JSON.stringify({duration : _params.duration}),
     type : 'PUT'
   };
   $.ajax(paramsAJAX);
@@ -247,7 +247,7 @@ jeedom.zigbee.device.command = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/command',
-    data : json_encode({ieee : _params.ieee,'cmd':[{endpoint : _params.endpoint,cluster_type : _params.cluster_type,cluster : _params.cluster,command : _params.command,args : _params.args,await : _params.await || 0}]}),
+    data : JSON.stringify({ieee : _params.ieee,'cmd':[{endpoint : _params.endpoint,cluster_type : _params.cluster_type,cluster : _params.cluster,command : _params.command,args : _params.args,await : _params.await || 0}]}),
     type : 'PUT'
   };
   $.ajax(paramsAJAX);
@@ -307,7 +307,7 @@ jeedom.zigbee.device.delete = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device',
-    data : json_encode({ieee : _params.ieee}),
+    data : JSON.stringify({ieee : _params.ieee}),
     type : 'DELETE'
   };
   $.ajax(paramsAJAX);
@@ -328,7 +328,7 @@ jeedom.zigbee.device.initialize = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/initialize',
-    data : json_encode({ieee : _params.ieee}),
+    data : JSON.stringify({ieee : _params.ieee}),
     type : 'PUT'
   };
   $.ajax(paramsAJAX);
@@ -349,7 +349,7 @@ jeedom.zigbee.device.rediscover = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/rediscover',
-    data : json_encode({ieee : _params.ieee}),
+    data : JSON.stringify({ieee : _params.ieee}),
     type : 'PUT'
   };
   $.ajax(paramsAJAX);
@@ -370,7 +370,7 @@ jeedom.zigbee.device.get_basic_info = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/get_basic_info',
-    data : json_encode({ieee : _params.ieee}),
+    data : JSON.stringify({ieee : _params.ieee}),
     type : 'PUT'
   };
   $.ajax(paramsAJAX);
@@ -391,7 +391,7 @@ jeedom.zigbee.device.getAttributes = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/attributes',
-    data : json_encode({
+    data : JSON.stringify({
       ieee : _params.ieee,
       endpoint : _params.endpoint,
       cluster : _params.cluster,
@@ -420,7 +420,7 @@ jeedom.zigbee.device.setAttributes = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/attributes',
-    data : json_encode({
+    data : JSON.stringify({
       ieee : _params.ieee,
       attributes : [{
         endpoint : _params.endpoint,
@@ -450,7 +450,7 @@ jeedom.zigbee.device.bind = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/bind',
-    data : json_encode({
+    data : JSON.stringify({
       src : _params.src,
       dest : _params.dest
     }),
@@ -474,7 +474,7 @@ jeedom.zigbee.device.unbind = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/unbind',
-    data : json_encode({
+    data : JSON.stringify({
       src : _params.src,
       dest : _params.dest
     }),
@@ -498,7 +498,7 @@ jeedom.zigbee.device.setReportConfig = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/reportConfig',
-    data : json_encode({
+    data : JSON.stringify({
       ieee : _params.ieee,
       attributes : [{
         endpoint : _params.endpoint,
@@ -527,7 +527,7 @@ jeedom.zigbee.device.setGpDevice = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/device/gpDevice',
-    data : json_encode({
+    data : JSON.stringify({
       ieee : _params.ieee,
       key : _params.key,
       type : _params.type || '',
@@ -620,7 +620,7 @@ jeedom.zigbee.group.create = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/group/create',
-    data : json_encode({name : _params.name.substring(0,16)}),
+    data : JSON.stringify({name : _params.name.substring(0,16)}),
     type : 'PUT'
   };
   $.ajax(paramsAJAX);
@@ -641,7 +641,7 @@ jeedom.zigbee.group.add_device = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/group/add_device',
-    data : json_encode({ieee : _params.ieee, id : parseInt(_params.id)}),
+    data : JSON.stringify({ieee : _params.ieee, id : parseInt(_params.id)}),
     type : 'PUT'
   };
   $.ajax(paramsAJAX);
@@ -662,7 +662,7 @@ jeedom.zigbee.group.delete_device = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/group/delete_device',
-    data : json_encode({ieee : _params.ieee, id : parseInt(_params.id)}),
+    data : JSON.stringify({ieee : _params.ieee, id : parseInt(_params.id)}),
     type : 'PUT'
   };
   $.ajax(paramsAJAX);
@@ -683,7 +683,7 @@ jeedom.zigbee.group.delete = function(_params){
   paramsAJAX.data = {
     instance : _params.instance || 1,
     request: '/group',
-    data : json_encode({id : _params.id}),
+    data : JSON.stringify({id : _params.id}),
     type : 'DELETE'
   };
   $.ajax(paramsAJAX);
