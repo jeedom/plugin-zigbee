@@ -6,49 +6,45 @@
     {
       "name": "Bouton 1",
       "type": "info",
-      "subtype": "string",
+      "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "1::6::0",
+      "logicalId": "1::6::cmd::0",
       "configuration": {
         "repeatEventManagement": "always"
-      }
-    },
-    {
-      "name": "Etat Luminosité 1",
-      "generic_type": "LIGHT_BRIGHTNESS",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "logicalId": "1::8::0",
-      "configuration" : {
-        "minValue" : 0,
-        "maxValue" : 254
       }
     },
     {
       "name": "Bouton 2",
       "type": "info",
-      "subtype": "string",
+      "subtype": "numeric",
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "2::6::0",
+      "logicalId": "1::6::cmd::0",
       "configuration": {
         "repeatEventManagement": "always"
       }
     },
     {
-      "name": "Etat Luminosité 2",
-      "generic_type": "LIGHT_BRIGHTNESS",
+      "name": "Bouton 3",
       "type": "info",
       "subtype": "numeric",
-      "isVisible": 0,
+      "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "2::8::0",
-      "configuration" : {
-        "minValue" : 0,
-        "maxValue" : 254
+      "logicalId": "2::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
+      }
+    },
+    {
+      "name": "Bouton 4",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "2::6::cmd::0",
+      "configuration": {
+        "repeatEventManagement": "always"
       }
     }
   ]
