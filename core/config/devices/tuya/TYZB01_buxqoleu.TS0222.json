@@ -1,0 +1,34 @@
+{
+  "name": "TUYA - Capteur de luminosité (2)",
+  "ref" : "TS0222",
+  "buylink" : "https://doowifi.fr/fr/capteur-wifi/180-capteur-luminosite-zigbee-DWF-0616ZB.html",
+  "reset" : "Presser le bouton reset jusqu au clignotement",
+  "pairing":"Presser le bouton reset jusqu au clignotement",
+  "configuration" : {
+    "battery_type" : "2x1.5V AAA"
+  },
+  "commands": [
+    {
+      "name": "Luminosité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1024::0",
+      "generic_type": "BRIGHTNESS",
+      "configuration":{
+        "historizeRound" : 2,
+        "calculValueOffset":"10**((#value#-1)/10000)"
+      }
+    },
+	{
+      "name": "IAS ZONE",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "1::1280::2",
+      "generic_type": "OTHER"
+    }
+  ]
+}
