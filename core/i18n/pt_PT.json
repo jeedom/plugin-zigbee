@@ -214,6 +214,7 @@
     "plugins\/zigbee\/desktop\/modal\/firmware_update.php": {
         "Backup": "Cópia de segurança",
         "IMPORTANT : seul les clefs Elelabs peuvent etre mise à jour par Jeedom actuellement": "IMPORTANTE: apenas as chaves Elelabs podem ser atualizadas pela Jeedom atualmente",
+        "IMPORTANT : NE PAS UTILISER SUR LA LUNA au rique de briquer votre controleur Zigbee": "IMPORTANTE: NÃO USE NO LUNA sob risco de brickar seu controlador Zigbee",
         "Type de clef": "Tipo de chave",
         "Aucun": "Não",
         "Elelabs\/Popp": "Elelabs \/ Popp",
@@ -223,7 +224,7 @@
         "Passerelle distante IP:PORT": "Gateway IP remoto: PORT",
         "Firmware": "Firmware",
         "Dernier firmware zigbee officiel": "Último firmware oficial do zigbee",
-        "Correction bootloader": "Corrigir carregador de inicialização",
+        "Correction bootloader (uniquement Atlas)": "Bootloader corrigido (somente Atlas)",
         "Lancer la mise à jour": "Comece a atualização",
         "Lancer": "Lançar",
         "Mise à jour du firmware de la clef": "Atualização de firmware da chave"
