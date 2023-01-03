@@ -21,6 +21,7 @@ if (!isConnect('admin')) {
 <div id='div_alertFirmwareUpdate' style="display: none;"></div>
 <legend>{{Backup}}</legend>
 <div class="alert alert-info">{{IMPORTANT : seul les clefs Elelabs peuvent etre mise à jour par Jeedom actuellement}}</div>
+<div class="alert alert-info">{{IMPORTANT : NE PAS UTILISER SUR LA LUNA au rique de briquer votre controleur Zigbee}}</div>
 <form class="form-horizontal">
   <fieldset>
     <div class="form-group">
@@ -61,7 +62,7 @@ if (!isConnect('admin')) {
       <div class="col-lg-2">
         <select class="firmwareAttr form-control zigbee_firmware_sub_controller elelabs" data-l1key="firmware" style="display:none;">
           <option value="zigbee">{{Dernier firmware zigbee officiel}}</option>
-          <option value="fix_bootloader">{{Correction bootloader}}</option>
+          <option value="fix_bootloader">{{Correction bootloader (uniquement Atlas)}}</option>
         </select>
       </div>
     </div>
