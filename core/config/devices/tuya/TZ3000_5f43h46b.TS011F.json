@@ -4,7 +4,7 @@
   "buylink" : "",
   "config" : [
     {"endpoint" : 1,"cluster":6,"attribute":32769,"name":"Etat du retro-eclairage","type":"select","values":[{"value":0,"name":"Eteint"},{"value":1,"name":"Allumé"}]},
-    {"endpoint" : 1,"cluster":6,"attribute":32770,"name":"Etat au retour du courant","type":"select","values":[{"value":0,"name":"Eteint"},{"value":1,"name":"Allumé"}]}
+    {"endpoint" : 1,"cluster":6,"attribute":32770,"name":"Etat au retour du courant","type":"select","values":[{"value":0,"name":"Eteint"},{"value":1,"name":"Allumé"},{"value":2,"name":"Mémoire"}]}
   ],
   "commands": [
     {
