@@ -18,6 +18,7 @@
         "Démarrer l'assistant de sauvegarde\/restauration": "Inicie el asistente de copia de seguridad \/ restauración",
         "Mise à jour du firmware du contrôleur": "Actualización del firmware del controlador",
         "Cliquer sur le bouton pour mettre à jour le firmware du contrôleur. Le démon Zigbee est stoppé durant le processus": "Haga clic en el botón para actualizar el firmware del controlador. El demonio Zigbee se detiene durante el proceso",
+        "L'equipe Jeedom travaille actuellement sur l'installation d'un nouveau firmware pour la Jeedom Luna.": "El equipo de Jeedom está trabajando actualmente en la instalación de un nuevo firmware para Jeedom Luna",
         "Mettre à jour le firmware": "Actualice el firmware",
         "Autoriser les mises à jour Over-The-Air": "Permitir actualizaciones inalámbricas",
         "Cocher la case pour autoriser les mises à jour de modules OTA.": "Marque la casilla para permitir las actualizaciones del módulo OTA",
