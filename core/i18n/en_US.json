@@ -18,6 +18,7 @@
         "Démarrer l'assistant de sauvegarde\/restauration": "Start the backup \/ restore wizard",
         "Mise à jour du firmware du contrôleur": "Updating the controller firmware",
         "Cliquer sur le bouton pour mettre à jour le firmware du contrôleur. Le démon Zigbee est stoppé durant le processus": "Click on the button to update the firmware of the controller. The Zigbee daemon is stopped during the process",
+        "L'equipe Jeedom travaille actuellement sur l'installation d'un nouveau firmware pour la Jeedom Luna.": "The Jeedom team is currently working on installing new firmware for the Jeedom Luna",
         "Mettre à jour le firmware": "Update firmware",
         "Autoriser les mises à jour Over-The-Air": "Allow Over-The-Air Updates",
         "Cocher la case pour autoriser les mises à jour de modules OTA.": "Check the box to allow OTA module updates",
