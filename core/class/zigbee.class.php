@@ -510,6 +510,7 @@ class zigbee extends eqLogic {
           $eqLogic->setLogicalId($device['ieee']);
           $eqLogic->setName($device_type . ' ' . $device['ieee']);
           $eqLogic->setIsEnable(1);
+          $eqLogic->setIsVisible(1);
           $eqLogic->setEqType_name('zigbee');
           $eqLogic->setConfiguration('device', $device_type);
           $new = true;
@@ -556,6 +557,7 @@ class zigbee extends eqLogic {
           $eqLogic = new self();
           $eqLogic->setLogicalId($i . '|group|' . $group['id']);
           $eqLogic->setName('Groupe ' . $group['id'] . ' : ' . $group['name']);
+          $eqLogic->setIsEnable(1);
           $eqLogic->setIsEnable(1);
           $eqLogic->setEqType_name('zigbee');
           $eqLogic->setConfiguration('device', 'group');
@@ -872,6 +874,7 @@ class zigbee extends eqLogic {
       $eqLogic->setLogicalId($ieee . '|' . $_endpoint);
       $eqLogic->setName($this->getName() . '-EP' . $_endpoint);
       $eqLogic->setIsEnable(1);
+      $eqLogic->setIsEnable(1);
       $eqLogic->setEqType_name('zigbee');
       $eqLogic->setConfiguration('device', $this->getConfiguration('device', ''));
       $eqLogic->setConfiguration('ischild', 1);
@@ -946,7 +949,7 @@ class zigbee extends eqLogic {
       } catch (\Exception $e) {
       }
     }
-    if (config::byKey('autoRemoveExcludeDevice', 'zigbee', 0) == 1 && $this->getConfiguration('isgroup',0) != 1) {
+    if (config::byKey('autoRemoveExcludeDevice', 'zigbee', 0) == 1 && $this->getConfiguration('isgroup', 0) != 1) {
       zigbee::request($this->getConfiguration('instance', 1), '/device', array('ieee' => $this->getLogicalId()), 'DELETE');
     }
   }
