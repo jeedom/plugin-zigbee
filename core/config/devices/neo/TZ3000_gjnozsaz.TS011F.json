@@ -2,12 +2,21 @@
     "name": "NEO - Prise intelligente Zigbee Tuya 16A + mesure de consommation",
     "ref": "PLUG-007SPB2",
     "buylink":"https://www.domadoo.fr/fr/peripheriques/6473-neo-prise-intelligente-zigbee-tuya-16a-mesure-de-consommation.html?domid=4&id_campaign=9 ",
+    "configuration": { "autorefresh" : "*/5 * * * *"},
     "config": [
         {"endpoint" : 1,"cluster":6,"attribute":32769,"name":"Configuration LED","type":"select","values":[{"value":0,"name":"LED Toujours OFF"},{"value":1,"name":"LED-On si alimenté"},{"value":2,"name":"LED-Off si alimenté"},{"value":3,"name":"LED Toujours ON"}]},
         {"endpoint" : 1,"cluster":6,"attribute":32770,"name":"État après coupure de courant","type":"select","values":[{"value":0,"name":"OFF"},{"value":1,"name":"Même état"},{"value":2,"name":"ON"}]},
         {"endpoint" : 1,"cluster":6,"attribute":32768,"name":"Protection Enfant","type":"select","values":[{"value":0,"name":"Desactivée"},{"value":1,"name":"Activée"}]}
     ],
     "commands": [
+        {
+            "logicalId": "refresh",
+            "name": "Rafraichir",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "isVisible": "1"
+        },
         {
             "logicalId": "1::6::0",
             "name": "1::6::0",
@@ -49,10 +58,6 @@
             "subType": "numeric",
             "isHistorized": "1",
             "unite": "W",
-            "configuration": {
-                "historizeRound": 2,
-                "calculValueOffset": "#value# \/ 10"
-            },
             "template": {
                 "dashboard": "default",
                 "mobile": "default"
