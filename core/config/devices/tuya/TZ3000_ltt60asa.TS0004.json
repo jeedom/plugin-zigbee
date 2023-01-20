@@ -1,6 +1,9 @@
 {
   "name": "Tuya Zigbee - Switch 4 voies",
   "ref" : "TS0001",
+  "config" : [
+    {"endpoint" : 1,"cluster":6,"attribute":32770,"name":"Etat au retour du courant","type":"select","values":[{"value":0,"name":"Eteint"},{"value":1,"name":"Allumé"},{"value":2,"name":"Mémoire"}]}
+  ],
   "buylink" : "",
   "commands": [
     {
