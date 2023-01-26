@@ -37,7 +37,7 @@ async def serialize_application():
 	obj = {
 		'ieee': str(shared.ZIGPY.ieee),
 		'zigpy_version':zigpy.__version__,
-		'zha_version': pkg_resources.require("zha-quirks")[0].version,
+		#'zha_version': pkg_resources.require("zha-quirks")[0].version,
 		'nwk': shared.ZIGPY.nwk,
 		'config': shared.ZIGPY._config
 	}
