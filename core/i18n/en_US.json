@@ -490,6 +490,6 @@
         "Le message et le sujet ne peuvent pas être vide": "Message and subject cannot be empty"
     },
     "info.json": {
-        "Plugin offrant une compatibilité généralisée avec différents types de contrôleurs Zigbee tels que deCONZ et EZSP (Silicon labs), et en support beta : Zigate, XBee et Texas Instruments. \n\n Il est important de bien lire la documentation du plugin avant tout achat.": "Plugin offering general compatibility with different types of Zigbee controllers such as deCONZ and EZSP (Silicon labs), and in beta support: Zigate, XBee and Texas Instruments. It is important to read the plugin documentation carefully before any purchase"
+        "IMPORTANT Ce plugin est remplacer par Jeezigbee (documentation en cours de rédaction). Plugin offrant une compatibilité généralisée avec différents types de contrôleurs Zigbee tels que deCONZ et EZSP (Silicon labs), et en support beta : Zigate, XBee et Texas Instruments. \n\n Il est important de bien lire la documentation du plugin avant tout achat.": "IMPORTANT This plugin is replaced by Jeezigbee (documentation in progress). Plugin offering general compatibility with different types of Zigbee controllers such as deCONZ and EZSP (Silicon labs), and in beta support: Zigate, XBee and Texas Instruments. It is important to read the documentation of the plugin carefully before any purchase"
     }
 }
