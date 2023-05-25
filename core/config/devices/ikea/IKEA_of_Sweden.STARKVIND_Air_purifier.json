@@ -2,114 +2,241 @@
   "name": "Purificateur d’air IKEA Starkvind",
   "buylink" : "",
   "commands": [
-    {
-      "name": "Rafraîchir",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "refresh"
-    },
-    {
-      "name": "Mode",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "1::514::0"
-    },
-    {
-      "name": "Off",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "value" : "Mode",
-      "logicalId": "attributes::1::in::514::0::0"
-    },
-    {
-      "name": "Bas",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "value" : "Mode",
-      "logicalId": "attributes::1::in::514::0::1"
-    },
-    {
-      "name": "Moyen",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "value" : "Mode",
-      "logicalId": "attributes::1::in::514::0::2"
-    },
-    {
-      "name": "Rapide",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "value" : "Mode",
-      "logicalId": "attributes::1::in::514::0::3"
-    },
-    {
-      "name": "Auto",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "value" : "Etat",
-      "logicalId": "attributes::1::in::514::0::5"
-    },
-    {
-      "name": "Durée de fonctionnement du filtre",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "1::64599::0"
-    },
-    {
-      "name": "Durée de vie restante du filtre",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "1::64599::2"
-    },
-    {
-      "name": "Etat filtre",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "1::64599::1"
-    },
-    {
-      "name": "Qualité de l'air",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "1::64599::4"
-    },
-    {
-      "name": "Temps de fonctionnement",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "1::64599::8"
-    },
-    {
-      "name": "Mode en cours",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "1::64599::7"
-    }
-  ]
+      {
+          "logicalId": "refresh",
+          "name": "Rafraîchir",
+          "type": "action",
+          "subType": "other",
+          "isHistorized": "0",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "attributes::1::in::64637::6::0",
+          "name": "Off",
+          "type": "action",
+          "subType": "other",
+          "isHistorized": "0",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "attributes::1::in::64637::6::10",
+          "name": "Vitesse 1",
+          "type": "action",
+          "subType": "other",
+          "isHistorized": "0",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "attributes::1::in::64637::6::20",
+          "name": "Vitesse 2",
+          "type": "action",
+          "subType": "other",
+          "isHistorized": "0",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "attributes::1::in::64637::6::30",
+          "name": "Vitesse 3",
+          "type": "action",
+          "subType": "other",
+          "isHistorized": "0",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "attributes::1::in::64637::6::40",
+          "name": "Vitesse 4",
+          "type": "action",
+          "subType": "other",
+          "isHistorized": "0",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "attributes::1::in::64637::6::50",
+          "name": "Vitesse 5",
+          "type": "action",
+          "subType": "other",
+          "isHistorized": "0",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "attributes::1::in::64637::6::1",
+          "name": "Auto",
+          "type": "action",
+          "subType": "other",
+          "isHistorized": "0",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "1::64637::0",
+          "name": "Durée de fonctionnement du filtre",
+          "type": "info",
+          "subType": "numeric",
+          "isHistorized": "0",
+          "unite": "jour",
+          "configuration": {
+              "calculValueOffset": "(#value# \/ 60) \/ 24",
+              "historizeRound": "0",
+              "repeatEventManagement": "never",
+              "alert::messageReturnBack": "0"
+          },
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "1::64637::2",
+          "name": "Durée de vie restante du filtre",
+          "type": "info",
+          "subType": "numeric",
+          "isHistorized": "0",
+          "unite": "jour",
+          "configuration": {
+              "calculValueOffset": "(#value# \/ 60) \/ 24",
+              "historizeRound": "0",
+              "repeatEventManagement": "never",
+              "alert::messageReturnBack": "0"
+          },
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "1::64637::1",
+          "name": "Etat filtre",
+          "type": "info",
+          "subType": "binary",
+          "isHistorized": "0",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "1::64637::4",
+          "name": "Qualité de lair",
+          "type": "info",
+          "subType": "numeric",
+          "isHistorized": "0",
+          "unite": "µg\/m³",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "1::64637::8",
+          "name": "Temps de fonctionnement",
+          "type": "info",
+          "subType": "numeric",
+          "isHistorized": "0",
+          "unite": "jour",
+          "configuration": {
+              "calculValueOffset": "(#value# \/ 60) \/ 24",
+              "historizeRound": "0",
+              "repeatEventManagement": "never",
+              "alert::messageReturnBack": "0"
+          },
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "1::64637::7",
+          "name": "Vitesse du ventilateur",
+          "type": "info",
+          "subType": "numeric",
+          "isHistorized": "0",
+          "configuration": {
+              "minValue": "0",
+              "maxValue": "5",
+              "calculValueOffset": "#value# \/ 10",
+              "repeatEventManagement": "never",
+              "alert::messageReturnBack": "0"
+          },
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "0",
+          "name": "LED",
+          "type": "info",
+          "subType": "string",
+          "isHistorized": "0",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "attributes::1::in::64637::3::1",
+          "name": "LED OFF",
+          "type": "action",
+          "subType": "other",
+          "isHistorized": "0",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "value": "LED",
+          "isVisible": "1"
+      },
+      {
+          "logicalId": "attributes::1::in::64637::3::0",
+          "name": "LED ON",
+          "type": "action",
+          "subType": "other",
+          "isHistorized": "0",
+          "template": {
+              "dashboard": "default",
+              "mobile": "default"
+          },
+          "value": "LED",
+          "isVisible": "1"
+      }
+  ],
+  "ref": "IKEA_of_Sweden.STARKVIND_Air_purifier"
 }

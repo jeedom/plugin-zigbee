@@ -1,0 +1,42 @@
+{
+    "name": "SONOFF - Capteur de température et d'humidité Zigbee 3.0 avec écran",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/6614-sonoff-capteur-de-temperature-et-d-humidite-zigbee-30-avec-ecran.html?domid=4&id_campaign=9",
+    "commands": [
+        {
+            "logicalId": "1::1026::0",
+            "generic_type": "TEMPERATURE",
+            "name": "Température",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "unite": "°C",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 100"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::1029::0",
+            "name": "Humidité",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "%",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 100",
+                "repeatEventManagement": "never",
+                "alert::messageReturnBack": "0"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        }
+    ],
+    "ref": "SNZB-02D"
+}

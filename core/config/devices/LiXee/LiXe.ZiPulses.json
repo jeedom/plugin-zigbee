@@ -1,0 +1,87 @@
+{
+    "name": "Lixe ZiPulse - Compteur d'impulsions communiquant en ZigBee 3.0.",
+    "manufacturer": "Lixee",
+    "type": "Compteur",
+    "buylink" : "",
+    "configuration": {
+        "maxBatteryVoltage": 29
+    },
+    "commands": [
+        {
+            "logicalId": "1::1794::0",
+            "generic_type": "CONSUMPTION",
+            "name": "Consommation eau en L",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "L",
+            "configuration": {
+                "historizeRound": "2",
+                "calculValueOffset": "#value# \/ 10",
+                "repeatEventManagement": "never",
+                "alert::messageReturnBack": "0"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::1026::0",
+            "generic_type": "TEMPERATURE",
+            "name": "Température ",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "°C",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 100"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::1794::0",
+            "name": "Consommation eau en m3",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "1",
+            "unite": "m3",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 10000",
+                "historizeRound": "2",
+                "repeatEventManagement": "never",
+                "alert::messageReturnBack": "0"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        },
+        {
+            "logicalId": "1::1794::0",
+            "name": "Consommation",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "unite": "Kwh",
+            "configuration": {
+                "calculValueOffset": "#value# \/ 1000",
+                "historizeRound": "2",
+                "repeatEventManagement": "never",
+                "alert::messageReturnBack": "0"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "isVisible": "1"
+        }
+    ],
+    "ref": ""
+}
