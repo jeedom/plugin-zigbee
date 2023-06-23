@@ -490,6 +490,6 @@
         "Le message et le sujet ne peuvent pas être vide": "Nachricht und Betreff dürfen nicht leer sein"
     },
     "info.json": {
-        "IMPORTANT Ce plugin est remplacer par Jeezigbee (documentation en cours de rédaction). Plugin offrant une compatibilité généralisée avec différents types de contrôleurs Zigbee tels que deCONZ et EZSP (Silicon labs), et en support beta : Zigate, XBee et Texas Instruments. \n\n Il est important de bien lire la documentation du plugin avant tout achat.": "WICHTIG Dieses Plugin wird durch Jeezigbee ersetzt (Dokumentation in Arbeit). Plugin bietet allgemeine Kompatibilität mit verschiedenen Arten von Zigbee-Controllern wie deCONZ und EZSP (Silicon Labs) und in der Beta-Unterstützung: Zigate, XBee und Texas Instruments. Es ist wichtig, vor jedem Kauf die Dokumentation des Plugins sorgfältig zu lesen"
+        "!!!!!!!!! IMPORTANT Ce plugin est remplacer par Jeezigbee !!!!!!!!!. Plugin offrant une compatibilité généralisée avec différents types de contrôleurs Zigbee tels que deCONZ et EZSP (Silicon labs), et en support beta : Zigate, XBee et Texas Instruments. \n\n Il est important de bien lire la documentation du plugin avant tout achat.": "!!!!!!!!! WICHTIG Dieses Plugin wird durch Jeezigbee ersetzt !!!!!!!!. Plugin bietet allgemeine Kompatibilität mit verschiedenen Arten von Zigbee-Controllern wie deCONZ und EZSP (Silicon Labs) und in der Beta-Unterstützung: Zigate, XBee und Texas Instruments. Es ist wichtig, vor jedem Kauf die Dokumentation des Plugins sorgfältig zu lesen"
     }
 }
