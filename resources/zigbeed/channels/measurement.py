@@ -272,3 +272,8 @@ class WindSpeed():
 		{"attr": "min_measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),},
 		{"attr": "max_measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 50),}
 	]
+
+@registries.ZIGBEE_CHANNEL_REGISTRY.register(measurement.PM25.cluster_id)
+class PM25():
+        """PM25 measurement channel."""
+        REPORT_CONFIG = [{"attr": "measured_value","config": (REPORT_CONFIG_MIN_INT, REPORT_CONFIG_MAX_INT, 1),}]
